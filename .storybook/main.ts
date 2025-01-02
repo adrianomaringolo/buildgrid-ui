@@ -8,14 +8,19 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
+    "storybook-css-modules-preset",
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
-  viteFinal: (config) => {
+  async viteFinal(config) {
     return mergeConfig(config, {
-      plugins: [],
+      css: {
+        postcss: {
+          plugins: [require("tailwindcss"), require("autoprefixer")],
+        },
+      },
     });
   },
 };
