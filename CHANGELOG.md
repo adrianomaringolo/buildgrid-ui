@@ -1,3 +1,10 @@
+# [1.1.0-alpha.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.2...v1.1.0-alpha.3) (2025-01-02)
+
+
+### Features
+
+* add new components ([acc2538](https://github.com/adrianomaringolo/buildgrid-ui/commit/acc253867cbadec11b61c3d9dcf1b5151ac3096b))
+
 # [1.1.0-alpha.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.1...v1.1.0-alpha.2) (2025-01-02)
 
 
