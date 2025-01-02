@@ -1,3 +1,11 @@
+# [1.1.0-alpha.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.0.0...v1.1.0-alpha.1) (2025-01-02)
+
+
+### Features
+
+* adding shadcn configuration ([5841434](https://github.com/adrianomaringolo/buildgrid-ui/commit/584143402fad7aa19e477693d2a4727f5625e430))
+* enhance Button component stories with props and update export ([69292b3](https://github.com/adrianomaringolo/buildgrid-ui/commit/69292b3d467dd5ed8eacf521e9c5f89e465af323))
+
 # 1.0.0 (2025-01-02)
 
 
