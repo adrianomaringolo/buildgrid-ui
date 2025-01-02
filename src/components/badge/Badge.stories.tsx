@@ -26,8 +26,5 @@ const Template = (args: BadgeProps) => {
 
 export const Default: Story = {
 	render: Template.bind({}),
-	args: {
-		children: 'Primary Button',
-		variant: 'default',
-	},
+	args: {},
 }

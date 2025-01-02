@@ -11,18 +11,30 @@ export default meta
 type Story = StoryObj<typeof Button>
 
 const Template = (args: ButtonProps) => {
+	const variants: Array<ButtonProps['variant']> = [
+		'default',
+		'secondary',
+		'destructive',
+		'outline',
+		'ghost',
+		'link',
+	]
 	return (
-		<div style={{ padding: '10px' }}>
-			<Button>{args.children}</Button>
+		<div className="flex gap-2">
+			{Object.values(variants).map((variant) => (
+				<Button
+					{...args}
+					variant={variant as ButtonProps['variant']}
+					className="capitalize"
+				>
+					{variant}
+				</Button>
+			))}
 		</div>
 	)
 }
 
 export const Default: Story = {
 	render: Template.bind({}),
-	args: {
-		children: 'Primary Button',
-		variant: 'default',
-		size: 'default',
-	},
+	args: {},
 }
