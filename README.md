@@ -2,7 +2,7 @@
 
 ### This lib is under construction, take a look again soon 🚧
 
-A React component library built using [Vite](https://vitejs.dev) and [shadcn](https://shadcn.dev) as the foundation. This library is designed to integrate seamlessly with React and Next.js applications and includes support for [TailwindCSS](https://tailwindcss.com). It also provides a Storybook setup to display and document the components.
+A React component library built using [Vite](https://vitejs.dev) and [shadcn](https://ui.shadcn.com/) as the foundation. This library is designed to integrate seamlessly with React and Next.js applications and includes support for [TailwindCSS](https://tailwindcss.com). It also provides a Storybook setup to display and document the components.
 
 ## Features
 
