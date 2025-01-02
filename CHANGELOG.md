@@ -1,3 +1,10 @@
+# [1.1.0-alpha.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.3...v1.1.0-alpha.4) (2025-01-02)
+
+
+### Features
+
+* add Checkbox component and related stories ([7e2d66b](https://github.com/adrianomaringolo/buildgrid-ui/commit/7e2d66b7a19f8ddb5a6a5e5f827f1df552977113))
+
 # [1.1.0-alpha.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.2...v1.1.0-alpha.3) (2025-01-02)
 
 
