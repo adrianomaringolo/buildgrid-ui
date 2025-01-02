@@ -10,17 +10,18 @@ const meta: Meta<typeof Button> = {
 export default meta
 type Story = StoryObj<typeof Button>
 
+const variants: Array<ButtonProps['variant']> = [
+	'default',
+	'secondary',
+	'destructive',
+	'outline',
+	'ghost',
+	'link',
+]
+
 const Template = (args: ButtonProps) => {
-	const variants: Array<ButtonProps['variant']> = [
-		'default',
-		'secondary',
-		'destructive',
-		'outline',
-		'ghost',
-		'link',
-	]
 	return (
-		<div className="flex gap-2">
+		<div className="flex gap-2 flex-wrap">
 			{Object.values(variants).map((variant) => (
 				<Button
 					{...args}
@@ -36,5 +37,26 @@ const Template = (args: ButtonProps) => {
 
 export const Default: Story = {
 	render: Template.bind({}),
+	args: {},
+}
+
+const TemplateIsLoading = () => {
+	return (
+		<div className="flex gap-2 flex-wrap">
+			{Object.values(variants).map((variant) => (
+				<Button
+					isLoading
+					variant={variant as ButtonProps['variant']}
+					className="capitalize"
+				>
+					{variant}
+				</Button>
+			))}
+		</div>
+	)
+}
+
+export const Loading: Story = {
+	render: TemplateIsLoading.bind({}),
 	args: {},
 }
