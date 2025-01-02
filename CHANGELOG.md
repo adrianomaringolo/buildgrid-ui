@@ -1,3 +1,10 @@
+# [1.1.0-alpha.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.1...v1.1.0-alpha.2) (2025-01-02)
+
+
+### Features
+
+* add Badge component and related stories ([4106287](https://github.com/adrianomaringolo/buildgrid-ui/commit/41062872c2807cfa14494c9cab1f2b8fe506d246))
+
 # [1.1.0-alpha.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.0.0...v1.1.0-alpha.1) (2025-01-02)
 
 
