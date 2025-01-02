@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "./Button";
+import { Button, ButtonProps } from "./Button";
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -9,8 +9,19 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
+const Template = (args: ButtonProps) => {
+  return (
+    <div style={{ padding: "10px" }}>
+      <Button>{args.children}</Button>
+    </div>
+  );
+};
+
+export const Default: Story = {
+  render: Template.bind({}),
   args: {
-    label: "Button example",
+    children: "Primary Button",
+    variant: "default",
+    size: "default",
   },
 };
