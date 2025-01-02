@@ -9,7 +9,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from './Card'
-import { Button } from '../button/Button'
+import { Button } from '../button/button'
 
 const meta: Meta<typeof Card> = {
 	component: Card,
