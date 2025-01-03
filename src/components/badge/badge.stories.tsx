@@ -2,7 +2,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Badge, BadgeProps, badgeVariants } from './Badge'
+import { Badge, BadgeProps, badgeVariants } from './badge'
 
 const meta: Meta<typeof Badge> = {
 	component: Badge,
