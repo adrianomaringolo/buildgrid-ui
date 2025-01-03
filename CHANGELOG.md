@@ -1,3 +1,13 @@
+# [1.1.0-alpha.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.4...v1.1.0-alpha.5) (2025-01-03)
+
+
+### Features
+
+* **adaptive-input:** add AdaptiveInput component with masking functionality and stories ([d2d9794](https://github.com/adrianomaringolo/buildgrid-ui/commit/d2d97944b150163d69342ddb68e6e188283f0348))
+* **autocomplete:** add Autocomplete component with stories and functionality ([c35b4ae](https://github.com/adrianomaringolo/buildgrid-ui/commit/c35b4ae634654b1451ab0f3936f1d757ff70e122))
+* **input:** add Input component with stories ([8078ee7](https://github.com/adrianomaringolo/buildgrid-ui/commit/8078ee7c0e9b986007d89096d08065300c36b7c9))
+* **popover:** add Popover component with stories ([32373a1](https://github.com/adrianomaringolo/buildgrid-ui/commit/32373a13c235e0899b9c332f42b48f13c704f82c))
+
 # [1.1.0-alpha.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.3...v1.1.0-alpha.4) (2025-01-02)
 
 
