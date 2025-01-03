@@ -91,7 +91,7 @@ export function Autocomplete(props: AutoCompleteProps) {
 	return (
 		<Popover open={isFocused}>
 			<PopoverTrigger asChild>
-				<div className="relative w-fit">
+				<div className="relative w-full">
 					<AdaptiveInput
 						type="text"
 						placeholder={placeholder}

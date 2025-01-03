@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Autocomplete } from './autocomplete'
 
 const meta: Meta<typeof Autocomplete> = {
-	title: 'Components/Input/Autocomplete',
+	title: 'Components/input/autocomplete',
 	component: Autocomplete,
 }
 
@@ -67,15 +67,14 @@ const options = [
 const Template = () => {
 	const [value, setValue] = React.useState('')
 	return (
-		<>
+		<div className="w-80">
 			<Autocomplete
 				value={value}
 				onChange={(value) => setValue(value)}
-				className="w-80"
 				options={options.map((option) => ({ value: option, label: option }))}
 			/>
 			<p className="mt-4">Selected value: {value}</p>
-		</>
+		</div>
 	)
 }
 

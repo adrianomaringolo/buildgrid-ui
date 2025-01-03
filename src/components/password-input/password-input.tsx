@@ -64,7 +64,7 @@ export function PasswordInput(props: PasswordInputProps) {
 	}
 
 	return (
-		<div className="w-fit space-y-4">
+		<div className="w-full space-y-4">
 			<div className="relative">
 				<Input
 					{...rest}

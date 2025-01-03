@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { PasswordInput } from './password-input'
 
 const meta: Meta<typeof PasswordInput> = {
-	title: 'Components/Input/Password',
+	title: 'Components/input/password',
 	component: PasswordInput,
 }
 
@@ -13,7 +13,11 @@ export default meta
 type Story = StoryObj<typeof PasswordInput>
 
 const Template = () => {
-	return <PasswordInput className="w-96" />
+	return (
+		<div className="w-96">
+			<PasswordInput />
+		</div>
+	)
 }
 
 export const Default: Story = {
