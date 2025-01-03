@@ -1,3 +1,11 @@
+# [1.1.0-alpha.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.5...v1.1.0-alpha.6) (2025-01-03)
+
+
+### Features
+
+* **avatar:** add Avatar component with fallback and image support ([893a16e](https://github.com/adrianomaringolo/buildgrid-ui/commit/893a16e8c45a35f56f91d1a11e1615cb4fa35347))
+* **dropdown-menu:** add DropdownMenu component with stories and functionality ([5006e9d](https://github.com/adrianomaringolo/buildgrid-ui/commit/5006e9dd4c41354cda4f664f2169b6fd77a75e87))
+
 # [1.1.0-alpha.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.4...v1.1.0-alpha.5) (2025-01-03)
 
 
