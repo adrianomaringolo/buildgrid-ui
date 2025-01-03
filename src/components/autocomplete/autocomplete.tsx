@@ -2,7 +2,7 @@ import { Search } from 'lucide-react'
 import { useState } from 'react'
 
 import { cn } from '@/lib'
-import { AdaptiveInput } from '../adaptative-input'
+import { AdaptiveInput } from '../adaptive-input'
 import { Popover, PopoverContent, PopoverTrigger } from '../popover'
 
 interface Option {

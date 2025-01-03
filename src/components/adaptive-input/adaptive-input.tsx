@@ -39,7 +39,7 @@ const AdaptiveInput = React.forwardRef<HTMLInputElement, AdaptiveInputProps>(
 		}
 
 		return (
-			<div className="relative w-fit">
+			<div className="relative w-full">
 				{leftIcon && (
 					<div className="absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground">
 						{leftIcon}

@@ -2,7 +2,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { AdaptiveInput } from './adaptative-input'
+import { AdaptiveInput } from './adaptive-input'
 import { HelpCircle, Phone, User } from 'lucide-react'
 
 const meta: Meta<typeof AdaptiveInput> = {

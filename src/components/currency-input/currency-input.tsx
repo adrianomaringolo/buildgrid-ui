@@ -1,5 +1,5 @@
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { AdaptiveInput, AdaptiveInputProps } from '../adaptative-input'
+import { AdaptiveInput, AdaptiveInputProps } from '../adaptive-input'
 
 export interface CurrencyInputProps extends AdaptiveInputProps {
 	currencySymbol?: string

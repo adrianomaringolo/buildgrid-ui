@@ -1,4 +1,4 @@
-export * from './adaptative-input'
+export * from './adaptive-input'
 export * from './autocomplete'
 export * from './avatar'
 export * from './badge'
