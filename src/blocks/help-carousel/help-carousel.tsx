@@ -46,7 +46,7 @@ export function HelpCarousel(props: HelpCarouselProps) {
 				<div>{steps[currentStep].description}</div>
 				<div className="flex items-center justify-between mt-4">
 					<Button
-						variant="outline"
+						variant="ghost"
 						size="icon"
 						onClick={handlePrevious}
 						disabled={currentStep === 0}
@@ -65,7 +65,7 @@ export function HelpCarousel(props: HelpCarouselProps) {
 						))}
 					</div>
 					<Button
-						variant="outline"
+						variant="ghost"
 						size="icon"
 						onClick={handleNext}
 						disabled={currentStep === steps.length - 1}
