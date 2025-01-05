@@ -1,3 +1,26 @@
+# [1.1.0-alpha.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.6...v1.1.0-alpha.7) (2025-01-04)
+
+
+### Bug Fixes
+
+* **input:** input width fix to assume full width ([a15cbfb](https://github.com/adrianomaringolo/buildgrid-ui/commit/a15cbfbbe4e18d298a9980799b1252a1ddb03c37))
+
+
+### Features
+
+* **alert-dialog:** add AlertDialog component with stories and update dependencies ([3e23c69](https://github.com/adrianomaringolo/buildgrid-ui/commit/3e23c692638f5f74e53ddd2af2a8fa2f77016176))
+* **currency-input:** add CurrencyInput component with formatting and stories ([99adafa](https://github.com/adrianomaringolo/buildgrid-ui/commit/99adafaf98656aa2efe12d0e4dff8ded35523225))
+* **dialog:** add Dialog component with stories and update package configuration ([da9b5f9](https://github.com/adrianomaringolo/buildgrid-ui/commit/da9b5f91dd02da50b81c9270941e5badafae20e0))
+* **formatters:** add utility functions for currency and date formatting ([2dbc4cc](https://github.com/adrianomaringolo/buildgrid-ui/commit/2dbc4cc36772ed3313d48b4e20557b7e24f932ed))
+* **help-carousel:** add HelpCarousel block component with stories and update exports ([e99c9a4](https://github.com/adrianomaringolo/buildgrid-ui/commit/e99c9a4c1635c47cb222bd48876e15bbf940a15a))
+* **help-carousel:** update button variant to 'ghost' in HelpCarousel component ([0e7765d](https://github.com/adrianomaringolo/buildgrid-ui/commit/0e7765dacbbbacff89a21e0ceced74b006775b83))
+* **pagination-controls:** add PaginationControls block component with stories and update exports ([f2fc558](https://github.com/adrianomaringolo/buildgrid-ui/commit/f2fc5588308e172d2cbe922c64fd4fba34b6e83b))
+* **pagination:** add Pagination component with stories and update exports ([0585af4](https://github.com/adrianomaringolo/buildgrid-ui/commit/0585af4bcf8ad6eee33b4fe842b19ce415bb99c6))
+* **password-input:** add PasswordInput component with strength meter and visibility toggle ([222e3d3](https://github.com/adrianomaringolo/buildgrid-ui/commit/222e3d3610d18cb59d7d7cd9a41bc03c36e7de08))
+* **progress-switch:** add Progress and Switch components with stories ([9c496af](https://github.com/adrianomaringolo/buildgrid-ui/commit/9c496aff19bc42e1831d2ce99f59d08c9d5611c9))
+* **progress:** add Progress component and stories; update exports ([4d849f7](https://github.com/adrianomaringolo/buildgrid-ui/commit/4d849f70baca326e556b4b81f1cd5005870fa292))
+* **tabs:** add Tabs component with stories and update package configuration ([4de034d](https://github.com/adrianomaringolo/buildgrid-ui/commit/4de034dadca5d8830a969a05f9f3fa7fa2cb77e5))
+
 # [1.1.0-alpha.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.5...v1.1.0-alpha.6) (2025-01-03)
 
 
