@@ -1,6 +1,6 @@
 {
 	"name": "buildgrid-ui",
-	"version": "1.1.0-dev.11",
+	"version": "1.1.0-dev.12",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -10,6 +10,28 @@
 		"CHANGELOG.md",
 		"LICENSE"
 	],
+	"exports": {
+		"./components": "./dist/components",
+		"./blocks": "./dist/blocks",
+		"./utils": "./dist/lib/utils",
+		".": "./dist/index.js"
+	},
+	"typesVersions": {
+		"*": {
+			"components": [
+				"dist/components"
+			],
+			"blocks": [
+				"dist/blocks"
+			],
+			"utils": [
+				"dist/lib/utils"
+			],
+			"*": [
+				"dist/*"
+			]
+		}
+	},
 	"main": "dist/buildgrid-ui.umd.js",
 	"module": "dist/buildgrid-ui.esm.js",
 	"types": "dist/index.d.ts",
