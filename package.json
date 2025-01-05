@@ -1,6 +1,6 @@
 {
 	"name": "buildgrid-ui",
-	"version": "1.1.0-dev.12",
+	"version": "1.1.0-dev.15",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -11,10 +11,23 @@
 		"LICENSE"
 	],
 	"exports": {
-		"./components": "./dist/components",
-		"./blocks": "./dist/blocks",
-		"./utils": "./dist/lib/utils",
-		".": "./dist/index.js"
+		"./components": {
+			"import": "./dist/components/index.d.ts",
+			"require": "./dist/components/index.d.ts"
+		},
+		"./blocks": {
+			"import": "./dist/blocks/index.d.ts",
+			"require": "./dist/blocks/index.d.ts"
+		},
+		"./utils": {
+			"import": "./dist/lib/utils/index.d.ts",
+			"require": "./dist/lib/utils/index.d.ts"
+		},
+		"./hooks": {
+			"import": "./dist/lib/hooks/index.d.ts",
+			"require": "./dist/lib/hooks/index.d.ts"
+		},
+		".": "./dist/index.d.ts"
 	},
 	"typesVersions": {
 		"*": {
@@ -26,6 +39,9 @@
 			],
 			"utils": [
 				"dist/lib/utils"
+			],
+			"hooks": [
+				"dist/lib/hooks"
 			],
 			"*": [
 				"dist/*"
@@ -66,7 +82,7 @@
 		"lucide-react": "^0.469.0",
 		"tailwind-merge": "^2.6.0",
 		"tailwindcss-animate": "^1.0.7",
-		"vite": "^6.0.6"
+		"vite": "^6.0.7"
 	},
 	"peerDependencies": {
 		"react": "^19.0.0",
