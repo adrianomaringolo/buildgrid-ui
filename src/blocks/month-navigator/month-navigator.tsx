@@ -11,7 +11,7 @@ export interface MonthNavigatorProps {
 	onChangeMonthYear: (month: Month, year: number) => void
 }
 
-export function MonthNavigatorComponent(props: MonthNavigatorProps) {
+export const MonthNavigator = (props: MonthNavigatorProps) => {
 	const { currentMonth, currentYear, onChangeMonthYear, locale = enUS } = props
 
 	const navigateMonth = (direction: 'prev' | 'next') => {
