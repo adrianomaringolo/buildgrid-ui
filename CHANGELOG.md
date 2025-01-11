@@ -1,3 +1,24 @@
+# [1.1.0-alpha.8](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.7...v1.1.0-alpha.8) (2025-01-11)
+
+
+### Features
+
+* **calendar:** add calendar component and stories ([ea6adb3](https://github.com/adrianomaringolo/buildgrid-ui/commit/ea6adb333f94f55750cd4011bde529d6b7f1a4d8))
+* **form:** add Form component to library ([090d2f1](https://github.com/adrianomaringolo/buildgrid-ui/commit/090d2f1166872032417d49b284afca55b23d4427))
+* **hooks:** add new hooks for mobile, media query and pwa features ([97c1ebb](https://github.com/adrianomaringolo/buildgrid-ui/commit/97c1ebb4786b7cf2a178b87df76460c036df6737))
+* **label:** add Label component and stories ([82a15bc](https://github.com/adrianomaringolo/buildgrid-ui/commit/82a15bc466371e1113e7935923c9c8c2dcbeb27f))
+* **monthNavigator:** add MonthNavigator block and stories ([ef99729](https://github.com/adrianomaringolo/buildgrid-ui/commit/ef99729b545bc23d9b2e93e22415cf668722ba1a))
+* **navigation-menu:** add NavigationMenu component and stories ([ad7db5c](https://github.com/adrianomaringolo/buildgrid-ui/commit/ad7db5c5863437f4576b3ca5cb28218566eaf683))
+* **radio-group:** adding RadioGroup component and stories ([cbe1494](https://github.com/adrianomaringolo/buildgrid-ui/commit/cbe1494814db7d2e37ac03c31230ff42657efeeb))
+* **select:** add select component and stories ([89f2776](https://github.com/adrianomaringolo/buildgrid-ui/commit/89f2776d3e0eb0498e670ef601c77d0ad75a9720))
+* **sidebar:** add Sidebar component and stories ([1ee4db9](https://github.com/adrianomaringolo/buildgrid-ui/commit/1ee4db943eac673a047f732f291f2dabf0a4aa76))
+* **table:** add table component ans story ([1599842](https://github.com/adrianomaringolo/buildgrid-ui/commit/1599842a1f076da48482b19c66180f9a716e33a6))
+* **textarea:** add textarea component and story ([2c12b28](https://github.com/adrianomaringolo/buildgrid-ui/commit/2c12b28446d972ba3719264b14e62c2ac961f52d))
+* **toaster:** add toast component and stories ([869300f](https://github.com/adrianomaringolo/buildgrid-ui/commit/869300f7f4655e419da60521d89f6f322441af96))
+* **toggle:** add toggle component ans stories ([f120713](https://github.com/adrianomaringolo/buildgrid-ui/commit/f120713db932e5bb7af6c68785700192e5aecbcd))
+* **tooltip:** add tooltip component and story ([382db09](https://github.com/adrianomaringolo/buildgrid-ui/commit/382db09d8eb8c751eec12501c411f9935587c195))
+* **useDialog:** add useDialog hook and provider with stories ([4e4cdf8](https://github.com/adrianomaringolo/buildgrid-ui/commit/4e4cdf887c46f4be49fbe47fcce3e90293c77714))
+
 # [1.1.0-alpha.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.6...v1.1.0-alpha.7) (2025-01-04)
 
 
