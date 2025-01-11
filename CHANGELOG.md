@@ -1,3 +1,10 @@
+# [1.1.0-alpha.10](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.9...v1.1.0-alpha.10) (2025-01-11)
+
+
+### Bug Fixes
+
+* **sidebar:** add correct z-index to sidebar ([768b0f9](https://github.com/adrianomaringolo/buildgrid-ui/commit/768b0f97e0fcebeae492d4201523704d712bd236))
+
 # [1.1.0-alpha.9](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.8...v1.1.0-alpha.9) (2025-01-11)
 
 
