@@ -11,7 +11,7 @@ export default meta
 type Story = StoryObj<typeof Calendar>
 
 const Template = () => {
-	return <Calendar mode="single" />
+	return <Calendar />
 }
 
 export const Default: Story = {
