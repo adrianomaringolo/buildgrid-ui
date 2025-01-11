@@ -6,6 +6,7 @@ interface SidebarProps {
 	isOpen?: boolean
 	onToggle?: (open: boolean) => void
 	children: React.ReactNode
+	className?: string
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -13,6 +14,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 	isOpen: externalOpen,
 	onToggle,
 	children,
+	className,
 }) => {
 	const [internalOpen, setInternalOpen] = useState(true)
 	const sidebarRef = useRef<HTMLDivElement>(null)
@@ -54,19 +56,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
 	}, [fixed])
 
 	return (
-		<aside
-			ref={sidebarRef}
-			className={cn(
-				'bg-white h-full shadow-md flex flex-col fixed top-0 left-0 transition-all duration-300 ease-in-out overflow-auto',
-				{ 'w-72': fixed || isOpen },
-				{ 'w-0': !isOpen && !fixed },
-				{ 'translate-x-0': isOpen },
-				{ '-translate-x-full': !isOpen && !fixed },
-			)}
-			aria-hidden={!isOpen}
-		>
-			{children}
-		</aside>
+		<>
+			<aside
+				ref={sidebarRef}
+				className={cn(
+					'bg-white z-50 h-full shadow-md flex flex-col fixed top-0 left-0 transition-all duration-300 ease-in-out overflow-auto',
+					{ 'w-72': fixed || isOpen },
+					{ 'w-0': !isOpen && !fixed },
+					{ 'translate-x-0': isOpen },
+					{ '-translate-x-full': !isOpen && !fixed },
+					className,
+				)}
+				aria-hidden={!isOpen}
+			>
+				{children}
+			</aside>
+			{fixed && <div className="w-72 relative" />}
+		</>
 	)
 }
 
@@ -99,7 +105,7 @@ export const SidebarList = ({
 	children,
 	className,
 }: PropsWithChildren<{ className?: string }>) => {
-	return <ul className={cn('flex flex-col gap-2 mt-4 px-4', className)}>{children}</ul>
+	return <ul className={cn('flex flex-col gap-2 my-4 px-4', className)}>{children}</ul>
 }
 
 export const SidebarListItem = ({
