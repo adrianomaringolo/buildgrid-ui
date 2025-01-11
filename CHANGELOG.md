@@ -1,3 +1,10 @@
+# [1.1.0-alpha.9](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.8...v1.1.0-alpha.9) (2025-01-11)
+
+
+### Bug Fixes
+
+* **sidebar:** add classname prop to sidebar composition components ([edd249d](https://github.com/adrianomaringolo/buildgrid-ui/commit/edd249d6926758f596817691ac3b763793763465))
+
 # [1.1.0-alpha.8](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0-alpha.7...v1.1.0-alpha.8) (2025-01-11)
 
 
