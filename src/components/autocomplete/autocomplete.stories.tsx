@@ -70,6 +70,7 @@ const Template = () => {
 		<div className="w-80">
 			<Autocomplete
 				value={value}
+				defaultOption={{ value: 'Italy', label: 'Italy' }}
 				onChange={(value) => setValue(value)}
 				options={options.map((option) => ({ value: option, label: option }))}
 			/>

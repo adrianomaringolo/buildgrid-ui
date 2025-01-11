@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { AdaptiveInput } from '../adaptive-input'
 import { Popover, PopoverContent, PopoverTrigger } from '../popover'
-
 interface Option {
 	value: string
 	label: string
@@ -17,6 +16,7 @@ interface AutoCompleteProps {
 	className?: string
 	placeholder?: string
 	emptyMessage?: string
+	defaultOption?: Option
 }
 
 export function Autocomplete(props: AutoCompleteProps) {
@@ -27,9 +27,10 @@ export function Autocomplete(props: AutoCompleteProps) {
 		className,
 		placeholder = 'Search...',
 		emptyMessage = 'Nothing found',
+		defaultOption,
 	} = props
 
-	const [query, setQuery] = useState(value)
+	const [query, setQuery] = useState(defaultOption?.label || value)
 	const [suggestions, setSuggestions] = useState<Option[]>(staticOptions)
 	const [selectedIndex, setSelectedIndex] = useState(-1)
 	const [isFocused, setIsFocused] = useState(false)
