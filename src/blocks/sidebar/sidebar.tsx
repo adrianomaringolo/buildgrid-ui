@@ -70,10 +70,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
 	)
 }
 
-export const SidebarHeader = ({ children }: PropsWithChildren) => {
+export const SidebarHeader = ({
+	children,
+	className,
+}: PropsWithChildren<{ className?: string }>) => {
 	return (
 		<header
-			className="p-4 flex justify-between items-center border-b"
+			className={cn('p-4 flex justify-between items-center border-b', className)}
 			aria-label="Sidebar header"
 		>
 			{children}
@@ -81,12 +84,22 @@ export const SidebarHeader = ({ children }: PropsWithChildren) => {
 	)
 }
 
-export const SidebarNav = ({ children }: PropsWithChildren) => {
-	return <nav aria-label="Sidebar navigation">{children}</nav>
+export const SidebarNav = ({
+	children,
+	className,
+}: PropsWithChildren<{ className?: string }>) => {
+	return (
+		<nav aria-label="Sidebar navigation" className={className}>
+			{children}
+		</nav>
+	)
 }
 
-export const SidebarList = ({ children }: PropsWithChildren) => {
-	return <ul className="flex flex-col gap-2 mt-4 px-4">{children}</ul>
+export const SidebarList = ({
+	children,
+	className,
+}: PropsWithChildren<{ className?: string }>) => {
+	return <ul className={cn('flex flex-col gap-2 mt-4 px-4', className)}>{children}</ul>
 }
 
 export const SidebarListItem = ({
@@ -107,9 +120,12 @@ export const SidebarListItem = ({
 	)
 }
 
-export const SidebarFooter = ({ children }: PropsWithChildren) => {
+export const SidebarFooter = ({
+	children,
+	className,
+}: PropsWithChildren<{ className?: string }>) => {
 	return (
-		<footer className="mt-auto p-4 text-sm" aria-label="Sidebar footer">
+		<footer className={cn('mt-auto p-4 text-sm', className)} aria-label="Sidebar footer">
 			{children}
 		</footer>
 	)
