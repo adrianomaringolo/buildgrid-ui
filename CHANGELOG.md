@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.1.0...v1.2.0) (2025-01-11)
+
+
+### Features
+
+* **date-formatters:** add date formatters functions for utilities ([1656a83](https://github.com/adrianomaringolo/buildgrid-ui/commit/1656a8325f8279f5a449800508ddedef835b2d53))
+
 # [1.1.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.0.0...v1.1.0) (2025-01-11)
 
 
