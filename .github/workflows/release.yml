@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+      - alpha
+      - beta
+      - rc
 jobs:
   release:
     runs-on: ubuntu-latest

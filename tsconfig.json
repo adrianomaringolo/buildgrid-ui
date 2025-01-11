@@ -1,14 +1,30 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "jsx": "react-jsx",
-    "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "declaration": true,
-    "outDir": "dist"
-  },
-  "include": ["src"]
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "esnext",
+		"module": "esnext",
+		"lib": ["dom", "esnext"],
+		"jsx": "react-jsx",
+		"strict": true,
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"outDir": "dist",
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"paths": {
+			"@/*": ["./src/*"],
+			"buildgrid-ui/*": ["src/*"]
+		}
+	},
+	"include": ["src/**/*"],
+	"exclude": [
+		"node_modules",
+		"dist",
+		".husky",
+		"**/*.test.ts",
+		"**/*.test.tsx",
+		"**/*.stories.tsx"
+	]
 }
