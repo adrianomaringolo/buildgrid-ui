@@ -1,6 +1,6 @@
 {
 	"name": "buildgrid-ui",
-	"version": "1.1.0-dev.19",
+	"version": "1.1.0-dev.20",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -116,6 +116,7 @@
 		"@storybook/react": "^8.4.7",
 		"@storybook/react-vite": "^8.4.7",
 		"@storybook/test": "^8.4.7",
+		"@types/jest": "^29.5.14",
 		"@types/node": "^22.10.3",
 		"@types/react": "^19.0.2",
 		"@types/react-dom": "^19.0.2",

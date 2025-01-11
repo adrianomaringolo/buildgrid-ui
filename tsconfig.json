@@ -14,8 +14,7 @@
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"paths": {
-			"@/*": ["./src/*"],
-			"buildgrid-ui/*": ["src/*"]
+			"@/*": ["./src/*"]
 		}
 	},
 	"include": ["src"],
