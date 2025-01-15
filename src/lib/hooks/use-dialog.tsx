@@ -174,16 +174,25 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 							<Button
 								isLoading={isProcessing}
 								onClick={() => {
-									if (!dialogState.options || !dialogState.options.onConfirm) {
-										close()
-										return
+									if (!dialogState.options?.onConfirm) {
+										throw new Error(
+											'Confirmation type dialog needs to implement the onConfirm function',
+										)
 									}
 
-									setIsProcessing(true)
-									Promise.resolve(dialogState.options.onConfirm).then(() => {
+									const returned = dialogState.options?.onConfirm()
+
+									if (returned instanceof Promise) {
+										setIsProcessing(true)
+										returned
+											.then(() => {
+												setIsProcessing(false)
+												close()
+											})
+											.finally(() => setIsProcessing(false))
+									} else {
 										close()
-										setIsProcessing(false)
-									})
+									}
 								}}
 							>
 								{dialogState.options.confirmLabel || 'Confirm'}
