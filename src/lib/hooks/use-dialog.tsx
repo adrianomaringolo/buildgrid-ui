@@ -189,7 +189,7 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 								{dialogState.options.confirmLabel || 'Confirm'}
 							</Button>
 							{dialogState.options.displayCancel && (
-								<Button variant="outline" onClick={close}>
+								<Button variant="outline" onClick={close} disabled={isProcessing}>
 									{dialogState.options.cancelLabel || 'Cancel'}
 								</Button>
 							)}
