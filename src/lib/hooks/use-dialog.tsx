@@ -24,7 +24,7 @@ interface DialogOptions {
 	confirmLabel?: string
 	cancelLabel?: string
 	displayCancel?: boolean
-	onConfirm?: () => void
+	onConfirm?: () => void | (() => Promise<void>)
 	size?: DialogSize
 }
 
@@ -140,6 +140,8 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 		[open, close, info, success, error, warning, custom, confirm],
 	)
 
+	const [isProcessing, setIsProcessing] = React.useState(false)
+
 	return (
 		<DialogContext.Provider value={contextValue}>
 			{children}
@@ -170,9 +172,18 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 					{dialogState.options?.type === 'confirm' && (
 						<div className="flex justify-center gap-4 mt-4">
 							<Button
+								isLoading={isProcessing}
 								onClick={() => {
-									dialogState.options?.onConfirm?.()
-									close()
+									if (!dialogState.options || !dialogState.options.onConfirm) {
+										close()
+										return
+									}
+
+									setIsProcessing(true)
+									Promise.resolve(dialogState.options.onConfirm).then(() => {
+										close()
+										setIsProcessing(false)
+									})
 								}}
 							>
 								{dialogState.options.confirmLabel || 'Confirm'}
