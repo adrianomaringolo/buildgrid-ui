@@ -8,7 +8,7 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from './Card'
+} from './card'
 import { Button } from '../button/button'
 
 const meta: Meta<typeof Card> = {
