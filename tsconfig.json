@@ -13,6 +13,7 @@
 		"outDir": "dist",
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
+		"types": ["vitest/globals"],
 		"paths": {
 			"@/*": ["./src/*"],
 			"buildgrid-ui/*": ["src/*"]

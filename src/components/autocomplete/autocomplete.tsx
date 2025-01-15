@@ -92,24 +92,23 @@ export function Autocomplete(props: AutoCompleteProps) {
 	return (
 		<Popover open={isFocused}>
 			<PopoverTrigger asChild>
-				<div className="relative w-full">
-					<AdaptiveInput
-						type="text"
-						placeholder={placeholder}
-						value={query}
-						onChange={handleInputChange}
-						onKeyDown={handleKeyDown}
-						onClick={handleFocus}
-						onFocus={handleFocus}
-						onBlur={handleBlur}
-						className={cn('pr-10', className)}
-						aria-label="Search field"
-						aria-autocomplete="list"
-						aria-controls="suggestions-list"
-						aria-expanded={suggestions.length > 0}
-						leftIcon={<Search className="w-4 h-4" />}
-					/>
-				</div>
+				<AdaptiveInput
+					type="text"
+					placeholder={placeholder}
+					value={query}
+					onChange={handleInputChange}
+					onKeyDown={handleKeyDown}
+					onClick={handleFocus}
+					onFocus={handleFocus}
+					onBlur={handleBlur}
+					className={cn('pr-10', className)}
+					aria-label="Search field"
+					aria-autocomplete="list"
+					aria-controls="suggestions-list"
+					aria-expanded={suggestions.length > 0}
+					tabIndex={0}
+					leftIcon={<Search className="w-4 h-4" />}
+				/>
 			</PopoverTrigger>
 			<PopoverContent className="p-0 w-[var(--radix-popover-trigger-width)] max-h-96 overflow-y-auto">
 				{suggestions.length > 0 ? (

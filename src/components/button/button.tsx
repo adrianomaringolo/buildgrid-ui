@@ -56,6 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
+						data-testid="loader-svg"
 					>
 						<circle
 							className="opacity-25"

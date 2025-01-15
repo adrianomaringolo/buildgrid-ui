@@ -1,0 +1,17 @@
+{
+	"overrides": [
+		{
+			"files": ["*.test.ts", "*.test.tsx"],
+			"env": {
+				"jest": true, // Or "vitest" if a plugin is available
+			},
+			"plugins": ["testing-library"],
+			"extends": [
+				"next/core-web-vitals",
+				"next/typescript",
+				"prettier",
+				"plugin:testing-library/react",
+			],
+		},
+	],
+}
