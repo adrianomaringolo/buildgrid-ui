@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - "main"
-			
 permissions:
-  id-token: write
+  contents: read
   pages: write
-
+  id-token: write
 jobs:
   deploy:
     environment:
@@ -17,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: build-publish
-      uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
+      uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
       with:
         path: storybook-static
-        build_command: npm run build:storybook
+				install_command: npm ci
+				build_command: npm run build:storybook
