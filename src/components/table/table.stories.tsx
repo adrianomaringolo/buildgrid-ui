@@ -1,8 +1,7 @@
 // organize-imports-ignore
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.'
 
 const meta: Meta<typeof Table> = {
 	component: Table,

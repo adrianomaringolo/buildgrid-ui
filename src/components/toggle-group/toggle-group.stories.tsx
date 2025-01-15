@@ -2,7 +2,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ToggleGroup, ToggleGroupItem } from './toggle-group'
+import { ToggleGroup, ToggleGroupItem } from '.'
 import { Label } from '../label'
 
 const meta: Meta<typeof ToggleGroup> = {

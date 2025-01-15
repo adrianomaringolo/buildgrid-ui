@@ -1,8 +1,7 @@
 // organize-imports-ignore
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-
-import { Switch } from './switch'
+import { Switch } from '.'
 
 const meta: Meta<typeof Switch> = {
 	component: Switch,

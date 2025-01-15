@@ -2,7 +2,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Toggle } from './toggle'
+import { Toggle } from '.'
 
 const meta: Meta<typeof Toggle> = {
 	component: Toggle,
