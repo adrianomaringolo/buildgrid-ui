@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.2...v1.3.3) (2025-01-15)
+
+
+### Bug Fixes
+
+* allow promises for onConfirm function in useDialog ([993b6c8](https://github.com/adrianomaringolo/buildgrid-ui/commit/993b6c8a3f3674c6529f0cbda2cae4f4677d6dfa))
+
 ## [1.3.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.1...v1.3.2) (2025-01-15)
 
 
