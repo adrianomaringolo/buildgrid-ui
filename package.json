@@ -19,7 +19,7 @@
 		"build:link": "npm run build && npm link",
 		"storybook": "storybook dev -p 6006",
 		"sb": "storybook dev -p 6006",
-		"build-storybook": "storybook build",
+		"build:storybook": "storybook build",
 		"release": "semantic-release",
 		"prepublishOnly": "npm run build",
 		"build:publish": "npm run build && npm publish"
@@ -101,6 +101,7 @@
 		"react-dom": "^19.0.0",
 		"semantic-release": "^24.2.0",
 		"storybook": "^8.4.7",
+		"storybook-deployer": "^2.8.12",
 		"tailwindcss": "^3.4.17",
 		"typescript": "^5.7.2",
 		"vitest": "^2.1.8"
