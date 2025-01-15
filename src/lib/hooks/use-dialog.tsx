@@ -24,7 +24,7 @@ interface DialogOptions {
 	confirmLabel?: string
 	cancelLabel?: string
 	displayCancel?: boolean
-	onConfirm?: () => void | (() => Promise<void>)
+	onConfirm?: () => void | Promise<void>
 	size?: DialogSize
 }
 
