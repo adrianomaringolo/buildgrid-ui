@@ -8,7 +8,7 @@ export const IntroSection = () => {
 	return (
 		<section className="light:bg-gray-50 dark:bg-gray-900 light:text-gray-900 dark:text-white">
 			<div
-				className="absolute inset-x-0 top-1/2 -z-10 transform-gpu overflow-hidden blur-3xl"
+				className="absolute inset-x-0 top-1/4 -z-10 transform-gpu overflow-hidden blur-3xl"
 				aria-hidden="true"
 			>
 				<div
