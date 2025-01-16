@@ -1,31 +1,31 @@
-# workflow name
-name: Build and Publish Storybook to GitHub Pages
+# # workflow name
+# name: Build and Publish Storybook to GitHub Pages
 
-on:
-  # event for the workflow to run on
-  push:
-    branches:
-      - 'main'
+# on:
+#   # event for the workflow to run on
+#   push:
+#     branches:
+#       - 'main'
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: "20.8.1"
 
-      # https://github.com/marketplace/actions/deploy-storybook-to-github-pages
-      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
-        with:
-          install_command: npm ci
-          build_command: npm run build:storybook
-          path: storybook-static
-          checkout: false
+#       # https://github.com/marketplace/actions/deploy-storybook-to-github-pages
+#       - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+#         with:
+#           install_command: npm ci
+#           build_command: npm run build:storybook
+#           path: storybook-static
+#           checkout: false
