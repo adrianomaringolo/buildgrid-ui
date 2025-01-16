@@ -1,4 +1,0 @@
-import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{C as o,a as n,b as i,c as d,d as c,e as l}from"./card-CkLkMvD3.js";import{B as m}from"./button-BZUOcGxQ.js";import"./index-BCtMShv3.js";import"./cn-CytzSlOG.js";import"./index-Cl1Fk__p.js";import"./index-DVF2XGCm.js";const b={component:o},p=()=>r.jsxs(o,{className:"w-96",children:[r.jsxs(n,{children:[r.jsx(i,{children:"Title"}),r.jsx(d,{children:"Description"})]}),r.jsx(c,{className:"px-0 pt-2",children:r.jsx("div",{className:"bg-gray-200 w-full h-40 p-6",children:"Content goes here"})}),r.jsx(l,{children:r.jsx(m,{variant:"outline",children:"Close"})})]}),e={render:p.bind({}),args:{}};var s,a,t;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`{
-  render: Template.bind({}),
-  args: {}
-}`,...(t=(a=e.parameters)==null?void 0:a.docs)==null?void 0:t.source}}};const D=["Default"];export{e as Default,D as __namedExportsOrder,b as default};

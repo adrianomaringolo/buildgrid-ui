@@ -1,4 +1,0 @@
-import{j as a}from"./jsx-runtime-D_zvdyIk.js";import{A as s,a as m,b as p}from"./avatar-DgCH8YPf.js";import"./index-BCtMShv3.js";import"./index-BHZqYKkX.js";import"./index-bNP9aXDC.js";import"./index-CBEt3pxY.js";import"./index-CRFs4ic9.js";import"./index-DJNQhuXN.js";import"./index-D-fs5e6L.js";import"./index-Cl1Fk__p.js";import"./cn-CytzSlOG.js";const _={component:s},i=()=>a.jsxs(s,{className:"w-24 h-24",children:[a.jsx(m,{src:"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",alt:"User avatar"}),a.jsx(p,{children:"NS"})]}),r={render:i.bind({}),args:{}};var e,t,o;r.parameters={...r.parameters,docs:{...(e=r.parameters)==null?void 0:e.docs,source:{originalSource:`{
-  render: Template.bind({}),
-  args: {}
-}`,...(o=(t=r.parameters)==null?void 0:t.docs)==null?void 0:o.source}}};const b=["Default"];export{r as Default,b as __namedExportsOrder,_ as default};

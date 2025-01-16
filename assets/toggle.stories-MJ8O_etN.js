@@ -1,4 +1,0 @@
-import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{T as t}from"./toggle-DB-E6VcW.js";import"./cn-CytzSlOG.js";import"./index-BCtMShv3.js";import"./index-TJyXMIFY.js";import"./index-bNP9aXDC.js";import"./index-CRFs4ic9.js";import"./index-DJNQhuXN.js";import"./index-D-fs5e6L.js";import"./index-Cl1Fk__p.js";import"./index-DVF2XGCm.js";const h={component:t},a=()=>r.jsxs(r.Fragment,{children:[r.jsx(t,{children:"A"}),r.jsx(t,{children:"B"}),r.jsx(t,{children:"C"})]}),e={render:a.bind({}),args:{}};var o,s,m;e.parameters={...e.parameters,docs:{...(o=e.parameters)==null?void 0:o.docs,source:{originalSource:`{
-  render: Template.bind({}),
-  args: {}
-}`,...(m=(s=e.parameters)==null?void 0:s.docs)==null?void 0:m.source}}};const T=["Default"];export{e as Default,T as __namedExportsOrder,h as default};

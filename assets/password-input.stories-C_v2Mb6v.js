@@ -1,4 +1,0 @@
-import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{P as m}from"./password-input-CfviAx3s.js";import"./index-BCtMShv3.js";import"./button-BZUOcGxQ.js";import"./index-Cl1Fk__p.js";import"./index-DVF2XGCm.js";import"./cn-CytzSlOG.js";import"./input-Bsbhu3VH.js";import"./progress-BqbnIBxG.js";import"./index-BHZqYKkX.js";import"./index-CRFs4ic9.js";import"./index-DJNQhuXN.js";import"./index-D-fs5e6L.js";import"./createLucideIcon-DluVjxd-.js";const E={title:"Components/input/password",component:m},p=()=>t.jsx("div",{className:"w-96",children:t.jsx(m,{})}),r={render:p.bind({}),args:{}};var o,e,s;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
-  render: Template.bind({}),
-  args: {}
-}`,...(s=(e=r.parameters)==null?void 0:e.docs)==null?void 0:s.source}}};const P=["Default"];export{r as Default,P as __namedExportsOrder,E as default};
