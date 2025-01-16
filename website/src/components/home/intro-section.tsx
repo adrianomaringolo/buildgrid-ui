@@ -55,7 +55,7 @@ export const IntroSection = () => {
 							)}
 							href="#"
 						>
-							Learn More
+							Components
 						</a>
 					</div>
 				</div>
