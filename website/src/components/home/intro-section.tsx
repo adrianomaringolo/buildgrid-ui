@@ -22,7 +22,10 @@ export const IntroSection = () => {
 
 			<div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
 				<div className="mx-auto max-w-3xl text-center">
-					<img src={Logo} className="w-40 mx-auto" />
+					<img
+						src={Logo}
+						className="w-40 mx-auto drop-shadow-[0_0_50px_rgba(255,255,255,0.5)]"
+					/>
 					<h1 className="p-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-5xl font-extrabold text-transparent sm:text-5xl">
 						{siteConfig.title}
 					</h1>
