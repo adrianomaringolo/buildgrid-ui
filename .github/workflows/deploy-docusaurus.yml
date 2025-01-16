@@ -17,13 +17,9 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-				working-directory: ./website
-        run: npm install
-
       - name: Build Docusaurus site
         working-directory: ./website # Adjust if your Docusaurus site is in a subfolder
-        run: npm run build
+        run: npm install &&npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
