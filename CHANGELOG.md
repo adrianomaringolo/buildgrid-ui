@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.4...v1.3.5) (2025-01-18)
+
+
+### Bug Fixes
+
+* add clear button for autocomplete ([24867a4](https://github.com/adrianomaringolo/buildgrid-ui/commit/24867a49d7647c92c4b8f4f85dafb13ba71a3c99))
+
 ## [1.3.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.3...v1.3.4) (2025-01-18)
 
 
