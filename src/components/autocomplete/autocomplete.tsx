@@ -90,7 +90,7 @@ export function Autocomplete(props: AutoCompleteProps) {
 	}
 
 	return (
-		<Popover open={isFocused}>
+		<Popover open={isFocused} modal>
 			<PopoverTrigger asChild>
 				<AdaptiveInput
 					type="text"
