@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.5...v1.3.6) (2025-01-18)
+
+
+### Bug Fixes
+
+* clear autocomplete selected option ([ba091f9](https://github.com/adrianomaringolo/buildgrid-ui/commit/ba091f96155080b696da90efae68f8542e7090de))
+
 ## [1.3.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.4...v1.3.5) (2025-01-18)
 
 
