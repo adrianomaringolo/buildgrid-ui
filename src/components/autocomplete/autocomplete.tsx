@@ -1,6 +1,6 @@
 'use client'
 
-import { Search } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import React, { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { AdaptiveInput } from '../adaptive-input'
 
@@ -118,7 +118,7 @@ export function Autocomplete({
 	}, [activeIndex, isOpen])
 
 	return (
-		<div ref={autocompleteRef} className="relative w-full max-w-xs">
+		<div ref={autocompleteRef} className="relative w-full">
 			<AdaptiveInput
 				ref={inputRef}
 				type="text"
@@ -133,6 +133,19 @@ export function Autocomplete({
 				aria-controls="autocomplete-list"
 				role="combobox"
 				leftIcon={<Search className="w-4 h-4" />}
+				rightIcon={
+					selectedOption ? (
+						<button
+							className="mt-[5px]"
+							onClick={() => {
+								setSelectedOption(null)
+								setInputValue('')
+							}}
+						>
+							<X className="w-5 h-5" />
+						</button>
+					) : null
+				}
 			/>
 			{isOpen && filteredOptions.length > 0 && (
 				<ul
