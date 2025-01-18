@@ -12,7 +12,7 @@ export interface Option {
 interface AutocompleteProps {
 	options: Option[]
 	placeholder?: string
-	onSelect: (option: Option) => void
+	onSelect: (option: Option | null) => void
 	defaultSelectedOption?: Option
 }
 
@@ -140,6 +140,7 @@ export function Autocomplete({
 							onClick={() => {
 								setSelectedOption(null)
 								setInputValue('')
+								onSelect(null)
 							}}
 						>
 							<X className="w-5 h-5" />

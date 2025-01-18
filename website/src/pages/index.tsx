@@ -1,8 +1,9 @@
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import HomepageFeatures from '@site/src/components/HomepageFeatures'
 import Layout from '@theme/Layout'
 import type { ReactNode } from 'react'
+import { FeaturesSection } from '../components/home/features-section'
 import { IntroSection } from '../components/home/intro-section'
+import { StatsSection } from '../components/home/stats-section'
 
 export default function Home(): ReactNode {
 	const { siteConfig } = useDocusaurusContext()
@@ -11,9 +12,10 @@ export default function Home(): ReactNode {
 			title={`Hello from ${siteConfig.title}`}
 			description="Description will go into a meta tag in <head />"
 		>
-			<IntroSection />
 			<main>
-				<HomepageFeatures />
+				<IntroSection />
+				<StatsSection />
+				<FeaturesSection />
 			</main>
 		</Layout>
 	)
