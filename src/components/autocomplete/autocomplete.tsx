@@ -1,136 +1,164 @@
+'use client'
+
 import { Search } from 'lucide-react'
-import { useState } from 'react'
-
-import { cn } from '@/lib/utils'
+import React, { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { AdaptiveInput } from '../adaptive-input'
-import { Popover, PopoverContent, PopoverTrigger } from '../popover'
-interface Option {
-	value: string
+
+export interface Option {
 	label: string
+	value: string
 }
 
-interface AutoCompleteProps {
-	value?: string
-	onChange?: (value: string) => void
+interface AutocompleteProps {
 	options: Option[]
-	className?: string
 	placeholder?: string
-	emptyMessage?: string
-	defaultOption?: Option
+	onSelect: (option: Option) => void
+	defaultSelectedOption?: Option
 }
 
-export function Autocomplete(props: AutoCompleteProps) {
-	const {
-		value = '',
-		onChange,
-		options: staticOptions,
-		className,
-		placeholder = 'Search...',
-		emptyMessage = 'Nothing found',
-		defaultOption,
-	} = props
+export function Autocomplete({
+	options,
+	placeholder = 'Type to search...',
+	onSelect,
+	defaultSelectedOption,
+}: AutocompleteProps) {
+	const [inputValue, setInputValue] = useState(defaultSelectedOption?.label || '')
+	const [filteredOptions, setFilteredOptions] = useState<Option[]>([])
+	const [isOpen, setIsOpen] = useState(false)
+	const [activeIndex, setActiveIndex] = useState(-1)
+	const [dropdownPosition, setDropdownPosition] = useState<'down' | 'up'>('down')
+	const [selectedOption, setSelectedOption] = useState<Option | null>(
+		defaultSelectedOption || null,
+	)
+	const autocompleteRef = useRef<HTMLDivElement>(null)
+	const inputRef = useRef<HTMLInputElement>(null)
+	const listRef = useRef<HTMLUListElement>(null)
 
-	const [query, setQuery] = useState(defaultOption?.label || value)
-	const [suggestions, setSuggestions] = useState<Option[]>(staticOptions)
-	const [selectedIndex, setSelectedIndex] = useState(-1)
-	const [isFocused, setIsFocused] = useState(false)
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				autocompleteRef.current &&
+				!autocompleteRef.current.contains(event.target as Node)
+			) {
+				setIsOpen(false)
+			}
+		}
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const newValue = e.target.value
-		setQuery(newValue)
-		onChange?.(newValue)
-		setSelectedIndex(-1)
-		setIsFocused(true)
+		document.addEventListener('click', handleClickOutside)
+		return () => {
+			document.removeEventListener('click', handleClickOutside)
+		}
+	}, [])
 
-		if (newValue.trim() === '') {
-			setSuggestions(staticOptions)
-		} else {
-			setSuggestions(
-				staticOptions.filter((option) =>
-					option.label.toLowerCase().includes(newValue.toLowerCase()),
-				),
+	useEffect(() => {
+		const filtered = options.filter((option) =>
+			option.label.toLowerCase().includes(inputValue.toLowerCase()),
+		)
+		setFilteredOptions(filtered)
+		setActiveIndex(-1)
+	}, [inputValue, options])
+
+	useEffect(() => {
+		if (isOpen && inputRef.current) {
+			const rect = inputRef.current.getBoundingClientRect()
+			const spaceBelow = window.innerHeight - rect.bottom
+			const spaceAbove = rect.top
+			const listHeight = Math.min(filteredOptions.length * 40, 240) // Assuming each option is 40px high, max 240px
+
+			setDropdownPosition(
+				spaceBelow >= listHeight || spaceBelow > spaceAbove ? 'down' : 'up',
 			)
 		}
+	}, [isOpen, filteredOptions])
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setInputValue(e.target.value)
+		setSelectedOption(null)
+		setIsOpen(true)
 	}
 
-	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'ArrowDown') {
-			e.preventDefault()
-			setSelectedIndex((prev) => (prev < suggestions.length - 1 ? prev + 1 : prev))
-		} else if (e.key === 'ArrowUp') {
-			e.preventDefault()
-			setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1))
-		} else if (e.key === 'Enter' && selectedIndex >= 0) {
-			const selectedOption = suggestions[selectedIndex]
-			setQuery(selectedOption.label)
-			onChange?.(selectedOption.value)
-			setSuggestions([])
-			setSelectedIndex(-1)
-			setIsFocused(false)
-		} else if (e.key === 'Escape') {
-			setSuggestions([])
-			setSelectedIndex(-1)
+	const handleOptionClick = (option: Option) => {
+		setInputValue(option.label)
+		setSelectedOption(option)
+		setIsOpen(false)
+		onSelect(option)
+	}
+
+	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+		if (!isOpen) {
+			if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+				setIsOpen(true)
+				return
+			}
+		}
+
+		switch (e.key) {
+			case 'ArrowDown':
+				setActiveIndex((prev) => (prev < filteredOptions.length - 1 ? prev + 1 : prev))
+				break
+			case 'ArrowUp':
+				setActiveIndex((prev) => (prev > 0 ? prev - 1 : prev))
+				break
+			case 'Enter':
+				if (activeIndex >= 0 && activeIndex < filteredOptions.length) {
+					handleOptionClick(filteredOptions[activeIndex])
+				}
+				break
+			case 'Escape':
+				setIsOpen(false)
+				break
 		}
 	}
 
-	const handleSuggestionClick = (option: Option) => {
-		setIsFocused(false)
-		setQuery(option.label)
-		onChange?.(option.value)
-		setSuggestions(staticOptions)
-		setSelectedIndex(-1)
-	}
-
-	const handleFocus = () => {
-		setIsFocused(true)
-	}
-
-	const handleBlur = () => {
-		setIsFocused(false)
-	}
+	useEffect(() => {
+		if (isOpen && listRef.current && activeIndex >= 0) {
+			const activeElement = listRef.current.children[activeIndex] as HTMLElement
+			activeElement.scrollIntoView({ block: 'nearest' })
+		}
+	}, [activeIndex, isOpen])
 
 	return (
-		<Popover open={isFocused} modal>
-			<PopoverTrigger asChild>
-				<AdaptiveInput
-					type="text"
-					placeholder={placeholder}
-					value={query}
-					onChange={handleInputChange}
-					onKeyDown={handleKeyDown}
-					onClick={handleFocus}
-					onFocus={handleFocus}
-					onBlur={handleBlur}
-					className={cn('pr-10', className)}
-					aria-label="Search field"
-					aria-autocomplete="list"
-					aria-controls="suggestions-list"
-					aria-expanded={suggestions.length > 0}
-					tabIndex={0}
-					leftIcon={<Search className="w-4 h-4" />}
-				/>
-			</PopoverTrigger>
-			<PopoverContent className="p-0 w-[var(--radix-popover-trigger-width)] max-h-96 overflow-y-auto">
-				{suggestions.length > 0 ? (
-					<ul id="suggestions-list" role="listbox">
-						{suggestions.map((option, index) => (
-							<li
-								key={option.value}
-								className={`px-4 py-2 cursor-pointer hover:bg-muted ${
-									index === selectedIndex ? 'bg-muted' : ''
-								}`}
-								onClick={() => handleSuggestionClick(option)}
-								role="option"
-								aria-selected={index === selectedIndex}
-							>
-								{option.label}
-							</li>
-						))}
-					</ul>
-				) : (
-					<span className="px-4 py-2 block">{emptyMessage}</span>
-				)}
-			</PopoverContent>
-		</Popover>
+		<div ref={autocompleteRef} className="relative w-full max-w-xs">
+			<AdaptiveInput
+				ref={inputRef}
+				type="text"
+				value={inputValue}
+				onChange={handleInputChange}
+				onFocus={() => setIsOpen(true)}
+				onKeyDown={handleKeyDown}
+				placeholder={placeholder}
+				className="w-full"
+				aria-expanded={isOpen}
+				aria-autocomplete="list"
+				aria-controls="autocomplete-list"
+				role="combobox"
+				leftIcon={<Search className="w-4 h-4" />}
+			/>
+			{isOpen && filteredOptions.length > 0 && (
+				<ul
+					id="autocomplete-list"
+					ref={listRef}
+					className={`absolute z-10 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto ${
+						dropdownPosition === 'up' ? 'bottom-full mb-1' : 'top-full mt-1'
+					}`}
+					role="listbox"
+				>
+					{filteredOptions.map((option, index) => (
+						<li
+							key={option.value}
+							onClick={() => handleOptionClick(option)}
+							className={`px-4 py-2 cursor-pointer ${
+								index === activeIndex ? 'bg-blue-100' : 'hover:bg-gray-100'
+							} ${selectedOption?.value === option.value ? 'bg-blue-200' : ''}`}
+							role="option"
+							aria-selected={index === activeIndex}
+							id={`option-${index}`}
+						>
+							{option.label}
+						</li>
+					))}
+				</ul>
+			)}
+		</div>
 	)
 }
