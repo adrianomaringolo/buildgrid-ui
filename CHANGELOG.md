@@ -1,3 +1,11 @@
+## [1.3.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.3...v1.3.4) (2025-01-18)
+
+
+### Bug Fixes
+
+* autocomplete popover as modal ([011bab6](https://github.com/adrianomaringolo/buildgrid-ui/commit/011bab6320f2745957a012ef7b3d278401f9c5c3))
+* improve autocomplete component ([48c3962](https://github.com/adrianomaringolo/buildgrid-ui/commit/48c39626392ff4c4109b1be824c3eb44f5bb07c3))
+
 ## [1.3.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.2...v1.3.3) (2025-01-15)
 
 
