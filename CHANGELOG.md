@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.4.0...v1.4.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* add hooks exports to index.ts ([0a3bd6f](https://github.com/adrianomaringolo/buildgrid-ui/commit/0a3bd6fcdc53123ece4430c405a5046ee535f429))
+
 # [1.4.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.6...v1.4.0) (2025-01-23)
 
 
