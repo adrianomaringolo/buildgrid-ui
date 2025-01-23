@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.4.2...v1.4.3) (2025-01-23)
+
+
+### Bug Fixes
+
+* padString export ([f4c1482](https://github.com/adrianomaringolo/buildgrid-ui/commit/f4c1482adc153f4af924b07e0e3a9bbf49b1b980))
+
 ## [1.4.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.4.1...v1.4.2) (2025-01-23)
 
 
