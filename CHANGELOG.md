@@ -1,3 +1,14 @@
+# [1.4.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.6...v1.4.0) (2025-01-23)
+
+
+### Features
+
+* add empty message component ([968e01e](https://github.com/adrianomaringolo/buildgrid-ui/commit/968e01ebe903bea724acbc7120b79456bdd4ce6d))
+* add string utils ([6596b16](https://github.com/adrianomaringolo/buildgrid-ui/commit/6596b161062244fd6b2ab74133a5c6207e920d9d))
+* adding utility hooks ([c03c830](https://github.com/adrianomaringolo/buildgrid-ui/commit/c03c8301dd2169185f2849a98067b565d3456df8))
+* **paginated-items:** add paginatedItems block and stories ([593e083](https://github.com/adrianomaringolo/buildgrid-ui/commit/593e083d80d9400c073cafa6008b8c6b1bf67438))
+* **spinner:** add spinner component and stories ([b11e689](https://github.com/adrianomaringolo/buildgrid-ui/commit/b11e689a5e751c4abba6bcdb675ba3d7e6363bb1))
+
 ## [1.3.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.3.5...v1.3.6) (2025-01-18)
 
 
