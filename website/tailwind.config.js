@@ -1,11 +1,26 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ['./src/**/*.{js,jsx,ts,tsx}'],
+	content: [
+		'./src/**/*.{js,jsx,ts,tsx}',
+		'./node_modules/buildgrid-ui/**/*.{js,ts,jsx,tsx}',
+	],
 	theme: {
 		extend: {
 			colors: {
-				primary: '#0097b2',
+				primary: {
+					DEFAULT: '#0097b2',
+					foreground: '#e4fbff',
+				},
 				secondary: '#63ad40',
+			},
+			animation: {
+				'fade-in': 'fadeIn .5s ease-in-out',
+			},
+			keyframes: {
+				fadeIn: {
+					from: { opacity: 0 },
+					to: { opacity: 1 },
+				},
 			},
 		},
 	},
