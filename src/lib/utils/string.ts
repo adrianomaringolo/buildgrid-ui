@@ -15,12 +15,6 @@ export const normalizeStringToCompare = (text: string): string =>
 				.toLowerCase()
 		: ''
 
-export const padString = (num: number | string, size: number = 2) => {
-	num = num.toString()
-	while (num.length < size) num = '0' + num
-	return num
-}
-
 export const sortNormalize = (a: string, b: string) => {
 	if (normalizeString(a) < normalizeString(b)) {
 		return -1
