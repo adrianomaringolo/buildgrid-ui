@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.4.1...v1.4.2) (2025-01-23)
+
+
+### Bug Fixes
+
+* add string utilities ([869efc6](https://github.com/adrianomaringolo/buildgrid-ui/commit/869efc6c2f22d7addefc6a519283de5a544c6739))
+
 ## [1.4.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.4.0...v1.4.1) (2025-01-23)
 
 
