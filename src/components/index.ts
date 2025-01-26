@@ -1,3 +1,4 @@
+export * from './accordion'
 export * from './adaptive-input'
 export * from './alert-dialog'
 export * from './autocomplete'
