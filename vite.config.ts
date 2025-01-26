@@ -1,9 +1,10 @@
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-	plugins: [react()],
+	plugins: [react(), dts({ outDir: 'dist', insertTypesEntry: true })],
 	test: {
 		globals: true, // Use global APIs like `describe` and `it`
 		environment: 'jsdom', // Simulates the browser environment
