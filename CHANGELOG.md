@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.4.3...v1.5.0) (2025-01-26)
+
+
+### Features
+
+* add accordion component and stories ([1bdecd5](https://github.com/adrianomaringolo/buildgrid-ui/commit/1bdecd51c1179c407d02bf9fda64f6b9fa4b73d4))
+
 ## [1.4.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.4.2...v1.4.3) (2025-01-23)
 
 
