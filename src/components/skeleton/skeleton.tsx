@@ -10,7 +10,7 @@ export const Skeleton = ({ className, repeat = 1, ...props }: SkeletonProps) => 
 			{Array.from({ length: repeat ?? 1 }).map((_, index) => (
 				<div
 					key={index}
-					className={cn('animate-pulse rounded-md bg-gray-700/10', className)}
+					className={cn('animate-pulse rounded-md bg-gray-700/10 w-full h-5', className)}
 					{...props}
 				/>
 			))}
