@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.5.0...v1.5.1) (2025-01-26)
+
+
+### Bug Fixes
+
+* change module file in package.json ([42ea424](https://github.com/adrianomaringolo/buildgrid-ui/commit/42ea4241e5b5b4025a6c2b77019565e204a2302d))
+
 # [1.5.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.4.3...v1.5.0) (2025-01-26)
 
 
