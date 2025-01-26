@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.5.1...v1.5.2) (2025-01-26)
+
+
+### Bug Fixes
+
+* add default width and height to skeleton ([b90fd0c](https://github.com/adrianomaringolo/buildgrid-ui/commit/b90fd0cf4e435eba8baaa2e3292b1586375e8a33))
+
 ## [1.5.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.5.0...v1.5.1) (2025-01-26)
 
 
