@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.5.2...v1.6.0) (2025-01-27)
+
+
+### Features
+
+* adding theme schema to Button ([62ab713](https://github.com/adrianomaringolo/buildgrid-ui/commit/62ab713ebee340f4002f5e47bcc048cfd4031a4f))
+
 ## [1.5.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.5.1...v1.5.2) (2025-01-26)
 
 
