@@ -1,2 +1,2 @@
 export * from './button'
-export { ButtonThemeProps, ButtonThemeVariants } from './button.types'
+export { type ButtonThemeProps, type ButtonThemeVariants } from './button.types'

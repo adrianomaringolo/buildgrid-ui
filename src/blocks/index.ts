@@ -1,3 +1,4 @@
+export * from './bento-grid'
 export * from './empty-message'
 export * from './help-carousel'
 export * from './month-navigator'
