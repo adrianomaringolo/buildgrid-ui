@@ -1,4 +1,3 @@
-import { ComponentTheme } from '@/lib/types/ComponentTheme'
 import { DeepPartial } from '@/lib/types/ts-utilities'
 import { cva } from 'cva-extended'
 
@@ -17,10 +16,10 @@ export const buttonThemeDefaults = {
 		},
 		size: {
 			sm: 'h-8 rounded-md px-3 text-xs',
-			md: 'h-9 px-4 py-2',
+			md: 'h-9 rounded-md px-4 py-2',
 			lg: 'h-10 rounded-md px-8',
 			xl: 'h-12 rounded-md px-10 text-xl',
-			icon: 'h-9 w-9',
+			icon: 'h-9 w-9 rounded-full',
 		},
 	},
 	defaultVariants: {
@@ -36,7 +35,7 @@ export interface ButtonThemeVariants {
 	variant?: (typeof buttonVariants)['variants']['variant'][0]
 }
 
-export interface ButtonTheme extends ComponentTheme {
+export interface ButtonTheme {
 	base: string
 	variants: {
 		size: { [key in (typeof buttonVariants)['variants']['size'][0]]: string }

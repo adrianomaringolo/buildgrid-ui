@@ -13,9 +13,9 @@
 	],
 	"exports": {
 		".": {
+			"types": "./dist/index.d.ts",
 			"import": "./dist/buildgrid-ui.es.js",
-			"require": "./dist/buildgrid-ui.umd.js",
-			"types": "./dist/index.d.ts"
+			"require": "./dist/buildgrid-ui.umd.js"
 		}
 	},
 	"scripts": {

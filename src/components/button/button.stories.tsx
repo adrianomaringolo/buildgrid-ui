@@ -20,15 +20,13 @@ const variants: Array<ButtonProps['variant']> = [
 	'link',
 ]
 
+const sizes: Array<ButtonProps['size']> = ['sm', 'md', 'lg', 'xl', 'icon']
+
 const Template = (args: ButtonProps) => {
 	return (
 		<div className="flex gap-2 flex-wrap">
 			{Object.values(variants).map((variant) => (
-				<Button
-					{...args}
-					variant={variant as ButtonProps['variant']}
-					className="capitalize"
-				>
+				<Button {...args} variant={variant as ButtonProps['variant']}>
 					{variant}
 				</Button>
 			))}
@@ -36,8 +34,25 @@ const Template = (args: ButtonProps) => {
 	)
 }
 
-export const Default: Story = {
+export const Variants: Story = {
 	render: Template.bind({}),
+	args: {},
+}
+
+const SizesTemplate = (args: ButtonProps) => {
+	return (
+		<div className="flex gap-2 flex-wrap">
+			{Object.values(sizes).map((size) => (
+				<Button {...args} size={size as ButtonProps['size']}>
+					{size}
+				</Button>
+			))}
+		</div>
+	)
+}
+
+export const Sizes: Story = {
+	render: SizesTemplate.bind({}),
 	args: {},
 }
 
@@ -45,11 +60,7 @@ const TemplateIsLoading = () => {
 	return (
 		<div className="flex gap-2 flex-wrap">
 			{Object.values(variants).map((variant) => (
-				<Button
-					isLoading
-					variant={variant as ButtonProps['variant']}
-					className="capitalize"
-				>
+				<Button isLoading variant={variant as ButtonProps['variant']}>
 					{variant}
 				</Button>
 			))}
