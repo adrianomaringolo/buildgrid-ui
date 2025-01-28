@@ -1,3 +1,10 @@
+## [1.7.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.7.2...v1.7.3) (2025-01-28)
+
+
+### Bug Fixes
+
+* change accordion font-size ([8b0329a](https://github.com/adrianomaringolo/buildgrid-ui/commit/8b0329ad18d424c44d57e990a8bc725c3308a469))
+
 ## [1.7.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.7.1...v1.7.2) (2025-01-28)
 
 
