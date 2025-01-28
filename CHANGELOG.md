@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.6.0...v1.7.0) (2025-01-28)
+
+
+### Features
+
+* add bento grid component block and stories ([485d868](https://github.com/adrianomaringolo/buildgrid-ui/commit/485d8689a3f7e2e9a574fda86a728820d2d78e48))
+
 # [1.6.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.5.2...v1.6.0) (2025-01-27)
 
 
