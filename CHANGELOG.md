@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.7.1...v1.7.2) (2025-01-28)
+
+
+### Bug Fixes
+
+* change package.json config ([0273cc7](https://github.com/adrianomaringolo/buildgrid-ui/commit/0273cc7c62896f7fa9e7268209cd4531f3215891))
+
 ## [1.7.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.7.0...v1.7.1) (2025-01-28)
 
 
