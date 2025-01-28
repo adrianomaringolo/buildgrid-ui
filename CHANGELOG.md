@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.7.0...v1.7.1) (2025-01-28)
+
+
+### Bug Fixes
+
+* button types exports ([a3ae56b](https://github.com/adrianomaringolo/buildgrid-ui/commit/a3ae56b78efee958d7c0a12f2ef0a8d774f9fe3a))
+
 # [1.7.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.6.0...v1.7.0) (2025-01-28)
 
 
