@@ -4,6 +4,7 @@ import { FaCode } from 'react-icons/fa'
 import { MdOutlineScreenshot } from 'react-icons/md'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
 interface CodeBoxProps {
 	code: string
 	children: React.ReactNode
@@ -38,23 +39,22 @@ export const CodeBox: React.FC<CodeBoxProps> = ({ code, children }) => {
 					</span>
 				</button>
 			</div>
-			<div className="p-4 bg-gray-100 dark:bg-gray-900 rounded-md">
-				{showCode ? (
-					<SyntaxHighlighter
-						language="jsx"
-						style={oneDark}
-						customStyle={{
-							background: 'transparent',
-							margin: 0,
-							padding: 0,
-						}}
-					>
-						{code}
-					</SyntaxHighlighter>
-				) : (
-					<div>{children}</div>
-				)}
-			</div>
+
+			{showCode ? (
+				<SyntaxHighlighter
+					language="jsx"
+					style={oneDark}
+					customStyle={{
+						background: '#282c34',
+						margin: 0,
+						padding: '16px',
+					}}
+				>
+					{code}
+				</SyntaxHighlighter>
+			) : (
+				<div className="p-4 bg-gray-100 dark:bg-gray-900 rounded-md">{children}</div>
+			)}
 		</div>
 	)
 }

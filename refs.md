@@ -6,3 +6,9 @@ https://shadcn.batchtool.com/
 https://shadcn-landing-page.vercel.app/
 https://www.hyperui.dev/components
 https://github.com/steven-tey/novel
+
+https://www.twblocks.com/
+https://spectrumui.arihantcodes.in/
+
+https://magicui.design/ *****
+https://astro.build/ - for documentation
