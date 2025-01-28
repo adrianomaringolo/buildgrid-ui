@@ -1,6 +1,6 @@
 {
 	"name": "buildgrid-ui",
-	"version": "1.7.1",
+	"version": "1.7.0",
 	"homepage": "http://adrianomaringolo.github.io/buildgrid-ui",
 	"publishConfig": {
 		"access": "public"
@@ -13,9 +13,9 @@
 	],
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
 			"import": "./dist/buildgrid-ui.es.js",
-			"require": "./dist/buildgrid-ui.umd.js"
+			"require": "./dist/buildgrid-ui.umd.js",
+			"types": "./dist/index.d.ts"
 		}
 	},
 	"scripts": {
