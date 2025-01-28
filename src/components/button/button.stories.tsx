@@ -2,7 +2,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Button, ButtonProps } from './button'
-import { ButtonTheme, ButtonThemeProps } from './button.types'
+import { ButtonThemeProps } from './button.types'
 
 const meta: Meta<typeof Button> = {
 	component: Button,
