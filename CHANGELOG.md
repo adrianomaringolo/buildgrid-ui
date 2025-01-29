@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.8.1...v1.8.2) (2025-01-29)
+
+
+### Bug Fixes
+
+* button styles ([3cf755e](https://github.com/adrianomaringolo/buildgrid-ui/commit/3cf755ef24a24c5f20a2231cba690c575a5e57a6))
+
 ## [1.8.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.8.0...v1.8.1) (2025-01-29)
 
 
