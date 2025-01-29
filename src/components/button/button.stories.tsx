@@ -56,6 +56,23 @@ export const Sizes: Story = {
 	args: {},
 }
 
+const RoundedTemplate = (args: ButtonProps) => {
+	return (
+		<div className="flex gap-2 flex-wrap">
+			{Object.values(variants).map((variant) => (
+				<Button {...args} variant={variant as ButtonProps['variant']} rounded>
+					{variant}
+				</Button>
+			))}
+		</div>
+	)
+}
+
+export const Rounded: Story = {
+	render: RoundedTemplate.bind({}),
+	args: {},
+}
+
 const TemplateIsLoading = () => {
 	return (
 		<div className="flex gap-2 flex-wrap">

@@ -23,6 +23,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			className,
 			variant = 'default',
 			size = 'md',
+			rounded = false,
 			isLoading = false,
 			asChild = false,
 			theme = buttonThemeDefaults,
@@ -41,7 +42,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 		return (
 			<Comp
-				className={cn(buttonThemeCVA({ variant, size, className }))}
+				className={cn(buttonThemeCVA({ variant, size, rounded, className }))}
 				ref={ref}
 				{...props}
 				disabled={isLoading || props.disabled}
