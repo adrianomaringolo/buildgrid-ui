@@ -46,6 +46,7 @@ const PaginationLink = ({
 		className={cn(
 			buttonVariants({
 				variant: isActive ? 'default' : 'outline',
+				rounded: false,
 				size,
 			}),
 			isActive ? 'text-primary-foreground' : 'text-foreground',
