@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.7.3...v1.8.0) (2025-01-29)
+
+
+### Bug Fixes
+
+* adding rounded prop to button ([571be59](https://github.com/adrianomaringolo/buildgrid-ui/commit/571be5984c5651cfb3e6f663292ca437f22c4ca0))
+
+
+### Features
+
+* add lazy image gallery and stories ([483614c](https://github.com/adrianomaringolo/buildgrid-ui/commit/483614cc66e2c6a471fc6c1db05b8abc85c84b26))
+
 ## [1.7.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.7.2...v1.7.3) (2025-01-28)
 
 
