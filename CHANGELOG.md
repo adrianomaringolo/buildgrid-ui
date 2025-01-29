@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.8.0...v1.8.1) (2025-01-29)
+
+
+### Bug Fixes
+
+* add default rounded variant to false ([991f66e](https://github.com/adrianomaringolo/buildgrid-ui/commit/991f66e29e1f1dfdc37739aa7cbe634cbc85d19f))
+
 # [1.8.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.7.3...v1.8.0) (2025-01-29)
 
 
