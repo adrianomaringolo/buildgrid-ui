@@ -34,6 +34,7 @@ export const buttonThemeDefaults = {
 	defaultVariants: {
 		variant: 'default' as const,
 		size: 'md' as const,
+		rounded: false,
 	},
 }
 
