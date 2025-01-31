@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.1...v1.9.2) (2025-01-31)
+
+
+### Bug Fixes
+
+* text-editor initialValue and remove html view mode ([43477f3](https://github.com/adrianomaringolo/buildgrid-ui/commit/43477f39e418195f5704c74f7d295a0584e05384))
+
 ## [1.9.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.0...v1.9.1) (2025-01-31)
 
 
