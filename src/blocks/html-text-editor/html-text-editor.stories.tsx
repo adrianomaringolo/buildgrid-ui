@@ -17,7 +17,7 @@ type Story = StoryObj<typeof HtmlTextEditor>
 
 const Template = () => {
 	return (
-		<div className="h-96 border rounded p-2">
+		<div className="h-96 max-w-2xl">
 			<HtmlTextEditor />
 		</div>
 	)
