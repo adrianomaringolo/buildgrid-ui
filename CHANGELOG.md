@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.0...v1.9.1) (2025-01-31)
+
+
+### Bug Fixes
+
+* remove max width from html-text-editor ([8332c58](https://github.com/adrianomaringolo/buildgrid-ui/commit/8332c588a10205c723f863c4b291ca36ecbc80c5))
+
 # [1.9.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.8.2...v1.9.0) (2025-01-31)
 
 
