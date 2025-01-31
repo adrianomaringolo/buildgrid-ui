@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.8.2...v1.9.0) (2025-01-31)
+
+
+### Features
+
+* add HtmlTextEditor and HtmlTextArea blocks and stories ([d0d90c7](https://github.com/adrianomaringolo/buildgrid-ui/commit/d0d90c7f9dbf28190a02d0e83118f5b9462c59ab))
+
 ## [1.8.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.8.1...v1.8.2) (2025-01-29)
 
 
