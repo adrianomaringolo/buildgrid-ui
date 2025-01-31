@@ -1,6 +1,7 @@
 export * from './bento-grid'
 export * from './empty-message'
 export * from './help-carousel'
+export * from './html-text-editor'
 export * from './lazy-image-gallery'
 export * from './month-navigator'
 export * from './paginated-items'
