@@ -8,7 +8,6 @@ import {
 } from '@/components'
 import {
 	Bold,
-	Code,
 	ImageIcon,
 	Italic,
 	LinkIcon,
@@ -20,12 +19,10 @@ import {
 
 type OptionsBarProps = {
 	execCommand: (command: string, value?: string) => void
-	isHtmlMode: boolean
-	toggleHtmlMode: () => void
 }
 
 export const OptionsBar = (props: OptionsBarProps) => {
-	const { execCommand, isHtmlMode, toggleHtmlMode } = props
+	const { execCommand } = props
 
 	const insertImage = () => {
 		const input = document.createElement('input')
@@ -57,35 +54,16 @@ export const OptionsBar = (props: OptionsBarProps) => {
 
 	return (
 		<div className="flex flex-wrap gap-2 border-b pb-2 mb-2">
-			<Button
-				variant="outline"
-				size="icon"
-				onClick={() => execCommand('bold')}
-				disabled={isHtmlMode}
-			>
+			<Button variant="outline" size="icon" onClick={() => execCommand('bold')}>
 				<Bold size={16} />
 			</Button>
-			<Button
-				variant="outline"
-				size="icon"
-				onClick={() => execCommand('italic')}
-				disabled={isHtmlMode}
-			>
+			<Button variant="outline" size="icon" onClick={() => execCommand('italic')}>
 				<Italic size={16} />
 			</Button>
-			<Button
-				variant="outline"
-				size="icon"
-				onClick={() => execCommand('underline')}
-				disabled={isHtmlMode}
-			>
+			<Button variant="outline" size="icon" onClick={() => execCommand('underline')}>
 				<Underline size={16} />
 			</Button>
-			<Select
-				disabled={isHtmlMode}
-				onValueChange={(value) => changeFontSize(value)}
-				defaultValue="3"
-			>
+			<Select onValueChange={(value) => changeFontSize(value)} defaultValue="3">
 				<SelectTrigger className="w-[80px]">
 					<SelectValue placeholder="Size" />
 				</SelectTrigger>
@@ -108,7 +86,6 @@ export const OptionsBar = (props: OptionsBarProps) => {
 				variant="outline"
 				size="icon"
 				onClick={() => execCommand('insertUnorderedList')}
-				disabled={isHtmlMode}
 			>
 				<List size={16} />
 			</Button>
@@ -116,7 +93,6 @@ export const OptionsBar = (props: OptionsBarProps) => {
 				variant="outline"
 				size="icon"
 				onClick={() => execCommand('insertOrderedList')}
-				disabled={isHtmlMode}
 			>
 				<ListOrdered size={16} />
 			</Button>
@@ -124,24 +100,23 @@ export const OptionsBar = (props: OptionsBarProps) => {
 				variant="outline"
 				size="icon"
 				onClick={() => execCommand('formatBlock', 'blockquote')}
-				disabled={isHtmlMode}
 			>
 				<Quote size={16} />
 			</Button>
-			<Button variant="outline" size="icon" onClick={insertImage} disabled={isHtmlMode}>
+			<Button variant="outline" size="icon" onClick={insertImage}>
 				<ImageIcon size={16} />
 			</Button>
-			<Button variant="outline" size="icon" onClick={insertLink} disabled={isHtmlMode}>
+			<Button variant="outline" size="icon" onClick={insertLink}>
 				<LinkIcon size={16} />
 			</Button>
-			<Button
+			{/* <Button
 				variant={isHtmlMode ? 'default' : 'outline'}
 				size="icon"
 				onClick={toggleHtmlMode}
 				className="ml-auto"
 			>
 				<Code size={16} />
-			</Button>
+			</Button> */}
 		</div>
 	)
 }
