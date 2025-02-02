@@ -77,7 +77,7 @@ export const HtmlTextEditor: React.FC<TextEditorProps> = ({
 			<div
 				ref={editorRef}
 				contentEditable
-				className="w-full h-48 p-2 border rounded overflow-y-auto focus:outline-none unreset"
+				className="w-full h-48 p-2 border rounded overflow-y-auto focus:outline-none min-h-20 resize-y unreset"
 				onInput={handleInput}
 			/>
 		</div>
