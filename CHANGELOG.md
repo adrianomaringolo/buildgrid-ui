@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.2...v1.9.3) (2025-02-02)
+
+
+### Bug Fixes
+
+* adjust resize-y for htmlTextEditor ([068bfa5](https://github.com/adrianomaringolo/buildgrid-ui/commit/068bfa592fe3501c308c0f57a8620996de193ed8))
+
 ## [1.9.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.1...v1.9.2) (2025-01-31)
 
 
