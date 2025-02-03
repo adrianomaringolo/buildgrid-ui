@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.4...v1.10.0) (2025-02-03)
+
+
+### Features
+
+* adding more props to confirm and cancel buttons for dialogs ([8fa88d3](https://github.com/adrianomaringolo/buildgrid-ui/commit/8fa88d3adff70f5a21800d9861eee9b149faef95))
+
 ## [1.9.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.3...v1.9.4) (2025-02-03)
 
 
