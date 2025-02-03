@@ -1,3 +1,17 @@
+# [1.11.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.10.0...v1.11.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* dialog confirm onclick method call ([a41abe3](https://github.com/adrianomaringolo/buildgrid-ui/commit/a41abe3441918654697f710e476919b30931bd51))
+
+
+### Features
+
+* add command component and story ([0c7370d](https://github.com/adrianomaringolo/buildgrid-ui/commit/0c7370d3bbc0ca0b6d43bebb1675434cc2fa8c8f))
+* add multiselect component and story ([f8e2a89](https://github.com/adrianomaringolo/buildgrid-ui/commit/f8e2a89474b76a1e12a3aecedc0e55b3413642e2))
+* add separator component and story ([a5751f7](https://github.com/adrianomaringolo/buildgrid-ui/commit/a5751f76aeb29570d7586c4ff49b282607c6d8ba))
+
 # [1.10.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.4...v1.10.0) (2025-02-03)
 
 
