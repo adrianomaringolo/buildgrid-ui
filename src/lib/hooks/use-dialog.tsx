@@ -192,7 +192,7 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 										)
 									}
 
-									const returned = dialogState.options?.confirmButton?.onClick?.()
+									const returned = dialogState.options?.confirmButton?.onClick()
 
 									if (returned instanceof Promise) {
 										setIsProcessing(true)
