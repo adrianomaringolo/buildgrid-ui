@@ -1,3 +1,10 @@
+## [1.9.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.3...v1.9.4) (2025-02-03)
+
+
+### Bug Fixes
+
+* allow dialog message to receive a ReactNode ([b34cf70](https://github.com/adrianomaringolo/buildgrid-ui/commit/b34cf70e8a5252dceaf964b6733f6efcc8ac8212))
+
 ## [1.9.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.9.2...v1.9.3) (2025-02-02)
 
 
