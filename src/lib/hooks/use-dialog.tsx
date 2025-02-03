@@ -17,7 +17,7 @@ type DialogSize = 'sm' | 'md' | 'lg' | 'xl'
 
 interface DialogOptions {
 	title?: string
-	message: string
+	message: string | React.ReactNode
 	icon?: React.ElementType
 	className?: string
 	type?: DialogType
