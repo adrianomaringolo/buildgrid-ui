@@ -60,8 +60,14 @@ const DialogExample: React.FC = () => {
 			title: 'Confirmation Dialog',
 			message: 'This is an example dialog using useDialog hook.',
 			type: 'confirm',
-			onConfirm: () => alert('Confirmation ok'),
-			displayCancel: true,
+			confirmButton: {
+				label: 'Yes',
+				onClick: () => alert('Confirmation ok'),
+				className: 'bg-red-600 text-white',
+			},
+			cancelButton: {
+				label: 'Close',
+			},
 		})
 	}
 
@@ -71,11 +77,13 @@ const DialogExample: React.FC = () => {
 			message:
 				'This is an example dialog using useDialog hook. The confirmation Promise takes 5s to resolve',
 			type: 'confirm',
-			onConfirm: () => {
-				return new Promise((resolve) => setTimeout(resolve, 5000))
+			confirmButton: {
+				label: 'Yes, execute the promise',
+				onClick: () => new Promise((resolve) => setTimeout(resolve, 5000)),
 			},
-			confirmLabel: 'Yes, execute the promise',
-			displayCancel: true,
+			cancelButton: {
+				label: 'Cancel',
+			},
 		})
 	}
 

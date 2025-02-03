@@ -21,11 +21,21 @@ interface DialogOptions {
 	icon?: React.ElementType
 	className?: string
 	type?: DialogType
-	confirmLabel?: string
-	cancelLabel?: string
-	displayCancel?: boolean
-	onConfirm?: () => void | Promise<void>
 	size?: DialogSize
+	confirmButton?: {
+		label: string
+		className?: string
+		disabled?: boolean
+		loading?: boolean
+		onClick?: () => void | Promise<void>
+	}
+	cancelButton?: {
+		label: string
+		className?: string
+		disabled?: boolean
+		loading?: boolean
+		onClick?: () => void
+	}
 }
 
 interface DialogContextType {
@@ -172,15 +182,17 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 					{dialogState.options?.type === 'confirm' && (
 						<div className="flex justify-center gap-4 mt-4">
 							<Button
-								isLoading={isProcessing}
+								isLoading={isProcessing ?? dialogState.options?.confirmButton?.loading}
+								disabled={dialogState.options?.confirmButton?.disabled}
+								className={dialogState.options.confirmButton?.className}
 								onClick={() => {
-									if (!dialogState.options?.onConfirm) {
+									if (!dialogState.options?.confirmButton?.onClick) {
 										throw new Error(
 											'Confirmation type dialog needs to implement the onConfirm function',
 										)
 									}
 
-									const returned = dialogState.options?.onConfirm()
+									const returned = dialogState.options?.confirmButton?.onClick?.()
 
 									if (returned instanceof Promise) {
 										setIsProcessing(true)
@@ -195,11 +207,17 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 									}
 								}}
 							>
-								{dialogState.options.confirmLabel || 'Confirm'}
+								{dialogState.options.confirmButton?.label ?? 'Confirm'}
 							</Button>
-							{dialogState.options.displayCancel && (
-								<Button variant="outline" onClick={close} disabled={isProcessing}>
-									{dialogState.options.cancelLabel || 'Cancel'}
+							{dialogState.options.cancelButton?.label && (
+								<Button
+									variant="outline"
+									onClick={close}
+									className={dialogState.options.cancelButton.className}
+									isLoading={dialogState.options.cancelButton?.loading}
+									disabled={isProcessing || dialogState.options.cancelButton?.disabled}
+								>
+									{dialogState.options.cancelButton?.label}
 								</Button>
 							)}
 						</div>
