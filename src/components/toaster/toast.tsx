@@ -4,8 +4,8 @@ import { ExternalToast, toast as SoonerToast } from 'sonner'
 import { Button } from '../button'
 
 const ToastCloseButton = ({ onClick }: { onClick: () => void }) => (
-	<Button onClick={() => onClick()} variant="ghost" className="ml-auto">
-		<X className="h-5 w-5" />
+	<Button onClick={() => onClick()} variant="ghost" size="xl" className="ml-auto px-3">
+		<X className="!h-6 !w-6" />
 	</Button>
 )
 
