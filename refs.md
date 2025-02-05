@@ -13,3 +13,5 @@ https://spectrumui.arihantcodes.in/
 
 https://magicui.design/ *****
 https://astro.build/ - for documentation
+
+https://svgl.app/ - svgs company/products logos
