@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.0...v1.11.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* add default close button to toast messages ([df0a952](https://github.com/adrianomaringolo/buildgrid-ui/commit/df0a95243d2244332a4a5f61f1c88a558a2f0a33))
+
 # [1.11.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.10.0...v1.11.0) (2025-02-03)
 
 
