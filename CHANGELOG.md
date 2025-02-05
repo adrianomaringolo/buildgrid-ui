@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.1...v1.11.2) (2025-02-05)
+
+
+### Bug Fixes
+
+* change close button for toast size ([5e3f275](https://github.com/adrianomaringolo/buildgrid-ui/commit/5e3f275fded3d75f7347b73a2dd81e852e7a9a8d))
+
 ## [1.11.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.0...v1.11.1) (2025-02-05)
 
 
