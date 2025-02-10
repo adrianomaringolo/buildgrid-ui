@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { Search, X } from 'lucide-react'
 import React, { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { AdaptiveInput } from '../adaptive-input'
@@ -13,15 +14,19 @@ interface AutocompleteProps {
 	options: Option[]
 	placeholder?: string
 	onSelect: (option: Option | null) => void
+	onChange?: (value: string) => void
 	defaultSelectedOption?: Option
+	className?: string
 }
 
-export function Autocomplete({
-	options,
-	placeholder = 'Type to search...',
-	onSelect,
-	defaultSelectedOption,
-}: AutocompleteProps) {
+export function Autocomplete(props: AutocompleteProps) {
+	const {
+		options,
+		placeholder = 'Type to search...',
+		onSelect,
+		defaultSelectedOption,
+	} = props
+
 	const [inputValue, setInputValue] = useState(defaultSelectedOption?.label || '')
 	const [filteredOptions, setFilteredOptions] = useState<Option[]>([])
 	const [isOpen, setIsOpen] = useState(false)
@@ -73,6 +78,7 @@ export function Autocomplete({
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInputValue(e.target.value)
+		props.onChange?.(e.target.value)
 		setSelectedOption(null)
 		setIsOpen(true)
 	}
@@ -127,7 +133,7 @@ export function Autocomplete({
 				onFocus={() => setIsOpen(true)}
 				onKeyDown={handleKeyDown}
 				placeholder={placeholder}
-				className="w-full"
+				className={cn('w-full', props.className)}
 				aria-expanded={isOpen}
 				aria-autocomplete="list"
 				aria-controls="autocomplete-list"
