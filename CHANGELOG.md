@@ -1,3 +1,11 @@
+## [1.11.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.2...v1.11.3) (2025-02-10)
+
+
+### Bug Fixes
+
+* adding className and onChange to autocomplete ([487c3c9](https://github.com/adrianomaringolo/buildgrid-ui/commit/487c3c98badd98ddab1258586d9587e34ababe44))
+* package-lock update ([a7509d6](https://github.com/adrianomaringolo/buildgrid-ui/commit/a7509d69e49e8a19ccdb62054f21d2f834a50a61))
+
 ## [1.11.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.1...v1.11.2) (2025-02-05)
 
 
