@@ -1,3 +1,10 @@
+## [1.11.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.3...v1.11.4) (2025-02-25)
+
+
+### Bug Fixes
+
+* adding year mode for month navigator block ([8acc0b4](https://github.com/adrianomaringolo/buildgrid-ui/commit/8acc0b4eecc093f8b1d175c6e1a2541aa12742ce))
+
 ## [1.11.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.2...v1.11.3) (2025-02-10)
 
 
