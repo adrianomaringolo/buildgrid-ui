@@ -100,24 +100,24 @@ export const OptionsBar = (props: OptionsBarProps) => {
 			<Button
 				variant="outline"
 				size="icon"
-				type="button"
 				onClick={() => execCommand('insertUnorderedList')}
+				type="button"
 			>
 				<List size={16} />
 			</Button>
 			<Button
 				variant="outline"
 				size="icon"
-				type="button"
 				onClick={() => execCommand('insertOrderedList')}
+				type="button"
 			>
 				<ListOrdered size={16} />
 			</Button>
 			<Button
 				variant="outline"
 				size="icon"
-				type="button"
 				onClick={() => execCommand('formatBlock', 'blockquote')}
+				type="button"
 			>
 				<Quote size={16} />
 			</Button>
