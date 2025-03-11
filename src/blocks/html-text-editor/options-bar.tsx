@@ -54,13 +54,28 @@ export const OptionsBar = (props: OptionsBarProps) => {
 
 	return (
 		<div className="flex flex-wrap gap-2 border-b pb-2 mb-2">
-			<Button variant="outline" size="icon" onClick={() => execCommand('bold')}>
+			<Button
+				variant="outline"
+				size="icon"
+				onClick={() => execCommand('bold')}
+				type="button"
+			>
 				<Bold size={16} />
 			</Button>
-			<Button variant="outline" size="icon" onClick={() => execCommand('italic')}>
+			<Button
+				variant="outline"
+				size="icon"
+				onClick={() => execCommand('italic')}
+				type="button"
+			>
 				<Italic size={16} />
 			</Button>
-			<Button variant="outline" size="icon" onClick={() => execCommand('underline')}>
+			<Button
+				variant="outline"
+				size="icon"
+				onClick={() => execCommand('underline')}
+				type="button"
+			>
 				<Underline size={16} />
 			</Button>
 			<Select onValueChange={(value) => changeFontSize(value)} defaultValue="3">
@@ -85,6 +100,7 @@ export const OptionsBar = (props: OptionsBarProps) => {
 			<Button
 				variant="outline"
 				size="icon"
+				type="button"
 				onClick={() => execCommand('insertUnorderedList')}
 			>
 				<List size={16} />
@@ -92,6 +108,7 @@ export const OptionsBar = (props: OptionsBarProps) => {
 			<Button
 				variant="outline"
 				size="icon"
+				type="button"
 				onClick={() => execCommand('insertOrderedList')}
 			>
 				<ListOrdered size={16} />
@@ -99,14 +116,15 @@ export const OptionsBar = (props: OptionsBarProps) => {
 			<Button
 				variant="outline"
 				size="icon"
+				type="button"
 				onClick={() => execCommand('formatBlock', 'blockquote')}
 			>
 				<Quote size={16} />
 			</Button>
-			<Button variant="outline" size="icon" onClick={insertImage}>
+			<Button variant="outline" size="icon" onClick={insertImage} type="button">
 				<ImageIcon size={16} />
 			</Button>
-			<Button variant="outline" size="icon" onClick={insertLink}>
+			<Button variant="outline" size="icon" onClick={insertLink} type="button">
 				<LinkIcon size={16} />
 			</Button>
 			{/* <Button
