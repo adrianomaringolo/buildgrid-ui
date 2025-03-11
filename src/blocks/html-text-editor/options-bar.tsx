@@ -79,7 +79,7 @@ export const OptionsBar = (props: OptionsBarProps) => {
 				<Underline size={16} />
 			</Button>
 			<Select onValueChange={(value) => changeFontSize(value)} defaultValue="3">
-				<SelectTrigger className="w-[80px]">
+				<SelectTrigger className="w-[100px]">
 					<SelectValue placeholder="Size" />
 				</SelectTrigger>
 				<SelectContent>
