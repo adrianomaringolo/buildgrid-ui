@@ -4,6 +4,14 @@
 ### Bug Fixes
 
 * add button types to htmlEditorArea ([f386098](https://github.com/adrianomaringolo/buildgrid-ui/commit/f386098fbc16820443d4a0d0a83dd80d68683194))
+* font size select width ([b1c7de2](https://github.com/adrianomaringolo/buildgrid-ui/commit/b1c7de2994c84b1f24adc93f1e24475c7dbb4878))
+
+## [1.11.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.4...v1.11.5) (2025-03-11)
+
+
+### Bug Fixes
+
+* add button types to htmlEditorArea ([f386098](https://github.com/adrianomaringolo/buildgrid-ui/commit/f386098fbc16820443d4a0d0a83dd80d68683194))
 
 ## [1.11.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.3...v1.11.4) (2025-02-25)
 
