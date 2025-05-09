@@ -1,3 +1,10 @@
+## [1.11.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.5...v1.11.6) (2025-05-09)
+
+
+### Bug Fixes
+
+* change autocomplete to highlight selection in options ([ab124e4](https://github.com/adrianomaringolo/buildgrid-ui/commit/ab124e444a1284cf877ef03d904997e550077711))
+
 ## [1.11.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.4...v1.11.5) (2025-03-11)
 
 
