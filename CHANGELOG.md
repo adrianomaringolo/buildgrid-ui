@@ -1,3 +1,10 @@
+## [1.11.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.6...v1.11.7) (2025-05-09)
+
+
+### Bug Fixes
+
+* update .gitignore for environment files and bump version to 1.11.6 ([2f4f155](https://github.com/adrianomaringolo/buildgrid-ui/commit/2f4f1551554a098cb0ae6cfaceab08b35f74e104))
+
 ## [1.11.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.5...v1.11.6) (2025-05-09)
 
 
