@@ -1,6 +1,6 @@
 'use client'
 
-import { cn } from '@/lib/utils'
+import { cn, containSearchStrings } from '@/lib/utils'
 import { Search, X } from 'lucide-react'
 import React, { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import { AdaptiveInput } from '../adaptive-input'
@@ -57,7 +57,7 @@ export function Autocomplete(props: AutocompleteProps) {
 
 	useEffect(() => {
 		const filtered = options.filter((option) =>
-			option.label.toLowerCase().includes(inputValue.toLowerCase()),
+			containSearchStrings(option.label, inputValue),
 		)
 		setFilteredOptions(filtered)
 		setActiveIndex(-1)
@@ -163,20 +163,32 @@ export function Autocomplete(props: AutocompleteProps) {
 					}`}
 					role="listbox"
 				>
-					{filteredOptions.map((option, index) => (
-						<li
-							key={option.value}
-							onClick={() => handleOptionClick(option)}
-							className={`px-4 py-2 cursor-pointer ${
-								index === activeIndex ? 'bg-blue-100' : 'hover:bg-gray-100'
-							} ${selectedOption?.value === option.value ? 'bg-blue-200' : ''}`}
-							role="option"
-							aria-selected={index === activeIndex}
-							id={`option-${index}`}
-						>
-							{option.label}
-						</li>
-					))}
+					{filteredOptions.map((option, index) => {
+						const parts = option.label.split(new RegExp(`(${inputValue})`, 'gi'))
+
+						return (
+							<li
+								key={option.value}
+								onClick={() => handleOptionClick(option)}
+								className={`px-4 py-2 cursor-pointer ${
+									index === activeIndex ? 'bg-blue-100' : 'hover:bg-gray-100'
+								} ${selectedOption?.value === option.value ? 'bg-blue-200' : ''}`}
+								role="option"
+								aria-selected={index === activeIndex}
+								id={`option-${index}`}
+							>
+								{parts.map((part, i) =>
+									part.toLowerCase() === inputValue.toLowerCase() ? (
+										<span key={i} className="font-bold text-blue-600">
+											{part}
+										</span>
+									) : (
+										part
+									),
+								)}
+							</li>
+						)
+					})}
 				</ul>
 			)}
 		</div>

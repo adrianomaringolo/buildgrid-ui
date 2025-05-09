@@ -15,6 +15,10 @@ export const normalizeStringToCompare = (text: string): string =>
 				.toLowerCase()
 		: ''
 
+export const containSearchStrings = (stringA: string, stringB: string) => {
+	return normalizeStringToCompare(stringA).includes(normalizeStringToCompare(stringB))
+}
+
 export const sortNormalize = (a: string, b: string) => {
 	if (normalizeString(a) < normalizeString(b)) {
 		return -1
