@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.7...v1.12.0) (2025-05-11)
+
+
+### Features
+
+* add clear selection functionality to Autocomplete component ([ba83c3b](https://github.com/adrianomaringolo/buildgrid-ui/commit/ba83c3bbb9e5690ca96081a5ceebbb87991cfd46))
+
 ## [1.11.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.6...v1.11.7) (2025-05-09)
 
 
