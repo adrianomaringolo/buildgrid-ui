@@ -1,8 +1,9 @@
 // organize-imports-ignore
-import React from 'react'
+import React, { useRef } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Autocomplete, Option } from './autocomplete'
+import { Button } from '../button'
 
 const meta: Meta<typeof Autocomplete> = {
 	title: 'Components/input/autocomplete',
@@ -66,14 +67,25 @@ const options = [
 
 const Template = () => {
 	const [value, setValue] = React.useState<Option | null>()
+
+	const autocompleteRef = useRef<{ clearSelection: () => void }>(null)
+
+	const handleClear = () => {
+		autocompleteRef.current?.clearSelection()
+	}
+
 	return (
 		<div className="w-80">
 			<Autocomplete
+				ref={autocompleteRef}
 				defaultSelectedOption={{ value: 'Italy', label: 'Italy' }}
 				onSelect={(value) => setValue(value)}
 				options={options.map((option) => ({ value: option, label: option }))}
 			/>
-			<p className="mt-4">Selected value: {JSON.stringify(value)}</p>
+			<p className="mt-4">
+				Selected value: <code>{JSON.stringify(value)}</code>
+			</p>
+			<Button onClick={handleClear}>Clear Selection</Button>
 		</div>
 	)
 }

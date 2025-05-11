@@ -2,7 +2,14 @@
 
 import { cn, containSearchStrings } from '@/lib/utils'
 import { Search, X } from 'lucide-react'
-import React, { KeyboardEvent, useEffect, useRef, useState } from 'react'
+import React, {
+	forwardRef,
+	KeyboardEvent,
+	useEffect,
+	useImperativeHandle,
+	useRef,
+	useState,
+} from 'react'
 import { AdaptiveInput } from '../adaptive-input'
 
 export interface Option {
@@ -19,7 +26,10 @@ interface AutocompleteProps {
 	className?: string
 }
 
-export function Autocomplete(props: AutocompleteProps) {
+export const Autocomplete = forwardRef(function Autocomplete(
+	props: AutocompleteProps,
+	ref: React.Ref<{ clearSelection: () => void }>,
+) {
 	const {
 		options,
 		placeholder = 'Type to search...',
@@ -38,6 +48,15 @@ export function Autocomplete(props: AutocompleteProps) {
 	const autocompleteRef = useRef<HTMLDivElement>(null)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const listRef = useRef<HTMLUListElement>(null)
+
+	// Expose the clearSelection method via the ref
+	useImperativeHandle(ref, () => ({
+		clearSelection: () => {
+			setSelectedOption(null)
+			setInputValue('')
+			onSelect(null)
+		},
+	}))
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -193,4 +212,4 @@ export function Autocomplete(props: AutocompleteProps) {
 			)}
 		</div>
 	)
-}
+})
