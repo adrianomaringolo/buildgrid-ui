@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.12.0...v1.12.1) (2025-05-17)
+
+
+### Bug Fixes
+
+* add useEffect to update data when originalData changes ([f0ba8a3](https://github.com/adrianomaringolo/buildgrid-ui/commit/f0ba8a38c19e85b6dd2c3a599c60f80589d00a1e))
+
 # [1.12.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.11.7...v1.12.0) (2025-05-11)
 
 
