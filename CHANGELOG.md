@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.12.1...v1.12.2) (2025-05-17)
+
+
+### Bug Fixes
+
+* simplify useEffect to always update data and reset current page ([a60de4a](https://github.com/adrianomaringolo/buildgrid-ui/commit/a60de4af991952dad12d073270f0e604806e50f2))
+
 ## [1.12.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.12.0...v1.12.1) (2025-05-17)
 
 
