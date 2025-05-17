@@ -69,9 +69,8 @@ export const PaginatedItems = <Entry extends { id?: string }>(
 	const [data, setData] = useState<Entry[]>(originalData)
 
 	useEffect(() => {
-		if (originalData.length > 0) {
-			setData(originalData)
-		}
+		setData(originalData)
+		setCurrentPage(1)
 	}, [originalData])
 
 	const [currentPage, setCurrentPage] = useState(initialPage)
