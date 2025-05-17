@@ -1,5 +1,5 @@
 import { Skeleton, Spinner } from '@/components'
-import { Fragment, ReactNode, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useState } from 'react'
 import { EmptyItems } from '../empty-message'
 import { PaginationControls } from '../pagination-controls'
 
@@ -67,6 +67,12 @@ export const PaginatedItems = <Entry extends { id?: string }>(
 	} = props
 
 	const [data, setData] = useState<Entry[]>(originalData)
+
+	useEffect(() => {
+		if (originalData.length > 0) {
+			setData(originalData)
+		}
+	}, [originalData])
 
 	const [currentPage, setCurrentPage] = useState(initialPage)
 	const totalPages = Math.ceil(data.length / perPage)
