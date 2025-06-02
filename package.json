@@ -1,6 +1,6 @@
 {
 	"name": "buildgrid-ui",
-	"version": "1.12.2",
+	"version": "1.12.3",
 	"homepage": "http://adrianomaringolo.github.io/buildgrid-ui",
 	"publishConfig": {
 		"access": "public"

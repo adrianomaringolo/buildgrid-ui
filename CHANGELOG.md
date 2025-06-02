@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.12.2...v1.12.3) (2025-06-02)
+
+
+### Bug Fixes
+
+* update Skeleton component to use shimmer animation for loading state ([d1efdb5](https://github.com/adrianomaringolo/buildgrid-ui/commit/d1efdb5a1a9de86ed05cd2777e78030e4860aade))
+
 ## [1.12.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.12.1...v1.12.2) (2025-05-17)
 
 
