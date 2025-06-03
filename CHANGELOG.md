@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.12.3...v1.13.0) (2025-06-03)
+
+
+### Features
+
+* add shimmer animation to Tailwind configuration ([cb0974e](https://github.com/adrianomaringolo/buildgrid-ui/commit/cb0974eb3dabda2e89690bff185fb873b70285a0))
+
 ## [1.12.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.12.2...v1.12.3) (2025-06-02)
 
 
