@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.13.0...v1.13.1) (2025-06-03)
+
+
+### Bug Fixes
+
+* separate shimmer animation styles for better readability ([a8a15d5](https://github.com/adrianomaringolo/buildgrid-ui/commit/a8a15d598c8aa49511513f32c7b6f5114ef987f1))
+
 # [1.13.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.12.3...v1.13.0) (2025-06-03)
 
 
