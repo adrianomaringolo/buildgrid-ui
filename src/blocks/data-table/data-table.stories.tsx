@@ -167,10 +167,7 @@ const Template = () => {
 						className="text-destructive hover:text-destructive"
 						onClick={() => {
 							setData((prev) => prev.filter((user) => user.id !== row.id))
-							toast({
-								title: 'User deleted',
-								description: `User ${row.name} has been removed.`,
-							})
+							toast.success(`User ${row.name} has been removed.`)
 						}}
 					>
 						<Trash2 className="h-4 w-4" />
@@ -251,7 +248,7 @@ const Template = () => {
 				</div>
 			</div>
 
-			<DataTable
+			<DataTable<User>
 				ref={tableRef}
 				data={data}
 				columns={columns}
