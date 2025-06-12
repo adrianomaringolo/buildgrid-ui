@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.13.1...v1.14.0) (2025-06-12)
+
+
+### Features
+
+* adding data-table block ([be7aedc](https://github.com/adrianomaringolo/buildgrid-ui/commit/be7aedc689823b62abecbf85c3f4357dbc69b47b))
+
 ## [1.13.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.13.0...v1.13.1) (2025-06-03)
 
 
