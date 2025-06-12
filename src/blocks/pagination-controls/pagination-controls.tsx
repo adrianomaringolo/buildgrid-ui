@@ -13,6 +13,7 @@ interface PaginationControlsProps {
 	onPageChange: (page: number) => void
 	onPreviousPage: () => void
 	onNextPage: () => void
+	showItemsCounter?: boolean
 }
 
 export const PaginationControls = (props: PaginationControlsProps) => {
@@ -25,6 +26,7 @@ export const PaginationControls = (props: PaginationControlsProps) => {
 		onPageChange,
 		onPreviousPage,
 		onNextPage,
+		showItemsCounter = true,
 	} = props
 
 	// Generate page numbers for pagination
@@ -71,9 +73,11 @@ export const PaginationControls = (props: PaginationControlsProps) => {
 
 	return (
 		<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-			<div className="text-sm text-muted-foreground">
-				Showing {startIndex + 1} to {endIndex} of {totalItems} results
-			</div>
+			{showItemsCounter ? (
+				<div className="text-sm text-muted-foreground">
+					Showing {startIndex + 1} to {endIndex} of {totalItems} results
+				</div>
+			) : null}
 
 			<div className="flex items-center space-x-1">
 				<Button

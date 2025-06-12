@@ -34,22 +34,29 @@ const PaginatedControls = ({
 	pageTotalItems,
 	currentPage,
 	showItemsCounter = true,
-}: PaginatedControlsProps) => (
-	<div className="flex flex-col gap-2 items-end">
-		{showItemsCounter && (
-			<p>
-				<b>{initIndex + 1}</b> - <b>{initIndex + pageTotalItems}</b> ({totalItems})
-			</p>
-		)}
-		{totalPages > 1 && (
-			<PaginationControls
-				current={currentPage}
-				onPageChange={onPageChange}
-				totalPages={totalPages}
-			/>
-		)}
-	</div>
-)
+}: PaginatedControlsProps) => {
+	return (
+		<div className="flex flex-col gap-2 items-end">
+			{showItemsCounter && (
+				<p>
+					<b>{initIndex + 1}</b> - <b>{initIndex + pageTotalItems}</b> ({totalItems})
+				</p>
+			)}
+			{totalPages > 1 && (
+				<PaginationControls
+					currentPage={currentPage}
+					onPageChange={onPageChange}
+					totalPages={totalPages}
+					totalItems={totalItems}
+					startIndex={initIndex}
+					endIndex={initIndex + pageTotalItems}
+					onPreviousPage={() => onPageChange(currentPage - 1)}
+					onNextPage={() => onPageChange(currentPage + 1)}
+				/>
+			)}
+		</div>
+	)
+}
 
 export const PaginatedItems = <Entry extends { id?: string }>(
 	props: PaginatedItemsProps<Entry>,
