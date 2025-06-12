@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.0...v1.14.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* pagination controls for paginated items block ([4424787](https://github.com/adrianomaringolo/buildgrid-ui/commit/4424787bf05ebc97be9c18d37c97f5201d5479fe))
+
 # [1.14.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.13.1...v1.14.0) (2025-06-12)
 
 
