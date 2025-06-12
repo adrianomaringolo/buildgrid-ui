@@ -18,3 +18,5 @@ https://svgl.app/ - svgs company/products logos
 
 https://pageui.shipixen.com/
 https://www.landingfolio.com/
+
+https://blocks.starterkitpro.com/

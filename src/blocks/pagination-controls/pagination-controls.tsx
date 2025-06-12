@@ -1,146 +1,118 @@
 'use client'
 
-import {
-	Pagination,
-	PaginationContent,
-	PaginationEllipsis,
-	PaginationItem,
-	PaginationLink,
-	PaginationNext,
-	PaginationPrevious,
-} from '@/components/pagination'
-import { useEffect, useState } from 'react'
+import { Button } from '@/components/button'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import React from 'react'
 
 interface PaginationControlsProps {
-	current?: number
+	currentPage: number
 	totalPages: number
-	maxVisiblePages?: number
-	mode?: 'full' | 'minimal'
+	totalItems: number
+	startIndex: number
+	endIndex: number
 	onPageChange: (page: number) => void
+	onPreviousPage: () => void
+	onNextPage: () => void
 }
 
-export function PaginationControls({
-	totalPages,
-	maxVisiblePages = 5,
-	mode = 'full',
-	onPageChange,
-	current = 1,
-}: PaginationControlsProps) {
-	const [currentPage, setCurrentPage] = useState(current)
+export const PaginationControls = (props: PaginationControlsProps) => {
+	const {
+		currentPage,
+		totalPages,
+		totalItems,
+		startIndex,
+		endIndex,
+		onPageChange,
+		onPreviousPage,
+		onNextPage,
+	} = props
 
-	useEffect(() => {
-		setCurrentPage(current)
-	}, [current])
+	// Generate page numbers for pagination
+	const getPageNumbers = () => {
+		const pages: (number | string)[] = []
+		const maxVisiblePages = 7
 
-	const handlePageChange = (page: number) => {
-		if (page >= 1 && page <= totalPages) {
-			setCurrentPage(page)
-			onPageChange(page)
+		if (totalPages <= maxVisiblePages) {
+			for (let i = 1; i <= totalPages; i++) {
+				pages.push(i)
+			}
+		} else {
+			// Always show first page
+			pages.push(1)
+
+			if (currentPage > 4) {
+				pages.push('...')
+			}
+
+			// Show pages around current page
+			const start = Math.max(2, currentPage - 1)
+			const end = Math.min(totalPages - 1, currentPage + 1)
+
+			for (let i = start; i <= end; i++) {
+				if (i !== 1 && i !== totalPages) {
+					pages.push(i)
+				}
+			}
+
+			if (currentPage < totalPages - 3) {
+				pages.push('...')
+			}
+
+			// Always show last page
+			if (totalPages > 1) {
+				pages.push(totalPages)
+			}
 		}
+
+		return pages
 	}
 
-	const renderPageNumbers = () => {
-		if (mode === 'minimal') return null
-
-		const pageNumbers = []
-		const halfVisible = Math.floor(maxVisiblePages / 2)
-		let startPage = Math.max(currentPage - halfVisible, 2)
-		const endPage = Math.min(startPage + maxVisiblePages - 3, totalPages - 1)
-
-		if (endPage - startPage + 3 < maxVisiblePages) {
-			startPage = Math.max(endPage - maxVisiblePages + 4, 2)
-		}
-
-		// Always show first page
-		pageNumbers.push(
-			<PaginationItem key={1}>
-				<PaginationLink
-					onClick={(e) => {
-						e.preventDefault()
-						handlePageChange(1)
-					}}
-					isActive={currentPage === 1}
-				>
-					1
-				</PaginationLink>
-			</PaginationItem>,
-		)
-
-		if (startPage > 2) {
-			pageNumbers.push(
-				<PaginationItem key="start-ellipsis">
-					<PaginationEllipsis />
-				</PaginationItem>,
-			)
-		}
-
-		for (let i = startPage; i <= endPage; i++) {
-			pageNumbers.push(
-				<PaginationItem key={i}>
-					<PaginationLink
-						onClick={(e) => {
-							e.preventDefault()
-							handlePageChange(i)
-						}}
-						isActive={currentPage === i}
-					>
-						{i}
-					</PaginationLink>
-				</PaginationItem>,
-			)
-		}
-
-		if (endPage < totalPages - 1) {
-			pageNumbers.push(
-				<PaginationItem key="end-ellipsis">
-					<PaginationEllipsis />
-				</PaginationItem>,
-			)
-		}
-
-		// Always show last page
-		if (totalPages > 1) {
-			pageNumbers.push(
-				<PaginationItem key={totalPages}>
-					<PaginationLink
-						onClick={(e) => {
-							e.preventDefault()
-							handlePageChange(totalPages)
-						}}
-						isActive={currentPage === totalPages}
-					>
-						{totalPages}
-					</PaginationLink>
-				</PaginationItem>,
-			)
-		}
-
-		return pageNumbers
-	}
+	if (totalPages <= 1) return null
 
 	return (
-		<Pagination>
-			<PaginationContent>
-				<PaginationItem>
-					<PaginationPrevious
-						disabled={currentPage === 1}
-						onClick={(e) => {
-							e.preventDefault()
-							handlePageChange(currentPage - 1)
-						}}
-					/>
-				</PaginationItem>
-				{renderPageNumbers()}
-				<PaginationItem>
-					<PaginationNext
-						disabled={currentPage === totalPages}
-						onClick={(e) => {
-							e.preventDefault()
-							handlePageChange(currentPage + 1)
-						}}
-					/>
-				</PaginationItem>
-			</PaginationContent>
-		</Pagination>
+		<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+			<div className="text-sm text-muted-foreground">
+				Showing {startIndex + 1} to {endIndex} of {totalItems} results
+			</div>
+
+			<div className="flex items-center space-x-1">
+				<Button
+					variant="outline"
+					size="sm"
+					onClick={onPreviousPage}
+					disabled={currentPage === 1}
+					className="h-8 w-8 p-0"
+				>
+					<ChevronLeft className="h-4 w-4" />
+				</Button>
+
+				{getPageNumbers().map((page, index) => (
+					<React.Fragment key={index}>
+						{page === '...' ? (
+							<span className="px-2 text-muted-foreground">...</span>
+						) : (
+							<Button
+								variant={currentPage === page ? 'default' : 'outline'}
+								size="sm"
+								onClick={() => onPageChange(page as number)}
+								className="h-8 w-8 p-0"
+							>
+								{page}
+							</Button>
+						)}
+					</React.Fragment>
+				))}
+
+				<Button
+					variant="outline"
+					size="sm"
+					onClick={onNextPage}
+					disabled={currentPage === totalPages}
+					className="h-8 w-8 p-0"
+				>
+					<ChevronRight className="h-4 w-4" />
+				</Button>
+			</div>
+		</div>
 	)
 }

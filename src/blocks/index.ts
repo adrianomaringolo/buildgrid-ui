@@ -1,4 +1,5 @@
 export * from './bento-grid'
+export * from './data-table'
 export * from './empty-message'
 export * from './help-carousel'
 export * from './html-text-editor'
