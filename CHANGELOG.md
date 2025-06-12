@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.1...v1.14.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* adding replaceTemplateWithVariables string helper function ([b744075](https://github.com/adrianomaringolo/buildgrid-ui/commit/b744075826113109a04a85ed39c3364f482744a0))
+
 ## [1.14.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.0...v1.14.1) (2025-06-12)
 
 
