@@ -78,3 +78,12 @@ export const sortByNestedField = (
 export const capitalize = (text: string): string => {
 	return text.charAt(0).toUpperCase() + text.slice(1)
 }
+
+export const replaceTemplateWithVariables = (
+	template: string,
+	values: Record<string, string | number>,
+): string => {
+	return template.replace(/{{\s*(\w+)\s*}}/g, (_, key) => {
+		return values[key] !== undefined ? String(values[key]) : ''
+	})
+}
