@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.2...v1.14.3) (2025-06-13)
+
+
+### Bug Fixes
+
+* adding configuration props for data table ([c2948e3](https://github.com/adrianomaringolo/buildgrid-ui/commit/c2948e39ad8d667d84de8dbf19da59139e13c9ed))
+
 ## [1.14.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.1...v1.14.2) (2025-06-12)
 
 
