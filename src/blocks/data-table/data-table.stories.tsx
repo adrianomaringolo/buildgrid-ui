@@ -257,6 +257,18 @@ const Template = () => {
 				pageSize={10}
 				className="w-full"
 				loading={loading}
+				tools={{
+					rowSelector: {
+						hide: true,
+					},
+					search: {
+						placeholder: 'Search something...',
+					},
+					pagination: {
+						label:
+							'Displaying now {{startIndex}} to {{endIndex}} of total {{totalItems}} items',
+					},
+				}}
 			/>
 		</div>
 	)

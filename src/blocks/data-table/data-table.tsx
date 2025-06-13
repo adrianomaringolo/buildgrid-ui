@@ -45,7 +45,7 @@ function DataTableInner<T extends Record<string, any>>(
 	const [refreshKey, setRefreshKey] = useState(0)
 
 	// Debounce search term for performance
-	const debouncedSearchTerm = useDebounce(searchTerm, 300)
+	const debouncedSearchTerm = useDebounce(searchTerm, 1000)
 
 	// Simple row ID function
 	const getRowId = (row: T, index: number): string => {
@@ -355,7 +355,13 @@ function DataTableInner<T extends Record<string, any>>(
 		<div className={`space-y-4 ${className}`}>
 			{/* Table Controls */}
 			<div className="flex flex-wrap items-center gap-4">
-				<SearchInput value={searchTerm} onChange={setSearchTerm} />
+				{!Boolean(tools?.search?.hide) ? (
+					<SearchInput
+						placeholder={tools?.search?.placeholder}
+						value={searchTerm}
+						onChange={setSearchTerm}
+					/>
+				) : null}
 
 				{filters.map((filter) => (
 					<FilterDropdown
@@ -377,14 +383,14 @@ function DataTableInner<T extends Record<string, any>>(
 				{Boolean(tools?.export?.hide) ? (
 					<Button variant="outline" onClick={handleExport}>
 						<FileDown className="h-4 w-4 mr-2" />
-						Export CSV
+						{tools?.export?.label ?? 'Export CSV'}
 					</Button>
 				) : null}
 
-				{hasActiveFilters && (
+				{!Boolean(tools?.clearFilters?.hide) && hasActiveFilters && (
 					<Button variant="outline" onClick={clearAllFilters}>
 						<X className="h-4 w-4 mr-2" />
-						Clear All
+						{tools?.clearFilters?.label ?? 'Clear All'}
 					</Button>
 				)}
 			</div>
@@ -412,6 +418,7 @@ function DataTableInner<T extends Record<string, any>>(
 				<Table>
 					<TableHeader>
 						<DataTableHeader
+							allowSelectAllRows={!Boolean(tools?.rowSelector?.hide)}
 							columns={columns}
 							sortState={sortState}
 							allRowsSelected={allRowsSelected}
@@ -440,6 +447,7 @@ function DataTableInner<T extends Record<string, any>>(
 										key={rowId}
 										row={row}
 										index={index}
+										allowSelection={!Boolean(tools?.rowSelector?.hide)}
 										columns={columns}
 										isSelected={selectedRows.has(rowId)}
 										rowId={rowId}
@@ -462,6 +470,7 @@ function DataTableInner<T extends Record<string, any>>(
 				onPageChange={handlePageChange}
 				onPreviousPage={handlePreviousPage}
 				onNextPage={handleNextPage}
+				counterText={tools?.pagination?.label}
 			/>
 		</div>
 	)

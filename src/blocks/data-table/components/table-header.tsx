@@ -10,6 +10,7 @@ interface TableHeaderProps<T> {
 	sortState: SortState
 	allRowsSelected: boolean
 	hasData: boolean
+	allowSelectAllRows: boolean
 	onSort: (field: string) => void
 	onToggleAllRows: (checked: boolean) => void
 }
@@ -21,19 +22,22 @@ export function TableHeader<T>({
 	hasData,
 	onSort,
 	onToggleAllRows,
+	allowSelectAllRows,
 }: TableHeaderProps<T>) {
 	const visibleColumns = columns.filter((col) => !col.hidden)
 
 	return (
 		<TableRow>
 			{/* Selection Checkbox */}
-			<TableHead className="w-12">
-				<Checkbox
-					checked={allRowsSelected && hasData}
-					onCheckedChange={onToggleAllRows}
-					aria-label="Select all rows"
-				/>
-			</TableHead>
+			{allowSelectAllRows && (
+				<TableHead className="w-12">
+					<Checkbox
+						checked={allRowsSelected && hasData}
+						onCheckedChange={onToggleAllRows}
+						aria-label="Select all rows"
+					/>
+				</TableHead>
+			)}
 
 			{/* Column Headers */}
 			{visibleColumns.map((column) => (

@@ -33,7 +33,19 @@ export interface DataTableToolsProps {
 	columnSelector?: {
 		hide?: boolean
 	}
+	rowSelector?: {
+		hide?: boolean
+	}
+	pagination?: {
+		label?: string
+	}
+
 	export?: {
+		label?: string
+		hide?: boolean
+	}
+	clearFilters?: {
+		label?: string
 		hide?: boolean
 	}
 }

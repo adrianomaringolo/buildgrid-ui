@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/button'
+import { replaceTemplateWithVariables } from '@/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import React from 'react'
 
@@ -14,6 +15,7 @@ interface PaginationControlsProps {
 	onPreviousPage: () => void
 	onNextPage: () => void
 	showItemsCounter?: boolean
+	counterText?: string
 }
 
 export const PaginationControls = (props: PaginationControlsProps) => {
@@ -27,6 +29,7 @@ export const PaginationControls = (props: PaginationControlsProps) => {
 		onPreviousPage,
 		onNextPage,
 		showItemsCounter = true,
+		counterText = 'Showing {{startIndex}} to {{endIndex}} of {{totalItems}} results',
 	} = props
 
 	// Generate page numbers for pagination
@@ -75,7 +78,11 @@ export const PaginationControls = (props: PaginationControlsProps) => {
 		<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
 			{showItemsCounter ? (
 				<div className="text-sm text-muted-foreground">
-					Showing {startIndex + 1} to {endIndex} of {totalItems} results
+					{replaceTemplateWithVariables(counterText, {
+						startIndex: startIndex + 1,
+						endIndex,
+						totalItems,
+					})}
 				</div>
 			) : null}
 

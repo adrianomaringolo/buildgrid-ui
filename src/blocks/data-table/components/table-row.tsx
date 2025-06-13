@@ -8,6 +8,7 @@ interface DataTableRowProps<T> {
 	columns: DataTableColumn<T>[]
 	isSelected: boolean
 	rowId: string
+	allowSelection?: boolean
 	onToggleSelection: (id: string, checked: boolean) => void
 }
 
@@ -18,19 +19,22 @@ export function DataTableRow<T>({
 	isSelected,
 	rowId,
 	onToggleSelection,
+	allowSelection = true,
 }: DataTableRowProps<T>) {
 	const visibleColumns = columns.filter((col) => !col.hidden)
 
 	return (
 		<TableRow className={isSelected ? 'bg-muted/50' : ''}>
 			{/* Row Selection Checkbox */}
-			<TableCell className="w-12">
-				<Checkbox
-					checked={isSelected}
-					onCheckedChange={(checked) => onToggleSelection(rowId, !!checked)}
-					aria-label={`Select row ${index + 1}`}
-				/>
-			</TableCell>
+			{allowSelection && (
+				<TableCell className="w-12">
+					<Checkbox
+						checked={isSelected}
+						onCheckedChange={(checked) => onToggleSelection(rowId, !!checked)}
+						aria-label={`Select row ${index + 1}`}
+					/>
+				</TableCell>
+			)}
 
 			{/* Row Data */}
 			{visibleColumns.map((column) => {
