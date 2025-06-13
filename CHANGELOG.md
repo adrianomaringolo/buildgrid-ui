@@ -1,3 +1,10 @@
+## [1.14.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.3...v1.14.4) (2025-06-13)
+
+
+### Bug Fixes
+
+* adding activeFilters for data-table ([dc1947c](https://github.com/adrianomaringolo/buildgrid-ui/commit/dc1947c7ec938dcb5fcfdd3b88f39f783f23d034))
+
 ## [1.14.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.2...v1.14.3) (2025-06-13)
 
 
