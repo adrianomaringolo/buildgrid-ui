@@ -33,12 +33,14 @@ function DataTableInner<T extends Record<string, any>>(
 		className = '',
 		loading = false,
 		tools,
+		activeFilters: defaultFilters = {},
 	}: DataTableProps<T>,
 	ref: React.Ref<DataTableRef<T>>,
 ) {
 	const [searchTerm, setSearchTerm] = useState('')
 	const [currentPage, setCurrentPage] = useState(1)
-	const [activeFilters, setActiveFilters] = useState<Record<string, string>>({})
+	const [activeFilters, setActiveFilters] =
+		useState<Record<string, string>>(defaultFilters)
 	const [sortState, setSortState] = useState<SortState>({ field: null, direction: null })
 	const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
 	const [columns, setColumns] = useState(initialColumns)

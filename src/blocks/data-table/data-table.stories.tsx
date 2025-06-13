@@ -182,6 +182,7 @@ const Template = () => {
 		{
 			field: 'status',
 			label: 'Status',
+
 			options: [
 				{ label: 'Active', value: 'active' },
 				{ label: 'Inactive', value: 'inactive' },
@@ -254,6 +255,7 @@ const Template = () => {
 				columns={columns}
 				searchFields={searchFields}
 				filters={filters}
+				activeFilters={{ status: 'active', role: 'User' }}
 				pageSize={10}
 				className="w-full"
 				loading={loading}

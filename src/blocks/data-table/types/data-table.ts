@@ -16,6 +16,7 @@ export interface FilterOption {
 export interface DataTableFilter<T> {
 	field: keyof T
 	label: string
+	defaultValue?: string
 	options: FilterOption[]
 }
 
@@ -55,6 +56,7 @@ export interface DataTableProps<T> {
 	columns: DataTableColumn<T>[]
 	searchFields: (keyof T)[]
 	filters?: DataTableFilter<T>[]
+	activeFilters?: Record<string, string>
 	pageSize?: number
 	className?: string
 	loading?: boolean
