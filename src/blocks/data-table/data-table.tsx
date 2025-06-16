@@ -19,6 +19,7 @@ import { TableSkeleton } from './components/table-skeleton'
 import { exportToCSV } from './utils/export'
 
 // Import types
+import { Skeleton } from '@/components'
 import { useDebounce } from '@/lib/hooks'
 import { PaginationControls } from '../pagination-controls'
 import type { DataTableProps, DataTableRef, SortState } from './types/data-table'
@@ -332,21 +333,21 @@ function DataTableInner<T extends Record<string, any>>(
 		return (
 			<div className={`space-y-4 ${className}`}>
 				<div className="flex flex-wrap items-center gap-4">
-					<div className="h-10 w-full max-w-sm bg-muted animate-pulse rounded" />
+					<Skeleton className="h-10 w-full max-w-sm" />
 					{filters.map((_, index) => (
-						<div key={index} className="h-10 w-40 bg-muted animate-pulse rounded" />
+						<Skeleton key={index} className="h-10 w-30" />
 					))}
-					<div className="h-10 w-32 ml-auto bg-muted animate-pulse rounded" />
+					<Skeleton className="h-10 w-32 ml-auto" />
 				</div>
 				<TableSkeleton columns={visibleColumns.length + 1} rows={pageSize} />
 				<div className="flex items-center justify-between">
-					<div className="h-4 w-48 bg-muted animate-pulse rounded" />
+					<Skeleton className="h-4 w-48" />
 					<div className="flex items-center space-x-2">
-						<div className="h-8 w-20 bg-muted animate-pulse rounded" />
-						<div className="h-8 w-8 bg-muted animate-pulse rounded" />
-						<div className="h-8 w-8 bg-muted animate-pulse rounded" />
-						<div className="h-8 w-8 bg-muted animate-pulse rounded" />
-						<div className="h-8 w-20 bg-muted animate-pulse rounded" />
+						<Skeleton className="h-8 w-20" />
+						<Skeleton className="h-8 w-8" />
+						<Skeleton className="h-8 w-8" />
+						<Skeleton className="h-8 w-8" />
+						<Skeleton className="h-8 w-20" />
 					</div>
 				</div>
 			</div>
