@@ -1,3 +1,10 @@
+## [1.14.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.4...v1.14.5) (2025-06-16)
+
+
+### Bug Fixes
+
+* change data-table to use default skeleton ([0cfd7a8](https://github.com/adrianomaringolo/buildgrid-ui/commit/0cfd7a8348b3ef3b1e18aec29ff2e65252010eea))
+
 ## [1.14.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.3...v1.14.4) (2025-06-13)
 
 
