@@ -1,3 +1,10 @@
+## [1.14.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.5...v1.14.6) (2025-06-24)
+
+
+### Bug Fixes
+
+* enhance data table column configuration with alignment and className options ([e56a42a](https://github.com/adrianomaringolo/buildgrid-ui/commit/e56a42aa9e9ee6f866cba7ab2d62ebbe7299a234))
+
 ## [1.14.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.4...v1.14.5) (2025-06-16)
 
 
