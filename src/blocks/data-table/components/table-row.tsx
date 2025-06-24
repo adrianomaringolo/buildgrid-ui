@@ -1,5 +1,6 @@
 import { Checkbox } from '@/components/checkbox'
 import { TableCell, TableRow } from '@/components/table'
+import { cn } from '@/index'
 import type { DataTableColumn } from '../types/data-table'
 
 interface DataTableRowProps<T> {
@@ -40,7 +41,14 @@ export function DataTableRow<T>({
 			{visibleColumns.map((column) => {
 				const value = row[column.key]
 				return (
-					<TableCell key={String(column.key)}>
+					<TableCell
+						key={String(column.key)}
+						className={cn(
+							column.align === 'right' ? 'text-right' : '',
+							column.align === 'center' ? 'text-center' : '',
+							column.cellClassName,
+						)}
+					>
 						{column.customRenderer
 							? column.customRenderer(value, row)
 							: String(value ?? '')}

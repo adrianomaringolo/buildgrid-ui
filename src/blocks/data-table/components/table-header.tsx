@@ -2,6 +2,7 @@
 
 import { Checkbox } from '@/components/checkbox'
 import { TableHead, TableRow } from '@/components/table'
+import { cn } from '@/lib/utils'
 import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 import type { DataTableColumn, SortState } from '../types/data-table'
 
@@ -43,8 +44,20 @@ export function TableHeader<T>({
 			{visibleColumns.map((column) => (
 				<TableHead
 					key={String(column.key)}
-					className={column.sortable ? 'cursor-pointer select-none' : ''}
+					className={cn(
+						column.sortable ? 'cursor-pointer select-none' : '',
+						column.headerClassName,
+						column.align === 'right' ? 'text-right' : '',
+						column.align === 'center' ? 'text-center' : '',
+					)}
 					onClick={column.sortable ? () => onSort(String(column.key)) : undefined}
+					style={{
+						width: column.width
+							? typeof column.width === 'number'
+								? `${column.width}px`
+								: column.width
+							: undefined,
+					}}
 				>
 					<div className="flex items-center gap-1">
 						{column.title}

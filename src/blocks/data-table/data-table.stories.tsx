@@ -147,6 +147,8 @@ const Template = () => {
 			key: 'joinDate',
 			title: 'Join Date',
 			sortable: true,
+			align: 'right',
+			headerClassName: 'bg-muted-foreground/10',
 			customRenderer: (value) => (
 				<span className="text-sm text-muted-foreground">
 					{new Date(value).toLocaleDateString()}
@@ -156,6 +158,7 @@ const Template = () => {
 		{
 			key: 'id',
 			title: 'Actions',
+			width: '100px',
 			customRenderer: (_, row) => (
 				<div className="flex gap-2">
 					<Button variant="ghost" size="sm">

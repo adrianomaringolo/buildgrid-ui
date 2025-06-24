@@ -2,10 +2,22 @@ import type React from 'react'
 
 export interface DataTableColumn<T> {
 	key: keyof T
-	title: string
+	/** The title of the column, can be a string or a React node */
+	title: string | React.ReactNode
+	/** Optional custom renderer for the column cells */
 	customRenderer?: (value: any, row: T) => React.ReactNode
+	/** Whether the column is sortable, defaults to false */
 	sortable?: boolean
+	/** Whether the column is hidden by default, defaults to false */
 	hidden?: boolean
+	/** Optional width for the column, can be a number (px) or string (e.g. '100px', '20%') */
+	width?: number | string
+	/** Optional className for the column header */
+	headerClassName?: string
+	/** Optional className for the column cells */
+	cellClassName?: string
+	/** Optional alignment for the column cells */
+	align?: 'left' | 'center' | 'right'
 }
 
 export interface FilterOption {
