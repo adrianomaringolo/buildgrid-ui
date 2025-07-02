@@ -1,3 +1,10 @@
+## [1.14.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.6...v1.14.7) (2025-07-02)
+
+
+### Bug Fixes
+
+* improving library configuration and build ([60cc053](https://github.com/adrianomaringolo/buildgrid-ui/commit/60cc053f9cc88d16085428735e91eac4eae7adb2))
+
 ## [1.14.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.5...v1.14.6) (2025-06-24)
 
 
