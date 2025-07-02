@@ -21,3 +21,6 @@ https://www.landingfolio.com/
 
 https://blocks.starterkitpro.com/
 https://blookie.io/
+
+https://ui.spectrumhq.in/
+https://www.shadcnblocks.com/

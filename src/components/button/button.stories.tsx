@@ -91,7 +91,7 @@ export const Loading: Story = {
 }
 
 const TemplateCustomTheme = () => {
-	const customTheme: ButtonThemeProps = {
+	const customTheme = {
 		base: 'border-2 shadow-lg rounded p-3',
 		variants: {
 			variant: {
@@ -103,8 +103,15 @@ const TemplateCustomTheme = () => {
 				link: 'text-blue-600 border-none',
 			},
 			size: {
+				sm: 'h-auto py-1 px-2',
 				md: 'h-auto py-2 px-4',
+				lg: 'h-auto py-3 px-6',
+				xl: 'h-auto py-4 px-8',
+				icon: 'h-10 w-10',
 			},
+      rounded: {
+        true: 'rounded-full'
+      }
 		},
 	}
 

@@ -10,15 +10,23 @@ const options = [
 	{ value: 'orange', label: 'Orange' },
 ]
 
+const onSelectMock = vi.fn()
+
 describe('Autocomplete Component', () => {
 	it('renders the input field with a placeholder', () => {
-		render(<Autocomplete options={options} placeholder="Search fruits..." />)
+		render(
+			<Autocomplete
+				options={options}
+				placeholder="Search fruits..."
+				onSelect={onSelectMock}
+			/>
+		)
 		const input = screen.getByPlaceholderText(/search fruits.../i)
 		expect(input).toBeInTheDocument()
 	})
 
 	it('renders all suggestions initially when the input is focused', () => {
-		render(<Autocomplete options={options} />)
+		render(<Autocomplete options={options} onSelect={onSelectMock} />)
 		const input = screen.getByPlaceholderText(/search.../i)
 		fireEvent.focus(input)
 
@@ -29,40 +37,20 @@ describe('Autocomplete Component', () => {
 		expect(suggestionList[2]).toHaveTextContent('Orange')
 	})
 
-	// it('filters suggestions based on input', () => {
-	// 	render(<Autocomplete options={options} />)
-	// 	const input = screen.getByPlaceholderText(/search.../i)
-
-	// 	fireEvent.focus(input, { target: { value: 'ap' } })
-
-	// 	const suggestionList = screen.getAllByRole('option')
-	// 	expect(suggestionList).toHaveLength(1)
-	// 	expect(suggestionList[0]).toHaveTextContent('Apple')
-	// })
-
-	// it('displays "Nothing found" when no suggestions match', () => {
-	// 	render(<Autocomplete options={options} emptyMessage="No fruits found" />)
-	// 	const input = screen.getByPlaceholderText(/search.../i)
-	// 	fireEvent.change(input, { target: { value: 'xyz' } })
-
-	// 	const emptyMessage = screen.getByText(/no fruits found/i)
-	// 	expect(emptyMessage).toBeInTheDocument()
-	// })
-
-	it('calls onChange with the selected value when a suggestion is clicked', () => {
-		const handleChange = vi.fn()
-		render(<Autocomplete options={options} onChange={handleChange} />)
+	it('calls onSelect with the selected value when a suggestion is clicked', () => {
+		const onSelect = vi.fn()
+		render(<Autocomplete options={options} onSelect={onSelect} />)
 		const input = screen.getByPlaceholderText(/search.../i)
 		fireEvent.focus(input)
 
 		const suggestion = screen.getByText(/banana/i)
 		fireEvent.click(suggestion)
 
-		expect(handleChange).toHaveBeenCalledWith('banana')
+		expect(onSelect).toHaveBeenCalledWith(options[1])
 	})
 
 	it('updates the input value when a suggestion is clicked', () => {
-		render(<Autocomplete options={options} />)
+		render(<Autocomplete options={options} onSelect={onSelectMock} />)
 		const input = screen.getByPlaceholderText(/search.../i)
 		fireEvent.focus(input)
 
@@ -73,8 +61,8 @@ describe('Autocomplete Component', () => {
 	})
 
 	it('navigates suggestions with keyboard (ArrowDown, ArrowUp, Enter)', () => {
-		const handleChange = vi.fn()
-		render(<Autocomplete options={options} onChange={handleChange} />)
+		const onSelect = vi.fn()
+		render(<Autocomplete options={options} onSelect={onSelect} />)
 		const input = screen.getByPlaceholderText(/search.../i)
 		fireEvent.focus(input)
 
@@ -82,12 +70,12 @@ describe('Autocomplete Component', () => {
 		fireEvent.keyDown(input, { key: 'ArrowDown' })
 		fireEvent.keyDown(input, { key: 'Enter' })
 
-		expect(handleChange).toHaveBeenCalledWith('banana')
+		expect(onSelect).toHaveBeenCalledWith(options[1])
 		expect(input).toHaveValue('Banana')
 	})
 
 	it('closes suggestions when Escape is pressed', () => {
-		render(<Autocomplete options={options} />)
+		render(<Autocomplete options={options} onSelect={onSelectMock} />)
 		const input = screen.getByPlaceholderText(/search.../i)
 		fireEvent.focus(input)
 

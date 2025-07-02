@@ -16,7 +16,12 @@ const Template = () => {
 		<PaginationControls
 			currentPage={currentPage}
 			totalPages={10}
+			totalItems={100}
+			startIndex={0}
+			endIndex={10}
 			onPageChange={(page) => setCurrentPage(page)}
+			onPreviousPage={() => setCurrentPage(currentPage - 1)}
+			onNextPage={() => setCurrentPage(currentPage + 1)}
 		/>
 	)
 }

@@ -13,7 +13,7 @@
 		"outDir": "dist",
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"types": ["vitest/globals"],
+		"types": ["vitest/globals", "@testing-library/jest-dom"],
 		"paths": {
 			"@/*": ["./src/*"],
 			"buildgrid-ui/*": ["src/*"]
