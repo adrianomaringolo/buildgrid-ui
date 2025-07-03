@@ -1,3 +1,10 @@
+## [1.14.8](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.7...v1.14.8) (2025-07-03)
+
+
+### Bug Fixes
+
+* export options ([cf56c11](https://github.com/adrianomaringolo/buildgrid-ui/commit/cf56c11541955cbde61d95ac10d05b3eeefec0d8))
+
 ## [1.14.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.6...v1.14.7) (2025-07-02)
 
 
