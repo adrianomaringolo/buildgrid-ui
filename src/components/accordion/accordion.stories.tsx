@@ -4,8 +4,9 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './accordion'
 
 const meta: Meta<typeof Accordion> = {
-	title: 'Components/accordion',
+	title: 'Components/Accordion',
 	component: Accordion,
+	tags: ['autodocs'],
 }
 
 export default meta
@@ -13,10 +14,12 @@ type Story = StoryObj<typeof Accordion>
 
 const Template = () => {
 	return (
-		<div className="w-[350px]">
+		<div className="max-w-[350px]">
 			<Accordion type="single" collapsible>
 				<AccordionItem value="item-1">
-					<AccordionTrigger>Is it accessible?</AccordionTrigger>
+					<AccordionTrigger className="text-blue-800 md:text-orange-700 lg:text-teal-800">
+						Is it accessible?
+					</AccordionTrigger>
 					<AccordionContent>
 						Yes. It adheres to the WAI-ARIA design pattern.
 					</AccordionContent>

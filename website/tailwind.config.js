@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+	darkMode: 'class',
 	content: [
 		'./src/**/*.{js,jsx,ts,tsx,mdx}',
 		'./node_modules/buildgrid-ui/**/*.{js,ts,jsx,tsx}',

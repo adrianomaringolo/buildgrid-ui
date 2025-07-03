@@ -1,67 +1,133 @@
+---
+id: accordion
+---
 
-import { CodeBox } from '../../src/components/docs/code-box'
-import { AccordionBasic, AccordionBasicCode } from './examples/accordion-examples'
+import { CodeBox } from "@site/src/components/docs/code-box";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "buildgrid-ui/components/accordion";
+import { FaCode } from 'react-icons/fa'
 
 # Accordion
 
-Accordion component for organizing collapsible content in sections.
+The `Accordion` component is used to display and hide content in expandable sections.
 
-:::warning
+## Basic Usage
 
-This documentation is under **construction** 🚧👷‍♂️
+<CodeBox
+  code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "buildgrid-ui";
 
-Check again later please.
-
-:::
-
-<CodeBox code={AccordionBasicCode}>
-	<AccordionBasic />
+function MyAccordion() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It comes with default styles that can be customized.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
+>
+  <Accordion type="single" collapsible>
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Is it accessible?</AccordionTrigger>
+      <AccordionContent>
+        Yes. It adheres to the WAI-ARIA design pattern.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Is it styled?</AccordionTrigger>
+      <AccordionContent>
+        Yes. It comes with default styles that can be customized.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
 </CodeBox>
 
-## Example
+## Properties
 
-```tsx
-import { Accordion } from 'your-library';
+### `Accordion`
 
-export default function Example() {
+| Property | Type | Description |
+|---|---|---|
+| `type` | `"single"` \| `"multiple"` | Defines whether only one item can be open at a time (`"single"`) or multiple (`"multiple"`). |
+| `collapsible` | `boolean` | If `true`, allows the currently open item to be closed. |
+| `defaultValue` | `string` \| `string[]` | The value of the item (or items) that will be open by default. |
+| `value` | `string` \| `string[]` | The value of the currently open item (or items) (controlled). |
+| `onValueChange` | `(value: string \| string[]) => void` | Callback fired when the value of the open item changes. |
+| `dir` | `"ltr"` \| `"rtl"` | Text direction. |
+| `orientation` | `"vertical"` \| `"horizontal"` | Accordion orientation. |
+
+### `AccordionItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | A unique value to identify the accordion item. **Required**. |
+| `disabled` | `boolean` | If `true`, the accordion item cannot be opened or closed. |
+
+### `AccordionTrigger`
+
+Does not have specific properties beyond standard HTML properties.
+
+### `AccordionContent`
+
+Does not have specific properties beyond standard HTML properties.
+
+## Customization
+
+You can customize the appearance of the `Accordion` using CSS classes or Tailwind CSS.
+
+### Customization Example with Tailwind CSS
+
+<CodeBox
+  code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "buildgrid-ui";
+
+function CustomAccordion() {
   return (
-    <Accordion />
+    <Accordion type="single" collapsible className="w-full">
+      <AccordionItem value="item-1" className="border-b border-gray-200">
+        <AccordionTrigger className="flex justify-between items-center py-4 font-medium hover:underline sm:text-blue-700 sm:bg-blue-50 md:text-red-700 md:bg-red-50 lg:text-green-700 lg:bg-green-50">
+          Custom Trigger
+        </AccordionTrigger>
+        <AccordionContent className="pt-0 pb-4 text-gray-700">
+          This is custom content.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
-}
-```
+}`}
+>
+  <Accordion type="single" collapsible className="w-full">
+    <AccordionItem value="item-1" className="border-b border-gray-200">
+      <AccordionTrigger className="flex justify-between items-center py-4 font-medium hover:underline sm:text-blue-700 sm:bg-blue-50 md:text-red-700 md:bg-red-50 lg:text-green-700 lg:bg-green-50">
+        Custom Trigger
+      </AccordionTrigger>
+      <AccordionContent className="pt-0 pb-4 text-gray-700">
+        This is custom content.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</CodeBox>
 
-## Features
-
-- Feature 1
-- Feature 2
-- Feature 3
-
-## Props
-
-| Name    | Type    | Default | Description     |
-|---------|---------|---------|-----------------|
-| example | string  | "test"  | Example prop.   |
-
-## Use cases
-
-:::info
-
-Describe important use cases here...
-
-:::
-
-## Customize theme
-
-:::info
-
-Describe how to customize the theme here...
-
-:::
-
-## Accessibility
-
-:::info
-
-Describe accessibility requirements here...
-
-:::
+For more examples and advanced usage, please refer to the official Radix UI Accordion documentation, which is the base for this component.

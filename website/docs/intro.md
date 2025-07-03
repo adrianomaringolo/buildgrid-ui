@@ -83,6 +83,6 @@ Check out the full list of components and their usage in our Storybook documenta
 
 ## Next Steps
 
-- [View the Components](./tutorial-basics/congratulations.md)
-- [Customizing the Theme](./tutorial-basics/congratulations.md)
-- [Contribution Guide](./tutorial-basics/congratulations.md)
+- [View the Components](./some-placeholder-page.md)
+- [Customizing the Theme](./some-placeholder-page.md)
+- [Contribution Guide](./some-placeholder-page.md)

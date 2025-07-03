@@ -13,7 +13,7 @@ export default function Home(): ReactNode {
 			description="Description will go into a meta tag in <head />"
 		>
 			<main>
-				<IntroSection />
+				<IntroSection className="text-red-500" />
 				<StatsSection />
 				<FeaturesSection />
 			</main>
