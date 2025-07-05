@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.10...v1.15.0) (2025-07-05)
+
+
+### Features
+
+* add support for individual component imports ([6f2b23a](https://github.com/adrianomaringolo/buildgrid-ui/commit/6f2b23a2a90695a9b69bb9b557ac976fd3755158))
+
 ## [1.14.10](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.9...v1.14.10) (2025-07-05)
 
 
