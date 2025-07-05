@@ -12,10 +12,23 @@
 		"dist"
 	],
 	"exports": {
+		"./package.json": {
+			"default": "./package.json"
+		},
 		".": {
 			"import": "./dist/buildgrid-ui.es.js",
 			"require": "./dist/buildgrid-ui.umd.js",
 			"types": "./dist/index.d.ts"
+		},
+		"./components/*": {
+			"import": "./dist/components/*/index.js",
+			"require": "./dist/components/*/index.umd.js",
+			"types": "./dist/components/*/index.d.ts"
+		},
+		"./blocks/*": {
+			"import": "./dist/blocks/*/index.js",
+			"require": "./dist/blocks/*/index.umd.js",
+			"types": "./dist/blocks/*/index.d.ts"
 		}
 	},
 	"scripts": {
