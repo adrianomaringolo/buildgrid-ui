@@ -1,3 +1,10 @@
+## [1.14.10](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.9...v1.14.10) (2025-07-05)
+
+
+### Bug Fixes
+
+* change vite config ([6c192bf](https://github.com/adrianomaringolo/buildgrid-ui/commit/6c192bfb7f011359fe4498d5c110198a3600837a))
+
 ## [1.14.9](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.8...v1.14.9) (2025-07-03)
 
 
