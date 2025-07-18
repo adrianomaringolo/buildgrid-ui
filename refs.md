@@ -24,3 +24,15 @@ https://blookie.io/
 
 https://ui.spectrumhq.in/
 https://www.shadcnblocks.com/
+https://reactbits.dev/
+
+https://patterncraft.fun/
+
+
+https://10015.io/tools
+
+https://www.tailwindcss-animated.com/
+
+https://kokonutui.com/docs/components/dynamic-text
+
+https://skiper-ui.com/docs/components/card-carousel

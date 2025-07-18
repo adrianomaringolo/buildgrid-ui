@@ -19,6 +19,7 @@ interface DialogOptions {
 	title?: string
 	message: string | React.ReactNode
 	icon?: React.ElementType
+	iconClassName?: string
 	className?: string
 	type?: DialogType
 	size?: DialogSize
@@ -126,14 +127,26 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 		[open],
 	)
 
-	const getIcon = (type?: DialogType, customIcon?: React.ElementType) => {
+	const getIcon = (
+		type?: DialogType,
+		customIcon?: React.ElementType,
+		iconClassName?: string,
+	) => {
 		let Icon = iconClasses[type as DialogType].icon
 
 		if (customIcon) {
 			Icon = customIcon
 		}
 
-		return <Icon className={cn('h-24 w-24', iconClasses[type as DialogType].className)} />
+		return (
+			<Icon
+				className={cn(
+					'h-24 w-24',
+					iconClasses[type as DialogType].className,
+					iconClassName,
+				)}
+			/>
+		)
 	}
 
 	const contextValue = React.useMemo(
@@ -167,7 +180,11 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 					{dialogState.options && (
 						<DialogHeader>
 							<div className="mx-auto mb-6">
-								{getIcon(dialogState.options.type, dialogState.options.icon)}
+								{getIcon(
+									dialogState.options.type,
+									dialogState.options.icon,
+									dialogState.options.iconClassName,
+								)}
 							</div>
 							{dialogState.options.title && (
 								<DialogTitle className="text-center">
