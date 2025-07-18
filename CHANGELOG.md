@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.0...v1.15.1) (2025-07-18)
+
+
+### Bug Fixes
+
+* add custom icon className for useDialog ([dc2841e](https://github.com/adrianomaringolo/buildgrid-ui/commit/dc2841ecf5d05725465e29a3032c3b0c7694eb7c))
+
 # [1.15.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.14.10...v1.15.0) (2025-07-05)
 
 
