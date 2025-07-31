@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.2...v1.15.3) (2025-07-31)
+
+
+### Bug Fixes
+
+* new alert variants ([a31c9bb](https://github.com/adrianomaringolo/buildgrid-ui/commit/a31c9bb3f5e4218c16b93a5801f144feb79b9fd2))
+
 ## [1.15.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.1...v1.15.2) (2025-07-31)
 
 
