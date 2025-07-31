@@ -2,13 +2,14 @@
 id: accordion
 ---
 
-import { CodeBox } from "@site/src/components/docs/code-box";
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "buildgrid-ui/components/accordion";
+
+} from "buildgrid-ui";
 import { FaCode } from 'react-icons/fa'
 
 # Accordion
@@ -17,7 +18,7 @@ The `Accordion` component is used to display and hide content in expandable sect
 
 ## Basic Usage
 
-<CodeBox
+<ComponentDocSection
   code={`import {
   Accordion,
   AccordionItem,
@@ -58,7 +59,7 @@ function MyAccordion() {
       </AccordionContent>
     </AccordionItem>
   </Accordion>
-</CodeBox>
+</ComponentDocSection> 
 
 ## Properties
 
@@ -95,7 +96,7 @@ You can customize the appearance of the `Accordion` using CSS classes or Tailwin
 
 ### Customization Example with Tailwind CSS
 
-<CodeBox
+<ComponentDocSection
   code={`import {
   Accordion,
   AccordionItem,
@@ -128,6 +129,6 @@ function CustomAccordion() {
       </AccordionContent>
     </AccordionItem>
   </Accordion>
-</CodeBox>
+</ComponentDocSection> 
 
 For more examples and advanced usage, please refer to the official Radix UI Accordion documentation, which is the base for this component.
