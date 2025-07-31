@@ -1,7 +1,6 @@
 // organize-imports-ignore
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-
 import { Alert } from './alert'
 
 const meta: Meta<typeof Alert> = {
