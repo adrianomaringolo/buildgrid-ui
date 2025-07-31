@@ -60,6 +60,8 @@ const DialogExample: React.FC = () => {
 			title: 'Confirmation Dialog',
 			message: 'This is an example dialog using useDialog hook.',
 			type: 'confirm',
+			blockOutsideClick: true,
+			showCloseButton: false,
 			confirmButton: {
 				label: 'Yes',
 				onClick: () => alert('Confirmation ok'),
@@ -87,6 +89,15 @@ const DialogExample: React.FC = () => {
 		})
 	}
 
+	const handleOpenNoCloseDialog = () => {
+		dialog.open({
+			title: 'No Close Button',
+			message: 'This dialog does not have a close button.',
+			type: 'info',
+			showCloseButton: false,
+		})
+	}
+
 	return (
 		<div className="flex flex-col gap-2 max-w-sm">
 			<Button onClick={handleOpenInfoDialog}>Open Info Dialog</Button>
@@ -94,10 +105,13 @@ const DialogExample: React.FC = () => {
 			<Button onClick={handleOpenSuccessDialog}>Open Success Dialog</Button>
 			<Button onClick={handleOpenWarningDialog}>Open Warning Dialog</Button>
 			<Button onClick={handleOpenCustomDialog}>Open Custom Dialog</Button>
-			<Button onClick={handleOpenConfirmDialog}>Open Confirm Dialog</Button>
+			<Button onClick={handleOpenConfirmDialog}>
+				Open Confirm Dialog + block outside click
+			</Button>
 			<Button onClick={handleOpenConfirmPromiseDialog}>
 				Open Confirm Dialog + Promise
 			</Button>
+			<Button onClick={handleOpenNoCloseDialog}>Open Dialog without Close Button</Button>
 		</div>
 	)
 }

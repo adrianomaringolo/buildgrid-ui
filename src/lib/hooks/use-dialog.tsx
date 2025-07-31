@@ -23,6 +23,8 @@ interface DialogOptions {
 	className?: string
 	type?: DialogType
 	size?: DialogSize
+	showCloseButton?: boolean
+	blockOutsideClick?: boolean
 	confirmButton?: {
 		label: string
 		className?: string
@@ -168,7 +170,7 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 	return (
 		<DialogContext.Provider value={contextValue}>
 			{children}
-			<Dialog open={dialogState.isOpen} onOpenChange={(open) => !open && close()} modal>
+			<Dialog open={dialogState.isOpen} onOpenChange={(open) => !open && close()}>
 				<DialogContent
 					className={cn(
 						dialogState.options?.size
@@ -176,6 +178,10 @@ export function DialogProvider({ children }: { children: React.ReactNode }) {
 							: sizeClasses.sm,
 						dialogState.options?.className,
 					)}
+					showCloseButton={dialogState.options?.showCloseButton ?? true}
+					onInteractOutside={(e) => {
+						dialogState.options?.blockOutsideClick && e.preventDefault()
+					}}
 				>
 					{dialogState.options && (
 						<DialogHeader>
