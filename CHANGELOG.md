@@ -1,3 +1,11 @@
+## [1.15.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.3...v1.15.4) (2025-07-31)
+
+
+### Bug Fixes
+
+* add showCloseButton and blockOutsideClick to useDialog hook ([de052a6](https://github.com/adrianomaringolo/buildgrid-ui/commit/de052a67e5c53eade5e82c7e26b78ac91ee644be))
+* package-lock.json ([37da2ad](https://github.com/adrianomaringolo/buildgrid-ui/commit/37da2ad5b14c743e22bf77e8c4e255f0bab81b77))
+
 ## [1.15.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.2...v1.15.3) (2025-07-31)
 
 
