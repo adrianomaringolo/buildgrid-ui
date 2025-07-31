@@ -1,3 +1,11 @@
+## [1.15.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.1...v1.15.2) (2025-07-31)
+
+
+### Bug Fixes
+
+* adding alert component ([2580148](https://github.com/adrianomaringolo/buildgrid-ui/commit/2580148d42bb37ef336a82bd4162d6e8c7ea75b6))
+* changing documentation config ([6ff8e0a](https://github.com/adrianomaringolo/buildgrid-ui/commit/6ff8e0a9b4b3d9cc0a95a25f550883a16b4beb44))
+
 ## [1.15.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.0...v1.15.1) (2025-07-18)
 
 
