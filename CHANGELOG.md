@@ -1,3 +1,10 @@
+## [1.15.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.4...v1.15.5) (2025-08-02)
+
+
+### Bug Fixes
+
+* change tooltip background color ([c6214b8](https://github.com/adrianomaringolo/buildgrid-ui/commit/c6214b887a3b4672d864678a1370caf957440e8b))
+
 ## [1.15.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.3...v1.15.4) (2025-07-31)
 
 
