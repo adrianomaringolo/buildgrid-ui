@@ -41,6 +41,10 @@ module.exports = {
 					foreground: 'hsl(var(--destructive-foreground))',
 				},
 				border: 'hsl(var(--border))',
+				tooltip: {
+					DEFAULT: 'hsl(var(--tooltip))',
+					foreground: 'hsl(var(--tooltip-foreground))',
+				},
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				chart: {
