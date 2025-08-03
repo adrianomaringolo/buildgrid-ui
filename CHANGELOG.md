@@ -1,3 +1,10 @@
+## [1.15.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.5...v1.15.6) (2025-08-03)
+
+
+### Bug Fixes
+
+* update tooltip radix version and colors ([470d166](https://github.com/adrianomaringolo/buildgrid-ui/commit/470d166b4bfab8f9e14dd17b406763c0b2e91df4))
+
 ## [1.15.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.4...v1.15.5) (2025-08-02)
 
 
