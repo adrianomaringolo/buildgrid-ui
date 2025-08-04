@@ -1,3 +1,10 @@
+## [1.15.8](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.7...v1.15.8) (2025-08-04)
+
+
+### Bug Fixes
+
+* export number-input component ([46a12ca](https://github.com/adrianomaringolo/buildgrid-ui/commit/46a12ca8c47d796e42b0a9480a3e16a6b1805178))
+
 ## [1.15.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.6...v1.15.7) (2025-08-04)
 
 
