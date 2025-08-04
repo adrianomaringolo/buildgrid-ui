@@ -1,3 +1,10 @@
+## [1.15.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.6...v1.15.7) (2025-08-04)
+
+
+### Bug Fixes
+
+* add number input component and testing in pre-push hook ([79f9ea2](https://github.com/adrianomaringolo/buildgrid-ui/commit/79f9ea2f15811561ecd93402b995a37c04a45ac2))
+
 ## [1.15.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.5...v1.15.6) (2025-08-03)
 
 
