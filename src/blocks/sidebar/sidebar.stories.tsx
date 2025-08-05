@@ -1,6 +1,7 @@
-// organize-imports-ignore
-import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
+import { Check, Home, List } from 'lucide-react'
+import { useState } from 'react'
+
 import { Button } from '../../components/button'
 import {
 	Sidebar,
@@ -10,22 +11,25 @@ import {
 	SidebarListItem,
 	SidebarNav,
 } from '../sidebar'
-import { Check, Home, List } from 'lucide-react'
 
 const meta: Meta<typeof Sidebar> = {
 	component: Sidebar,
+	args: {
+		direction: 'left',
+		blockClickOutSide: false,
+	},
 }
 
 export default meta
 type Story = StoryObj<typeof Sidebar>
 
-const Template = () => {
+const Template = (args: Story['args']) => {
 	const [isSidebarOpen, setSidebarOpen] = useState(true)
 
 	return (
 		<div className="bg-gray-200 w-full h-screen">
 			<Button onClick={() => setSidebarOpen((prev) => !prev)}>Toggle Sidebar</Button>
-			<Sidebar fixed={false} isOpen={isSidebarOpen} onToggle={setSidebarOpen}>
+			<Sidebar fixed={false} isOpen={isSidebarOpen} onToggle={setSidebarOpen} {...args}>
 				<SidebarHeader>
 					<h1>My app</h1>
 					<button
@@ -57,6 +61,40 @@ const Template = () => {
 }
 
 export const Default: Story = {
-	render: Template.bind({}),
-	args: {},
+	render: Template,
+}
+
+export const Right: Story = {
+	render: Template,
+	args: {
+		direction: 'right',
+	},
+}
+
+export const Top: Story = {
+	render: Template,
+	args: {
+		direction: 'top',
+	},
+}
+
+export const Bottom: Story = {
+	render: Template,
+	args: {
+		direction: 'bottom',
+	},
+}
+
+export const Full: Story = {
+	render: Template,
+	args: {
+		direction: 'full',
+	},
+}
+
+export const BlockClickOutside: Story = {
+	render: Template,
+	args: {
+		blockClickOutSide: true,
+	},
 }

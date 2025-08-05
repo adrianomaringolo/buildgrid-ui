@@ -7,6 +7,8 @@ interface SidebarProps {
 	onToggle?: (open: boolean) => void
 	children: React.ReactNode
 	className?: string
+	direction?: 'top' | 'bottom' | 'left' | 'right' | 'full'
+	blockClickOutSide?: boolean
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -15,6 +17,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 	onToggle,
 	children,
 	className,
+	direction = 'left',
+	blockClickOutSide = false,
 }) => {
 	const [internalOpen, setInternalOpen] = useState(true)
 	const sidebarRef = useRef<HTMLDivElement>(null)
@@ -40,7 +44,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 		if (
 			sidebarRef.current &&
 			!sidebarRef.current.contains(event.target as Node) &&
-			!fixed
+			!fixed &&
+			!blockClickOutSide
 		) {
 			closeSidebar()
 		}
@@ -53,25 +58,70 @@ export const Sidebar: React.FC<SidebarProps> = ({
 				document.removeEventListener('mousedown', handleClickOutside)
 			}
 		}
-	}, [fixed])
+	}, [fixed, blockClickOutSide])
+
+	const baseClasses =
+		'bg-white z-50 shadow-md flex flex-col fixed transition-all duration-300 ease-in-out overflow-auto'
+
+	const directionClasses = {
+		left: 'h-full top-0 left-0',
+		right: 'h-full top-0 right-0',
+		top: 'w-full top-0 left-0',
+		bottom: 'w-full bottom-0 left-0',
+		full: 'w-screen h-screen top-0 left-0',
+	}
+
+	const sizeClasses = {
+		left: { open: 'w-72', closed: 'w-0' },
+		right: { open: 'w-72', closed: 'w-0' },
+		top: { open: 'h-72', closed: 'h-0' },
+		bottom: { open: 'h-72', closed: 'h-0' },
+		full: { open: 'w-screen h-screen', closed: 'w-0 h-0' },
+	}
+
+	const transformClasses = {
+		left: {
+			open: 'translate-x-0',
+			closed: '-translate-x-full',
+		},
+		right: {
+			open: 'translate-x-0',
+			closed: 'translate-x-full',
+		},
+		top: {
+			open: 'translate-y-0',
+			closed: '-translate-y-full',
+		},
+		bottom: {
+			open: 'translate-y-0',
+			closed: 'translate-y-full',
+		},
+		full: {
+			open: 'translate-x-0 translate-y-0',
+			closed: '-translate-x-full -translate-y-full',
+		},
+	}
 
 	return (
 		<>
 			<aside
 				ref={sidebarRef}
 				className={cn(
-					'bg-white z-50 h-full shadow-md flex flex-col fixed top-0 left-0 transition-all duration-300 ease-in-out overflow-auto',
-					{ 'w-72': fixed || isOpen },
-					{ 'w-0': !isOpen && !fixed },
-					{ 'translate-x-0': isOpen },
-					{ '-translate-x-full': !isOpen && !fixed },
+					baseClasses,
+					directionClasses[direction],
+					{
+						[sizeClasses[direction].open]: fixed || isOpen,
+						[sizeClasses[direction].closed]: !isOpen && !fixed,
+						[transformClasses[direction].open]: isOpen,
+						[transformClasses[direction].closed]: !isOpen && !fixed,
+					},
 					className,
 				)}
 				aria-hidden={!isOpen}
 			>
 				{children}
 			</aside>
-			{fixed && <div className="w-72 relative" />}
+			{fixed && <div className="min-w-72 relative" />}
 		</>
 	)
 }
