@@ -1,3 +1,10 @@
+## [1.15.10](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.9...v1.15.10) (2025-08-05)
+
+
+### Bug Fixes
+
+* adding sidebarBody component for composition ([3a0ccc1](https://github.com/adrianomaringolo/buildgrid-ui/commit/3a0ccc11afa4a29e173ff488ea1b262264f8bef9))
+
 ## [1.15.9](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.8...v1.15.9) (2025-08-05)
 
 
