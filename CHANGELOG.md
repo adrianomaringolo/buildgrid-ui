@@ -1,3 +1,10 @@
+## [1.15.9](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.8...v1.15.9) (2025-08-05)
+
+
+### Bug Fixes
+
+* improve sidebar to have directions and blockClickOutside ([954b087](https://github.com/adrianomaringolo/buildgrid-ui/commit/954b087a033e871b529f29bf9aac5a5c3b05e861))
+
 ## [1.15.8](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.7...v1.15.8) (2025-08-04)
 
 
