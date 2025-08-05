@@ -140,6 +140,17 @@ export const SidebarHeader = ({
 	)
 }
 
+export const SidebarBody = ({
+	children,
+	className,
+}: PropsWithChildren<{ className?: string }>) => {
+	return (
+		<div className={cn('p-4', className)} aria-label="Sidebar body">
+			{children}
+		</div>
+	)
+}
+
 export const SidebarNav = ({
 	children,
 	className,
