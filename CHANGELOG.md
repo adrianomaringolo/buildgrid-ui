@@ -1,3 +1,10 @@
+## [1.15.11](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.10...v1.15.11) (2025-08-09)
+
+
+### Bug Fixes
+
+* update tabs component from shadcn ([5730aee](https://github.com/adrianomaringolo/buildgrid-ui/commit/5730aee878468850644ad500fbeb676bc65f593b))
+
 ## [1.15.10](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.9...v1.15.10) (2025-08-05)
 
 
