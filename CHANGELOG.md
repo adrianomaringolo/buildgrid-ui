@@ -1,3 +1,10 @@
+## [1.15.13](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.12...v1.15.13) (2025-08-11)
+
+
+### Bug Fixes
+
+* adding slider component and moving number-input to a block as number-stepper ([34b70a9](https://github.com/adrianomaringolo/buildgrid-ui/commit/34b70a9ab11b44328062bcf24ae878a6036b5435))
+
 ## [1.15.12](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.11...v1.15.12) (2025-08-09)
 
 
