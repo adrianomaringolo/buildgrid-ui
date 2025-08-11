@@ -4,10 +4,10 @@ import { cn } from '@/lib/utils'
 import { Minus, Plus } from 'lucide-react'
 import type React from 'react'
 import { useState } from 'react'
-import { Button } from '../button'
-import { Input } from '../input'
+import { Button } from '../../components/button'
+import { Input } from '../../components/input'
 
-interface NumberInputProps {
+interface NumberStepperProps {
 	value?: number
 	defaultValue?: number
 	onChange?: (value: number) => void
@@ -66,7 +66,7 @@ const symbolPadding = {
 	xl: { left: 'pl-12', right: 'pr-12' },
 }
 
-export function NumberInput({
+export function NumberStepper({
 	value,
 	defaultValue = 0,
 	onChange,
@@ -78,7 +78,7 @@ export function NumberInput({
 	className,
 	leftSymbol,
 	rightSymbol,
-}: NumberInputProps) {
+}: NumberStepperProps) {
 	const [internalValue, setInternalValue] = useState(defaultValue)
 
 	const currentValue = value !== undefined ? value : internalValue

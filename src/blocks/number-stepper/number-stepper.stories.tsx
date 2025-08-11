@@ -1,16 +1,22 @@
 // organize-imports-ignore
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './../card'
-import { NumberInput } from './number-input'
-import { Label } from '../label'
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+	Label,
+} from './../../components'
+import { NumberStepper } from './number-stepper'
 
-const meta: Meta<typeof NumberInput> = {
-	component: NumberInput,
+const meta: Meta<typeof NumberStepper> = {
+	component: NumberStepper,
 }
 
 export default meta
-type Story = StoryObj<typeof NumberInput>
+type Story = StoryObj<typeof NumberStepper>
 
 const Template = () => {
 	const [controlledValue, setControlledValue] = useState(5)
@@ -23,7 +29,7 @@ const Template = () => {
 	return (
 		<div className="max-w-4xl mx-auto p-6 space-y-8">
 			<div className="text-center space-y-2">
-				<h1 className="text-3xl font-bold">Number Input Component</h1>
+				<h1 className="text-3xl font-bold">Number stepper Component</h1>
 				<p className="text-muted-foreground">
 					A flexible number input with increment/decrement buttons, multiple size
 					variants, and configurable symbols
@@ -39,22 +45,22 @@ const Template = () => {
 					<CardContent className="space-y-6">
 						<div className="space-y-2">
 							<Label>Small (sm)</Label>
-							<NumberInput size="sm" defaultValue={1} min={0} max={10} />
+							<NumberStepper size="sm" defaultValue={1} min={0} max={10} />
 						</div>
 
 						<div className="space-y-2">
 							<Label>Medium (md) - Default</Label>
-							<NumberInput size="md" defaultValue={5} min={0} max={20} />
+							<NumberStepper size="md" defaultValue={5} min={0} max={20} />
 						</div>
 
 						<div className="space-y-2">
 							<Label>Large (lg)</Label>
-							<NumberInput size="lg" defaultValue={10} min={0} max={50} />
+							<NumberStepper size="lg" defaultValue={10} min={0} max={50} />
 						</div>
 
 						<div className="space-y-2">
 							<Label>Extra Large (xl)</Label>
-							<NumberInput size="xl" defaultValue={25} min={0} max={100} />
+							<NumberStepper size="xl" defaultValue={25} min={0} max={100} />
 						</div>
 					</CardContent>
 				</Card>
@@ -69,7 +75,7 @@ const Template = () => {
 					<CardContent className="space-y-6">
 						<div className="space-y-2">
 							<Label>Currency ($)</Label>
-							<NumberInput
+							<NumberStepper
 								value={price}
 								onChange={setPrice}
 								min={0}
@@ -81,7 +87,7 @@ const Template = () => {
 
 						<div className="space-y-2">
 							<Label>Percentage (%)</Label>
-							<NumberInput
+							<NumberStepper
 								value={percentage}
 								onChange={setPercentage}
 								min={0}
@@ -93,7 +99,7 @@ const Template = () => {
 
 						<div className="space-y-2">
 							<Label>Weight (kg)</Label>
-							<NumberInput
+							<NumberStepper
 								value={weight}
 								onChange={setWeight}
 								min={0}
@@ -105,7 +111,7 @@ const Template = () => {
 
 						<div className="space-y-2">
 							<Label>Temperature (°C)</Label>
-							<NumberInput
+							<NumberStepper
 								value={temperature}
 								onChange={setTemperature}
 								min={-50}
@@ -125,7 +131,7 @@ const Template = () => {
 					<CardContent className="space-y-6">
 						<div className="space-y-2">
 							<Label>Controlled Value: {controlledValue}</Label>
-							<NumberInput
+							<NumberStepper
 								value={controlledValue}
 								onChange={setControlledValue}
 								min={0}
@@ -136,7 +142,7 @@ const Template = () => {
 
 						<div className="space-y-2">
 							<Label>Quantity: {quantity}</Label>
-							<NumberInput
+							<NumberStepper
 								value={quantity}
 								onChange={setQuantity}
 								min={1}
@@ -148,7 +154,7 @@ const Template = () => {
 
 						<div className="space-y-2">
 							<Label>Price: ${price.toFixed(2)}</Label>
-							<NumberInput
+							<NumberStepper
 								value={price}
 								onChange={setPrice}
 								min={0}
@@ -160,7 +166,7 @@ const Template = () => {
 
 						<div className="space-y-2">
 							<Label>Percentage: {percentage}%</Label>
-							<NumberInput
+							<NumberStepper
 								value={percentage}
 								onChange={setPercentage}
 								min={0}
@@ -181,22 +187,34 @@ const Template = () => {
 					<CardContent className="space-y-6">
 						<div className="space-y-2">
 							<Label>Step by 1 (integers)</Label>
-							<NumberInput defaultValue={0} min={-10} max={10} step={1} />
+							<NumberStepper defaultValue={0} min={-10} max={10} step={1} />
 						</div>
 
 						<div className="space-y-2">
 							<Label>Step by 0.1 (decimals)</Label>
-							<NumberInput defaultValue={0} min={0} max={5} step={0.1} />
+							<NumberStepper defaultValue={0} min={0} max={5} step={0.1} />
 						</div>
 
 						<div className="space-y-2">
 							<Label>Step by 0.25 (quarters)</Label>
-							<NumberInput defaultValue={0} min={0} max={10} step={0.25} leftSymbol="$" />
+							<NumberStepper
+								defaultValue={0}
+								min={0}
+								max={10}
+								step={0.25}
+								leftSymbol="$"
+							/>
 						</div>
 
 						<div className="space-y-2">
 							<Label>Step by 5 (multiples)</Label>
-							<NumberInput defaultValue={0} min={0} max={100} step={5} rightSymbol="%" />
+							<NumberStepper
+								defaultValue={0}
+								min={0}
+								max={100}
+								step={5}
+								rightSymbol="%"
+							/>
 						</div>
 					</CardContent>
 				</Card>
@@ -212,7 +230,7 @@ const Template = () => {
 						<div className="space-y-4">
 							<div className="space-y-2">
 								<Label>Euro Currency (€)</Label>
-								<NumberInput
+								<NumberStepper
 									defaultValue={49.99}
 									min={0}
 									step={0.01}
@@ -223,12 +241,12 @@ const Template = () => {
 
 							<div className="space-y-2">
 								<Label>British Pound (£)</Label>
-								<NumberInput defaultValue={39.99} min={0} step={0.01} leftSymbol="£" />
+								<NumberStepper defaultValue={39.99} min={0} step={0.01} leftSymbol="£" />
 							</div>
 
 							<div className="space-y-2">
 								<Label>Japanese Yen (¥)</Label>
-								<NumberInput
+								<NumberStepper
 									defaultValue={1500}
 									min={0}
 									step={1}
@@ -241,7 +259,7 @@ const Template = () => {
 						<div className="space-y-4">
 							<div className="space-y-2">
 								<Label>Distance (km)</Label>
-								<NumberInput
+								<NumberStepper
 									defaultValue={42.2}
 									min={0}
 									step={0.1}
@@ -252,7 +270,7 @@ const Template = () => {
 
 							<div className="space-y-2">
 								<Label>Speed (mph)</Label>
-								<NumberInput
+								<NumberStepper
 									defaultValue={65}
 									min={0}
 									max={200}
@@ -263,7 +281,7 @@ const Template = () => {
 
 							<div className="space-y-2">
 								<Label>Memory (GB)</Label>
-								<NumberInput
+								<NumberStepper
 									defaultValue={16}
 									min={1}
 									max={128}
@@ -277,7 +295,7 @@ const Template = () => {
 						<div className="space-y-4">
 							<div className="space-y-2">
 								<Label>Angle (degrees)</Label>
-								<NumberInput
+								<NumberStepper
 									defaultValue={90}
 									min={0}
 									max={360}
@@ -289,7 +307,7 @@ const Template = () => {
 
 							<div className="space-y-2">
 								<Label>Time (min)</Label>
-								<NumberInput
+								<NumberStepper
 									defaultValue={30}
 									min={0}
 									max={120}
@@ -300,7 +318,7 @@ const Template = () => {
 
 							<div className="space-y-2">
 								<Label>Disabled with Symbol</Label>
-								<NumberInput defaultValue={100} rightSymbol="%" disabled size="lg" />
+								<NumberStepper defaultValue={100} rightSymbol="%" disabled size="lg" />
 							</div>
 						</div>
 					</CardContent>
