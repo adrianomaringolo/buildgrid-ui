@@ -1,3 +1,10 @@
+## [1.15.15](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.14...v1.15.15) (2025-08-12)
+
+
+### Bug Fixes
+
+* adding css bundle file to dist ([b3be8ee](https://github.com/adrianomaringolo/buildgrid-ui/commit/b3be8eefe0581d8b536980d128c6ddca71022e97))
+
 ## [1.15.14](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.13...v1.15.14) (2025-08-12)
 
 
