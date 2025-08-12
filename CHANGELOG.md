@@ -1,3 +1,10 @@
+## [1.15.16](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.15...v1.15.16) (2025-08-12)
+
+
+### Bug Fixes
+
+* adding theme export for css ([5cfd246](https://github.com/adrianomaringolo/buildgrid-ui/commit/5cfd2463f78dca69ffcd1807cc7913452da10597))
+
 ## [1.15.15](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.14...v1.15.15) (2025-08-12)
 
 
