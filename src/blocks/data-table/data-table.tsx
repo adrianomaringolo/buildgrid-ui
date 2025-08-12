@@ -417,7 +417,7 @@ function DataTableInner<T extends Record<string, any>>(
 			/>
 
 			{/* Table */}
-			<div className="rounded-md border">
+			<div className="rounded-md border border-border">
 				<Table>
 					<TableHeader>
 						<DataTableHeader
