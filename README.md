@@ -22,49 +22,50 @@ To install the library, run:
 
 ```bash
 npm install buildgrid-ui
-```
-
-or
-
-```bash
+# or
 yarn add buildgrid-ui
 ```
 
----
-
 ### Usage
 
-1. Import a component in your React project:
+1.  **Import Components**: Import components directly into your React project:
 
-   ```jsx
-   import { Button } from "buildgrid-ui";
+    ```jsx
+    import { Button } from "buildgrid-ui";
 
-   const App = () => <Button variant="primary">Click Me</Button>;
+    const App = () => <Button variant="primary">Click Me</Button>;
 
-   export default App;
-   ```
+    export default App;
+    ```
 
-2. Ensure TailwindCSS is configured in your project. Add the following imports to your `styles.css` file (or equivalent):
+2.  **Import Theme Styles**: Import the library's theme styles. This should be done once in your application's entry point (e.g., `src/main.tsx`, `src/index.tsx`, or `pages/_app.tsx` for Next.js):
 
-   ```css
-   @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
-   ```
+    ```javascript
+    // For JavaScript/TypeScript files
+    import 'buildgrid-ui/theme';
+    ```
 
-3. Include the `tailwind.config.js` content paths for buildgrid-ui:
-   ```javascript
-   module.exports = {
-     content: [
-       "./src/**/*.{js,ts,jsx,tsx}",
-       "./node_modules/buildgrid-ui/**/*.{js,ts,jsx,tsx}",
-     ],
-     theme: {
-       extend: {},
-     },
-     plugins: [],
-   };
-   ```
+    If you are using a CSS file for global imports, you can add:
+
+    ```css
+    /* For CSS files */
+    @import 'buildgrid-ui/theme';
+    ```
+
+3.  **Configure TailwindCSS (for v3)**: Ensure TailwindCSS is configured in your project. Add the following content paths to your `tailwind.config.js` to include `buildgrid-ui`'s classes:
+
+    ```javascript
+    module.exports = {
+      content: [
+        "./src/**/*.{js,ts,jsx,tsx}",
+        "./node_modules/buildgrid-ui/**/*.{js,ts,jsx,tsx}",
+      ],
+      theme: {
+        extend: {},
+      },
+      plugins: [],
+    };
+    ```
 
 ---
 
@@ -108,12 +109,12 @@ This project uses [semantic-release](https://semantic-release.gitbook.io/) for a
 
 ### Steps to Create a Pre-release
 
-1. Push changes to the designated pre-release branch (e.g., `alpha`):
-   ```bash
-   git checkout -b alpha
-   git push origin alpha
-   ```
-2. Pre-release versions (e.g., `1.0.0-alpha.1`) will be automatically created.
+1.  Push changes to the designated pre-release branch (e.g., `alpha`):
+    ```bash
+    git checkout -b alpha
+    git push origin alpha
+    ```
+2.  Pre-release versions (e.g., `1.0.0-alpha.1`) will be automatically created.
 
 ---
 
@@ -121,9 +122,9 @@ This project uses [semantic-release](https://semantic-release.gitbook.io/) for a
 
 Contributions are welcome! To contribute:
 
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Submit a pull request with a detailed description of your changes.
+1.  Fork the repository.
+2.  Create a new branch for your feature or bugfix.
+3.  Submit a pull request with a detailed description of your changes.
 
 ---
 
