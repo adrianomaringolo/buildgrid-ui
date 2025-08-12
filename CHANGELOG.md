@@ -1,3 +1,10 @@
+## [1.15.14](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.13...v1.15.14) (2025-08-12)
+
+
+### Bug Fixes
+
+* update tailwind ([dad89dc](https://github.com/adrianomaringolo/buildgrid-ui/commit/dad89dccfd81d0ee0e765d19bf34c5b7f4cdab07))
+
 ## [1.15.13](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.12...v1.15.13) (2025-08-11)
 
 
