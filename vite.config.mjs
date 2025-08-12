@@ -18,6 +18,7 @@ export default defineConfig({
 		},
 	},
 	build: {
+		cssCodeSplit: true,
 		lib: {
 			entry: 'src/index.ts',
 			name: 'BuildgridUI',
@@ -29,6 +30,12 @@ export default defineConfig({
 				globals: {
 					react: 'React',
 					'react-dom': 'ReactDOM',
+				},
+				assetFileNames: (assetInfo) => {
+					if (assetInfo.name === 'index.css') {
+						return 'buildgrid-ui.css'
+					}
+					return assetInfo.name
 				},
 			},
 		},

@@ -20,6 +20,7 @@
 			"import": "./dist/buildgrid-ui.es.js",
 			"require": "./dist/buildgrid-ui.umd.js"
 		},
+		"./buildgrid-ui.css": "./dist/buildgrid-ui.css",
 		"./components/*": {
 			"types": "./dist/components/*/index.d.ts",
 			"import": "./dist/components/*/index.js",
