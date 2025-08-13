@@ -1,3 +1,10 @@
+## [1.15.17](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.16...v1.15.17) (2025-08-13)
+
+
+### Bug Fixes
+
+* update package versions and add new dependencies ([8ede205](https://github.com/adrianomaringolo/buildgrid-ui/commit/8ede205d4e04167cf13e81b991aeb0792571b2a3))
+
 ## [1.15.16](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.15...v1.15.16) (2025-08-12)
 
 
