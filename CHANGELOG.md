@@ -1,3 +1,10 @@
+## [1.15.18](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.17...v1.15.18) (2025-08-14)
+
+
+### Bug Fixes
+
+* adding sheet export to index ([7a56601](https://github.com/adrianomaringolo/buildgrid-ui/commit/7a56601a922e2c951c50bfbcf2d6c9919625fe26))
+
 ## [1.15.17](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.16...v1.15.17) (2025-08-13)
 
 
