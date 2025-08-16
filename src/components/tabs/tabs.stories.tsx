@@ -3,21 +3,37 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs'
+import { TabsListVariantProps } from './tabs'
 
-const meta: Meta<typeof Tabs> = {
+const meta: Meta<typeof Tabs & TabsListVariantProps> = {
 	component: Tabs,
+	argTypes: {
+		size: {
+			control: 'select',
+			options: ['sm', 'md', 'lg', 'xl'],
+		},
+	},
+	args: {
+		size: 'md',
+	},
 }
 
 export default meta
-type Story = StoryObj<typeof Tabs>
+type Story = StoryObj<typeof meta>
 
-const Template = () => {
+const Template = (args: TabsListVariantProps) => {
 	return (
 		<Tabs defaultValue="option1">
-			<TabsList>
-				<TabsTrigger value="option1">Option 1</TabsTrigger>
-				<TabsTrigger value="option2">Option 2</TabsTrigger>
-				<TabsTrigger value="option3">Option 3</TabsTrigger>
+			<TabsList size={args.size}>
+				<TabsTrigger value="option1" size={args.size}>
+					Option 1
+				</TabsTrigger>
+				<TabsTrigger value="option2" size={args.size}>
+					Option 2
+				</TabsTrigger>
+				<TabsTrigger value="option3" size={args.size}>
+					Option 3
+				</TabsTrigger>
 			</TabsList>
 			<TabsContent value="option1">
 				<div className="bg-gray-100 p-2 text-xs">Content 1</div>
@@ -33,6 +49,5 @@ const Template = () => {
 }
 
 export const Default: Story = {
-	render: Template.bind({}),
-	args: {},
+	render: Template,
 }
