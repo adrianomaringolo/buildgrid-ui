@@ -1,3 +1,10 @@
+## [1.15.19](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.18...v1.15.19) (2025-08-16)
+
+
+### Bug Fixes
+
+* enhance Tabs component with size variants and improve storybook integration ([c8ab3b8](https://github.com/adrianomaringolo/buildgrid-ui/commit/c8ab3b8ebfa3eca6e326ac4064a3d32b9b40464f))
+
 ## [1.15.18](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.17...v1.15.18) (2025-08-14)
 
 
