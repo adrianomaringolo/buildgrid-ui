@@ -1,3 +1,10 @@
+## [1.15.20](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.19...v1.15.20) (2025-08-18)
+
+
+### Bug Fixes
+
+* add FileUploadDropzone component with upload functionality and stories ([5e98874](https://github.com/adrianomaringolo/buildgrid-ui/commit/5e988741f7d4f2e9c4326488ba3617f169a9b6c9))
+
 ## [1.15.19](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.18...v1.15.19) (2025-08-16)
 
 
