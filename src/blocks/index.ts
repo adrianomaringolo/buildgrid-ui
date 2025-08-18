@@ -1,6 +1,7 @@
 export * from './bento-grid'
 export * from './data-table'
 export * from './empty-message'
+export * from './file-upload-dropzone'
 export * from './help-carousel'
 export * from './html-text-editor'
 export * from './lazy-image-gallery'
