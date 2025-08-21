@@ -1,3 +1,10 @@
+## [1.15.21](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.20...v1.15.21) (2025-08-21)
+
+
+### Bug Fixes
+
+* paginated items ([275d2f7](https://github.com/adrianomaringolo/buildgrid-ui/commit/275d2f7b8d8d19feb81f6393392ab071e8302fbf))
+
 ## [1.15.20](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.19...v1.15.20) (2025-08-18)
 
 
