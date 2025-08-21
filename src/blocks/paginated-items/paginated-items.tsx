@@ -12,6 +12,7 @@ interface PaginatedControlsProps {
 	pageTotalItems: number
 	onPageChange: (page: number) => void
 	showItemsCounter?: boolean
+	counterText?: string
 }
 
 interface PaginatedItemsProps<Entry> {
@@ -24,6 +25,7 @@ interface PaginatedItemsProps<Entry> {
 	isLoading?: boolean
 	loadingVariant?: 'loader' | 'skeleton'
 	showItemsCounter?: boolean
+	counterText?: string
 }
 
 const PaginatedControls = ({
@@ -34,14 +36,10 @@ const PaginatedControls = ({
 	pageTotalItems,
 	currentPage,
 	showItemsCounter = true,
+	counterText,
 }: PaginatedControlsProps) => {
 	return (
 		<div className="flex flex-col gap-2 items-end">
-			{showItemsCounter && (
-				<p>
-					<b>{initIndex + 1}</b> - <b>{initIndex + pageTotalItems}</b> ({totalItems})
-				</p>
-			)}
 			{totalPages > 1 && (
 				<PaginationControls
 					currentPage={currentPage}
@@ -52,6 +50,8 @@ const PaginatedControls = ({
 					endIndex={initIndex + pageTotalItems}
 					onPreviousPage={() => onPageChange(currentPage - 1)}
 					onNextPage={() => onPageChange(currentPage + 1)}
+					counterText={counterText}
+					showItemsCounter={showItemsCounter}
 				/>
 			)}
 		</div>
