@@ -1,3 +1,10 @@
+## [1.15.22](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.21...v1.15.22) (2025-08-25)
+
+
+### Bug Fixes
+
+* enhance PaginationControls component with improved rendering and props handling ([0e3e524](https://github.com/adrianomaringolo/buildgrid-ui/commit/0e3e52497123eb3b09a8a9e88436fa4d895f5cae))
+
 ## [1.15.21](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.20...v1.15.21) (2025-08-21)
 
 
