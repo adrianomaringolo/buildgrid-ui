@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/button'
-import { replaceTemplateWithVariables } from '@/lib/utils'
+import { cn, replaceTemplateWithVariables } from '@/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import React from 'react'
 
@@ -16,6 +16,7 @@ interface PaginationControlsProps {
 	onNextPage: () => void
 	showItemsCounter?: boolean
 	counterText?: string
+	className?: string
 }
 
 export const PaginationControls = (props: PaginationControlsProps) => {
@@ -29,6 +30,7 @@ export const PaginationControls = (props: PaginationControlsProps) => {
 		onPreviousPage,
 		onNextPage,
 		showItemsCounter = true,
+		className,
 		counterText = 'Showing {{startIndex}} to {{endIndex}} of {{totalItems}} results',
 	} = props
 
@@ -72,10 +74,13 @@ export const PaginationControls = (props: PaginationControlsProps) => {
 		return pages
 	}
 
-	if (totalPages <= 1) return null
-
 	return (
-		<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+		<div
+			className={cn(
+				'flex flex-col sm:flex-row items-center justify-between gap-4',
+				className,
+			)}
+		>
 			{showItemsCounter ? (
 				<div className="text-sm text-muted-foreground">
 					{replaceTemplateWithVariables(counterText, {
@@ -86,44 +91,46 @@ export const PaginationControls = (props: PaginationControlsProps) => {
 				</div>
 			) : null}
 
-			<div className="flex items-center space-x-1">
-				<Button
-					variant="outline"
-					size="sm"
-					onClick={onPreviousPage}
-					disabled={currentPage === 1}
-					className="h-8 w-8 p-0"
-				>
-					<ChevronLeft className="h-4 w-4" />
-				</Button>
+			{totalPages > 1 && (
+				<div className="flex items-center space-x-1">
+					<Button
+						variant="outline"
+						size="sm"
+						onClick={onPreviousPage}
+						disabled={currentPage === 1}
+						className="h-8 w-8 p-0"
+					>
+						<ChevronLeft className="h-4 w-4" />
+					</Button>
 
-				{getPageNumbers().map((page, index) => (
-					<React.Fragment key={index}>
-						{page === '...' ? (
-							<span className="px-2 text-muted-foreground">...</span>
-						) : (
-							<Button
-								variant={currentPage === page ? 'default' : 'outline'}
-								size="sm"
-								onClick={() => onPageChange(page as number)}
-								className="h-8 w-8 p-0"
-							>
-								{page}
-							</Button>
-						)}
-					</React.Fragment>
-				))}
+					{getPageNumbers().map((page, index) => (
+						<React.Fragment key={index}>
+							{page === '...' ? (
+								<span className="px-2 text-muted-foreground">...</span>
+							) : (
+								<Button
+									variant={currentPage === page ? 'default' : 'outline'}
+									size="sm"
+									onClick={() => onPageChange(page as number)}
+									className="h-8 w-8 p-0"
+								>
+									{page}
+								</Button>
+							)}
+						</React.Fragment>
+					))}
 
-				<Button
-					variant="outline"
-					size="sm"
-					onClick={onNextPage}
-					disabled={currentPage === totalPages}
-					className="h-8 w-8 p-0"
-				>
-					<ChevronRight className="h-4 w-4" />
-				</Button>
-			</div>
+					<Button
+						variant="outline"
+						size="sm"
+						onClick={onNextPage}
+						disabled={currentPage === totalPages}
+						className="h-8 w-8 p-0"
+					>
+						<ChevronRight className="h-4 w-4" />
+					</Button>
+				</div>
+			)}
 		</div>
 	)
 }
