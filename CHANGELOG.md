@@ -1,3 +1,10 @@
+## [1.15.23](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.22...v1.15.23) (2025-09-02)
+
+
+### Bug Fixes
+
+* add TagInput component with initial value handling and stories ([6321517](https://github.com/adrianomaringolo/buildgrid-ui/commit/6321517e9d85fdf9dc151c7217dab84f002359c9))
+
 ## [1.15.22](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.21...v1.15.22) (2025-08-25)
 
 
