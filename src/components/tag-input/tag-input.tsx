@@ -18,6 +18,7 @@ interface TagInputProps {
 	placeholder?: string
 	className?: string
 	initialValue?: string | string[]
+	helperText?: string
 }
 
 export function TagInput({
@@ -27,6 +28,7 @@ export function TagInput({
 	placeholder = 'Type and press Enter or comma to add tags...',
 	className,
 	initialValue = '',
+	helperText = 'Press Enter or comma to add tags',
 }: TagInputProps) {
 	const [inputValue, setInputValue] = useState('')
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -129,9 +131,7 @@ export function TagInput({
 				</div>
 			</div>
 
-			<p className="text-xs text-muted-foreground mt-2">
-				Press Enter or comma to add tags. Current value: [{value.join(', ')}]
-			</p>
+			{helperText && <p className="text-xs text-muted-foreground mt-2">{helperText}</p>}
 		</div>
 	)
 }
