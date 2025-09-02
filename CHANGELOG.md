@@ -1,3 +1,10 @@
+## [1.15.24](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.23...v1.15.24) (2025-09-02)
+
+
+### Bug Fixes
+
+* add helperText prop to TagInput component for better user guidance ([6a78fbe](https://github.com/adrianomaringolo/buildgrid-ui/commit/6a78fbe9376878a4c838f3cd7b92ff032ad4c775))
+
 ## [1.15.23](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.22...v1.15.23) (2025-09-02)
 
 
