@@ -28,7 +28,7 @@ export function TagInput({
 	placeholder = 'Type and press Enter or comma to add tags...',
 	className,
 	initialValue = '',
-	helperText = 'Press Enter or comma to add tags',
+	helperText,
 }: TagInputProps) {
 	const [inputValue, setInputValue] = useState('')
 	const inputRef = useRef<HTMLInputElement>(null)
