@@ -1,3 +1,10 @@
+## [1.15.26](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.25...v1.15.26) (2025-09-05)
+
+
+### Bug Fixes
+
+* refactor Card component to use function syntax and improve readability ([0e39f0a](https://github.com/adrianomaringolo/buildgrid-ui/commit/0e39f0ad87468b5d4691efb22cbaee715e70ce3d))
+
 ## [1.15.25](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.24...v1.15.25) (2025-09-02)
 
 
