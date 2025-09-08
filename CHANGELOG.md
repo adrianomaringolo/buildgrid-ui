@@ -1,3 +1,10 @@
+## [1.15.27](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.26...v1.15.27) (2025-09-08)
+
+
+### Bug Fixes
+
+* add Carousel component with stories and integration ([c0594ff](https://github.com/adrianomaringolo/buildgrid-ui/commit/c0594ff6709ef0cbf0aac815e9f129b16a095ac2))
+
 ## [1.15.26](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.25...v1.15.26) (2025-09-05)
 
 
