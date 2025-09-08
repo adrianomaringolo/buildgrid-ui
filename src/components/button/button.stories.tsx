@@ -1,136 +1,109 @@
+
 // organize-imports-ignore
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { Button, ButtonProps } from './button'
-import { ButtonThemeProps } from './button.types'
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from './button';
+import { Loader2Icon } from 'lucide-react';
 
 const meta: Meta<typeof Button> = {
-	component: Button,
-}
+  component: Button,
+  title: 'Components/Button',
+};
 
-export default meta
-type Story = StoryObj<typeof Button>
+export default meta;
+type Story = StoryObj<typeof Button>;
 
-const variants: Array<ButtonProps['variant']> = [
-	'default',
-	'secondary',
-	'destructive',
-	'outline',
-	'ghost',
-	'link',
-]
+export const Default: Story = {
+  args: {
+    children: 'Button',
+  },
+};
 
-const sizes: Array<ButtonProps['size']> = ['sm', 'md', 'lg', 'xl', 'icon']
+export const Destructive: Story = {
+  args: {
+    ...Default.args,
+    variant: 'destructive',
+  },
+};
 
-const Template = (args: ButtonProps) => {
-	return (
-		<div className="flex gap-2 flex-wrap">
-			{Object.values(variants).map((variant) => (
-				<Button {...args} variant={variant as ButtonProps['variant']}>
-					{variant}
-				</Button>
-			))}
-		</div>
-	)
-}
+export const Outline: Story = {
+  args: {
+    ...Default.args,
+    variant: 'outline',
+  },
+};
 
-export const Variants: Story = {
-	render: Template.bind({}),
-	args: {},
-}
+export const Secondary: Story = {
+  args: {
+    ...Default.args,
+    variant: 'secondary',
+  },
+};
 
-const SizesTemplate = (args: ButtonProps) => {
-	return (
-		<div className="flex gap-2 flex-wrap">
-			{Object.values(sizes).map((size) => (
-				<Button {...args} size={size as ButtonProps['size']}>
-					{size}
-				</Button>
-			))}
-		</div>
-	)
-}
+export const Ghost: Story = {
+  args: {
+    ...Default.args,
+    variant: 'ghost',
+  },
+};
 
-export const Sizes: Story = {
-	render: SizesTemplate.bind({}),
-	args: {},
-}
+export const Link: Story = {
+  args: {
+    ...Default.args,
+    variant: 'link',
+  },
+};
 
-const RoundedTemplate = (args: ButtonProps) => {
-	return (
-		<div className="flex gap-2 flex-wrap">
-			{Object.values(variants).map((variant) => (
-				<Button {...args} variant={variant as ButtonProps['variant']} rounded>
-					{variant}
-				</Button>
-			))}
-		</div>
-	)
-}
+export const IsLoading: Story = {
+  args: {
+    ...Default.args,
+    isLoading: true,
+  },
+};
 
-export const Rounded: Story = {
-	render: RoundedTemplate.bind({}),
-	args: {},
-}
+export const WithIcon: Story = {
+  args: {
+    ...Default.args,
+    children: (
+      <>
+        <Loader2Icon />
+        Button
+      </>
+    ),
+  },
+};
 
-const TemplateIsLoading = () => {
-	return (
-		<div className="flex gap-2 flex-wrap">
-			{Object.values(variants).map((variant) => (
-				<Button isLoading variant={variant as ButtonProps['variant']}>
-					{variant}
-				</Button>
-			))}
-		</div>
-	)
-}
+export const Small: Story = {
+  args: {
+    ...Default.args,
+    size: 'sm',
+  },
+};
 
-export const Loading: Story = {
-	render: TemplateIsLoading.bind({}),
-	args: {},
-}
+export const Large: Story = {
+  args: {
+    ...Default.args,
+    size: 'lg',
+  },
+};
 
-const TemplateCustomTheme = () => {
-	const customTheme = {
-		base: 'border-2 shadow-lg rounded p-3',
-		variants: {
-			variant: {
-				default: 'bg-black text-white hover:bg-gray-600',
-				secondary: 'bg-gray-600 text-white hover:bg-gray-800',
-				destructive: 'bg-orange-600 text-white hover:bg-orange-800',
-				outline: 'bg-transparent text-black hover:bg-gray-200',
-				ghost: 'bg-gray-100 text-black hover:bg-gray-200',
-				link: 'text-blue-600 border-none',
-			},
-			size: {
-				sm: 'h-auto py-1 px-2',
-				md: 'h-auto py-2 px-4',
-				lg: 'h-auto py-3 px-6',
-				xl: 'h-auto py-4 px-8',
-				icon: 'h-10 w-10',
-			},
-      rounded: {
-        true: 'rounded-full'
-      }
-		},
-	}
+export const ExtraLarge: Story = {
+  args: {
+    ...Default.args,
+    size: 'xl',
+  },
+};
 
-	return (
-		<div className="flex gap-2 flex-wrap">
-			{Object.values(variants).map((variant) => (
-				<Button
-					theme={customTheme}
-					variant={variant as ButtonProps['variant']}
-					className="capitalize"
-				>
-					{variant}
-				</Button>
-			))}
-		</div>
-	)
-}
+export const Icon: Story = {
+  args: {
+    size: 'icon',
+    children: <Loader2Icon />,
+  },
+};
 
-export const CustomTheme: Story = {
-	render: TemplateCustomTheme.bind({}),
-	args: {},
-}
+export const AsChild: Story = {
+  args: {
+    asChild: true,
+    children: <a href="#">Log in</a>,
+  },
+};

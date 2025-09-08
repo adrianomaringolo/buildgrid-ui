@@ -43,3 +43,6 @@ https://www.kibo-ui.com/
 https://www.shadcn.io/
 
 https://scrollx-ui.vercel.app/
+
+
+https://simpleicons.org/
