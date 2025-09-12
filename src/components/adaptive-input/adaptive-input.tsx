@@ -49,6 +49,7 @@ const AdaptiveInput = React.forwardRef<HTMLInputElement, AdaptiveInputProps>(
 					className={cn(leftIcon && 'pl-8', rightIcon && 'pr-8', className)}
 					ref={ref}
 					onInput={handleInputChange} // Attach the input handler
+					style={leftIcon ? { paddingLeft: '2rem' } : {}}
 					{...props}
 				/>
 				{rightIcon && (
