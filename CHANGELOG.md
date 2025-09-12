@@ -1,3 +1,10 @@
+## [1.15.28](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.27...v1.15.28) (2025-09-12)
+
+
+### Bug Fixes
+
+* minor style issue on adaptative input ([b4f569b](https://github.com/adrianomaringolo/buildgrid-ui/commit/b4f569b014e6ab238959f9f48652009df197c20c))
+
 ## [1.15.27](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.26...v1.15.27) (2025-09-08)
 
 
