@@ -1,3 +1,10 @@
+## [1.15.30](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.29...v1.15.30) (2025-09-12)
+
+
+### Bug Fixes
+
+* button props and pagination links ([24c8397](https://github.com/adrianomaringolo/buildgrid-ui/commit/24c8397a1e07068e75f8d29a2320f909303913bd))
+
 ## [1.15.29](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.28...v1.15.29) (2025-09-12)
 
 
