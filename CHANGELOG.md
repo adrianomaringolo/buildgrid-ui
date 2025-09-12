@@ -1,3 +1,10 @@
+## [1.15.29](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.28...v1.15.29) (2025-09-12)
+
+
+### Bug Fixes
+
+* create new collapsible component ([d587657](https://github.com/adrianomaringolo/buildgrid-ui/commit/d587657a4d6ea312e7fbc17347cb8265ada0ab5a))
+
 ## [1.15.28](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.27...v1.15.28) (2025-09-12)
 
 
