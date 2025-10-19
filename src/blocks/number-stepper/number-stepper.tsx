@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils'
 import { Minus, Plus } from 'lucide-react'
 import type React from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../../components/button'
 import { Input } from '../../components/input'
 
@@ -80,9 +80,16 @@ export function NumberStepper({
 	rightSymbol,
 }: NumberStepperProps) {
 	const [internalValue, setInternalValue] = useState(defaultValue)
+	const [inputValue, setInputValue] = useState(defaultValue.toString())
 
 	const currentValue = value !== undefined ? value : internalValue
 	const variant = sizeVariants[size]
+
+	useEffect(() => {
+		if (value !== undefined) {
+			setInputValue(value.toString())
+		}
+	}, [value])
 
 	const handleValueChange = (newValue: number) => {
 		const clampedValue = Math.min(Math.max(newValue, min), max)
@@ -91,6 +98,7 @@ export function NumberStepper({
 			setInternalValue(clampedValue)
 		}
 
+		setInputValue(clampedValue.toString())
 		onChange?.(clampedValue)
 	}
 
@@ -109,15 +117,45 @@ export function NumberStepper({
 	}
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const inputValue = e.target.value
-		if (inputValue === '' || inputValue === '-') {
+		const newInputValue = e.target.value
+		setInputValue(newInputValue)
+
+		if (newInputValue === '' || newInputValue === '-') {
 			return
 		}
 
-		const numValue = Number.parseFloat(inputValue)
+		const numValue = Number.parseFloat(newInputValue)
 		if (!isNaN(numValue)) {
-			handleValueChange(numValue)
+			const clampedValue = Math.min(Math.max(numValue, min), max)
+
+			if (value === undefined) {
+				setInternalValue(clampedValue)
+			}
+
+			onChange?.(clampedValue)
 		}
+	}
+
+	const handleInputBlur = () => {
+		if (inputValue === '' || inputValue === '-') {
+			setInputValue(currentValue.toString())
+		} else {
+			const numValue = Number.parseFloat(inputValue)
+			if (!isNaN(numValue)) {
+				const clampedValue = Math.min(Math.max(numValue, min), max)
+				setInputValue(clampedValue.toString())
+
+				if (clampedValue !== currentValue) {
+					handleValueChange(clampedValue)
+				}
+			} else {
+				setInputValue(currentValue.toString())
+			}
+		}
+	}
+
+	const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+		e.target.select()
 	}
 
 	const canDecrement = currentValue > min && !disabled
@@ -173,8 +211,10 @@ export function NumberStepper({
 
 				<Input
 					type="number"
-					value={currentValue}
+					value={inputValue}
 					onChange={handleInputChange}
+					onBlur={handleInputBlur}
+					onFocus={handleInputFocus}
 					min={min}
 					max={max}
 					step={step}
