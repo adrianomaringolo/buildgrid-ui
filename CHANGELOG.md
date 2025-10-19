@@ -1,3 +1,10 @@
+## [1.15.31](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.30...v1.15.31) (2025-10-19)
+
+
+### Bug Fixes
+
+* **number-stepper:** Improve input handling and value management ([199b92d](https://github.com/adrianomaringolo/buildgrid-ui/commit/199b92daddde9c0a5d4704080c6c864f31dab689))
+
 ## [1.15.30](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.29...v1.15.30) (2025-09-12)
 
 
