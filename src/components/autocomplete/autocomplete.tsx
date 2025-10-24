@@ -24,6 +24,7 @@ interface AutocompleteProps {
 	onChange?: (value: string) => void
 	defaultSelectedOption?: Option
 	className?: string
+	value?: string
 }
 
 export const Autocomplete = forwardRef(function Autocomplete(
@@ -35,6 +36,7 @@ export const Autocomplete = forwardRef(function Autocomplete(
 		placeholder = 'Type to search...',
 		onSelect,
 		defaultSelectedOption,
+		value,
 	} = props
 
 	const [inputValue, setInputValue] = useState(defaultSelectedOption?.label || '')
@@ -45,9 +47,23 @@ export const Autocomplete = forwardRef(function Autocomplete(
 	const [selectedOption, setSelectedOption] = useState<Option | null>(
 		defaultSelectedOption || null,
 	)
+
 	const autocompleteRef = useRef<HTMLDivElement>(null)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const listRef = useRef<HTMLUListElement>(null)
+
+	useEffect(() => {
+		if (value) {
+			const option = options.find((opt) => opt.value === value)
+			if (option) {
+				setSelectedOption(option)
+				setInputValue(option.label)
+			}
+		} else {
+			setSelectedOption(null)
+			setInputValue('')
+		}
+	}, [value, options])
 
 	// Expose the clearSelection method via the ref
 	useImperativeHandle(ref, () => ({
@@ -173,6 +189,7 @@ export const Autocomplete = forwardRef(function Autocomplete(
 					) : null
 				}
 			/>
+
 			{isOpen && filteredOptions.length > 0 && (
 				<ul
 					id="autocomplete-list"
