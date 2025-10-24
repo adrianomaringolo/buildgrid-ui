@@ -1,3 +1,10 @@
+## [1.15.32](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.31...v1.15.32) (2025-10-24)
+
+
+### Bug Fixes
+
+* Add support for controlled value prop ([46128c0](https://github.com/adrianomaringolo/buildgrid-ui/commit/46128c09a5f2fe50de13c62cbdbdfac54e5c4895))
+
 ## [1.15.31](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.30...v1.15.31) (2025-10-19)
 
 
