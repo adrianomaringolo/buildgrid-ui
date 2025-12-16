@@ -76,7 +76,7 @@ yarn add buildgrid-ui
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/yourusername/buildgrid-ui.git
+git clone https://github.com/adrianomaringolo/buildgrid-ui.git
 cd buildgrid-ui
 npm install
 ```
@@ -120,11 +120,45 @@ This project uses [semantic-release](https://semantic-release.gitbook.io/) for a
 
 ## Contributing
 
-Contributions are welcome! To contribute:
+We welcome contributions from the community! BuildGrid UI is an open-source project and we're excited to see what you'll bring to it.
 
-1.  Fork the repository.
-2.  Create a new branch for your feature or bugfix.
-3.  Submit a pull request with a detailed description of your changes.
+### Quick Start for Contributors
+
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally
+3. **Install dependencies**: `npm install`
+4. **Start Storybook**: `npm run storybook`
+5. **Make your changes** and test them
+6. **Submit a pull request**
+
+### Contribution Guidelines
+
+Please read our [Contributing Guide](CONTRIBUTING.md) for detailed information on:
+
+- 🚀 Setting up the development environment
+- 📝 Code style and conventions
+- 🧪 Testing requirements
+- 📚 Documentation standards
+- 🔄 Pull request process
+
+### Code of Conduct
+
+This project adheres to a [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+### Ways to Contribute
+
+- 🐛 **Report bugs** - [Create an issue](https://github.com/adrianomaringolo/buildgrid-ui/issues)
+- ✨ **Request features** - [Start a discussion](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
+- 🔧 **Submit pull requests** - Fix bugs or add features
+- 📖 **Improve documentation** - Help others understand the library
+- 🎨 **Design components** - Contribute new UI components
+
+### Development Resources
+
+- 📚 [Documentation](https://adrianomaringolo.github.io/buildgrid-ui/)
+- 🎨 [Storybook](https://buildgrid-ui-storybook.netlify.app/)
+- 💬 [Discussions](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
+- 🐛 [Issues](https://github.com/adrianomaringolo/buildgrid-ui/issues)
 
 ---
 

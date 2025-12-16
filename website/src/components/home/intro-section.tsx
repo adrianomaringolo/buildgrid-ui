@@ -2,62 +2,98 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import Logo from '@site/static/img/buildgrid-ui-logo.png'
 import { cn } from 'buildgrid-ui'
 
-export const IntroSection = () => {
+interface IntroSectionProps {
+	className?: string
+}
+
+export const IntroSection = ({ className }: IntroSectionProps) => {
 	const { siteConfig } = useDocusaurusContext()
 
 	return (
-		<section className="light:bg-gray-50 dark:bg-gray-900 light:text-gray-900 dark:text-white">
-			<div
-				className="absolute inset-x-0 top-1/4 -z-10 transform-gpu overflow-hidden blur-3xl"
-				aria-hidden="true"
-			>
-				<div
-					className="relative left-1/2 aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-primary to-secondary opacity-50"
-					style={{
-						clipPath:
-							'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-					}}
-				/>
+		<section
+			className={cn(
+				'relative min-h-screen overflow-hidden',
+				// Light mode: gradient from light purple/blue
+				'bg-gradient-to-br from-purple-50 via-blue-50 to-purple-100',
+				// Dark mode: gradient from dark slate/purple
+				'dark:from-slate-900 dark:via-purple-900 dark:to-slate-900',
+				className,
+			)}
+		>
+			{/* Animated background elements */}
+			<div className="absolute inset-0">
+				{/* Floating orbs */}
+				<div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 dark:opacity-20 animate-pulse"></div>
+				<div className="absolute top-1/3 right-1/4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 dark:opacity-20 animate-pulse animation-delay-2000"></div>
+				<div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 dark:opacity-20 animate-pulse animation-delay-4000"></div>
+
+				{/* Grid pattern */}
+				<div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
 			</div>
 
-			<div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
-				<div className="mx-auto max-w-3xl text-center">
-					<img
-						src={Logo}
-						className="w-40 mx-auto drop-shadow-[0_0_50px_rgba(255,255,255,0.5)]"
-					/>
-					<h1 className="p-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-5xl font-extrabold text-transparent sm:text-5xl">
+			{/* Main content */}
+			<div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-32">
+				<div className="max-w-4xl mx-auto text-center">
+					{/* Logo with glow effect */}
+					<div className="mb-8 animate-fade-in">
+						<img
+							src={Logo}
+							alt="BuildGrid UI Logo"
+							className="w-32 h-32 mx-auto drop-shadow-[0_0_30px_rgba(147,51,234,0.5)] hover:drop-shadow-[0_0_50px_rgba(147,51,234,0.8)] transition-all duration-300 animate-float"
+						/>
+					</div>
+
+					{/* Main heading with gradient text */}
+					<h1 className="mb-6 text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-gray-900 via-purple-700 to-blue-700 dark:from-white dark:via-purple-200 dark:to-purple-400 bg-clip-text text-transparent animate-fade-in-up animation-delay-300">
 						{siteConfig.title}
 					</h1>
 
-					<p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
-						A comprehensive UI component library for building modern web applications with
-						React.js.
+					{/* Subtitle */}
+					<p className="mb-4! text-xl md:text-2xl text-purple-700 dark:text-purple-200 font-light animate-fade-in-up animation-delay-600">
+						A comprehensive UI component library
+					</p>
+					<p className="mb-12! text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-900">
+						Build modern, accessible, and beautiful React applications with our collection
+						of components, blocks, and utility functions. Make your creation easier!
 					</p>
 
-					<div className="mt-8 flex flex-wrap justify-center gap-4">
+					{/* CTA Buttons */}
+					<div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animation-delay-1200">
 						<a
+							href="/buildgrid-ui/docs/intro"
 							className={cn(
-								'block w-full rounded border border-primary bg-primary px-12 py-3',
-								'text-sm font-medium text-white hover:bg-transparent hover:text-primary',
-								'focus:outline-none focus:ring active:text-opacity-75 sm:w-auto',
+								'group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white!',
+								'font-semibold rounded-full hover:from-purple-700 hover:to-blue-700 transform hover:scale-105',
+								'transition-all duration-300 shadow-lg hover:shadow-purple-500/25',
 							)}
-							href="#"
 						>
-							Get Started
+							<span className="relative z-10 text-white">Get Started</span>
+							<div
+								className={cn(
+									'absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-blue-600',
+									'opacity-0 group-hover:opacity-100 blur transition-opacity duration-300',
+								)}
+							></div>
 						</a>
 
 						<a
+							href="/buildgrid-ui/docs/components/button"
 							className={cn(
-								'block w-full rounded border border-primary px-12 py-3',
-								'text-sm font-medium text-primary hover:bg-primary hover:text-white',
-								'focus:outline-none focus:ring active:bg-primary sm:w-auto',
+								'px-8 py-4 border-2 border-purple-600 dark:border-purple-400 text-purple-700!  dark:text-purple-300',
+								'font-semibold rounded-full hover:bg-purple-600 dark:hover:bg-purple-400 hover:text-white! transform hover:scale-105 transition-all duration-300',
+								'animate-fade-in-up animation-delay-1500',
 							)}
-							href="#"
 						>
-							Components
+							View Components
 						</a>
 					</div>
+				</div>
+			</div>
+
+			{/* Scroll indicator */}
+			<div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+				<div className="w-6 h-10 border-2 border-purple-600 dark:border-purple-400 rounded-full flex justify-center">
+					<div className="w-1 h-3 bg-purple-600 dark:bg-purple-400 rounded-full mt-2 animate-pulse"></div>
 				</div>
 			</div>
 		</section>

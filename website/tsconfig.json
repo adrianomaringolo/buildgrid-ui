@@ -1,8 +1,19 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
-  "extends": "@docusaurus/tsconfig",
-  "compilerOptions": {
-    "baseUrl": "."
-  },
-  "exclude": [".docusaurus", "build"]
+	// This file is not used in compilation. It is here just for a nice editor experience.
+	"extends": "@docusaurus/tsconfig",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"jsx": "react-jsx",
+		"allowJs": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*", "docusaurus.config.ts", "sidebars.ts"],
+	"exclude": [".docusaurus", "build", "node_modules"]
 }

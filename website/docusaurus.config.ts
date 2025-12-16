@@ -6,11 +6,11 @@ import { themes as prismThemes } from 'prism-react-renderer'
 
 const config: Config = {
 	title: 'BuidgridUI',
-	tagline: 'Dinosaurs are cool',
+	tagline: '',
 	favicon: 'img/favicon.ico',
 
 	// Set the production url of your site here
-	url: 'https://your-docusaurus-site.example.com',
+	url: 'https://adrianomaringolo.github.io',
 	// Set the /<baseUrl>/ pathname under which your site is served
 	// For GitHub pages deployment, it is often '/<projectName>/'
 	baseUrl: '/buildgrid-ui/',
@@ -51,10 +51,8 @@ const config: Config = {
 			{
 				docs: {
 					sidebarPath: './sidebars.ts',
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
-					editUrl:
-						'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+					// Edit URL for documentation
+					editUrl: 'https://github.com/adrianomaringolo/buildgrid-ui/tree/main/website/',
 				},
 				blog: {
 					showReadingTime: true,
@@ -62,10 +60,8 @@ const config: Config = {
 						type: ['rss', 'atom'],
 						xslt: true,
 					},
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
-					editUrl:
-						'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+					// Edit URL for blog posts
+					editUrl: 'https://github.com/adrianomaringolo/buildgrid-ui/tree/main/website/',
 					// Useful options to enforce blogging best practices
 					onInlineTags: 'warn',
 					onInlineAuthors: 'warn',
@@ -101,7 +97,7 @@ const config: Config = {
 				},
 				{ to: '/blog', label: 'Blog', position: 'left' },
 				{
-					href: 'https://github.com/facebook/docusaurus',
+					href: 'https://github.com/adrianomaringolo/buildgrid-ui',
 					label: 'GitHub',
 					position: 'right',
 				},
@@ -123,16 +119,16 @@ const config: Config = {
 					title: 'Community',
 					items: [
 						{
-							label: 'Stack Overflow',
-							href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+							label: 'Issues',
+							href: 'https://github.com/adrianomaringolo/buildgrid-ui/issues',
 						},
 						{
-							label: 'Discord',
-							href: 'https://discordapp.com/invite/docusaurus',
+							label: 'Discussions',
+							href: 'https://github.com/adrianomaringolo/buildgrid-ui/discussions',
 						},
 						{
-							label: 'X',
-							href: 'https://x.com/docusaurus',
+							label: 'Contributing',
+							href: 'https://github.com/adrianomaringolo/buildgrid-ui/blob/main/CONTRIBUTING.md',
 						},
 					],
 				},
@@ -150,7 +146,7 @@ const config: Config = {
 					],
 				},
 			],
-			copyright: `Copyright © ${new Date().getFullYear()} adrianomaringolo.dev. Built with Docusaurus.`,
+			copyright: `${new Date().getFullYear()} | Made with ❤️ by <a href="https://adrianomaringolo.dev">adrianomaringolo.dev</a>. Built with Docusaurus.`,
 		},
 		prism: {
 			theme: prismThemes.github,

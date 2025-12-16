@@ -83,6 +83,6 @@ Check out the full list of components and their usage in our Storybook documenta
 
 ## Next Steps
 
-- [View the Components](./some-placeholder-page.md)
-- [Customizing the Theme](./some-placeholder-page.md)
-- [Contribution Guide](./some-placeholder-page.md)
+- [View the Components](./components/button) - Start with our Button component
+- [Browse All Components](./components/accordion) - Explore the full component library
+- [Visit our GitHub](https://github.com/adrianomaringolo/buildgrid-ui) - Contribute to the project

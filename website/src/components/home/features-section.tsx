@@ -65,27 +65,44 @@ const features: Feature[] = [
 
 export const FeaturesSection: React.FC = () => {
 	return (
-		<section className="py-16 bg-gray-50 dark:bg-gray-900">
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<h2 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100 text-center">
-					Why Choose{' '}
-					<span className="text-blue-600 dark:text-blue-400">buildgrid-ui</span>?
-				</h2>
-				<p className="mt-4 text-lg text-gray-600 dark:text-gray-300 text-center">
-					Unlock the full potential of your web development projects with these standout
-					features.
-				</p>
-				<div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+		<section className="py-20 bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-slate-800 relative overflow-hidden">
+			{/* Background decoration */}
+			<div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(147,51,234,0.02)_50%,transparent_75%)] bg-[length:60px_60px]"></div>
+
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+				<div className="text-center mb-16">
+					<h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+						Why Choose{' '}
+						<span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+							buildgrid-ui
+						</span>
+						?
+					</h2>
+					<p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto! text-balance">
+						Unlock the full potential of your web development projects with these standout
+						features that make building UIs faster and more enjoyable.
+					</p>
+				</div>
+
+				<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 					{features.map((feature, index) => (
 						<div
 							key={index}
-							className="p-6 bg-white dark:bg-gray-800 shadow rounded-lg hover:shadow-lg dark:shadow-none transition-shadow"
+							className="group relative p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl hover:shadow-2xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 transition-all duration-500 hover:-translate-y-2"
 						>
-							<div className="text-4xl">{feature.icon}</div>
-							<h3 className="mt-4 text-xl font-semibold text-gray-800 dark:text-gray-100">
+							{/* Gradient border on hover */}
+							<div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-25 transition-all duration-500 -z-10 blur-sm"></div>
+
+							{/* Icon with animation */}
+							<div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+								{feature.icon}
+							</div>
+
+							<h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
 								{feature.title}
 							</h3>
-							<p className="mt-2 text-gray-600 dark:text-gray-400">
+
+							<p className="text-gray-600 dark:text-gray-400 leading-relaxed">
 								{feature.description}
 							</p>
 						</div>

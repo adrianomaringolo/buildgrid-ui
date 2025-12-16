@@ -8,6 +8,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ['Manrope', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				primary: {
 					DEFAULT: '#0097b2',
