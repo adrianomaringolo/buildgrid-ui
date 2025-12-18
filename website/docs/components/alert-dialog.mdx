@@ -1,3 +1,507 @@
 ---
 id: alert-dialog
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button
+} from "buildgrid-ui";
+import { Trash2, AlertTriangle, Info, CheckCircle } from 'lucide-react'
+
+# Alert Dialog
+
+The `AlertDialog` component is a modal dialog that interrupts the user with important content and expects a response. It's perfect for confirmations, warnings, and critical actions that require user attention.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button
+} from "buildgrid-ui";
+
+function MyAlertDialog() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button>Open Alert</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}`}
+>
+  <AlertDialog>
+    <AlertDialogTrigger asChild>
+      <Button>Open Alert</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction>Continue</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</ComponentDocSection>
+
+## Delete Confirmation
+
+<ComponentDocSection
+  code={`import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button
+} from "buildgrid-ui";
+import { Trash2 } from "lucide-react";
+
+function DeleteConfirmation() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">
+          <Trash2 className="w-4 h-4 mr-2" />
+          Delete Item
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete Item</AlertDialogTitle>
+          <AlertDialogDescription>
+            Are you sure you want to delete this item? This action cannot be undone and will permanently remove the item from your account.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction className="bg-red-600 hover:bg-red-700">
+            Delete
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}`}
+>
+  <AlertDialog>
+    <AlertDialogTrigger asChild>
+      <Button variant="destructive">
+        <Trash2 className="w-4 h-4 mr-2" />
+        Delete Item
+      </Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Delete Item</AlertDialogTitle>
+        <AlertDialogDescription>
+          Are you sure you want to delete this item? This action cannot be undone and will permanently remove the item from your account.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction className="bg-red-600 hover:bg-red-700">
+          Delete
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</ComponentDocSection>
+
+## Warning Dialog
+
+<ComponentDocSection
+  code={`import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button
+} from "buildgrid-ui";
+import { AlertTriangle } from "lucide-react";
+
+function WarningDialog() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="outline">
+          <AlertTriangle className="w-4 h-4 mr-2" />
+          Show Warning
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-5 h-5 text-yellow-500" />
+            <AlertDialogTitle>Warning</AlertDialogTitle>
+          </div>
+          <AlertDialogDescription>
+            You have unsaved changes. If you leave this page, your changes will be lost. Are you sure you want to continue?
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Stay on Page</AlertDialogCancel>
+          <AlertDialogAction className="bg-yellow-600 hover:bg-yellow-700">
+            Leave Page
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}`}
+>
+  <AlertDialog>
+    <AlertDialogTrigger asChild>
+      <Button variant="outline">
+        <AlertTriangle className="w-4 h-4 mr-2" />
+        Show Warning
+      </Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <div className="flex items-center gap-2">
+          <AlertTriangle className="w-5 h-5 text-yellow-500" />
+          <AlertDialogTitle>Warning</AlertDialogTitle>
+        </div>
+        <AlertDialogDescription>
+          You have unsaved changes. If you leave this page, your changes will be lost. Are you sure you want to continue?
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Stay on Page</AlertDialogCancel>
+        <AlertDialogAction className="bg-yellow-600 hover:bg-yellow-700">
+          Leave Page
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</ComponentDocSection>
+
+## Success Confirmation
+
+<ComponentDocSection
+  code={`import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button
+} from "buildgrid-ui";
+import { CheckCircle } from "lucide-react";
+
+function SuccessDialog() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button>Complete Action</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <div className="flex items-center gap-2">
+            <CheckCircle className="w-5 h-5 text-green-500" />
+            <AlertDialogTitle>Success!</AlertDialogTitle>
+          </div>
+          <AlertDialogDescription>
+            Your action has been completed successfully. The changes have been saved and will take effect immediately.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction className="bg-green-600 hover:bg-green-700">
+            OK
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}`}
+>
+  <AlertDialog>
+    <AlertDialogTrigger asChild>
+      <Button>Complete Action</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <div className="flex items-center gap-2">
+          <CheckCircle className="w-5 h-5 text-green-500" />
+          <AlertDialogTitle>Success!</AlertDialogTitle>
+        </div>
+        <AlertDialogDescription>
+          Your action has been completed successfully. The changes have been saved and will take effect immediately.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogAction className="bg-green-600 hover:bg-green-700">
+          OK
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</ComponentDocSection>
+
+## Custom Content
+
+<ComponentDocSection
+  code={`import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button
+} from "buildgrid-ui";
+
+function CustomContentDialog() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="outline">View Details</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent className="max-w-2xl">
+        <AlertDialogHeader>
+          <AlertDialogTitle>System Information</AlertDialogTitle>
+          <AlertDialogDescription>
+            Review the following system details before proceeding.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <div className="bg-gray-50 p-4 rounded-md space-y-2">
+          <div className="flex justify-between">
+            <span className="font-medium">Status:</span>
+            <span className="text-green-600">Active</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Last Updated:</span>
+            <span>2 minutes ago</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Version:</span>
+            <span>1.2.3</span>
+          </div>
+        </div>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Close</AlertDialogCancel>
+          <AlertDialogAction>Update System</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}`}
+>
+  <AlertDialog>
+    <AlertDialogTrigger asChild>
+      <Button variant="outline">View Details</Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent className="max-w-2xl">
+      <AlertDialogHeader>
+        <AlertDialogTitle>System Information</AlertDialogTitle>
+        <AlertDialogDescription>
+          Review the following system details before proceeding.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <div className="bg-gray-50 p-4 rounded-md space-y-2">
+        <div className="flex justify-between">
+          <span className="font-medium">Status:</span>
+          <span className="text-green-600">Active</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="font-medium">Last Updated:</span>
+          <span>2 minutes ago</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="font-medium">Version:</span>
+          <span>1.2.3</span>
+        </div>
+      </div>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Close</AlertDialogCancel>
+        <AlertDialogAction>Update System</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</ComponentDocSection>
+
+## Properties
+
+### `AlertDialog`
+
+| Property | Type | Description |
+|---|---|---|
+| `defaultOpen` | `boolean` | The open state of the dialog when it is initially rendered. |
+| `open` | `boolean` | The controlled open state of the dialog. |
+| `onOpenChange` | `(open: boolean) => void` | Event handler called when the open state changes. |
+
+### `AlertDialogTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | Change the default rendered element for the one passed as a child. |
+
+### `AlertDialogContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for styling. |
+| `forceMount` | `boolean` | Used to force mounting when more control is needed. |
+
+### `AlertDialogHeader`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for styling. |
+
+### `AlertDialogFooter`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for styling. |
+
+### `AlertDialogTitle`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for styling. |
+
+### `AlertDialogDescription`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for styling. |
+
+### `AlertDialogAction`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for styling. |
+
+### `AlertDialogCancel`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for styling. |
+
+## Customization
+
+You can customize the appearance of the `AlertDialog` using CSS classes or Tailwind CSS.
+
+<ComponentDocSection
+  code={`import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button
+} from "buildgrid-ui";
+
+function CustomStyledDialog() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button className="bg-purple-600 hover:bg-purple-700">
+          Custom Dialog
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent className="border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
+        <AlertDialogHeader>
+          <AlertDialogTitle className="text-purple-800">
+            Custom Styled Dialog
+          </AlertDialogTitle>
+          <AlertDialogDescription className="text-purple-600">
+            This dialog has custom styling applied using Tailwind CSS classes.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel className="border-purple-300 text-purple-700 hover:bg-purple-100">
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction className="bg-purple-600 hover:bg-purple-700">
+            Confirm
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}`}
+>
+  <AlertDialog>
+    <AlertDialogTrigger asChild>
+      <Button className="bg-purple-600 hover:bg-purple-700">
+        Custom Dialog
+      </Button>
+    </AlertDialogTrigger>
+    <AlertDialogContent className="border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
+      <AlertDialogHeader>
+        <AlertDialogTitle className="text-purple-800">
+          Custom Styled Dialog
+        </AlertDialogTitle>
+        <AlertDialogDescription className="text-purple-600">
+          This dialog has custom styling applied using Tailwind CSS classes.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel className="border-purple-300 text-purple-700 hover:bg-purple-100">
+          Cancel
+        </AlertDialogCancel>
+        <AlertDialogAction className="bg-purple-600 hover:bg-purple-700">
+          Confirm
+        </AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+</ComponentDocSection>
+
+The `AlertDialog` component is built on top of Radix UI's Alert Dialog primitive, providing a fully accessible and customizable modal dialog for critical user interactions.

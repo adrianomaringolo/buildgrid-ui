@@ -1,0 +1,8 @@
+{
+	"label": "Hooks",
+	"position": 1,
+	"link": {
+		"type": "generated-index",
+		"description": "Custom React hooks for common functionality and state management."
+	}
+}

@@ -1,3 +1,527 @@
 ---
 id: autocomplete
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Autocomplete, Button } from "buildgrid-ui";
+import { useState, useRef } from 'react';
+
+# Autocomplete
+
+The `Autocomplete` component provides a searchable dropdown input that filters options as the user types. It features keyboard navigation, highlighting of matching text, and flexible positioning.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Autocomplete } from "buildgrid-ui";
+import { useState } from "react";
+
+const countries = [
+  { value: "us", label: "United States" },
+  { value: "ca", label: "Canada" },
+  { value: "uk", label: "United Kingdom" },
+  { value: "fr", label: "France" },
+  { value: "de", label: "Germany" },
+  { value: "it", label: "Italy" },
+  { value: "es", label: "Spain" },
+  { value: "br", label: "Brazil" },
+  { value: "au", label: "Australia" },
+  { value: "jp", label: "Japan" }
+];
+
+function BasicAutocomplete() {
+  const [selectedCountry, setSelectedCountry] = useState(null);
+
+  return (
+    <div className="w-80">
+      <Autocomplete
+        options={countries}
+        placeholder="Select a country..."
+        onSelect={setSelectedCountry}
+      />
+      {selectedCountry && (
+        <p className="mt-2 text-sm text-gray-600">
+          Selected: {selectedCountry.label}
+        </p>
+      )}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const countries = [
+      { value: "us", label: "United States" },
+      { value: "ca", label: "Canada" },
+      { value: "uk", label: "United Kingdom" },
+      { value: "fr", label: "France" },
+      { value: "de", label: "Germany" },
+      { value: "it", label: "Italy" },
+      { value: "es", label: "Spain" },
+      { value: "br", label: "Brazil" },
+      { value: "au", label: "Australia" },
+      { value: "jp", label: "Japan" }
+    ];
+    
+    const [selectedCountry, setSelectedCountry] = useState(null);
+
+    return (
+      <div className="w-80">
+        <Autocomplete
+          options={countries}
+          placeholder="Select a country..."
+          onSelect={setSelectedCountry}
+        />
+        {selectedCountry && (
+          <p className="mt-2 text-sm text-gray-600">
+            Selected: {selectedCountry.label}
+          </p>
+        )}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Default Selection
+
+<ComponentDocSection
+  code={`import { Autocomplete } from "buildgrid-ui";
+import { useState } from "react";
+
+const frameworks = [
+  { value: "react", label: "React" },
+  { value: "vue", label: "Vue.js" },
+  { value: "angular", label: "Angular" },
+  { value: "svelte", label: "Svelte" },
+  { value: "nextjs", label: "Next.js" },
+  { value: "nuxt", label: "Nuxt.js" },
+  { value: "gatsby", label: "Gatsby" }
+];
+
+function DefaultSelectionAutocomplete() {
+  const [selectedFramework, setSelectedFramework] = useState(null);
+
+  return (
+    <div className="w-80">
+      <Autocomplete
+        options={frameworks}
+        placeholder="Choose a framework..."
+        defaultSelectedOption={{ value: "react", label: "React" }}
+        onSelect={setSelectedFramework}
+      />
+      {selectedFramework && (
+        <p className="mt-2 text-sm text-gray-600">
+          Selected: {selectedFramework.label}
+        </p>
+      )}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const frameworks = [
+      { value: "react", label: "React" },
+      { value: "vue", label: "Vue.js" },
+      { value: "angular", label: "Angular" },
+      { value: "svelte", label: "Svelte" },
+      { value: "nextjs", label: "Next.js" },
+      { value: "nuxt", label: "Nuxt.js" },
+      { value: "gatsby", label: "Gatsby" }
+    ];
+    
+    const [selectedFramework, setSelectedFramework] = useState(null);
+
+    return (
+      <div className="w-80">
+        <Autocomplete
+          options={frameworks}
+          placeholder="Choose a framework..."
+          defaultSelectedOption={{ value: "react", label: "React" }}
+          onSelect={setSelectedFramework}
+        />
+        {selectedFramework && (
+          <p className="mt-2 text-sm text-gray-600">
+            Selected: {selectedFramework.label}
+          </p>
+        )}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Controlled Component
+
+<ComponentDocSection
+  code={`import { Autocomplete } from "buildgrid-ui";
+import { useState } from "react";
+
+const languages = [
+  { value: "js", label: "JavaScript" },
+  { value: "ts", label: "TypeScript" },
+  { value: "py", label: "Python" },
+  { value: "java", label: "Java" },
+  { value: "cpp", label: "C++" },
+  { value: "cs", label: "C#" },
+  { value: "go", label: "Go" },
+  { value: "rust", label: "Rust" },
+  { value: "php", label: "PHP" },
+  { value: "ruby", label: "Ruby" }
+];
+
+function ControlledAutocomplete() {
+  const [inputValue, setInputValue] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
+
+  return (
+    <div className="w-80 space-y-4">
+      <Autocomplete
+        options={languages}
+        placeholder="Type to search languages..."
+        value={inputValue}
+        onChange={setInputValue}
+        onSelect={(option) => {
+          setSelectedLanguage(option);
+          setInputValue(option?.label || "");
+        }}
+      />
+      <div className="text-sm text-gray-600">
+        <p>Input value: "{inputValue}"</p>
+        <p>Selected: {selectedLanguage?.label || "None"}</p>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const languages = [
+      { value: "js", label: "JavaScript" },
+      { value: "ts", label: "TypeScript" },
+      { value: "py", label: "Python" },
+      { value: "java", label: "Java" },
+      { value: "cpp", label: "C++" },
+      { value: "cs", label: "C#" },
+      { value: "go", label: "Go" },
+      { value: "rust", label: "Rust" },
+      { value: "php", label: "PHP" },
+      { value: "ruby", label: "Ruby" }
+    ];
+    
+    const [inputValue, setInputValue] = useState("");
+    const [selectedLanguage, setSelectedLanguage] = useState(null);
+
+    return (
+      <div className="w-80 space-y-4">
+        <Autocomplete
+          options={languages}
+          placeholder="Type to search languages..."
+          value={inputValue}
+          onChange={setInputValue}
+          onSelect={(option) => {
+            setSelectedLanguage(option);
+            setInputValue(option?.label || "");
+          }}
+        />
+        <div className="text-sm text-gray-600">
+          <p>Input value: "{inputValue}"</p>
+          <p>Selected: {selectedLanguage?.label || "None"}</p>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Clear Functionality
+
+<ComponentDocSection
+  code={`import { Autocomplete, Button } from "buildgrid-ui";
+import { useState, useRef } from "react";
+
+const cities = [
+  { value: "nyc", label: "New York City" },
+  { value: "london", label: "London" },
+  { value: "paris", label: "Paris" },
+  { value: "tokyo", label: "Tokyo" },
+  { value: "sydney", label: "Sydney" },
+  { value: "berlin", label: "Berlin" },
+  { value: "toronto", label: "Toronto" },
+  { value: "mumbai", label: "Mumbai" },
+  { value: "singapore", label: "Singapore" },
+  { value: "dubai", label: "Dubai" }
+];
+
+function ClearableAutocomplete() {
+  const [selectedCity, setSelectedCity] = useState(null);
+  const autocompleteRef = useRef(null);
+
+  const handleClear = () => {
+    autocompleteRef.current?.clearSelection();
+    setSelectedCity(null);
+  };
+
+  return (
+    <div className="w-80 space-y-4">
+      <Autocomplete
+        ref={autocompleteRef}
+        options={cities}
+        placeholder="Select a city..."
+        defaultSelectedOption={{ value: "london", label: "London" }}
+        onSelect={setSelectedCity}
+      />
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-gray-600">
+          Selected: {selectedCity?.label || "None"}
+        </p>
+        <Button 
+          variant="outline" 
+          size="sm" 
+          onClick={handleClear}
+        >
+          Clear Selection
+        </Button>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const cities = [
+      { value: "nyc", label: "New York City" },
+      { value: "london", label: "London" },
+      { value: "paris", label: "Paris" },
+      { value: "tokyo", label: "Tokyo" },
+      { value: "sydney", label: "Sydney" },
+      { value: "berlin", label: "Berlin" },
+      { value: "toronto", label: "Toronto" },
+      { value: "mumbai", label: "Mumbai" },
+      { value: "singapore", label: "Singapore" },
+      { value: "dubai", label: "Dubai" }
+    ];
+    
+    const [selectedCity, setSelectedCity] = useState(null);
+    const autocompleteRef = useRef(null);
+
+    const handleClear = () => {
+      autocompleteRef.current?.clearSelection();
+      setSelectedCity(null);
+    };
+
+    return (
+      <div className="w-80 space-y-4">
+        <Autocomplete
+          ref={autocompleteRef}
+          options={cities}
+          placeholder="Select a city..."
+          defaultSelectedOption={{ value: "london", label: "London" }}
+          onSelect={setSelectedCity}
+        />
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-600">
+            Selected: {selectedCity?.label || "None"}
+          </p>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={handleClear}
+          >
+            Clear Selection
+          </Button>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Large Dataset Example
+
+<ComponentDocSection
+  code={`import { Autocomplete } from "buildgrid-ui";
+import { useState } from "react";
+
+// Simulate a large dataset
+const generateOptions = () => {
+  const categories = ["Technology", "Science", "Business", "Arts", "Sports"];
+  const items = [];
+  
+  categories.forEach(category => {
+    for (let i = 1; i <= 20; i++) {
+      items.push({
+        value: \`\${category.toLowerCase()}-\${i}\`,
+        label: \`\${category} Item \${i}\`
+      });
+    }
+  });
+  
+  return items;
+};
+
+function LargeDatasetAutocomplete() {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const options = generateOptions();
+
+  return (
+    <div className="w-80">
+      <Autocomplete
+        options={options}
+        placeholder="Search from 100+ items..."
+        onSelect={setSelectedItem}
+      />
+      {selectedItem && (
+        <p className="mt-2 text-sm text-gray-600">
+          Selected: {selectedItem.label}
+        </p>
+      )}
+      <p className="mt-1 text-xs text-gray-500">
+        Total options: {options.length}
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const generateOptions = () => {
+      const categories = ["Technology", "Science", "Business", "Arts", "Sports"];
+      const items = [];
+      
+      categories.forEach(category => {
+        for (let i = 1; i <= 20; i++) {
+          items.push({
+            value: `${category.toLowerCase()}-${i}`,
+            label: `${category} Item ${i}`
+          });
+        }
+      });
+      
+      return items;
+    };
+    
+    const [selectedItem, setSelectedItem] = useState(null);
+    const options = generateOptions();
+
+    return (
+      <div className="w-80">
+        <Autocomplete
+          options={options}
+          placeholder="Search from 100+ items..."
+          onSelect={setSelectedItem}
+        />
+        {selectedItem && (
+          <p className="mt-2 text-sm text-gray-600">
+            Selected: {selectedItem.label}
+          </p>
+        )}
+        <p className="mt-1 text-xs text-gray-500">
+          Total options: {options.length}
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Autocomplete`
+
+| Property | Type | Description |
+|---|---|---|
+| `options` | `Option[]` | Array of options to display in the dropdown. **Required**. |
+| `onSelect` | `(option: Option \| null) => void` | Callback fired when an option is selected. **Required**. |
+| `placeholder` | `string` | Placeholder text for the input field. |
+| `onChange` | `(value: string) => void` | Callback fired when the input value changes. |
+| `defaultSelectedOption` | `Option` | Option that should be selected by default. |
+| `value` | `string` | Controlled input value. |
+| `className` | `string` | Additional CSS classes for the input. |
+
+### `Option` Interface
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | Unique identifier for the option. **Required**. |
+| `label` | `string` | Display text for the option. **Required**. |
+
+### Ref Methods
+
+The component exposes the following methods via ref:
+
+| Method | Description |
+|---|---|
+| `clearSelection()` | Programmatically clears the current selection. |
+
+## Features
+
+### Keyboard Navigation
+- **Arrow Up/Down**: Navigate through options
+- **Enter**: Select the highlighted option
+- **Escape**: Close the dropdown
+- **Tab**: Move focus away and close dropdown
+
+### Smart Positioning
+The dropdown automatically positions itself above or below the input based on available screen space.
+
+### Text Highlighting
+Matching text in options is automatically highlighted in bold blue to show search relevance.
+
+### Accessibility
+- Full ARIA support with proper roles and attributes
+- Screen reader compatible
+- Keyboard navigation support
+- Focus management
+
+## Customization
+
+<ComponentDocSection
+  code={`import { Autocomplete } from "buildgrid-ui";
+import { useState } from "react";
+
+const customOptions = [
+  { value: "option1", label: "Custom Option 1" },
+  { value: "option2", label: "Custom Option 2" },
+  { value: "option3", label: "Custom Option 3" }
+];
+
+function CustomAutocomplete() {
+  const [selected, setSelected] = useState(null);
+
+  return (
+    <Autocomplete
+      options={customOptions}
+      placeholder="Custom styled autocomplete..."
+      onSelect={setSelected}
+      className="border-2 border-purple-300 focus:border-purple-500 focus:ring-purple-200"
+    />
+  );
+}`}
+>
+  {(() => {
+    const customOptions = [
+      { value: "option1", label: "Custom Option 1" },
+      { value: "option2", label: "Custom Option 2" },
+      { value: "option3", label: "Custom Option 3" }
+    ];
+    
+    const [selected, setSelected] = useState(null);
+
+    return (
+      <div className="w-80">
+        <Autocomplete
+          options={customOptions}
+          placeholder="Custom styled autocomplete..."
+          onSelect={setSelected}
+          className="border-2 border-purple-300 focus:border-purple-500 focus:ring-purple-200"
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Common Use Cases
+
+The Autocomplete component is perfect for:
+
+- **Country/State/City selectors** - Geographic location selection with search
+- **User selection** - Choose from a list of users or team members
+- **Product catalogs** - Search and select from product inventories
+- **Tag selection** - Choose from predefined tags or categories
+- **API endpoint selection** - Developer tools for selecting endpoints
+- **Language/Framework selection** - Development environment configuration
+- **Large datasets** - Any scenario with 50+ options that benefit from search
+
+The component handles large datasets efficiently and provides a smooth user experience with intelligent filtering and keyboard navigation.

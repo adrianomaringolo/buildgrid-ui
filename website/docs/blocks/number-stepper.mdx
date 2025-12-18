@@ -1,0 +1,70 @@
+---
+id: number-stepper
+title: Number Stepper
+description: Um controle numérico com botões de incremento e decremento, ideal para quantidades, configurações e valores precisos.
+---
+
+import { NumberStepper } from 'buildgrid-ui'
+
+# Number Stepper
+
+O NumberStepper é um componente que combina um campo de entrada numérica com botões de incremento e decremento. É perfeito para controlar quantidades, configurações numéricas, ou qualquer valor que precisa de ajustes precisos e intuitivos.
+
+## Importação
+
+```tsx
+import { NumberStepper } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { NumberStepper } from 'buildgrid-ui'
+import { useState } from 'react'
+
+function BasicNumberStepper() {
+  const [value, setValue] = useState(0)
+
+  return (
+    <NumberStepper
+      value={value}
+      onChange={setValue}
+    />
+  )
+}
+```
+
+## Diferentes Tamanhos
+
+```tsx
+import { NumberStepper } from 'buildgrid-ui'
+
+function NumberStepperSizes() {
+  return (
+    <div className="space-y-6">
+      <NumberStepper size="sm" defaultValue={1} />
+      <NumberStepper size="md" defaultValue={5} />
+      <NumberStepper size="lg" defaultValue={10} />
+      <NumberStepper size="xl" defaultValue={15} />
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### NumberStepper
+
+| Prop | Tipo | Padrão | Descrição |
+|---|---|---|---|
+| `value` | `number` | - | Valor atual (controlado). |
+| `defaultValue` | `number` | `0` | Valor inicial (não controlado). |
+| `onChange` | `(value: number) => void` | - | Callback chamado quando o valor muda. |
+| `min` | `number` | `-Infinity` | Valor mínimo permitido. |
+| `max` | `number` | `Infinity` | Valor máximo permitido. |
+| `step` | `number` | `1` | Incremento/decremento por clique. |
+| `size` | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` | `"md"` | Tamanho do componente. |
+| `disabled` | `boolean` | `false` | Se `true`, desabilita o componente. |
+| `leftSymbol` | `string` | - | Símbolo exibido à esquerda do valor. |
+| `rightSymbol` | `string` | - | Símbolo exibido à direita do valor. |
+| `className` | `string` | - | Classes CSS adicionais. |

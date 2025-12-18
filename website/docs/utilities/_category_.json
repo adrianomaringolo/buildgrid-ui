@@ -1,0 +1,8 @@
+{
+	"label": "Utilities",
+	"position": 3,
+	"link": {
+		"type": "generated-index",
+		"description": "Utility functions, hooks, and helpers to enhance your development experience with BuildGrid UI."
+	}
+}

@@ -1,0 +1,79 @@
+---
+title: TypeScript Utilities
+description: Tipos utilitários para TypeScript que facilitam o desenvolvimento com tipagem avançada e flexível.
+---
+
+# TypeScript Utilities
+
+A biblioteca oferece tipos utilitários que estendem as capacidades do TypeScript, fornecendo ferramentas para manipulação de tipos mais complexas e flexíveis.
+
+## Importação
+
+```tsx
+import type { DeepPartial } from 'buildgrid-ui'
+```
+
+## DeepPartial
+
+O tipo `DeepPartial<T>` torna todas as propriedades de um tipo opcionais recursivamente, incluindo propriedades aninhadas em objetos. É útil para configurações, atualizações parciais e formulários.
+
+### Uso Básico
+
+```tsx
+import type { DeepPartial } from 'buildgrid-ui'
+
+interface User {
+  id: number
+  name: string
+  email: string
+  profile: {
+    avatar: string
+    bio: string
+    preferences: {
+      theme: 'light' | 'dark'
+      notifications: boolean
+      language: string
+    }
+  }
+}
+
+// Todas as propriedades se tornam opcionais, incluindo as aninhadas
+type PartialUser = DeepPartial<User>
+
+// Exemplo de uso
+const updateUser = (id: number, updates: PartialUser) => {
+  // Implementação da atualização
+  console.log('Atualizando usuário', id, 'com', updates)
+}
+
+// Pode atualizar apenas algumas propriedades
+updateUser(1, {
+  name: 'João Silva',
+  profile: {
+    preferences: {
+      theme: 'dark'
+    }
+  }
+})
+```
+
+## API Reference
+
+### DeepPartial&lt;T&gt;
+
+```tsx
+type DeepPartial<T> = {
+  [K in keyof T]?: T[K] extends object
+    ? T[K] extends Function
+      ? T[K]
+      : DeepPartial<T[K]>
+    : T[K]
+}
+```
+
+#### Comportamento
+
+- **Propriedades opcionais**: Todas as propriedades se tornam opcionais (`?`)
+- **Recursividade**: Aplica a transformação recursivamente em objetos aninhados
+- **Preserva funções**: Funções não são transformadas (mantém tipagem original)
+- **Tipos primitivos**: Tipos primitivos mantêm sua tipagem original

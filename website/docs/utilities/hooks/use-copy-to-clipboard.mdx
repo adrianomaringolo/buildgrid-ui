@@ -1,0 +1,66 @@
+---
+title: useCopyToClipboard
+description: Hook para copiar texto para a área de transferência com feedback de sucesso e tratamento de erros.
+---
+
+# useCopyToClipboard
+
+O hook `useCopyToClipboard` fornece uma interface simples para copiar texto para a área de transferência do usuário, com feedback de sucesso e tratamento robusto de erros. É ideal para botões de compartilhamento, códigos, links e qualquer conteúdo que o usuário possa querer copiar.
+
+## Importação
+
+```tsx
+import { useCopyToClipboard } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { useCopyToClipboard } from 'buildgrid-ui'
+
+function CopyButton() {
+  const [copiedText, copy] = useCopyToClipboard()
+
+  const handleCopy = async () => {
+    const success = await copy('Texto copiado!')
+    if (success) {
+      console.log('Texto copiado com sucesso!')
+    }
+  }
+
+  return (
+    <div className="space-y-2">
+      <button
+        onClick={handleCopy}
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        Copiar Texto
+      </button>
+      
+      {copiedText && (
+        <p className="text-sm text-green-600">
+          ✓ Copiado: {copiedText}
+        </p>
+      )}
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### useCopyToClipboard
+
+```tsx
+function useCopyToClipboard(): [CopiedValue, CopyFn]
+
+type CopiedValue = string | null
+type CopyFn = (text: string) => Promise<boolean>
+```
+
+#### Retorno
+
+| Índice | Tipo | Descrição |
+|---|---|---|
+| `[0]` | `string \| null` | Último texto copiado com sucesso, ou `null` se nenhum. |
+| `[1]` | `(text: string) => Promise<boolean>` | Função para copiar texto. Retorna `true` se bem-sucedida. |

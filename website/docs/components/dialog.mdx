@@ -1,3 +1,361 @@
 ---
 id: dialog
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, Button } from "buildgrid-ui";
+
+# Dialog
+
+The `Dialog` component creates modal dialogs that overlay the main content. Built on Radix UI primitives, it provides accessible modal functionality with customizable content, headers, footers, and actions.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { 
+  Dialog, 
+  DialogTrigger, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription,
+  Button 
+} from "buildgrid-ui";
+
+function BasicDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Welcome</DialogTitle>
+          <DialogDescription>
+            This is a basic dialog with a title and description.
+          </DialogDescription>
+        </DialogHeader>
+        <p>Dialog content goes here.</p>
+      </DialogContent>
+    </Dialog>
+  );
+}`}
+>
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button>Open Dialog</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Welcome</DialogTitle>
+        <DialogDescription>
+          This is a basic dialog with a title and description.
+        </DialogDescription>
+      </DialogHeader>
+      <p>Dialog content goes here.</p>
+    </DialogContent>
+  </Dialog>
+</ComponentDocSection>
+
+## Dialog with Footer Actions
+
+<ComponentDocSection
+  code={`import { 
+  Dialog, 
+  DialogTrigger, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+  Button 
+} from "buildgrid-ui";
+
+function DialogWithActions() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Settings</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Account Settings</DialogTitle>
+          <DialogDescription>
+            Make changes to your account here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="name" className="text-right">Name</label>
+            <input id="name" defaultValue="John Doe" className="col-span-3 px-3 py-2 border rounded" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="email" className="text-right">Email</label>
+            <input id="email" defaultValue="john@example.com" className="col-span-3 px-3 py-2 border rounded" />
+          </div>
+        </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Save Changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`}
+>
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button variant="outline">Settings</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Account Settings</DialogTitle>
+        <DialogDescription>
+          Make changes to your account here. Click save when you're done.
+        </DialogDescription>
+      </DialogHeader>
+      <div className="grid gap-4 py-4">
+        <div className="grid grid-cols-4 items-center gap-4">
+          <label htmlFor="name" className="text-right">Name</label>
+          <input id="name" defaultValue="John Doe" className="col-span-3 px-3 py-2 border rounded" />
+        </div>
+        <div className="grid grid-cols-4 items-center gap-4">
+          <label htmlFor="email" className="text-right">Email</label>
+          <input id="email" defaultValue="john@example.com" className="col-span-3 px-3 py-2 border rounded" />
+        </div>
+      </div>
+      <DialogFooter>
+        <DialogClose asChild>
+          <Button variant="outline">Cancel</Button>
+        </DialogClose>
+        <Button>Save Changes</Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+</ComponentDocSection>
+## Confirmation Dialog
+
+<ComponentDocSection
+  code={`import { 
+  Dialog, 
+  DialogTrigger, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+  Button 
+} from "buildgrid-ui";
+
+function ConfirmationDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="destructive">Delete Account</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. This will permanently delete your account 
+            and remove your data from our servers.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button variant="destructive">Delete Account</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`}
+>
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button variant="destructive">Delete Account</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Are you absolutely sure?</DialogTitle>
+        <DialogDescription>
+          This action cannot be undone. This will permanently delete your account 
+          and remove your data from our servers.
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <DialogClose asChild>
+          <Button variant="outline">Cancel</Button>
+        </DialogClose>
+        <Button variant="destructive">Delete Account</Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+</ComponentDocSection>
+
+## Dialog without Close Button
+
+<ComponentDocSection
+  code={`import { 
+  Dialog, 
+  DialogTrigger, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+  Button 
+} from "buildgrid-ui";
+
+function DialogWithoutClose() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="secondary">Important Notice</Button>
+      </DialogTrigger>
+      <DialogContent showCloseButton={false}>
+        <DialogHeader>
+          <DialogTitle>Important System Update</DialogTitle>
+          <DialogDescription>
+            Please read this important information before continuing.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
+          <p className="text-sm">
+            We've updated our terms of service. By continuing to use our service, 
+            you agree to the new terms.
+          </p>
+        </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button>I Understand</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`}
+>
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button variant="secondary">Important Notice</Button>
+    </DialogTrigger>
+    <DialogContent showCloseButton={false}>
+      <DialogHeader>
+        <DialogTitle>Important System Update</DialogTitle>
+        <DialogDescription>
+          Please read this important information before continuing.
+        </DialogDescription>
+      </DialogHeader>
+      <div className="py-4">
+        <p className="text-sm">
+          We've updated our terms of service. By continuing to use our service, 
+          you agree to the new terms.
+        </p>
+      </div>
+      <DialogFooter>
+        <DialogClose asChild>
+          <Button>I Understand</Button>
+        </DialogClose>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+</ComponentDocSection>
+
+## Properties
+
+### `Dialog`
+
+| Property | Type | Description |
+|---|---|---|
+| `open` | `boolean` | The controlled open state of the dialog. |
+| `defaultOpen` | `boolean` | The open state of the dialog when it is initially rendered. |
+| `onOpenChange` | `(open: boolean) => void` | Event handler called when the open state changes. |
+| `modal` | `boolean` | The modality of the dialog. Default: `true`. |
+
+### `DialogTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | Change the default rendered element for the one passed as a child. |
+| `children` | `React.ReactNode` | The element that will trigger the dialog. |
+
+### `DialogContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `showCloseButton` | `boolean` | Whether to show the close button. Default: `true`. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The content of the dialog. |
+
+### `DialogHeader`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The header content (typically title and description). |
+
+### `DialogTitle`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The title text. |
+
+### `DialogDescription`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The description text. |
+
+### `DialogFooter`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The footer content (typically action buttons). |
+
+### `DialogClose`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | Change the default rendered element for the one passed as a child. |
+| `children` | `React.ReactNode` | The element that will close the dialog when clicked. |
+
+## Accessibility
+
+The Dialog component includes comprehensive accessibility features:
+
+- **Focus Management** - Focus is trapped within the dialog when open
+- **Keyboard Navigation** - Escape key closes the dialog
+- **Screen Reader Support** - Proper ARIA attributes and roles
+- **Focus Restoration** - Focus returns to trigger element when closed
+- **Backdrop Interaction** - Clicking outside closes the dialog (when modal)
+
+## Common Use Cases
+
+The Dialog component is perfect for:
+
+- **Forms and Settings** - Account settings, preferences, configuration
+- **Confirmations** - Delete confirmations, important actions
+- **Information Display** - Terms of service, help content, details
+- **Data Entry** - Creating new items, editing existing content
+- **Alerts and Notices** - Important announcements, warnings
+- **Media Viewers** - Image galleries, video players
+
+## Best Practices
+
+1. **Clear Purpose** - Use dialogs for focused tasks that require user attention
+2. **Appropriate Size** - Keep content concise and dialog size reasonable
+3. **Action Clarity** - Make primary and secondary actions clearly distinguishable
+4. **Escape Routes** - Always provide a way to close or cancel the dialog
+5. **Mobile Friendly** - Ensure dialogs work well on smaller screens
+6. **Loading States** - Show loading indicators for async operations
+7. **Error Handling** - Display validation errors clearly within the dialog

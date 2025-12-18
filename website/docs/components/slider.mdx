@@ -1,0 +1,59 @@
+---
+id: slider
+title: Slider
+description: Um controle deslizante para selecionar valores numéricos dentro de um intervalo específico.
+---
+
+import { Slider, Label } from 'buildgrid-ui'
+
+# Slider
+
+O componente Slider permite aos usuários selecionar um valor ou intervalo de valores deslizando um controle ao longo de uma trilha. É ideal para configurações, filtros e qualquer interface que precise de seleção de valores numéricos.
+
+## Importação
+
+```tsx
+import { Slider } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { Slider } from 'buildgrid-ui'
+import { useState } from 'react'
+
+function BasicSlider() {
+  const [value, setValue] = useState([50])
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <label className="text-sm font-medium">Volume: {value[0]}%</label>
+        <Slider
+          value={value}
+          onValueChange={setValue}
+          max={100}
+          step={1}
+          className="mt-2"
+        />
+      </div>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Slider
+
+| Prop | Tipo | Padrão | Descrição |
+|---|---|---|---|
+| `defaultValue` | `number[]` | - | Valor inicial do slider (não controlado). |
+| `value` | `number[]` | - | Valor atual do slider (controlado). |
+| `onValueChange` | `(value: number[]) => void` | - | Callback chamado quando o valor muda. |
+| `min` | `number` | `0` | Valor mínimo. |
+| `max` | `number` | `100` | Valor máximo. |
+| `step` | `number` | `1` | Incremento entre valores. |
+| `orientation` | `"horizontal"` \| `"vertical"` | `"horizontal"` | Orientação do slider. |
+| `disabled` | `boolean` | `false` | Se `true`, desabilita o slider. |
+| `className` | `string` | - | Classes CSS adicionais. |

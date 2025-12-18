@@ -1,3 +1,635 @@
 ---
 id: card
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction, Button, Badge, Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+import { Heart, Share, MoreHorizontal, Star, MapPin, Calendar } from 'lucide-react';
+
+# Card
+
+The `Card` component is a flexible container used to organize and display related content. It provides a consistent structure with header, content, footer, and actions, perfect for products, profiles, articles, and any type of grouped information.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "buildgrid-ui";
+
+function BasicCard() {
+  return (
+    <Card className="w-80">
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>
+          Brief description of the card content.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Main card content goes here.</p>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  <Card className="w-80">
+    <CardHeader>
+      <CardTitle>Card Title</CardTitle>
+      <CardDescription>
+        Brief description of the card content.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p>Main card content goes here.</p>
+    </CardContent>
+  </Card>
+</ComponentDocSection>
+
+## Card with Footer
+
+<ComponentDocSection
+  code={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button } from "buildgrid-ui";
+
+function CardWithFooter() {
+  return (
+    <Card className="w-80">
+      <CardHeader>
+        <CardTitle>React Project</CardTitle>
+        <CardDescription>
+          A modern application built with React and TypeScript.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>This project demonstrates frontend development best practices.</p>
+      </CardContent>
+      <CardFooter className="gap-2">
+        <Button variant="outline">View</Button>
+        <Button>Edit</Button>
+      </CardFooter>
+    </Card>
+  );
+}`}
+>
+  <Card className="w-80">
+    <CardHeader>
+      <CardTitle>React Project</CardTitle>
+      <CardDescription>
+        A modern application built with React and TypeScript.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p>This project demonstrates frontend development best practices.</p>
+    </CardContent>
+    <CardFooter className="gap-2">
+      <Button variant="outline">View</Button>
+      <Button>Edit</Button>
+    </CardFooter>
+  </Card>
+</ComponentDocSection>
+
+## Card with Actions
+
+<ComponentDocSection
+  code={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardAction, Button } from "buildgrid-ui";
+import { MoreHorizontal } from "lucide-react";
+
+function CardWithActions() {
+  return (
+    <Card className="w-80">
+      <CardHeader>
+        <CardTitle>Settings</CardTitle>
+        <CardDescription>
+          Manage your system preferences.
+        </CardDescription>
+        <CardAction>
+          <Button variant="ghost" size="icon">
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        <p>Customize your experience by adjusting the settings.</p>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  <Card className="w-80">
+    <CardHeader>
+      <CardTitle>Settings</CardTitle>
+      <CardDescription>
+        Manage your system preferences.
+      </CardDescription>
+      <CardAction>
+        <Button variant="ghost" size="icon">
+          <MoreHorizontal className="h-4 w-4" />
+        </Button>
+      </CardAction>
+    </CardHeader>
+    <CardContent>
+      <p>Customize your experience by adjusting the settings.</p>
+    </CardContent>
+  </Card>
+</ComponentDocSection>
+
+## Product Card
+
+<ComponentDocSection
+  code={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button, Badge } from "buildgrid-ui";
+import { Heart, Share } from "lucide-react";
+
+function ProductCard() {
+  return (
+    <Card className="w-80">
+      <CardContent className="p-0">
+        <img 
+          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" 
+          alt="Product"
+          className="w-full h-48 object-cover rounded-t-xl"
+        />
+      </CardContent>
+      <CardHeader>
+        <div className="flex items-start justify-between">
+          <div>
+            <CardTitle>Sports Sneakers</CardTitle>
+            <CardDescription>Nike Air Max</CardDescription>
+          </div>
+          <Badge variant="secondary">New</Badge>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <p className="text-2xl font-bold">$299.99</p>
+        <p className="text-sm text-gray-600 mt-1">
+          Comfortable sneakers for running and sports activities.
+        </p>
+      </CardContent>
+      <CardFooter className="gap-2">
+        <Button className="flex-1">Buy Now</Button>
+        <Button variant="outline" size="icon">
+          <Heart className="h-4 w-4" />
+        </Button>
+        <Button variant="outline" size="icon">
+          <Share className="h-4 w-4" />
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}`}
+>
+  <Card className="w-80">
+    <CardContent className="p-0">
+      <img 
+        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" 
+        alt="Product"
+        className="w-full h-48 object-cover rounded-t-xl"
+      />
+    </CardContent>
+    <CardHeader>
+      <div className="flex items-start justify-between">
+        <div>
+          <CardTitle>Sports Sneakers</CardTitle>
+          <CardDescription>Nike Air Max</CardDescription>
+        </div>
+        <Badge variant="secondary">New</Badge>
+      </div>
+    </CardHeader>
+    <CardContent>
+      <p className="text-2xl font-bold">$299.99</p>
+      <p className="text-sm text-gray-600 mt-1">
+        Comfortable sneakers for running and sports activities.
+      </p>
+    </CardContent>
+    <CardFooter className="gap-2">
+      <Button className="flex-1">Buy Now</Button>
+      <Button variant="outline" size="icon">
+        <Heart className="h-4 w-4" />
+      </Button>
+      <Button variant="outline" size="icon">
+        <Share className="h-4 w-4" />
+      </Button>
+    </CardFooter>
+  </Card>
+</ComponentDocSection>
+
+## Profile Card
+
+<ComponentDocSection
+  code={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button, Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+import { MapPin, Calendar } from "lucide-react";
+
+function ProfileCard() {
+  return (
+    <Card className="w-80">
+      <CardHeader className="text-center">
+        <Avatar className="h-20 w-20 mx-auto mb-4">
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>JS</AvatarFallback>
+        </Avatar>
+        <CardTitle>John Smith</CardTitle>
+        <CardDescription>Frontend Developer</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        <div className="flex items-center gap-2 text-sm text-gray-600">
+          <MapPin className="h-4 w-4" />
+          San Francisco, CA
+        </div>
+        <div className="flex items-center gap-2 text-sm text-gray-600">
+          <Calendar className="h-4 w-4" />
+          Member since 2020
+        </div>
+        <p className="text-sm mt-4">
+          Passionate about creating amazing interfaces and memorable user experiences.
+        </p>
+      </CardContent>
+      <CardFooter className="gap-2">
+        <Button variant="outline" className="flex-1">Follow</Button>
+        <Button className="flex-1">Message</Button>
+      </CardFooter>
+    </Card>
+  );
+}`}
+>
+  <Card className="w-80">
+    <CardHeader className="text-center">
+      <Avatar className="h-20 w-20 mx-auto mb-4">
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback>JS</AvatarFallback>
+      </Avatar>
+      <CardTitle>John Smith</CardTitle>
+      <CardDescription>Frontend Developer</CardDescription>
+    </CardHeader>
+    <CardContent className="space-y-2">
+      <div className="flex items-center gap-2 text-sm text-gray-600">
+        <MapPin className="h-4 w-4" />
+        San Francisco, CA
+      </div>
+      <div className="flex items-center gap-2 text-sm text-gray-600">
+        <Calendar className="h-4 w-4" />
+        Member since 2020
+      </div>
+      <p className="text-sm mt-4">
+        Passionate about creating amazing interfaces and memorable user experiences.
+      </p>
+    </CardContent>
+    <CardFooter className="gap-2">
+      <Button variant="outline" className="flex-1">Follow</Button>
+      <Button className="flex-1">Message</Button>
+    </CardFooter>
+  </Card>
+</ComponentDocSection>
+
+## Statistics Cards
+
+<ComponentDocSection
+  code={`import { Card, CardHeader, CardTitle, CardContent } from "buildgrid-ui";
+
+function StatsCard() {
+  const stats = [
+    { label: 'Active Users', value: '2,543', change: '+12%' },
+    { label: 'Monthly Sales', value: '$45,231', change: '+8%' },
+    { label: 'Conversion', value: '3.2%', change: '-2%' },
+    { label: 'Satisfaction', value: '98%', change: '+5%' },
+  ];
+
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      {stats.map((stat, index) => (
+        <Card key={index}>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-gray-600">
+              {stat.label}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-bold">{stat.value}</span>
+              <span className={\`text-sm \${
+                stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
+              }\`}>
+                {stat.change}
+              </span>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const stats = [
+      { label: 'Active Users', value: '2,543', change: '+12%' },
+      { label: 'Monthly Sales', value: '$45,231', change: '+8%' },
+      { label: 'Conversion', value: '3.2%', change: '-2%' },
+      { label: 'Satisfaction', value: '98%', change: '+5%' },
+    ];
+
+    return (
+      <div className="grid grid-cols-2 gap-4">
+        {stats.map((stat, index) => (
+          <Card key={index}>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-gray-600">
+                {stat.label}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold">{stat.value}</span>
+                <span className={`text-sm ${
+                  stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
+                }`}>
+                  {stat.change}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Article Card
+
+<ComponentDocSection
+  code={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button, Badge, Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+
+function ArticleCard() {
+  return (
+    <Card className="w-96">
+      <CardContent className="p-0">
+        <img 
+          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400" 
+          alt="Article"
+          className="w-full h-48 object-cover rounded-t-xl"
+        />
+      </CardContent>
+      <CardHeader>
+        <div className="flex gap-2 mb-2">
+          <Badge variant="secondary">React</Badge>
+          <Badge variant="secondary">TypeScript</Badge>
+        </div>
+        <CardTitle>How to create reusable components</CardTitle>
+        <CardDescription>
+          Learn best practices for developing React components that can be reused across different projects.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center gap-3">
+          <Avatar className="h-8 w-8">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>JS</AvatarFallback>
+          </Avatar>
+          <div className="text-sm">
+            <p className="font-medium">John Smith</p>
+            <p className="text-gray-600">March 15 • 5 min read</p>
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter>
+        <Button variant="outline" className="w-full">
+          Read Article
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}`}
+>
+  <Card className="w-96">
+    <CardContent className="p-0">
+      <img 
+        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400" 
+        alt="Article"
+        className="w-full h-48 object-cover rounded-t-xl"
+      />
+    </CardContent>
+    <CardHeader>
+      <div className="flex gap-2 mb-2">
+        <Badge variant="secondary">React</Badge>
+        <Badge variant="secondary">TypeScript</Badge>
+      </div>
+      <CardTitle>How to create reusable components</CardTitle>
+      <CardDescription>
+        Learn best practices for developing React components that can be reused across different projects.
+      </CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="flex items-center gap-3">
+        <Avatar className="h-8 w-8">
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>JS</AvatarFallback>
+        </Avatar>
+        <div className="text-sm">
+          <p className="font-medium">John Smith</p>
+          <p className="text-gray-600">March 15 • 5 min read</p>
+        </div>
+      </div>
+    </CardContent>
+    <CardFooter>
+      <Button variant="outline" className="w-full">
+        Read Article
+      </Button>
+    </CardFooter>
+  </Card>
+</ComponentDocSection>
+
+## Card Grid
+
+<ComponentDocSection
+  code={`import { Card, CardHeader, CardTitle, CardDescription, CardContent, Button } from "buildgrid-ui";
+
+function CardGrid() {
+  const features = [
+    {
+      title: 'Modern Components',
+      description: 'Complete library of React components',
+      icon: '🎨'
+    },
+    {
+      title: 'TypeScript',
+      description: 'Full typing for better DX',
+      icon: '📝'
+    },
+    {
+      title: 'Accessibility',
+      description: 'Accessible components by default',
+      icon: '♿'
+    },
+    {
+      title: 'Customization',
+      description: 'Easy customization with Tailwind',
+      icon: '🎯'
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {features.map((feature, index) => (
+        <Card key={index}>
+          <CardHeader>
+            <div className="text-3xl mb-2">{feature.icon}</div>
+            <CardTitle>{feature.title}</CardTitle>
+            <CardDescription>{feature.description}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button variant="outline" size="sm">
+              Learn more
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const features = [
+      {
+        title: 'Modern Components',
+        description: 'Complete library of React components',
+        icon: '🎨'
+      },
+      {
+        title: 'TypeScript',
+        description: 'Full typing for better DX',
+        icon: '📝'
+      },
+      {
+        title: 'Accessibility',
+        description: 'Accessible components by default',
+        icon: '♿'
+      },
+      {
+        title: 'Customization',
+        description: 'Easy customization with Tailwind',
+        icon: '🎯'
+      },
+    ];
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {features.map((feature, index) => (
+          <Card key={index}>
+            <CardHeader>
+              <div className="text-3xl mb-2">{feature.icon}</div>
+              <CardTitle>{feature.title}</CardTitle>
+              <CardDescription>{feature.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button variant="outline" size="sm">
+                Learn more
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Card`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the card container. |
+| `children` | `ReactNode` | Card content. |
+
+### `CardHeader`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the header. |
+| `children` | `ReactNode` | Header content (title, description, actions). |
+
+### `CardTitle`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the title. |
+| `children` | `ReactNode` | Title text. |
+
+### `CardDescription`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the description. |
+| `children` | `ReactNode` | Description text. |
+
+### `CardAction`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for actions. |
+| `children` | `ReactNode` | Action buttons or elements. |
+
+### `CardContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for content. |
+| `children` | `ReactNode` | Main card content. |
+
+### `CardFooter`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for footer. |
+| `children` | `ReactNode` | Footer buttons or elements. |
+
+## Recommended Structure
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+    <CardDescription>Description</CardDescription>
+    <CardAction>Header actions</CardAction>
+  </CardHeader>
+  <CardContent>
+    Main content
+  </CardContent>
+  <CardFooter>
+    Footer actions
+  </CardFooter>
+</Card>
+```
+
+## Features
+
+### Flexible Design
+- Modular and composable structure
+- Support for different layouts
+- Easy visual customization
+
+### Responsive
+- Adapts to different screen sizes
+- Integrated responsive grid
+- Mobile-optimized layout
+
+### Versatile
+- Suitable for various content types
+- Support for images, icons, and media
+- Integration with other components
+
+## Common Use Cases
+
+The Card component is perfect for:
+
+- **E-commerce** - Product cards, item comparison, shopping cart
+- **Dashboards** - Metrics and statistics, charts and visualizations, data summaries
+- **Content** - Articles and posts, user profiles, portfolios
+- **Interfaces** - Settings panels, feature showcases, navigation elements
+- **Social media** - User posts, activity feeds, profile information
+- **Documentation** - Feature explanations, API references, tutorials
+
+## Best Practices
+
+1. **Maintain clear hierarchy** - Use CardTitle and CardDescription appropriately
+2. **Limit content** - Cards should be scannable quickly
+3. **Use quality images** - Optimize images for different screen densities
+4. **Consider actions** - Place primary actions in footer, secondary in header
+5. **Test responsiveness** - Check behavior on different screen sizes
+6. **Maintain consistency** - Use similar patterns for cards of the same type
+7. **Accessibility** - Ensure cards are keyboard navigable and screen reader friendly

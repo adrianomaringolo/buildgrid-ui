@@ -1,3 +1,571 @@
 ---
 id: navigation-menu
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from "buildgrid-ui";
+
+# Navigation Menu
+
+The `NavigationMenu` component provides a flexible navigation system with dropdown menus and submenus. Built on Radix UI primitives, it supports keyboard navigation, hover interactions, and responsive design.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { 
+  NavigationMenu, 
+  NavigationMenuList, 
+  NavigationMenuItem, 
+  NavigationMenuTrigger, 
+  NavigationMenuContent, 
+  NavigationMenuLink 
+} from "buildgrid-ui";
+
+function BasicNavigationMenu() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div className="grid gap-3 p-6 w-[400px]">
+              <NavigationMenuLink href="/products/web">
+                <div className="font-medium">Web Development</div>
+                <p className="text-sm text-muted-foreground">
+                  Build modern web applications
+                </p>
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/products/mobile">
+                <div className="font-medium">Mobile Development</div>
+                <p className="text-sm text-muted-foreground">
+                  Create native mobile apps
+                </p>
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/products/api">
+                <div className="font-medium">API Development</div>
+                <p className="text-sm text-muted-foreground">
+                  Design robust APIs
+                </p>
+              </NavigationMenuLink>
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/about">
+            About
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/contact">
+            Contact
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}`}
+>
+  <NavigationMenu>
+    <NavigationMenuList>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <div className="grid gap-3 p-6 w-[400px]">
+            <NavigationMenuLink href="/products/web">
+              <div className="font-medium">Web Development</div>
+              <p className="text-sm text-muted-foreground">
+                Build modern web applications
+              </p>
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/products/mobile">
+              <div className="font-medium">Mobile Development</div>
+              <p className="text-sm text-muted-foreground">
+                Create native mobile apps
+              </p>
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/products/api">
+              <div className="font-medium">API Development</div>
+              <p className="text-sm text-muted-foreground">
+                Design robust APIs
+              </p>
+            </NavigationMenuLink>
+          </div>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+      
+      <NavigationMenuItem>
+        <NavigationMenuLink href="/about">
+          About
+        </NavigationMenuLink>
+      </NavigationMenuItem>
+      
+      <NavigationMenuItem>
+        <NavigationMenuLink href="/contact">
+          Contact
+        </NavigationMenuLink>
+      </NavigationMenuItem>
+    </NavigationMenuList>
+  </NavigationMenu>
+</ComponentDocSection>
+
+## Grid Layout Menu
+
+<ComponentDocSection
+  code={`import { 
+  NavigationMenu, 
+  NavigationMenuList, 
+  NavigationMenuItem, 
+  NavigationMenuTrigger, 
+  NavigationMenuContent, 
+  NavigationMenuLink 
+} from "buildgrid-ui";
+
+function GridNavigationMenu() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div className="grid grid-cols-2 gap-4 p-6 w-[500px]">
+              <NavigationMenuLink href="/services/design">
+                <div className="font-medium">Design</div>
+                <p className="text-sm text-muted-foreground">
+                  UI/UX design services
+                </p>
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/services/development">
+                <div className="font-medium">Development</div>
+                <p className="text-sm text-muted-foreground">
+                  Custom software development
+                </p>
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/services/consulting">
+                <div className="font-medium">Consulting</div>
+                <p className="text-sm text-muted-foreground">
+                  Technical consulting
+                </p>
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/services/support">
+                <div className="font-medium">Support</div>
+                <p className="text-sm text-muted-foreground">
+                  24/7 technical support
+                </p>
+              </NavigationMenuLink>
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div className="grid gap-3 p-6 w-[300px]">
+              <NavigationMenuLink href="/docs">
+                <div className="font-medium">Documentation</div>
+                <p className="text-sm text-muted-foreground">
+                  API docs and guides
+                </p>
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/blog">
+                <div className="font-medium">Blog</div>
+                <p className="text-sm text-muted-foreground">
+                  Latest news and updates
+                </p>
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/examples">
+                <div className="font-medium">Examples</div>
+                <p className="text-sm text-muted-foreground">
+                  Code examples and demos
+                </p>
+              </NavigationMenuLink>
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}`}
+>
+  <NavigationMenu>
+    <NavigationMenuList>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <div className="grid grid-cols-2 gap-4 p-6 w-[500px]">
+            <NavigationMenuLink href="/services/design">
+              <div className="font-medium">Design</div>
+              <p className="text-sm text-muted-foreground">
+                UI/UX design services
+              </p>
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/services/development">
+              <div className="font-medium">Development</div>
+              <p className="text-sm text-muted-foreground">
+                Custom software development
+              </p>
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/services/consulting">
+              <div className="font-medium">Consulting</div>
+              <p className="text-sm text-muted-foreground">
+                Technical consulting
+              </p>
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/services/support">
+              <div className="font-medium">Support</div>
+              <p className="text-sm text-muted-foreground">
+                24/7 technical support
+              </p>
+            </NavigationMenuLink>
+          </div>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+      
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <div className="grid gap-3 p-6 w-[300px]">
+            <NavigationMenuLink href="/docs">
+              <div className="font-medium">Documentation</div>
+              <p className="text-sm text-muted-foreground">
+                API docs and guides
+              </p>
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/blog">
+              <div className="font-medium">Blog</div>
+              <p className="text-sm text-muted-foreground">
+                Latest news and updates
+              </p>
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/examples">
+              <div className="font-medium">Examples</div>
+              <p className="text-sm text-muted-foreground">
+                Code examples and demos
+              </p>
+            </NavigationMenuLink>
+          </div>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    </NavigationMenuList>
+  </NavigationMenu>
+</ComponentDocSection>
+## List Style Menu
+
+<ComponentDocSection
+  code={`import { 
+  NavigationMenu, 
+  NavigationMenuList, 
+  NavigationMenuItem, 
+  NavigationMenuTrigger, 
+  NavigationMenuContent, 
+  NavigationMenuLink 
+} from "buildgrid-ui";
+
+function ListNavigationMenu() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Company</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-1 p-4 w-[250px]">
+              <li>
+                <NavigationMenuLink href="/about">
+                  About Us
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="/team">
+                  Our Team
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="/careers">
+                  Careers
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="/press">
+                  Press
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="/investors">
+                  Investors
+                </NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Support</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-1 p-4 w-[250px]">
+              <li>
+                <NavigationMenuLink href="/help">
+                  Help Center
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="/contact">
+                  Contact Us
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="/status">
+                  System Status
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink href="/community">
+                  Community
+                </NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}`}
+>
+  <NavigationMenu>
+    <NavigationMenuList>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Company</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid gap-1 p-4 w-[250px]">
+            <li>
+              <NavigationMenuLink href="/about">
+                About Us
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink href="/team">
+                Our Team
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink href="/careers">
+                Careers
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink href="/press">
+                Press
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink href="/investors">
+                Investors
+              </NavigationMenuLink>
+            </li>
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+      
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Support</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid gap-1 p-4 w-[250px]">
+            <li>
+              <NavigationMenuLink href="/help">
+                Help Center
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink href="/contact">
+                Contact Us
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink href="/status">
+                System Status
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink href="/community">
+                Community
+              </NavigationMenuLink>
+            </li>
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    </NavigationMenuList>
+  </NavigationMenu>
+</ComponentDocSection>
+
+## Navigation without Viewport
+
+<ComponentDocSection
+  code={`import { 
+  NavigationMenu, 
+  NavigationMenuList, 
+  NavigationMenuItem, 
+  NavigationMenuTrigger, 
+  NavigationMenuContent, 
+  NavigationMenuLink 
+} from "buildgrid-ui";
+
+function NavigationWithoutViewport() {
+  return (
+    <NavigationMenu viewport={false}>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Quick Links</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div className="grid gap-2 p-4 w-[200px]">
+              <NavigationMenuLink href="/dashboard">
+                Dashboard
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/profile">
+                Profile
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/settings">
+                Settings
+              </NavigationMenuLink>
+              <NavigationMenuLink href="/logout">
+                Logout
+              </NavigationMenuLink>
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/home">
+            Home
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}`}
+>
+  <NavigationMenu viewport={false}>
+    <NavigationMenuList>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Quick Links</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <div className="grid gap-2 p-4 w-[200px]">
+            <NavigationMenuLink href="/dashboard">
+              Dashboard
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/profile">
+              Profile
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/settings">
+              Settings
+            </NavigationMenuLink>
+            <NavigationMenuLink href="/logout">
+              Logout
+            </NavigationMenuLink>
+          </div>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+      
+      <NavigationMenuItem>
+        <NavigationMenuLink href="/home">
+          Home
+        </NavigationMenuLink>
+      </NavigationMenuItem>
+    </NavigationMenuList>
+  </NavigationMenu>
+</ComponentDocSection>
+
+## Properties
+
+### `NavigationMenu`
+
+| Property | Type | Description |
+|---|---|---|
+| `viewport` | `boolean` | Whether to render the viewport container. Default: `true`. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The navigation menu content. |
+
+### `NavigationMenuList`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The navigation menu items. |
+
+### `NavigationMenuItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The menu item content (trigger and/or content). |
+
+### `NavigationMenuTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The trigger content (usually text). |
+
+### `NavigationMenuContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The dropdown content. |
+
+### `NavigationMenuLink`
+
+| Property | Type | Description |
+|---|---|---|
+| `href` | `string` | The URL to navigate to when clicked. |
+| `active` | `boolean` | Whether this link represents the current page. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The link content. |
+
+## Layout Patterns
+
+### Grid Layouts
+- **Two Column** - `grid-cols-2` for balanced content
+- **Three Column** - `grid-cols-3` for more options
+- **Auto Grid** - `grid-cols-[repeat(auto-fit,minmax(200px,1fr))]` for responsive
+
+### List Layouts
+- **Simple List** - Basic vertical list of links
+- **Grouped Lists** - Multiple sections with headers
+- **Icon Lists** - Links with accompanying icons
+
+### Custom Layouts
+- **Mixed Content** - Combine different content types
+- **Featured Items** - Highlight important links
+- **Rich Content** - Include images, descriptions, badges
+
+## Accessibility
+
+The NavigationMenu component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys, Enter, Escape, Tab support
+- **Focus Management** - Proper focus handling and restoration
+- **Screen Reader Support** - ARIA attributes and roles for assistive technologies
+- **Hover and Focus** - Consistent behavior across interaction methods
+- **Active States** - Clear indication of current page/section
+
+## Common Use Cases
+
+The NavigationMenu component is perfect for:
+
+- **Website Headers** - Main site navigation with dropdowns
+- **Application Menus** - Complex app navigation structures
+- **Product Catalogs** - Organized product category navigation
+- **Documentation Sites** - Hierarchical content organization
+- **Dashboard Navigation** - Admin panel and user interface menus
+- **E-commerce Sites** - Product category and filter navigation
+
+## Best Practices
+
+1. **Logical Grouping** - Group related items together in dropdowns
+2. **Clear Labels** - Use descriptive, easy-to-understand menu labels
+3. **Reasonable Depth** - Avoid deeply nested menu structures
+4. **Mobile Considerations** - Ensure menus work well on touch devices
+5. **Performance** - Lazy load content in large menus when possible
+6. **Visual Hierarchy** - Use typography and spacing to create clear hierarchy
+7. **Consistent Styling** - Maintain consistent visual treatment across menus
+8. **Active States** - Clearly indicate the current page or section

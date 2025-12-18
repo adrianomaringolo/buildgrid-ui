@@ -47,7 +47,7 @@ export const ComponentDocSection = ({
 					)}
 				</SyntaxHighlighter>
 			) : (
-				<div>{children}</div>
+				<div className="reset-all">{children}</div>
 			)}
 		</div>
 	)

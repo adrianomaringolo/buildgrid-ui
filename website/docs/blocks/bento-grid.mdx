@@ -1,3 +1,141 @@
 ---
 id: bento-grid
+title: Bento Grid
+description: Um sistema de grid flexível inspirado no design Bento, ideal para criar layouts dinâmicos e responsivos.
 ---
+
+import { BentoGrid, BentoCard } from 'buildgrid-ui'
+
+# Bento Grid
+
+O BentoGrid é um sistema de layout flexível inspirado no design Bento japonês, que permite criar grids dinâmicos e responsivos com diferentes tamanhos de células. É perfeito para dashboards, galerias de conteúdo e layouts complexos.
+
+## Importação
+
+```tsx
+import { BentoGrid, BentoCard } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { BentoGrid, BentoCard } from 'buildgrid-ui'
+
+function BasicBentoGrid() {
+  return (
+    <BentoGrid className="lg:grid-rows-3">
+      <BentoCard className="lg:row-span-2 lg:col-span-2 bg-blue-100 p-6">
+        <h3 className="text-xl font-semibold">Card Principal</h3>
+        <p>Conteúdo destacado que ocupa mais espaço</p>
+      </BentoCard>
+      
+      <BentoCard className="bg-green-100 p-4">
+        <h4 className="font-medium">Card 1</h4>
+        <p>Conteúdo menor</p>
+      </BentoCard>
+      
+      <BentoCard className="bg-yellow-100 p-4">
+        <h4 className="font-medium">Card 2</h4>
+        <p>Outro conteúdo</p>
+      </BentoCard>
+      
+      <BentoCard className="lg:col-span-2 bg-purple-100 p-4">
+        <h4 className="font-medium">Card Largo</h4>
+        <p>Conteúdo que se estende por duas colunas</p>
+      </BentoCard>
+    </BentoGrid>
+  )
+}
+```
+
+## Layout Complexo
+
+```tsx
+import { BentoGrid, BentoCard } from 'buildgrid-ui'
+
+function ComplexBentoGrid() {
+  const features = [
+    {
+      className: 'lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3 bg-gradient-to-br from-blue-500 to-blue-600 text-white',
+      title: 'Feature Principal',
+      description: 'Destaque principal do seu produto ou serviço',
+    },
+    {
+      className: 'lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 bg-gradient-to-br from-green-500 to-green-600 text-white',
+      title: 'Analytics',
+      description: 'Visualize dados em tempo real',
+    },
+    {
+      className: 'lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 bg-gradient-to-br from-purple-500 to-purple-600 text-white',
+      title: 'Integração',
+      description: 'Conecte com suas ferramentas favoritas',
+    },
+    {
+      className: 'lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 bg-gradient-to-br from-orange-500 to-orange-600 text-white',
+      title: 'Notificações',
+      description: 'Mantenha-se atualizado',
+    },
+    {
+      className: 'lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-4 bg-gradient-to-br from-red-500 to-red-600 text-white',
+      title: 'Segurança',
+      description: 'Proteção avançada para seus dados',
+    },
+  ]
+
+  return (
+    <BentoGrid className="lg:grid-rows-4 gap-4">
+      {features.map((feature, index) => (
+        <BentoCard
+          key={index}
+          className={`${feature.className} p-6 rounded-xl hover:scale-105 transition-transform duration-200 cursor-pointer`}
+        >
+          <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+          <p className="text-sm opacity-90">{feature.description}</p>
+        </BentoCard>
+      ))}
+    </BentoGrid>
+  )
+}
+```
+
+## API Reference
+
+### BentoGrid
+
+| Prop | Tipo | Descrição |
+|---|---|---|
+| `className` | `string` | Classes CSS adicionais para customizar o grid. |
+| `children` | `ReactNode` | Componentes BentoCard filhos. |
+
+### BentoCard
+
+| Prop | Tipo | Descrição |
+|---|---|---|
+| `className` | `string` | Classes CSS para posicionamento e estilo do card. |
+| `children` | `ReactNode` | Conteúdo do card. |
+
+## Características
+
+### 🎨 Layout Flexível
+- Grid responsivo baseado em CSS Grid
+- Suporte a diferentes tamanhos de células
+- Fácil customização com Tailwind CSS
+
+### 📱 Responsivo
+- Adapta-se automaticamente a diferentes telas
+- Breakpoints configuráveis
+- Layout otimizado para mobile
+
+### 🎯 Fácil de Usar
+- API simples e intuitiva
+- Integração perfeita com Tailwind CSS
+- Componentes reutilizáveis
+
+## Melhores Práticas
+
+1. **Use classes de grid apropriadas**: Configure `grid-rows` e `grid-cols` no BentoGrid
+2. **Posicione cards com precisão**: Use classes como `row-span`, `col-span` para controlar tamanho
+3. **Mantenha hierarquia visual**: Cards maiores para conteúdo mais importante
+4. **Teste responsividade**: Verifique layout em diferentes tamanhos de tela
+5. **Use cores consistentes**: Mantenha paleta de cores coerente
+6. **Adicione interatividade**: Use hover effects e transições para melhor UX

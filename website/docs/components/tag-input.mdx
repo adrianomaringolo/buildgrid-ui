@@ -1,0 +1,50 @@
+---
+id: tag-input
+title: Tag Input
+description: Um campo de entrada que permite adicionar e remover tags de forma intuitiva, ideal para categorização e filtragem.
+---
+
+import { TagInput } from 'buildgrid-ui'
+
+# Tag Input
+
+O componente TagInput permite aos usuários adicionar e remover tags de forma intuitiva. É perfeito para categorização, filtragem, seleção de habilidades, ou qualquer cenário onde você precisa de múltiplos valores em formato de etiquetas.
+
+## Importação
+
+```tsx
+import { TagInput } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { TagInput } from 'buildgrid-ui'
+import { useState } from 'react'
+
+function BasicTagInput() {
+  const [tags, setTags] = useState<string[]>([])
+
+  return (
+    <TagInput
+      value={tags}
+      onChange={setTags}
+      placeholder="Digite e pressione Enter para adicionar tags..."
+    />
+  )
+}
+```
+
+## API Reference
+
+### TagInput
+
+| Prop | Tipo | Descrição |
+|---|---|---|
+| `value` | `string[]` | Array de tags atual (controlado). |
+| `onChange` | `(value: string[]) => void` | Callback chamado quando as tags mudam. |
+| `initialValue` | `string` \| `string[]` | Valor inicial das tags (não controlado). |
+| `separator` | `string` | Caractere usado para separar tags. Padrão: `","`. |
+| `placeholder` | `string` | Texto placeholder do input. |
+| `helperText` | `string` | Texto de ajuda exibido abaixo do input. |
+| `className` | `string` | Classes CSS adicionais para o container. |

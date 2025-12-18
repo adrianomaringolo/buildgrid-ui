@@ -1,3 +1,172 @@
 ---
 id: currency-input
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { CurrencyInput } from "buildgrid-ui";
+import { DollarSign } from 'lucide-react';
+
+# Currency Input
+
+The `CurrencyInput` component provides a specialized input field for monetary values with automatic formatting, currency symbols, and decimal handling. Built on top of the AdaptiveInput component.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { CurrencyInput } from "buildgrid-ui";
+import { useState } from "react";
+
+function BasicCurrencyInput() {
+  const [amount, setAmount] = useState(0);
+
+  return (
+    <CurrencyInput 
+      value={amount} 
+      onValueChange={setAmount}
+    />
+  );
+}`}
+>
+  <CurrencyInput 
+    value={0} 
+    onValueChange={() => {}}
+  />
+</ComponentDocSection>
+
+## Different Currencies
+
+<ComponentDocSection
+  code={`import { CurrencyInput } from "buildgrid-ui";
+
+function DifferentCurrencies() {
+  return (
+    <div className="space-y-4">
+      <CurrencyInput 
+        value={1234.56} 
+        onValueChange={() => {}}
+        currencySymbol="$"
+      />
+      
+      <CurrencyInput 
+        value={987.65} 
+        onValueChange={() => {}}
+        currencySymbol="€"
+      />
+      
+      <CurrencyInput 
+        value={543.21} 
+        onValueChange={() => {}}
+        currencySymbol="£"
+      />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <CurrencyInput 
+      value={1234.56} 
+      onValueChange={() => {}}
+      currencySymbol="$"
+    />
+    
+    <CurrencyInput 
+      value={987.65} 
+      onValueChange={() => {}}
+      currencySymbol="€"
+    />
+    
+    <CurrencyInput 
+      value={543.21} 
+      onValueChange={() => {}}
+      currencySymbol="£"
+    />
+  </div>
+</ComponentDocSection>
+
+## With Icons
+
+<ComponentDocSection
+  code={`import { CurrencyInput } from "buildgrid-ui";
+import { DollarSign } from "lucide-react";
+
+function CurrencyInputWithIcon() {
+  return (
+    <CurrencyInput 
+      value={2500.00} 
+      onValueChange={() => {}}
+      currencySymbol="$"
+      leftIcon={<DollarSign className="w-4 h-4" />}
+      placeholder="Enter amount"
+    />
+  );
+}`}
+>
+  <CurrencyInput 
+    value={2500.00} 
+    onValueChange={() => {}}
+    currencySymbol="$"
+    leftIcon={<DollarSign className="w-4 h-4" />}
+    placeholder="Enter amount"
+  />
+</ComponentDocSection>
+
+## Properties
+
+### `CurrencyInput`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | `0` | The numeric value of the input. |
+| `onValueChange` | `(value: number) => void` | - | Callback fired when the value changes. **Required**. |
+| `currencySymbol` | `string` | `"$"` | Currency symbol to display. |
+| `decimalSeparator` | `string` | `"."` | Character used for decimal separation. |
+| `thousandSeparator` | `string` | `","` | Character used for thousand separation. |
+| `leftIcon` | `ReactNode` | - | Icon to display on the left side. |
+| `rightIcon` | `ReactNode` | - | Icon to display on the right side. |
+| `sizing` | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` | `"md"` | Size of the input field. |
+| `disabled` | `boolean` | `false` | If `true`, the input is disabled. |
+| `placeholder` | `string` | - | Placeholder text for the input. |
+| `className` | `string` | - | Additional CSS classes. |
+
+All other props from the `AdaptiveInput` component are also supported.
+
+## Features
+
+### Automatic Formatting
+- Real-time currency formatting as you type
+- Automatic thousand separators
+- Fixed decimal places (2 digits)
+- Currency symbol positioning
+
+### Numeric Input
+- Only accepts numeric input
+- Automatic decimal handling
+- Cursor management for smooth editing
+- Mobile-optimized numeric keyboard
+
+### Internationalization
+- Customizable currency symbols
+- Configurable decimal and thousand separators
+- Support for different regional formats
+
+## Common Use Cases
+
+The CurrencyInput component is perfect for:
+
+- **Financial forms** - Salary, budget, expense inputs
+- **E-commerce** - Product prices, shipping costs
+- **Banking applications** - Transaction amounts, account balances
+- **Invoicing systems** - Line items, totals, taxes
+- **Budget planners** - Income, expenses, savings goals
+- **Payment forms** - Donation amounts, subscription fees
+- **Accounting software** - Financial data entry
+
+## Best Practices
+
+1. **Use appropriate currency symbols** - Match the user's locale or selection
+2. **Validate ranges** - Set minimum/maximum values where appropriate
+3. **Handle edge cases** - Consider zero values and very large numbers
+4. **Provide clear labels** - Indicate currency and purpose clearly
+5. **Consider precision** - Most currencies use 2 decimal places
+6. **Test with different locales** - Ensure formatting works globally
+7. **Accessibility** - Provide proper labels and descriptions

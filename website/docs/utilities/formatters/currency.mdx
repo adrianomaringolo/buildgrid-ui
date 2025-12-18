@@ -1,0 +1,57 @@
+---
+title: formatCurrency
+description: Função para formatação de valores monetários com suporte a diferentes moedas e localizações.
+---
+
+# formatCurrency
+
+A função `formatCurrency` formata números como valores monetários usando a API `Intl.NumberFormat`. Oferece suporte a diferentes moedas e localizações, garantindo formatação consistente e internacionalizada.
+
+## Importação
+
+```tsx
+import { formatCurrency } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { formatCurrency } from 'buildgrid-ui'
+
+function PriceDisplay() {
+  const price = 1234.56
+
+  return (
+    <div className="space-y-2">
+      <p>Preço: {formatCurrency(price)}</p>
+      {/* Resultado: R$ 1.234,56 */}
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### formatCurrency
+
+```tsx
+function formatCurrency(
+  number: number,
+  language?: string,
+  currency?: string
+): string
+```
+
+#### Parâmetros
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|---|---|---|---|
+| `number` | `number` | - | Valor numérico a ser formatado. |
+| `language` | `string` | `'pt-BR'` | Código de localização (locale). |
+| `currency` | `string` | `'BRL'` | Código da moeda (ISO 4217). |
+
+#### Retorno
+
+| Tipo | Descrição |
+|---|---|
+| `string` | Valor formatado como moeda. |

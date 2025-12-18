@@ -1,0 +1,297 @@
+---
+id: alert
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Alert } from "buildgrid-ui";
+
+# Alert
+
+The `Alert` component displays important messages to users with different visual styles based on the message type. It supports various variants, optional titles, close buttons, and action buttons for enhanced user interaction.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Alert } from "buildgrid-ui";
+
+function MyAlert() {
+  return (
+    <Alert variant="info">
+      This is an informational alert. It provides helpful context or additional information.
+    </Alert>
+  );
+}`}
+>
+  <Alert variant="info">
+    This is an informational alert. It provides helpful context or additional information.
+  </Alert>
+</ComponentDocSection>
+
+## Alert Variants
+
+<ComponentDocSection
+  code={`import { Alert } from "buildgrid-ui";
+
+function AlertVariants() {
+  return (
+    <div className="space-y-4">
+      <Alert variant="info">
+        This is an informational alert. It provides helpful context.
+      </Alert>
+      
+      <Alert variant="warning">
+        This is a warning alert. It indicates something that needs attention.
+      </Alert>
+      
+      <Alert variant="error">
+        This is an error alert. It indicates something went wrong.
+      </Alert>
+      
+      <Alert variant="success">
+        This is a success alert. It confirms that an action was completed successfully.
+      </Alert>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <Alert variant="info">
+      This is an informational alert. It provides helpful context.
+    </Alert>
+    
+    <Alert variant="warning">
+      This is a warning alert. It indicates something that needs attention.
+    </Alert>
+    
+    <Alert variant="error">
+      This is an error alert. It indicates something went wrong.
+    </Alert>
+    
+    <Alert variant="success">
+      This is a success alert. It confirms that an action was completed successfully.
+    </Alert>
+  </div>
+</ComponentDocSection>
+
+## Alerts with Titles
+
+<ComponentDocSection
+  code={`import { Alert } from "buildgrid-ui";
+
+function AlertsWithTitles() {
+  return (
+    <div className="space-y-4">
+      <Alert variant="info" title="Information">
+        Your account settings have been updated. Changes will take effect immediately.
+      </Alert>
+      
+      <Alert variant="warning" title="Storage Almost Full">
+        You're using 95% of your storage space. Consider upgrading your plan or deleting unused files.
+      </Alert>
+      
+      <Alert variant="error" title="Payment Failed">
+        Your payment could not be processed. Please check your payment method and try again.
+      </Alert>
+      
+      <Alert variant="success" title="Profile Updated">
+        Your profile information has been successfully updated and saved.
+      </Alert>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <Alert variant="info" title="Information">
+      Your account settings have been updated. Changes will take effect immediately.
+    </Alert>
+    
+    <Alert variant="warning" title="Storage Almost Full">
+      You're using 95% of your storage space. Consider upgrading your plan or deleting unused files.
+    </Alert>
+    
+    <Alert variant="error" title="Payment Failed">
+      Your payment could not be processed. Please check your payment method and try again.
+    </Alert>
+    
+    <Alert variant="success" title="Profile Updated">
+      Your profile information has been successfully updated and saved.
+    </Alert>
+  </div>
+</ComponentDocSection>
+
+## Dismissible Alerts
+
+<ComponentDocSection
+  code={`import { Alert } from "buildgrid-ui";
+
+function DismissibleAlerts() {
+  return (
+    <div className="space-y-4">
+      <Alert
+        variant="info"
+        title="New Feature Available"
+        showCloseButton
+        onClose={() => console.log('Info alert closed')}
+      >
+        Check out our new dashboard analytics feature in the sidebar.
+      </Alert>
+      
+      <Alert
+        variant="warning"
+        title="Maintenance Scheduled"
+        showCloseButton
+        onClose={() => console.log('Warning alert closed')}
+      >
+        System maintenance is scheduled for tonight from 2-4 AM EST.
+      </Alert>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <Alert
+      variant="info"
+      title="New Feature Available"
+      showCloseButton
+      onClose={() => console.log('Info alert closed')}
+    >
+      Check out our new dashboard analytics feature in the sidebar.
+    </Alert>
+    
+    <Alert
+      variant="warning"
+      title="Maintenance Scheduled"
+      showCloseButton
+      onClose={() => console.log('Warning alert closed')}
+    >
+      System maintenance is scheduled for tonight from 2-4 AM EST.
+    </Alert>
+  </div>
+</ComponentDocSection>
+
+## Alerts with Action Buttons
+
+<ComponentDocSection
+  code={`import { Alert } from "buildgrid-ui";
+
+function AlertsWithActions() {
+  return (
+    <div className="space-y-4">
+      <Alert
+        variant="info"
+        title="Update Available"
+        actionButton={{
+          label: 'Update Now',
+          onClick: () => alert('Update started!'),
+          variant: 'default',
+        }}
+      >
+        A new version of the application is available with bug fixes and improvements.
+      </Alert>
+      
+      <Alert
+        variant="warning"
+        title="Subscription Expiring"
+        actionButton={{
+          label: 'Renew Subscription',
+          onClick: () => alert('Redirecting to billing...'),
+          variant: 'outline',
+        }}
+        showCloseButton
+        onClose={() => alert('Alert dismissed')}
+      >
+        Your subscription expires in 3 days. Renew now to avoid service interruption.
+      </Alert>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <Alert
+      variant="info"
+      title="Update Available"
+      actionButton={{
+        label: 'Update Now',
+        onClick: () => alert('Update started!'),
+        variant: 'default',
+      }}
+    >
+      A new version of the application is available with bug fixes and improvements.
+    </Alert>
+    
+    <Alert
+      variant="warning"
+      title="Subscription Expiring"
+      actionButton={{
+        label: 'Renew Subscription',
+        onClick: () => alert('Redirecting to billing...'),
+        variant: 'outline',
+      }}
+      showCloseButton
+      onClose={() => alert('Alert dismissed')}
+    >
+      Your subscription expires in 3 days. Renew now to avoid service interruption.
+    </Alert>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Alert`
+
+| Property | Type | Description |
+|---|---|---|
+| `variant` | `"info"` \| `"warning"` \| `"error"` \| `"success"` | The visual style variant of the alert. Default: `"info"`. |
+| `title` | `string` | Optional title text displayed above the main content. |
+| `children` | `React.ReactNode` | The main content of the alert. |
+| `showCloseButton` | `boolean` | Whether to show a close button. Default: `false`. |
+| `onClose` | `() => void` | Callback function called when the alert is closed. |
+| `actionButton` | `ActionButtonConfig` | Configuration for an optional action button. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `ActionButtonConfig`
+
+| Property | Type | Description |
+|---|---|---|
+| `label` | `string` | The text displayed on the action button. |
+| `onClick` | `() => void` | Callback function called when the button is clicked. |
+| `variant` | `"default"` \| `"outline"` \| `"secondary"` | The visual style of the button. Default: `"default"`. |
+
+## Variant Styles
+
+| Variant | Background | Border | Text | Icon |
+|---|---|---|---|---|
+| `info` | Blue 50 | Blue 200 | Blue 800 | Info |
+| `warning` | Yellow 50 | Yellow 200 | Yellow 800 | Alert Triangle |
+| `error` | Red 50 | Red 200 | Red 800 | Alert Circle |
+| `success` | Green 50 | Green 200 | Green 800 | Check Circle |
+
+## Accessibility
+
+The `Alert` component includes several accessibility features:
+
+- Uses the `role="alert"` attribute for screen reader compatibility
+- Icons have `aria-hidden="true"` to prevent redundant announcements
+- Close button includes `aria-label="Close alert"` for screen readers
+- Proper color contrast ratios for all variants
+- Keyboard navigation support for interactive elements
+
+## Common Use Cases
+
+The Alert component is perfect for:
+
+- **System notifications** - Updates, maintenance, new features
+- **Form validation** - Error messages, success confirmations
+- **User feedback** - Action confirmations, warnings
+- **Status updates** - Progress indicators, completion messages
+- **Security alerts** - Login attempts, account changes
+- **Marketing messages** - Promotions, announcements
+
+## Best Practices
+
+1. **Use appropriate variants** - Match the alert type to the message importance
+2. **Keep messages concise** - Users should quickly understand the message
+3. **Provide clear actions** - Include relevant action buttons when needed
+4. **Consider timing** - Auto-dismiss non-critical alerts after a reasonable time
+5. **Test accessibility** - Ensure screen readers can access all content
+6. **Avoid alert fatigue** - Don't overwhelm users with too many alerts

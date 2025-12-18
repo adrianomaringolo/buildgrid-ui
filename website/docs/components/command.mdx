@@ -1,3 +1,410 @@
 ---
 id: command
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, Button } from "buildgrid-ui";
+import { Calculator, Calendar, CreditCard, Settings, User, Search, File, FileText, Folder } from 'lucide-react';
+import { useState } from 'react';
+
+# Command
+
+The `Command` component provides a fast, composable, unstyled command menu for React. Built on top of cmdk, it's perfect for creating command palettes, search interfaces, and quick action menus.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "buildgrid-ui";
+
+function BasicCommand() {
+  return (
+    <Command className="rounded-lg border shadow-md max-w-md">
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem>Calendar</CommandItem>
+          <CommandItem>Search Emoji</CommandItem>
+          <CommandItem>Calculator</CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  );
+}`}
+>
+  <Command className="rounded-lg border shadow-md max-w-md">
+    <CommandInput placeholder="Type a command or search..." />
+    <CommandList>
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem>Calendar</CommandItem>
+        <CommandItem>Search Emoji</CommandItem>
+        <CommandItem>Calculator</CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </Command>
+</ComponentDocSection>
+
+## With Icons and Shortcuts
+
+<ComponentDocSection
+  code={`import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from "buildgrid-ui";
+import { Calculator, Calendar, CreditCard, Settings, User } from "lucide-react";
+
+function CommandWithIcons() {
+  return (
+    <Command className="rounded-lg border shadow-md max-w-md">
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem>
+            <Calendar className="mr-2 h-4 w-4" />
+            <span>Calendar</span>
+          </CommandItem>
+          <CommandItem>
+            <Calculator className="mr-2 h-4 w-4" />
+            <span>Calculator</span>
+          </CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Settings">
+          <CommandItem>
+            <User className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+            <CommandShortcut>⌘P</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <CreditCard className="mr-2 h-4 w-4" />
+            <span>Billing</span>
+            <CommandShortcut>⌘B</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Settings</span>
+            <CommandShortcut>⌘S</CommandShortcut>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  );
+}`}
+>
+  <Command className="rounded-lg border shadow-md max-w-md">
+    <CommandInput placeholder="Type a command or search..." />
+    <CommandList>
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem>
+          <Calendar className="mr-2 h-4 w-4" />
+          <span>Calendar</span>
+        </CommandItem>
+        <CommandItem>
+          <Calculator className="mr-2 h-4 w-4" />
+          <span>Calculator</span>
+        </CommandItem>
+      </CommandGroup>
+      <CommandSeparator />
+      <CommandGroup heading="Settings">
+        <CommandItem>
+          <User className="mr-2 h-4 w-4" />
+          <span>Profile</span>
+          <CommandShortcut>⌘P</CommandShortcut>
+        </CommandItem>
+        <CommandItem>
+          <CreditCard className="mr-2 h-4 w-4" />
+          <span>Billing</span>
+          <CommandShortcut>⌘B</CommandShortcut>
+        </CommandItem>
+        <CommandItem>
+          <Settings className="mr-2 h-4 w-4" />
+          <span>Settings</span>
+          <CommandShortcut>⌘S</CommandShortcut>
+        </CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </Command>
+</ComponentDocSection>
+
+## Command Dialog
+
+<ComponentDocSection
+  code={`import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut, Button } from "buildgrid-ui";
+import { Calculator, Calendar, Settings, User } from "lucide-react";
+import { useState } from "react";
+
+function CommandDialogExample() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>
+        Open Command Menu
+      </Button>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Quick Actions">
+            <CommandItem onSelect={() => setOpen(false)}>
+              <Calendar className="mr-2 h-4 w-4" />
+              <span>Open Calendar</span>
+              <CommandShortcut>⌘K</CommandShortcut>
+            </CommandItem>
+            <CommandItem onSelect={() => setOpen(false)}>
+              <Calculator className="mr-2 h-4 w-4" />
+              <span>Calculator</span>
+              <CommandShortcut>⌘C</CommandShortcut>
+            </CommandItem>
+          </CommandGroup>
+          <CommandGroup heading="Settings">
+            <CommandItem onSelect={() => setOpen(false)}>
+              <User className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+            </CommandItem>
+            <CommandItem onSelect={() => setOpen(false)}>
+              <Settings className="mr-2 h-4 w-4" />
+              <span>Settings</span>
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+    </>
+  );
+}`}
+>
+  {(() => {
+    const [open, setOpen] = useState(false);
+
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>
+          Open Command Menu
+        </Button>
+        <CommandDialog open={open} onOpenChange={setOpen}>
+          <CommandInput placeholder="Type a command or search..." />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Quick Actions">
+              <CommandItem onSelect={() => setOpen(false)}>
+                <Calendar className="mr-2 h-4 w-4" />
+                <span>Open Calendar</span>
+                <CommandShortcut>⌘K</CommandShortcut>
+              </CommandItem>
+              <CommandItem onSelect={() => setOpen(false)}>
+                <Calculator className="mr-2 h-4 w-4" />
+                <span>Calculator</span>
+                <CommandShortcut>⌘C</CommandShortcut>
+              </CommandItem>
+            </CommandGroup>
+            <CommandGroup heading="Settings">
+              <CommandItem onSelect={() => setOpen(false)}>
+                <User className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+              </CommandItem>
+              <CommandItem onSelect={() => setOpen(false)}>
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Settings</span>
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </CommandDialog>
+      </>
+    );
+  })()}
+</ComponentDocSection>
+
+## File Search Example
+
+<ComponentDocSection
+  code={`import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "buildgrid-ui";
+import { File, FileText, Folder, Search } from "lucide-react";
+import { useState } from "react";
+
+function FileSearchCommand() {
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const files = [
+    { name: 'README.md', type: 'file', icon: FileText },
+    { name: 'package.json', type: 'file', icon: File },
+    { name: 'src', type: 'folder', icon: Folder },
+    { name: 'components', type: 'folder', icon: Folder },
+    { name: 'App.tsx', type: 'file', icon: FileText },
+    { name: 'index.html', type: 'file', icon: File },
+  ];
+
+  return (
+    <div className="space-y-4">
+      <Command className="rounded-lg border shadow-md max-w-md">
+        <CommandInput placeholder="Search files..." />
+        <CommandList>
+          <CommandEmpty>No files found.</CommandEmpty>
+          <CommandGroup heading="Files & Folders">
+            {files.map((file) => {
+              const Icon = file.icon;
+              return (
+                <CommandItem
+                  key={file.name}
+                  onSelect={() => setSelectedFile(file)}
+                >
+                  <Icon className="mr-2 h-4 w-4" />
+                  <span>{file.name}</span>
+                  <span className="ml-auto text-xs text-gray-500">
+                    {file.type}
+                  </span>
+                </CommandItem>
+              );
+            })}
+          </CommandGroup>
+        </CommandList>
+      </Command>
+      
+      {selectedFile && (
+        <div className="p-3 bg-gray-50 rounded-md text-sm">
+          Selected: <strong>{selectedFile.name}</strong> ({selectedFile.type})
+        </div>
+      )}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const files = [
+      { name: 'README.md', type: 'file', icon: FileText },
+      { name: 'package.json', type: 'file', icon: File },
+      { name: 'src', type: 'folder', icon: Folder },
+      { name: 'components', type: 'folder', icon: Folder },
+      { name: 'App.tsx', type: 'file', icon: FileText },
+      { name: 'index.html', type: 'file', icon: File },
+    ];
+
+    return (
+      <div className="space-y-4">
+        <Command className="rounded-lg border shadow-md max-w-md">
+          <CommandInput placeholder="Search files..." />
+          <CommandList>
+            <CommandEmpty>No files found.</CommandEmpty>
+            <CommandGroup heading="Files & Folders">
+              {files.map((file) => {
+                const Icon = file.icon;
+                return (
+                  <CommandItem
+                    key={file.name}
+                    onSelect={() => setSelectedFile(file)}
+                  >
+                    <Icon className="mr-2 h-4 w-4" />
+                    <span>{file.name}</span>
+                    <span className="ml-auto text-xs text-gray-500">
+                      {file.type}
+                    </span>
+                  </CommandItem>
+                );
+              })}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+        
+        {selectedFile && (
+          <div className="p-3 bg-gray-50 rounded-md text-sm">
+            Selected: <strong>{selectedFile.name}</strong> ({selectedFile.type})
+          </div>
+        )}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Command`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes. |
+| `children` | `ReactNode` | Command content. |
+
+### `CommandDialog`
+
+| Property | Type | Description |
+|---|---|---|
+| `open` | `boolean` | Whether the dialog is open. |
+| `onOpenChange` | `(open: boolean) => void` | Callback when open state changes. |
+| `children` | `ReactNode` | Dialog content. |
+
+### `CommandInput`
+
+| Property | Type | Description |
+|---|---|---|
+| `placeholder` | `string` | Input placeholder text. |
+| `value` | `string` | Input value (controlled). |
+| `onValueChange` | `(value: string) => void` | Callback when value changes. |
+
+### `CommandItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `onSelect` | `() => void` | Callback when item is selected. |
+| `disabled` | `boolean` | Whether the item is disabled. |
+| `value` | `string` | Item value for filtering. |
+| `children` | `ReactNode` | Item content. |
+
+### `CommandGroup`
+
+| Property | Type | Description |
+|---|---|---|
+| `heading` | `string` | Group heading text. |
+| `children` | `ReactNode` | Group items. |
+
+### `CommandShortcut`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | Shortcut text (e.g., "⌘K"). |
+
+## Features
+
+### Fast Filtering
+- Built-in fuzzy search and filtering
+- Instant results as you type
+- Customizable search algorithm
+
+### Keyboard Navigation
+- Arrow keys to navigate items
+- Enter to select items
+- Escape to close dialog
+- Tab to cycle through groups
+
+### Accessibility
+- Full screen reader support
+- Proper ARIA attributes
+- Focus management
+- Keyboard shortcuts
+
+### Customization
+- Unstyled by default
+- Easy to theme and customize
+- Flexible component composition
+
+## Common Use Cases
+
+The Command component is perfect for:
+
+- **Command palettes** - Quick access to app functions
+- **File search** - Navigate through project files
+- **Global search** - Search across different content types
+- **Quick actions** - Keyboard shortcuts for power users
+- **Navigation menus** - Fast navigation between pages
+- **Settings search** - Find specific configuration options
+- **Documentation search** - Search through help content
+
+## Best Practices
+
+1. **Provide clear shortcuts** - Use recognizable keyboard shortcuts
+2. **Group related items** - Organize commands into logical groups
+3. **Include icons** - Visual cues help with recognition
+4. **Keep it fast** - Ensure search results appear instantly
+5. **Handle empty states** - Provide helpful "no results" messages
+6. **Use consistent naming** - Keep command names predictable
+7. **Test keyboard navigation** - Ensure full keyboard accessibility

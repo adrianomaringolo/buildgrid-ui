@@ -1,0 +1,8 @@
+{
+	"label": "Formatters",
+	"position": 2,
+	"link": {
+		"type": "generated-index",
+		"description": "Funções utilitárias para formatação de dados, incluindo formatação de moeda, datas, strings e números."
+	}
+}

@@ -1,3 +1,518 @@
 ---
 id: dropdown-menu
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent, DropdownMenuShortcut, Button } from "buildgrid-ui";
+import { User, Settings, LogOut, Plus, Download, Share, Edit, Trash2 } from "lucide-react";
+
+# Dropdown Menu
+
+The `DropdownMenu` component displays a menu of actions or options that appears when triggered. Built on Radix UI primitives, it supports keyboard navigation, submenus, checkboxes, radio groups, and keyboard shortcuts.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { 
+  DropdownMenu, 
+  DropdownMenuTrigger, 
+  DropdownMenuContent, 
+  DropdownMenuItem,
+  Button 
+} from "buildgrid-ui";
+
+function BasicDropdownMenu() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">Open Menu</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuItem>Help</DropdownMenuItem>
+        <DropdownMenuItem>Sign out</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}`}
+>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline">Open Menu</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent>
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Settings</DropdownMenuItem>
+      <DropdownMenuItem>Help</DropdownMenuItem>
+      <DropdownMenuItem>Sign out</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</ComponentDocSection>
+
+## Menu with Icons and Labels
+
+<ComponentDocSection
+  code={`import { 
+  DropdownMenu, 
+  DropdownMenuTrigger, 
+  DropdownMenuContent, 
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  Button 
+} from "buildgrid-ui";
+import { User, Settings, LogOut } from "lucide-react";
+
+function MenuWithIcons() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button>Account</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <User className="mr-2 h-4 w-4" />
+          Profile
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Settings className="mr-2 h-4 w-4" />
+          Settings
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <LogOut className="mr-2 h-4 w-4" />
+          Log out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}`}
+>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button>Account</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56">
+      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>
+        <User className="mr-2 h-4 w-4" />
+        Profile
+      </DropdownMenuItem>
+      <DropdownMenuItem>
+        <Settings className="mr-2 h-4 w-4" />
+        Settings
+      </DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>
+        <LogOut className="mr-2 h-4 w-4" />
+        Log out
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</ComponentDocSection>
+## Menu with Checkboxes
+
+<ComponentDocSection
+  code={`import { 
+  DropdownMenu, 
+  DropdownMenuTrigger, 
+  DropdownMenuContent, 
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuCheckboxItem,
+  Button 
+} from "buildgrid-ui";
+
+function MenuWithCheckboxes() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">View Options</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>View Settings</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem checked>
+          Show Toolbar
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem checked={false}>
+          Show Sidebar
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem checked>
+          Show Status Bar
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem>
+          Full Screen Mode
+        </DropdownMenuCheckboxItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}`}
+>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline">View Options</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56">
+      <DropdownMenuLabel>View Settings</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuCheckboxItem checked>
+        Show Toolbar
+      </DropdownMenuCheckboxItem>
+      <DropdownMenuCheckboxItem checked={false}>
+        Show Sidebar
+      </DropdownMenuCheckboxItem>
+      <DropdownMenuCheckboxItem checked>
+        Show Status Bar
+      </DropdownMenuCheckboxItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuCheckboxItem>
+        Full Screen Mode
+      </DropdownMenuCheckboxItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</ComponentDocSection>
+
+## Menu with Radio Groups
+
+<ComponentDocSection
+  code={`import { 
+  DropdownMenu, 
+  DropdownMenuTrigger, 
+  DropdownMenuContent, 
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  Button 
+} from "buildgrid-ui";
+
+function MenuWithRadioGroup() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">Theme</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Theme Selection</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value="light">
+          <DropdownMenuRadioItem value="light">
+            Light Theme
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="dark">
+            Dark Theme
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="system">
+            System Theme
+          </DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}`}
+>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline">Theme</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56">
+      <DropdownMenuLabel>Theme Selection</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuRadioGroup value="light">
+        <DropdownMenuRadioItem value="light">
+          Light Theme
+        </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="dark">
+          Dark Theme
+        </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="system">
+          System Theme
+        </DropdownMenuRadioItem>
+      </DropdownMenuRadioGroup>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</ComponentDocSection>
+
+## Menu with Submenus
+
+<ComponentDocSection
+  code={`import { 
+  DropdownMenu, 
+  DropdownMenuTrigger, 
+  DropdownMenuContent, 
+  DropdownMenuItem,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuSeparator,
+  Button 
+} from "buildgrid-ui";
+import { Plus, Download, Share } from "lucide-react";
+
+function MenuWithSubmenus() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">Actions</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuItem>
+          <Plus className="mr-2 h-4 w-4" />
+          New File
+        </DropdownMenuItem>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <Download className="mr-2 h-4 w-4" />
+            Export
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem>Export as PDF</DropdownMenuItem>
+            <DropdownMenuItem>Export as CSV</DropdownMenuItem>
+            <DropdownMenuItem>Export as JSON</DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <Share className="mr-2 h-4 w-4" />
+            Share
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem>Copy Link</DropdownMenuItem>
+            <DropdownMenuItem>Send Email</DropdownMenuItem>
+            <DropdownMenuItem>Share on Social</DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}`}
+>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline">Actions</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56">
+      <DropdownMenuItem>
+        <Plus className="mr-2 h-4 w-4" />
+        New File
+      </DropdownMenuItem>
+      <DropdownMenuSub>
+        <DropdownMenuSubTrigger>
+          <Download className="mr-2 h-4 w-4" />
+          Export
+        </DropdownMenuSubTrigger>
+        <DropdownMenuSubContent>
+          <DropdownMenuItem>Export as PDF</DropdownMenuItem>
+          <DropdownMenuItem>Export as CSV</DropdownMenuItem>
+          <DropdownMenuItem>Export as JSON</DropdownMenuItem>
+        </DropdownMenuSubContent>
+      </DropdownMenuSub>
+      <DropdownMenuSub>
+        <DropdownMenuSubTrigger>
+          <Share className="mr-2 h-4 w-4" />
+          Share
+        </DropdownMenuSubTrigger>
+        <DropdownMenuSubContent>
+          <DropdownMenuItem>Copy Link</DropdownMenuItem>
+          <DropdownMenuItem>Send Email</DropdownMenuItem>
+          <DropdownMenuItem>Share on Social</DropdownMenuItem>
+        </DropdownMenuSubContent>
+      </DropdownMenuSub>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</ComponentDocSection>
+## Menu with Keyboard Shortcuts
+
+<ComponentDocSection
+  code={`import { 
+  DropdownMenu, 
+  DropdownMenuTrigger, 
+  DropdownMenuContent, 
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  Button 
+} from "buildgrid-ui";
+import { Edit, Trash2, Download, Share } from "lucide-react";
+
+function MenuWithShortcuts() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">File Menu</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuItem>
+          <Edit className="mr-2 h-4 w-4" />
+          Edit
+          <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Download className="mr-2 h-4 w-4" />
+          Download
+          <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Share className="mr-2 h-4 w-4" />
+          Share
+          <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <Trash2 className="mr-2 h-4 w-4" />
+          Delete
+          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}`}
+>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline">File Menu</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56">
+      <DropdownMenuItem>
+        <Edit className="mr-2 h-4 w-4" />
+        Edit
+        <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
+      </DropdownMenuItem>
+      <DropdownMenuItem>
+        <Download className="mr-2 h-4 w-4" />
+        Download
+        <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+      </DropdownMenuItem>
+      <DropdownMenuItem>
+        <Share className="mr-2 h-4 w-4" />
+        Share
+        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+      </DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>
+        <Trash2 className="mr-2 h-4 w-4" />
+        Delete
+        <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</ComponentDocSection>
+
+## Properties
+
+### `DropdownMenu`
+
+| Property | Type | Description |
+|---|---|---|
+| `open` | `boolean` | The controlled open state of the dropdown menu. |
+| `defaultOpen` | `boolean` | The open state when initially rendered. |
+| `onOpenChange` | `(open: boolean) => void` | Event handler called when the open state changes. |
+| `modal` | `boolean` | The modality of the dropdown menu. Default: `true`. |
+
+### `DropdownMenuTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | Change the default rendered element for the one passed as a child. |
+| `children` | `React.ReactNode` | The element that will trigger the dropdown menu. |
+
+### `DropdownMenuContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `sideOffset` | `number` | The distance in pixels from the trigger. Default: `4`. |
+| `align` | `"start"` \| `"center"` \| `"end"` | The preferred alignment against the trigger. |
+| `side` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` | The preferred side of the trigger to render against. |
+
+### `DropdownMenuItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `inset` | `boolean` | Whether the item should have an inset appearance. |
+| `disabled` | `boolean` | Whether the item is disabled. |
+| `onSelect` | `(event: Event) => void` | Event handler called when the item is selected. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `DropdownMenuCheckboxItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `checked` | `boolean` \| `"indeterminate"` | The controlled checked state of the item. |
+| `onCheckedChange` | `(checked: boolean) => void` | Event handler called when the checked state changes. |
+| `disabled` | `boolean` | Whether the item is disabled. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `DropdownMenuRadioGroup`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | The controlled value of the radio group. |
+| `onValueChange` | `(value: string) => void` | Event handler called when the value changes. |
+
+### `DropdownMenuRadioItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | The unique value of the item. |
+| `disabled` | `boolean` | Whether the item is disabled. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `DropdownMenuLabel`
+
+| Property | Type | Description |
+|---|---|---|
+| `inset` | `boolean` | Whether the label should have an inset appearance. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `DropdownMenuSeparator`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `DropdownMenuShortcut`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The shortcut text (e.g., "⌘K"). |
+
+## Accessibility
+
+The DropdownMenu component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys, Enter, Escape, and Tab support
+- **Focus Management** - Proper focus handling and restoration
+- **Screen Reader Support** - ARIA attributes and roles for assistive technologies
+- **Type-ahead** - Users can type to navigate to menu items
+- **Roving Tabindex** - Only one menu item is tabbable at a time
+
+## Common Use Cases
+
+The DropdownMenu component is perfect for:
+
+- **Context Menus** - Right-click or action menus for items
+- **Navigation Menus** - User account menus, settings, help
+- **Action Menus** - File operations, editing actions, bulk operations
+- **Filter Menus** - View options, sorting, filtering controls
+- **Settings Panels** - Theme selection, preferences, configurations
+- **Quick Actions** - Frequently used commands and shortcuts
+
+## Best Practices
+
+1. **Logical Grouping** - Group related items together with separators
+2. **Clear Labels** - Use descriptive text that clearly indicates the action
+3. **Consistent Icons** - Use icons consistently throughout the menu
+4. **Keyboard Shortcuts** - Include shortcuts for frequently used actions
+5. **Appropriate Width** - Set reasonable width to accommodate content
+6. **Loading States** - Show loading indicators for async operations
+7. **Error Handling** - Disable items that aren't currently available
+8. **Mobile Considerations** - Ensure touch targets are appropriately sized

@@ -1,0 +1,335 @@
+---
+id: search-bar
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, Autocomplete, Input, Button } from "buildgrid-ui";
+import { Search, Filter, X } from "lucide-react";
+
+# Search Bar
+
+The Search Bar functionality in BuildGrid UI can be implemented using various components like `Command`, `Autocomplete`, or a simple `Input` with search styling. Each approach offers different levels of functionality and user experience.
+
+## Simple Search Input
+
+<ComponentDocSection
+  code={`import { Input, Button } from "buildgrid-ui";
+import { Search, X } from "lucide-react";
+
+function SimpleSearchBar() {
+  return (
+    <div className="relative w-full max-w-md">
+      <Input
+        type="text"
+        placeholder="Search..."
+        className="pl-10 pr-10"
+      />
+      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+      <Button
+        variant="ghost"
+        size="sm"
+        className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0"
+      >
+        <X className="h-3 w-3" />
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="relative w-full max-w-md">
+    <Input
+      type="text"
+      placeholder="Search..."
+      className="pl-10 pr-10"
+    />
+    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+    <Button
+      variant="ghost"
+      size="sm"
+      className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0"
+    >
+      <X className="h-3 w-3" />
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Command Search Bar
+
+<ComponentDocSection
+  code={`import { 
+  Command, 
+  CommandInput, 
+  CommandList, 
+  CommandEmpty, 
+  CommandGroup, 
+  CommandItem 
+} from "buildgrid-ui";
+
+function CommandSearchBar() {
+  return (
+    <Command className="rounded-lg border shadow-md max-w-md">
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem>Calendar</CommandItem>
+          <CommandItem>Search Emoji</CommandItem>
+          <CommandItem>Calculator</CommandItem>
+          <CommandItem>Settings</CommandItem>
+          <CommandItem>Profile</CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  );
+}`}
+>
+  <Command className="rounded-lg border shadow-md max-w-md">
+    <CommandInput placeholder="Type a command or search..." />
+    <CommandList>
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem>Calendar</CommandItem>
+        <CommandItem>Search Emoji</CommandItem>
+        <CommandItem>Calculator</CommandItem>
+        <CommandItem>Settings</CommandItem>
+        <CommandItem>Profile</CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </Command>
+</ComponentDocSection>
+## Autocomplete Search Bar
+
+<ComponentDocSection
+  code={`import { Autocomplete } from "buildgrid-ui";
+
+function AutocompleteSearchBar() {
+  const searchOptions = [
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+    { label: "Cherry", value: "cherry" },
+    { label: "Date", value: "date" },
+    { label: "Elderberry", value: "elderberry" },
+    { label: "Fig", value: "fig" },
+    { label: "Grape", value: "grape" },
+    { label: "Honeydew", value: "honeydew" }
+  ];
+
+  return (
+    <div className="w-full max-w-md">
+      <Autocomplete
+        options={searchOptions}
+        placeholder="Search fruits..."
+        onSelect={(option) => console.log('Selected:', option)}
+        onChange={(value) => console.log('Search:', value)}
+      />
+    </div>
+  );
+}`}
+>
+  <div className="w-full max-w-md">
+    <Autocomplete
+      options={[
+        { label: "Apple", value: "apple" },
+        { label: "Banana", value: "banana" },
+        { label: "Cherry", value: "cherry" },
+        { label: "Date", value: "date" },
+        { label: "Elderberry", value: "elderberry" },
+        { label: "Fig", value: "fig" },
+        { label: "Grape", value: "grape" },
+        { label: "Honeydew", value: "honeydew" }
+      ]}
+      placeholder="Search fruits..."
+      onSelect={(option) => console.log('Selected:', option)}
+      onChange={(value) => console.log('Search:', value)}
+    />
+  </div>
+</ComponentDocSection>
+
+## Search Bar with Filters
+
+<ComponentDocSection
+  code={`import { Input, Button } from "buildgrid-ui";
+import { Search, Filter } from "lucide-react";
+
+function SearchBarWithFilters() {
+  return (
+    <div className="flex gap-2 w-full max-w-lg">
+      <div className="relative flex-1">
+        <Input
+          type="text"
+          placeholder="Search products..."
+          className="pl-10"
+        />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+      </div>
+      <Button variant="outline" size="sm">
+        <Filter className="h-4 w-4 mr-2" />
+        Filters
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2 w-full max-w-lg">
+    <div className="relative flex-1">
+      <Input
+        type="text"
+        placeholder="Search products..."
+        className="pl-10"
+      />
+      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+    </div>
+    <Button variant="outline" size="sm">
+      <Filter className="h-4 w-4 mr-2" />
+      Filters
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Search Bar Sizes
+
+<ComponentDocSection
+  code={`import { Input } from "buildgrid-ui";
+import { Search } from "lucide-react";
+
+function SearchBarSizes() {
+  return (
+    <div className="space-y-4 w-full max-w-md">
+      {/* Small */}
+      <div className="relative">
+        <Input
+          type="text"
+          placeholder="Small search..."
+          className="pl-8 h-8 text-sm"
+        />
+        <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+      </div>
+      
+      {/* Medium (Default) */}
+      <div className="relative">
+        <Input
+          type="text"
+          placeholder="Medium search..."
+          className="pl-10"
+        />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+      </div>
+      
+      {/* Large */}
+      <div className="relative">
+        <Input
+          type="text"
+          placeholder="Large search..."
+          className="pl-12 h-12 text-lg"
+        />
+        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 w-full max-w-md">
+    <div className="relative">
+      <Input
+        type="text"
+        placeholder="Small search..."
+        className="pl-8 h-8 text-sm"
+      />
+      <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+    </div>
+    
+    <div className="relative">
+      <Input
+        type="text"
+        placeholder="Medium search..."
+        className="pl-10"
+      />
+      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+    </div>
+    
+    <div className="relative">
+      <Input
+        type="text"
+        placeholder="Large search..."
+        className="pl-12 h-12 text-lg"
+      />
+      <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+    </div>
+  </div>
+</ComponentDocSection>
+## Implementation Approaches
+
+### Using Command Component
+
+The `Command` component provides the most feature-rich search experience with:
+- Built-in keyboard navigation
+- Grouped results
+- Empty state handling
+- Accessible by default
+
+**Best for:** Command palettes, navigation search, complex filtering
+
+### Using Autocomplete Component
+
+The `Autocomplete` component offers:
+- Real-time filtering
+- Option selection
+- Customizable dropdown positioning
+- Clear selection functionality
+
+**Best for:** Form inputs, data selection, filtered searches
+
+### Using Input Component
+
+A simple `Input` with search styling provides:
+- Lightweight implementation
+- Full control over behavior
+- Easy customization
+- Minimal dependencies
+
+**Best for:** Simple search forms, basic filtering, custom implementations
+
+## Properties
+
+### Command-based Search Bar
+
+Uses the `Command` component properties. See [Command documentation](/docs/components/command) for full details.
+
+### Autocomplete-based Search Bar
+
+Uses the `Autocomplete` component properties. See [Autocomplete documentation](/docs/components/autocomplete) for full details.
+
+### Input-based Search Bar
+
+Uses the `Input` component properties. See [Input documentation](/docs/components/input) for full details.
+
+## Accessibility
+
+All search bar implementations include:
+
+- **Keyboard Navigation** - Tab, Enter, Escape, and arrow keys
+- **Screen Reader Support** - Proper ARIA labels and roles
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Search Announcements** - Results and state changes announced to screen readers
+
+## Common Use Cases
+
+Search bars are perfect for:
+
+- **Site Search** - Global content search functionality
+- **Product Filtering** - E-commerce product discovery
+- **Command Palettes** - Quick action and navigation access
+- **Data Tables** - Filtering large datasets
+- **User Selection** - Finding and selecting users or items
+- **Documentation** - Searching through help content
+
+## Best Practices
+
+1. **Choose the Right Component** - Match complexity to use case
+2. **Provide Clear Placeholders** - Help users understand what they can search for
+3. **Show Search State** - Loading indicators and result counts
+4. **Handle Empty States** - Provide helpful messages when no results found
+5. **Keyboard Shortcuts** - Consider adding keyboard shortcuts (Ctrl+K, /)
+6. **Mobile Optimization** - Ensure touch-friendly interactions
+7. **Performance** - Debounce search queries and optimize for large datasets
+8. **Clear Actions** - Provide easy ways to clear or reset searches

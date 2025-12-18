@@ -1,3 +1,530 @@
 ---
 id: badge
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Badge, Avatar, AvatarFallback } from "buildgrid-ui";
+import { Star, Check, X, AlertCircle, Bell, Mail, MessageCircle, ShoppingCart } from 'lucide-react';
+import { useState } from 'react';
+
+# Badge
+
+The `Badge` component displays labels, status indicators, counters, and other highlighted information in a compact format. It offers different visual variants for various contexts and is perfect for tags, notifications, and status indicators.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Badge } from "buildgrid-ui";
+
+function BasicBadge() {
+  return (
+    <Badge>Default Badge</Badge>
+  );
+}`}
+>
+  <Badge>Default Badge</Badge>
+</ComponentDocSection>
+
+## Variants
+
+<ComponentDocSection
+  code={`import { Badge } from "buildgrid-ui";
+
+function BadgeVariants() {
+  return (
+    <div className="flex gap-2 flex-wrap">
+      <Badge variant="default">Default</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+      <Badge variant="outline">Outline</Badge>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2 flex-wrap">
+    <Badge variant="default">Default</Badge>
+    <Badge variant="secondary">Secondary</Badge>
+    <Badge variant="destructive">Destructive</Badge>
+    <Badge variant="outline">Outline</Badge>
+  </div>
+</ComponentDocSection>
+
+## With Icons
+
+<ComponentDocSection
+  code={`import { Badge } from "buildgrid-ui";
+import { Star, Check, X, AlertCircle } from "lucide-react";
+
+function BadgesWithIcons() {
+  return (
+    <div className="flex gap-2 flex-wrap">
+      <Badge variant="default">
+        <Star className="h-3 w-3 mr-1" />
+        Favorite
+      </Badge>
+      
+      <Badge variant="secondary">
+        <Check className="h-3 w-3 mr-1" />
+        Approved
+      </Badge>
+      
+      <Badge variant="destructive">
+        <X className="h-3 w-3 mr-1" />
+        Rejected
+      </Badge>
+      
+      <Badge variant="outline">
+        <AlertCircle className="h-3 w-3 mr-1" />
+        Pending
+      </Badge>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2 flex-wrap">
+    <Badge variant="default">
+      <Star className="h-3 w-3 mr-1" />
+      Favorite
+    </Badge>
+    
+    <Badge variant="secondary">
+      <Check className="h-3 w-3 mr-1" />
+      Approved
+    </Badge>
+    
+    <Badge variant="destructive">
+      <X className="h-3 w-3 mr-1" />
+      Rejected
+    </Badge>
+    
+    <Badge variant="outline">
+      <AlertCircle className="h-3 w-3 mr-1" />
+      Pending
+    </Badge>
+  </div>
+</ComponentDocSection>
+
+## Order Status
+
+<ComponentDocSection
+  code={`import { Badge } from "buildgrid-ui";
+
+function OrderStatus() {
+  const orders = [
+    { id: '#1234', status: 'pending', label: 'Pending' },
+    { id: '#1235', status: 'processing', label: 'Processing' },
+    { id: '#1236', status: 'shipped', label: 'Shipped' },
+    { id: '#1237', status: 'delivered', label: 'Delivered' },
+    { id: '#1238', status: 'cancelled', label: 'Cancelled' },
+  ];
+
+  const getStatusVariant = (status) => {
+    switch (status) {
+      case 'pending': return 'outline';
+      case 'processing': return 'secondary';
+      case 'shipped': return 'default';
+      case 'delivered': return 'secondary';
+      case 'cancelled': return 'destructive';
+      default: return 'outline';
+    }
+  };
+
+  return (
+    <div className="space-y-3">
+      {orders.map(order => (
+        <div key={order.id} className="flex items-center justify-between p-3 border rounded-lg">
+          <span className="font-medium">Order {order.id}</span>
+          <Badge variant={getStatusVariant(order.status)}>
+            {order.label}
+          </Badge>
+        </div>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const orders = [
+      { id: '#1234', status: 'pending', label: 'Pending' },
+      { id: '#1235', status: 'processing', label: 'Processing' },
+      { id: '#1236', status: 'shipped', label: 'Shipped' },
+      { id: '#1237', status: 'delivered', label: 'Delivered' },
+      { id: '#1238', status: 'cancelled', label: 'Cancelled' },
+    ];
+
+    const getStatusVariant = (status) => {
+      switch (status) {
+        case 'pending': return 'outline';
+        case 'processing': return 'secondary';
+        case 'shipped': return 'default';
+        case 'delivered': return 'secondary';
+        case 'cancelled': return 'destructive';
+        default: return 'outline';
+      }
+    };
+
+    return (
+      <div className="space-y-3">
+        {orders.map(order => (
+          <div key={order.id} className="flex items-center justify-between p-3 border rounded-lg">
+            <span className="font-medium">Order {order.id}</span>
+            <Badge variant={getStatusVariant(order.status)}>
+              {order.label}
+            </Badge>
+          </div>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Category Tags
+
+<ComponentDocSection
+  code={`import { Badge } from "buildgrid-ui";
+
+function CategoryTags() {
+  const categories = [
+    'React', 'TypeScript', 'JavaScript', 'CSS', 'HTML',
+    'Node.js', 'Next.js', 'Tailwind', 'UI/UX', 'Frontend'
+  ];
+
+  return (
+    <div className="space-y-4">
+      <h3 className="font-semibold">Technologies</h3>
+      <div className="flex flex-wrap gap-2">
+        {categories.map(category => (
+          <Badge key={category} variant="secondary">
+            {category}
+          </Badge>
+        ))}
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const categories = [
+      'React', 'TypeScript', 'JavaScript', 'CSS', 'HTML',
+      'Node.js', 'Next.js', 'Tailwind', 'UI/UX', 'Frontend'
+    ];
+
+    return (
+      <div className="space-y-4">
+        <h3 className="font-semibold">Technologies</h3>
+        <div className="flex flex-wrap gap-2">
+          {categories.map(category => (
+            <Badge key={category} variant="secondary">
+              {category}
+            </Badge>
+          ))}
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Notification Counters
+
+<ComponentDocSection
+  code={`import { Badge } from "buildgrid-ui";
+import { Bell, Mail, MessageCircle, ShoppingCart } from "lucide-react";
+
+function NotificationBadges() {
+  return (
+    <div className="flex gap-6">
+      <div className="relative">
+        <Bell className="h-6 w-6" />
+        <Badge className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+          3
+        </Badge>
+      </div>
+      
+      <div className="relative">
+        <Mail className="h-6 w-6" />
+        <Badge variant="destructive" className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+          12
+        </Badge>
+      </div>
+      
+      <div className="relative">
+        <MessageCircle className="h-6 w-6" />
+        <Badge variant="secondary" className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+          5
+        </Badge>
+      </div>
+      
+      <div className="relative">
+        <ShoppingCart className="h-6 w-6" />
+        <Badge variant="outline" className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+          2
+        </Badge>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-6">
+    <div className="relative">
+      <Bell className="h-6 w-6" />
+      <Badge className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+        3
+      </Badge>
+    </div>
+    
+    <div className="relative">
+      <Mail className="h-6 w-6" />
+      <Badge variant="destructive" className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+        12
+      </Badge>
+    </div>
+    
+    <div className="relative">
+      <MessageCircle className="h-6 w-6" />
+      <Badge variant="secondary" className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+        5
+      </Badge>
+    </div>
+    
+    <div className="relative">
+      <ShoppingCart className="h-6 w-6" />
+      <Badge variant="outline" className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
+        2
+      </Badge>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## User Roles
+
+<ComponentDocSection
+  code={`import { Badge, Avatar, AvatarFallback } from "buildgrid-ui";
+
+function UserRoles() {
+  const users = [
+    { name: 'John Smith', role: 'admin', email: 'john@example.com' },
+    { name: 'Sarah Johnson', role: 'editor', email: 'sarah@example.com' },
+    { name: 'Mike Wilson', role: 'viewer', email: 'mike@example.com' },
+    { name: 'Emma Davis', role: 'admin', email: 'emma@example.com' },
+  ];
+
+  const getRoleVariant = (role) => {
+    switch (role) {
+      case 'admin': return 'destructive';
+      case 'editor': return 'default';
+      case 'viewer': return 'secondary';
+      default: return 'outline';
+    }
+  };
+
+  const getRoleLabel = (role) => {
+    switch (role) {
+      case 'admin': return 'Administrator';
+      case 'editor': return 'Editor';
+      case 'viewer': return 'Viewer';
+      default: return role;
+    }
+  };
+
+  return (
+    <div className="space-y-3">
+      {users.map((user, index) => (
+        <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+          <div className="flex items-center gap-3">
+            <Avatar className="h-8 w-8">
+              <AvatarFallback className="text-xs">
+                {user.name.split(' ').map(n => n[0]).join('')}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="font-medium">{user.name}</p>
+              <p className="text-sm text-gray-600">{user.email}</p>
+            </div>
+          </div>
+          
+          <Badge variant={getRoleVariant(user.role)}>
+            {getRoleLabel(user.role)}
+          </Badge>
+        </div>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const users = [
+      { name: 'John Smith', role: 'admin', email: 'john@example.com' },
+      { name: 'Sarah Johnson', role: 'editor', email: 'sarah@example.com' },
+      { name: 'Mike Wilson', role: 'viewer', email: 'mike@example.com' },
+      { name: 'Emma Davis', role: 'admin', email: 'emma@example.com' },
+    ];
+
+    const getRoleVariant = (role) => {
+      switch (role) {
+        case 'admin': return 'destructive';
+        case 'editor': return 'default';
+        case 'viewer': return 'secondary';
+        default: return 'outline';
+      }
+    };
+
+    const getRoleLabel = (role) => {
+      switch (role) {
+        case 'admin': return 'Administrator';
+        case 'editor': return 'Editor';
+        case 'viewer': return 'Viewer';
+        default: return role;
+      }
+    };
+
+    return (
+      <div className="space-y-3">
+        {users.map((user, index) => (
+          <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+            <div className="flex items-center gap-3">
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className="text-xs">
+                  {user.name.split(' ').map(n => n[0]).join('')}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-medium">{user.name}</p>
+                <p className="text-sm text-gray-600">{user.email}</p>
+              </div>
+            </div>
+            
+            <Badge variant={getRoleVariant(user.role)}>
+              {getRoleLabel(user.role)}
+            </Badge>
+          </div>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Interactive Badges
+
+<ComponentDocSection
+  code={`import { Badge } from "buildgrid-ui";
+import { X } from "lucide-react";
+import { useState } from "react";
+
+function InteractiveBadges() {
+  const [tags, setTags] = useState(['React', 'TypeScript', 'Tailwind', 'Next.js']);
+
+  const removeTag = (tagToRemove) => {
+    setTags(tags.filter(tag => tag !== tagToRemove));
+  };
+
+  return (
+    <div className="space-y-4">
+      <h3 className="font-semibold">Removable Tags</h3>
+      <div className="flex flex-wrap gap-2">
+        {tags.map(tag => (
+          <Badge key={tag} variant="secondary" className="cursor-pointer hover:bg-secondary/80">
+            {tag}
+            <button
+              onClick={() => removeTag(tag)}
+              className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </Badge>
+        ))}
+      </div>
+      {tags.length === 0 && (
+        <p className="text-sm text-gray-500">All tags removed! Refresh to reset.</p>
+      )}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [tags, setTags] = useState(['React', 'TypeScript', 'Tailwind', 'Next.js']);
+
+    const removeTag = (tagToRemove) => {
+      setTags(tags.filter(tag => tag !== tagToRemove));
+    };
+
+    return (
+      <div className="space-y-4">
+        <h3 className="font-semibold">Removable Tags</h3>
+        <div className="flex flex-wrap gap-2">
+          {tags.map(tag => (
+            <Badge key={tag} variant="secondary" className="cursor-pointer hover:bg-secondary/80">
+              {tag}
+              <button
+                onClick={() => removeTag(tag)}
+                className="ml-1 hover:bg-secondary-foreground/20 rounded-full p-0.5"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </Badge>
+          ))}
+        </div>
+        {tags.length === 0 && (
+          <p className="text-sm text-gray-500">All tags removed! Refresh to reset.</p>
+        )}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Badge`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `"default"` \| `"secondary"` \| `"destructive"` \| `"outline"` | `"default"` | Visual variant of the badge. |
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Badge content. |
+
+### Variants
+
+| Variant | Description | Recommended Use |
+|---|---|---|
+| `default` | Primary badge with colored background | Active status, important information |
+| `secondary` | Badge with light gray background | Tags, categories, neutral information |
+| `destructive` | Red badge for alerts | Errors, critical status, destructive actions |
+| `outline` | Badge with border, transparent background | Pending status, secondary information |
+
+## Features
+
+### Visual Flexibility
+- Multiple variants for different contexts
+- Support for icons and custom content
+- Easy customization with Tailwind CSS
+
+### Compact Design
+- Optimized for small spaces
+- Small but readable text
+- Appropriate padding for different content
+
+### Versatility
+- Works as label, status, counter
+- Can be interactive or informational only
+- Integrates well with other components
+
+## Common Use Cases
+
+The Badge component is perfect for:
+
+- **Tags and Categories** - Content categorization and organization
+- **Status Indicators** - Order status, process states, progress indicators
+- **Notifications** - Message counters, visual alerts, activity indicators
+- **Roles and Permissions** - Access levels, user types, organizational hierarchies
+- **Product Labels** - New, sale, featured, out of stock indicators
+- **Priority Levels** - High, medium, low priority indicators
+- **Content Metadata** - Author roles, publication status, content types
+
+## Best Practices
+
+1. **Use appropriate variants** - Choose variants based on context and importance
+2. **Keep text concise** - Badges should contain brief and clear information
+3. **Be consistent** - Use the same variants for similar contexts
+4. **Consider contrast** - Ensure text is readable against the background
+5. **Test responsiveness** - Check how badges behave on small screens
+6. **Use sparingly** - Too many badges can clutter the interface
+7. **Provide context** - Make sure the badge meaning is clear to users

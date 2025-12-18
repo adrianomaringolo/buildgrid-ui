@@ -1,3 +1,290 @@
 ---
 id: label
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Label, Input, Checkbox, Switch, Button } from "buildgrid-ui";
+
+# Label
+
+The `Label` component provides accessible form labels that are properly associated with form controls. Built on Radix UI primitives, it ensures proper accessibility and supports all standard HTML label attributes.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Label, Input } from "buildgrid-ui";
+
+function BasicLabel() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="email">Email Address</Label>
+      <Input id="email" type="email" placeholder="Enter your email" />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-2">
+    <Label htmlFor="email">Email Address</Label>
+    <Input id="email" type="email" placeholder="Enter your email" />
+  </div>
+</ComponentDocSection>
+
+## Label with Required Indicator
+
+<ComponentDocSection
+  code={`import { Label, Input } from "buildgrid-ui";
+
+function RequiredLabel() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="name">
+        Full Name <span className="text-red-500">*</span>
+      </Label>
+      <Input id="name" type="text" placeholder="Enter your full name" required />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-2">
+    <Label htmlFor="name">
+      Full Name <span className="text-red-500">*</span>
+    </Label>
+    <Input id="name" type="text" placeholder="Enter your full name" required />
+  </div>
+</ComponentDocSection>
+
+## Label with Checkbox
+
+<ComponentDocSection
+  code={`import { Label, Checkbox } from "buildgrid-ui";
+
+function CheckboxLabel() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Checkbox id="terms" />
+      <Label htmlFor="terms" className="cursor-pointer">
+        I agree to the terms and conditions
+      </Label>
+    </div>
+  );
+}`}
+>
+  <div className="flex items-center space-x-2">
+    <Checkbox id="terms" />
+    <Label htmlFor="terms" className="cursor-pointer">
+      I agree to the terms and conditions
+    </Label>
+  </div>
+</ComponentDocSection>
+
+## Label with Switch
+
+<ComponentDocSection
+  code={`import { Label, Switch } from "buildgrid-ui";
+
+function SwitchLabel() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Switch id="notifications" />
+      <Label htmlFor="notifications" className="cursor-pointer">
+        Enable email notifications
+      </Label>
+    </div>
+  );
+}`}
+>
+  <div className="flex items-center space-x-2">
+    <Switch id="notifications" />
+    <Label htmlFor="notifications" className="cursor-pointer">
+      Enable email notifications
+    </Label>
+  </div>
+</ComponentDocSection>
+## Form Example
+
+<ComponentDocSection
+  code={`import { Label, Input, Button } from "buildgrid-ui";
+
+function FormWithLabels() {
+  return (
+    <form className="space-y-4 w-full max-w-md">
+      <div className="space-y-2">
+        <Label htmlFor="firstName">First Name</Label>
+        <Input id="firstName" type="text" placeholder="John" />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="lastName">Last Name</Label>
+        <Input id="lastName" type="text" placeholder="Doe" />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="email">
+          Email Address <span className="text-red-500">*</span>
+        </Label>
+        <Input id="email" type="email" placeholder="john@example.com" required />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="message">Message</Label>
+        <textarea 
+          id="message" 
+          className="w-full px-3 py-2 border rounded-md" 
+          rows={4} 
+          placeholder="Your message..."
+        />
+      </div>
+      
+      <Button type="submit" className="w-full">
+        Submit Form
+      </Button>
+    </form>
+  );
+}`}
+>
+  <form className="space-y-4 w-full max-w-md">
+    <div className="space-y-2">
+      <Label htmlFor="firstName">First Name</Label>
+      <Input id="firstName" type="text" placeholder="John" />
+    </div>
+    
+    <div className="space-y-2">
+      <Label htmlFor="lastName">Last Name</Label>
+      <Input id="lastName" type="text" placeholder="Doe" />
+    </div>
+    
+    <div className="space-y-2">
+      <Label htmlFor="email">
+        Email Address <span className="text-red-500">*</span>
+      </Label>
+      <Input id="email" type="email" placeholder="john@example.com" required />
+    </div>
+    
+    <div className="space-y-2">
+      <Label htmlFor="message">Message</Label>
+      <textarea 
+        id="message" 
+        className="w-full px-3 py-2 border rounded-md" 
+        rows={4} 
+        placeholder="Your message..."
+      />
+    </div>
+    
+    <Button type="submit" className="w-full">
+      Submit Form
+    </Button>
+  </form>
+</ComponentDocSection>
+
+## Label Styling Variations
+
+<ComponentDocSection
+  code={`import { Label, Input } from "buildgrid-ui";
+
+function LabelVariations() {
+  return (
+    <div className="space-y-6 w-full max-w-md">
+      <div className="space-y-2">
+        <Label htmlFor="default" className="text-sm font-medium">
+          Default Label
+        </Label>
+        <Input id="default" placeholder="Default styling" />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="large" className="text-base font-semibold">
+          Large Label
+        </Label>
+        <Input id="large" placeholder="Larger label text" />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="muted" className="text-sm font-medium text-muted-foreground">
+          Muted Label
+        </Label>
+        <Input id="muted" placeholder="Muted label color" />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="error" className="text-sm font-medium text-red-600">
+          Error Label
+        </Label>
+        <Input id="error" placeholder="Error state" className="border-red-300" />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-6 w-full max-w-md">
+    <div className="space-y-2">
+      <Label htmlFor="default" className="text-sm font-medium">
+        Default Label
+      </Label>
+      <Input id="default" placeholder="Default styling" />
+    </div>
+    
+    <div className="space-y-2">
+      <Label htmlFor="large" className="text-base font-semibold">
+        Large Label
+      </Label>
+      <Input id="large" placeholder="Larger label text" />
+    </div>
+    
+    <div className="space-y-2">
+      <Label htmlFor="muted" className="text-sm font-medium text-muted-foreground">
+        Muted Label
+      </Label>
+      <Input id="muted" placeholder="Muted label color" />
+    </div>
+    
+    <div className="space-y-2">
+      <Label htmlFor="error" className="text-sm font-medium text-red-600">
+        Error Label
+      </Label>
+      <Input id="error" placeholder="Error state" className="border-red-300" />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Label`
+
+| Property | Type | Description |
+|---|---|---|
+| `htmlFor` | `string` | The id of the form control this label is associated with. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The label text or content. |
+| `onClick` | `(event: MouseEvent) => void` | Event handler called when the label is clicked. |
+
+## Accessibility
+
+The Label component includes comprehensive accessibility features:
+
+- **Form Association** - Properly associates labels with form controls using `htmlFor`
+- **Screen Reader Support** - Provides accessible names for form controls
+- **Click Handling** - Clicking the label focuses the associated form control
+- **Keyboard Navigation** - Works seamlessly with keyboard navigation
+- **Disabled State Support** - Automatically handles disabled form control states
+
+## Common Use Cases
+
+The Label component is perfect for:
+
+- **Form Fields** - Text inputs, email fields, password fields
+- **Checkboxes and Radio Buttons** - Providing clickable labels
+- **Switches and Toggles** - Describing toggle functionality
+- **Select Dropdowns** - Labeling selection controls
+- **File Uploads** - Describing file input fields
+- **Text Areas** - Labeling multi-line text inputs
+
+## Best Practices
+
+1. **Always Use Labels** - Every form control should have an associated label
+2. **Clear and Descriptive** - Use clear, descriptive text that explains the field
+3. **Required Indicators** - Mark required fields with visual indicators
+4. **Consistent Styling** - Maintain consistent label styling throughout forms
+5. **Proper Association** - Always use `htmlFor` to associate labels with controls
+6. **Error States** - Update label styling to indicate validation errors
+7. **Accessibility First** - Ensure labels work well with screen readers
+8. **Mobile Friendly** - Make labels touch-friendly on mobile devices

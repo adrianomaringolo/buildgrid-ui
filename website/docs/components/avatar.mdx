@@ -1,3 +1,389 @@
 ---
 id: avatar
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+import { User, Mail, Phone } from 'lucide-react';
+
+# Avatar
+
+The `Avatar` component displays user profile images with automatic fallback to initials or icons when images fail to load. Built on Radix UI Avatar primitive for maximum accessibility and reliability.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+
+function BasicAvatar() {
+  return (
+    <Avatar>
+      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  );
+}`}
+>
+  <Avatar>
+    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+    <AvatarFallback>CN</AvatarFallback>
+  </Avatar>
+</ComponentDocSection>
+
+## Different Sizes
+
+<ComponentDocSection
+  code={`import { Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+
+function AvatarSizes() {
+  return (
+    <div className="flex items-center gap-4">
+      <Avatar className="h-8 w-8">
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback className="text-xs">CN</AvatarFallback>
+      </Avatar>
+      
+      <Avatar className="h-10 w-10">
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+      
+      <Avatar className="h-16 w-16">
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback className="text-lg">CN</AvatarFallback>
+      </Avatar>
+      
+      <Avatar className="h-20 w-20">
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback className="text-xl">CN</AvatarFallback>
+      </Avatar>
+    </div>
+  );
+}`}
+>
+  <div className="flex items-center gap-4">
+    <Avatar className="h-8 w-8">
+      <AvatarImage src="https://github.com/shadcn.png" />
+      <AvatarFallback className="text-xs">CN</AvatarFallback>
+    </Avatar>
+    
+    <Avatar className="h-10 w-10">
+      <AvatarImage src="https://github.com/shadcn.png" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+    
+    <Avatar className="h-16 w-16">
+      <AvatarImage src="https://github.com/shadcn.png" />
+      <AvatarFallback className="text-lg">CN</AvatarFallback>
+    </Avatar>
+    
+    <Avatar className="h-20 w-20">
+      <AvatarImage src="https://github.com/shadcn.png" />
+      <AvatarFallback className="text-xl">CN</AvatarFallback>
+    </Avatar>
+  </div>
+</ComponentDocSection>
+
+## Fallback with Icon
+
+<ComponentDocSection
+  code={`import { Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+import { User } from "lucide-react";
+
+function AvatarWithIcon() {
+  return (
+    <div className="flex gap-4">
+      <Avatar>
+        <AvatarImage src="/non-existent-image.jpg" />
+        <AvatarFallback>
+          <User className="h-4 w-4" />
+        </AvatarFallback>
+      </Avatar>
+      
+      <Avatar className="h-16 w-16">
+        <AvatarImage src="/non-existent-image.jpg" />
+        <AvatarFallback>
+          <User className="h-8 w-8" />
+        </AvatarFallback>
+      </Avatar>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-4">
+    <Avatar>
+      <AvatarImage src="/non-existent-image.jpg" />
+      <AvatarFallback>
+        <User className="h-4 w-4" />
+      </AvatarFallback>
+    </Avatar>
+    
+    <Avatar className="h-16 w-16">
+      <AvatarImage src="/non-existent-image.jpg" />
+      <AvatarFallback>
+        <User className="h-8 w-8" />
+      </AvatarFallback>
+    </Avatar>
+  </div>
+</ComponentDocSection>
+
+## User List
+
+<ComponentDocSection
+  code={`import { Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+
+function UserList() {
+  const users = [
+    { name: 'John Smith', email: 'john@example.com', avatar: 'https://github.com/shadcn.png' },
+    { name: 'Sarah Johnson', email: 'sarah@example.com', avatar: null },
+    { name: 'Mike Wilson', email: 'mike@example.com', avatar: 'https://github.com/vercel.png' },
+    { name: 'Emma Davis', email: 'emma@example.com', avatar: null },
+  ];
+
+  const getInitials = (name) => {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  };
+
+  return (
+    <div className="space-y-4">
+      {users.map((user, index) => (
+        <div key={index} className="flex items-center gap-3 p-3 border rounded-lg">
+          <Avatar>
+            <AvatarImage src={user.avatar} alt={user.name} />
+            <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+          </Avatar>
+          
+          <div>
+            <p className="font-medium">{user.name}</p>
+            <p className="text-sm text-gray-600">{user.email}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const users = [
+      { name: 'John Smith', email: 'john@example.com', avatar: 'https://github.com/shadcn.png' },
+      { name: 'Sarah Johnson', email: 'sarah@example.com', avatar: null },
+      { name: 'Mike Wilson', email: 'mike@example.com', avatar: 'https://github.com/vercel.png' },
+      { name: 'Emma Davis', email: 'emma@example.com', avatar: null },
+    ];
+
+    const getInitials = (name) => {
+      return name.split(' ').map(n => n[0]).join('').toUpperCase();
+    };
+
+    return (
+      <div className="space-y-4">
+        {users.map((user, index) => (
+          <div key={index} className="flex items-center gap-3 p-3 border rounded-lg">
+            <Avatar>
+              <AvatarImage src={user.avatar} alt={user.name} />
+              <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+            </Avatar>
+            
+            <div>
+              <p className="font-medium">{user.name}</p>
+              <p className="text-sm text-gray-600">{user.email}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Avatar Group
+
+<ComponentDocSection
+  code={`import { Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+
+function AvatarGroup() {
+  const members = [
+    { name: 'John', avatar: 'https://github.com/shadcn.png' },
+    { name: 'Sarah', avatar: null },
+    { name: 'Mike', avatar: 'https://github.com/vercel.png' },
+    { name: 'Emma', avatar: null },
+    { name: 'David', avatar: null },
+  ];
+
+  return (
+    <div className="flex -space-x-2">
+      {members.slice(0, 3).map((member, index) => (
+        <Avatar key={index} className="border-2 border-white">
+          <AvatarImage src={member.avatar} alt={member.name} />
+          <AvatarFallback>{member.name[0]}</AvatarFallback>
+        </Avatar>
+      ))}
+      
+      {members.length > 3 && (
+        <Avatar className="border-2 border-white bg-gray-100">
+          <AvatarFallback className="text-xs">
+            +{members.length - 3}
+          </AvatarFallback>
+        </Avatar>
+      )}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const members = [
+      { name: 'John', avatar: 'https://github.com/shadcn.png' },
+      { name: 'Sarah', avatar: null },
+      { name: 'Mike', avatar: 'https://github.com/vercel.png' },
+      { name: 'Emma', avatar: null },
+      { name: 'David', avatar: null },
+    ];
+
+    return (
+      <div className="flex -space-x-2">
+        {members.slice(0, 3).map((member, index) => (
+          <Avatar key={index} className="border-2 border-white">
+            <AvatarImage src={member.avatar} alt={member.name} />
+            <AvatarFallback>{member.name[0]}</AvatarFallback>
+          </Avatar>
+        ))}
+        
+        {members.length > 3 && (
+          <Avatar className="border-2 border-white bg-gray-100">
+            <AvatarFallback className="text-xs">
+              +{members.length - 3}
+            </AvatarFallback>
+          </Avatar>
+        )}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Avatar with Status
+
+<ComponentDocSection
+  code={`import { Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+
+function AvatarWithStatus() {
+  return (
+    <div className="flex gap-6">
+      <div className="relative">
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>JS</AvatarFallback>
+        </Avatar>
+        <div className="absolute -bottom-0 -right-0 h-3 w-3 bg-green-500 border-2 border-white rounded-full" title="Online"></div>
+      </div>
+      
+      <div className="relative">
+        <Avatar>
+          <AvatarImage src="https://github.com/vercel.png" />
+          <AvatarFallback>MS</AvatarFallback>
+        </Avatar>
+        <div className="absolute -bottom-0 -right-0 h-3 w-3 bg-yellow-500 border-2 border-white rounded-full" title="Away"></div>
+      </div>
+      
+      <div className="relative">
+        <Avatar>
+          <AvatarImage src="/non-existent-image.jpg" />
+          <AvatarFallback>PC</AvatarFallback>
+        </Avatar>
+        <div className="absolute -bottom-0 -right-0 h-3 w-3 bg-gray-400 border-2 border-white rounded-full" title="Offline"></div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-6">
+    <div className="relative">
+      <Avatar>
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback>JS</AvatarFallback>
+      </Avatar>
+      <div className="absolute -bottom-0 -right-0 h-3 w-3 bg-green-500 border-2 border-white rounded-full" title="Online"></div>
+    </div>
+    
+    <div className="relative">
+      <Avatar>
+        <AvatarImage src="https://github.com/vercel.png" />
+        <AvatarFallback>MS</AvatarFallback>
+      </Avatar>
+      <div className="absolute -bottom-0 -right-0 h-3 w-3 bg-yellow-500 border-2 border-white rounded-full" title="Away"></div>
+    </div>
+    
+    <div className="relative">
+      <Avatar>
+        <AvatarImage src="/non-existent-image.jpg" />
+        <AvatarFallback>PC</AvatarFallback>
+      </Avatar>
+      <div className="absolute -bottom-0 -right-0 h-3 w-3 bg-gray-400 border-2 border-white rounded-full" title="Offline"></div>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Avatar`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the avatar container. |
+
+### `AvatarImage`
+
+| Property | Type | Description |
+|---|---|---|
+| `src` | `string` | URL of the avatar image. |
+| `alt` | `string` | Alternative text for the image. |
+| `className` | `string` | Additional CSS classes for the image. |
+
+### `AvatarFallback`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | Fallback content (initials, icon, etc.). |
+| `className` | `string` | Additional CSS classes for the fallback. |
+
+## Features
+
+### Automatic Fallback
+- If the image fails to load, the fallback is displayed automatically
+- Fallback can contain text (initials) or icons
+- Smooth transition between image and fallback
+
+### Accessibility
+- Full screen reader support
+- Proper `alt` attributes for images
+- Correct semantic structure
+- ARIA compliance through Radix UI
+
+## Recommended Sizes
+
+| Context | Size | Classes |
+|---|---|---|
+| Compact list | 32px | `h-8 w-8` |
+| Standard list | 40px | `h-10 w-10` (default) |
+| Profile | 64px | `h-16 w-16` |
+| Header/Hero | 80px+ | `h-20 w-20` |
+
+## Common Use Cases
+
+The Avatar component is perfect for:
+
+- **User profiles** - Display user profile pictures in applications
+- **Comment systems** - Show commenter avatars in discussions
+- **Team members** - Display team member photos in about pages
+- **Contact lists** - Show contact photos in messaging apps
+- **Author bylines** - Display author photos in blog posts
+- **User directories** - Show user avatars in member listings
+- **Navigation bars** - Display current user avatar in headers
+
+## Best Practices
+
+1. **Always provide fallback** - Use initials or icons when images aren't available
+2. **Use appropriate alt text** - Describe the user or context of the image
+3. **Maintain aspect ratio** - Always use square dimensions (same height and width)
+4. **Optimize images** - Use optimized images of appropriate size
+5. **Consider loading states** - Implement skeleton or placeholder during loading
+6. **Test fallbacks** - Verify how the component behaves without images
+7. **Accessibility first** - Ensure it works well with screen readers

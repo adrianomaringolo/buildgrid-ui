@@ -1,3 +1,311 @@
 ---
 id: calendar
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Calendar } from "buildgrid-ui";
+import { useState } from 'react';
+
+# Calendar
+
+The `Calendar` component provides an interactive date picker with month navigation and locale support. Built with accessibility in mind, it supports keyboard navigation and screen readers.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Calendar } from "buildgrid-ui";
+
+function BasicCalendar() {
+  return (
+    <Calendar />
+  );
+}`}
+>
+  <Calendar />
+</ComponentDocSection>
+
+## With Selected Date
+
+<ComponentDocSection
+  code={`import { Calendar } from "buildgrid-ui";
+import { useState } from "react";
+
+function CalendarWithSelection() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  return (
+    <div className="space-y-4">
+      <Calendar 
+        selectedDate={selectedDate}
+        onChange={setSelectedDate}
+      />
+      <p className="text-sm text-gray-600">
+        Selected: {selectedDate.toLocaleDateString()}
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [selectedDate, setSelectedDate] = useState(new Date());
+
+    return (
+      <div className="space-y-4">
+        <Calendar 
+          selectedDate={selectedDate}
+          onChange={setSelectedDate}
+        />
+        <p className="text-sm text-gray-600">
+          Selected: {selectedDate.toLocaleDateString()}
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Different Languages
+
+<ComponentDocSection
+  code={`import { Calendar } from "buildgrid-ui";
+import { useState } from "react";
+
+function MultiLanguageCalendar() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [language, setLanguage] = useState('enUS');
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        <button 
+          onClick={() => setLanguage('enUS')}
+          className={\`px-3 py-1 rounded \${language === 'enUS' ? 'bg-blue-500 text-white' : 'bg-gray-200'}\`}
+        >
+          English
+        </button>
+        <button 
+          onClick={() => setLanguage('ptBR')}
+          className={\`px-3 py-1 rounded \${language === 'ptBR' ? 'bg-blue-500 text-white' : 'bg-gray-200'}\`}
+        >
+          Português
+        </button>
+      </div>
+      
+      <Calendar 
+        selectedDate={selectedDate}
+        onChange={setSelectedDate}
+        language={language}
+      />
+      
+      <p className="text-sm text-gray-600">
+        Selected: {selectedDate.toLocaleDateString(language === 'ptBR' ? 'pt-BR' : 'en-US')}
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [language, setLanguage] = useState('enUS');
+
+    return (
+      <div className="space-y-4">
+        <div className="flex gap-2">
+          <button 
+            onClick={() => setLanguage('enUS')}
+            className={`px-3 py-1 rounded ${language === 'enUS' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          >
+            English
+          </button>
+          <button 
+            onClick={() => setLanguage('ptBR')}
+            className={`px-3 py-1 rounded ${language === 'ptBR' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          >
+            Português
+          </button>
+        </div>
+        
+        <Calendar 
+          selectedDate={selectedDate}
+          onChange={setSelectedDate}
+          language={language}
+        />
+        
+        <p className="text-sm text-gray-600">
+          Selected: {selectedDate.toLocaleDateString(language === 'ptBR' ? 'pt-BR' : 'en-US')}
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Date Range Selection
+
+<ComponentDocSection
+  code={`import { Calendar } from "buildgrid-ui";
+import { useState } from "react";
+
+function DateRangeCalendar() {
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [selectingEnd, setSelectingEnd] = useState(false);
+
+  const handleDateSelect = (date) => {
+    if (!startDate || selectingEnd) {
+      if (!startDate) {
+        setStartDate(date);
+        setSelectingEnd(true);
+      } else {
+        setEndDate(date);
+        setSelectingEnd(false);
+      }
+    } else {
+      setStartDate(date);
+      setEndDate(null);
+      setSelectingEnd(true);
+    }
+  };
+
+  const resetSelection = () => {
+    setStartDate(null);
+    setEndDate(null);
+    setSelectingEnd(false);
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        <button 
+          onClick={resetSelection}
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+        >
+          Reset Selection
+        </button>
+      </div>
+      
+      <Calendar 
+        selectedDate={selectingEnd ? endDate : startDate}
+        onChange={handleDateSelect}
+      />
+      
+      <div className="text-sm text-gray-600 space-y-1">
+        <p>Start Date: {startDate ? startDate.toLocaleDateString() : 'Not selected'}</p>
+        <p>End Date: {endDate ? endDate.toLocaleDateString() : 'Not selected'}</p>
+        <p className="text-xs text-gray-500">
+          {!startDate ? 'Select start date' : selectingEnd ? 'Select end date' : 'Click to select new range'}
+        </p>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [selectingEnd, setSelectingEnd] = useState(false);
+
+    const handleDateSelect = (date) => {
+      if (!startDate || selectingEnd) {
+        if (!startDate) {
+          setStartDate(date);
+          setSelectingEnd(true);
+        } else {
+          setEndDate(date);
+          setSelectingEnd(false);
+        }
+      } else {
+        setStartDate(date);
+        setEndDate(null);
+        setSelectingEnd(true);
+      }
+    };
+
+    const resetSelection = () => {
+      setStartDate(null);
+      setEndDate(null);
+      setSelectingEnd(false);
+    };
+
+    return (
+      <div className="space-y-4">
+        <div className="flex gap-2">
+          <button 
+            onClick={resetSelection}
+            className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+          >
+            Reset Selection
+          </button>
+        </div>
+        
+        <Calendar 
+          selectedDate={selectingEnd ? endDate : startDate}
+          onChange={handleDateSelect}
+        />
+        
+        <div className="text-sm text-gray-600 space-y-1">
+          <p>Start Date: {startDate ? startDate.toLocaleDateString() : 'Not selected'}</p>
+          <p>End Date: {endDate ? endDate.toLocaleDateString() : 'Not selected'}</p>
+          <p className="text-xs text-gray-500">
+            {!startDate ? 'Select start date' : selectingEnd ? 'Select end date' : 'Click to select new range'}
+          </p>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Calendar`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `selectedDate` | `Date` | - | Currently selected date. |
+| `onChange` | `(date: Date) => void` | - | Callback fired when a date is selected. |
+| `language` | `"enUS"` \| `"ptBR"` | `"enUS"` | Language for month and day names. |
+
+## Features
+
+### Accessibility
+- Full keyboard navigation support
+- Screen reader compatible with ARIA labels
+- Proper focus management
+- Live region announcements for month changes
+
+### Internationalization
+- Support for English (enUS) and Portuguese (ptBR)
+- Localized month and day names
+- Easy to extend with additional locales
+
+### Navigation
+- Month navigation with arrow buttons
+- Keyboard navigation between dates
+- Visual feedback for selected dates
+
+## Common Use Cases
+
+The Calendar component is perfect for:
+
+- **Date pickers** - Select single dates in forms
+- **Event scheduling** - Choose dates for appointments or events
+- **Date range selection** - Select start and end dates for bookings
+- **Birthday selection** - User profile date inputs
+- **Deadline setting** - Project management and task scheduling
+- **Availability calendars** - Show available dates for services
+- **Historical data** - Navigate through time-based data
+
+## Best Practices
+
+1. **Provide clear feedback** - Always show which date is selected
+2. **Handle edge cases** - Consider leap years, month boundaries
+3. **Accessibility first** - Ensure keyboard navigation works properly
+4. **Localization** - Use appropriate language for your users
+5. **Visual hierarchy** - Make selected dates clearly distinguishable
+6. **Mobile friendly** - Ensure touch targets are large enough
+7. **Date validation** - Validate selected dates on the application level
+
+## Keyboard Navigation
+
+- **Arrow keys** - Navigate between dates
+- **Enter/Space** - Select the focused date
+- **Tab** - Move focus to navigation buttons
+- **Escape** - Close calendar (when used in popover/modal)

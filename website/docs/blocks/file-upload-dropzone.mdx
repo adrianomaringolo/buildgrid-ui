@@ -1,0 +1,85 @@
+---
+id: file-upload-dropzone
+title: File Upload Dropzone
+description: Uma área de upload de arquivos com drag & drop, preview de imagens, controle de progresso e validação avançada.
+---
+
+import { FileUploadDropzone } from 'buildgrid-ui'
+
+# File Upload Dropzone
+
+O FileUploadDropzone é um componente completo para upload de arquivos que oferece uma interface intuitiva com drag & drop, preview de imagens, controle de progresso e validação robusta. Ideal para formulários que precisam de upload de documentos, imagens ou qualquer tipo de arquivo.
+
+## Importação
+
+```tsx
+import { FileUploadDropzone } from 'buildgrid-ui'
+import type { FileUploadConfig, UploadedFile } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { FileUploadDropzone } from 'buildgrid-ui'
+import { useState } from 'react'
+
+function BasicFileUpload() {
+  const [files, setFiles] = useState<UploadedFile[]>([])
+
+  return (
+    <FileUploadDropzone
+      onFilesChange={setFiles}
+      placeholder="Arraste arquivos aqui ou clique para selecionar"
+    />
+  )
+}
+```
+
+## Configuração Personalizada
+
+```tsx
+import { FileUploadDropzone } from 'buildgrid-ui'
+import type { FileUploadConfig } from 'buildgrid-ui'
+
+function CustomConfigUpload() {
+  const config: FileUploadConfig = {
+    maxFiles: 3,
+    maxSize: 5 * 1024 * 1024, // 5MB
+    acceptedFileTypes: ['image/*', 'application/pdf', '.doc', '.docx'],
+    multiple: true,
+    showPreview: true,
+    showProgress: true
+  }
+
+  return (
+    <FileUploadDropzone
+      config={config}
+      placeholder="Máximo 3 arquivos (imagens ou documentos)"
+    />
+  )
+}
+```
+
+## API Reference
+
+### FileUploadDropzone
+
+| Prop | Tipo | Descrição |
+|---|---|---|
+| `config` | `FileUploadConfig` | Configurações do upload. |
+| `onFilesChange` | `(files: UploadedFile[]) => void` | Callback chamado quando a lista de arquivos muda. |
+| `onFileUpload` | `(file: UploadedFile) => Promise<void>` | Função para processar upload individual. |
+| `className` | `string` | Classes CSS adicionais. |
+| `placeholder` | `string` | Texto exibido na área de drop. |
+
+### FileUploadConfig
+
+| Propriedade | Tipo | Padrão | Descrição |
+|---|---|---|---|
+| `maxFiles` | `number` | `5` | Número máximo de arquivos. |
+| `maxSize` | `number` | `10MB` | Tamanho máximo por arquivo (bytes). |
+| `acceptedFileTypes` | `string[]` | `['image/*', 'application/pdf', '.doc', '.docx']` | Tipos de arquivo aceitos. |
+| `multiple` | `boolean` | `true` | Permite múltiplos arquivos. |
+| `disabled` | `boolean` | `false` | Desabilita o upload. |
+| `showPreview` | `boolean` | `true` | Mostra preview de imagens. |
+| `showProgress` | `boolean` | `true` | Mostra barra de progresso. |

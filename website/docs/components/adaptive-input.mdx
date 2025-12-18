@@ -1,3 +1,274 @@
 ---
 id: adaptive-input
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { AdaptiveInput } from "buildgrid-ui";
+import { Phone, User, Mail, Search, HelpCircle, Eye, EyeOff, CreditCard } from 'lucide-react'
+
+# Adaptive Input
+
+The `AdaptiveInput` component is an enhanced input field that supports left and right icons, input masking, and automatic formatting. It's perfect for phone numbers, credit cards, and other formatted inputs.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { AdaptiveInput } from "buildgrid-ui";
+
+	function MyAdaptiveInput() {
+		return (
+			<AdaptiveInput placeholder="Enter your name" />
+		);
+	}`}
+>
+  <AdaptiveInput placeholder="Enter your name" />
+</ComponentDocSection>
+
+## With Icons
+
+<ComponentDocSection
+  code={`
+	import { AdaptiveInput } from "buildgrid-ui";
+	import { User, Mail, Search } from "lucide-react";
+
+	function InputWithIcons() {
+		return (
+			<div className="space-y-4">
+				<AdaptiveInput 
+					leftIcon={<User className="w-4 h-4" />}
+					placeholder="Username"
+				/>
+				<AdaptiveInput 
+					leftIcon={<Mail className="w-4 h-4" />}
+					placeholder="Email address"
+					type="email"
+				/>
+				<AdaptiveInput 
+					leftIcon={<Search className="w-4 h-4" />}
+					placeholder="Search..."
+				/>
+			</div>
+		);
+	}`}
+>
+  <div className="space-y-4">
+    <AdaptiveInput 
+      leftIcon={<User className="w-4 h-4" />}
+      placeholder="Username"
+    />
+    <AdaptiveInput 
+      leftIcon={<Mail className="w-4 h-4" />}
+      placeholder="Email address"
+      type="email"
+    />
+    <AdaptiveInput 
+      leftIcon={<Search className="w-4 h-4" />}
+      placeholder="Search..."
+    />
+  </div>
+</ComponentDocSection>
+
+## With Masks
+
+<ComponentDocSection
+  code={`import { AdaptiveInput } from "buildgrid-ui";
+	import { Phone, CreditCard } from "lucide-react";
+
+	function MaskedInputs() {
+		return (
+			<div className="space-y-4">
+				<AdaptiveInput 
+					leftIcon={<Phone className="w-4 h-4" />}
+					mask="(000) 000-0000"
+					placeholder="Phone number"
+				/>
+				<AdaptiveInput 
+					leftIcon={<CreditCard className="w-4 h-4" />}
+					mask="0000 0000 0000 0000"
+					placeholder="Credit card number"
+				/>
+			</div>
+		);
+	}`}
+>
+  <div className="space-y-4">
+    <AdaptiveInput 
+      leftIcon={<Phone className="w-4 h-4" />}
+      mask="(000) 000-0000"
+      placeholder="Phone number"
+    />
+    <AdaptiveInput 
+      leftIcon={<CreditCard className="w-4 h-4" />}
+      mask="0000 0000 0000 0000"
+      placeholder="Credit card number"
+    />
+  </div>
+</ComponentDocSection>
+
+## Both Icons
+
+<ComponentDocSection
+  code={`import { AdaptiveInput } from "buildgrid-ui";
+	import { Phone, HelpCircle, User, Eye } from "lucide-react";
+
+	function BothIconsInputs() {
+		return (
+			<div className="space-y-4">
+				<AdaptiveInput 
+					leftIcon={<Phone className="w-4 h-4" />}
+					rightIcon={<HelpCircle className="w-4 h-4" />}
+					mask="+00 0000-0000"
+					placeholder="International phone"
+				/>
+				<AdaptiveInput 
+					leftIcon={<User className="w-4 h-4" />}
+					rightIcon={<Eye className="w-4 h-4" />}
+					placeholder="Password"
+					type="password"
+				/>
+			</div>
+		);
+	}`}
+>
+  <div className="space-y-4">
+    <AdaptiveInput 
+      leftIcon={<Phone className="w-4 h-4" />}
+      rightIcon={<HelpCircle className="w-4 h-4" />}
+      mask="+00 0000-0000"
+      placeholder="International phone"
+    />
+    <AdaptiveInput 
+      leftIcon={<User className="w-4 h-4" />}
+      rightIcon={<Eye className="w-4 h-4" />}
+      placeholder="Password"
+      type="password"
+    />
+  </div>
+</ComponentDocSection>
+
+## Different Sizes
+
+<ComponentDocSection
+  code={`import { AdaptiveInput } from "buildgrid-ui";
+	import { User } from "lucide-react";
+
+	function DifferentSizes() {
+		return (
+			<div className="space-y-4">
+				<AdaptiveInput 
+					leftIcon={<User className="w-3 h-3" />}
+					placeholder="Small input (sm)"
+					sizing="sm"
+				/>
+				<AdaptiveInput 
+					leftIcon={<User className="w-4 h-4" />}
+					placeholder="Medium input (md) - Default"
+					sizing="md"
+				/>
+				<AdaptiveInput 
+					leftIcon={<User className="w-5 h-5" />}
+					placeholder="Large input (lg)"
+					sizing="lg"
+				/>
+				<AdaptiveInput 
+					leftIcon={<User className="w-6 h-6" />}
+					placeholder="Extra Large input (xl)"
+					sizing="xl"
+				/>
+				<AdaptiveInput 
+					leftIcon={<User className="w-7 h-7" />}
+					placeholder="2X Large input (2xl)"
+					sizing="2xl"
+				/>
+			</div>
+		);
+	}`}
+>
+  <div className="space-y-4">
+    <AdaptiveInput 
+      leftIcon={<User className="w-3 h-3" />}
+      placeholder="Small input (sm)"
+      sizing="sm"
+    />
+    <AdaptiveInput 
+      leftIcon={<User className="w-4 h-4" />}
+      placeholder="Medium input (md) - Default"
+      sizing="md"
+    />
+    <AdaptiveInput 
+      leftIcon={<User className="w-5 h-5" />}
+      placeholder="Large input (lg)"
+      sizing="lg"
+    />
+    <AdaptiveInput 
+      leftIcon={<User className="w-6 h-6" />}
+      placeholder="Extra Large input (xl)"
+      sizing="xl"
+    />
+    <AdaptiveInput 
+      leftIcon={<User className="w-7 h-7" />}
+      placeholder="2X Large input (2xl)"
+      sizing="2xl"
+    />
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `AdaptiveInput`
+
+| Property | Type | Description |
+|---|---|---|
+| `leftIcon` | `React.ReactNode` | Icon to display on the left side of the input. |
+| `rightIcon` | `React.ReactNode` | Icon to display on the right side of the input. |
+| `mask` | `string` | Input mask pattern. Use `0` for digits, other characters are treated as literals. |
+| `sizing` | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` | Size of the input field. |
+| `placeholder` | `string` | Placeholder text for the input. |
+| `type` | `string` | HTML input type (text, email, password, etc.). |
+| `disabled` | `boolean` | If `true`, the input is disabled. |
+| `className` | `string` | Additional CSS classes. |
+
+All other props from the base `Input` component are also supported.
+
+## Mask Patterns
+
+The mask prop uses a simple pattern where:
+- `0` represents a digit placeholder
+- Other characters are treated as literals
+
+### Common Mask Examples
+
+| Pattern | Example | Use Case |
+|---|---|---|
+| `(000) 000-0000` | `(555) 123-4567` | US Phone Number |
+| `+00 0000-0000` | `+1 5551-2345` | International Phone |
+| `0000 0000 0000 0000` | `1234 5678 9012 3456` | Credit Card |
+| `00/00/0000` | `12/25/2024` | Date |
+| `00000-000` | `12345-678` | ZIP Code |
+
+## Customization
+
+You can customize the appearance of the `AdaptiveInput` using CSS classes or Tailwind CSS.
+
+<ComponentDocSection
+  code={`import { AdaptiveInput } from "buildgrid-ui";
+import { Search } from "lucide-react";
+
+function CustomAdaptiveInput() {
+  return (
+    <AdaptiveInput 
+      leftIcon={<Search className="w-4 h-4 text-blue-500" />}
+      placeholder="Custom styled input"
+      className="border-blue-300 focus:border-blue-500 focus:ring-blue-200"
+    />
+  );
+}`}
+>
+  <AdaptiveInput 
+    leftIcon={<Search className="w-4 h-4 text-blue-500" />}
+    placeholder="Custom styled input"
+    className="border-blue-300 focus:border-blue-500 focus:ring-blue-200"
+  />
+</ComponentDocSection>
+
+The `AdaptiveInput` component extends the base `Input` component with additional functionality for icons and masking, making it perfect for forms that require formatted input fields.

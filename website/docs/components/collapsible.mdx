@@ -1,0 +1,381 @@
+---
+id: collapsible
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger, Button } from "buildgrid-ui";
+
+# Collapsible
+
+The `Collapsible` component creates interactive sections that can show or hide content with smooth animations. It's perfect for FAQs, navigation menus, settings panels, or any interface where you need to save vertical space while keeping content accessible.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Collapsible, CollapsibleContent, CollapsibleTrigger, Button } from "buildgrid-ui";
+
+function BasicCollapsible() {
+  return (
+    <Collapsible>
+      <CollapsibleTrigger asChild>
+        <Button variant="outline">Toggle Content</Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="mt-2 p-4 border rounded-md">
+        <p>This content can be shown or hidden smoothly.</p>
+        <p>Perfect for saving space in your interface while keeping content accessible.</p>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}`}
+>
+  <Collapsible>
+    <CollapsibleTrigger asChild>
+      <Button variant="outline">Toggle Content</Button>
+    </CollapsibleTrigger>
+    <CollapsibleContent className="mt-2 p-4 border rounded-md">
+      <p>This content can be shown or hidden smoothly.</p>
+      <p>Perfect for saving space in your interface while keeping content accessible.</p>
+    </CollapsibleContent>
+  </Collapsible>
+</ComponentDocSection>
+
+## FAQ Style
+
+<ComponentDocSection
+  code={`import { Collapsible, CollapsibleContent, CollapsibleTrigger, Button } from "buildgrid-ui";
+
+function FAQCollapsible() {
+  return (
+    <div className="space-y-4">
+      <Collapsible>
+        <CollapsibleTrigger asChild>
+          <Button variant="ghost" className="w-full justify-between text-left">
+            What is BuildGrid UI?
+            <span className="text-xs">▼</span>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="px-4 pb-4">
+          <p className="text-sm text-muted-foreground">
+            BuildGrid UI is a modern React component library built on top of shadcn/ui and Radix UI primitives. 
+            It provides a comprehensive set of accessible, customizable components for building beautiful user interfaces.
+          </p>
+        </CollapsibleContent>
+      </Collapsible>
+
+      <Collapsible>
+        <CollapsibleTrigger asChild>
+          <Button variant="ghost" className="w-full justify-between text-left">
+            How do I install it?
+            <span className="text-xs">▼</span>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="px-4 pb-4">
+          <p className="text-sm text-muted-foreground">
+            You can install BuildGrid UI using npm or yarn. Simply run:
+          </p>
+          <code className="block mt-2 p-2 bg-muted rounded text-sm">
+            npm install buildgrid-ui
+          </code>
+        </CollapsibleContent>
+      </Collapsible>
+
+      <Collapsible>
+        <CollapsibleTrigger asChild>
+          <Button variant="ghost" className="w-full justify-between text-left">
+            Is it accessible?
+            <span className="text-xs">▼</span>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="px-4 pb-4">
+          <p className="text-sm text-muted-foreground">
+            Yes! All components are built with accessibility in mind, following WAI-ARIA guidelines 
+            and supporting keyboard navigation, screen readers, and other assistive technologies.
+          </p>
+        </CollapsibleContent>
+      </Collapsible>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <Collapsible>
+      <CollapsibleTrigger asChild>
+        <Button variant="ghost" className="w-full justify-between text-left">
+          What is BuildGrid UI?
+          <span className="text-xs">▼</span>
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="px-4 pb-4">
+        <p className="text-sm text-muted-foreground">
+          BuildGrid UI is a modern React component library built on top of shadcn/ui and Radix UI primitives. 
+          It provides a comprehensive set of accessible, customizable components for building beautiful user interfaces.
+        </p>
+      </CollapsibleContent>
+    </Collapsible>
+
+    <Collapsible>
+      <CollapsibleTrigger asChild>
+        <Button variant="ghost" className="w-full justify-between text-left">
+          How do I install it?
+          <span className="text-xs">▼</span>
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="px-4 pb-4">
+        <p className="text-sm text-muted-foreground">
+          You can install BuildGrid UI using npm or yarn. Simply run:
+        </p>
+        <code className="block mt-2 p-2 bg-muted rounded text-sm">
+          npm install buildgrid-ui
+        </code>
+      </CollapsibleContent>
+    </Collapsible>
+
+    <Collapsible>
+      <CollapsibleTrigger asChild>
+        <Button variant="ghost" className="w-full justify-between text-left">
+          Is it accessible?
+          <span className="text-xs">▼</span>
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="px-4 pb-4">
+        <p className="text-sm text-muted-foreground">
+          Yes! All components are built with accessibility in mind, following WAI-ARIA guidelines 
+          and supporting keyboard navigation, screen readers, and other assistive technologies.
+        </p>
+      </CollapsibleContent>
+    </Collapsible>
+  </div>
+</ComponentDocSection>
+
+## Settings Panel Style
+
+<ComponentDocSection
+  code={`import { Collapsible, CollapsibleContent, CollapsibleTrigger, Button } from "buildgrid-ui";
+
+function SettingsCollapsible() {
+  return (
+    <div className="border rounded-lg">
+      <Collapsible>
+        <CollapsibleTrigger asChild>
+          <Button variant="ghost" className="w-full justify-between p-4 h-auto">
+            <div className="text-left">
+              <div className="font-medium">Account Settings</div>
+              <div className="text-sm text-muted-foreground">Manage your account preferences</div>
+            </div>
+            <span className="text-xs">▼</span>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="px-4 pb-4">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm">Email notifications</span>
+              <Button variant="outline" size="sm">Configure</Button>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm">Privacy settings</span>
+              <Button variant="outline" size="sm">Manage</Button>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm">Two-factor authentication</span>
+              <Button variant="outline" size="sm">Enable</Button>
+            </div>
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
+    </div>
+  );
+}`}
+>
+  <div className="border rounded-lg">
+    <Collapsible>
+      <CollapsibleTrigger asChild>
+        <Button variant="ghost" className="w-full justify-between p-4 h-auto">
+          <div className="text-left">
+            <div className="font-medium">Account Settings</div>
+            <div className="text-sm text-muted-foreground">Manage your account preferences</div>
+          </div>
+          <span className="text-xs">▼</span>
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="px-4 pb-4">
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-sm">Email notifications</span>
+            <Button variant="outline" size="sm">Configure</Button>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm">Privacy settings</span>
+            <Button variant="outline" size="sm">Manage</Button>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm">Two-factor authentication</span>
+            <Button variant="outline" size="sm">Enable</Button>
+          </div>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  </div>
+</ComponentDocSection>
+
+## Navigation Menu Style
+
+<ComponentDocSection
+  code={`import { Collapsible, CollapsibleContent, CollapsibleTrigger, Button } from "buildgrid-ui";
+
+function NavigationCollapsible() {
+  return (
+    <div className="w-64 border rounded-lg p-2">
+      <Collapsible defaultOpen>
+        <CollapsibleTrigger asChild>
+          <Button variant="ghost" className="w-full justify-start">
+            <span className="mr-2">📁</span>
+            Components
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="ml-6 space-y-1">
+          <Button variant="ghost" size="sm" className="w-full justify-start">
+            Button
+          </Button>
+          <Button variant="ghost" size="sm" className="w-full justify-start">
+            Input
+          </Button>
+          <Button variant="ghost" size="sm" className="w-full justify-start">
+            Card
+          </Button>
+        </CollapsibleContent>
+      </Collapsible>
+
+      <Collapsible>
+        <CollapsibleTrigger asChild>
+          <Button variant="ghost" className="w-full justify-start">
+            <span className="mr-2">📁</span>
+            Blocks
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="ml-6 space-y-1">
+          <Button variant="ghost" size="sm" className="w-full justify-start">
+            File Upload
+          </Button>
+          <Button variant="ghost" size="sm" className="w-full justify-start">
+            Number Stepper
+          </Button>
+          <Button variant="ghost" size="sm" className="w-full justify-start">
+            Bento Grid
+          </Button>
+        </CollapsibleContent>
+      </Collapsible>
+    </div>
+  );
+}`}
+>
+  <div className="w-64 border rounded-lg p-2">
+    <Collapsible defaultOpen>
+      <CollapsibleTrigger asChild>
+        <Button variant="ghost" className="w-full justify-start">
+          <span className="mr-2">📁</span>
+          Components
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="ml-6 space-y-1">
+        <Button variant="ghost" size="sm" className="w-full justify-start">
+          Button
+        </Button>
+        <Button variant="ghost" size="sm" className="w-full justify-start">
+          Input
+        </Button>
+        <Button variant="ghost" size="sm" className="w-full justify-start">
+          Card
+        </Button>
+      </CollapsibleContent>
+    </Collapsible>
+
+    <Collapsible>
+      <CollapsibleTrigger asChild>
+        <Button variant="ghost" className="w-full justify-start">
+          <span className="mr-2">📁</span>
+          Blocks
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="ml-6 space-y-1">
+        <Button variant="ghost" size="sm" className="w-full justify-start">
+          File Upload
+        </Button>
+        <Button variant="ghost" size="sm" className="w-full justify-start">
+          Number Stepper
+        </Button>
+        <Button variant="ghost" size="sm" className="w-full justify-start">
+          Bento Grid
+        </Button>
+      </CollapsibleContent>
+    </Collapsible>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Collapsible`
+
+| Property | Type | Description |
+|---|---|---|
+| `defaultOpen` | `boolean` | The initial open state when uncontrolled. Default: `false`. |
+| `open` | `boolean` | The controlled open state of the collapsible. |
+| `onOpenChange` | `(open: boolean) => void` | Callback fired when the open state changes. |
+| `disabled` | `boolean` | When `true`, prevents the user from interacting with the collapsible. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The trigger and content elements. |
+
+### `CollapsibleTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | When `true`, renders as the child element instead of a button. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The trigger content or child element. |
+
+### `CollapsibleContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `forceMount` | `boolean` | When `true`, forces the content to render even when closed. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The collapsible content. |
+
+## Animation Behavior
+
+The Collapsible component uses smooth CSS animations for opening and closing:
+
+- **Opening** - Content slides down with a smooth height transition
+- **Closing** - Content slides up and fades out gracefully
+- **Duration** - Animations respect user motion preferences
+- **Easing** - Uses natural easing curves for smooth motion
+
+## Accessibility
+
+The Collapsible component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Space and Enter keys toggle the collapsible
+- **ARIA Attributes** - Proper `aria-expanded` and `aria-controls` attributes
+- **Screen Reader Support** - Clear announcements of state changes
+- **Focus Management** - Logical focus order and visible focus indicators
+- **Semantic HTML** - Uses appropriate button and region roles
+
+## Common Use Cases
+
+The Collapsible component is perfect for:
+
+- **FAQ Sections** - Expandable question and answer pairs
+- **Settings Panels** - Grouped configuration options
+- **Navigation Menus** - Hierarchical menu structures
+- **Content Sections** - Expandable content areas
+- **Form Sections** - Grouped form fields and options
+- **Documentation** - Expandable code examples and details
+
+## Best Practices
+
+1. **Clear Triggers** - Use descriptive text and visual indicators
+2. **Logical Grouping** - Group related content together
+3. **Default States** - Consider which sections should be open by default
+4. **Visual Feedback** - Provide clear open/closed state indicators
+5. **Content Length** - Keep collapsible content reasonably sized
+6. **Mobile Friendly** - Ensure touch targets are appropriately sized
+7. **Performance** - Use `forceMount` sparingly to avoid unnecessary rendering

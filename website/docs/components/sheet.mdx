@@ -1,0 +1,75 @@
+---
+id: sheet
+title: Sheet
+description: Um painel deslizante que aparece a partir das bordas da tela, ideal para navegação, formulários e conteúdo adicional.
+---
+
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Button, Input, Label } from 'buildgrid-ui'
+
+# Sheet
+
+O componente Sheet é um painel deslizante que aparece a partir das bordas da tela. É perfeito para menus de navegação, formulários, configurações ou qualquer conteúdo que precisa de mais espaço sem sair da página atual.
+
+## Importação
+
+```tsx
+import { 
+  Sheet, 
+  SheetContent, 
+  SheetDescription, 
+  SheetFooter, 
+  SheetHeader, 
+  SheetTitle, 
+  SheetTrigger 
+} from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Button } from 'buildgrid-ui'
+
+function BasicSheet() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button>Abrir Sheet</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Título do Sheet</SheetTitle>
+          <SheetDescription>
+            Descrição do conteúdo que será exibido no sheet.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="py-4">
+          <p>Conteúdo do sheet aqui.</p>
+        </div>
+      </SheetContent>
+    </Sheet>
+  )
+}
+```
+
+## API Reference
+
+### Sheet
+
+| Prop | Tipo | Descrição |
+|---|---|---|
+| `defaultOpen` | `boolean` | Estado inicial do sheet (não controlado). |
+| `open` | `boolean` | Estado atual do sheet (controlado). |
+| `onOpenChange` | `(open: boolean) => void` | Callback chamado quando o estado muda. |
+
+### SheetTrigger
+
+| Prop | Tipo | Descrição |
+|---|---|---|
+| `asChild` | `boolean` | Se `true`, renderiza como o elemento filho em vez de um botão. |
+
+### SheetContent
+
+| Prop | Tipo | Descrição |
+|---|---|---|
+| `side` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` | Lado da tela de onde o sheet aparece. Padrão: `"right"`. |
+| `className` | `string` | Classes CSS adicionais. |

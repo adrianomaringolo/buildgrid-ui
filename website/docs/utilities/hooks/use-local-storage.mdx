@@ -1,0 +1,76 @@
+---
+title: useLocalStorage
+description: Hook para gerenciar estado sincronizado com localStorage, ideal para persistir preferências e dados do usuário.
+---
+
+# useLocalStorage
+
+O hook `useLocalStorage` permite gerenciar estado que é automaticamente sincronizado com o localStorage do navegador. É perfeito para persistir preferências do usuário, configurações, dados de formulário e qualquer informação que deve sobreviver ao recarregamento da página.
+
+## Importação
+
+```tsx
+import { useLocalStorage } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { useLocalStorage } from 'buildgrid-ui'
+
+function UserPreferences() {
+  const [theme, setTheme] = useLocalStorage('theme', 'light')
+
+  return (
+    <div className="space-y-4">
+      <p>Tema atual: {theme}</p>
+      
+      <div className="space-x-2">
+        <button
+          onClick={() => setTheme('light')}
+          className={`px-4 py-2 rounded ${
+            theme === 'light' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+          }`}
+        >
+          Claro
+        </button>
+        
+        <button
+          onClick={() => setTheme('dark')}
+          className={`px-4 py-2 rounded ${
+            theme === 'dark' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+          }`}
+        >
+          Escuro
+        </button>
+      </div>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### useLocalStorage
+
+```tsx
+function useLocalStorage<T>(
+  key: string, 
+  initialValue: T
+): [T, (value: T | ((val: T) => T)) => void, () => void]
+```
+
+#### Parâmetros
+
+| Parâmetro | Tipo | Descrição |
+|---|---|---|
+| `key` | `string` | Chave única para identificar o valor no localStorage. |
+| `initialValue` | `T` | Valor inicial usado quando não há dados salvos. |
+
+#### Retorno
+
+| Índice | Tipo | Descrição |
+|---|---|---|
+| `[0]` | `T` | Valor atual armazenado. |
+| `[1]` | `(value: T \| ((val: T) => T)) => void` | Função para atualizar o valor. |
+| `[2]` | `() => void` | Função para remover o valor do localStorage. |

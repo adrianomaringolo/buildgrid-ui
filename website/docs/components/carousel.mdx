@@ -1,0 +1,372 @@
+---
+id: carousel
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, Card, CardContent } from "buildgrid-ui";
+
+# Carousel
+
+The `Carousel` component provides a responsive sliding interface for displaying multiple items with navigation controls. It's perfect for showcasing images, testimonials, product features, or any collection of content.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  Card,
+  CardContent
+} from "buildgrid-ui";
+
+function BasicCarousel() {
+  return (
+    <Carousel className="w-full max-w-xs">
+      <CarouselContent>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index}>
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-4xl font-semibold">{index + 1}</span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}`}
+>
+  <Carousel className="w-full max-w-xs">
+    <CarouselContent>
+      {Array.from({ length: 5 }).map((_, index) => (
+        <CarouselItem key={index}>
+          <div className="p-1">
+            <Card>
+              <CardContent className="flex aspect-square items-center justify-center p-6">
+                <span className="text-4xl font-semibold">{index + 1}</span>
+              </CardContent>
+            </Card>
+          </div>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
+</ComponentDocSection>
+
+## Multiple Items Per View
+
+<ComponentDocSection
+  code={`import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  Card,
+  CardContent
+} from "buildgrid-ui";
+
+function MultipleItemsCarousel() {
+  return (
+    <Carousel
+      opts={{
+        align: "start",
+      }}
+      className="w-full max-w-sm"
+    >
+      <CarouselContent>
+        {Array.from({ length: 8 }).map((_, index) => (
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-2xl font-semibold">{index + 1}</span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}`}
+>
+  <Carousel
+    opts={{
+      align: "start",
+    }}
+    className="w-full max-w-sm"
+  >
+    <CarouselContent>
+      {Array.from({ length: 8 }).map((_, index) => (
+        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+          <div className="p-1">
+            <Card>
+              <CardContent className="flex aspect-square items-center justify-center p-6">
+                <span className="text-2xl font-semibold">{index + 1}</span>
+              </CardContent>
+            </Card>
+          </div>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
+</ComponentDocSection>
+
+## Vertical Carousel
+
+<ComponentDocSection
+  code={`import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  Card,
+  CardContent
+} from "buildgrid-ui";
+
+function VerticalCarousel() {
+  return (
+    <Carousel
+      opts={{
+        align: "start",
+      }}
+      orientation="vertical"
+      className="w-full max-w-xs"
+    >
+      <CarouselContent className="-mt-1 h-[200px]">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index} className="pt-1 md:basis-1/2">
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex items-center justify-center p-6">
+                  <span className="text-3xl font-semibold">{index + 1}</span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}`}
+>
+  <Carousel
+    opts={{
+      align: "start",
+    }}
+    orientation="vertical"
+    className="w-full max-w-xs"
+  >
+    <CarouselContent className="-mt-1 h-[200px]">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <CarouselItem key={index} className="pt-1 md:basis-1/2">
+          <div className="p-1">
+            <Card>
+              <CardContent className="flex items-center justify-center p-6">
+                <span className="text-3xl font-semibold">{index + 1}</span>
+              </CardContent>
+            </Card>
+          </div>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
+</ComponentDocSection>
+
+## Content Carousel
+
+<ComponentDocSection
+  code={`import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  Card,
+  CardContent
+} from "buildgrid-ui";
+
+function ContentCarousel() {
+  const testimonials = [
+    {
+      quote: "This component library has transformed our development workflow.",
+      author: "Sarah Johnson",
+      role: "Frontend Developer"
+    },
+    {
+      quote: "Beautiful components with excellent accessibility features.",
+      author: "Mike Chen",
+      role: "UI/UX Designer"
+    },
+    {
+      quote: "Easy to integrate and customize for our brand needs.",
+      author: "Alex Rodriguez",
+      role: "Product Manager"
+    }
+  ];
+
+  return (
+    <Carousel className="w-full max-w-md">
+      <CarouselContent>
+        {testimonials.map((testimonial, index) => (
+          <CarouselItem key={index}>
+            <div className="p-1">
+              <Card>
+                <CardContent className="p-6">
+                  <blockquote className="text-lg italic mb-4">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  <div className="text-sm">
+                    <div className="font-semibold">{testimonial.author}</div>
+                    <div className="text-muted-foreground">{testimonial.role}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}`}
+>
+  <Carousel className="w-full max-w-md">
+    <CarouselContent>
+      {[
+        {
+          quote: "This component library has transformed our development workflow.",
+          author: "Sarah Johnson",
+          role: "Frontend Developer"
+        },
+        {
+          quote: "Beautiful components with excellent accessibility features.",
+          author: "Mike Chen",
+          role: "UI/UX Designer"
+        },
+        {
+          quote: "Easy to integrate and customize for our brand needs.",
+          author: "Alex Rodriguez",
+          role: "Product Manager"
+        }
+      ].map((testimonial, index) => (
+        <CarouselItem key={index}>
+          <div className="p-1">
+            <Card>
+              <CardContent className="p-6">
+                <blockquote className="text-lg italic mb-4">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div className="text-sm">
+                  <div className="font-semibold">{testimonial.author}</div>
+                  <div className="text-muted-foreground">{testimonial.role}</div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
+</ComponentDocSection>
+
+## Properties
+
+### `Carousel`
+
+| Property | Type | Description |
+|---|---|---|
+| `orientation` | `"horizontal"` \| `"vertical"` | The orientation of the carousel. Default: `"horizontal"`. |
+| `opts` | `EmblaOptionsType` | Configuration options for the Embla carousel engine. |
+| `setApi` | `(api: CarouselApi) => void` | Callback to access the carousel API for programmatic control. |
+| `plugins` | `EmblaPluginType[]` | Array of Embla plugins to extend functionality. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The carousel content and navigation elements. |
+
+### `CarouselContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the content container. |
+| `children` | `React.ReactNode` | The carousel items to be displayed. |
+
+### `CarouselItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for individual items. |
+| `children` | `React.ReactNode` | The content of the carousel item. |
+
+### `CarouselPrevious` / `CarouselNext`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for navigation buttons. |
+| `variant` | `ButtonVariant` | The visual style of the navigation button. Default: `"outline"`. |
+| `size` | `ButtonSize` | The size of the navigation button. Default: `"icon"`. |
+
+## Carousel Options
+
+The `opts` prop accepts Embla carousel options:
+
+| Option | Type | Description |
+|---|---|---|
+| `align` | `"start"` \| `"center"` \| `"end"` | How to align slides within the viewport. |
+| `loop` | `boolean` | Enable infinite looping of slides. |
+| `skipSnaps` | `boolean` | Allow scrolling past snap points. |
+| `dragFree` | `boolean` | Enable free dragging without snap points. |
+| `containScroll` | `"trimSnaps"` \| `"keepSnaps"` | How to handle scroll containment. |
+
+## Accessibility
+
+The Carousel component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys for slide navigation
+- **Screen Reader Support** - Proper ARIA labels and roles
+- **Focus Management** - Logical tab order and focus indicators
+- **Motion Preferences** - Respects `prefers-reduced-motion` settings
+- **Touch Support** - Swipe gestures on touch devices
+
+## Common Use Cases
+
+The Carousel component is perfect for:
+
+- **Image Galleries** - Showcase product photos or portfolio images
+- **Testimonials** - Display customer reviews and feedback
+- **Feature Highlights** - Present key product features or benefits
+- **Content Previews** - Show snippets of articles or blog posts
+- **Product Showcases** - Highlight different products or services
+- **Banner Rotations** - Cycle through promotional content
+
+## Best Practices
+
+1. **Provide Navigation** - Always include previous/next buttons for accessibility
+2. **Optimize Performance** - Lazy load images and content when possible
+3. **Consider Auto-play** - Use sparingly and provide pause controls
+4. **Responsive Design** - Test across different screen sizes and orientations
+5. **Content Consistency** - Maintain similar content lengths and layouts
+6. **Loading States** - Show placeholders while content loads
+7. **Touch Gestures** - Ensure swipe functionality works on mobile devices

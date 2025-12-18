@@ -1,0 +1,76 @@
+---
+title: Date Formatters
+description: Coleção de funções para formatação de datas em diferentes formatos e localizações.
+---
+
+# Date Formatters
+
+A biblioteca oferece uma coleção completa de funções para formatação de datas, cobrindo desde formatos simples até formatações complexas com fusos horários e localizações específicas.
+
+## Importação
+
+```tsx
+import { 
+  formatDateUTC,
+  formatDateMonthYear,
+  formatDateDayMonth,
+  formatDateAndTime,
+  getMonthName,
+  getLongDate,
+  formatDateAndWeekday,
+  formatDateAndWeekdayAndYear,
+  formatDateAndMonth,
+  formatLongDate,
+  formatShortDate,
+  formatWeekDayAndShortDate,
+  getMonthYearFromISODate
+} from 'buildgrid-ui'
+```
+
+## Formatações Básicas
+
+```tsx
+import { 
+  formatDateUTC,
+  formatDateMonthYear,
+  formatDateDayMonth,
+  formatShortDate,
+  formatLongDate
+} from 'buildgrid-ui'
+
+function BasicDateFormats() {
+  const date = new Date('2024-03-15T10:30:00')
+
+  return (
+    <div className="space-y-2">
+      <p>Data UTC: {formatDateUTC(date)}</p>
+      {/* 15/03/2024 */}
+      
+      <p>Mês/Ano: {formatDateMonthYear(date)}</p>
+      {/* mar de 24 */}
+      
+      <p>Dia/Mês: {formatDateDayMonth(date)}</p>
+      {/* 15/03 */}
+      
+      <p>Data Curta: {formatShortDate(date)}</p>
+      {/* 15/03/2024 */}
+      
+      <p>Data Longa: {formatLongDate(date)}</p>
+      {/* 15 de março de 2024 */}
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Funções Disponíveis
+
+| Função | Parâmetros | Retorno | Exemplo |
+|---|---|---|---|
+| `formatDateUTC` | `date: any` | `string` | `15/03/2024` |
+| `formatDateMonthYear` | `date: Date` | `string` | `mar de 24` |
+| `formatDateDayMonth` | `date: Date` | `string` | `15/03` |
+| `formatDateAndTime` | `date: Date \| string` | `string` | `15/03/24, 14:30` |
+| `getMonthName` | `date: Date` | `string` | `março` |
+| `getLongDate` | `date: Date` | `string` | `15 de março de 2024` |

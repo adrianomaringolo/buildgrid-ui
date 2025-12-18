@@ -1,0 +1,149 @@
+/* Reset class that removes Docusaurus styles but preserves buildgrid-ui components */
+.reset-all {
+	/* Reset only Docusaurus/Infima specific styles */
+	--ifm-color-primary: initial;
+	--ifm-color-primary-dark: initial;
+	--ifm-color-primary-darker: initial;
+	--ifm-color-primary-darkest: initial;
+	--ifm-color-primary-light: initial;
+	--ifm-color-primary-lighter: initial;
+	--ifm-color-primary-lightest: initial;
+	--ifm-code-font-size: initial;
+	--docusaurus-highlighted-code-line-bg: initial;
+
+	/* Reset basic layout without affecting component internals */
+	position: relative;
+	isolation: isolate;
+
+	/* Ensure proper stacking context for components */
+	z-index: 0;
+}
+
+/* Reset specific Docusaurus elements within .reset-all */
+.reset-all .markdown,
+.reset-all .theme-doc-markdown {
+	--ifm-color-primary: initial;
+	--ifm-color-primary-dark: initial;
+	--ifm-color-primary-darker: initial;
+	--ifm-color-primary-darkest: initial;
+	--ifm-color-primary-light: initial;
+	--ifm-color-primary-lighter: initial;
+	--ifm-color-primary-lightest: initial;
+}
+
+/* Reset Docusaurus typography without affecting components */
+.reset-all h1:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]),
+.reset-all h2:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]),
+.reset-all h3:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]),
+.reset-all h4:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]),
+.reset-all h5:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]),
+.reset-all h6:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]) {
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+.reset-all p:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]) {
+	color: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+.reset-all a:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]) {
+	color: inherit;
+	text-decoration: none;
+}
+
+.reset-all ul:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]),
+.reset-all ol:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]) {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.reset-all li:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]) {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Hide Docusaurus specific elements */
+.reset-all .anchor,
+.reset-all .hash-link {
+	display: none !important;
+}
+
+.reset-all .theme-code-block {
+	margin: 0 !important;
+}
+
+/* Preserve buildgrid-ui and Radix UI components */
+.reset-all [class*='buildgrid'],
+.reset-all [data-radix-popper-content-wrapper],
+.reset-all [data-radix-portal],
+.reset-all [data-radix],
+.reset-all [data-state],
+.reset-all [role='dialog'],
+.reset-all [role='menu'],
+.reset-all [role='menuitem'],
+.reset-all [role='button'],
+.reset-all [role='combobox'],
+.reset-all [role='listbox'],
+.reset-all [role='option'],
+.reset-all [role='checkbox'],
+.reset-all [role='radio'],
+.reset-all [role='slider'],
+.reset-all [role='switch'],
+.reset-all [role='tab'],
+.reset-all [role='tabpanel'],
+.reset-all [role='tooltip'],
+.reset-all [role='alert'],
+.reset-all [role='alertdialog'] {
+	/* Preserve all component styles */
+	all: revert-layer;
+}
+
+/* Ensure proper z-index for portals and overlays */
+.reset-all [data-radix-popper-content-wrapper] {
+	z-index: 9999 !important;
+}
+
+.reset-all [data-radix-portal] {
+	z-index: 9999 !important;
+}
+
+/* Preserve Tailwind classes within reset */
+.reset-all [class*='bg-'],
+.reset-all [class*='text-'],
+.reset-all [class*='border-'],
+.reset-all [class*='rounded-'],
+.reset-all [class*='shadow-'],
+.reset-all [class*='p-'],
+.reset-all [class*='m-'],
+.reset-all [class*='w-'],
+.reset-all [class*='h-'],
+.reset-all [class*='flex'],
+.reset-all [class*='grid'],
+.reset-all [class*='space-'],
+.reset-all [class*='gap-'] {
+	/* Preserve Tailwind utility classes */
+	all: revert-layer;
+}
+
+/* Specific preservation for common component patterns */
+.reset-all button[class],
+.reset-all input[class],
+.reset-all select[class],
+.reset-all textarea[class],
+.reset-all div[class*='bg-'],
+.reset-all div[class*='border'],
+.reset-all span[class*='text-'],
+.reset-all span[class*='bg-'] {
+	/* Preserve styled elements */
+	all: revert-layer;
+}

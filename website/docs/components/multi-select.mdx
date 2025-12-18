@@ -1,3 +1,383 @@
 ---
 id: multi-select
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { MultiSelect, Label } from "buildgrid-ui";
+
+# Multi Select
+
+The `MultiSelect` component allows users to select multiple options from a dropdown list. It features search functionality, select all/clear options, and displays selected items as badges with individual remove buttons.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { MultiSelect } from "buildgrid-ui";
+
+function BasicMultiSelect() {
+  const options = [
+    { label: "React", value: "react" },
+    { label: "Vue", value: "vue" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" },
+    { label: "Next.js", value: "nextjs" }
+  ];
+
+  return (
+    <MultiSelect
+      options={options}
+      onValueChange={(values) => console.log(values)}
+      placeholder="Select frameworks..."
+    />
+  );
+}`}
+>
+  <MultiSelect
+    options={[
+      { label: "React", value: "react" },
+      { label: "Vue", value: "vue" },
+      { label: "Angular", value: "angular" },
+      { label: "Svelte", value: "svelte" },
+      { label: "Next.js", value: "nextjs" }
+    ]}
+    onValueChange={(values) => console.log(values)}
+    placeholder="Select frameworks..."
+  />
+</ComponentDocSection>
+
+## Multi Select with Default Values
+
+<ComponentDocSection
+  code={`import { MultiSelect } from "buildgrid-ui";
+
+function MultiSelectWithDefaults() {
+  const options = [
+    { label: "JavaScript", value: "javascript" },
+    { label: "TypeScript", value: "typescript" },
+    { label: "Python", value: "python" },
+    { label: "Java", value: "java" },
+    { label: "C++", value: "cpp" },
+    { label: "Go", value: "go" }
+  ];
+
+  return (
+    <MultiSelect
+      options={options}
+      defaultValue={["javascript", "typescript"]}
+      onValueChange={(values) => console.log(values)}
+      placeholder="Select programming languages..."
+    />
+  );
+}`}
+>
+  <MultiSelect
+    options={[
+      { label: "JavaScript", value: "javascript" },
+      { label: "TypeScript", value: "typescript" },
+      { label: "Python", value: "python" },
+      { label: "Java", value: "java" },
+      { label: "C++", value: "cpp" },
+      { label: "Go", value: "go" }
+    ]}
+    defaultValue={["javascript", "typescript"]}
+    onValueChange={(values) => console.log(values)}
+    placeholder="Select programming languages..."
+  />
+</ComponentDocSection>
+
+## Multi Select with Custom Max Count
+
+<ComponentDocSection
+  code={`import { MultiSelect } from "buildgrid-ui";
+
+function MultiSelectMaxCount() {
+  const options = [
+    { label: "Red", value: "red" },
+    { label: "Blue", value: "blue" },
+    { label: "Green", value: "green" },
+    { label: "Yellow", value: "yellow" },
+    { label: "Purple", value: "purple" },
+    { label: "Orange", value: "orange" },
+    { label: "Pink", value: "pink" },
+    { label: "Brown", value: "brown" }
+  ];
+
+  return (
+    <MultiSelect
+      options={options}
+      onValueChange={(values) => console.log(values)}
+      placeholder="Select colors..."
+      maxCount={2}
+    />
+  );
+}`}
+>
+  <MultiSelect
+    options={[
+      { label: "Red", value: "red" },
+      { label: "Blue", value: "blue" },
+      { label: "Green", value: "green" },
+      { label: "Yellow", value: "yellow" },
+      { label: "Purple", value: "purple" },
+      { label: "Orange", value: "orange" },
+      { label: "Pink", value: "pink" },
+      { label: "Brown", value: "brown" }
+    ]}
+    onValueChange={(values) => console.log(values)}
+    placeholder="Select colors..."
+    maxCount={2}
+  />
+</ComponentDocSection>
+## Multi Select Variants
+
+<ComponentDocSection
+  code={`import { MultiSelect } from "buildgrid-ui";
+
+function MultiSelectVariants() {
+  const options = [
+    { label: "Option 1", value: "option1" },
+    { label: "Option 2", value: "option2" },
+    { label: "Option 3", value: "option3" },
+    { label: "Option 4", value: "option4" }
+  ];
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium mb-2">Default Variant</label>
+        <MultiSelect
+          options={options}
+          variant="default"
+          onValueChange={(values) => console.log(values)}
+          placeholder="Default variant..."
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium mb-2">Secondary Variant</label>
+        <MultiSelect
+          options={options}
+          variant="secondary"
+          onValueChange={(values) => console.log(values)}
+          placeholder="Secondary variant..."
+        />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium mb-2">Destructive Variant</label>
+        <MultiSelect
+          options={options}
+          variant="destructive"
+          onValueChange={(values) => console.log(values)}
+          placeholder="Destructive variant..."
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div>
+      <label className="block text-sm font-medium mb-2">Default Variant</label>
+      <MultiSelect
+        options={[
+          { label: "Option 1", value: "option1" },
+          { label: "Option 2", value: "option2" },
+          { label: "Option 3", value: "option3" },
+          { label: "Option 4", value: "option4" }
+        ]}
+        variant="default"
+        onValueChange={(values) => console.log(values)}
+        placeholder="Default variant..."
+      />
+    </div>
+    
+    <div>
+      <label className="block text-sm font-medium mb-2">Secondary Variant</label>
+      <MultiSelect
+        options={[
+          { label: "Option 1", value: "option1" },
+          { label: "Option 2", value: "option2" },
+          { label: "Option 3", value: "option3" },
+          { label: "Option 4", value: "option4" }
+        ]}
+        variant="secondary"
+        onValueChange={(values) => console.log(values)}
+        placeholder="Secondary variant..."
+      />
+    </div>
+    
+    <div>
+      <label className="block text-sm font-medium mb-2">Destructive Variant</label>
+      <MultiSelect
+        options={[
+          { label: "Option 1", value: "option1" },
+          { label: "Option 2", value: "option2" },
+          { label: "Option 3", value: "option3" },
+          { label: "Option 4", value: "option4" }
+        ]}
+        variant="destructive"
+        onValueChange={(values) => console.log(values)}
+        placeholder="Destructive variant..."
+      />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Form Integration
+
+<ComponentDocSection
+  code={`import { MultiSelect, Label } from "buildgrid-ui";
+
+function MultiSelectForm() {
+  const skillOptions = [
+    { label: "JavaScript", value: "javascript" },
+    { label: "TypeScript", value: "typescript" },
+    { label: "React", value: "react" },
+    { label: "Vue.js", value: "vue" },
+    { label: "Node.js", value: "nodejs" },
+    { label: "Python", value: "python" },
+    { label: "Docker", value: "docker" },
+    { label: "AWS", value: "aws" }
+  ];
+
+  const interestOptions = [
+    { label: "Frontend Development", value: "frontend" },
+    { label: "Backend Development", value: "backend" },
+    { label: "Mobile Development", value: "mobile" },
+    { label: "DevOps", value: "devops" },
+    { label: "Data Science", value: "datascience" },
+    { label: "Machine Learning", value: "ml" }
+  ];
+
+  return (
+    <form className="space-y-6 w-full max-w-md">
+      <div className="space-y-2">
+        <Label htmlFor="skills">Technical Skills</Label>
+        <MultiSelect
+          options={skillOptions}
+          onValueChange={(values) => console.log('Skills:', values)}
+          placeholder="Select your skills..."
+          maxCount={3}
+        />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="interests">Areas of Interest</Label>
+        <MultiSelect
+          options={interestOptions}
+          onValueChange={(values) => console.log('Interests:', values)}
+          placeholder="Select your interests..."
+          variant="secondary"
+        />
+      </div>
+    </form>
+  );
+}`}
+>
+  <form className="space-y-6 w-full max-w-md">
+    <div className="space-y-2">
+      <Label htmlFor="skills">Technical Skills</Label>
+      <MultiSelect
+        options={[
+          { label: "JavaScript", value: "javascript" },
+          { label: "TypeScript", value: "typescript" },
+          { label: "React", value: "react" },
+          { label: "Vue.js", value: "vue" },
+          { label: "Node.js", value: "nodejs" },
+          { label: "Python", value: "python" },
+          { label: "Docker", value: "docker" },
+          { label: "AWS", value: "aws" }
+        ]}
+        onValueChange={(values) => console.log('Skills:', values)}
+        placeholder="Select your skills..."
+        maxCount={3}
+      />
+    </div>
+    
+    <div className="space-y-2">
+      <Label htmlFor="interests">Areas of Interest</Label>
+      <MultiSelect
+        options={[
+          { label: "Frontend Development", value: "frontend" },
+          { label: "Backend Development", value: "backend" },
+          { label: "Mobile Development", value: "mobile" },
+          { label: "DevOps", value: "devops" },
+          { label: "Data Science", value: "datascience" },
+          { label: "Machine Learning", value: "ml" }
+        ]}
+        onValueChange={(values) => console.log('Interests:', values)}
+        placeholder="Select your interests..."
+        variant="secondary"
+      />
+    </div>
+  </form>
+</ComponentDocSection>
+
+## Properties
+
+### `MultiSelect`
+
+| Property | Type | Description |
+|---|---|---|
+| `options` | `Array<{label: string, value: string}>` | Array of options to display in the dropdown. |
+| `onValueChange` | `(values: string[]) => void` | Callback function called when selected values change. |
+| `defaultValue` | `string[]` | Default selected values when component mounts. |
+| `placeholder` | `string` | Placeholder text when no values are selected. Default: `"Select options"`. |
+| `maxCount` | `number` | Maximum number of badges to display before showing "+X more". Default: `3`. |
+| `variant` | `"default"` \| `"secondary"` \| `"destructive"` \| `"inverted"` | Visual variant of the selected badges. Default: `"default"`. |
+| `modalPopover` | `boolean` | Whether the popover should be modal. Default: `false`. |
+| `asChild` | `boolean` | Render as child component. Default: `false`. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `disabled` | `boolean` | Whether the component is disabled. |
+
+## Features
+
+### Search Functionality
+- **Real-time Search** - Filter options as you type
+- **Keyboard Navigation** - Use arrow keys to navigate options
+- **Enter to Select** - Press Enter to select highlighted option
+
+### Selection Management
+- **Select All** - Quickly select all available options
+- **Individual Removal** - Remove items by clicking the X on badges
+- **Clear All** - Clear all selections with one click
+- **Bulk Operations** - Efficient handling of multiple selections
+
+### Visual Feedback
+- **Badge Display** - Selected items shown as removable badges
+- **Count Indicator** - Shows "+X more" when exceeding maxCount
+- **Loading States** - Smooth animations and transitions
+- **Variant Support** - Different visual styles for different contexts
+
+## Accessibility
+
+The MultiSelect component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support for all interactions
+- **Screen Reader Support** - Proper ARIA labels and announcements
+- **Focus Management** - Logical focus order and clear focus indicators
+- **Search Functionality** - Accessible search with proper labeling
+- **Selection Feedback** - Clear indication of selected and available options
+
+## Common Use Cases
+
+The MultiSelect component is perfect for:
+
+- **Skills Selection** - Technical skills, languages, certifications
+- **Category Filtering** - Product categories, content tags, filters
+- **User Permissions** - Role assignments, access controls
+- **Preferences** - User preferences, notification settings
+- **Team Assignment** - Project members, group assignments
+- **Tag Management** - Content tagging, labeling systems
+
+## Best Practices
+
+1. **Reasonable Options** - Keep the number of options manageable (< 50)
+2. **Clear Labels** - Use descriptive, easy-to-understand option labels
+3. **Appropriate MaxCount** - Set maxCount based on available space
+4. **Search for Large Lists** - Enable search for lists with many options
+5. **Default Selections** - Pre-select commonly used options when appropriate
+6. **Validation** - Provide clear feedback for required selections
+7. **Mobile Optimization** - Ensure touch-friendly interactions on mobile
+8. **Performance** - Consider virtualization for very large option lists

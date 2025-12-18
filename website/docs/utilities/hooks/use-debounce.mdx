@@ -1,0 +1,63 @@
+---
+title: useDebounce
+description: Hook para debounce de valores, ideal para otimizar chamadas de API e melhorar performance em campos de busca.
+---
+
+# useDebounce
+
+O hook `useDebounce` permite atrasar a atualização de um valor até que pare de mudar por um período específico. É extremamente útil para otimizar chamadas de API em campos de busca, evitando requisições desnecessárias a cada tecla digitada.
+
+## Importação
+
+```tsx
+import { useDebounce } from 'buildgrid-ui'
+```
+
+## Uso Básico
+
+```tsx
+import { useDebounce } from 'buildgrid-ui'
+import { useState, useEffect } from 'react'
+
+function SearchComponent() {
+  const [searchTerm, setSearchTerm] = useState('')
+  const debouncedSearchTerm = useDebounce(searchTerm, 500)
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      // Fazer chamada para API apenas após 500ms sem mudanças
+      console.log('Buscando por:', debouncedSearchTerm)
+    }
+  }, [debouncedSearchTerm])
+
+  return (
+    <input
+      type="text"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      placeholder="Digite para buscar..."
+    />
+  )
+}
+```
+
+## API Reference
+
+### useDebounce
+
+```tsx
+function useDebounce<T>(value: T, delay?: number): T
+```
+
+#### Parâmetros
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|---|---|---|---|
+| `value` | `T` | - | Valor a ser debounced. |
+| `delay` | `number` | `250` | Delay em milissegundos. |
+
+#### Retorno
+
+| Tipo | Descrição |
+|---|---|
+| `T` | Valor debounced que só atualiza após o delay especificado. |

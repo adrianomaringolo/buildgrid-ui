@@ -1,3 +1,362 @@
 ---
 id: button
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Button } from "buildgrid-ui";
+import { Download, Mail, ArrowRight, Save, X, Trash2 } from 'lucide-react';
+
+# Button
+
+The `Button` component is a fundamental UI element that offers multiple visual variants, sizes, and states. Built with accessibility in mind, it supports icons, loading states, and can be rendered as other elements.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Button } from "buildgrid-ui";
+
+function BasicButton() {
+  return (
+    <Button onClick={() => alert('Clicked!')}>
+      Click me
+    </Button>
+  );
+}`}
+>
+  <Button onClick={() => alert('Clicked!')}>
+    Click me
+  </Button>
+</ComponentDocSection>
+
+## Variants
+
+<ComponentDocSection
+  code={`import { Button } from "buildgrid-ui";
+
+function ButtonVariants() {
+  return (
+    <div className="flex gap-2 flex-wrap">
+      <Button variant="default">Default</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2 flex-wrap">
+    <Button variant="default">Default</Button>
+    <Button variant="destructive">Destructive</Button>
+    <Button variant="outline">Outline</Button>
+    <Button variant="secondary">Secondary</Button>
+    <Button variant="ghost">Ghost</Button>
+    <Button variant="link">Link</Button>
+  </div>
+</ComponentDocSection>
+
+## Sizes
+
+<ComponentDocSection
+  code={`import { Button } from "buildgrid-ui";
+import { Download } from "lucide-react";
+
+function ButtonSizes() {
+  return (
+    <div className="flex items-center gap-2 flex-wrap">
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+      <Button size="xl">Extra Large</Button>
+      <Button size="icon">
+        <Download className="h-4 w-4" />
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex items-center gap-2 flex-wrap">
+    <Button size="sm">Small</Button>
+    <Button size="md">Medium</Button>
+    <Button size="lg">Large</Button>
+    <Button size="xl">Extra Large</Button>
+    <Button size="icon">
+      <Download className="h-4 w-4" />
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## With Icons
+
+<ComponentDocSection
+  code={`import { Button } from "buildgrid-ui";
+import { Mail, Download, ArrowRight } from "lucide-react";
+
+function ButtonsWithIcons() {
+  return (
+    <div className="flex gap-2 flex-wrap">
+      <Button>
+        <Mail />
+        Send Email
+      </Button>
+      
+      <Button variant="outline">
+        <Download />
+        Download
+      </Button>
+      
+      <Button variant="secondary">
+        Continue
+        <ArrowRight />
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2 flex-wrap">
+    <Button>
+      <Mail />
+      Send Email
+    </Button>
+    
+    <Button variant="outline">
+      <Download />
+      Download
+    </Button>
+    
+    <Button variant="secondary">
+      Continue
+      <ArrowRight />
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Loading State
+
+<ComponentDocSection
+  code={`import { Button } from "buildgrid-ui";
+
+function LoadingButtons() {
+  return (
+    <div className="flex gap-2">
+      <Button isLoading>
+        Loading...
+      </Button>
+      
+      <Button isLoading variant="outline">
+        Processing
+      </Button>
+      
+      <Button isLoading variant="secondary">
+        Saving
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2">
+    <Button isLoading>
+      Loading...
+    </Button>
+    
+    <Button isLoading variant="outline">
+      Processing
+    </Button>
+    
+    <Button isLoading variant="secondary">
+      Saving
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## As Link
+
+<ComponentDocSection
+  code={`import { Button } from "buildgrid-ui";
+
+function ButtonAsLink() {
+  return (
+    <div className="flex gap-2">
+      <Button onClick={() => window.open('https://example.com', '_blank')}>
+        External Link
+      </Button>
+      
+      <Button variant="outline" onClick={() => console.log('Navigate to /about')}>
+        Internal Link
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2">
+    <Button onClick={() => window.open('https://example.com', '_blank')}>
+      External Link
+    </Button>
+    
+    <Button variant="outline" onClick={() => console.log('Navigate to /about')}>
+      Internal Link
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Form Actions
+
+<ComponentDocSection
+  code={`import { Button } from "buildgrid-ui";
+import { Save, X, Trash2 } from "lucide-react";
+
+function FormActions() {
+  return (
+    <div className="flex justify-between items-center p-4 border rounded-lg">
+      <div className="flex gap-2">
+        <Button>
+          <Save />
+          Save
+        </Button>
+        
+        <Button variant="outline">
+          Save as Draft
+        </Button>
+      </div>
+      
+      <div className="flex gap-2">
+        <Button variant="ghost">
+          <X />
+          Cancel
+        </Button>
+        
+        <Button variant="destructive">
+          <Trash2 />
+          Delete
+        </Button>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="flex justify-between items-center p-4 border rounded-lg">
+    <div className="flex gap-2">
+      <Button>
+        <Save />
+        Save
+      </Button>
+      
+      <Button variant="outline">
+        Save as Draft
+      </Button>
+    </div>
+    
+    <div className="flex gap-2">
+      <Button variant="ghost">
+        <X />
+        Cancel
+      </Button>
+      
+      <Button variant="destructive">
+        <Trash2 />
+        Delete
+      </Button>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Disabled States
+
+<ComponentDocSection
+  code={`import { Button } from "buildgrid-ui";
+
+function DisabledButtons() {
+  return (
+    <div className="flex gap-2 flex-wrap">
+      <Button disabled>Disabled</Button>
+      <Button variant="outline" disabled>Outline Disabled</Button>
+      <Button variant="destructive" disabled>Destructive Disabled</Button>
+      <Button isLoading disabled>Loading Disabled</Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2 flex-wrap">
+    <Button disabled>Disabled</Button>
+    <Button variant="outline" disabled>Outline Disabled</Button>
+    <Button variant="destructive" disabled>Destructive Disabled</Button>
+    <Button isLoading disabled>Loading Disabled</Button>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Button`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `"default"` \| `"destructive"` \| `"outline"` \| `"secondary"` \| `"ghost"` \| `"link"` | `"default"` | Visual variant of the button. |
+| `size` | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"icon"` | `"md"` | Size of the button. |
+| `asChild` | `boolean` | `false` | If `true`, renders as the child element instead of a button. |
+| `isLoading` | `boolean` | `false` | If `true`, shows loading spinner. |
+| `disabled` | `boolean` | `false` | If `true`, disables the button. |
+| `className` | `string` | - | Additional CSS classes. |
+
+### Variants
+
+| Variant | Description | Recommended Use |
+|---|---|---|
+| `default` | Primary button with colored background | Main actions, CTAs |
+| `destructive` | Red button for destructive actions | Delete, remove, cancel |
+| `outline` | Button with border, transparent background | Secondary actions |
+| `secondary` | Button with light gray background | Alternative actions |
+| `ghost` | Transparent button, hover only | Subtle actions, menus |
+| `link` | Link appearance with underline | Links that look like buttons |
+
+### Sizes
+
+| Size | Height | Recommended Use |
+|---|---|---|
+| `sm` | 32px | Compact spaces, tables |
+| `md` | 36px | General use (default) |
+| `lg` | 40px | Forms, important CTAs |
+| `xl` | 48px | Hero sections, landing pages |
+| `icon` | 36x36px | Icons only, no text |
+
+## Features
+
+### Accessibility
+- Full keyboard support (Enter, Space)
+- Visible focus states
+- Proper ARIA attributes
+- Screen reader compatible
+- Clear disabled states
+- Adequate contrast in all variants
+
+### Loading States
+- Built-in loading spinner
+- Automatic disabled state when loading
+- Smooth transitions
+
+### Flexibility
+- Can render as any element with `asChild`
+- Icon support with proper spacing
+- Customizable with Tailwind CSS
+
+## Common Use Cases
+
+The Button component is perfect for:
+
+- **Primary actions** - Save, submit, create, confirm
+- **Secondary actions** - Cancel, edit, view details
+- **Destructive actions** - Delete, remove, reset
+- **Navigation** - Links that need button styling
+- **Form controls** - Submit, reset, add item
+- **Call-to-actions** - Sign up, get started, learn more
+- **Icon actions** - Close, expand, settings
+
+## Best Practices
+
+1. **Use appropriate variants** - `default` for primary actions, `destructive` for dangerous actions
+2. **Maintain consistency** - Use same sizes in similar contexts
+3. **Provide feedback** - Use `isLoading` for async operations
+4. **Be descriptive** - Use clear text that describes the action
+5. **Consider hierarchy** - Primary buttons should stand out visually
+6. **Test accessibility** - Verify keyboard navigation and screen readers
+7. **Use icons thoughtfully** - Icons should complement, not replace clear text

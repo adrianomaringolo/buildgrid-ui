@@ -1,3 +1,440 @@
 ---
 id: input
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Input, Button } from "buildgrid-ui";
+
+# Input
+
+The `Input` component provides a styled text input field with multiple size variants. Built with accessibility and customization in mind, it supports all standard HTML input attributes and integrates seamlessly with forms.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Input } from "buildgrid-ui";
+
+function BasicInput() {
+  return (
+    <Input 
+      type="text" 
+      placeholder="Enter your name..." 
+    />
+  );
+}`}
+>
+  <Input 
+    type="text" 
+    placeholder="Enter your name..." 
+  />
+</ComponentDocSection>
+
+## Input Sizes
+
+<ComponentDocSection
+  code={`import { Input } from "buildgrid-ui";
+
+function InputSizes() {
+  return (
+    <div className="space-y-4 w-full max-w-md">
+      <Input 
+        sizing="sm" 
+        placeholder="Small input" 
+      />
+      <Input 
+        sizing="md" 
+        placeholder="Medium input (default)" 
+      />
+      <Input 
+        sizing="lg" 
+        placeholder="Large input" 
+      />
+      <Input 
+        sizing="xl" 
+        placeholder="Extra large input" 
+      />
+      <Input 
+        sizing="2xl" 
+        placeholder="2X large input" 
+      />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 w-full max-w-md">
+    <Input 
+      sizing="sm" 
+      placeholder="Small input" 
+    />
+    <Input 
+      sizing="md" 
+      placeholder="Medium input (default)" 
+    />
+    <Input 
+      sizing="lg" 
+      placeholder="Large input" 
+    />
+    <Input 
+      sizing="xl" 
+      placeholder="Extra large input" 
+    />
+    <Input 
+      sizing="2xl" 
+      placeholder="2X large input" 
+    />
+  </div>
+</ComponentDocSection>
+
+## Input Types
+
+<ComponentDocSection
+  code={`import { Input } from "buildgrid-ui";
+
+function InputTypes() {
+  return (
+    <div className="space-y-4 w-full max-w-md">
+      <Input 
+        type="text" 
+        placeholder="Text input" 
+      />
+      <Input 
+        type="email" 
+        placeholder="Email input" 
+      />
+      <Input 
+        type="password" 
+        placeholder="Password input" 
+      />
+      <Input 
+        type="number" 
+        placeholder="Number input" 
+      />
+      <Input 
+        type="tel" 
+        placeholder="Phone number" 
+      />
+      <Input 
+        type="url" 
+        placeholder="Website URL" 
+      />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 w-full max-w-md">
+    <Input 
+      type="text" 
+      placeholder="Text input" 
+    />
+    <Input 
+      type="email" 
+      placeholder="Email input" 
+    />
+    <Input 
+      type="password" 
+      placeholder="Password input" 
+    />
+    <Input 
+      type="number" 
+      placeholder="Number input" 
+    />
+    <Input 
+      type="tel" 
+      placeholder="Phone number" 
+    />
+    <Input 
+      type="url" 
+      placeholder="Website URL" 
+    />
+  </div>
+</ComponentDocSection>
+## Input States
+
+<ComponentDocSection
+  code={`import { Input } from "buildgrid-ui";
+
+function InputStates() {
+  return (
+    <div className="space-y-4 w-full max-w-md">
+      <Input 
+        placeholder="Default state" 
+      />
+      <Input 
+        placeholder="Disabled state" 
+        disabled 
+      />
+      <Input 
+        placeholder="Read-only state" 
+        readOnly 
+        defaultValue="Read-only value"
+      />
+      <Input 
+        placeholder="Required field" 
+        required 
+      />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 w-full max-w-md">
+    <Input 
+      placeholder="Default state" 
+    />
+    <Input 
+      placeholder="Disabled state" 
+      disabled 
+    />
+    <Input 
+      placeholder="Read-only state" 
+      readOnly 
+      defaultValue="Read-only value"
+    />
+    <Input 
+      placeholder="Required field" 
+      required 
+    />
+  </div>
+</ComponentDocSection>
+
+## Form Example
+
+<ComponentDocSection
+  code={`import { Input, Button } from "buildgrid-ui";
+
+function FormExample() {
+  return (
+    <form className="space-y-4 w-full max-w-md">
+      <div>
+        <label htmlFor="firstName" className="block text-sm font-medium mb-1">
+          First Name
+        </label>
+        <Input 
+          id="firstName"
+          type="text" 
+          placeholder="Enter your first name" 
+          required
+        />
+      </div>
+      
+      <div>
+        <label htmlFor="lastName" className="block text-sm font-medium mb-1">
+          Last Name
+        </label>
+        <Input 
+          id="lastName"
+          type="text" 
+          placeholder="Enter your last name" 
+          required
+        />
+      </div>
+      
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium mb-1">
+          Email Address
+        </label>
+        <Input 
+          id="email"
+          type="email" 
+          placeholder="Enter your email" 
+          required
+        />
+      </div>
+      
+      <div>
+        <label htmlFor="phone" className="block text-sm font-medium mb-1">
+          Phone Number
+        </label>
+        <Input 
+          id="phone"
+          type="tel" 
+          placeholder="Enter your phone number" 
+        />
+      </div>
+      
+      <Button type="submit" className="w-full">
+        Submit Form
+      </Button>
+    </form>
+  );
+}`}
+>
+  <form className="space-y-4 w-full max-w-md">
+    <div>
+      <label htmlFor="firstName" className="block text-sm font-medium mb-1">
+        First Name
+      </label>
+      <Input 
+        id="firstName"
+        type="text" 
+        placeholder="Enter your first name" 
+        required
+      />
+    </div>
+    
+    <div>
+      <label htmlFor="lastName" className="block text-sm font-medium mb-1">
+        Last Name
+      </label>
+      <Input 
+        id="lastName"
+        type="text" 
+        placeholder="Enter your last name" 
+        required
+      />
+    </div>
+    
+    <div>
+      <label htmlFor="email" className="block text-sm font-medium mb-1">
+        Email Address
+      </label>
+      <Input 
+        id="email"
+        type="email" 
+        placeholder="Enter your email" 
+        required
+      />
+    </div>
+    
+    <div>
+      <label htmlFor="phone" className="block text-sm font-medium mb-1">
+        Phone Number
+      </label>
+      <Input 
+        id="phone"
+        type="tel" 
+        placeholder="Enter your phone number" 
+      />
+    </div>
+    
+    <Button type="submit" className="w-full">
+      Submit Form
+    </Button>
+  </form>
+</ComponentDocSection>
+
+## File Input
+
+<ComponentDocSection
+  code={`import { Input } from "buildgrid-ui";
+
+function FileInput() {
+  return (
+    <div className="space-y-4 w-full max-w-md">
+      <div>
+        <label htmlFor="file" className="block text-sm font-medium mb-1">
+          Upload File
+        </label>
+        <Input 
+          id="file"
+          type="file" 
+          accept=".pdf,.doc,.docx"
+        />
+      </div>
+      
+      <div>
+        <label htmlFor="image" className="block text-sm font-medium mb-1">
+          Upload Image
+        </label>
+        <Input 
+          id="image"
+          type="file" 
+          accept="image/*"
+          multiple
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 w-full max-w-md">
+    <div>
+      <label htmlFor="file" className="block text-sm font-medium mb-1">
+        Upload File
+      </label>
+      <Input 
+        id="file"
+        type="file" 
+        accept=".pdf,.doc,.docx"
+      />
+    </div>
+    
+    <div>
+      <label htmlFor="image" className="block text-sm font-medium mb-1">
+        Upload Image
+      </label>
+      <Input 
+        id="image"
+        type="file" 
+        accept="image/*"
+        multiple
+      />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Input`
+
+| Property | Type | Description |
+|---|---|---|
+| `sizing` | `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` | The size variant of the input. Default: `"md"`. |
+| `type` | `string` | The HTML input type (text, email, password, etc.). |
+| `placeholder` | `string` | Placeholder text displayed when the input is empty. |
+| `disabled` | `boolean` | Whether the input is disabled. |
+| `readOnly` | `boolean` | Whether the input is read-only. |
+| `required` | `boolean` | Whether the input is required for form submission. |
+| `value` | `string` | The controlled value of the input. |
+| `defaultValue` | `string` | The default value for uncontrolled inputs. |
+| `onChange` | `(event: ChangeEvent<HTMLInputElement>) => void` | Event handler called when the input value changes. |
+| `onFocus` | `(event: FocusEvent<HTMLInputElement>) => void` | Event handler called when the input receives focus. |
+| `onBlur` | `(event: FocusEvent<HTMLInputElement>) => void` | Event handler called when the input loses focus. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `id` | `string` | The HTML id attribute for the input. |
+| `name` | `string` | The HTML name attribute for the input. |
+| `autoComplete` | `string` | The HTML autocomplete attribute. |
+| `autoFocus` | `boolean` | Whether the input should automatically receive focus. |
+
+## Size Variants
+
+| Size | Height | Font Size | Padding | Use Case |
+|---|---|---|---|---|
+| `sm` | 32px | 12px | 8px | Compact forms, tables, tight spaces |
+| `md` | 40px | 14px | 12px | General use, most forms (default) |
+| `lg` | 48px | 16px | 16px | Prominent forms, landing pages |
+| `xl` | 56px | 18px | 20px | Hero sections, important CTAs |
+| `2xl` | 64px | 20px | 24px | Large displays, accessibility needs |
+
+## Accessibility
+
+The Input component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support for all interactions
+- **Screen Reader Support** - Proper labeling and ARIA attributes
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Form Integration** - Works seamlessly with form validation
+- **Error States** - Supports validation styling and error messages
+- **Required Fields** - Proper indication of required vs optional fields
+
+## Common Use Cases
+
+The Input component is perfect for:
+
+- **Contact Forms** - Name, email, phone, message fields
+- **User Registration** - Account creation and profile setup
+- **Search Functionality** - Search bars and filter inputs
+- **Settings Panels** - Configuration and preference inputs
+- **Data Entry** - Forms for creating and editing content
+- **Authentication** - Login, signup, password reset forms
+- **File Uploads** - Document and media file selection
+
+## Best Practices
+
+1. **Appropriate Labels** - Always provide clear, descriptive labels
+2. **Placeholder Text** - Use helpful placeholder text that doesn't replace labels
+3. **Input Types** - Use specific input types for better UX (email, tel, url)
+4. **Validation** - Provide clear validation feedback and error messages
+5. **Size Selection** - Choose appropriate sizes for the context and importance
+6. **Required Fields** - Clearly indicate which fields are required
+7. **Autocomplete** - Use autocomplete attributes for better user experience
+8. **Mobile Optimization** - Ensure inputs work well on touch devices

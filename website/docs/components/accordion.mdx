@@ -8,13 +8,11 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-
 } from "buildgrid-ui";
-import { FaCode } from 'react-icons/fa'
 
 # Accordion
 
-The `Accordion` component is used to display and hide content in expandable sections.
+The `Accordion` component is used to display and hide content in expandable sections. It's built on top of Radix UI's Accordion primitive and provides a clean, accessible way to organize content.
 
 ## Basic Usage
 
@@ -41,6 +39,12 @@ function MyAccordion() {
           Yes. It comes with default styles that can be customized.
         </AccordionContent>
       </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Is it animated?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It uses CSS transitions to animate its content.
+        </AccordionContent>
+      </AccordionItem>
     </Accordion>
   );
 }`}
@@ -58,8 +62,271 @@ function MyAccordion() {
         Yes. It comes with default styles that can be customized.
       </AccordionContent>
     </AccordionItem>
+    <AccordionItem value="item-3">
+      <AccordionTrigger>Is it animated?</AccordionTrigger>
+      <AccordionContent>
+        Yes. It uses CSS transitions to animate its content.
+      </AccordionContent>
+    </AccordionItem>
   </Accordion>
-</ComponentDocSection> 
+</ComponentDocSection>
+## Multiple Items Open
+
+<ComponentDocSection
+  code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "buildgrid-ui";
+
+function MultipleAccordion() {
+  return (
+    <Accordion type="multiple">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Can multiple items be open?</AccordionTrigger>
+        <AccordionContent>
+          Yes! When type is set to "multiple", you can have multiple accordion items open at the same time.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>How does it work?</AccordionTrigger>
+        <AccordionContent>
+          Simply set the type prop to "multiple" and users can expand multiple sections simultaneously.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Is this useful?</AccordionTrigger>
+        <AccordionContent>
+          Absolutely! This is great for FAQ sections, settings panels, or any content where users might want to compare information across sections.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
+>
+  <Accordion type="multiple">
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Can multiple items be open?</AccordionTrigger>
+      <AccordionContent>
+        Yes! When type is set to "multiple", you can have multiple accordion items open at the same time.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>How does it work?</AccordionTrigger>
+      <AccordionContent>
+        Simply set the type prop to "multiple" and users can expand multiple sections simultaneously.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-3">
+      <AccordionTrigger>Is this useful?</AccordionTrigger>
+      <AccordionContent>
+        Absolutely! This is great for FAQ sections, settings panels, or any content where users might want to compare information across sections.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentDocSection>
+
+## Default Open Item
+
+<ComponentDocSection
+  code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "buildgrid-ui";
+
+function DefaultOpenAccordion() {
+  return (
+    <Accordion type="single" collapsible defaultValue="item-2">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>First item</AccordionTrigger>
+        <AccordionContent>
+          This is the first accordion item content.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Second item (opens by default)</AccordionTrigger>
+        <AccordionContent>
+          This accordion item is open by default because we set defaultValue="item-2".
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Third item</AccordionTrigger>
+        <AccordionContent>
+          This is the third accordion item content.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
+>
+  <Accordion type="single" collapsible defaultValue="item-2">
+    <AccordionItem value="item-1">
+      <AccordionTrigger>First item</AccordionTrigger>
+      <AccordionContent>
+        This is the first accordion item content.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Second item (opens by default)</AccordionTrigger>
+      <AccordionContent>
+        This accordion item is open by default because we set defaultValue="item-2".
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-3">
+      <AccordionTrigger>Third item</AccordionTrigger>
+      <AccordionContent>
+        This is the third accordion item content.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentDocSection>
+
+## FAQ Style
+
+<ComponentDocSection
+  code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "buildgrid-ui";
+
+function FAQAccordion() {
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      <AccordionItem value="faq-1">
+        <AccordionTrigger>What is BuildGrid UI?</AccordionTrigger>
+        <AccordionContent>
+          BuildGrid UI is a modern React component library built on top of shadcn/ui and Radix UI primitives. 
+          It provides a comprehensive set of accessible, customizable components for building modern web applications.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="faq-2">
+        <AccordionTrigger>How do I install BuildGrid UI?</AccordionTrigger>
+        <AccordionContent>
+          You can install BuildGrid UI using npm or yarn:
+          <br /><br />
+          <code>npm install buildgrid-ui</code>
+          <br />
+          or
+          <br />
+          <code>yarn add buildgrid-ui</code>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="faq-3">
+        <AccordionTrigger>Is it compatible with Next.js?</AccordionTrigger>
+        <AccordionContent>
+          Yes! BuildGrid UI is fully compatible with Next.js, React, and other React-based frameworks. 
+          It supports both client-side and server-side rendering.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="faq-4">
+        <AccordionTrigger>Can I customize the components?</AccordionTrigger>
+        <AccordionContent>
+          Absolutely! All components are built with customization in mind. You can use Tailwind CSS classes, 
+          CSS modules, or styled-components to customize the appearance and behavior of any component.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
+>
+  <Accordion type="single" collapsible className="w-full">
+    <AccordionItem value="faq-1">
+      <AccordionTrigger>What is BuildGrid UI?</AccordionTrigger>
+      <AccordionContent>
+        BuildGrid UI is a modern React component library built on top of shadcn/ui and Radix UI primitives. 
+        It provides a comprehensive set of accessible, customizable components for building modern web applications.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="faq-2">
+      <AccordionTrigger>How do I install BuildGrid UI?</AccordionTrigger>
+      <AccordionContent>
+        You can install BuildGrid UI using npm or yarn:
+        <br /><br />
+        <code>npm install buildgrid-ui</code>
+        <br />
+        or
+        <br />
+        <code>yarn add buildgrid-ui</code>
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="faq-3">
+      <AccordionTrigger>Is it compatible with Next.js?</AccordionTrigger>
+      <AccordionContent>
+        Yes! BuildGrid UI is fully compatible with Next.js, React, and other React-based frameworks. 
+        It supports both client-side and server-side rendering.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="faq-4">
+      <AccordionTrigger>Can I customize the components?</AccordionTrigger>
+      <AccordionContent>
+        Absolutely! All components are built with customization in mind. You can use Tailwind CSS classes, 
+        CSS modules, or styled-components to customize the appearance and behavior of any component.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentDocSection>
+
+## Disabled Items
+
+<ComponentDocSection
+  code={`import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "buildgrid-ui";
+
+function DisabledAccordion() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Available item</AccordionTrigger>
+        <AccordionContent>
+          This accordion item is available and can be opened.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2" disabled>
+        <AccordionTrigger>Disabled item</AccordionTrigger>
+        <AccordionContent>
+          This content won't be accessible because the item is disabled.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Another available item</AccordionTrigger>
+        <AccordionContent>
+          This is another available accordion item that can be opened.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
+>
+  <Accordion type="single" collapsible>
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Available item</AccordionTrigger>
+      <AccordionContent>
+        This accordion item is available and can be opened.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2" disabled>
+      <AccordionTrigger>Disabled item</AccordionTrigger>
+      <AccordionContent>
+        This content won't be accessible because the item is disabled.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-3">
+      <AccordionTrigger>Another available item</AccordionTrigger>
+      <AccordionContent>
+        This is another available accordion item that can be opened.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentDocSection>
 
 ## Properties
 
@@ -94,8 +361,6 @@ Does not have specific properties beyond standard HTML properties.
 
 You can customize the appearance of the `Accordion` using CSS classes or Tailwind CSS.
 
-### Customization Example with Tailwind CSS
-
 <ComponentDocSection
   code={`import {
   Accordion,
@@ -107,12 +372,20 @@ You can customize the appearance of the `Accordion` using CSS classes or Tailwin
 function CustomAccordion() {
   return (
     <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1" className="border-b border-gray-200">
-        <AccordionTrigger className="flex justify-between items-center py-4 font-medium hover:underline sm:text-blue-700 sm:bg-blue-50 md:text-red-700 md:bg-red-50 lg:text-green-700 lg:bg-green-50">
-          Custom Trigger
+      <AccordionItem value="item-1" className="border-b-2 border-blue-200">
+        <AccordionTrigger className="text-blue-600 hover:text-blue-800 font-semibold">
+          Custom styled trigger
         </AccordionTrigger>
-        <AccordionContent className="pt-0 pb-4 text-gray-700">
-          This is custom content.
+        <AccordionContent className="text-gray-600 bg-blue-50 p-4 rounded-md">
+          This accordion has custom styling with blue colors and rounded content area.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2" className="border-b-2 border-green-200">
+        <AccordionTrigger className="text-green-600 hover:text-green-800 font-semibold">
+          Another custom style
+        </AccordionTrigger>
+        <AccordionContent className="text-gray-600 bg-green-50 p-4 rounded-md">
+          This item uses green colors to show how each item can be styled differently.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
@@ -120,15 +393,34 @@ function CustomAccordion() {
 }`}
 >
   <Accordion type="single" collapsible className="w-full">
-    <AccordionItem value="item-1" className="border-b border-gray-200">
-      <AccordionTrigger className="flex justify-between items-center py-4 font-medium hover:underline sm:text-blue-700 sm:bg-blue-50 md:text-red-700 md:bg-red-50 lg:text-green-700 lg:bg-green-50">
-        Custom Trigger
+    <AccordionItem value="item-1" className="border-b-2 border-blue-200">
+      <AccordionTrigger className="text-blue-600 hover:text-blue-800 font-semibold">
+        Custom styled trigger
       </AccordionTrigger>
-      <AccordionContent className="pt-0 pb-4 text-gray-700">
-        This is custom content.
+      <AccordionContent className="text-gray-600 bg-blue-50 p-4 rounded-md">
+        This accordion has custom styling with blue colors and rounded content area.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2" className="border-b-2 border-green-200">
+      <AccordionTrigger className="text-green-600 hover:text-green-800 font-semibold">
+        Another custom style
+      </AccordionTrigger>
+      <AccordionContent className="text-gray-600 bg-green-50 p-4 rounded-md">
+        This item uses green colors to show how each item can be styled differently.
       </AccordionContent>
     </AccordionItem>
   </Accordion>
-</ComponentDocSection> 
+</ComponentDocSection>
 
-For more examples and advanced usage, please refer to the official Radix UI Accordion documentation, which is the base for this component.
+## Common Use Cases
+
+The Accordion component is perfect for:
+
+- **FAQ sections** - Organize frequently asked questions in a compact, searchable format
+- **Settings panels** - Group related configuration options together
+- **Documentation** - Structure complex information into digestible sections
+- **Product features** - Showcase features without overwhelming the user
+- **Terms and conditions** - Break down legal text into manageable sections
+- **Troubleshooting guides** - Organize solutions by problem category
+
+The component is built on Radix UI's Accordion primitive, ensuring full accessibility compliance with ARIA standards and keyboard navigation support.

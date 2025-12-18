@@ -1,3 +1,514 @@
 ---
 id: checkbox
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { Checkbox, Button } from "buildgrid-ui";
+import { useState } from 'react';
+
+# Checkbox
+
+The `Checkbox` component allows users to select one or more options from a set. Built on Radix UI's Checkbox primitive, it provides full accessibility support and customizable styling.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Checkbox } from "buildgrid-ui";
+
+function BasicCheckbox() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Checkbox id="terms" />
+      <label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+        Accept terms and conditions
+      </label>
+    </div>
+  );
+}`}
+>
+  <div className="flex items-center space-x-2">
+    <Checkbox id="terms" />
+    <label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+      Accept terms and conditions
+    </label>
+  </div>
+</ComponentDocSection>
+
+## Controlled Checkbox
+
+<ComponentDocSection
+  code={`import { Checkbox } from "buildgrid-ui";
+import { useState } from "react";
+
+function ControlledCheckbox() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox 
+          id="controlled" 
+          checked={checked}
+          onCheckedChange={setChecked}
+        />
+        <label htmlFor="controlled" className="text-sm font-medium">
+          Controlled checkbox
+        </label>
+      </div>
+      <p className="text-sm text-gray-600">
+        Status: {checked ? 'Checked' : 'Unchecked'}
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [checked, setChecked] = useState(false);
+
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center space-x-2">
+          <Checkbox 
+            id="controlled" 
+            checked={checked}
+            onCheckedChange={setChecked}
+          />
+          <label htmlFor="controlled" className="text-sm font-medium">
+            Controlled checkbox
+          </label>
+        </div>
+        <p className="text-sm text-gray-600">
+          Status: {checked ? 'Checked' : 'Unchecked'}
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Checkbox Group
+
+<ComponentDocSection
+  code={`import { Checkbox } from "buildgrid-ui";
+import { useState } from "react";
+
+function CheckboxGroup() {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const items = [
+    { id: 'react', label: 'React' },
+    { id: 'vue', label: 'Vue.js' },
+    { id: 'angular', label: 'Angular' },
+    { id: 'svelte', label: 'Svelte' }
+  ];
+
+  const handleItemChange = (itemId, checked) => {
+    if (checked) {
+      setSelectedItems([...selectedItems, itemId]);
+    } else {
+      setSelectedItems(selectedItems.filter(id => id !== itemId));
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      <h3 className="text-sm font-medium">Select your favorite frameworks:</h3>
+      <div className="space-y-3">
+        {items.map((item) => (
+          <div key={item.id} className="flex items-center space-x-2">
+            <Checkbox
+              id={item.id}
+              checked={selectedItems.includes(item.id)}
+              onCheckedChange={(checked) => handleItemChange(item.id, checked)}
+            />
+            <label htmlFor={item.id} className="text-sm font-medium">
+              {item.label}
+            </label>
+          </div>
+        ))}
+      </div>
+      <p className="text-sm text-gray-600">
+        Selected: {selectedItems.length > 0 ? selectedItems.join(', ') : 'None'}
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [selectedItems, setSelectedItems] = useState([]);
+
+    const items = [
+      { id: 'react', label: 'React' },
+      { id: 'vue', label: 'Vue.js' },
+      { id: 'angular', label: 'Angular' },
+      { id: 'svelte', label: 'Svelte' }
+    ];
+
+    const handleItemChange = (itemId, checked) => {
+      if (checked) {
+        setSelectedItems([...selectedItems, itemId]);
+      } else {
+        setSelectedItems(selectedItems.filter(id => id !== itemId));
+      }
+    };
+
+    return (
+      <div className="space-y-4">
+        <h3 className="text-sm font-medium">Select your favorite frameworks:</h3>
+        <div className="space-y-3">
+          {items.map((item) => (
+            <div key={item.id} className="flex items-center space-x-2">
+              <Checkbox
+                id={item.id}
+                checked={selectedItems.includes(item.id)}
+                onCheckedChange={(checked) => handleItemChange(item.id, checked)}
+              />
+              <label htmlFor={item.id} className="text-sm font-medium">
+                {item.label}
+              </label>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm text-gray-600">
+          Selected: {selectedItems.length > 0 ? selectedItems.join(', ') : 'None'}
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Indeterminate State
+
+<ComponentDocSection
+  code={`import { Checkbox } from "buildgrid-ui";
+import { useState } from "react";
+
+function IndeterminateCheckbox() {
+  const [items, setItems] = useState([
+    { id: 'item1', label: 'Item 1', checked: false },
+    { id: 'item2', label: 'Item 2', checked: true },
+    { id: 'item3', label: 'Item 3', checked: false }
+  ]);
+
+  const checkedItems = items.filter(item => item.checked);
+  const isAllChecked = checkedItems.length === items.length;
+  const isIndeterminate = checkedItems.length > 0 && checkedItems.length < items.length;
+
+  const handleSelectAll = (checked) => {
+    setItems(items.map(item => ({ ...item, checked })));
+  };
+
+  const handleItemChange = (itemId, checked) => {
+    setItems(items.map(item => 
+      item.id === itemId ? { ...item, checked } : item
+    ));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2 border-b pb-2">
+        <Checkbox
+          checked={isAllChecked}
+          ref={(ref) => {
+            if (ref) ref.indeterminate = isIndeterminate;
+          }}
+          onCheckedChange={handleSelectAll}
+        />
+        <label className="text-sm font-medium">
+          Select All ({checkedItems.length}/{items.length})
+        </label>
+      </div>
+      <div className="space-y-2 pl-6">
+        {items.map((item) => (
+          <div key={item.id} className="flex items-center space-x-2">
+            <Checkbox
+              checked={item.checked}
+              onCheckedChange={(checked) => handleItemChange(item.id, checked)}
+            />
+            <label className="text-sm">
+              {item.label}
+            </label>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [items, setItems] = useState([
+      { id: 'item1', label: 'Item 1', checked: false },
+      { id: 'item2', label: 'Item 2', checked: true },
+      { id: 'item3', label: 'Item 3', checked: false }
+    ]);
+
+    const checkedItems = items.filter(item => item.checked);
+    const isAllChecked = checkedItems.length === items.length;
+    const isIndeterminate = checkedItems.length > 0 && checkedItems.length < items.length;
+
+    const handleSelectAll = (checked) => {
+      setItems(items.map(item => ({ ...item, checked })));
+    };
+
+    const handleItemChange = (itemId, checked) => {
+      setItems(items.map(item => 
+        item.id === itemId ? { ...item, checked } : item
+      ));
+    };
+
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center space-x-2 border-b pb-2">
+          <Checkbox
+            checked={isAllChecked}
+            ref={(ref) => {
+              if (ref) ref.indeterminate = isIndeterminate;
+            }}
+            onCheckedChange={handleSelectAll}
+          />
+          <label className="text-sm font-medium">
+            Select All ({checkedItems.length}/{items.length})
+          </label>
+        </div>
+        <div className="space-y-2 pl-6">
+          {items.map((item) => (
+            <div key={item.id} className="flex items-center space-x-2">
+              <Checkbox
+                checked={item.checked}
+                onCheckedChange={(checked) => handleItemChange(item.id, checked)}
+              />
+              <label className="text-sm">
+                {item.label}
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { Checkbox } from "buildgrid-ui";
+
+function DisabledCheckbox() {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox id="disabled-unchecked" disabled />
+        <label htmlFor="disabled-unchecked" className="text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Disabled unchecked
+        </label>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Checkbox id="disabled-checked" disabled checked />
+        <label htmlFor="disabled-checked" className="text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Disabled checked
+        </label>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div className="flex items-center space-x-2">
+      <Checkbox id="disabled-unchecked" disabled />
+      <label htmlFor="disabled-unchecked" className="text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+        Disabled unchecked
+      </label>
+    </div>
+    
+    <div className="flex items-center space-x-2">
+      <Checkbox id="disabled-checked" disabled checked />
+      <label htmlFor="disabled-checked" className="text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+        Disabled checked
+      </label>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Form Integration
+
+<ComponentDocSection
+  code={`import { Checkbox, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function CheckboxForm() {
+  const [formData, setFormData] = useState({
+    newsletter: false,
+    terms: false,
+    marketing: false
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(JSON.stringify(formData, null, 2));
+  };
+
+  const handleChange = (field, checked) => {
+    setFormData(prev => ({ ...prev, [field]: checked }));
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="space-y-3">
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="newsletter"
+            checked={formData.newsletter}
+            onCheckedChange={(checked) => handleChange('newsletter', checked)}
+          />
+          <label htmlFor="newsletter" className="text-sm font-medium">
+            Subscribe to newsletter
+          </label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="terms"
+            checked={formData.terms}
+            onCheckedChange={(checked) => handleChange('terms', checked)}
+          />
+          <label htmlFor="terms" className="text-sm font-medium">
+            I agree to the terms and conditions *
+          </label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="marketing"
+            checked={formData.marketing}
+            onCheckedChange={(checked) => handleChange('marketing', checked)}
+          />
+          <label htmlFor="marketing" className="text-sm font-medium">
+            Receive marketing communications
+          </label>
+        </div>
+      </div>
+
+      <Button type="submit" disabled={!formData.terms}>
+        Submit
+      </Button>
+    </form>
+  );
+}`}
+>
+  {(() => {
+    const [formData, setFormData] = useState({
+      newsletter: false,
+      terms: false,
+      marketing: false
+    });
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      alert(JSON.stringify(formData, null, 2));
+    };
+
+    const handleChange = (field, checked) => {
+      setFormData(prev => ({ ...prev, [field]: checked }));
+    };
+
+    return (
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-3">
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="newsletter"
+              checked={formData.newsletter}
+              onCheckedChange={(checked) => handleChange('newsletter', checked)}
+            />
+            <label htmlFor="newsletter" className="text-sm font-medium">
+              Subscribe to newsletter
+            </label>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="terms"
+              checked={formData.terms}
+              onCheckedChange={(checked) => handleChange('terms', checked)}
+            />
+            <label htmlFor="terms" className="text-sm font-medium">
+              I agree to the terms and conditions *
+            </label>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="marketing"
+              checked={formData.marketing}
+              onCheckedChange={(checked) => handleChange('marketing', checked)}
+            />
+            <label htmlFor="marketing" className="text-sm font-medium">
+              Receive marketing communications
+            </label>
+          </div>
+        </div>
+
+        <Button type="submit" disabled={!formData.terms}>
+          Submit
+        </Button>
+      </form>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Checkbox`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `checked` | `boolean \| "indeterminate"` | - | The checked state of the checkbox. |
+| `defaultChecked` | `boolean` | - | The default checked state (uncontrolled). |
+| `onCheckedChange` | `(checked: boolean) => void` | - | Callback fired when the checked state changes. |
+| `disabled` | `boolean` | `false` | If `true`, the checkbox is disabled. |
+| `required` | `boolean` | `false` | If `true`, the checkbox is required. |
+| `name` | `string` | - | The name attribute for form submission. |
+| `value` | `string` | - | The value attribute for form submission. |
+| `id` | `string` | - | The id attribute for the checkbox. |
+| `className` | `string` | - | Additional CSS classes. |
+
+## Features
+
+### Accessibility
+- Full keyboard navigation support (Space to toggle)
+- Screen reader compatible with proper ARIA attributes
+- Focus management and visible focus indicators
+- Support for required and disabled states
+
+### States
+- **Checked** - Selected state
+- **Unchecked** - Default unselected state  
+- **Indeterminate** - Partially selected state (useful for "select all" scenarios)
+- **Disabled** - Non-interactive state
+
+### Form Integration
+- Works with form libraries and native forms
+- Proper name/value attributes for form submission
+- Validation support with required attribute
+
+## Common Use Cases
+
+The Checkbox component is perfect for:
+
+- **Terms and conditions** - User agreement checkboxes
+- **Settings panels** - Enable/disable features
+- **Multi-select lists** - Select multiple items from a list
+- **Filters** - Apply multiple filter criteria
+- **Permissions** - Grant/revoke access rights
+- **Preferences** - User preference selections
+- **Bulk actions** - Select all/none functionality
+
+## Best Practices
+
+1. **Always provide labels** - Use proper label elements for accessibility
+2. **Group related options** - Use fieldsets for checkbox groups
+3. **Clear descriptions** - Make checkbox purposes obvious
+4. **Logical ordering** - Order options in a meaningful way
+5. **Validate appropriately** - Mark required checkboxes clearly
+6. **Handle indeterminate state** - Use for parent/child relationships
+7. **Test with keyboard** - Ensure full keyboard accessibility
