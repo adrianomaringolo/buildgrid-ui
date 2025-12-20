@@ -1,167 +1,275 @@
-# buildgrid-ui
+<div align="center">
+  <h1>BuildGrid UI</h1>
+  <p><strong>A modern React component library built for real-world projects</strong></p>
+  
+  <img src="https://adrianomaringolo.github.io/buildgrid-ui/assets/images/buildgrid-ui-launch-0df921f6559272569468298e74d3d7b8.png" alt="BuildGrid UI - Modern React Component Library" width="100%" style="max-width: 800px; border-radius: 12px; margin: 20px 0;" />
+  
+  <p>
+    <a href="https://www.npmjs.com/package/buildgrid-ui"><img src="https://img.shields.io/npm/v/buildgrid-ui.svg" alt="npm version"></a>
+    <a href="https://www.npmjs.com/package/buildgrid-ui"><img src="https://img.shields.io/npm/dm/buildgrid-ui.svg" alt="npm downloads"></a>
+    <a href="https://github.com/adrianomaringolo/buildgrid-ui/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/buildgrid-ui.svg" alt="license"></a>
+    <a href="https://github.com/adrianomaringolo/buildgrid-ui"><img src="https://img.shields.io/github/stars/adrianomaringolo/buildgrid-ui.svg" alt="github stars"></a>
+  </p>
 
-### This lib is under construction, take a look again soon 🚧
-
-A React component library built using [Vite](https://vitejs.dev) and [shadcn](https://ui.shadcn.com/) as the foundation. This library is designed to integrate seamlessly with React and Next.js applications and includes support for [TailwindCSS](https://tailwindcss.com). It also provides a Storybook setup to display and document the components.
-
-## Features
-
-- **Built with Vite** for a fast development experience.
-- **TailwindCSS Integration** for utility-first styling.
-- **shadcn Components** as a robust base.
-- **Storybook** for component documentation and testing.
-- **Semantic Versioning** with automated releases using [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
+  <p>
+    <a href="https://adrianomaringolo.github.io/buildgrid-ui/">📖 Documentation</a> •
+    <a href="https://adrianomaringolo.github.io/buildgrid-ui/">🎨 Storybook</a> •
+    <a href="https://adrianomaringolo.github.io/buildgrid-ui/changelog">📋 Changelog</a> •
+    <a href="https://github.com/adrianomaringolo/buildgrid-ui/discussions">💬 Discussions</a>
+  </p>
+</div>
 
 ---
 
-## Getting Started
+## ✨ Features
+
+BuildGrid UI is a comprehensive React component library featuring **44+ components** and **12 specialized blocks**, all built with production use in mind.
+
+- 🎯 **Battle-Tested** - Components refined through real-world usage
+- 🎨 **Modern Stack** - Built with React 19, TypeScript, and Tailwind CSS
+- ♿ **Accessible** - WCAG compliant with full keyboard navigation
+- 📱 **Responsive** - Mobile-first design approach
+- 🎭 **Customizable** - Flexible theming and styling options
+- 📚 **Well Documented** - Comprehensive docs with interactive examples
+- 🔧 **Developer Friendly** - Full TypeScript support with IntelliSense
+- 🚀 **Production Ready** - Used in real applications
+
+## 🚀 Quick Start
 
 ### Installation
-
-To install the library, run:
 
 ```bash
 npm install buildgrid-ui
 # or
 yarn add buildgrid-ui
+# or
+pnpm add buildgrid-ui
+```
+
+### Setup
+
+1. **Import the theme styles** in your app's entry point:
+
+```tsx
+// src/main.tsx or src/index.tsx
+import 'buildgrid-ui/theme'
+```
+
+2. **Configure Tailwind CSS** (v3):
+
+```js
+// tailwind.config.js
+module.exports = {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/buildgrid-ui/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
 ```
 
 ### Usage
 
-1.  **Import Components**: Import components directly into your React project:
+```tsx
+import { Button, Card, Input } from 'buildgrid-ui'
 
-    ```jsx
-    import { Button } from "buildgrid-ui";
+function App() {
+  return (
+    <Card>
+      <Card.Header>
+        <Card.Title>Welcome to BuildGrid UI</Card.Title>
+      </Card.Header>
+      <Card.Content>
+        <Input placeholder="Enter your name" />
+      </Card.Content>
+      <Card.Footer>
+        <Button>Get Started</Button>
+      </Card.Footer>
+    </Card>
+  )
+}
+```
 
-    const App = () => <Button variant="primary">Click Me</Button>;
+## 📦 What's Included
 
-    export default App;
-    ```
+### Components (44)
 
-2.  **Import Theme Styles**: Import the library's theme styles. This should be done once in your application's entry point (e.g., `src/main.tsx`, `src/index.tsx`, or `pages/_app.tsx` for Next.js):
+**Form Elements**
+- Input, Textarea, Select, Checkbox, Radio Group
+- Autocomplete, Multi-Select, Tag Input
+- Currency Input, Password Input, Adaptive Input
+- Number Stepper, Slider, Switch
 
-    ```javascript
-    // For JavaScript/TypeScript files
-    import 'buildgrid-ui/theme';
-    ```
+**Navigation**
+- Button, Navigation Menu, Tabs
+- Pagination, Dropdown Menu, Command
 
-    If you are using a CSS file for global imports, you can add:
+**Feedback**
+- Alert, Alert Dialog, Toast/Toaster
+- Progress, Spinner, Skeleton
 
-    ```css
-    /* For CSS files */
-    @import 'buildgrid-ui/theme';
-    ```
+**Layout**
+- Card, Separator, Sheet, Dialog
+- Popover, Tooltip, Collapsible, Accordion
 
-3.  **Configure TailwindCSS (for v3)**: Ensure TailwindCSS is configured in your project. Add the following content paths to your `tailwind.config.js` to include `buildgrid-ui`'s classes:
+**Display**
+- Avatar, Badge, Calendar, Carousel
+- Table, Toggle, Toggle Group
 
-    ```javascript
-    module.exports = {
-      content: [
-        "./src/**/*.{js,ts,jsx,tsx}",
-        "./node_modules/buildgrid-ui/**/*.{js,ts,jsx,tsx}",
-      ],
-      theme: {
-        extend: {},
-      },
-      plugins: [],
-    };
-    ```
+### Blocks (12)
 
----
+**Complex Components**
+- Data Table - Feature-rich table with sorting, filtering, and pagination
+- HTML Text Editor - Rich text editor with formatting toolbar
+- File Upload Dropzone - Drag-and-drop file upload with progress
+- Lazy Image Gallery - Performance-optimized image gallery
+- Month Navigator - Calendar navigation component
+- Bento Grid - Flexible grid layout system
+- Help Carousel - Interactive help/tutorial carousel
+- Empty Message - Elegant empty state component
+- Navigable List - Keyboard-navigable list component
+- Paginated Items - Pagination wrapper for any content
+- Pagination Controls - Customizable pagination UI
+- Sidebar - Flexible sidebar with multiple directions
 
-## Development
+### Utilities
 
-### Setting Up the Project
+**Hooks**
+- `useLocalStorage` - Persistent state management
+- `useDebounce` - Debounced values
+- `useCopyToClipboard` - Copy to clipboard functionality
+- `useSanitizedHtml` - Safe HTML rendering with DOMPurify
 
-Clone the repository and install dependencies:
+**Formatters**
+- Currency formatting utilities
+- Date formatting utilities
+
+**Types**
+- TypeScript utility types for better DX
+
+## 📖 Documentation
+
+Visit our [comprehensive documentation](https://adrianomaringolo.github.io/buildgrid-ui/) for:
+
+- 📘 **Component API** - Detailed props and usage examples
+- 🎨 **Interactive Examples** - Live component demos
+- ♿ **Accessibility Guidelines** - WCAG compliance information
+- 💡 **Best Practices** - Recommended usage patterns
+- 🎭 **Storybook Integration** - Visual component explorer
+
+## 🛠 Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm, yarn, or pnpm
+
+### Setup
 
 ```bash
+# Clone the repository
 git clone https://github.com/adrianomaringolo/buildgrid-ui.git
 cd buildgrid-ui
+
+# Install dependencies
 npm install
-```
 
-### Storybook
-
-Run Storybook locally to preview and develop components:
-
-```bash
+# Start Storybook
 npm run storybook
-```
 
----
-
-### Build the Library
-
-To build the library for production:
-
-```bash
+# Build the library
 npm run build
+
+# Run tests
+npm test
 ```
 
-The output will be in the `dist/` directory, ready for publishing or integration.
+### Project Structure
 
----
+```
+buildgrid-ui/
+├── src/
+│   ├── components/     # Basic UI components
+│   ├── blocks/         # Complex composed components
+│   ├── lib/
+│   │   ├── hooks/      # Custom React hooks
+│   │   ├── utils/      # Utility functions
+│   │   └── types/      # TypeScript types
+│   └── styles/         # Global styles
+├── website/            # Documentation site
+└── .storybook/         # Storybook configuration
+```
 
-## Semantic Releases
+## 🤝 Contributing
 
-This project uses [semantic-release](https://semantic-release.gitbook.io/) for automated versioning and releases.
-
-### Steps to Create a Pre-release
-
-1.  Push changes to the designated pre-release branch (e.g., `alpha`):
-    ```bash
-    git checkout -b alpha
-    git push origin alpha
-    ```
-2.  Pre-release versions (e.g., `1.0.0-alpha.1`) will be automatically created.
-
----
-
-## Contributing
-
-We welcome contributions from the community! BuildGrid UI is an open-source project and we're excited to see what you'll bring to it.
-
-### Quick Start for Contributors
-
-1. **Fork the repository** on GitHub
-2. **Clone your fork** locally
-3. **Install dependencies**: `npm install`
-4. **Start Storybook**: `npm run storybook`
-5. **Make your changes** and test them
-6. **Submit a pull request**
-
-### Contribution Guidelines
-
-Please read our [Contributing Guide](CONTRIBUTING.md) for detailed information on:
-
-- 🚀 Setting up the development environment
-- 📝 Code style and conventions
-- 🧪 Testing requirements
-- 📚 Documentation standards
-- 🔄 Pull request process
-
-### Code of Conduct
-
-This project adheres to a [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+We welcome contributions from the community! This is my first open-source project, and I'm excited to see what we can build together.
 
 ### Ways to Contribute
 
-- 🐛 **Report bugs** - [Create an issue](https://github.com/adrianomaringolo/buildgrid-ui/issues)
-- ✨ **Request features** - [Start a discussion](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
-- 🔧 **Submit pull requests** - Fix bugs or add features
-- 📖 **Improve documentation** - Help others understand the library
-- 🎨 **Design components** - Contribute new UI components
+- 🐛 **Report bugs** - [Create an issue](https://github.com/adrianomaringolo/buildgrid-ui/issues/new?template=bug_report.yml)
+- ✨ **Request features** - [Create a feature request](https://github.com/adrianomaringolo/buildgrid-ui/issues/new?template=feature_request.yml)
+- 📖 **Improve docs** - [Create a documentation issue](https://github.com/adrianomaringolo/buildgrid-ui/issues/new?template=documentation.yml)
+- 🔧 **Submit PRs** - Fix bugs or add features
+- 💬 **Join discussions** - [GitHub Discussions](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
 
-### Development Resources
+### Quick Start for Contributors
 
-- 📚 [Documentation](https://adrianomaringolo.github.io/buildgrid-ui/)
-- 🎨 [Storybook](https://buildgrid-ui-storybook.netlify.app/)
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes and test them
+4. Commit using conventional commits: `git commit -m 'feat: add amazing feature'`
+5. Push to your fork: `git push origin feature/amazing-feature`
+6. Open a Pull Request
+
+Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
+
+## 📋 Roadmap
+
+- [ ] Additional form components
+- [ ] Enhanced theming system
+- [ ] Dark mode improvements
+- [ ] More specialized blocks
+- [ ] Performance optimizations
+- [ ] Accessibility improvements
+- [ ] Additional utility hooks
+
+## 🙏 Acknowledgments
+
+BuildGrid UI is built on the shoulders of giants:
+
+- [React](https://react.dev/) - The foundation
+- [Radix UI](https://www.radix-ui.com/) - Accessible primitives
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first styling
+- [shadcn/ui](https://ui.shadcn.com/) - Design inspiration
+- [Vite](https://vitejs.dev/) - Build tool
+- [Storybook](https://storybook.js.org/) - Component development
+- [Docusaurus](https://docusaurus.io/) - Documentation platform
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- **Documentation**: https://adrianomaringolo.github.io/buildgrid-ui/
+- **NPM Package**: https://www.npmjs.com/package/buildgrid-ui
+- **GitHub**: https://github.com/adrianomaringolo/buildgrid-ui
+- **Storybook**: https://adrianomaringolo.github.io/buildgrid-ui/
+- **Changelog**: https://adrianomaringolo.github.io/buildgrid-ui/changelog
+
+## 💬 Community & Support
+
+- 🐛 [Report Issues](https://github.com/adrianomaringolo/buildgrid-ui/issues)
+- 💡 [Feature Requests](https://github.com/adrianomaringolo/buildgrid-ui/issues/new?template=feature_request.yml)
 - 💬 [Discussions](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
-- 🐛 [Issues](https://github.com/adrianomaringolo/buildgrid-ui/issues)
+- 📧 Contact: [adrianomaringolo](https://github.com/adrianomaringolo)
 
 ---
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+<div align="center">
+  <p>Built with ❤️ by <a href="https://adrianomaringolo.dev">Adriano Maringolo</a></p>
+  <p>If you find this project useful, please consider giving it a ⭐️</p>
+</div>
