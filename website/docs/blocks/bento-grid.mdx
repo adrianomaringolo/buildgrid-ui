@@ -1,141 +1,603 @@
 ---
 id: bento-grid
-title: Bento Grid
-description: Um sistema de grid flexível inspirado no design Bento, ideal para criar layouts dinâmicos e responsivos.
 ---
 
-import { BentoGrid, BentoCard } from 'buildgrid-ui'
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { BentoGrid, BentoCard, Card, CardContent, CardHeader, CardTitle, Button, Badge } from "buildgrid-ui";
+import { BarChart3, Users, TrendingUp, Calendar, Mail, Settings, Star, Heart, MessageSquare } from 'lucide-react';
 
 # Bento Grid
 
-O BentoGrid é um sistema de layout flexível inspirado no design Bento japonês, que permite criar grids dinâmicos e responsivos com diferentes tamanhos de células. É perfeito para dashboards, galerias de conteúdo e layouts complexos.
+<StorybookLink path="blocks-bentogrid--default" />
 
-## Importação
+The `BentoGrid` component provides a flexible grid system inspired by Japanese Bento box design. It allows you to create dynamic, responsive layouts with different sized cells. Perfect for dashboards, feature showcases, content galleries, and any interface requiring varied content organization.
 
-```tsx
-import { BentoGrid, BentoCard } from 'buildgrid-ui'
-```
+## Basic Usage
 
-## Uso Básico
-
-```tsx
-import { BentoGrid, BentoCard } from 'buildgrid-ui'
+<ComponentDocSection
+  code={`import { BentoGrid, BentoCard } from "buildgrid-ui";
 
 function BasicBentoGrid() {
   return (
     <BentoGrid className="lg:grid-rows-3">
       <BentoCard className="lg:row-span-2 lg:col-span-2 bg-blue-100 p-6">
-        <h3 className="text-xl font-semibold">Card Principal</h3>
-        <p>Conteúdo destacado que ocupa mais espaço</p>
+        <h3 className="text-xl font-semibold">Main Feature</h3>
+        <p>This is the primary content that takes up more space</p>
       </BentoCard>
       
       <BentoCard className="bg-green-100 p-4">
-        <h4 className="font-medium">Card 1</h4>
-        <p>Conteúdo menor</p>
+        <h4 className="font-medium">Feature 1</h4>
+        <p>Smaller content</p>
       </BentoCard>
       
       <BentoCard className="bg-yellow-100 p-4">
-        <h4 className="font-medium">Card 2</h4>
-        <p>Outro conteúdo</p>
+        <h4 className="font-medium">Feature 2</h4>
+        <p>Another feature</p>
       </BentoCard>
       
       <BentoCard className="lg:col-span-2 bg-purple-100 p-4">
-        <h4 className="font-medium">Card Largo</h4>
-        <p>Conteúdo que se estende por duas colunas</p>
+        <h4 className="font-medium">Wide Feature</h4>
+        <p>Content that spans two columns</p>
       </BentoCard>
     </BentoGrid>
-  )
-}
-```
+  );
+}`}
+  storybookPath="blocks-bentogrid--default"
+>
+  <BentoGrid className="lg:grid-rows-3">
+    <BentoCard className="lg:row-span-2 lg:col-span-2 bg-blue-100 p-6">
+      <h3 className="text-xl font-semibold">Main Feature</h3>
+      <p>This is the primary content that takes up more space</p>
+    </BentoCard>
+    
+    <BentoCard className="bg-green-100 p-4">
+      <h4 className="font-medium">Feature 1</h4>
+      <p>Smaller content</p>
+    </BentoCard>
+    
+    <BentoCard className="bg-yellow-100 p-4">
+      <h4 className="font-medium">Feature 2</h4>
+      <p>Another feature</p>
+    </BentoCard>
+    
+    <BentoCard className="lg:col-span-2 bg-purple-100 p-4">
+      <h4 className="font-medium">Wide Feature</h4>
+      <p>Content that spans two columns</p>
+    </BentoCard>
+  </BentoGrid>
+</ComponentDocSection>
 
-## Layout Complexo
+## Dashboard Layout
 
-```tsx
-import { BentoGrid, BentoCard } from 'buildgrid-ui'
+<ComponentDocSection
+  code={`import { BentoGrid, BentoCard } from "buildgrid-ui";
+import { BarChart3, Users, TrendingUp, Calendar } from "lucide-react";
 
-function ComplexBentoGrid() {
+function DashboardBentoGrid() {
+  return (
+    <BentoGrid className="lg:grid-rows-4 gap-4">
+      <BentoCard className="lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-3 bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6">
+        <div className="flex items-center gap-3 mb-4">
+          <BarChart3 className="h-8 w-8" />
+          <h3 className="text-2xl font-bold">Analytics Overview</h3>
+        </div>
+        <div className="space-y-2">
+          <p className="text-blue-100">Total Revenue</p>
+          <p className="text-3xl font-bold">$124,563</p>
+          <p className="text-sm text-blue-200">+12% from last month</p>
+        </div>
+      </BentoCard>
+      
+      <BentoCard className="lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 bg-gradient-to-br from-green-500 to-green-600 text-white p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <Users className="h-5 w-5" />
+          <h4 className="font-semibold">Users</h4>
+        </div>
+        <p className="text-2xl font-bold">2,847</p>
+        <p className="text-xs text-green-200">+5.2% today</p>
+      </BentoCard>
+      
+      <BentoCard className="lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3 bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <TrendingUp className="h-5 w-5" />
+          <h4 className="font-semibold">Growth</h4>
+        </div>
+        <p className="text-2xl font-bold">+23%</p>
+        <p className="text-xs text-purple-200">This quarter</p>
+      </BentoCard>
+      
+      <BentoCard className="lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <Calendar className="h-5 w-5" />
+          <h4 className="font-semibold">Events</h4>
+        </div>
+        <p className="text-lg font-bold">12 Today</p>
+      </BentoCard>
+      
+      <BentoCard className="lg:col-start-2 lg:col-end-4 lg:row-start-3 lg:row-end-4 bg-white border p-4">
+        <h4 className="font-semibold mb-3">Recent Activity</h4>
+        <div className="space-y-2 text-sm">
+          <div className="flex justify-between">
+            <span>New user registration</span>
+            <span className="text-gray-500">2 min ago</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Payment processed</span>
+            <span className="text-gray-500">5 min ago</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Report generated</span>
+            <span className="text-gray-500">10 min ago</span>
+          </div>
+        </div>
+      </BentoCard>
+    </BentoGrid>
+  );
+}`}
+>
+  <BentoGrid className="lg:grid-rows-4 gap-4">
+    <BentoCard className="lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-3 bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6">
+      <div className="flex items-center gap-3 mb-4">
+        <BarChart3 className="h-8 w-8" />
+        <h3 className="text-2xl font-bold">Analytics Overview</h3>
+      </div>
+      <div className="space-y-2">
+        <p className="text-blue-100">Total Revenue</p>
+        <p className="text-3xl font-bold">$124,563</p>
+        <p className="text-sm text-blue-200">+12% from last month</p>
+      </div>
+    </BentoCard>
+    
+    <BentoCard className="lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 bg-gradient-to-br from-green-500 to-green-600 text-white p-4">
+      <div className="flex items-center gap-2 mb-2">
+        <Users className="h-5 w-5" />
+        <h4 className="font-semibold">Users</h4>
+      </div>
+      <p className="text-2xl font-bold">2,847</p>
+      <p className="text-xs text-green-200">+5.2% today</p>
+    </BentoCard>
+    
+    <BentoCard className="lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3 bg-gradient-to-br from-purple-500 to-purple-600 text-white p-4">
+      <div className="flex items-center gap-2 mb-2">
+        <TrendingUp className="h-5 w-5" />
+        <h4 className="font-semibold">Growth</h4>
+      </div>
+      <p className="text-2xl font-bold">+23%</p>
+      <p className="text-xs text-purple-200">This quarter</p>
+    </BentoCard>
+    
+    <BentoCard className="lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4">
+      <div className="flex items-center gap-2 mb-2">
+        <Calendar className="h-5 w-5" />
+        <h4 className="font-semibold">Events</h4>
+      </div>
+      <p className="text-lg font-bold">12 Today</p>
+    </BentoCard>
+    
+    <BentoCard className="lg:col-start-2 lg:col-end-4 lg:row-start-3 lg:row-end-4 bg-white border p-4">
+      <h4 className="font-semibold mb-3">Recent Activity</h4>
+      <div className="space-y-2 text-sm">
+        <div className="flex justify-between">
+          <span>New user registration</span>
+          <span className="text-gray-500">2 min ago</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Payment processed</span>
+          <span className="text-gray-500">5 min ago</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Report generated</span>
+          <span className="text-gray-500">10 min ago</span>
+        </div>
+      </div>
+    </BentoCard>
+  </BentoGrid>
+</ComponentDocSection>
+
+## Feature Showcase
+
+<ComponentDocSection
+  code={`import { BentoGrid, BentoCard, Button } from "buildgrid-ui";
+import { Mail, Settings, Star, Heart, MessageSquare } from "lucide-react";
+
+function FeatureShowcase() {
   const features = [
     {
-      className: 'lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3 bg-gradient-to-br from-blue-500 to-blue-600 text-white',
-      title: 'Feature Principal',
-      description: 'Destaque principal do seu produto ou serviço',
+      className: 'lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3 bg-gradient-to-br from-indigo-500 to-purple-600 text-white',
+      icon: <Star className="h-8 w-8" />,
+      title: 'Premium Features',
+      description: 'Unlock advanced capabilities with our premium plan',
+      action: 'Upgrade Now'
     },
     {
-      className: 'lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 bg-gradient-to-br from-green-500 to-green-600 text-white',
-      title: 'Analytics',
-      description: 'Visualize dados em tempo real',
+      className: 'lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 bg-gradient-to-br from-pink-500 to-rose-600 text-white',
+      icon: <Heart className="h-6 w-6" />,
+      title: 'Customer Love',
+      description: 'Join thousands of happy customers',
+      stats: '4.9/5 Rating'
     },
     {
-      className: 'lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 bg-gradient-to-br from-purple-500 to-purple-600 text-white',
-      title: 'Integração',
-      description: 'Conecte com suas ferramentas favoritas',
+      className: 'lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 bg-gradient-to-br from-emerald-500 to-teal-600 text-white',
+      icon: <MessageSquare className="h-6 w-6" />,
+      title: 'Support',
+      description: '24/7 customer support',
+      stats: '< 2min response'
     },
     {
-      className: 'lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 bg-gradient-to-br from-orange-500 to-orange-600 text-white',
-      title: 'Notificações',
-      description: 'Mantenha-se atualizado',
+      className: 'lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 bg-gradient-to-br from-amber-500 to-orange-600 text-white',
+      icon: <Mail className="h-5 w-5" />,
+      title: 'Email Marketing',
+      description: 'Powerful email campaigns'
     },
     {
-      className: 'lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-4 bg-gradient-to-br from-red-500 to-red-600 text-white',
-      title: 'Segurança',
-      description: 'Proteção avançada para seus dados',
-    },
-  ]
+      className: 'lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-4 bg-gradient-to-br from-cyan-500 to-blue-600 text-white',
+      icon: <Settings className="h-6 w-6" />,
+      title: 'Automation',
+      description: 'Set up automated workflows to save time and increase efficiency',
+      stats: '50+ Templates'
+    }
+  ];
 
   return (
     <BentoGrid className="lg:grid-rows-4 gap-4">
       {features.map((feature, index) => (
         <BentoCard
           key={index}
-          className={`${feature.className} p-6 rounded-xl hover:scale-105 transition-transform duration-200 cursor-pointer`}
+          className={\`\${feature.className} p-6 hover:scale-105 transition-transform duration-200 cursor-pointer\`}
         >
-          <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-          <p className="text-sm opacity-90">{feature.description}</p>
+          <div className="flex items-center gap-3 mb-3">
+            {feature.icon}
+            <h3 className="text-lg font-semibold">{feature.title}</h3>
+          </div>
+          <p className="text-sm opacity-90 mb-4">{feature.description}</p>
+          {feature.stats && (
+            <p className="text-xs font-medium opacity-75 mb-3">{feature.stats}</p>
+          )}
+          {feature.action && (
+            <Button variant="secondary" size="sm" className="mt-auto">
+              {feature.action}
+            </Button>
+          )}
         </BentoCard>
       ))}
     </BentoGrid>
-  )
-}
-```
+  );
+}`}
+>
+  {(() => {
+    const features = [
+      {
+        className: 'lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3 bg-gradient-to-br from-indigo-500 to-purple-600 text-white',
+        icon: <Star className="h-8 w-8" />,
+        title: 'Premium Features',
+        description: 'Unlock advanced capabilities with our premium plan',
+        action: 'Upgrade Now'
+      },
+      {
+        className: 'lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 bg-gradient-to-br from-pink-500 to-rose-600 text-white',
+        icon: <Heart className="h-6 w-6" />,
+        title: 'Customer Love',
+        description: 'Join thousands of happy customers',
+        stats: '4.9/5 Rating'
+      },
+      {
+        className: 'lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4 bg-gradient-to-br from-emerald-500 to-teal-600 text-white',
+        icon: <MessageSquare className="h-6 w-6" />,
+        title: 'Support',
+        description: '24/7 customer support',
+        stats: '< 2min response'
+      },
+      {
+        className: 'lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 bg-gradient-to-br from-amber-500 to-orange-600 text-white',
+        icon: <Mail className="h-5 w-5" />,
+        title: 'Email Marketing',
+        description: 'Powerful email campaigns'
+      },
+      {
+        className: 'lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-4 bg-gradient-to-br from-cyan-500 to-blue-600 text-white',
+        icon: <Settings className="h-6 w-6" />,
+        title: 'Automation',
+        description: 'Set up automated workflows to save time and increase efficiency',
+        stats: '50+ Templates'
+      }
+    ];
 
-## API Reference
+    return (
+      <BentoGrid className="lg:grid-rows-4 gap-4">
+        {features.map((feature, index) => (
+          <BentoCard
+            key={index}
+            className={`${feature.className} p-6 hover:scale-105 transition-transform duration-200 cursor-pointer`}
+          >
+            <div className="flex items-center gap-3 mb-3">
+              {feature.icon}
+              <h3 className="text-lg font-semibold">{feature.title}</h3>
+            </div>
+            <p className="text-sm opacity-90 mb-4">{feature.description}</p>
+            {feature.stats && (
+              <p className="text-xs font-medium opacity-75 mb-3">{feature.stats}</p>
+            )}
+            {feature.action && (
+              <Button variant="secondary" size="sm" className="mt-auto">
+                {feature.action}
+              </Button>
+            )}
+          </BentoCard>
+        ))}
+      </BentoGrid>
+    );
+  })()}
+</ComponentDocSection>
 
-### BentoGrid
+## Content Gallery
 
-| Prop | Tipo | Descrição |
+<ComponentDocSection
+  code={`import { BentoGrid, BentoCard, Badge } from "buildgrid-ui";
+
+function ContentGallery() {
+  const content = [
+    {
+      className: 'lg:col-span-2 lg:row-span-2',
+      image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop',
+      title: 'Modern Office Design',
+      category: 'Architecture',
+      featured: true
+    },
+    {
+      className: 'lg:col-span-1 lg:row-span-1',
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=200&h=200&fit=crop',
+      title: 'Workspace Setup',
+      category: 'Interior'
+    },
+    {
+      className: 'lg:col-span-1 lg:row-span-1',
+      image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=200&h=200&fit=crop',
+      title: 'Team Collaboration',
+      category: 'Culture'
+    },
+    {
+      className: 'lg:col-span-1 lg:row-span-2',
+      image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=200&h=400&fit=crop',
+      title: 'Creative Space',
+      category: 'Design'
+    },
+    {
+      className: 'lg:col-span-2 lg:row-span-1',
+      image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=200&fit=crop',
+      title: 'Conference Room',
+      category: 'Meeting'
+    }
+  ];
+
+  return (
+    <BentoGrid className="lg:grid-rows-4 gap-4">
+      {content.map((item, index) => (
+        <BentoCard
+          key={index}
+          className={\`\${item.className} relative overflow-hidden group cursor-pointer\`}
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="relative z-10 p-6 flex flex-col justify-end h-full">
+            <div className="space-y-2">
+              {item.featured && (
+                <Badge className="bg-yellow-500 text-black mb-2">Featured</Badge>
+              )}
+              <Badge variant="secondary" className="w-fit">
+                {item.category}
+              </Badge>
+              <h3 className="text-white font-semibold text-lg">{item.title}</h3>
+            </div>
+          </div>
+        </BentoCard>
+      ))}
+    </BentoGrid>
+  );
+}`}
+>
+  {(() => {
+    const content = [
+      {
+        className: 'lg:col-span-2 lg:row-span-2',
+        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop',
+        title: 'Modern Office Design',
+        category: 'Architecture',
+        featured: true
+      },
+      {
+        className: 'lg:col-span-1 lg:row-span-1',
+        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=200&h=200&fit=crop',
+        title: 'Workspace Setup',
+        category: 'Interior'
+      },
+      {
+        className: 'lg:col-span-1 lg:row-span-1',
+        image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=200&h=200&fit=crop',
+        title: 'Team Collaboration',
+        category: 'Culture'
+      },
+      {
+        className: 'lg:col-span-1 lg:row-span-2',
+        image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=200&h=400&fit=crop',
+        title: 'Creative Space',
+        category: 'Design'
+      },
+      {
+        className: 'lg:col-span-2 lg:row-span-1',
+        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=200&fit=crop',
+        title: 'Conference Room',
+        category: 'Meeting'
+      }
+    ];
+
+    return (
+      <BentoGrid className="lg:grid-rows-4 gap-4">
+        {content.map((item, index) => (
+          <BentoCard
+            key={index}
+            className={`${item.className} relative overflow-hidden group cursor-pointer`}
+          >
+            <img
+              src={item.image}
+              alt={item.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="relative z-10 p-6 flex flex-col justify-end h-full">
+              <div className="space-y-2">
+                {item.featured && (
+                  <Badge className="bg-yellow-500 text-black mb-2">Featured</Badge>
+                )}
+                <Badge variant="secondary" className="w-fit">
+                  {item.category}
+                </Badge>
+                <h3 className="text-white font-semibold text-lg">{item.title}</h3>
+              </div>
+            </div>
+          </BentoCard>
+        ))}
+      </BentoGrid>
+    );
+  })()}
+</ComponentDocSection>
+
+## Responsive Layout
+
+<ComponentDocSection
+  code={`import { BentoGrid, BentoCard } from "buildgrid-ui";
+
+function ResponsiveBentoGrid() {
+  return (
+    <BentoGrid className="grid-rows-6 md:grid-rows-4 lg:grid-rows-3 gap-3">
+      {/* Mobile: full width, Tablet: 2 cols, Desktop: spans */}
+      <BentoCard className="col-span-3 md:col-span-2 lg:col-span-2 lg:row-span-2 bg-blue-500 text-white p-6">
+        <h3 className="text-xl font-bold mb-2">Responsive Hero</h3>
+        <p>This card adapts to different screen sizes</p>
+      </BentoCard>
+      
+      <BentoCard className="col-span-3 md:col-span-1 lg:col-span-1 bg-green-500 text-white p-4">
+        <h4 className="font-semibold">Card 1</h4>
+        <p className="text-sm">Responsive content</p>
+      </BentoCard>
+      
+      <BentoCard className="col-span-3 md:col-span-1 lg:col-span-1 bg-purple-500 text-white p-4">
+        <h4 className="font-semibold">Card 2</h4>
+        <p className="text-sm">Adapts to screen</p>
+      </BentoCard>
+      
+      <BentoCard className="col-span-3 md:col-span-2 lg:col-span-2 bg-orange-500 text-white p-4">
+        <h4 className="font-semibold">Wide Card</h4>
+        <p className="text-sm">Spans multiple columns on larger screens</p>
+      </BentoCard>
+      
+      <BentoCard className="col-span-3 md:col-span-1 lg:col-span-1 bg-red-500 text-white p-4">
+        <h4 className="font-semibold">Card 3</h4>
+        <p className="text-sm">Mobile friendly</p>
+      </BentoCard>
+    </BentoGrid>
+  );
+}`}
+>
+  <BentoGrid className="grid-rows-6 md:grid-rows-4 lg:grid-rows-3 gap-3">
+    <BentoCard className="col-span-3 md:col-span-2 lg:col-span-2 lg:row-span-2 bg-blue-500 text-white p-6">
+      <h3 className="text-xl font-bold mb-2">Responsive Hero</h3>
+      <p>This card adapts to different screen sizes</p>
+    </BentoCard>
+    
+    <BentoCard className="col-span-3 md:col-span-1 lg:col-span-1 bg-green-500 text-white p-4">
+      <h4 className="font-semibold">Card 1</h4>
+      <p className="text-sm">Responsive content</p>
+    </BentoCard>
+    
+    <BentoCard className="col-span-3 md:col-span-1 lg:col-span-1 bg-purple-500 text-white p-4">
+      <h4 className="font-semibold">Card 2</h4>
+      <p className="text-sm">Adapts to screen</p>
+    </BentoCard>
+    
+    <BentoCard className="col-span-3 md:col-span-2 lg:col-span-2 bg-orange-500 text-white p-4">
+      <h4 className="font-semibold">Wide Card</h4>
+      <p className="text-sm">Spans multiple columns on larger screens</p>
+    </BentoCard>
+    
+    <BentoCard className="col-span-3 md:col-span-1 lg:col-span-1 bg-red-500 text-white p-4">
+      <h4 className="font-semibold">Card 3</h4>
+      <p className="text-sm">Mobile friendly</p>
+    </BentoCard>
+  </BentoGrid>
+</ComponentDocSection>
+
+## Properties
+
+### `BentoGrid`
+
+| Property | Type | Description |
 |---|---|---|
-| `className` | `string` | Classes CSS adicionais para customizar o grid. |
-| `children` | `ReactNode` | Componentes BentoCard filhos. |
+| `className` | `string` | Additional CSS classes for customizing the grid layout. |
+| `children` | `ReactNode` | BentoCard components to display in the grid. |
 
-### BentoCard
+### `BentoCard`
 
-| Prop | Tipo | Descrição |
+| Property | Type | Description |
 |---|---|---|
-| `className` | `string` | Classes CSS para posicionamento e estilo do card. |
-| `children` | `ReactNode` | Conteúdo do card. |
+| `className` | `string` | CSS classes for positioning and styling the card. Use grid classes like `col-span-2`, `row-span-3` for layout. |
+| `children` | `ReactNode` | Content of the card. |
 
-## Características
+## Layout Classes
 
-### 🎨 Layout Flexível
-- Grid responsivo baseado em CSS Grid
-- Suporte a diferentes tamanhos de células
-- Fácil customização com Tailwind CSS
+### Grid Configuration
+- `grid-rows-{n}` - Set number of rows (e.g., `grid-rows-3`, `grid-rows-4`)
+- `grid-cols-{n}` - Set number of columns (default is 3)
+- `gap-{size}` - Set gap between cards
 
-### 📱 Responsivo
-- Adapta-se automaticamente a diferentes telas
-- Breakpoints configuráveis
-- Layout otimizado para mobile
+### Card Positioning
+- `col-span-{n}` - Span multiple columns (1-3)
+- `row-span-{n}` - Span multiple rows
+- `col-start-{n}` - Start at specific column
+- `row-start-{n}` - Start at specific row
+- `col-end-{n}` - End at specific column
+- `row-end-{n}` - End at specific row
 
-### 🎯 Fácil de Usar
-- API simples e intuitiva
-- Integração perfeita com Tailwind CSS
-- Componentes reutilizáveis
+### Responsive Prefixes
+- `sm:` - Small screens (640px+)
+- `md:` - Medium screens (768px+)
+- `lg:` - Large screens (1024px+)
+- `xl:` - Extra large screens (1280px+)
 
-## Melhores Práticas
+## Accessibility
 
-1. **Use classes de grid apropriadas**: Configure `grid-rows` e `grid-cols` no BentoGrid
-2. **Posicione cards com precisão**: Use classes como `row-span`, `col-span` para controlar tamanho
-3. **Mantenha hierarquia visual**: Cards maiores para conteúdo mais importante
-4. **Teste responsividade**: Verifique layout em diferentes tamanhos de tela
-5. **Use cores consistentes**: Mantenha paleta de cores coerente
-6. **Adicione interatividade**: Use hover effects e transições para melhor UX
+The BentoGrid component includes basic accessibility features:
+
+- **Semantic Structure** - Uses proper div elements with grid layout
+- **Keyboard Navigation** - Cards can be made focusable with proper tabindex
+- **Screen Reader Support** - Content is accessible to screen readers
+- **Responsive Design** - Adapts to different screen sizes and orientations
+- **Focus Management** - Interactive cards should include proper focus indicators
+
+## Common Use Cases
+
+The BentoGrid component is perfect for:
+
+- **Dashboards** - Analytics overviews with different sized metrics
+- **Feature Showcases** - Product features with varying importance
+- **Content Galleries** - Image galleries with featured content
+- **Landing Pages** - Hero sections with supporting information
+- **Portfolio Layouts** - Creative work with different aspect ratios
+- **News Layouts** - Articles with featured stories
+- **App Overviews** - Different app sections and features
+
+## Best Practices
+
+1. **Visual Hierarchy** - Use larger cards for more important content
+2. **Consistent Spacing** - Maintain consistent gaps between cards
+3. **Responsive Design** - Test layouts on different screen sizes
+4. **Content Balance** - Distribute content evenly across the grid
+5. **Color Coordination** - Use consistent color schemes across cards
+6. **Interactive Elements** - Add hover effects and transitions for better UX
+7. **Accessibility** - Ensure proper contrast and keyboard navigation
+8. **Performance** - Optimize images and content for fast loading

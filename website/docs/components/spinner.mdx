@@ -1,3 +1,620 @@
 ---
 id: spinner
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Spinner, Button, Card, CardContent } from "buildgrid-ui";
+
+# Spinner
+
+<StorybookLink path="components-spinner--default" />
+
+The `Spinner` component provides a rotating loading indicator with multiple sizes and colors. Built with Lucide React icons and class-variance-authority, it offers consistent styling and smooth animations. Perfect for buttons, cards, overlays, and any loading states that need visual feedback.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Spinner } from "buildgrid-ui";
+
+function BasicSpinner() {
+  return (
+    <Spinner />
+  );
+}`}
+  storybookPath="components-spinner--default"
+>
+  <Spinner />
+</ComponentDocSection>
+
+## With Label
+
+<ComponentDocSection
+  code={`import { Spinner } from "buildgrid-ui";
+
+function SpinnerWithLabel() {
+  return (
+    <div className="space-y-6">
+      <Spinner label="Loading..." />
+      <Spinner label="Processing data..." />
+      <Spinner label="Saving changes..." />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-6">
+    <Spinner label="Loading..." />
+    <Spinner label="Processing data..." />
+    <Spinner label="Saving changes..." />
+  </div>
+</ComponentDocSection>
+
+## Sizes
+
+<ComponentDocSection
+  code={`import { Spinner } from "buildgrid-ui";
+
+function SpinnerSizes() {
+  return (
+    <div className="flex items-center space-x-8">
+      <Spinner size="xs" label="xs" />
+      <Spinner size="sm" label="sm" />
+      <Spinner size="md" label="md" />
+      <Spinner size="lg" label="lg" />
+      <Spinner size="xl" label="xl" />
+      <Spinner size="2xl" label="2xl" />
+    </div>
+  );
+}`}
+>
+  <div className="flex items-center space-x-8">
+    <Spinner size="xs" label="xs" />
+    <Spinner size="sm" label="sm" />
+    <Spinner size="md" label="md" />
+    <Spinner size="lg" label="lg" />
+    <Spinner size="xl" label="xl" />
+    <Spinner size="2xl" label="2xl" />
+  </div>
+</ComponentDocSection>
+
+## Colors
+
+<ComponentDocSection
+  code={`import { Spinner } from "buildgrid-ui";
+
+function SpinnerColors() {
+  return (
+    <div className="grid grid-cols-4 gap-6">
+      <Spinner color="primary" label="primary" />
+      <Spinner color="secondary" label="secondary" />
+      <Spinner color="success" label="success" />
+      <Spinner color="error" label="error" />
+      <Spinner color="warning" label="warning" />
+      <Spinner color="info" label="info" />
+      <Spinner color="neutral" label="neutral" />
+      <div className="bg-gray-800 p-4 rounded">
+        <Spinner color="white" label="white" />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="grid grid-cols-4 gap-6">
+    <Spinner color="primary" label="primary" />
+    <Spinner color="secondary" label="secondary" />
+    <Spinner color="success" label="success" />
+    <Spinner color="error" label="error" />
+    <Spinner color="warning" label="warning" />
+    <Spinner color="info" label="info" />
+    <Spinner color="neutral" label="neutral" />
+    <div className="bg-gray-800 p-4 rounded">
+      <Spinner color="white" label="white" />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Loading Buttons
+
+<ComponentDocSection
+  code={`import { Spinner, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function LoadingButtons() {
+  const [loading, setLoading] = useState({});
+  
+  const handleClick = (buttonId) => {
+    setLoading(prev => ({ ...prev, [buttonId]: true }));
+    
+    setTimeout(() => {
+      setLoading(prev => ({ ...prev, [buttonId]: false }));
+    }, 2000);
+  };
+  
+  return (
+    <div className="space-y-4">
+      <div className="flex space-x-4">
+        <Button 
+          onClick={() => handleClick('save')}
+          disabled={loading.save}
+        >
+          {loading.save ? (
+            <>
+              <Spinner size="xs" />
+              Saving...
+            </>
+          ) : (
+            'Save Changes'
+          )}
+        </Button>
+        
+        <Button 
+          variant="outline"
+          onClick={() => handleClick('load')}
+          disabled={loading.load}
+        >
+          {loading.load ? (
+            <>
+              <Spinner size="xs" />
+              Loading...
+            </>
+          ) : (
+            'Load Data'
+          )}
+        </Button>
+        
+        <Button 
+          variant="destructive"
+          onClick={() => handleClick('delete')}
+          disabled={loading.delete}
+        >
+          {loading.delete ? (
+            <>
+              <Spinner size="xs" color="white" />
+              Deleting...
+            </>
+          ) : (
+            'Delete Item'
+          )}
+        </Button>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [loading, setLoading] = React.useState({});
+    
+    const handleClick = (buttonId) => {
+      setLoading(prev => ({ ...prev, [buttonId]: true }));
+      
+      setTimeout(() => {
+        setLoading(prev => ({ ...prev, [buttonId]: false }));
+      }, 2000);
+    };
+    
+    return (
+      <div className="space-y-4">
+        <div className="flex space-x-4">
+          <Button 
+            onClick={() => handleClick('save')}
+            disabled={loading.save}
+          >
+            {loading.save ? (
+              <>
+                <Spinner size="xs" />
+                Saving...
+              </>
+            ) : (
+              'Save Changes'
+            )}
+          </Button>
+          
+          <Button 
+            variant="outline"
+            onClick={() => handleClick('load')}
+            disabled={loading.load}
+          >
+            {loading.load ? (
+              <>
+                <Spinner size="xs" />
+                Loading...
+              </>
+            ) : (
+              'Load Data'
+            )}
+          </Button>
+          
+          <Button 
+            variant="destructive"
+            onClick={() => handleClick('delete')}
+            disabled={loading.delete}
+          >
+            {loading.delete ? (
+              <>
+                <Spinner size="xs" color="white" />
+                Deleting...
+              </>
+            ) : (
+              'Delete Item'
+            )}
+          </Button>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Card Loading States
+
+<ComponentDocSection
+  code={`import { Spinner, Card, CardContent, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function CardLoadingStates() {
+  const [cardStates, setCardStates] = useState({
+    card1: 'idle',
+    card2: 'idle',
+    card3: 'idle'
+  });
+  
+  const handleCardAction = (cardId, action) => {
+    setCardStates(prev => ({ ...prev, [cardId]: 'loading' }));
+    
+    setTimeout(() => {
+      setCardStates(prev => ({ 
+        ...prev, 
+        [cardId]: action === 'success' ? 'success' : 'error' 
+      }));
+      
+      setTimeout(() => {
+        setCardStates(prev => ({ ...prev, [cardId]: 'idle' }));
+      }, 1500);
+    }, 2000);
+  };
+  
+  const cards = [
+    { id: 'card1', title: 'Data Processing', action: 'success' },
+    { id: 'card2', title: 'File Upload', action: 'success' },
+    { id: 'card3', title: 'API Request', action: 'error' }
+  ];
+  
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {cards.map((card) => (
+        <Card key={card.id} className="w-full">
+          <CardContent className="p-6 text-center">
+            <h3 className="font-medium mb-4">{card.title}</h3>
+            
+            {cardStates[card.id] === 'loading' && (
+              <div className="py-8">
+                <Spinner size="lg" label="Processing..." />
+              </div>
+            )}
+            
+            {cardStates[card.id] === 'success' && (
+              <div className="py-8 text-green-600">
+                <div className="text-2xl mb-2">✓</div>
+                <p>Success!</p>
+              </div>
+            )}
+            
+            {cardStates[card.id] === 'error' && (
+              <div className="py-8 text-red-600">
+                <div className="text-2xl mb-2">✗</div>
+                <p>Error occurred</p>
+              </div>
+            )}
+            
+            {cardStates[card.id] === 'idle' && (
+              <div className="py-4">
+                <Button 
+                  onClick={() => handleCardAction(card.id, card.action)}
+                  size="sm"
+                >
+                  Start Process
+                </Button>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [cardStates, setCardStates] = React.useState({
+      card1: 'idle',
+      card2: 'idle',
+      card3: 'idle'
+    });
+    
+    const handleCardAction = (cardId, action) => {
+      setCardStates(prev => ({ ...prev, [cardId]: 'loading' }));
+      
+      setTimeout(() => {
+        setCardStates(prev => ({ 
+          ...prev, 
+          [cardId]: action === 'success' ? 'success' : 'error' 
+        }));
+        
+        setTimeout(() => {
+          setCardStates(prev => ({ ...prev, [cardId]: 'idle' }));
+        }, 1500);
+      }, 2000);
+    };
+    
+    const cards = [
+      { id: 'card1', title: 'Data Processing', action: 'success' },
+      { id: 'card2', title: 'File Upload', action: 'success' },
+      { id: 'card3', title: 'API Request', action: 'error' }
+    ];
+    
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {cards.map((card) => (
+          <Card key={card.id} className="w-full">
+            <CardContent className="p-6 text-center">
+              <h3 className="font-medium mb-4">{card.title}</h3>
+              
+              {cardStates[card.id] === 'loading' && (
+                <div className="py-8">
+                  <Spinner size="lg" label="Processing..." />
+                </div>
+              )}
+              
+              {cardStates[card.id] === 'success' && (
+                <div className="py-8 text-green-600">
+                  <div className="text-2xl mb-2">✓</div>
+                  <p>Success!</p>
+                </div>
+              )}
+              
+              {cardStates[card.id] === 'error' && (
+                <div className="py-8 text-red-600">
+                  <div className="text-2xl mb-2">✗</div>
+                  <p>Error occurred</p>
+                </div>
+              )}
+              
+              {cardStates[card.id] === 'idle' && (
+                <div className="py-4">
+                  <Button 
+                    onClick={() => handleCardAction(card.id, card.action)}
+                    size="sm"
+                  >
+                    Start Process
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Overlay Loading
+
+<ComponentDocSection
+  code={`import { Spinner, Button, Card, CardContent } from "buildgrid-ui";
+import { useState } from "react";
+
+function OverlayLoading() {
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const handleLoad = () => {
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 3000);
+  };
+  
+  return (
+    <div className="space-y-4">
+      <Button onClick={handleLoad} disabled={isLoading}>
+        {isLoading ? 'Loading...' : 'Load Content'}
+      </Button>
+      
+      <div className="relative">
+        <Card className="w-96">
+          <CardContent className="p-6">
+            <h3 className="font-semibold mb-4">Content Area</h3>
+            <p className="text-gray-600 mb-4">
+              This is some content that will be overlaid with a loading spinner
+              when the load button is clicked.
+            </p>
+            <div className="space-y-2">
+              <div className="h-4 bg-gray-200 rounded"></div>
+              <div className="h-4 bg-gray-200 rounded w-4/5"></div>
+              <div className="h-4 bg-gray-200 rounded w-3/5"></div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        {isLoading && (
+          <div className="absolute inset-0 bg-white/80 flex items-center justify-center rounded-lg">
+            <Spinner size="lg" label="Loading content..." />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [isLoading, setIsLoading] = React.useState(false);
+    
+    const handleLoad = () => {
+      setIsLoading(true);
+      setTimeout(() => setIsLoading(false), 3000);
+    };
+    
+    return (
+      <div className="space-y-4">
+        <Button onClick={handleLoad} disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Load Content'}
+        </Button>
+        
+        <div className="relative">
+          <Card className="w-96">
+            <CardContent className="p-6">
+              <h3 className="font-semibold mb-4">Content Area</h3>
+              <p className="text-gray-600 mb-4">
+                This is some content that will be overlaid with a loading spinner
+                when the load button is clicked.
+              </p>
+              <div className="space-y-2">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded w-4/5"></div>
+                <div className="h-4 bg-gray-200 rounded w-3/5"></div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          {isLoading && (
+            <div className="absolute inset-0 bg-white/80 flex items-center justify-center rounded-lg">
+              <Spinner size="lg" label="Loading content..." />
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Inline Spinners
+
+<ComponentDocSection
+  code={`import { Spinner } from "buildgrid-ui";
+
+function InlineSpinners() {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Spinner size="xs" />
+        <span className="text-sm">Saving your changes...</span>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Spinner size="sm" color="success" />
+        <span>Processing payment...</span>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Spinner size="sm" color="info" />
+        <span>Syncing data with server...</span>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Spinner size="xs" color="warning" />
+        <span className="text-sm">Uploading files (3 of 10)...</span>
+      </div>
+      
+      <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div className="flex items-center space-x-2">
+          <Spinner size="sm" color="error" />
+          <span className="text-red-700">Retrying connection...</span>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div className="flex items-center space-x-2">
+      <Spinner size="xs" />
+      <span className="text-sm">Saving your changes...</span>
+    </div>
+    
+    <div className="flex items-center space-x-2">
+      <Spinner size="sm" color="success" />
+      <span>Processing payment...</span>
+    </div>
+    
+    <div className="flex items-center space-x-2">
+      <Spinner size="sm" color="info" />
+      <span>Syncing data with server...</span>
+    </div>
+    
+    <div className="flex items-center space-x-2">
+      <Spinner size="xs" color="warning" />
+      <span className="text-sm">Uploading files (3 of 10)...</span>
+    </div>
+    
+    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+      <div className="flex items-center space-x-2">
+        <Spinner size="sm" color="error" />
+        <span className="text-red-700">Retrying connection...</span>
+      </div>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Spinner`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `size` | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` | `"md"` | Size of the spinner. |
+| `color` | `"primary"` \| `"secondary"` \| `"success"` \| `"error"` \| `"warning"` \| `"info"` \| `"white"` \| `"neutral"` | `"primary"` | Color theme of the spinner. |
+| `label` | `string` | - | Optional label displayed below the spinner. |
+| `className` | `string` | - | Additional CSS classes for custom styling. |
+
+## Size Reference
+
+| Size | Dimensions | Use Case |
+|---|---|---|
+| `xs` | 16x16px | Inline text, small buttons |
+| `sm` | 24x24px | Regular buttons, form inputs |
+| `md` | 32x32px | Cards, default loading (default) |
+| `lg` | 40x40px | Large cards, prominent loading |
+| `xl` | 56x56px | Page overlays, major operations |
+| `2xl` | 80x80px | Full-page loading, splash screens |
+
+## Color Reference
+
+| Color | Theme | Use Case |
+|---|---|---|
+| `primary` | Brand color | General loading states |
+| `secondary` | Secondary brand | Alternative loading states |
+| `success` | Green | Success operations, confirmations |
+| `error` | Red | Error states, failed operations |
+| `warning` | Yellow/Orange | Warning states, caution |
+| `info` | Blue | Information, data processing |
+| `white` | White | Dark backgrounds, overlays |
+| `neutral` | Gray | Subtle loading states |
+
+## Accessibility
+
+The Spinner component includes accessibility considerations:
+
+- **Visual Indication** - Clear rotating animation indicates loading activity
+- **Screen Reader Support** - Can be enhanced with aria-label for loading announcements
+- **Non-Interactive** - Spinners are not focusable or interactive elements
+- **Color Contrast** - All color variants meet accessibility contrast requirements
+- **Motion Sensitivity** - Consider users with motion sensitivity preferences
+
+## Common Use Cases
+
+The Spinner component is perfect for:
+
+- **Button Loading** - Async operations like save, submit, delete
+- **Data Loading** - API calls, database queries, file operations
+- **Page Transitions** - Route changes and navigation loading
+- **Form Submission** - Processing forms and validation
+- **File Operations** - Upload, download, processing files
+- **Authentication** - Login, logout, token refresh
+- **Real-time Updates** - Live data synchronization
+
+## Best Practices
+
+1. **Appropriate Sizing** - Match spinner size to the context and importance
+2. **Meaningful Labels** - Use descriptive labels that explain what's loading
+3. **Color Context** - Use colors that match the operation type (success, error, etc.)
+4. **Consistent Timing** - Don't show spinners for very quick operations (&lt;200ms)
+5. **User Feedback** - Always provide context about what's happening
+6. **Accessibility** - Consider screen readers and motion preferences
+7. **Performance** - Use spinners to improve perceived performance
+8. **Error Handling** - Replace spinners with error states when operations fail

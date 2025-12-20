@@ -1,53 +1,451 @@
 ---
 id: tag-input
-title: Tag Input
-description: Um campo de entrada que permite adicionar e remover tags de forma intuitiva, ideal para categorização e filtragem.
 ---
 
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
 import { StorybookLink } from "@site/src/components/docs/StorybookLink";
-import { TagInput } from 'buildgrid-ui'
+import { TagInput, Label, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
 
 # Tag Input
 
 <StorybookLink path="components-taginput--default" />
 
-O componente TagInput permite aos usuários adicionar e remover tags de forma intuitiva. É perfeito para categorização, filtragem, seleção de habilidades, ou qualquer cenário onde você precisa de múltiplos valores em formato de etiquetas.
+The `TagInput` component provides an intuitive way to add and remove tags. Perfect for categorization, filtering, skill selection, or any scenario where you need multiple values in a tag format. Features keyboard navigation, custom separators, and flexible input handling.
 
-## Importação
+## Basic Usage
 
-```tsx
-import { TagInput } from 'buildgrid-ui'
-```
-
-## Uso Básico
-
-```tsx
-import { TagInput } from 'buildgrid-ui'
-import { useState } from 'react'
+<ComponentDocSection
+  code={`import { TagInput } from "buildgrid-ui";
+import { useState } from "react";
 
 function BasicTagInput() {
-  const [tags, setTags] = useState<string[]>([])
+  const [tags, setTags] = useState([]);
 
   return (
     <TagInput
       value={tags}
       onChange={setTags}
-      placeholder="Digite e pressione Enter para adicionar tags..."
+      placeholder="Type and press Enter to add tags..."
     />
-  )
-}
-```
+  );
+}`}
+  storybookPath="components-taginput--default"
+>
+  {(() => {
+    const [tags, setTags] = React.useState([]);
 
-## API Reference
+    return (
+      <TagInput
+        value={tags}
+        onChange={setTags}
+        placeholder="Type and press Enter to add tags..."
+      />
+    );
+  })()}
+</ComponentDocSection>
 
-### TagInput
+## With Helper Text
 
-| Prop | Tipo | Descrição |
+<ComponentDocSection
+  code={`import { TagInput } from "buildgrid-ui";
+import { useState } from "react";
+
+function TagInputWithHelper() {
+  const [tags, setTags] = useState([]);
+
+  return (
+    <TagInput
+      value={tags}
+      onChange={setTags}
+      placeholder="Add skills..."
+      helperText="Press Enter or comma to add tags. Use Backspace to remove the last tag."
+    />
+  );
+}`}
+>
+  {(() => {
+    const [tags, setTags] = React.useState([]);
+
+    return (
+      <TagInput
+        value={tags}
+        onChange={setTags}
+        placeholder="Add skills..."
+        helperText="Press Enter or comma to add tags. Use Backspace to remove the last tag."
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Custom Separator
+
+<ComponentDocSection
+  code={`import { TagInput } from "buildgrid-ui";
+import { useState } from "react";
+
+function CustomSeparatorTagInput() {
+  const [tags, setTags] = useState([]);
+
+  return (
+    <TagInput
+      value={tags}
+      onChange={setTags}
+      separator="|"
+      placeholder="Add tags separated by pipe | or Enter..."
+      helperText="Use pipe (|) or Enter to separate tags"
+    />
+  );
+}`}
+>
+  {(() => {
+    const [tags, setTags] = React.useState([]);
+
+    return (
+      <TagInput
+        value={tags}
+        onChange={setTags}
+        separator="|"
+        placeholder="Add tags separated by pipe | or Enter..."
+        helperText="Use pipe (|) or Enter to separate tags"
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## With Initial Values
+
+<ComponentDocSection
+  code={`import { TagInput } from "buildgrid-ui";
+import { useState } from "react";
+
+function TagInputWithInitialValues() {
+  const [tags, setTags] = useState([]);
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <h4 className="text-sm font-medium mb-2">From String</h4>
+        <TagInput
+          value={tags}
+          onChange={setTags}
+          initialValue="react,typescript,nextjs"
+          placeholder="Pre-filled with initial tags..."
+        />
+      </div>
+      
+      <div>
+        <h4 className="text-sm font-medium mb-2">From Array</h4>
+        <TagInput
+          value={tags}
+          onChange={setTags}
+          initialValue={['javascript', 'css', 'html']}
+          placeholder="Pre-filled with array of tags..."
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [tags1, setTags1] = React.useState([]);
+    const [tags2, setTags2] = React.useState([]);
+
+    return (
+      <div className="space-y-4">
+        <div>
+          <h4 className="text-sm font-medium mb-2">From String</h4>
+          <TagInput
+            value={tags1}
+            onChange={setTags1}
+            initialValue="react,typescript,nextjs"
+            placeholder="Pre-filled with initial tags..."
+          />
+        </div>
+        
+        <div>
+          <h4 className="text-sm font-medium mb-2">From Array</h4>
+          <TagInput
+            value={tags2}
+            onChange={setTags2}
+            initialValue={['javascript', 'css', 'html']}
+            placeholder="Pre-filled with array of tags..."
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Form Integration
+
+<ComponentDocSection
+  code={`import { TagInput, Label, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function TagInputForm() {
+  const [skills, setSkills] = useState([]);
+  const [interests, setInterests] = useState([]);
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Skills:', skills);
+    console.log('Interests:', interests);
+    alert(\`Skills: \${skills.join(', ')}\\nInterests: \${interests.join(', ')}\`);
+  };
+
+  return (
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Profile Information</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="skills">Skills</Label>
+            <TagInput
+              id="skills"
+              value={skills}
+              onChange={setSkills}
+              placeholder="Add your skills..."
+              helperText="e.g., JavaScript, React, Node.js"
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="interests">Interests</Label>
+            <TagInput
+              id="interests"
+              value={interests}
+              onChange={setInterests}
+              placeholder="Add your interests..."
+              helperText="e.g., Web Development, AI, Design"
+            />
+          </div>
+          
+          <Button type="submit" className="w-full">
+            Save Profile
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [skills, setSkills] = React.useState([]);
+    const [interests, setInterests] = React.useState([]);
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log('Skills:', skills);
+      console.log('Interests:', interests);
+      alert(`Skills: ${skills.join(', ')}\nInterests: ${interests.join(', ')}`);
+    };
+
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Profile Information</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="skills">Skills</Label>
+              <TagInput
+                id="skills"
+                value={skills}
+                onChange={setSkills}
+                placeholder="Add your skills..."
+                helperText="e.g., JavaScript, React, Node.js"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="interests">Interests</Label>
+              <TagInput
+                id="interests"
+                value={interests}
+                onChange={setInterests}
+                placeholder="Add your interests..."
+                helperText="e.g., Web Development, AI, Design"
+              />
+            </div>
+            
+            <Button type="submit" className="w-full">
+              Save Profile
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Tag Management
+
+<ComponentDocSection
+  code={`import { TagInput, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function TagManagement() {
+  const [tags, setTags] = useState(['react', 'typescript']);
+  
+  const predefinedTags = ['javascript', 'css', 'html', 'node.js', 'python', 'java'];
+  
+  const addPredefinedTag = (tag) => {
+    if (!tags.includes(tag)) {
+      setTags([...tags, tag]);
+    }
+  };
+  
+  const clearAllTags = () => {
+    setTags([]);
+  };
+
+  return (
+    <div className="space-y-4">
+      <TagInput
+        value={tags}
+        onChange={setTags}
+        placeholder="Add or remove tags..."
+        helperText={\`\${tags.length} tags selected\`}
+      />
+      
+      <div className="space-y-2">
+        <p className="text-sm font-medium">Quick Add:</p>
+        <div className="flex flex-wrap gap-2">
+          {predefinedTags.map((tag) => (
+            <Button
+              key={tag}
+              variant={tags.includes(tag) ? "default" : "outline"}
+              size="sm"
+              onClick={() => addPredefinedTag(tag)}
+              disabled={tags.includes(tag)}
+            >
+              {tag}
+            </Button>
+          ))}
+        </div>
+      </div>
+      
+      <div className="flex gap-2">
+        <Button variant="outline" onClick={clearAllTags} disabled={tags.length === 0}>
+          Clear All
+        </Button>
+        <Button 
+          onClick={() => console.log('Selected tags:', tags)}
+          disabled={tags.length === 0}
+        >
+          Use Tags ({tags.length})
+        </Button>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [tags, setTags] = React.useState(['react', 'typescript']);
+    
+    const predefinedTags = ['javascript', 'css', 'html', 'node.js', 'python', 'java'];
+    
+    const addPredefinedTag = (tag) => {
+      if (!tags.includes(tag)) {
+        setTags([...tags, tag]);
+      }
+    };
+    
+    const clearAllTags = () => {
+      setTags([]);
+    };
+
+    return (
+      <div className="space-y-4">
+        <TagInput
+          value={tags}
+          onChange={setTags}
+          placeholder="Add or remove tags..."
+          helperText={`${tags.length} tags selected`}
+        />
+        
+        <div className="space-y-2">
+          <p className="text-sm font-medium">Quick Add:</p>
+          <div className="flex flex-wrap gap-2">
+            {predefinedTags.map((tag) => (
+              <Button
+                key={tag}
+                variant={tags.includes(tag) ? "default" : "outline"}
+                size="sm"
+                onClick={() => addPredefinedTag(tag)}
+                disabled={tags.includes(tag)}
+              >
+                {tag}
+              </Button>
+            ))}
+          </div>
+        </div>
+        
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={clearAllTags} disabled={tags.length === 0}>
+            Clear All
+          </Button>
+          <Button 
+            onClick={() => console.log('Selected tags:', tags)}
+            disabled={tags.length === 0}
+          >
+            Use Tags ({tags.length})
+          </Button>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `TagInput`
+
+| Property | Type | Description |
 |---|---|---|
-| `value` | `string[]` | Array de tags atual (controlado). |
-| `onChange` | `(value: string[]) => void` | Callback chamado quando as tags mudam. |
-| `initialValue` | `string` \| `string[]` | Valor inicial das tags (não controlado). |
-| `separator` | `string` | Caractere usado para separar tags. Padrão: `","`. |
-| `placeholder` | `string` | Texto placeholder do input. |
-| `helperText` | `string` | Texto de ajuda exibido abaixo do input. |
-| `className` | `string` | Classes CSS adicionais para o container. |
+| `value` | `string[]` | Array of current tags (controlled). |
+| `onChange` | `(value: string[]) => void` | Callback fired when tags change. |
+| `initialValue` | `string \| string[]` | Initial tags value (uncontrolled). |
+| `separator` | `string` | Character used to separate tags. Default is ",". |
+| `placeholder` | `string` | Placeholder text for the input. |
+| `helperText` | `string` | Helper text displayed below the input. |
+| `className` | `string` | Additional CSS classes for the container. |
+| `id` | `string` | HTML id attribute for the input element. |
+
+## Accessibility
+
+The TagInput component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Enter and comma keys add tags, Backspace removes tags
+- **Focus Management** - Proper focus handling for input and tag removal
+- **Screen Reader Support** - Tags and actions announced to screen readers
+- **ARIA Labels** - Descriptive labels for tag removal buttons
+- **Form Integration** - Works seamlessly with form libraries and validation
+- **Visual Feedback** - Clear visual indicators for interactive elements
+
+## Common Use Cases
+
+The TagInput component is perfect for:
+
+- **Skill Selection** - Add programming languages, frameworks, or tools
+- **Categorization** - Tag content with categories or labels
+- **Filtering** - Create filter tags for search and data filtering
+- **Keywords** - Add SEO keywords or metadata tags
+- **User Interests** - Collect user preferences and interests
+- **Product Tags** - Tag products with features or characteristics
+- **Contact Management** - Add labels to contacts or organizations
+
+## Best Practices
+
+1. **Clear Instructions** - Provide helpful placeholder and helper text
+2. **Validation** - Validate tags for length, format, or allowed values
+3. **Duplicate Prevention** - Prevent duplicate tags automatically
+4. **Reasonable Limits** - Consider setting maximum number of tags
+5. **Consistent Separators** - Use familiar separators like comma or Enter
+6. **Visual Feedback** - Show clear states for adding and removing tags
+7. **Accessibility** - Ensure keyboard navigation and screen reader support
+8. **Form Integration** - Handle form submission and validation properly

@@ -1,3 +1,530 @@
 ---
 id: paginated-items
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { PaginatedItems, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { User, Package, FileText, Star } from 'lucide-react';
+
+# Paginated Items
+
+<StorybookLink path="blocks-paginateditems--default" />
+
+The `PaginatedItems` component provides a flexible pagination solution for large datasets. Built with performance in mind, it handles data slicing, page navigation, and loading states automatically. Perfect for user lists, product catalogs, search results, and any interface displaying large collections of items.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { PaginatedItems } from "buildgrid-ui";
+import { User } from "lucide-react";
+
+function BasicPaginatedItems() {
+  const users = Array.from({ length: 100 }, (_, index) => ({
+    id: (index + 1).toString(),
+    name: \`User \${index + 1}\`,
+    email: \`user\${index + 1}@example.com\`
+  }));
+
+  return (
+    <PaginatedItems
+      data={users}
+      perPage={10}
+      itemsContainerClass="grid grid-cols-1 gap-3"
+    >
+      {(user) => (
+        <div className="border rounded-lg p-4 flex items-center gap-3">
+          <User className="h-5 w-5 text-gray-500" />
+          <div>
+            <div className="font-medium">{user.name}</div>
+            <div className="text-sm text-gray-500">{user.email}</div>
+          </div>
+        </div>
+      )}
+    </PaginatedItems>
+  );
+}`}
+  storybookPath="blocks-paginateditems--default"
+>
+  {(() => {
+    const users = Array.from({ length: 100 }, (_, index) => ({
+      id: (index + 1).toString(),
+      name: `User ${index + 1}`,
+      email: `user${index + 1}@example.com`
+    }));
+
+    return (
+      <PaginatedItems
+        data={users}
+        perPage={10}
+        itemsContainerClass="grid grid-cols-1 gap-3"
+      >
+        {(user) => (
+          <div className="border rounded-lg p-4 flex items-center gap-3">
+            <User className="h-5 w-5 text-gray-500" />
+            <div>
+              <div className="font-medium">{user.name}</div>
+              <div className="text-sm text-gray-500">{user.email}</div>
+            </div>
+          </div>
+        )}
+      </PaginatedItems>
+    );
+  })()}
+</ComponentDocSection>
+
+## Product Grid Layout
+
+<ComponentDocSection
+  code={`import { PaginatedItems } from "buildgrid-ui";
+import { Package, Star } from "lucide-react";
+
+function ProductGrid() {
+  const products = Array.from({ length: 50 }, (_, index) => ({
+    id: (index + 1).toString(),
+    name: \`Product \${index + 1}\`,
+    price: (Math.random() * 100 + 10).toFixed(2),
+    rating: (Math.random() * 2 + 3).toFixed(1),
+    category: ['Electronics', 'Clothing', 'Books', 'Home'][index % 4]
+  }));
+
+  return (
+    <PaginatedItems
+      data={products}
+      perPage={12}
+      itemsContainerClass="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+    >
+      {(product) => (
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-start gap-3">
+              <Package className="h-8 w-8 text-blue-500 mt-1" />
+              <div className="flex-1">
+                <h3 className="font-medium">{product.name}</h3>
+                <p className="text-sm text-gray-500 mb-2">{product.category}</p>
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-lg">\${product.price}</span>
+                  <div className="flex items-center gap-1">
+                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <span className="text-sm">{product.rating}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </PaginatedItems>
+  );
+}`}
+>
+  {(() => {
+    const products = Array.from({ length: 50 }, (_, index) => ({
+      id: (index + 1).toString(),
+      name: `Product ${index + 1}`,
+      price: (Math.random() * 100 + 10).toFixed(2),
+      rating: (Math.random() * 2 + 3).toFixed(1),
+      category: ['Electronics', 'Clothing', 'Books', 'Home'][index % 4]
+    }));
+
+    return (
+      <PaginatedItems
+        data={products}
+        perPage={12}
+        itemsContainerClass="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        {(product) => (
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <Package className="h-8 w-8 text-blue-500 mt-1" />
+                <div className="flex-1">
+                  <h3 className="font-medium">{product.name}</h3>
+                  <p className="text-sm text-gray-500 mb-2">{product.category}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-lg">${product.price}</span>
+                    <div className="flex items-center gap-1">
+                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      <span className="text-sm">{product.rating}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </PaginatedItems>
+    );
+  })()}
+</ComponentDocSection>
+
+## Loading States
+
+<ComponentDocSection
+  code={`import { PaginatedItems } from "buildgrid-ui";
+import { FileText } from "lucide-react";
+import React from "react";
+
+function LoadingStatesExample() {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [loadingVariant, setLoadingVariant] = React.useState('loader');
+
+  const documents = Array.from({ length: 25 }, (_, index) => ({
+    id: (index + 1).toString(),
+    title: \`Document \${index + 1}\`,
+    description: \`This is the description for document \${index + 1}\`,
+    lastModified: new Date(Date.now() - Math.random() * 10000000000).toLocaleDateString()
+  }));
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        <button
+          onClick={() => {
+            setIsLoading(true);
+            setLoadingVariant('loader');
+            setTimeout(() => setIsLoading(false), 2000);
+          }}
+          className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
+        >
+          Show Loader
+        </button>
+        <button
+          onClick={() => {
+            setIsLoading(true);
+            setLoadingVariant('skeleton');
+            setTimeout(() => setIsLoading(false), 2000);
+          }}
+          className="px-3 py-1 bg-green-500 text-white rounded text-sm"
+        >
+          Show Skeleton
+        </button>
+      </div>
+
+      <PaginatedItems
+        data={documents}
+        perPage={8}
+        isLoading={isLoading}
+        loadingVariant={loadingVariant}
+        itemsContainerClass="space-y-3"
+      >
+        {(document) => (
+          <div className="border rounded-lg p-4 flex items-start gap-3">
+            <FileText className="h-5 w-5 text-gray-500 mt-1" />
+            <div>
+              <h3 className="font-medium">{document.title}</h3>
+              <p className="text-sm text-gray-600 mb-1">{document.description}</p>
+              <p className="text-xs text-gray-500">Modified: {document.lastModified}</p>
+            </div>
+          </div>
+        )}
+      </PaginatedItems>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [loadingVariant, setLoadingVariant] = React.useState('loader');
+
+    const documents = Array.from({ length: 25 }, (_, index) => ({
+      id: (index + 1).toString(),
+      title: `Document ${index + 1}`,
+      description: `This is the description for document ${index + 1}`,
+      lastModified: new Date(Date.now() - Math.random() * 10000000000).toLocaleDateString()
+    }));
+
+    return (
+      <div className="space-y-4">
+        <div className="flex gap-2">
+          <button
+            onClick={() => {
+              setIsLoading(true);
+              setLoadingVariant('loader');
+              setTimeout(() => setIsLoading(false), 2000);
+            }}
+            className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
+          >
+            Show Loader
+          </button>
+          <button
+            onClick={() => {
+              setIsLoading(true);
+              setLoadingVariant('skeleton');
+              setTimeout(() => setIsLoading(false), 2000);
+            }}
+            className="px-3 py-1 bg-green-500 text-white rounded text-sm"
+          >
+            Show Skeleton
+          </button>
+        </div>
+
+        <PaginatedItems
+          data={documents}
+          perPage={8}
+          isLoading={isLoading}
+          loadingVariant={loadingVariant}
+          itemsContainerClass="space-y-3"
+        >
+          {(document) => (
+            <div className="border rounded-lg p-4 flex items-start gap-3">
+              <FileText className="h-5 w-5 text-gray-500 mt-1" />
+              <div>
+                <h3 className="font-medium">{document.title}</h3>
+                <p className="text-sm text-gray-600 mb-1">{document.description}</p>
+                <p className="text-xs text-gray-500">Modified: {document.lastModified}</p>
+              </div>
+            </div>
+          )}
+        </PaginatedItems>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Custom Empty State
+
+<ComponentDocSection
+  code={`import { PaginatedItems } from "buildgrid-ui";
+import { FileText } from "lucide-react";
+
+function CustomEmptyState() {
+  const emptyData = [];
+
+  const customEmptyState = (
+    <div className="text-center py-12">
+      <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+      <h3 className="text-lg font-medium text-gray-900 mb-2">No documents found</h3>
+      <p className="text-gray-500 mb-4">
+        Get started by creating your first document.
+      </p>
+      <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+        Create Document
+      </button>
+    </div>
+  );
+
+  return (
+    <PaginatedItems
+      data={emptyData}
+      perPage={10}
+      emptyState={customEmptyState}
+      itemsContainerClass="space-y-3"
+    >
+      {(item) => <div>{item.name}</div>}
+    </PaginatedItems>
+  );
+}`}
+>
+  {(() => {
+    const emptyData = [];
+
+    const customEmptyState = (
+      <div className="text-center py-12">
+        <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+        <h3 className="text-lg font-medium text-gray-900 mb-2">No documents found</h3>
+        <p className="text-gray-500 mb-4">
+          Get started by creating your first document.
+        </p>
+        <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+          Create Document
+        </button>
+      </div>
+    );
+
+    return (
+      <PaginatedItems
+        data={emptyData}
+        perPage={10}
+        emptyState={customEmptyState}
+        itemsContainerClass="space-y-3"
+      >
+        {(item) => <div>{item.name}</div>}
+      </PaginatedItems>
+    );
+  })()}
+</ComponentDocSection>
+
+## Different Page Sizes
+
+<ComponentDocSection
+  code={`import { PaginatedItems } from "buildgrid-ui";
+import { User } from "lucide-react";
+import React from "react";
+
+function DifferentPageSizes() {
+  const [perPage, setPerPage] = React.useState(5);
+  
+  const users = Array.from({ length: 50 }, (_, index) => ({
+    id: (index + 1).toString(),
+    name: \`User \${index + 1}\`,
+    email: \`user\${index + 1}@example.com\`,
+    role: ['Admin', 'Editor', 'Viewer'][index % 3]
+  }));
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-4">
+        <label className="text-sm font-medium">Items per page:</label>
+        <select
+          value={perPage}
+          onChange={(e) => setPerPage(Number(e.target.value))}
+          className="border rounded px-2 py-1 text-sm"
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+        </select>
+      </div>
+
+      <PaginatedItems
+        data={users}
+        perPage={perPage}
+        itemsContainerClass="space-y-2"
+      >
+        {(user) => (
+          <div className="border rounded-lg p-3 flex items-center gap-3">
+            <User className="h-4 w-4 text-gray-500" />
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <span className="font-medium">{user.name}</span>
+                <span className="text-xs bg-gray-100 px-2 py-1 rounded">{user.role}</span>
+              </div>
+              <div className="text-sm text-gray-500">{user.email}</div>
+            </div>
+          </div>
+        )}
+      </PaginatedItems>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [perPage, setPerPage] = React.useState(5);
+    
+    const users = Array.from({ length: 50 }, (_, index) => ({
+      id: (index + 1).toString(),
+      name: `User ${index + 1}`,
+      email: `user${index + 1}@example.com`,
+      role: ['Admin', 'Editor', 'Viewer'][index % 3]
+    }));
+
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center gap-4">
+          <label className="text-sm font-medium">Items per page:</label>
+          <select
+            value={perPage}
+            onChange={(e) => setPerPage(Number(e.target.value))}
+            className="border rounded px-2 py-1 text-sm"
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+
+        <PaginatedItems
+          data={users}
+          perPage={perPage}
+          itemsContainerClass="space-y-2"
+        >
+          {(user) => (
+            <div className="border rounded-lg p-3 flex items-center gap-3">
+              <User className="h-4 w-4 text-gray-500" />
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium">{user.name}</span>
+                  <span className="text-xs bg-gray-100 px-2 py-1 rounded">{user.role}</span>
+                </div>
+                <div className="text-sm text-gray-500">{user.email}</div>
+              </div>
+            </div>
+          )}
+        </PaginatedItems>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `PaginatedItems<Entry>`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `data` | `Entry[]` | `[]` | Array of items to paginate and display. |
+| `perPage` | `number` | `50` | Number of items to display per page. |
+| `initialPage` | `number` | `1` | Initial page number to display. |
+| `itemsContainerClass` | `string` | `''` | CSS classes for the items container. |
+| `children` | `(item: Entry, index: number) => ReactNode` | - | Function to render each item. |
+| `emptyState` | `ReactNode` | Default empty message | Custom component to show when no items exist. |
+| `isLoading` | `boolean` | `false` | Whether to show loading state. |
+| `loadingVariant` | `'loader' \| 'skeleton'` | `'loader'` | Type of loading indicator to show. |
+| `showItemsCounter` | `boolean` | `true` | Whether to show the items counter. |
+| `counterText` | `string` | - | Custom text for the items counter. |
+
+### Entry Type Constraint
+
+```typescript
+Entry extends { id?: string }
+```
+
+Items should have an optional `id` property for optimal rendering performance.
+
+## Loading States
+
+The component supports two loading variants:
+
+- **Loader** - Shows a centered spinner
+- **Skeleton** - Shows placeholder skeleton elements
+
+## Pagination Features
+
+- **Automatic Pagination** - Handles data slicing and page calculation
+- **Navigation Controls** - Previous/next buttons and page indicators
+- **Items Counter** - Shows current range and total items
+- **Responsive Design** - Works well on mobile and desktop
+- **State Management** - Maintains current page across data changes
+
+## Accessibility
+
+The PaginatedItems component includes accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support for pagination controls
+- **Screen Reader Support** - Proper ARIA labels and announcements
+- **Focus Management** - Clear focus indicators on interactive elements
+- **Loading States** - Announces loading status to screen readers
+- **Page Information** - Current page and total items announced
+
+## Common Use Cases
+
+The PaginatedItems component is perfect for:
+
+- **User Management** - Display and navigate through user lists
+- **Product Catalogs** - Browse products with pagination
+- **Search Results** - Paginate through search results
+- **Document Libraries** - Navigate document collections
+- **Data Tables** - Alternative to traditional table pagination
+- **Content Feeds** - Display content with pagination
+- **Admin Dashboards** - Manage large datasets efficiently
+- **E-commerce** - Product listings with pagination
+
+## Best Practices
+
+1. **Performance** - Use appropriate page sizes for your data and UI
+2. **Loading States** - Always provide loading feedback for async data
+3. **Empty States** - Create meaningful empty state messages
+4. **Responsive Design** - Test pagination on different screen sizes
+5. **Data Management** - Handle data updates and page resets properly
+6. **Accessibility** - Test with keyboard navigation and screen readers
+7. **Visual Consistency** - Maintain consistent item layouts
+8. **Error Handling** - Handle pagination errors gracefully

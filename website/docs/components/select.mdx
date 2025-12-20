@@ -1,3 +1,864 @@
 ---
 id: select
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel, SelectSeparator, Button, Label } from "buildgrid-ui";
+import { Check, ChevronDown } from 'lucide-react';
+
+# Select
+
+<StorybookLink path="components-select--default" />
+
+The `Select` component provides a dropdown selection interface for choosing from a list of options. Built on Radix UI, it offers accessibility features, keyboard navigation, search functionality, and flexible styling. Perfect for forms, filters, settings, and any scenario requiring option selection.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "buildgrid-ui";
+
+function BasicSelect() {
+  return (
+    <div className="w-96">
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Select an option" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="option1">Option 1</SelectItem>
+          <SelectItem value="option2">Option 2</SelectItem>
+          <SelectItem value="option3">Option 3</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}`}
+  storybookPath="components-select--default"
+>
+  <div className="w-96">
+    <Select>
+      <SelectTrigger>
+        <SelectValue placeholder="Select an option" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2">Option 2</SelectItem>
+        <SelectItem value="option3">Option 3</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+</ComponentDocSection>
+
+## Controlled Select
+
+<ComponentDocSection
+  code={`import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "buildgrid-ui";
+import { useState } from "react";
+
+function ControlledSelect() {
+  const [value, setValue] = useState("apple");
+  
+  return (
+    <div className="space-y-4 w-96">
+      <div>
+        <p className="text-sm font-medium mb-2">Selected: {value || 'None'}</p>
+        <Select value={value} onValueChange={setValue}>
+          <SelectTrigger>
+            <SelectValue placeholder="Choose a fruit" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="orange">Orange</SelectItem>
+            <SelectItem value="grape">Grape</SelectItem>
+            <SelectItem value="strawberry">Strawberry</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = React.useState("apple");
+    
+    return (
+      <div className="space-y-4 w-96">
+        <div>
+          <p className="text-sm font-medium mb-2">Selected: {value || 'None'}</p>
+          <Select value={value} onValueChange={setValue}>
+            <SelectTrigger>
+              <SelectValue placeholder="Choose a fruit" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="apple">Apple</SelectItem>
+              <SelectItem value="banana">Banana</SelectItem>
+              <SelectItem value="orange">Orange</SelectItem>
+              <SelectItem value="grape">Grape</SelectItem>
+              <SelectItem value="strawberry">Strawberry</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Groups and Labels
+
+<ComponentDocSection
+  code={`import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel, SelectSeparator } from "buildgrid-ui";
+
+function GroupedSelect() {
+  return (
+    <div className="w-96">
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a framework" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Frontend</SelectLabel>
+            <SelectItem value="react">React</SelectItem>
+            <SelectItem value="vue">Vue.js</SelectItem>
+            <SelectItem value="angular">Angular</SelectItem>
+            <SelectItem value="svelte">Svelte</SelectItem>
+          </SelectGroup>
+          
+          <SelectSeparator />
+          
+          <SelectGroup>
+            <SelectLabel>Backend</SelectLabel>
+            <SelectItem value="nodejs">Node.js</SelectItem>
+            <SelectItem value="python">Python</SelectItem>
+            <SelectItem value="java">Java</SelectItem>
+            <SelectItem value="csharp">C#</SelectItem>
+          </SelectGroup>
+          
+          <SelectSeparator />
+          
+          <SelectGroup>
+            <SelectLabel>Database</SelectLabel>
+            <SelectItem value="postgresql">PostgreSQL</SelectItem>
+            <SelectItem value="mysql">MySQL</SelectItem>
+            <SelectItem value="mongodb">MongoDB</SelectItem>
+            <SelectItem value="redis">Redis</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}`}
+>
+  <div className="w-96">
+    <Select>
+      <SelectTrigger>
+        <SelectValue placeholder="Select a framework" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Frontend</SelectLabel>
+          <SelectItem value="react">React</SelectItem>
+          <SelectItem value="vue">Vue.js</SelectItem>
+          <SelectItem value="angular">Angular</SelectItem>
+          <SelectItem value="svelte">Svelte</SelectItem>
+        </SelectGroup>
+        
+        <SelectSeparator />
+        
+        <SelectGroup>
+          <SelectLabel>Backend</SelectLabel>
+          <SelectItem value="nodejs">Node.js</SelectItem>
+          <SelectItem value="python">Python</SelectItem>
+          <SelectItem value="java">Java</SelectItem>
+          <SelectItem value="csharp">C#</SelectItem>
+        </SelectGroup>
+        
+        <SelectSeparator />
+        
+        <SelectGroup>
+          <SelectLabel>Database</SelectLabel>
+          <SelectItem value="postgresql">PostgreSQL</SelectItem>
+          <SelectItem value="mysql">MySQL</SelectItem>
+          <SelectItem value="mongodb">MongoDB</SelectItem>
+          <SelectItem value="redis">Redis</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  </div>
+</ComponentDocSection>
+
+## Disabled States
+
+<ComponentDocSection
+  code={`import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "buildgrid-ui";
+
+function DisabledSelect() {
+  return (
+    <div className="space-y-4 w-96">
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Disabled Select</Label>
+        <Select disabled>
+          <SelectTrigger>
+            <SelectValue placeholder="This select is disabled" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="option1">Option 1</SelectItem>
+            <SelectItem value="option2">Option 2</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Select with Disabled Items</Label>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Some items are disabled" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="available1">Available Option 1</SelectItem>
+            <SelectItem value="available2">Available Option 2</SelectItem>
+            <SelectItem value="disabled1" disabled>
+              Disabled Option 1
+            </SelectItem>
+            <SelectItem value="available3">Available Option 3</SelectItem>
+            <SelectItem value="disabled2" disabled>
+              Disabled Option 2
+            </SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 w-96">
+    <div>
+      <Label className="text-sm font-medium mb-2 block">Disabled Select</Label>
+      <Select disabled>
+        <SelectTrigger>
+          <SelectValue placeholder="This select is disabled" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="option1">Option 1</SelectItem>
+          <SelectItem value="option2">Option 2</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+    
+    <div>
+      <Label className="text-sm font-medium mb-2 block">Select with Disabled Items</Label>
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Some items are disabled" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="available1">Available Option 1</SelectItem>
+          <SelectItem value="available2">Available Option 2</SelectItem>
+          <SelectItem value="disabled1" disabled>
+            Disabled Option 1
+          </SelectItem>
+          <SelectItem value="available3">Available Option 3</SelectItem>
+          <SelectItem value="disabled2" disabled>
+            Disabled Option 2
+          </SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Rich Content Items
+
+<ComponentDocSection
+  code={`import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "buildgrid-ui";
+
+function RichContentSelect() {
+  return (
+    <div className="w-96">
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a user" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="user1">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                JD
+              </div>
+              <div>
+                <div className="font-medium">John Doe</div>
+                <div className="text-sm text-gray-500">john@example.com</div>
+              </div>
+            </div>
+          </SelectItem>
+          
+          <SelectItem value="user2">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                JS
+              </div>
+              <div>
+                <div className="font-medium">Jane Smith</div>
+                <div className="text-sm text-gray-500">jane@example.com</div>
+              </div>
+            </div>
+          </SelectItem>
+          
+          <SelectItem value="user3">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                MB
+              </div>
+              <div>
+                <div className="font-medium">Mike Brown</div>
+                <div className="text-sm text-gray-500">mike@example.com</div>
+              </div>
+            </div>
+          </SelectItem>
+          
+          <SelectItem value="user4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                SW
+              </div>
+              <div>
+                <div className="font-medium">Sarah Wilson</div>
+                <div className="text-sm text-gray-500">sarah@example.com</div>
+              </div>
+            </div>
+          </SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}`}
+>
+  <div className="w-96">
+    <Select>
+      <SelectTrigger>
+        <SelectValue placeholder="Select a user" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="user1">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+              JD
+            </div>
+            <div>
+              <div className="font-medium">John Doe</div>
+              <div className="text-sm text-gray-500">john@example.com</div>
+            </div>
+          </div>
+        </SelectItem>
+        
+        <SelectItem value="user2">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+              JS
+            </div>
+            <div>
+              <div className="font-medium">Jane Smith</div>
+              <div className="text-sm text-gray-500">jane@example.com</div>
+            </div>
+          </div>
+        </SelectItem>
+        
+        <SelectItem value="user3">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+              MB
+            </div>
+            <div>
+              <div className="font-medium">Mike Brown</div>
+              <div className="text-sm text-gray-500">mike@example.com</div>
+            </div>
+          </div>
+        </SelectItem>
+        
+        <SelectItem value="user4">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+              SW
+            </div>
+            <div>
+              <div className="font-medium">Sarah Wilson</div>
+              <div className="text-sm text-gray-500">sarah@example.com</div>
+            </div>
+          </div>
+        </SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+</ComponentDocSection>
+
+## Form Integration
+
+<ComponentDocSection
+  code={`import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Button, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function SelectForm() {
+  const [formData, setFormData] = useState({
+    country: '',
+    language: 'en',
+    timezone: ''
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(\`Form Data: \${JSON.stringify(formData, null, 2)}\`);
+  };
+  
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6 w-96">
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Country</Label>
+        <Select 
+          value={formData.country} 
+          onValueChange={(value) => setFormData(prev => ({ ...prev, country: value }))}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select your country" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="us">United States</SelectItem>
+            <SelectItem value="ca">Canada</SelectItem>
+            <SelectItem value="uk">United Kingdom</SelectItem>
+            <SelectItem value="de">Germany</SelectItem>
+            <SelectItem value="fr">France</SelectItem>
+            <SelectItem value="jp">Japan</SelectItem>
+            <SelectItem value="au">Australia</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Language</Label>
+        <Select 
+          value={formData.language} 
+          onValueChange={(value) => setFormData(prev => ({ ...prev, language: value }))}
+        >
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="en">English</SelectItem>
+            <SelectItem value="es">Español</SelectItem>
+            <SelectItem value="fr">Français</SelectItem>
+            <SelectItem value="de">Deutsch</SelectItem>
+            <SelectItem value="ja">日本語</SelectItem>
+            <SelectItem value="zh">中文</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      
+      <div>
+        <Label className="text-sm font-medium mb-2 block">Timezone</Label>
+        <Select 
+          value={formData.timezone} 
+          onValueChange={(value) => setFormData(prev => ({ ...prev, timezone: value }))}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select timezone" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="utc-8">UTC-8 (Pacific)</SelectItem>
+            <SelectItem value="utc-7">UTC-7 (Mountain)</SelectItem>
+            <SelectItem value="utc-6">UTC-6 (Central)</SelectItem>
+            <SelectItem value="utc-5">UTC-5 (Eastern)</SelectItem>
+            <SelectItem value="utc+0">UTC+0 (GMT)</SelectItem>
+            <SelectItem value="utc+1">UTC+1 (CET)</SelectItem>
+            <SelectItem value="utc+9">UTC+9 (JST)</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      
+      <Button type="submit" className="w-full">
+        Save Settings
+      </Button>
+    </form>
+  );
+}`}
+>
+  {(() => {
+    const [formData, setFormData] = React.useState({
+      country: '',
+      language: 'en',
+      timezone: ''
+    });
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      alert(`Form Data: ${JSON.stringify(formData, null, 2)}`);
+    };
+    
+    return (
+      <form onSubmit={handleSubmit} className="space-y-6 w-96">
+        <div>
+          <Label className="text-sm font-medium mb-2 block">Country</Label>
+          <Select 
+            value={formData.country} 
+            onValueChange={(value) => setFormData(prev => ({ ...prev, country: value }))}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select your country" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="us">United States</SelectItem>
+              <SelectItem value="ca">Canada</SelectItem>
+              <SelectItem value="uk">United Kingdom</SelectItem>
+              <SelectItem value="de">Germany</SelectItem>
+              <SelectItem value="fr">France</SelectItem>
+              <SelectItem value="jp">Japan</SelectItem>
+              <SelectItem value="au">Australia</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        
+        <div>
+          <Label className="text-sm font-medium mb-2 block">Language</Label>
+          <Select 
+            value={formData.language} 
+            onValueChange={(value) => setFormData(prev => ({ ...prev, language: value }))}
+          >
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="en">English</SelectItem>
+              <SelectItem value="es">Español</SelectItem>
+              <SelectItem value="fr">Français</SelectItem>
+              <SelectItem value="de">Deutsch</SelectItem>
+              <SelectItem value="ja">日本語</SelectItem>
+              <SelectItem value="zh">中文</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        
+        <div>
+          <Label className="text-sm font-medium mb-2 block">Timezone</Label>
+          <Select 
+            value={formData.timezone} 
+            onValueChange={(value) => setFormData(prev => ({ ...prev, timezone: value }))}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select timezone" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="utc-8">UTC-8 (Pacific)</SelectItem>
+              <SelectItem value="utc-7">UTC-7 (Mountain)</SelectItem>
+              <SelectItem value="utc-6">UTC-6 (Central)</SelectItem>
+              <SelectItem value="utc-5">UTC-5 (Eastern)</SelectItem>
+              <SelectItem value="utc+0">UTC+0 (GMT)</SelectItem>
+              <SelectItem value="utc+1">UTC+1 (CET)</SelectItem>
+              <SelectItem value="utc+9">UTC+9 (JST)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        
+        <Button type="submit" className="w-full">
+          Save Settings
+        </Button>
+      </form>
+    );
+  })()}
+</ComponentDocSection>
+
+## Multiple Selects
+
+<ComponentDocSection
+  code={`import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function MultipleSelects() {
+  const [filters, setFilters] = useState({
+    category: '',
+    status: 'active',
+    priority: '',
+    assignee: ''
+  });
+  
+  return (
+    <div className="space-y-4 w-96">
+      <h4 className="font-medium">Filter Options</h4>
+      
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <Label className="text-sm font-medium mb-1 block">Category</Label>
+          <Select 
+            value={filters.category} 
+            onValueChange={(value) => setFilters(prev => ({ ...prev, category: value }))}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="bug">Bug</SelectItem>
+              <SelectItem value="feature">Feature</SelectItem>
+              <SelectItem value="task">Task</SelectItem>
+              <SelectItem value="improvement">Improvement</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        
+        <div>
+          <Label className="text-sm font-medium mb-1 block">Status</Label>
+          <Select 
+            value={filters.status} 
+            onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}
+          >
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="active">Active</SelectItem>
+              <SelectItem value="pending">Pending</SelectItem>
+              <SelectItem value="completed">Completed</SelectItem>
+              <SelectItem value="cancelled">Cancelled</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        
+        <div>
+          <Label className="text-sm font-medium mb-1 block">Priority</Label>
+          <Select 
+            value={filters.priority} 
+            onValueChange={(value) => setFilters(prev => ({ ...prev, priority: value }))}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Any" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="low">Low</SelectItem>
+              <SelectItem value="medium">Medium</SelectItem>
+              <SelectItem value="high">High</SelectItem>
+              <SelectItem value="urgent">Urgent</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        
+        <div>
+          <Label className="text-sm font-medium mb-1 block">Assignee</Label>
+          <Select 
+            value={filters.assignee} 
+            onValueChange={(value) => setFilters(prev => ({ ...prev, assignee: value }))}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Anyone" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="john">John Doe</SelectItem>
+              <SelectItem value="jane">Jane Smith</SelectItem>
+              <SelectItem value="mike">Mike Brown</SelectItem>
+              <SelectItem value="sarah">Sarah Wilson</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      
+      <div className="text-sm text-gray-600 p-3 bg-gray-50 rounded">
+        <strong>Current Filters:</strong><br />
+        Category: {filters.category || 'All'}<br />
+        Status: {filters.status}<br />
+        Priority: {filters.priority || 'Any'}<br />
+        Assignee: {filters.assignee || 'Anyone'}
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [filters, setFilters] = React.useState({
+      category: '',
+      status: 'active',
+      priority: '',
+      assignee: ''
+    });
+    
+    return (
+      <div className="space-y-4 w-96">
+        <h4 className="font-medium">Filter Options</h4>
+        
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <Label className="text-sm font-medium mb-1 block">Category</Label>
+            <Select 
+              value={filters.category} 
+              onValueChange={(value) => setFilters(prev => ({ ...prev, category: value }))}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="bug">Bug</SelectItem>
+                <SelectItem value="feature">Feature</SelectItem>
+                <SelectItem value="task">Task</SelectItem>
+                <SelectItem value="improvement">Improvement</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          
+          <div>
+            <Label className="text-sm font-medium mb-1 block">Status</Label>
+            <Select 
+              value={filters.status} 
+              onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="active">Active</SelectItem>
+                <SelectItem value="pending">Pending</SelectItem>
+                <SelectItem value="completed">Completed</SelectItem>
+                <SelectItem value="cancelled">Cancelled</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          
+          <div>
+            <Label className="text-sm font-medium mb-1 block">Priority</Label>
+            <Select 
+              value={filters.priority} 
+              onValueChange={(value) => setFilters(prev => ({ ...prev, priority: value }))}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Any" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="low">Low</SelectItem>
+                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="high">High</SelectItem>
+                <SelectItem value="urgent">Urgent</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          
+          <div>
+            <Label className="text-sm font-medium mb-1 block">Assignee</Label>
+            <Select 
+              value={filters.assignee} 
+              onValueChange={(value) => setFilters(prev => ({ ...prev, assignee: value }))}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Anyone" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="john">John Doe</SelectItem>
+                <SelectItem value="jane">Jane Smith</SelectItem>
+                <SelectItem value="mike">Mike Brown</SelectItem>
+                <SelectItem value="sarah">Sarah Wilson</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+        
+        <div className="text-sm text-gray-600 p-3 bg-gray-50 rounded">
+          <strong>Current Filters:</strong><br />
+          Category: {filters.category || 'All'}<br />
+          Status: {filters.status}<br />
+          Priority: {filters.priority || 'Any'}<br />
+          Assignee: {filters.assignee || 'Anyone'}
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Select`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | - | The controlled value of the select. |
+| `defaultValue` | `string` | - | The default value for uncontrolled usage. |
+| `onValueChange` | `(value: string) => void` | - | Callback when the value changes. |
+| `disabled` | `boolean` | `false` | Whether the select is disabled. |
+| `required` | `boolean` | `false` | Whether the select is required for form submission. |
+| `name` | `string` | - | The name attribute for form submission. |
+| `dir` | `"ltr"` \| `"rtl"` | - | The reading direction. |
+
+### `SelectTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the trigger. |
+| `children` | `ReactNode` | Trigger content (typically SelectValue). |
+
+### `SelectValue`
+
+| Property | Type | Description |
+|---|---|---|
+| `placeholder` | `string` | Placeholder text when no value is selected. |
+| `className` | `string` | Additional CSS classes. |
+
+### `SelectContent`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `position` | `"item-aligned"` \| `"popper"` | `"popper"` | Positioning strategy for the content. |
+| `side` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` | `"bottom"` | Preferred side to render the content. |
+| `align` | `"start"` \| `"center"` \| `"end"` | `"center"` | Alignment relative to the trigger. |
+| `sideOffset` | `number` | `4` | Distance from the trigger element. |
+| `className` | `string` | - | Additional CSS classes. |
+
+### `SelectItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | The value of this select item. |
+| `disabled` | `boolean` | Whether this item is disabled. |
+| `textValue` | `string` | Optional text value for search/filtering. |
+| `className` | `string` | Additional CSS classes. |
+| `children` | `ReactNode` | Item content. |
+
+### `SelectGroup`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the group. |
+| `children` | `ReactNode` | Group content (labels and items). |
+
+### `SelectLabel`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the label. |
+| `children` | `ReactNode` | Label text. |
+
+## Accessibility
+
+The Select component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys, Enter, Space, Escape, and type-ahead search
+- **Screen Reader Support** - Proper ARIA attributes and announcements
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Form Integration** - Works seamlessly with form validation and submission
+- **Search Functionality** - Built-in type-ahead search for quick selection
+- **Portal Rendering** - Renders in document body to avoid z-index issues
+
+## Common Use Cases
+
+The Select component is perfect for:
+
+- **Forms & Settings** - Country selection, language preferences, category choices
+- **Filters & Sorting** - Data filtering, sort options, view preferences
+- **User Management** - Role assignment, status updates, team selection
+- **E-commerce** - Product variants, shipping options, payment methods
+- **Content Management** - Category assignment, status changes, author selection
+- **Data Tables** - Column filtering, pagination controls, bulk actions
+
+## Best Practices
+
+1. **Clear Placeholders** - Use descriptive placeholder text that explains the selection
+2. **Logical Grouping** - Group related options with labels and separators
+3. **Appropriate Defaults** - Provide sensible default selections when appropriate
+4. **Search Optimization** - Ensure items have good textValue for type-ahead search
+5. **Mobile Optimization** - Test dropdown behavior on mobile devices
+6. **Performance** - Consider virtualization for very large option lists
+7. **Accessibility** - Always provide proper labels and test with screen readers
+8. **Consistent Styling** - Maintain consistent select styling across your application

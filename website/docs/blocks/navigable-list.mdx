@@ -1,3 +1,512 @@
 ---
 id: navigable-list
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { NavigableList, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Edit, Trash2, Eye, Settings, User, FileText, Download } from 'lucide-react';
+
+# Navigable List
+
+<StorybookLink path="blocks-navigablelist--default" />
+
+The `NavigableList` component provides a keyboard-navigable list with customizable actions and shortcuts. Built with accessibility in mind, it supports arrow key navigation, custom keyboard shortcuts, and flexible item rendering. Perfect for command palettes, file browsers, user lists, and any interface requiring efficient keyboard navigation.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { NavigableList } from "buildgrid-ui";
+import { Edit, Trash2 } from "lucide-react";
+
+function BasicNavigableList() {
+  const users = [
+    { name: 'Alice Johnson' },
+    { name: 'Bruno Silva' },
+    { name: 'Carlo Rodriguez' },
+    { name: 'Daniel Kim' },
+    { name: 'Monica Chen' }
+  ];
+
+  const actions = [
+    {
+      shortcut: { key: 'e', ctrl: true },
+      label: <Edit className="h-4 w-4" />,
+      callback: (user) => alert(\`Edit \${user.name}\`)
+    },
+    {
+      shortcut: { key: 'd', ctrl: true },
+      label: <Trash2 className="h-4 w-4" />,
+      callback: (user) => alert(\`Delete \${user.name}\`)
+    }
+  ];
+
+  return (
+    <div className="w-full max-w-md">
+      <NavigableList
+        items={users}
+        renderItem={(user, isSelected) => (
+          <span className={isSelected ? 'font-semibold text-blue-700' : ''}>
+            {user.name}
+          </span>
+        )}
+        actions={actions}
+      />
+    </div>
+  );
+}`}
+  storybookPath="blocks-navigablelist--default"
+>
+  {(() => {
+    const users = [
+      { name: 'Alice Johnson' },
+      { name: 'Bruno Silva' },
+      { name: 'Carlo Rodriguez' },
+      { name: 'Daniel Kim' },
+      { name: 'Monica Chen' }
+    ];
+
+    const actions = [
+      {
+        shortcut: { key: 'e', ctrl: true },
+        label: <Edit className="h-4 w-4" />,
+        callback: (user) => alert(`Edit ${user.name}`)
+      },
+      {
+        shortcut: { key: 'd', ctrl: true },
+        label: <Trash2 className="h-4 w-4" />,
+        callback: (user) => alert(`Delete ${user.name}`)
+      }
+    ];
+
+    return (
+      <div className="w-full max-w-md">
+        <NavigableList
+          items={users}
+          renderItem={(user, isSelected) => (
+            <span className={isSelected ? 'font-semibold text-blue-700' : ''}>
+              {user.name}
+            </span>
+          )}
+          actions={actions}
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## File Browser Example
+
+<ComponentDocSection
+  code={`import { NavigableList } from "buildgrid-ui";
+import { FileText, Eye, Download, Trash2 } from "lucide-react";
+
+function FileBrowser() {
+  const files = [
+    { name: 'document.pdf', size: '2.4 MB', type: 'pdf' },
+    { name: 'presentation.pptx', size: '5.1 MB', type: 'presentation' },
+    { name: 'spreadsheet.xlsx', size: '1.8 MB', type: 'spreadsheet' },
+    { name: 'image.jpg', size: '3.2 MB', type: 'image' },
+    { name: 'video.mp4', size: '45.6 MB', type: 'video' }
+  ];
+
+  const fileActions = [
+    {
+      shortcut: { key: 'v' },
+      label: <Eye className="h-4 w-4" />,
+      callback: (file) => alert(\`View \${file.name}\`)
+    },
+    {
+      shortcut: { key: 'd', ctrl: true },
+      label: <Download className="h-4 w-4" />,
+      callback: (file) => alert(\`Download \${file.name}\`)
+    },
+    {
+      shortcut: { key: 'Delete' },
+      label: <Trash2 className="h-4 w-4" />,
+      callback: (file) => alert(\`Delete \${file.name}\`)
+    }
+  ];
+
+  return (
+    <Card className="w-full max-w-lg">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <FileText className="h-5 w-5" />
+          File Browser
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <NavigableList
+          items={files}
+          renderItem={(file, isSelected) => (
+            <div className="flex justify-between items-center">
+              <div>
+                <div className={isSelected ? 'font-semibold text-blue-700' : 'font-medium'}>
+                  {file.name}
+                </div>
+                <div className="text-sm text-gray-500">{file.size}</div>
+              </div>
+            </div>
+          )}
+          actions={fileActions}
+        />
+        <div className="mt-4 text-xs text-gray-500 space-y-1">
+          <div>• Use ↑↓ arrows to navigate</div>
+          <div>• Press V to view, Ctrl+D to download, Delete to remove</div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const files = [
+      { name: 'document.pdf', size: '2.4 MB', type: 'pdf' },
+      { name: 'presentation.pptx', size: '5.1 MB', type: 'presentation' },
+      { name: 'spreadsheet.xlsx', size: '1.8 MB', type: 'spreadsheet' },
+      { name: 'image.jpg', size: '3.2 MB', type: 'image' },
+      { name: 'video.mp4', size: '45.6 MB', type: 'video' }
+    ];
+
+    const fileActions = [
+      {
+        shortcut: { key: 'v' },
+        label: <Eye className="h-4 w-4" />,
+        callback: (file) => alert(`View ${file.name}`)
+      },
+      {
+        shortcut: { key: 'd', ctrl: true },
+        label: <Download className="h-4 w-4" />,
+        callback: (file) => alert(`Download ${file.name}`)
+      },
+      {
+        shortcut: { key: 'Delete' },
+        label: <Trash2 className="h-4 w-4" />,
+        callback: (file) => alert(`Delete ${file.name}`)
+      }
+    ];
+
+    return (
+      <Card className="w-full max-w-lg">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileText className="h-5 w-5" />
+            File Browser
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <NavigableList
+            items={files}
+            renderItem={(file, isSelected) => (
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className={isSelected ? 'font-semibold text-blue-700' : 'font-medium'}>
+                    {file.name}
+                  </div>
+                  <div className="text-sm text-gray-500">{file.size}</div>
+                </div>
+              </div>
+            )}
+            actions={fileActions}
+          />
+          <div className="mt-4 text-xs text-gray-500 space-y-1">
+            <div>• Use ↑↓ arrows to navigate</div>
+            <div>• Press V to view, Ctrl+D to download, Delete to remove</div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Command Palette Style
+
+<ComponentDocSection
+  code={`import { NavigableList } from "buildgrid-ui";
+import { Settings, User, FileText, Download } from "lucide-react";
+
+function CommandPalette() {
+  const commands = [
+    { name: 'Open Settings', description: 'Configure application preferences', icon: Settings },
+    { name: 'View Profile', description: 'Manage your user profile', icon: User },
+    { name: 'Create Document', description: 'Start a new document', icon: FileText },
+    { name: 'Export Data', description: 'Download your data as CSV', icon: Download }
+  ];
+
+  const commandActions = [
+    {
+      shortcut: { key: 'Enter' },
+      label: 'Execute',
+      callback: (command) => alert(\`Executing: \${command.name}\`)
+    }
+  ];
+
+  return (
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Command Palette</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <NavigableList
+          items={commands}
+          renderItem={(command, isSelected) => {
+            const Icon = command.icon;
+            return (
+              <div className="flex items-center gap-3">
+                <Icon className="h-4 w-4 text-gray-500" />
+                <div>
+                  <div className={isSelected ? 'font-semibold text-blue-700' : 'font-medium'}>
+                    {command.name}
+                  </div>
+                  <div className="text-sm text-gray-500">{command.description}</div>
+                </div>
+              </div>
+            );
+          }}
+          actions={commandActions}
+        />
+        <div className="mt-4 text-xs text-gray-500">
+          Press Enter to execute selected command
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const commands = [
+      { name: 'Open Settings', description: 'Configure application preferences', icon: Settings },
+      { name: 'View Profile', description: 'Manage your user profile', icon: User },
+      { name: 'Create Document', description: 'Start a new document', icon: FileText },
+      { name: 'Export Data', description: 'Download your data as CSV', icon: Download }
+    ];
+
+    const commandActions = [
+      {
+        shortcut: { key: 'Enter' },
+        label: 'Execute',
+        callback: (command) => alert(`Executing: ${command.name}`)
+      }
+    ];
+
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Command Palette</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <NavigableList
+            items={commands}
+            renderItem={(command, isSelected) => {
+              const Icon = command.icon;
+              return (
+                <div className="flex items-center gap-3">
+                  <Icon className="h-4 w-4 text-gray-500" />
+                  <div>
+                    <div className={isSelected ? 'font-semibold text-blue-700' : 'font-medium'}>
+                      {command.name}
+                    </div>
+                    <div className="text-sm text-gray-500">{command.description}</div>
+                  </div>
+                </div>
+              );
+            }}
+            actions={commandActions}
+          />
+          <div className="mt-4 text-xs text-gray-500">
+            Press Enter to execute selected command
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Multiple Actions Example
+
+<ComponentDocSection
+  code={`import { NavigableList } from "buildgrid-ui";
+import { Edit, Trash2, Eye, Settings } from "lucide-react";
+
+function MultipleActionsExample() {
+  const items = [
+    { name: 'Project Alpha', status: 'Active', lastModified: '2 hours ago' },
+    { name: 'Project Beta', status: 'Draft', lastModified: '1 day ago' },
+    { name: 'Project Gamma', status: 'Completed', lastModified: '3 days ago' }
+  ];
+
+  const multipleActions = [
+    {
+      shortcut: { key: 'v' },
+      label: <Eye className="h-3 w-3" />,
+      callback: (item) => alert(\`View \${item.name}\`)
+    },
+    {
+      shortcut: { key: 'e' },
+      label: <Edit className="h-3 w-3" />,
+      callback: (item) => alert(\`Edit \${item.name}\`)
+    },
+    {
+      shortcut: { key: 's' },
+      label: <Settings className="h-3 w-3" />,
+      callback: (item) => alert(\`Settings for \${item.name}\`)
+    },
+    {
+      shortcut: { key: 'd', shift: true },
+      label: <Trash2 className="h-3 w-3" />,
+      callback: (item) => alert(\`Delete \${item.name}\`)
+    }
+  ];
+
+  return (
+    <div className="w-full max-w-lg">
+      <NavigableList
+        items={items}
+        renderItem={(item, isSelected) => (
+          <div>
+            <div className={isSelected ? 'font-semibold text-blue-700' : 'font-medium'}>
+              {item.name}
+            </div>
+            <div className="text-sm text-gray-500 flex gap-4">
+              <span>Status: {item.status}</span>
+              <span>Modified: {item.lastModified}</span>
+            </div>
+          </div>
+        )}
+        actions={multipleActions}
+      />
+      <div className="mt-4 text-xs text-gray-500 space-y-1">
+        <div>• V: View • E: Edit • S: Settings • Shift+D: Delete</div>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const items = [
+      { name: 'Project Alpha', status: 'Active', lastModified: '2 hours ago' },
+      { name: 'Project Beta', status: 'Draft', lastModified: '1 day ago' },
+      { name: 'Project Gamma', status: 'Completed', lastModified: '3 days ago' }
+    ];
+
+    const multipleActions = [
+      {
+        shortcut: { key: 'v' },
+        label: <Eye className="h-3 w-3" />,
+        callback: (item) => alert(`View ${item.name}`)
+      },
+      {
+        shortcut: { key: 'e' },
+        label: <Edit className="h-3 w-3" />,
+        callback: (item) => alert(`Edit ${item.name}`)
+      },
+      {
+        shortcut: { key: 's' },
+        label: <Settings className="h-3 w-3" />,
+        callback: (item) => alert(`Settings for ${item.name}`)
+      },
+      {
+        shortcut: { key: 'd', shift: true },
+        label: <Trash2 className="h-3 w-3" />,
+        callback: (item) => alert(`Delete ${item.name}`)
+      }
+    ];
+
+    return (
+      <div className="w-full max-w-lg">
+        <NavigableList
+          items={items}
+          renderItem={(item, isSelected) => (
+            <div>
+              <div className={isSelected ? 'font-semibold text-blue-700' : 'font-medium'}>
+                {item.name}
+              </div>
+              <div className="text-sm text-gray-500 flex gap-4">
+                <span>Status: {item.status}</span>
+                <span>Modified: {item.lastModified}</span>
+              </div>
+            </div>
+          )}
+          actions={multipleActions}
+        />
+        <div className="mt-4 text-xs text-gray-500 space-y-1">
+          <div>• V: View • E: Edit • S: Settings • Shift+D: Delete</div>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `NavigableList<T>`
+
+| Property | Type | Description |
+|---|---|---|
+| `items` | `T[]` | Array of items to display in the list. |
+| `renderItem` | `(item: T, isSelected: boolean) => ReactNode` | Function to render each item. Receives the item and selection state. |
+| `actions` | `RowAction<T>[]` | Array of actions available for each item. |
+| `className` | `string` | Additional CSS classes for the container. |
+
+### `RowAction<T>`
+
+| Property | Type | Description |
+|---|---|---|
+| `shortcut` | `Shortcut` | Keyboard shortcut configuration. |
+| `label` | `ReactNode` | Visual label for the action (can be text, icon, or button). |
+| `callback` | `(item: T) => void` | Function called when the action is triggered. |
+
+### `Shortcut`
+
+| Property | Type | Description |
+|---|---|---|
+| `key` | `string` | The key to trigger the action (e.g., 'e', 'Enter', 'Delete'). |
+| `ctrl?` | `boolean` | Whether Ctrl key must be pressed. |
+| `alt?` | `boolean` | Whether Alt key must be pressed. |
+| `shift?` | `boolean` | Whether Shift key must be pressed. |
+
+## Keyboard Navigation
+
+The NavigableList supports comprehensive keyboard navigation:
+
+- **Arrow Keys** - Navigate up and down through items
+- **Custom Shortcuts** - Execute actions using configured key combinations
+- **Focus Management** - Maintains focus and scroll position automatically
+- **Modifier Keys** - Support for Ctrl, Alt, and Shift combinations
+
+## Accessibility
+
+The NavigableList component includes comprehensive accessibility features:
+
+- **ARIA Roles** - Uses proper listbox and option roles
+- **Keyboard Navigation** - Full keyboard support with arrow keys
+- **Screen Reader Support** - Proper ARIA labels and descriptions
+- **Focus Management** - Clear focus indicators and automatic scrolling
+- **Selection State** - Announces current selection to screen readers
+- **Action Shortcuts** - Keyboard shortcuts are announced with tooltips
+
+## Common Use Cases
+
+The NavigableList component is perfect for:
+
+- **Command Palettes** - Quick action selection with keyboard shortcuts
+- **File Browsers** - Navigate and manage files with keyboard efficiency
+- **User Lists** - Manage users with quick actions
+- **Project Management** - Navigate projects with contextual actions
+- **Data Tables** - Keyboard-friendly data navigation
+- **Search Results** - Navigate search results with actions
+- **Menu Systems** - Create keyboard-navigable menus
+- **Task Lists** - Manage tasks with keyboard shortcuts
+
+## Best Practices
+
+1. **Clear Actions** - Use descriptive labels and intuitive shortcuts
+2. **Visual Feedback** - Provide clear selection and hover states
+3. **Consistent Shortcuts** - Use familiar keyboard conventions
+4. **Action Grouping** - Group related actions together
+5. **Performance** - Virtualize large lists for better performance
+6. **Accessibility** - Test with screen readers and keyboard navigation
+7. **Responsive Design** - Ensure actions work well on different screen sizes
+8. **Error Handling** - Provide feedback for failed actions

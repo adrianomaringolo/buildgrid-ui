@@ -1,3 +1,946 @@
 ---
 id: table
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Button, Badge, Avatar, AvatarImage, AvatarFallback, Input } from "buildgrid-ui";
+import { MoreHorizontal, ArrowUpDown, Search, Filter } from 'lucide-react';
+
+# Table
+
+<StorybookLink path="components-table--default" />
+
+The `Table` component provides a flexible and accessible way to display tabular data. Built with semantic HTML elements and responsive design, it supports sorting, filtering, and various data presentation patterns. Perfect for data grids, user lists, product catalogs, and any structured information display.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "buildgrid-ui";
+
+function BasicTable() {
+  const data = [
+    { firstName: "John", lastName: "Doe", username: "@johndoe" },
+    { firstName: "Sally", lastName: "Ross", username: "@sallyross" },
+    { firstName: "Jane", lastName: "Doe", username: "@janedoe" },
+    { firstName: "Bob", lastName: "Ross", username: "@bobross" }
+  ];
+
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>First Name</TableHead>
+          <TableHead>Last Name</TableHead>
+          <TableHead>Username</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {data.map((person) => (
+          <TableRow key={person.username}>
+            <TableCell>{person.firstName}</TableCell>
+            <TableCell>{person.lastName}</TableCell>
+            <TableCell>{person.username}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+}`}
+  storybookPath="components-table--default"
+>
+  {(() => {
+    const data = [
+      { firstName: "John", lastName: "Doe", username: "@johndoe" },
+      { firstName: "Sally", lastName: "Ross", username: "@sallyross" },
+      { firstName: "Jane", lastName: "Doe", username: "@janedoe" },
+      { firstName: "Bob", lastName: "Ross", username: "@bobross" }
+    ];
+
+    return (
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>First Name</TableHead>
+            <TableHead>Last Name</TableHead>
+            <TableHead>Username</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map((person) => (
+            <TableRow key={person.username}>
+              <TableCell>{person.firstName}</TableCell>
+              <TableCell>{person.lastName}</TableCell>
+              <TableCell>{person.username}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Caption and Footer
+
+<ComponentDocSection
+  code={`import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "buildgrid-ui";
+
+function TableWithCaptionAndFooter() {
+  const invoices = [
+    { invoice: "INV001", status: "Paid", method: "Credit Card", amount: "$250.00" },
+    { invoice: "INV002", status: "Pending", method: "PayPal", amount: "$150.00" },
+    { invoice: "INV003", status: "Unpaid", method: "Bank Transfer", amount: "$350.00" },
+    { invoice: "INV004", status: "Paid", method: "Credit Card", amount: "$450.00" }
+  ];
+
+  const total = "$1,200.00";
+
+  return (
+    <Table>
+      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead className="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {invoices.map((invoice) => (
+          <TableRow key={invoice.invoice}>
+            <TableCell className="font-medium">{invoice.invoice}</TableCell>
+            <TableCell>{invoice.status}</TableCell>
+            <TableCell>{invoice.method}</TableCell>
+            <TableCell className="text-right">{invoice.amount}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan={3}>Total</TableCell>
+          <TableCell className="text-right">{total}</TableCell>
+        </TableRow>
+      </TableFooter>
+    </Table>
+  );
+}`}
+>
+  {(() => {
+    const invoices = [
+      { invoice: "INV001", status: "Paid", method: "Credit Card", amount: "$250.00" },
+      { invoice: "INV002", status: "Pending", method: "PayPal", amount: "$150.00" },
+      { invoice: "INV003", status: "Unpaid", method: "Bank Transfer", amount: "$350.00" },
+      { invoice: "INV004", status: "Paid", method: "Credit Card", amount: "$450.00" }
+    ];
+
+    const total = "$1,200.00";
+
+    return (
+      <Table>
+        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Invoice</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Method</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {invoices.map((invoice) => (
+            <TableRow key={invoice.invoice}>
+              <TableCell className="font-medium">{invoice.invoice}</TableCell>
+              <TableCell>{invoice.status}</TableCell>
+              <TableCell>{invoice.method}</TableCell>
+              <TableCell className="text-right">{invoice.amount}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={3}>Total</TableCell>
+            <TableCell className="text-right">{total}</TableCell>
+          </TableRow>
+        </TableFooter>
+      </Table>
+    );
+  })()}
+</ComponentDocSection>
+
+## User Management Table
+
+<ComponentDocSection
+  code={`import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Button, Badge, Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+import { MoreHorizontal } from "lucide-react";
+
+function UserManagementTable() {
+  const users = [
+    {
+      id: 1,
+      name: "John Doe",
+      email: "john@example.com",
+      role: "Admin",
+      status: "Active",
+      avatar: "https://github.com/shadcn.png"
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      email: "jane@example.com",
+      role: "Editor",
+      status: "Active",
+      avatar: "https://github.com/shadcn.png"
+    },
+    {
+      id: 3,
+      name: "Mike Johnson",
+      email: "mike@example.com",
+      role: "Viewer",
+      status: "Inactive",
+      avatar: "https://github.com/shadcn.png"
+    },
+    {
+      id: 4,
+      name: "Sarah Wilson",
+      email: "sarah@example.com",
+      role: "Editor",
+      status: "Pending",
+      avatar: "https://github.com/shadcn.png"
+    }
+  ];
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Active': return 'bg-green-100 text-green-700';
+      case 'Inactive': return 'bg-gray-100 text-gray-700';
+      case 'Pending': return 'bg-yellow-100 text-yellow-700';
+      default: return 'bg-gray-100 text-gray-700';
+    }
+  };
+
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>User</TableHead>
+          <TableHead>Role</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead className="text-right">Actions</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {users.map((user) => (
+          <TableRow key={user.id}>
+            <TableCell>
+              <div className="flex items-center gap-3">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={user.avatar} />
+                  <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-medium">{user.name}</div>
+                  <div className="text-sm text-gray-500">{user.email}</div>
+                </div>
+              </div>
+            </TableCell>
+            <TableCell>{user.role}</TableCell>
+            <TableCell>
+              <Badge className={\`\${getStatusColor(user.status)} border-0\`}>
+                {user.status}
+              </Badge>
+            </TableCell>
+            <TableCell className="text-right">
+              <Button variant="ghost" size="sm">
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+}`}
+>
+  {(() => {
+    const users = [
+      {
+        id: 1,
+        name: "John Doe",
+        email: "john@example.com",
+        role: "Admin",
+        status: "Active",
+        avatar: "https://github.com/shadcn.png"
+      },
+      {
+        id: 2,
+        name: "Jane Smith",
+        email: "jane@example.com",
+        role: "Editor",
+        status: "Active",
+        avatar: "https://github.com/shadcn.png"
+      },
+      {
+        id: 3,
+        name: "Mike Johnson",
+        email: "mike@example.com",
+        role: "Viewer",
+        status: "Inactive",
+        avatar: "https://github.com/shadcn.png"
+      },
+      {
+        id: 4,
+        name: "Sarah Wilson",
+        email: "sarah@example.com",
+        role: "Editor",
+        status: "Pending",
+        avatar: "https://github.com/shadcn.png"
+      }
+    ];
+
+    const getStatusColor = (status) => {
+      switch (status) {
+        case 'Active': return 'bg-green-100 text-green-700';
+        case 'Inactive': return 'bg-gray-100 text-gray-700';
+        case 'Pending': return 'bg-yellow-100 text-yellow-700';
+        default: return 'bg-gray-100 text-gray-700';
+      }
+    };
+
+    return (
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>User</TableHead>
+            <TableHead>Role</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead className="text-right">Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {users.map((user) => (
+            <TableRow key={user.id}>
+              <TableCell>
+                <div className="flex items-center gap-3">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={user.avatar} />
+                    <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-medium">{user.name}</div>
+                    <div className="text-sm text-gray-500">{user.email}</div>
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell>{user.role}</TableCell>
+              <TableCell>
+                <Badge className={`${getStatusColor(user.status)} border-0`}>
+                  {user.status}
+                </Badge>
+              </TableCell>
+              <TableCell className="text-right">
+                <Button variant="ghost" size="sm">
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  })()}
+</ComponentDocSection>
+
+## Sortable Table
+
+<ComponentDocSection
+  code={`import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Button } from "buildgrid-ui";
+import { ArrowUpDown } from "lucide-react";
+import { useState } from "react";
+
+function SortableTable() {
+  const [data, setData] = useState([
+    { id: 1, name: "Alice Johnson", age: 28, department: "Engineering", salary: 75000 },
+    { id: 2, name: "Bob Smith", age: 34, department: "Marketing", salary: 65000 },
+    { id: 3, name: "Carol Davis", age: 29, department: "Design", salary: 70000 },
+    { id: 4, name: "David Wilson", age: 31, department: "Engineering", salary: 80000 }
+  ]);
+  
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+  
+  const handleSort = (key) => {
+    let direction = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    
+    const sortedData = [...data].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    
+    setData(sortedData);
+    setSortConfig({ key, direction });
+  };
+  
+  const SortButton = ({ column, children }) => (
+    <Button
+      variant="ghost"
+      onClick={() => handleSort(column)}
+      className="h-auto p-0 font-medium hover:bg-transparent"
+    >
+      {children}
+      <ArrowUpDown className="ml-2 h-4 w-4" />
+    </Button>
+  );
+
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>
+            <SortButton column="name">Name</SortButton>
+          </TableHead>
+          <TableHead>
+            <SortButton column="age">Age</SortButton>
+          </TableHead>
+          <TableHead>
+            <SortButton column="department">Department</SortButton>
+          </TableHead>
+          <TableHead className="text-right">
+            <SortButton column="salary">Salary</SortButton>
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {data.map((employee) => (
+          <TableRow key={employee.id}>
+            <TableCell className="font-medium">{employee.name}</TableCell>
+            <TableCell>{employee.age}</TableCell>
+            <TableCell>{employee.department}</TableCell>
+            <TableCell className="text-right">
+              $\{employee.salary.toLocaleString()}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+}`}
+>
+  {(() => {
+    const [data, setData] = React.useState([
+      { id: 1, name: "Alice Johnson", age: 28, department: "Engineering", salary: 75000 },
+      { id: 2, name: "Bob Smith", age: 34, department: "Marketing", salary: 65000 },
+      { id: 3, name: "Carol Davis", age: 29, department: "Design", salary: 70000 },
+      { id: 4, name: "David Wilson", age: 31, department: "Engineering", salary: 80000 }
+    ]);
+    
+    const [sortConfig, setSortConfig] = React.useState({ key: null, direction: 'asc' });
+    
+    const handleSort = (key) => {
+      let direction = 'asc';
+      if (sortConfig.key === key && sortConfig.direction === 'asc') {
+        direction = 'desc';
+      }
+      
+      const sortedData = [...data].sort((a, b) => {
+        if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+        if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+        return 0;
+      });
+      
+      setData(sortedData);
+      setSortConfig({ key, direction });
+    };
+    
+    const SortButton = ({ column, children }) => (
+      <Button
+        variant="ghost"
+        onClick={() => handleSort(column)}
+        className="h-auto p-0 font-medium hover:bg-transparent"
+      >
+        {children}
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    );
+
+    return (
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>
+              <SortButton column="name">Name</SortButton>
+            </TableHead>
+            <TableHead>
+              <SortButton column="age">Age</SortButton>
+            </TableHead>
+            <TableHead>
+              <SortButton column="department">Department</SortButton>
+            </TableHead>
+            <TableHead className="text-right">
+              <SortButton column="salary">Salary</SortButton>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map((employee) => (
+            <TableRow key={employee.id}>
+              <TableCell className="font-medium">{employee.name}</TableCell>
+              <TableCell>{employee.age}</TableCell>
+              <TableCell>{employee.department}</TableCell>
+              <TableCell className="text-right">
+                ${employee.salary.toLocaleString()}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  })()}
+</ComponentDocSection>
+
+## Table with Search and Filter
+
+<ComponentDocSection
+  code={`import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Input, Button } from "buildgrid-ui";
+import { Search, Filter } from "lucide-react";
+import { useState } from "react";
+
+function SearchableTable() {
+  const allProducts = [
+    { id: 1, name: "Laptop Pro", category: "Electronics", price: 1299, stock: 15 },
+    { id: 2, name: "Wireless Mouse", category: "Electronics", price: 29, stock: 50 },
+    { id: 3, name: "Office Chair", category: "Furniture", price: 199, stock: 8 },
+    { id: 4, name: "Desk Lamp", category: "Furniture", price: 49, stock: 25 },
+    { id: 5, name: "Notebook", category: "Stationery", price: 12, stock: 100 },
+    { id: 6, name: "Pen Set", category: "Stationery", price: 15, stock: 75 }
+  ];
+  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  
+  const categories = ['All', ...new Set(allProducts.map(p => p.category))];
+  
+  const filteredProducts = allProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-4">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Input
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="px-3 py-2 border border-gray-300 rounded-md"
+        >
+          {categories.map(category => (
+            <option key={category} value={category}>{category}</option>
+          ))}
+        </select>
+      </div>
+      
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Product</TableHead>
+            <TableHead>Category</TableHead>
+            <TableHead>Price</TableHead>
+            <TableHead className="text-right">Stock</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell className="font-medium">{product.name}</TableCell>
+                <TableCell>{product.category}</TableCell>
+                <TableCell>$\{product.price}</TableCell>
+                <TableCell className="text-right">{product.stock}</TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={4} className="text-center text-gray-500 py-8">
+                No products found matching your criteria.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+      
+      <div className="text-sm text-gray-600">
+        Showing {filteredProducts.length} of {allProducts.length} products
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const allProducts = [
+      { id: 1, name: "Laptop Pro", category: "Electronics", price: 1299, stock: 15 },
+      { id: 2, name: "Wireless Mouse", category: "Electronics", price: 29, stock: 50 },
+      { id: 3, name: "Office Chair", category: "Furniture", price: 199, stock: 8 },
+      { id: 4, name: "Desk Lamp", category: "Furniture", price: 49, stock: 25 },
+      { id: 5, name: "Notebook", category: "Stationery", price: 12, stock: 100 },
+      { id: 6, name: "Pen Set", category: "Stationery", price: 15, stock: 75 }
+    ];
+    
+    const [searchTerm, setSearchTerm] = React.useState('');
+    const [selectedCategory, setSelectedCategory] = React.useState('All');
+    
+    const categories = ['All', ...new Set(allProducts.map(p => p.category))];
+    
+    const filteredProducts = allProducts.filter(product => {
+      const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+
+    return (
+      <div className="space-y-4">
+        <div className="flex gap-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="px-3 py-2 border border-gray-300 rounded-md"
+          >
+            {categories.map(category => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+        </div>
+        
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Product</TableHead>
+              <TableHead>Category</TableHead>
+              <TableHead>Price</TableHead>
+              <TableHead className="text-right">Stock</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <TableRow key={product.id}>
+                  <TableCell className="font-medium">{product.name}</TableCell>
+                  <TableCell>{product.category}</TableCell>
+                  <TableCell>${product.price}</TableCell>
+                  <TableCell className="text-right">{product.stock}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4} className="text-center text-gray-500 py-8">
+                  No products found matching your criteria.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+        
+        <div className="text-sm text-gray-600">
+          Showing {filteredProducts.length} of {allProducts.length} products
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Selectable Rows
+
+<ComponentDocSection
+  code={`import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function SelectableTable() {
+  const data = [
+    { id: 1, name: "Task 1", status: "Completed", priority: "High" },
+    { id: 2, name: "Task 2", status: "In Progress", priority: "Medium" },
+    { id: 3, name: "Task 3", status: "Pending", priority: "Low" },
+    { id: 4, name: "Task 4", status: "Completed", priority: "High" }
+  ];
+  
+  const [selectedRows, setSelectedRows] = useState(new Set());
+  
+  const toggleRow = (id) => {
+    const newSelected = new Set(selectedRows);
+    if (newSelected.has(id)) {
+      newSelected.delete(id);
+    } else {
+      newSelected.add(id);
+    }
+    setSelectedRows(newSelected);
+  };
+  
+  const toggleAll = () => {
+    if (selectedRows.size === data.length) {
+      setSelectedRows(new Set());
+    } else {
+      setSelectedRows(new Set(data.map(item => item.id)));
+    }
+  };
+  
+  const deleteSelected = () => {
+    alert(\`Delete \${selectedRows.size} selected items\`);
+    setSelectedRows(new Set());
+  };
+
+  return (
+    <div className="space-y-4">
+      {selectedRows.size > 0 && (
+        <div className="flex items-center gap-2 p-2 bg-blue-50 rounded-lg">
+          <span className="text-sm">{selectedRows.size} items selected</span>
+          <Button size="sm" variant="destructive" onClick={deleteSelected}>
+            Delete Selected
+          </Button>
+        </div>
+      )}
+      
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-12">
+              <input
+                type="checkbox"
+                checked={selectedRows.size === data.length}
+                onChange={toggleAll}
+                className="rounded"
+              />
+            </TableHead>
+            <TableHead>Task</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Priority</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {data.map((task) => (
+            <TableRow 
+              key={task.id}
+              className={selectedRows.has(task.id) ? 'bg-blue-50' : ''}
+            >
+              <TableCell>
+                <input
+                  type="checkbox"
+                  checked={selectedRows.has(task.id)}
+                  onChange={() => toggleRow(task.id)}
+                  className="rounded"
+                />
+              </TableCell>
+              <TableCell className="font-medium">{task.name}</TableCell>
+              <TableCell>{task.status}</TableCell>
+              <TableCell>{task.priority}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const data = [
+      { id: 1, name: "Task 1", status: "Completed", priority: "High" },
+      { id: 2, name: "Task 2", status: "In Progress", priority: "Medium" },
+      { id: 3, name: "Task 3", status: "Pending", priority: "Low" },
+      { id: 4, name: "Task 4", status: "Completed", priority: "High" }
+    ];
+    
+    const [selectedRows, setSelectedRows] = React.useState(new Set());
+    
+    const toggleRow = (id) => {
+      const newSelected = new Set(selectedRows);
+      if (newSelected.has(id)) {
+        newSelected.delete(id);
+      } else {
+        newSelected.add(id);
+      }
+      setSelectedRows(newSelected);
+    };
+    
+    const toggleAll = () => {
+      if (selectedRows.size === data.length) {
+        setSelectedRows(new Set());
+      } else {
+        setSelectedRows(new Set(data.map(item => item.id)));
+      }
+    };
+    
+    const deleteSelected = () => {
+      alert(`Delete ${selectedRows.size} selected items`);
+      setSelectedRows(new Set());
+    };
+
+    return (
+      <div className="space-y-4">
+        {selectedRows.size > 0 && (
+          <div className="flex items-center gap-2 p-2 bg-blue-50 rounded-lg">
+            <span className="text-sm">{selectedRows.size} items selected</span>
+            <Button size="sm" variant="destructive" onClick={deleteSelected}>
+              Delete Selected
+            </Button>
+          </div>
+        )}
+        
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-12">
+                <input
+                  type="checkbox"
+                  checked={selectedRows.size === data.length}
+                  onChange={toggleAll}
+                  className="rounded"
+                />
+              </TableHead>
+              <TableHead>Task</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Priority</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data.map((task) => (
+              <TableRow 
+                key={task.id}
+                className={selectedRows.has(task.id) ? 'bg-blue-50' : ''}
+              >
+                <TableCell>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.has(task.id)}
+                    onChange={() => toggleRow(task.id)}
+                    className="rounded"
+                  />
+                </TableCell>
+                <TableCell className="font-medium">{task.name}</TableCell>
+                <TableCell>{task.status}</TableCell>
+                <TableCell>{task.priority}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Table`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the table container. |
+| `children` | `ReactNode` | Table content (header, body, footer, caption). |
+
+### `TableHeader`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the table header. |
+| `children` | `ReactNode` | Header content (typically TableRow with TableHead cells). |
+
+### `TableBody`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the table body. |
+| `children` | `ReactNode` | Body content (TableRow elements with TableCell). |
+
+### `TableFooter`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the table footer. |
+| `children` | `ReactNode` | Footer content (typically summary rows). |
+
+### `TableRow`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the table row. |
+| `children` | `ReactNode` | Row content (TableHead or TableCell elements). |
+
+### `TableHead`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the header cell. |
+| `children` | `ReactNode` | Header cell content. |
+| `colSpan` | `number` | Number of columns the cell should span. |
+| `rowSpan` | `number` | Number of rows the cell should span. |
+
+### `TableCell`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the table cell. |
+| `children` | `ReactNode` | Cell content. |
+| `colSpan` | `number` | Number of columns the cell should span. |
+| `rowSpan` | `number` | Number of rows the cell should span. |
+
+### `TableCaption`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the table caption. |
+| `children` | `ReactNode` | Caption text. |
+
+## Accessibility
+
+The Table component includes comprehensive accessibility features:
+
+- **Semantic HTML** - Uses proper table elements (table, thead, tbody, th, td)
+- **Screen Reader Support** - Proper table structure announced to screen readers
+- **Keyboard Navigation** - Tab navigation through interactive elements
+- **ARIA Support** - Can be enhanced with ARIA labels and descriptions
+- **Responsive Design** - Horizontal scrolling on smaller screens
+- **Focus Management** - Clear focus indicators for interactive elements
+
+## Common Use Cases
+
+The Table component is perfect for:
+
+- **Data Grids** - Displaying structured data with sorting and filtering
+- **User Management** - User lists with actions and status indicators
+- **Product Catalogs** - E-commerce product listings with details
+- **Financial Data** - Invoices, transactions, and financial reports
+- **Analytics Dashboards** - Metrics and performance data
+- **Content Management** - Articles, posts, and content listings
+- **System Logs** - Error logs, activity feeds, and system events
+
+## Best Practices
+
+1. **Semantic Structure** - Use proper table elements for accessibility
+2. **Clear Headers** - Provide descriptive column headers
+3. **Consistent Alignment** - Align numeric data to the right, text to the left
+4. **Row Identification** - Use unique keys for each row
+5. **Loading States** - Show loading indicators for async data
+6. **Empty States** - Provide helpful messages when no data is available
+7. **Mobile Responsiveness** - Consider horizontal scrolling or alternative layouts
+8. **Performance** - Implement pagination or virtualization for large datasets

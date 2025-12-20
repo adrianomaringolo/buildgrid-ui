@@ -1,3 +1,714 @@
 ---
 id: progress
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Progress, Button } from "buildgrid-ui";
+
+# Progress
+
+<StorybookLink path="components-progress--default" />
+
+The `Progress` component displays the completion progress of a task, typically displayed as a progress bar. Built on Radix UI, it provides accessibility features and smooth animations. Perfect for file uploads, form completion, loading states, and multi-step processes.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Progress } from "buildgrid-ui";
+
+function BasicProgress() {
+  return (
+    <div className="w-96">
+      <Progress value={75} />
+    </div>
+  );
+}`}
+  storybookPath="components-progress--default"
+>
+  <div className="w-96">
+    <Progress value={75} />
+  </div>
+</ComponentDocSection>
+
+## Different Values
+
+<ComponentDocSection
+  code={`import { Progress } from "buildgrid-ui";
+
+function ProgressValues() {
+  return (
+    <div className="space-y-4 w-96">
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Empty</span>
+          <span>0%</span>
+        </div>
+        <Progress value={0} />
+      </div>
+      
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Quarter</span>
+          <span>25%</span>
+        </div>
+        <Progress value={25} />
+      </div>
+      
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Half</span>
+          <span>50%</span>
+        </div>
+        <Progress value={50} />
+      </div>
+      
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Three Quarters</span>
+          <span>75%</span>
+        </div>
+        <Progress value={75} />
+      </div>
+      
+      <div>
+        <div className="flex justify-between text-sm mb-1">
+          <span>Complete</span>
+          <span>100%</span>
+        </div>
+        <Progress value={100} />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 w-96">
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span>Empty</span>
+        <span>0%</span>
+      </div>
+      <Progress value={0} />
+    </div>
+    
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span>Quarter</span>
+        <span>25%</span>
+      </div>
+      <Progress value={25} />
+    </div>
+    
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span>Half</span>
+        <span>50%</span>
+      </div>
+      <Progress value={50} />
+    </div>
+    
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span>Three Quarters</span>
+        <span>75%</span>
+      </div>
+      <Progress value={75} />
+    </div>
+    
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span>Complete</span>
+        <span>100%</span>
+      </div>
+      <Progress value={100} />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Custom Sizes
+
+<ComponentDocSection
+  code={`import { Progress } from "buildgrid-ui";
+
+function CustomSizes() {
+  return (
+    <div className="space-y-6 w-96">
+      <div>
+        <div className="text-sm mb-2">Small (h-1)</div>
+        <Progress value={60} className="h-1" />
+      </div>
+      
+      <div>
+        <div className="text-sm mb-2">Default (h-2)</div>
+        <Progress value={60} />
+      </div>
+      
+      <div>
+        <div className="text-sm mb-2">Medium (h-3)</div>
+        <Progress value={60} className="h-3" />
+      </div>
+      
+      <div>
+        <div className="text-sm mb-2">Large (h-4)</div>
+        <Progress value={60} className="h-4" />
+      </div>
+      
+      <div>
+        <div className="text-sm mb-2">Extra Large (h-6)</div>
+        <Progress value={60} className="h-6" />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-6 w-96">
+    <div>
+      <div className="text-sm mb-2">Small (h-1)</div>
+      <Progress value={60} className="h-1" />
+    </div>
+    
+    <div>
+      <div className="text-sm mb-2">Default (h-2)</div>
+      <Progress value={60} />
+    </div>
+    
+    <div>
+      <div className="text-sm mb-2">Medium (h-3)</div>
+      <Progress value={60} className="h-3" />
+    </div>
+    
+    <div>
+      <div className="text-sm mb-2">Large (h-4)</div>
+      <Progress value={60} className="h-4" />
+    </div>
+    
+    <div>
+      <div className="text-sm mb-2">Extra Large (h-6)</div>
+      <Progress value={60} className="h-6" />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Interactive Progress
+
+<ComponentDocSection
+  code={`import { Progress, Button } from "buildgrid-ui";
+import { useState, useEffect } from "react";
+
+function InteractiveProgress() {
+  const [progress, setProgress] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+  
+  useEffect(() => {
+    let interval;
+    if (isRunning && progress < 100) {
+      interval = setInterval(() => {
+        setProgress(prev => {
+          const next = prev + 2;
+          if (next >= 100) {
+            setIsRunning(false);
+            return 100;
+          }
+          return next;
+        });
+      }, 100);
+    }
+    return () => clearInterval(interval);
+  }, [isRunning, progress]);
+  
+  const handleStart = () => {
+    setIsRunning(true);
+  };
+  
+  const handleReset = () => {
+    setProgress(0);
+    setIsRunning(false);
+  };
+  
+  return (
+    <div className="space-y-4 w-96">
+      <div>
+        <div className="flex justify-between text-sm mb-2">
+          <span>Progress</span>
+          <span>{progress}%</span>
+        </div>
+        <Progress value={progress} />
+      </div>
+      
+      <div className="flex gap-2">
+        <Button 
+          onClick={handleStart} 
+          disabled={isRunning || progress === 100}
+          size="sm"
+        >
+          {progress === 100 ? 'Complete' : isRunning ? 'Running...' : 'Start'}
+        </Button>
+        <Button 
+          onClick={handleReset} 
+          variant="outline"
+          size="sm"
+        >
+          Reset
+        </Button>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [progress, setProgress] = React.useState(0);
+    const [isRunning, setIsRunning] = React.useState(false);
+    
+    React.useEffect(() => {
+      let interval;
+      if (isRunning && progress < 100) {
+        interval = setInterval(() => {
+          setProgress(prev => {
+            const next = prev + 2;
+            if (next >= 100) {
+              setIsRunning(false);
+              return 100;
+            }
+            return next;
+          });
+        }, 100);
+      }
+      return () => clearInterval(interval);
+    }, [isRunning, progress]);
+    
+    const handleStart = () => {
+      setIsRunning(true);
+    };
+    
+    const handleReset = () => {
+      setProgress(0);
+      setIsRunning(false);
+    };
+    
+    return (
+      <div className="space-y-4 w-96">
+        <div>
+          <div className="flex justify-between text-sm mb-2">
+            <span>Progress</span>
+            <span>{progress}%</span>
+          </div>
+          <Progress value={progress} />
+        </div>
+        
+        <div className="flex gap-2">
+          <Button 
+            onClick={handleStart} 
+            disabled={isRunning || progress === 100}
+            size="sm"
+          >
+            {progress === 100 ? 'Complete' : isRunning ? 'Running...' : 'Start'}
+          </Button>
+          <Button 
+            onClick={handleReset} 
+            variant="outline"
+            size="sm"
+          >
+            Reset
+          </Button>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## File Upload Progress
+
+<ComponentDocSection
+  code={`import { Progress, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function FileUploadProgress() {
+  const [uploads, setUploads] = useState([
+    { id: 1, name: 'document.pdf', progress: 100, status: 'complete' },
+    { id: 2, name: 'image.jpg', progress: 65, status: 'uploading' },
+    { id: 3, name: 'video.mp4', progress: 0, status: 'pending' },
+  ]);
+  
+  const simulateUpload = (id) => {
+    setUploads(prev => prev.map(upload => 
+      upload.id === id 
+        ? { ...upload, status: 'uploading', progress: 0 }
+        : upload
+    ));
+    
+    const interval = setInterval(() => {
+      setUploads(prev => prev.map(upload => {
+        if (upload.id === id && upload.status === 'uploading') {
+          const newProgress = Math.min(upload.progress + 10, 100);
+          return {
+            ...upload,
+            progress: newProgress,
+            status: newProgress === 100 ? 'complete' : 'uploading'
+          };
+        }
+        return upload;
+      }));
+    }, 200);
+    
+    setTimeout(() => clearInterval(interval), 2000);
+  };
+  
+  return (
+    <div className="space-y-4 w-96">
+      <h4 className="font-medium">File Uploads</h4>
+      
+      {uploads.map((upload) => (
+        <div key={upload.id} className="space-y-2 p-3 border rounded-lg">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">{upload.name}</span>
+            <span className={\`text-xs px-2 py-1 rounded \${
+              upload.status === 'complete' ? 'bg-green-100 text-green-700' :
+              upload.status === 'uploading' ? 'bg-blue-100 text-blue-700' :
+              'bg-gray-100 text-gray-700'
+            }\`}>
+              {upload.status}
+            </span>
+          </div>
+          
+          <Progress value={upload.progress} />
+          
+          <div className="flex justify-between items-center">
+            <span className="text-xs text-gray-500">
+              {upload.progress}% complete
+            </span>
+            {upload.status === 'pending' && (
+              <Button 
+                size="sm" 
+                variant="outline"
+                onClick={() => simulateUpload(upload.id)}
+              >
+                Start Upload
+              </Button>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [uploads, setUploads] = React.useState([
+      { id: 1, name: 'document.pdf', progress: 100, status: 'complete' },
+      { id: 2, name: 'image.jpg', progress: 65, status: 'uploading' },
+      { id: 3, name: 'video.mp4', progress: 0, status: 'pending' },
+    ]);
+    
+    const simulateUpload = (id) => {
+      setUploads(prev => prev.map(upload => 
+        upload.id === id 
+          ? { ...upload, status: 'uploading', progress: 0 }
+          : upload
+      ));
+      
+      const interval = setInterval(() => {
+        setUploads(prev => prev.map(upload => {
+          if (upload.id === id && upload.status === 'uploading') {
+            const newProgress = Math.min(upload.progress + 10, 100);
+            return {
+              ...upload,
+              progress: newProgress,
+              status: newProgress === 100 ? 'complete' : 'uploading'
+            };
+          }
+          return upload;
+        }));
+      }, 200);
+      
+      setTimeout(() => clearInterval(interval), 2000);
+    };
+    
+    return (
+      <div className="space-y-4 w-96">
+        <h4 className="font-medium">File Uploads</h4>
+        
+        {uploads.map((upload) => (
+          <div key={upload.id} className="space-y-2 p-3 border rounded-lg">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">{upload.name}</span>
+              <span className={`text-xs px-2 py-1 rounded ${
+                upload.status === 'complete' ? 'bg-green-100 text-green-700' :
+                upload.status === 'uploading' ? 'bg-blue-100 text-blue-700' :
+                'bg-gray-100 text-gray-700'
+              }`}>
+                {upload.status}
+              </span>
+            </div>
+            
+            <Progress value={upload.progress} />
+            
+            <div className="flex justify-between items-center">
+              <span className="text-xs text-gray-500">
+                {upload.progress}% complete
+              </span>
+              {upload.status === 'pending' && (
+                <Button 
+                  size="sm" 
+                  variant="outline"
+                  onClick={() => simulateUpload(upload.id)}
+                >
+                  Start Upload
+                </Button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Multi-Step Form Progress
+
+<ComponentDocSection
+  code={`import { Progress, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function MultiStepProgress() {
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 4;
+  const progress = (currentStep / totalSteps) * 100;
+  
+  const steps = [
+    'Personal Info',
+    'Contact Details', 
+    'Preferences',
+    'Review & Submit'
+  ];
+  
+  const nextStep = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(prev => prev + 1);
+    }
+  };
+  
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(prev => prev - 1);
+    }
+  };
+  
+  return (
+    <div className="space-y-6 w-96">
+      <div>
+        <div className="flex justify-between text-sm mb-2">
+          <span>Step {currentStep} of {totalSteps}</span>
+          <span>{Math.round(progress)}% Complete</span>
+        </div>
+        <Progress value={progress} />
+      </div>
+      
+      <div className="space-y-4">
+        <h4 className="font-medium">{steps[currentStep - 1]}</h4>
+        
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <p className="text-sm text-gray-600">
+            Content for step {currentStep} would go here...
+          </p>
+        </div>
+        
+        <div className="flex justify-between">
+          <Button 
+            variant="outline" 
+            onClick={prevStep}
+            disabled={currentStep === 1}
+          >
+            Previous
+          </Button>
+          
+          <Button 
+            onClick={nextStep}
+            disabled={currentStep === totalSteps}
+          >
+            {currentStep === totalSteps ? 'Submit' : 'Next'}
+          </Button>
+        </div>
+      </div>
+      
+      <div className="flex gap-2">
+        {steps.map((step, index) => (
+          <div 
+            key={index}
+            className={\`flex-1 text-xs p-2 rounded text-center \${
+              index + 1 <= currentStep 
+                ? 'bg-blue-100 text-blue-700' 
+                : 'bg-gray-100 text-gray-500'
+            }\`}
+          >
+            {step}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [currentStep, setCurrentStep] = React.useState(1);
+    const totalSteps = 4;
+    const progress = (currentStep / totalSteps) * 100;
+    
+    const steps = [
+      'Personal Info',
+      'Contact Details', 
+      'Preferences',
+      'Review & Submit'
+    ];
+    
+    const nextStep = () => {
+      if (currentStep < totalSteps) {
+        setCurrentStep(prev => prev + 1);
+      }
+    };
+    
+    const prevStep = () => {
+      if (currentStep > 1) {
+        setCurrentStep(prev => prev - 1);
+      }
+    };
+    
+    return (
+      <div className="space-y-6 w-96">
+        <div>
+          <div className="flex justify-between text-sm mb-2">
+            <span>Step {currentStep} of {totalSteps}</span>
+            <span>{Math.round(progress)}% Complete</span>
+          </div>
+          <Progress value={progress} />
+        </div>
+        
+        <div className="space-y-4">
+          <h4 className="font-medium">{steps[currentStep - 1]}</h4>
+          
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <p className="text-sm text-gray-600">
+              Content for step {currentStep} would go here...
+            </p>
+          </div>
+          
+          <div className="flex justify-between">
+            <Button 
+              variant="outline" 
+              onClick={prevStep}
+              disabled={currentStep === 1}
+            >
+              Previous
+            </Button>
+            
+            <Button 
+              onClick={nextStep}
+              disabled={currentStep === totalSteps}
+            >
+              {currentStep === totalSteps ? 'Submit' : 'Next'}
+            </Button>
+          </div>
+        </div>
+        
+        <div className="flex gap-2">
+          {steps.map((step, index) => (
+            <div 
+              key={index}
+              className={`flex-1 text-xs p-2 rounded text-center ${
+                index + 1 <= currentStep 
+                  ? 'bg-blue-100 text-blue-700' 
+                  : 'bg-gray-100 text-gray-500'
+              }`}
+            >
+              {step}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Indeterminate Progress
+
+<ComponentDocSection
+  code={`import { Progress } from "buildgrid-ui";
+
+function IndeterminateProgress() {
+  return (
+    <div className="space-y-4 w-96">
+      <div>
+        <div className="text-sm mb-2">Loading (no value)</div>
+        <Progress className="animate-pulse" />
+      </div>
+      
+      <div>
+        <div className="text-sm mb-2">Processing...</div>
+        <div className="relative">
+          <Progress value={100} className="opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50 animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 w-96">
+    <div>
+      <div className="text-sm mb-2">Loading (no value)</div>
+      <Progress className="animate-pulse" />
+    </div>
+    
+    <div>
+      <div className="text-sm mb-2">Processing...</div>
+      <div className="relative">
+        <Progress value={100} className="opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50 animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Progress`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | - | The progress value (0-100). |
+| `max` | `number` | `100` | The maximum progress value. |
+| `className` | `string` | - | Additional CSS classes for custom styling. |
+| `getValueLabel` | `(value: number, max: number) => string` | - | Function to get the accessible value label. |
+
+## Accessibility
+
+The Progress component includes comprehensive accessibility features:
+
+- **ARIA Support** - Uses proper ARIA attributes (`role="progressbar"`)
+- **Value Announcement** - Screen readers announce current progress value
+- **Label Support** - Supports custom value labels for better context
+- **Keyboard Navigation** - Focusable when interactive
+- **Visual Indicators** - Clear visual progress representation
+
+## Common Use Cases
+
+The Progress component is perfect for:
+
+- **File Uploads** - Show upload progress for documents, images, videos
+- **Form Completion** - Multi-step forms and wizards
+- **Loading States** - Data fetching and processing indicators
+- **Installation Progress** - Software installation and updates
+- **Task Completion** - Project milestones and task tracking
+- **Data Processing** - Batch operations and data imports
+- **Download Progress** - File downloads and content loading
+
+## Best Practices
+
+1. **Provide Context** - Always label what the progress represents
+2. **Show Percentage** - Display numerical progress when helpful
+3. **Smooth Animations** - Use transitions for better user experience
+4. **Appropriate Sizing** - Choose height based on importance and context
+5. **Color Coding** - Use colors to indicate different states (success, error, warning)
+6. **Accessibility** - Ensure progress is announced to screen readers
+7. **Performance** - Avoid too frequent updates that might cause performance issues
+8. **Completion Feedback** - Provide clear indication when progress is complete

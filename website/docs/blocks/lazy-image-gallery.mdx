@@ -1,3 +1,506 @@
 ---
 id: lazy-image-gallery
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { LazyImageGallery, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { Image, Grid, Eye, Download } from 'lucide-react';
+
+# Lazy Image Gallery
+
+<StorybookLink path="blocks-lazyimagegallery--default" />
+
+The `LazyImageGallery` component provides an efficient way to display large collections of images with lazy loading. Built with Intersection Observer API, it only loads images when they come into view, improving performance and reducing bandwidth usage. Perfect for photo galleries, product catalogs, portfolios, and any interface displaying multiple images.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { LazyImageGallery } from "buildgrid-ui";
+
+function BasicImageGallery() {
+  const images = [
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+    'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop',
+    'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=300&fit=crop',
+    'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=300&fit=crop',
+    'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=300&fit=crop',
+    'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=300&fit=crop'
+  ];
+
+  return (
+    <div className="h-96 border rounded-lg">
+      <LazyImageGallery images={images} />
+    </div>
+  );
+}`}
+  storybookPath="blocks-lazyimagegallery--default"
+>
+  {(() => {
+    const images = [
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=300&fit=crop'
+    ];
+
+    return (
+      <div className="h-96 border rounded-lg">
+        <LazyImageGallery images={images} />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Custom Grid Layout
+
+<ComponentDocSection
+  code={`import { LazyImageGallery } from "buildgrid-ui";
+
+function CustomGridGallery() {
+  const images = [
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=400&fit=crop'
+  ];
+
+  const customClassNames = {
+    imageGallery: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4',
+    imageCell: 'aspect-square rounded-lg overflow-hidden bg-gray-200',
+    image: 'w-full h-full object-cover hover:scale-105 transition-transform duration-300'
+  };
+
+  return (
+    <div className="h-96 border rounded-lg">
+      <LazyImageGallery 
+        images={images} 
+        classNames={customClassNames}
+      />
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const images = [
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=400&fit=crop'
+    ];
+
+    const customClassNames = {
+      imageGallery: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4',
+      imageCell: 'aspect-square rounded-lg overflow-hidden bg-gray-200',
+      image: 'w-full h-full object-cover hover:scale-105 transition-transform duration-300'
+    };
+
+    return (
+      <div className="h-96 border rounded-lg">
+        <LazyImageGallery 
+          images={images} 
+          classNames={customClassNames}
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Portfolio Gallery
+
+<ComponentDocSection
+  code={`import { LazyImageGallery, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Image } from "lucide-react";
+
+function PortfolioGallery() {
+  const portfolioImages = [
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=800&fit=crop',
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=800&fit=crop',
+    'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop'
+  ];
+
+  const portfolioClassNames = {
+    imageGallery: 'columns-1 md:columns-2 lg:columns-3 gap-4 p-4',
+    imageCell: 'break-inside-avoid mb-4 rounded-lg overflow-hidden shadow-md bg-gray-100',
+    image: 'w-full h-auto object-cover hover:opacity-90 transition-opacity duration-300'
+  };
+
+  return (
+    <Card className="w-full max-w-4xl">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Image className="h-5 w-5" />
+          Photography Portfolio
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="h-96">
+          <LazyImageGallery 
+            images={portfolioImages}
+            classNames={portfolioClassNames}
+          />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const portfolioImages = [
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop'
+    ];
+
+    const portfolioClassNames = {
+      imageGallery: 'columns-1 md:columns-2 lg:columns-3 gap-4 p-4',
+      imageCell: 'break-inside-avoid mb-4 rounded-lg overflow-hidden shadow-md bg-gray-100',
+      image: 'w-full h-auto object-cover hover:opacity-90 transition-opacity duration-300'
+    };
+
+    return (
+      <Card className="w-full max-w-4xl">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Image className="h-5 w-5" />
+            Photography Portfolio
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="h-96">
+            <LazyImageGallery 
+              images={portfolioImages}
+              classNames={portfolioClassNames}
+            />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Product Catalog
+
+<ComponentDocSection
+  code={`import { LazyImageGallery, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { Grid, Eye } from "lucide-react";
+
+function ProductCatalog() {
+  const productImages = [
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=400&h=400&fit=crop'
+  ];
+
+  const catalogClassNames = {
+    imageGallery: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6',
+    imageCell: 'group cursor-pointer',
+    image: 'w-full aspect-square object-cover rounded-lg shadow-sm group-hover:shadow-lg transition-shadow duration-300'
+  };
+
+  return (
+    <Card className="w-full max-w-5xl">
+      <CardHeader>
+        <CardTitle className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Grid className="h-5 w-5" />
+            Product Catalog
+          </div>
+          <Button variant="outline" size="sm">
+            <Eye className="h-4 w-4 mr-2" />
+            View All
+          </Button>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="h-96">
+          <LazyImageGallery 
+            images={productImages}
+            classNames={catalogClassNames}
+          />
+        </div>
+        <div className="mt-4 text-center">
+          <p className="text-sm text-gray-600">
+            Showing {productImages.length} products • Scroll to see more
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const productImages = [
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=400&h=400&fit=crop'
+    ];
+
+    const catalogClassNames = {
+      imageGallery: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6',
+      imageCell: 'group cursor-pointer',
+      image: 'w-full aspect-square object-cover rounded-lg shadow-sm group-hover:shadow-lg transition-shadow duration-300'
+    };
+
+    return (
+      <Card className="w-full max-w-5xl">
+        <CardHeader>
+          <CardTitle className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Grid className="h-5 w-5" />
+              Product Catalog
+            </div>
+            <Button variant="outline" size="sm">
+              <Eye className="h-4 w-4 mr-2" />
+              View All
+            </Button>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="h-96">
+            <LazyImageGallery 
+              images={productImages}
+              classNames={catalogClassNames}
+            />
+          </div>
+          <div className="mt-4 text-center">
+            <p className="text-sm text-gray-600">
+              Showing {productImages.length} products • Scroll to see more
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Large Image Collection
+
+<ComponentDocSection
+  code={`import { LazyImageGallery, Button } from "buildgrid-ui";
+import { Download } from "lucide-react";
+
+function LargeImageCollection() {
+  // Generate a large collection of images
+  const generateImages = (count) => {
+    return Array.from({ length: count }, (_, i) => 
+      \`https://picsum.photos/400/300?random=\${i + 1}\`
+    );
+  };
+
+  const images = generateImages(50);
+
+  const observerOptions = {
+    rootMargin: '100px', // Load images 100px before they come into view
+    threshold: 0.1
+  };
+
+  return (
+    <div className="w-full max-w-6xl">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-semibold">
+          Large Collection ({images.length} images)
+        </h3>
+        <Button variant="outline" size="sm">
+          <Download className="h-4 w-4 mr-2" />
+          Download All
+        </Button>
+      </div>
+      
+      <div className="h-96 border rounded-lg">
+        <LazyImageGallery 
+          images={images}
+          observerOptions={observerOptions}
+        />
+      </div>
+      
+      <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+        <p className="text-sm text-blue-800">
+          💡 This gallery demonstrates lazy loading with {images.length} images. 
+          Images are only loaded when they come into view, improving performance.
+        </p>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const generateImages = (count) => {
+      return Array.from({ length: count }, (_, i) => 
+        `https://picsum.photos/400/300?random=${i + 1}`
+      );
+    };
+
+    const images = generateImages(50);
+
+    const observerOptions = {
+      rootMargin: '100px',
+      threshold: 0.1
+    };
+
+    return (
+      <div className="w-full max-w-6xl">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold">
+            Large Collection ({images.length} images)
+          </h3>
+          <Button variant="outline" size="sm">
+            <Download className="h-4 w-4 mr-2" />
+            Download All
+          </Button>
+        </div>
+        
+        <div className="h-96 border rounded-lg">
+          <LazyImageGallery 
+            images={images}
+            observerOptions={observerOptions}
+          />
+        </div>
+        
+        <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+          <p className="text-sm text-blue-800">
+            💡 This gallery demonstrates lazy loading with {images.length} images. 
+            Images are only loaded when they come into view, improving performance.
+          </p>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `LazyImageGallery`
+
+| Property | Type | Description |
+|---|---|---|
+| `images` | `string[]` | Array of image URLs to display in the gallery. |
+| `observerOptions` | `IntersectionObserverInit` | Configuration options for the Intersection Observer. |
+| `classNames` | `GalleryClassNames` | Custom CSS classes for styling different parts of the gallery. |
+
+### `GalleryClassNames`
+
+| Property | Type | Description |
+|---|---|---|
+| `imageGallery` | `string` | CSS classes for the main gallery container. |
+| `imageCell` | `string` | CSS classes for individual image containers. |
+| `image` | `string` | CSS classes for the image elements. |
+
+### `IntersectionObserverInit` (observerOptions)
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `root` | `Element \| null` | `null` | The element used as the viewport for checking visibility. |
+| `rootMargin` | `string` | `"0px"` | Margin around the root. Can be used to load images before they're visible. |
+| `threshold` | `number \| number[]` | `1` | Percentage of target visibility that triggers the observer. |
+
+## Default Styling
+
+The component comes with default responsive grid styling:
+
+```css
+.image-gallery {
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.5rem;
+  justify-content: center;
+  height: 100%;
+}
+
+.image-cell {
+  width: 100%;
+  height: 13rem; /* 208px */
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fade-up 400ms ease-linear;
+}
+```
+
+## Performance Features
+
+### Lazy Loading Benefits
+- **Reduced Initial Load Time** - Only loads visible images
+- **Bandwidth Savings** - Saves data by not loading off-screen images
+- **Memory Efficiency** - Reduces memory usage for large galleries
+- **Smooth Scrolling** - Maintains smooth scroll performance
+
+### Intersection Observer
+- **Native Browser API** - Uses efficient browser-native intersection detection
+- **Configurable Thresholds** - Control when images start loading
+- **Root Margin** - Pre-load images before they become visible
+- **Automatic Cleanup** - Properly disconnects observers on unmount
+
+## Accessibility
+
+The LazyImageGallery component includes basic accessibility features:
+
+- **Alt Text** - Automatically generates descriptive alt text for images
+- **Keyboard Navigation** - Images can be focused and navigated with keyboard
+- **Screen Reader Support** - Proper image semantics for assistive technologies
+- **Loading States** - Clear indication when images are loading
+- **Error Handling** - Graceful handling of failed image loads
+
+## Common Use Cases
+
+The LazyImageGallery component is perfect for:
+
+- **Photo Galleries** - Personal or professional photography showcases
+- **Product Catalogs** - E-commerce product image displays
+- **Portfolio Websites** - Creative work and project showcases
+- **Social Media Feeds** - Image-heavy social content
+- **Real Estate Listings** - Property photo galleries
+- **Art Collections** - Museum or gallery image collections
+- **Travel Websites** - Destination and attraction photos
+- **News Articles** - Image galleries in editorial content
+
+## Best Practices
+
+1. **Image Optimization** - Use appropriately sized images for your layout
+2. **Consistent Aspect Ratios** - Maintain consistent image dimensions when possible
+3. **Loading Indicators** - Consider adding loading skeletons or placeholders
+4. **Error Handling** - Implement fallback images for failed loads
+5. **Performance Monitoring** - Monitor loading performance with large galleries
+6. **Mobile Optimization** - Test gallery performance on mobile devices
+7. **Accessibility** - Provide meaningful alt text for all images
+8. **SEO Considerations** - Use descriptive filenames and proper image metadata
+
+## Performance Tips
+
+1. **Root Margin** - Use rootMargin to pre-load images just before they're needed
+2. **Image Formats** - Use modern formats like WebP for better compression
+3. **CDN Usage** - Serve images from a CDN for faster loading
+4. **Responsive Images** - Use different image sizes for different screen sizes
+5. **Batch Loading** - Consider loading images in small batches rather than one by one
+6. **Memory Management** - For very large galleries, consider unloading off-screen images

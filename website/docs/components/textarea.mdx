@@ -1,3 +1,454 @@
 ---
 id: textarea
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Textarea, Label, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+
+# Textarea
+
+<StorybookLink path="components-textarea--default" />
+
+The `Textarea` component provides a multi-line text input with consistent styling and accessibility features. Built with proper focus management and responsive design, it's perfect for comments, descriptions, messages, and any multi-line text input needs.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Textarea } from "buildgrid-ui";
+
+function BasicTextarea() {
+  return (
+    <Textarea placeholder="Enter your message..." />
+  );
+}`}
+  storybookPath="components-textarea--default"
+>
+  <Textarea placeholder="Enter your message..." />
+</ComponentDocSection>
+
+## With Label
+
+<ComponentDocSection
+  code={`import { Textarea, Label } from "buildgrid-ui";
+
+function TextareaWithLabel() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="message">Message</Label>
+      <Textarea 
+        id="message"
+        placeholder="Type your message here..."
+      />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-2">
+    <Label htmlFor="message">Message</Label>
+    <Textarea 
+      id="message"
+      placeholder="Type your message here..."
+    />
+  </div>
+</ComponentDocSection>
+
+## Different Sizes
+
+<ComponentDocSection
+  code={`import { Textarea } from "buildgrid-ui";
+
+function TextareaSizes() {
+  return (
+    <div className="space-y-4">
+      <div>
+        <h4 className="text-sm font-medium mb-2">Small (3 rows)</h4>
+        <Textarea 
+          placeholder="Small textarea..."
+          rows={3}
+        />
+      </div>
+      
+      <div>
+        <h4 className="text-sm font-medium mb-2">Medium (5 rows)</h4>
+        <Textarea 
+          placeholder="Medium textarea..."
+          rows={5}
+        />
+      </div>
+      
+      <div>
+        <h4 className="text-sm font-medium mb-2">Large (8 rows)</h4>
+        <Textarea 
+          placeholder="Large textarea..."
+          rows={8}
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div>
+      <h4 className="text-sm font-medium mb-2">Small (3 rows)</h4>
+      <Textarea 
+        placeholder="Small textarea..."
+        rows={3}
+      />
+    </div>
+    
+    <div>
+      <h4 className="text-sm font-medium mb-2">Medium (5 rows)</h4>
+      <Textarea 
+        placeholder="Medium textarea..."
+        rows={5}
+      />
+    </div>
+    
+    <div>
+      <h4 className="text-sm font-medium mb-2">Large (8 rows)</h4>
+      <Textarea 
+        placeholder="Large textarea..."
+        rows={8}
+      />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Controlled Textarea
+
+<ComponentDocSection
+  code={`import { Textarea, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function ControlledTextarea() {
+  const [value, setValue] = useState("");
+  const maxLength = 200;
+
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="controlled-textarea">Description</Label>
+      <Textarea
+        id="controlled-textarea"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Enter a description..."
+        maxLength={maxLength}
+      />
+      <div className="flex justify-between text-sm text-gray-500">
+        <span>Characters: {value.length}/{maxLength}</span>
+        <span>{maxLength - value.length} remaining</span>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = React.useState("");
+    const maxLength = 200;
+
+    return (
+      <div className="space-y-2">
+        <Label htmlFor="controlled-textarea">Description</Label>
+        <Textarea
+          id="controlled-textarea"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Enter a description..."
+          maxLength={maxLength}
+        />
+        <div className="flex justify-between text-sm text-gray-500">
+          <span>Characters: {value.length}/{maxLength}</span>
+          <span>{maxLength - value.length} remaining</span>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { Textarea, Label } from "buildgrid-ui";
+
+function DisabledTextarea() {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <Label htmlFor="disabled-empty">Disabled (Empty)</Label>
+        <Textarea
+          id="disabled-empty"
+          disabled
+          placeholder="This textarea is disabled..."
+        />
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="disabled-with-value">Disabled (With Value)</Label>
+        <Textarea
+          id="disabled-with-value"
+          disabled
+          defaultValue="This textarea is disabled and contains some text that cannot be edited."
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div className="space-y-2">
+      <Label htmlFor="disabled-empty">Disabled (Empty)</Label>
+      <Textarea
+        id="disabled-empty"
+        disabled
+        placeholder="This textarea is disabled..."
+      />
+    </div>
+    
+    <div className="space-y-2">
+      <Label htmlFor="disabled-with-value">Disabled (With Value)</Label>
+      <Textarea
+        id="disabled-with-value"
+        disabled
+        defaultValue="This textarea is disabled and contains some text that cannot be edited."
+      />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Form Integration
+
+<ComponentDocSection
+  code={`import { Textarea, Label, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function TextareaForm() {
+  const [feedback, setFeedback] = useState("");
+  const [comments, setComments] = useState("");
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Feedback:', feedback);
+    console.log('Comments:', comments);
+    alert('Form submitted! Check console for values.');
+  };
+
+  return (
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Feedback Form</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="feedback">Your Feedback</Label>
+            <Textarea
+              id="feedback"
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+              placeholder="Tell us what you think..."
+              rows={4}
+              required
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="comments">Additional Comments</Label>
+            <Textarea
+              id="comments"
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
+              placeholder="Any additional comments? (optional)"
+              rows={3}
+            />
+          </div>
+          
+          <Button type="submit" className="w-full">
+            Submit Feedback
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [feedback, setFeedback] = React.useState("");
+    const [comments, setComments] = React.useState("");
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log('Feedback:', feedback);
+      console.log('Comments:', comments);
+      alert('Form submitted! Check console for values.');
+    };
+
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Feedback Form</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="feedback">Your Feedback</Label>
+              <Textarea
+                id="feedback"
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                placeholder="Tell us what you think..."
+                rows={4}
+                required
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="comments">Additional Comments</Label>
+              <Textarea
+                id="comments"
+                value={comments}
+                onChange={(e) => setComments(e.target.value)}
+                placeholder="Any additional comments? (optional)"
+                rows={3}
+              />
+            </div>
+            
+            <Button type="submit" className="w-full">
+              Submit Feedback
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Auto-Resize Textarea
+
+<ComponentDocSection
+  code={`import { Textarea, Label } from "buildgrid-ui";
+import { useState, useRef, useEffect } from "react";
+
+function AutoResizeTextarea() {
+  const [value, setValue] = useState("");
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+    }
+  }, [value]);
+
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="auto-resize">Auto-Resize Textarea</Label>
+      <Textarea
+        ref={textareaRef}
+        id="auto-resize"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Start typing and watch this textarea grow..."
+        rows={1}
+        className="resize-none overflow-hidden"
+      />
+      <p className="text-sm text-gray-500">
+        This textarea automatically adjusts its height based on content.
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = React.useState("");
+    const textareaRef = React.useRef(null);
+
+    React.useEffect(() => {
+      if (textareaRef.current) {
+        textareaRef.current.style.height = 'auto';
+        textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+      }
+    }, [value]);
+
+    return (
+      <div className="space-y-2">
+        <Label htmlFor="auto-resize">Auto-Resize Textarea</Label>
+        <Textarea
+          ref={textareaRef}
+          id="auto-resize"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Start typing and watch this textarea grow..."
+          rows={1}
+          className="resize-none overflow-hidden"
+        />
+        <p className="text-sm text-gray-500">
+          This textarea automatically adjusts its height based on content.
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Textarea`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | The controlled value of the textarea. |
+| `defaultValue` | `string` | The default value (uncontrolled). |
+| `onChange` | `(event: ChangeEvent<HTMLTextAreaElement>) => void` | Callback fired when the value changes. |
+| `placeholder` | `string` | Placeholder text displayed when empty. |
+| `disabled` | `boolean` | Whether the textarea is disabled. |
+| `required` | `boolean` | Whether the textarea is required in forms. |
+| `readOnly` | `boolean` | Whether the textarea is read-only. |
+| `rows` | `number` | Number of visible text lines. |
+| `cols` | `number` | Number of visible character columns. |
+| `maxLength` | `number` | Maximum number of characters allowed. |
+| `minLength` | `number` | Minimum number of characters required. |
+| `wrap` | `"hard" \| "soft" \| "off"` | How text wrapping should be handled. |
+| `resize` | `"none" \| "both" \| "horizontal" \| "vertical"` | CSS resize property. |
+| `className` | `string` | Additional CSS classes for the textarea. |
+| `id` | `string` | HTML id attribute. |
+| `name` | `string` | HTML name attribute for forms. |
+| `autoFocus` | `boolean` | Whether to focus the textarea on mount. |
+| `onFocus` | `(event: FocusEvent<HTMLTextAreaElement>) => void` | Callback fired when focused. |
+| `onBlur` | `(event: FocusEvent<HTMLTextAreaElement>) => void` | Callback fired when blurred. |
+
+## Accessibility
+
+The Textarea component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Standard textarea keyboard interactions
+- **Focus Management** - Proper focus indicators and handling
+- **Screen Reader Support** - Works with assistive technologies
+- **Label Association** - Proper labeling with htmlFor/id attributes
+- **Form Integration** - Seamless integration with form libraries
+- **ARIA Support** - Can be enhanced with ARIA attributes
+- **Validation States** - Supports required, invalid, and other states
+
+## Common Use Cases
+
+The Textarea component is perfect for:
+
+- **Comments** - User comments and feedback forms
+- **Descriptions** - Product descriptions and detailed information
+- **Messages** - Contact forms and messaging interfaces
+- **Notes** - User notes and documentation
+- **Reviews** - Product reviews and testimonials
+- **Content Creation** - Blog posts and article content
+- **Code Input** - Code snippets and configuration
+- **Addresses** - Multi-line address inputs
+
+## Best Practices
+
+1. **Appropriate Sizing** - Set reasonable default rows for content type
+2. **Character Limits** - Implement and display character count when needed
+3. **Placeholder Text** - Use helpful placeholder text to guide users
+4. **Validation** - Provide clear validation feedback for required fields
+5. **Auto-Resize** - Consider auto-resize for dynamic content
+6. **Accessibility** - Always associate with labels and provide context
+7. **Performance** - Debounce onChange handlers for expensive operations
+8. **Mobile Optimization** - Ensure proper mobile keyboard and sizing

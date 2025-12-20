@@ -1,3 +1,545 @@
 ---
 id: toggle-group
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { ToggleGroup, ToggleGroupItem, Label, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, List, ListOrdered, Code, Quote } from 'lucide-react';
+
+# Toggle Group
+
+<StorybookLink path="components-togglegroup--default" />
+
+The `ToggleGroup` component provides a set of two-state buttons that can work together as a group. Built on Radix UI, it supports single or multiple selection modes with consistent styling and accessibility features. Perfect for toolbars, formatting controls, filter options, and any interface requiring grouped toggle functionality.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { ToggleGroup, ToggleGroupItem } from "buildgrid-ui";
+
+function BasicToggleGroup() {
+  return (
+    <ToggleGroup type="single">
+      <ToggleGroupItem value="left">Left</ToggleGroupItem>
+      <ToggleGroupItem value="center">Center</ToggleGroupItem>
+      <ToggleGroupItem value="right">Right</ToggleGroupItem>
+    </ToggleGroup>
+  );
+}`}
+  storybookPath="components-togglegroup--default"
+>
+  <ToggleGroup type="single">
+    <ToggleGroupItem value="left">Left</ToggleGroupItem>
+    <ToggleGroupItem value="center">Center</ToggleGroupItem>
+    <ToggleGroupItem value="right">Right</ToggleGroupItem>
+  </ToggleGroup>
+</ComponentDocSection>
+
+## Single Selection
+
+<ComponentDocSection
+  code={`import { ToggleGroup, ToggleGroupItem, Label } from "buildgrid-ui";
+import { AlignLeft, AlignCenter, AlignRight } from "lucide-react";
+import { useState } from "react";
+
+function SingleSelectionToggleGroup() {
+  const [alignment, setAlignment] = useState("left");
+
+  return (
+    <div className="space-y-3">
+      <Label>Text Alignment</Label>
+      <ToggleGroup type="single" value={alignment} onValueChange={setAlignment}>
+        <ToggleGroupItem value="left" aria-label="Align left">
+          <AlignLeft className="h-4 w-4" />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="center" aria-label="Align center">
+          <AlignCenter className="h-4 w-4" />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="right" aria-label="Align right">
+          <AlignRight className="h-4 w-4" />
+        </ToggleGroupItem>
+      </ToggleGroup>
+      <p className="text-sm text-gray-600">
+        Current alignment: <span className="font-medium">{alignment || 'none'}</span>
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [alignment, setAlignment] = React.useState("left");
+
+    return (
+      <div className="space-y-3">
+        <Label>Text Alignment</Label>
+        <ToggleGroup type="single" value={alignment} onValueChange={setAlignment}>
+          <ToggleGroupItem value="left" aria-label="Align left">
+            <AlignLeft className="h-4 w-4" />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="center" aria-label="Align center">
+            <AlignCenter className="h-4 w-4" />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="right" aria-label="Align right">
+            <AlignRight className="h-4 w-4" />
+          </ToggleGroupItem>
+        </ToggleGroup>
+        <p className="text-sm text-gray-600">
+          Current alignment: <span className="font-medium">{alignment || 'none'}</span>
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Multiple Selection
+
+<ComponentDocSection
+  code={`import { ToggleGroup, ToggleGroupItem, Label } from "buildgrid-ui";
+import { Bold, Italic, Underline } from "lucide-react";
+import { useState } from "react";
+
+function MultipleSelectionToggleGroup() {
+  const [formatting, setFormatting] = useState(["bold"]);
+
+  return (
+    <div className="space-y-3">
+      <Label>Text Formatting</Label>
+      <ToggleGroup type="multiple" value={formatting} onValueChange={setFormatting}>
+        <ToggleGroupItem value="bold" aria-label="Bold">
+          <Bold className="h-4 w-4" />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="italic" aria-label="Italic">
+          <Italic className="h-4 w-4" />
+        </ToggleGroupItem>
+        <ToggleGroupItem value="underline" aria-label="Underline">
+          <Underline className="h-4 w-4" />
+        </ToggleGroupItem>
+      </ToggleGroup>
+      <p className="text-sm text-gray-600">
+        Active formatting: <span className="font-medium">{formatting.length > 0 ? formatting.join(', ') : 'none'}</span>
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [formatting, setFormatting] = React.useState(["bold"]);
+
+    return (
+      <div className="space-y-3">
+        <Label>Text Formatting</Label>
+        <ToggleGroup type="multiple" value={formatting} onValueChange={setFormatting}>
+          <ToggleGroupItem value="bold" aria-label="Bold">
+            <Bold className="h-4 w-4" />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="italic" aria-label="Italic">
+            <Italic className="h-4 w-4" />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="underline" aria-label="Underline">
+            <Underline className="h-4 w-4" />
+          </ToggleGroupItem>
+        </ToggleGroup>
+        <p className="text-sm text-gray-600">
+          Active formatting: <span className="font-medium">{formatting.length > 0 ? formatting.join(', ') : 'none'}</span>
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Different Variants
+
+<ComponentDocSection
+  code={`import { ToggleGroup, ToggleGroupItem } from "buildgrid-ui";
+
+function ToggleGroupVariants() {
+  return (
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Default Variant</h4>
+        <ToggleGroup type="single" variant="default">
+          <ToggleGroupItem value="option1">Option 1</ToggleGroupItem>
+          <ToggleGroupItem value="option2">Option 2</ToggleGroupItem>
+          <ToggleGroupItem value="option3">Option 3</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+      
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Outline Variant</h4>
+        <ToggleGroup type="single" variant="outline">
+          <ToggleGroupItem value="option1">Option 1</ToggleGroupItem>
+          <ToggleGroupItem value="option2">Option 2</ToggleGroupItem>
+          <ToggleGroupItem value="option3">Option 3</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-6">
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Default Variant</h4>
+      <ToggleGroup type="single" variant="default">
+        <ToggleGroupItem value="option1">Option 1</ToggleGroupItem>
+        <ToggleGroupItem value="option2">Option 2</ToggleGroupItem>
+        <ToggleGroupItem value="option3">Option 3</ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+    
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Outline Variant</h4>
+      <ToggleGroup type="single" variant="outline">
+        <ToggleGroupItem value="option1">Option 1</ToggleGroupItem>
+        <ToggleGroupItem value="option2">Option 2</ToggleGroupItem>
+        <ToggleGroupItem value="option3">Option 3</ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Different Sizes
+
+<ComponentDocSection
+  code={`import { ToggleGroup, ToggleGroupItem } from "buildgrid-ui";
+
+function ToggleGroupSizes() {
+  return (
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Small</h4>
+        <ToggleGroup type="single" size="sm">
+          <ToggleGroupItem value="sm1">Small 1</ToggleGroupItem>
+          <ToggleGroupItem value="sm2">Small 2</ToggleGroupItem>
+          <ToggleGroupItem value="sm3">Small 3</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+      
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Default</h4>
+        <ToggleGroup type="single" size="default">
+          <ToggleGroupItem value="def1">Default 1</ToggleGroupItem>
+          <ToggleGroupItem value="def2">Default 2</ToggleGroupItem>
+          <ToggleGroupItem value="def3">Default 3</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+      
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Large</h4>
+        <ToggleGroup type="single" size="lg">
+          <ToggleGroupItem value="lg1">Large 1</ToggleGroupItem>
+          <ToggleGroupItem value="lg2">Large 2</ToggleGroupItem>
+          <ToggleGroupItem value="lg3">Large 3</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-6">
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Small</h4>
+      <ToggleGroup type="single" size="sm">
+        <ToggleGroupItem value="sm1">Small 1</ToggleGroupItem>
+        <ToggleGroupItem value="sm2">Small 2</ToggleGroupItem>
+        <ToggleGroupItem value="sm3">Small 3</ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+    
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Default</h4>
+      <ToggleGroup type="single" size="default">
+        <ToggleGroupItem value="def1">Default 1</ToggleGroupItem>
+        <ToggleGroupItem value="def2">Default 2</ToggleGroupItem>
+        <ToggleGroupItem value="def3">Default 3</ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+    
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Large</h4>
+      <ToggleGroup type="single" size="lg">
+        <ToggleGroupItem value="lg1">Large 1</ToggleGroupItem>
+        <ToggleGroupItem value="lg2">Large 2</ToggleGroupItem>
+        <ToggleGroupItem value="lg3">Large 3</ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Rich Text Editor Toolbar
+
+<ComponentDocSection
+  code={`import { ToggleGroup, ToggleGroupItem, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, List, ListOrdered, Code, Quote } from "lucide-react";
+import { useState } from "react";
+
+function RichTextToolbar() {
+  const [formatting, setFormatting] = useState([]);
+  const [alignment, setAlignment] = useState("left");
+  const [listType, setListType] = useState("");
+
+  return (
+    <Card className="w-full max-w-2xl">
+      <CardHeader>
+        <CardTitle>Rich Text Editor</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="flex flex-wrap gap-4 p-3 bg-gray-50 rounded-lg">
+          <ToggleGroup type="multiple" value={formatting} onValueChange={setFormatting}>
+            <ToggleGroupItem value="bold" aria-label="Bold">
+              <Bold className="h-4 w-4" />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="italic" aria-label="Italic">
+              <Italic className="h-4 w-4" />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="underline" aria-label="Underline">
+              <Underline className="h-4 w-4" />
+            </ToggleGroupItem>
+          </ToggleGroup>
+          
+          <div className="w-px bg-gray-300" />
+          
+          <ToggleGroup type="single" value={alignment} onValueChange={setAlignment}>
+            <ToggleGroupItem value="left" aria-label="Align left">
+              <AlignLeft className="h-4 w-4" />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="center" aria-label="Align center">
+              <AlignCenter className="h-4 w-4" />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="right" aria-label="Align right">
+              <AlignRight className="h-4 w-4" />
+            </ToggleGroupItem>
+          </ToggleGroup>
+          
+          <div className="w-px bg-gray-300" />
+          
+          <ToggleGroup type="single" value={listType} onValueChange={setListType}>
+            <ToggleGroupItem value="bullet" aria-label="Bullet list">
+              <List className="h-4 w-4" />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="numbered" aria-label="Numbered list">
+              <ListOrdered className="h-4 w-4" />
+            </ToggleGroupItem>
+          </ToggleGroup>
+          
+          <div className="w-px bg-gray-300" />
+          
+          <ToggleGroup type="multiple">
+            <ToggleGroupItem value="code" aria-label="Code">
+              <Code className="h-4 w-4" />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="quote" aria-label="Quote">
+              <Quote className="h-4 w-4" />
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+        
+        <div className="min-h-[200px] p-4 border border-gray-200 rounded-lg bg-white">
+          <p className="text-gray-500 text-sm">
+            Start typing your content here...
+          </p>
+        </div>
+        
+        <div className="text-xs text-gray-500 space-y-1">
+          <p>Formatting: {formatting.length > 0 ? formatting.join(', ') : 'none'}</p>
+          <p>Alignment: {alignment}</p>
+          <p>List type: {listType || 'none'}</p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [formatting, setFormatting] = React.useState([]);
+    const [alignment, setAlignment] = React.useState("left");
+    const [listType, setListType] = React.useState("");
+
+    return (
+      <Card className="w-full max-w-2xl">
+        <CardHeader>
+          <CardTitle>Rich Text Editor</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex flex-wrap gap-4 p-3 bg-gray-50 rounded-lg">
+            <ToggleGroup type="multiple" value={formatting} onValueChange={setFormatting}>
+              <ToggleGroupItem value="bold" aria-label="Bold">
+                <Bold className="h-4 w-4" />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="italic" aria-label="Italic">
+                <Italic className="h-4 w-4" />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="underline" aria-label="Underline">
+                <Underline className="h-4 w-4" />
+              </ToggleGroupItem>
+            </ToggleGroup>
+            
+            <div className="w-px bg-gray-300" />
+            
+            <ToggleGroup type="single" value={alignment} onValueChange={setAlignment}>
+              <ToggleGroupItem value="left" aria-label="Align left">
+                <AlignLeft className="h-4 w-4" />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Align center">
+                <AlignCenter className="h-4 w-4" />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Align right">
+                <AlignRight className="h-4 w-4" />
+              </ToggleGroupItem>
+            </ToggleGroup>
+            
+            <div className="w-px bg-gray-300" />
+            
+            <ToggleGroup type="single" value={listType} onValueChange={setListType}>
+              <ToggleGroupItem value="bullet" aria-label="Bullet list">
+                <List className="h-4 w-4" />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="numbered" aria-label="Numbered list">
+                <ListOrdered className="h-4 w-4" />
+              </ToggleGroupItem>
+            </ToggleGroup>
+            
+            <div className="w-px bg-gray-300" />
+            
+            <ToggleGroup type="multiple">
+              <ToggleGroupItem value="code" aria-label="Code">
+                <Code className="h-4 w-4" />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="quote" aria-label="Quote">
+                <Quote className="h-4 w-4" />
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+          
+          <div className="min-h-[200px] p-4 border border-gray-200 rounded-lg bg-white">
+            <p className="text-gray-500 text-sm">
+              Start typing your content here...
+            </p>
+          </div>
+          
+          <div className="text-xs text-gray-500 space-y-1">
+            <p>Formatting: {formatting.length > 0 ? formatting.join(', ') : 'none'}</p>
+            <p>Alignment: {alignment}</p>
+            <p>List type: {listType || 'none'}</p>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { ToggleGroup, ToggleGroupItem } from "buildgrid-ui";
+
+function DisabledToggleGroup() {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Entire Group Disabled</h4>
+        <ToggleGroup type="single" disabled>
+          <ToggleGroupItem value="option1">Option 1</ToggleGroupItem>
+          <ToggleGroupItem value="option2">Option 2</ToggleGroupItem>
+          <ToggleGroupItem value="option3">Option 3</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+      
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Individual Items Disabled</h4>
+        <ToggleGroup type="single">
+          <ToggleGroupItem value="option1">Available</ToggleGroupItem>
+          <ToggleGroupItem value="option2" disabled>Disabled</ToggleGroupItem>
+          <ToggleGroupItem value="option3">Available</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Entire Group Disabled</h4>
+      <ToggleGroup type="single" disabled>
+        <ToggleGroupItem value="option1">Option 1</ToggleGroupItem>
+        <ToggleGroupItem value="option2">Option 2</ToggleGroupItem>
+        <ToggleGroupItem value="option3">Option 3</ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+    
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Individual Items Disabled</h4>
+      <ToggleGroup type="single">
+        <ToggleGroupItem value="option1">Available</ToggleGroupItem>
+        <ToggleGroupItem value="option2" disabled>Disabled</ToggleGroupItem>
+        <ToggleGroupItem value="option3">Available</ToggleGroupItem>
+      </ToggleGroup>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `ToggleGroup`
+
+| Property | Type | Description |
+|---|---|---|
+| `type` | `"single" \| "multiple"` | Selection mode - single allows one selection, multiple allows many. |
+| `value` | `string \| string[]` | Controlled value(s) of the toggle group. |
+| `defaultValue` | `string \| string[]` | Default value(s) when uncontrolled. |
+| `onValueChange` | `(value: string \| string[]) => void` | Callback fired when selection changes. |
+| `disabled` | `boolean` | Whether the entire group is disabled. |
+| `orientation` | `"horizontal" \| "vertical"` | Layout orientation of the group. |
+| `dir` | `"ltr" \| "rtl"` | Reading direction for the group. |
+| `loop` | `boolean` | Whether keyboard navigation should loop. |
+| `variant` | `"default" \| "outline"` | Visual variant applied to all items. |
+| `size` | `"sm" \| "default" \| "lg"` | Size variant applied to all items. |
+| `className` | `string` | Additional CSS classes for the group container. |
+| `children` | `ReactNode` | ToggleGroupItem components. |
+
+### `ToggleGroupItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | Unique value for this toggle item. |
+| `disabled` | `boolean` | Whether this specific item is disabled. |
+| `variant` | `"default" \| "outline"` | Visual variant (overrides group variant). |
+| `size` | `"sm" \| "default" \| "lg"` | Size variant (overrides group size). |
+| `className` | `string` | Additional CSS classes for the item. |
+| `children` | `ReactNode` | Content of the toggle item. |
+| `asChild` | `boolean` | Render as child element instead of button. |
+
+## Accessibility
+
+The ToggleGroup component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys navigate between items, Space/Enter toggles
+- **Focus Management** - Proper focus handling and visual indicators
+- **ARIA Support** - Full ARIA attributes including roles and states
+- **Screen Reader Support** - Toggle states announced to assistive technologies
+- **Group Semantics** - Proper grouping and labeling for screen readers
+- **Disabled State** - Proper handling of disabled items and groups
+
+## Common Use Cases
+
+The ToggleGroup component is perfect for:
+
+- **Text Formatting** - Bold, italic, underline controls in editors
+- **Alignment Controls** - Left, center, right alignment options
+- **View Modes** - List view, grid view, card view toggles
+- **Filter Options** - Category filters and search refinements
+- **Settings Panels** - Multiple option selections in preferences
+- **Toolbar Controls** - Action buttons in application toolbars
+- **Layout Options** - Different layout and display configurations
+
+## Best Practices
+
+1. **Clear Labels** - Use descriptive labels or icons with proper ARIA labels
+2. **Logical Grouping** - Group related options together
+3. **Consistent Sizing** - Use consistent sizes within the same interface
+4. **Visual Feedback** - Ensure clear visual indication of selected states
+5. **Keyboard Support** - Test keyboard navigation and shortcuts
+6. **Icon Usage** - Use recognizable icons with text labels when possible
+7. **State Management** - Handle controlled vs uncontrolled state appropriately
+8. **Responsive Design** - Consider mobile layouts and touch targets

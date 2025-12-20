@@ -1,0 +1,552 @@
+---
+id: number-stepper
+---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { NumberStepper, Card, CardContent, CardHeader, CardTitle, Label } from "buildgrid-ui";
+
+# Number Stepper
+
+<StorybookLink path="blocks-numberstepper--default" />
+
+The `NumberStepper` component provides an intuitive numeric input with increment and decrement buttons. Built with accessibility and precision in mind, it supports various sizes, step values, and symbol customization. Perfect for quantity selectors, price inputs, configuration settings, and any interface requiring precise numeric control.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { NumberStepper } from "buildgrid-ui";
+import React from "react";
+
+function BasicNumberStepper() {
+  const [value, setValue] = React.useState(5);
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium mb-2">Quantity</label>
+        <NumberStepper
+          value={value}
+          onChange={setValue}
+          min={0}
+          max={100}
+        />
+      </div>
+      <p className="text-sm text-gray-600">Current value: {value}</p>
+    </div>
+  );
+}`}
+  storybookPath="blocks-numberstepper--default"
+>
+  {(() => {
+    const [value, setValue] = React.useState(5);
+
+    return (
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-2">Quantity</label>
+          <NumberStepper
+            value={value}
+            onChange={setValue}
+            min={0}
+            max={100}
+          />
+        </div>
+        <p className="text-sm text-gray-600">Current value: {value}</p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Size Variants
+
+<ComponentDocSection
+  code={`import { NumberStepper, Label } from "buildgrid-ui";
+
+function SizeVariants() {
+  return (
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <Label>Small (sm)</Label>
+        <NumberStepper size="sm" defaultValue={1} min={0} max={10} />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Medium (md) - Default</Label>
+        <NumberStepper size="md" defaultValue={5} min={0} max={20} />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Large (lg)</Label>
+        <NumberStepper size="lg" defaultValue={10} min={0} max={50} />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Extra Large (xl)</Label>
+        <NumberStepper size="xl" defaultValue={25} min={0} max={100} />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    return (
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <Label>Small (sm)</Label>
+          <NumberStepper size="sm" defaultValue={1} min={0} max={10} />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Medium (md) - Default</Label>
+          <NumberStepper size="md" defaultValue={5} min={0} max={20} />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Large (lg)</Label>
+          <NumberStepper size="lg" defaultValue={10} min={0} max={50} />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Extra Large (xl)</Label>
+          <NumberStepper size="xl" defaultValue={25} min={0} max={100} />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Symbol Variants
+
+<ComponentDocSection
+  code={`import { NumberStepper, Label } from "buildgrid-ui";
+import React from "react";
+
+function SymbolVariants() {
+  const [price, setPrice] = React.useState(9.99);
+  const [percentage, setPercentage] = React.useState(50);
+  const [weight, setWeight] = React.useState(75);
+  const [temperature, setTemperature] = React.useState(22);
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <Label>Currency ($)</Label>
+        <NumberStepper
+          value={price}
+          onChange={setPrice}
+          min={0}
+          max={999.99}
+          step={0.01}
+          leftSymbol="$"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Percentage (%)</Label>
+        <NumberStepper
+          value={percentage}
+          onChange={setPercentage}
+          min={0}
+          max={100}
+          step={5}
+          rightSymbol="%"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Weight (kg)</Label>
+        <NumberStepper
+          value={weight}
+          onChange={setWeight}
+          min={0}
+          max={200}
+          step={0.5}
+          rightSymbol="kg"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Temperature (°C)</Label>
+        <NumberStepper
+          value={temperature}
+          onChange={setTemperature}
+          min={-50}
+          max={50}
+          step={1}
+          rightSymbol="°C"
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [price, setPrice] = React.useState(9.99);
+    const [percentage, setPercentage] = React.useState(50);
+    const [weight, setWeight] = React.useState(75);
+    const [temperature, setTemperature] = React.useState(22);
+
+    return (
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <Label>Currency ($)</Label>
+          <NumberStepper
+            value={price}
+            onChange={setPrice}
+            min={0}
+            max={999.99}
+            step={0.01}
+            leftSymbol="$"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Percentage (%)</Label>
+          <NumberStepper
+            value={percentage}
+            onChange={setPercentage}
+            min={0}
+            max={100}
+            step={5}
+            rightSymbol="%"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Weight (kg)</Label>
+          <NumberStepper
+            value={weight}
+            onChange={setWeight}
+            min={0}
+            max={200}
+            step={0.5}
+            rightSymbol="kg"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Temperature (°C)</Label>
+          <NumberStepper
+            value={temperature}
+            onChange={setTemperature}
+            min={-50}
+            max={50}
+            step={1}
+            rightSymbol="°C"
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Step Variations
+
+<ComponentDocSection
+  code={`import { NumberStepper, Label } from "buildgrid-ui";
+
+function StepVariations() {
+  return (
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <Label>Step by 1 (integers)</Label>
+        <NumberStepper defaultValue={0} min={-10} max={10} step={1} />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Step by 0.1 (decimals)</Label>
+        <NumberStepper defaultValue={0} min={0} max={5} step={0.1} />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Step by 0.25 (quarters)</Label>
+        <NumberStepper
+          defaultValue={0}
+          min={0}
+          max={10}
+          step={0.25}
+          leftSymbol="$"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Label>Step by 5 (multiples)</Label>
+        <NumberStepper
+          defaultValue={0}
+          min={0}
+          max={100}
+          step={5}
+          rightSymbol="%"
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    return (
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <Label>Step by 1 (integers)</Label>
+          <NumberStepper defaultValue={0} min={-10} max={10} step={1} />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Step by 0.1 (decimals)</Label>
+          <NumberStepper defaultValue={0} min={0} max={5} step={0.1} />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Step by 0.25 (quarters)</Label>
+          <NumberStepper
+            defaultValue={0}
+            min={0}
+            max={10}
+            step={0.25}
+            leftSymbol="$"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Step by 5 (multiples)</Label>
+          <NumberStepper
+            defaultValue={0}
+            min={0}
+            max={100}
+            step={5}
+            rightSymbol="%"
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## E-commerce Example
+
+<ComponentDocSection
+  code={`import { NumberStepper, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import React from "react";
+
+function EcommerceExample() {
+  const [quantity, setQuantity] = React.useState(1);
+  const [price] = React.useState(29.99);
+  const total = (price * quantity).toFixed(2);
+
+  return (
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Product Details</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="flex justify-between items-center">
+          <span className="font-medium">Premium T-Shirt</span>
+          <span className="text-lg font-bold">\${price}</span>
+        </div>
+        
+        <div className="space-y-2">
+          <label className="block text-sm font-medium">Quantity</label>
+          <NumberStepper
+            value={quantity}
+            onChange={setQuantity}
+            min={1}
+            max={10}
+            size="lg"
+          />
+        </div>
+        
+        <div className="border-t pt-4">
+          <div className="flex justify-between items-center text-lg font-bold">
+            <span>Total:</span>
+            <span>\${total}</span>
+          </div>
+        </div>
+        
+        <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+          Add to Cart
+        </button>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [quantity, setQuantity] = React.useState(1);
+    const [price] = React.useState(29.99);
+    const total = (price * quantity).toFixed(2);
+
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Product Details</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex justify-between items-center">
+            <span className="font-medium">Premium T-Shirt</span>
+            <span className="text-lg font-bold">${price}</span>
+          </div>
+          
+          <div className="space-y-2">
+            <label className="block text-sm font-medium">Quantity</label>
+            <NumberStepper
+              value={quantity}
+              onChange={setQuantity}
+              min={1}
+              max={10}
+              size="lg"
+            />
+          </div>
+          
+          <div className="border-t pt-4">
+            <div className="flex justify-between items-center text-lg font-bold">
+              <span>Total:</span>
+              <span>${total}</span>
+            </div>
+          </div>
+          
+          <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+            Add to Cart
+          </button>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { NumberStepper, Label } from "buildgrid-ui";
+
+function DisabledState() {
+  return (
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <Label>Disabled Number Stepper</Label>
+        <NumberStepper 
+          defaultValue={50} 
+          disabled 
+          rightSymbol="%" 
+        />
+      </div>
+      
+      <div className="space-y-2">
+        <Label>Disabled with Currency</Label>
+        <NumberStepper 
+          defaultValue={99.99} 
+          disabled 
+          leftSymbol="$" 
+          size="lg"
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    return (
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <Label>Disabled Number Stepper</Label>
+          <NumberStepper 
+            defaultValue={50} 
+            disabled 
+            rightSymbol="%" 
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <Label>Disabled with Currency</Label>
+          <NumberStepper 
+            defaultValue={99.99} 
+            disabled 
+            leftSymbol="$" 
+            size="lg"
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `NumberStepper`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | - | Current value (controlled). |
+| `defaultValue` | `number` | `0` | Initial value (uncontrolled). |
+| `onChange` | `(value: number) => void` | - | Callback fired when value changes. |
+| `min` | `number` | `-Infinity` | Minimum allowed value. |
+| `max` | `number` | `Infinity` | Maximum allowed value. |
+| `step` | `number` | `1` | Increment/decrement step size. |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Size variant of the component. |
+| `disabled` | `boolean` | `false` | Whether the component is disabled. |
+| `leftSymbol` | `string` | - | Symbol displayed on the left side of input. |
+| `rightSymbol` | `string` | - | Symbol displayed on the right side of input. |
+| `className` | `string` | - | Additional CSS classes. |
+
+## Size Specifications
+
+| Size | Button | Input Height | Icon Size |
+|---|---|---|---|
+| `sm` | 32px × 32px | 32px | 12px |
+| `md` | 40px × 40px | 40px | 16px |
+| `lg` | 48px × 48px | 48px | 20px |
+| `xl` | 56px × 56px | 56px | 24px |
+
+## Behavior
+
+### Value Management
+- **Controlled** - Use `value` and `onChange` for external state management
+- **Uncontrolled** - Use `defaultValue` for internal state management
+- **Validation** - Values are automatically clamped to min/max bounds
+
+### Input Handling
+- **Direct Input** - Users can type values directly into the input field
+- **Button Controls** - Plus/minus buttons for incremental changes
+- **Keyboard Support** - Arrow keys for increment/decrement
+- **Focus Behavior** - Input selects all text on focus
+
+### Symbol Positioning
+- **Left Symbol** - Positioned on the left side with appropriate padding
+- **Right Symbol** - Positioned on the right side with appropriate padding
+- **Responsive** - Symbol size adjusts based on component size
+
+## Accessibility
+
+The NumberStepper component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys, Enter, and Tab support
+- **Screen Reader Support** - Proper ARIA labels and descriptions
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Button Labels** - Descriptive aria-labels for increment/decrement buttons
+- **Value Announcements** - Changes announced to screen readers
+- **Disabled State** - Proper disabled state handling
+
+## Common Use Cases
+
+The NumberStepper component is perfect for:
+
+- **E-commerce** - Product quantity selectors and pricing
+- **Forms** - Numeric input fields with validation
+- **Settings** - Configuration values and preferences
+- **Gaming** - Score inputs and game parameters
+- **Financial** - Currency amounts and percentages
+- **Measurements** - Weight, distance, and unit conversions
+- **Time/Date** - Duration and interval inputs
+- **Inventory** - Stock quantities and limits
+
+## Best Practices
+
+1. **Appropriate Steps** - Choose step values that make sense for your use case
+2. **Clear Labels** - Always provide descriptive labels for the input
+3. **Reasonable Bounds** - Set appropriate min/max values
+4. **Symbol Usage** - Use symbols that clearly indicate the value type
+5. **Size Selection** - Choose sizes that fit your interface design
+6. **Validation** - Provide clear feedback for invalid values
+7. **Responsive Design** - Test on different screen sizes
+8. **Performance** - Debounce onChange callbacks for expensive operations

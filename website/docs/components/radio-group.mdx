@@ -1,3 +1,681 @@
 ---
 id: radio-group
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { RadioGroup, RadioGroupItem, Label, Button, Card, CardContent } from "buildgrid-ui";
+
+# Radio Group
+
+<StorybookLink path="components-radiogroup--default" />
+
+The `RadioGroup` component allows users to select one option from a set of mutually exclusive options. Built on Radix UI, it provides accessibility features, keyboard navigation, and proper form integration. Perfect for settings, preferences, surveys, and any single-choice selections.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { RadioGroup, RadioGroupItem, Label } from "buildgrid-ui";
+
+function BasicRadioGroup() {
+  return (
+    <RadioGroup defaultValue="comfortable">
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="default" id="r1" />
+        <Label htmlFor="r1">Default</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="comfortable" id="r2" />
+        <Label htmlFor="r2">Comfortable</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="compact" id="r3" />
+        <Label htmlFor="r3">Compact</Label>
+      </div>
+    </RadioGroup>
+  );
+}`}
+  storybookPath="components-radiogroup--default"
+>
+  <RadioGroup defaultValue="comfortable">
+    <div className="flex items-center space-x-2">
+      <RadioGroupItem value="default" id="r1" />
+      <Label htmlFor="r1">Default</Label>
+    </div>
+    <div className="flex items-center space-x-2">
+      <RadioGroupItem value="comfortable" id="r2" />
+      <Label htmlFor="r2">Comfortable</Label>
+    </div>
+    <div className="flex items-center space-x-2">
+      <RadioGroupItem value="compact" id="r3" />
+      <Label htmlFor="r3">Compact</Label>
+    </div>
+  </RadioGroup>
+</ComponentDocSection>
+
+## Controlled Radio Group
+
+<ComponentDocSection
+  code={`import { RadioGroup, RadioGroupItem, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function ControlledRadioGroup() {
+  const [value, setValue] = useState("medium");
+  
+  return (
+    <div className="space-y-4">
+      <div>
+        <p className="text-sm font-medium mb-2">Selected: {value}</p>
+        <RadioGroup value={value} onValueChange={setValue}>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="small" id="size-small" />
+            <Label htmlFor="size-small">Small</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="medium" id="size-medium" />
+            <Label htmlFor="size-medium">Medium</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="large" id="size-large" />
+            <Label htmlFor="size-large">Large</Label>
+          </div>
+        </RadioGroup>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = React.useState("medium");
+    
+    return (
+      <div className="space-y-4">
+        <div>
+          <p className="text-sm font-medium mb-2">Selected: {value}</p>
+          <RadioGroup value={value} onValueChange={setValue}>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="small" id="size-small" />
+              <Label htmlFor="size-small">Small</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="medium" id="size-medium" />
+              <Label htmlFor="size-medium">Medium</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="large" id="size-large" />
+              <Label htmlFor="size-large">Large</Label>
+            </div>
+          </RadioGroup>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Descriptions
+
+<ComponentDocSection
+  code={`import { RadioGroup, RadioGroupItem, Label } from "buildgrid-ui";
+
+function RadioGroupWithDescriptions() {
+  return (
+    <RadioGroup defaultValue="standard">
+      <div className="flex items-start space-x-2">
+        <RadioGroupItem value="free" id="plan-free" className="mt-1" />
+        <div className="flex-1">
+          <Label htmlFor="plan-free" className="font-medium">Free Plan</Label>
+          <p className="text-sm text-gray-600">
+            Basic features for personal use. Up to 3 projects.
+          </p>
+        </div>
+      </div>
+      
+      <div className="flex items-start space-x-2">
+        <RadioGroupItem value="standard" id="plan-standard" className="mt-1" />
+        <div className="flex-1">
+          <Label htmlFor="plan-standard" className="font-medium">Standard Plan</Label>
+          <p className="text-sm text-gray-600">
+            Advanced features for small teams. Up to 10 projects and collaboration tools.
+          </p>
+        </div>
+      </div>
+      
+      <div className="flex items-start space-x-2">
+        <RadioGroupItem value="premium" id="plan-premium" className="mt-1" />
+        <div className="flex-1">
+          <Label htmlFor="plan-premium" className="font-medium">Premium Plan</Label>
+          <p className="text-sm text-gray-600">
+            Full feature access for large teams. Unlimited projects and priority support.
+          </p>
+        </div>
+      </div>
+    </RadioGroup>
+  );
+}`}
+>
+  <RadioGroup defaultValue="standard">
+    <div className="flex items-start space-x-2">
+      <RadioGroupItem value="free" id="plan-free" className="mt-1" />
+      <div className="flex-1">
+        <Label htmlFor="plan-free" className="font-medium">Free Plan</Label>
+        <p className="text-sm text-gray-600">
+          Basic features for personal use. Up to 3 projects.
+        </p>
+      </div>
+    </div>
+    
+    <div className="flex items-start space-x-2">
+      <RadioGroupItem value="standard" id="plan-standard" className="mt-1" />
+      <div className="flex-1">
+        <Label htmlFor="plan-standard" className="font-medium">Standard Plan</Label>
+        <p className="text-sm text-gray-600">
+          Advanced features for small teams. Up to 10 projects and collaboration tools.
+        </p>
+      </div>
+    </div>
+    
+    <div className="flex items-start space-x-2">
+      <RadioGroupItem value="premium" id="plan-premium" className="mt-1" />
+      <div className="flex-1">
+        <Label htmlFor="plan-premium" className="font-medium">Premium Plan</Label>
+        <p className="text-sm text-gray-600">
+          Full feature access for large teams. Unlimited projects and priority support.
+        </p>
+      </div>
+    </div>
+  </RadioGroup>
+</ComponentDocSection>
+
+## Card Layout
+
+<ComponentDocSection
+  code={`import { RadioGroup, RadioGroupItem, Label, Card, CardContent } from "buildgrid-ui";
+
+function CardRadioGroup() {
+  return (
+    <RadioGroup defaultValue="card2" className="grid grid-cols-1 gap-4">
+      <Card className="cursor-pointer hover:bg-gray-50">
+        <CardContent className="p-4">
+          <div className="flex items-center space-x-3">
+            <RadioGroupItem value="card1" id="card1" />
+            <div className="flex-1">
+              <Label htmlFor="card1" className="font-medium cursor-pointer">
+                Starter Package
+              </Label>
+              <p className="text-sm text-gray-600">Perfect for individuals</p>
+              <p className="text-lg font-bold mt-1">$9/month</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+      
+      <Card className="cursor-pointer hover:bg-gray-50 border-blue-200 bg-blue-50">
+        <CardContent className="p-4">
+          <div className="flex items-center space-x-3">
+            <RadioGroupItem value="card2" id="card2" />
+            <div className="flex-1">
+              <Label htmlFor="card2" className="font-medium cursor-pointer">
+                Professional Package
+              </Label>
+              <p className="text-sm text-gray-600">Great for small teams</p>
+              <p className="text-lg font-bold mt-1">$29/month</p>
+              <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
+                Most Popular
+              </span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+      
+      <Card className="cursor-pointer hover:bg-gray-50">
+        <CardContent className="p-4">
+          <div className="flex items-center space-x-3">
+            <RadioGroupItem value="card3" id="card3" />
+            <div className="flex-1">
+              <Label htmlFor="card3" className="font-medium cursor-pointer">
+                Enterprise Package
+              </Label>
+              <p className="text-sm text-gray-600">For large organizations</p>
+              <p className="text-lg font-bold mt-1">$99/month</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </RadioGroup>
+  );
+}`}
+>
+  <RadioGroup defaultValue="card2" className="grid grid-cols-1 gap-4">
+    <Card className="cursor-pointer hover:bg-gray-50">
+      <CardContent className="p-4">
+        <div className="flex items-center space-x-3">
+          <RadioGroupItem value="card1" id="card1" />
+          <div className="flex-1">
+            <Label htmlFor="card1" className="font-medium cursor-pointer">
+              Starter Package
+            </Label>
+            <p className="text-sm text-gray-600">Perfect for individuals</p>
+            <p className="text-lg font-bold mt-1">$9/month</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+    
+    <Card className="cursor-pointer hover:bg-gray-50 border-blue-200 bg-blue-50">
+      <CardContent className="p-4">
+        <div className="flex items-center space-x-3">
+          <RadioGroupItem value="card2" id="card2" />
+          <div className="flex-1">
+            <Label htmlFor="card2" className="font-medium cursor-pointer">
+              Professional Package
+            </Label>
+            <p className="text-sm text-gray-600">Great for small teams</p>
+            <p className="text-lg font-bold mt-1">$29/month</p>
+            <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
+              Most Popular
+            </span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+    
+    <Card className="cursor-pointer hover:bg-gray-50">
+      <CardContent className="p-4">
+        <div className="flex items-center space-x-3">
+          <RadioGroupItem value="card3" id="card3" />
+          <div className="flex-1">
+            <Label htmlFor="card3" className="font-medium cursor-pointer">
+              Enterprise Package
+            </Label>
+            <p className="text-sm text-gray-600">For large organizations</p>
+            <p className="text-lg font-bold mt-1">$99/month</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  </RadioGroup>
+</ComponentDocSection>
+
+## Horizontal Layout
+
+<ComponentDocSection
+  code={`import { RadioGroup, RadioGroupItem, Label } from "buildgrid-ui";
+
+function HorizontalRadioGroup() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h4 className="font-medium mb-3">Notification Frequency</h4>
+        <RadioGroup defaultValue="daily" className="flex space-x-6">
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="never" id="freq-never" />
+            <Label htmlFor="freq-never">Never</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="daily" id="freq-daily" />
+            <Label htmlFor="freq-daily">Daily</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="weekly" id="freq-weekly" />
+            <Label htmlFor="freq-weekly">Weekly</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="monthly" id="freq-monthly" />
+            <Label htmlFor="freq-monthly">Monthly</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-3">Theme Preference</h4>
+        <RadioGroup defaultValue="system" className="flex space-x-6">
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="light" id="theme-light" />
+            <Label htmlFor="theme-light">Light</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="dark" id="theme-dark" />
+            <Label htmlFor="theme-dark">Dark</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="system" id="theme-system" />
+            <Label htmlFor="theme-system">System</Label>
+          </div>
+        </RadioGroup>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-6">
+    <div>
+      <h4 className="font-medium mb-3">Notification Frequency</h4>
+      <RadioGroup defaultValue="daily" className="flex space-x-6">
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="never" id="freq-never" />
+          <Label htmlFor="freq-never">Never</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="daily" id="freq-daily" />
+          <Label htmlFor="freq-daily">Daily</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="weekly" id="freq-weekly" />
+          <Label htmlFor="freq-weekly">Weekly</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="monthly" id="freq-monthly" />
+          <Label htmlFor="freq-monthly">Monthly</Label>
+        </div>
+      </RadioGroup>
+    </div>
+    
+    <div>
+      <h4 className="font-medium mb-3">Theme Preference</h4>
+      <RadioGroup defaultValue="system" className="flex space-x-6">
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="light" id="theme-light" />
+          <Label htmlFor="theme-light">Light</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="dark" id="theme-dark" />
+          <Label htmlFor="theme-dark">Dark</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="system" id="theme-system" />
+          <Label htmlFor="theme-system">System</Label>
+        </div>
+      </RadioGroup>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { RadioGroup, RadioGroupItem, Label } from "buildgrid-ui";
+
+function DisabledRadioGroup() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h4 className="font-medium mb-3">Disabled Group</h4>
+        <RadioGroup defaultValue="option2" disabled>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="option1" id="disabled1" />
+            <Label htmlFor="disabled1">Option 1</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="option2" id="disabled2" />
+            <Label htmlFor="disabled2">Option 2 (Selected)</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="option3" id="disabled3" />
+            <Label htmlFor="disabled3">Option 3</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-3">Individual Disabled Items</h4>
+        <RadioGroup defaultValue="available2">
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="available1" id="mixed1" />
+            <Label htmlFor="mixed1">Available Option</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="available2" id="mixed2" />
+            <Label htmlFor="mixed2">Selected Available</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="unavailable" id="mixed3" disabled />
+            <Label htmlFor="mixed3" className="text-gray-400">
+              Unavailable Option
+            </Label>
+          </div>
+        </RadioGroup>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-6">
+    <div>
+      <h4 className="font-medium mb-3">Disabled Group</h4>
+      <RadioGroup defaultValue="option2" disabled>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="option1" id="disabled1" />
+          <Label htmlFor="disabled1">Option 1</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="option2" id="disabled2" />
+          <Label htmlFor="disabled2">Option 2 (Selected)</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="option3" id="disabled3" />
+          <Label htmlFor="disabled3">Option 3</Label>
+        </div>
+      </RadioGroup>
+    </div>
+    
+    <div>
+      <h4 className="font-medium mb-3">Individual Disabled Items</h4>
+      <RadioGroup defaultValue="available2">
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="available1" id="mixed1" />
+          <Label htmlFor="mixed1">Available Option</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="available2" id="mixed2" />
+          <Label htmlFor="mixed2">Selected Available</Label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <RadioGroupItem value="unavailable" id="mixed3" disabled />
+          <Label htmlFor="mixed3" className="text-gray-400">
+            Unavailable Option
+          </Label>
+        </div>
+      </RadioGroup>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Form Integration
+
+<ComponentDocSection
+  code={`import { RadioGroup, RadioGroupItem, Label, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function RadioGroupForm() {
+  const [formData, setFormData] = useState({
+    priority: 'medium',
+    category: 'bug'
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(\`Form submitted: Priority: \${formData.priority}, Category: \${formData.category}\`);
+  };
+  
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
+      <div>
+        <h4 className="font-medium mb-3">Issue Priority</h4>
+        <RadioGroup 
+          value={formData.priority} 
+          onValueChange={(value) => setFormData(prev => ({ ...prev, priority: value }))}
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="low" id="priority-low" />
+            <Label htmlFor="priority-low">Low Priority</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="medium" id="priority-medium" />
+            <Label htmlFor="priority-medium">Medium Priority</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="high" id="priority-high" />
+            <Label htmlFor="priority-high">High Priority</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="urgent" id="priority-urgent" />
+            <Label htmlFor="priority-urgent">Urgent</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-3">Issue Category</h4>
+        <RadioGroup 
+          value={formData.category} 
+          onValueChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="bug" id="cat-bug" />
+            <Label htmlFor="cat-bug">Bug Report</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="feature" id="cat-feature" />
+            <Label htmlFor="cat-feature">Feature Request</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="support" id="cat-support" />
+            <Label htmlFor="cat-support">Support Question</Label>
+          </div>
+        </RadioGroup>
+      </div>
+      
+      <Button type="submit" className="w-full">
+        Submit Issue
+      </Button>
+    </form>
+  );
+}`}
+>
+  {(() => {
+    const [formData, setFormData] = React.useState({
+      priority: 'medium',
+      category: 'bug'
+    });
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      alert(`Form submitted: Priority: ${formData.priority}, Category: ${formData.category}`);
+    };
+    
+    return (
+      <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
+        <div>
+          <h4 className="font-medium mb-3">Issue Priority</h4>
+          <RadioGroup 
+            value={formData.priority} 
+            onValueChange={(value) => setFormData(prev => ({ ...prev, priority: value }))}
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="low" id="priority-low" />
+              <Label htmlFor="priority-low">Low Priority</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="medium" id="priority-medium" />
+              <Label htmlFor="priority-medium">Medium Priority</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="high" id="priority-high" />
+              <Label htmlFor="priority-high">High Priority</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="urgent" id="priority-urgent" />
+              <Label htmlFor="priority-urgent">Urgent</Label>
+            </div>
+          </RadioGroup>
+        </div>
+        
+        <div>
+          <h4 className="font-medium mb-3">Issue Category</h4>
+          <RadioGroup 
+            value={formData.category} 
+            onValueChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="bug" id="cat-bug" />
+              <Label htmlFor="cat-bug">Bug Report</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="feature" id="cat-feature" />
+              <Label htmlFor="cat-feature">Feature Request</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="support" id="cat-support" />
+              <Label htmlFor="cat-support">Support Question</Label>
+            </div>
+          </RadioGroup>
+        </div>
+        
+        <Button type="submit" className="w-full">
+          Submit Issue
+        </Button>
+      </form>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `RadioGroup`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | - | The controlled value of the radio group. |
+| `defaultValue` | `string` | - | The default value for uncontrolled usage. |
+| `onValueChange` | `(value: string) => void` | - | Callback when the value changes. |
+| `disabled` | `boolean` | `false` | Whether the entire group is disabled. |
+| `required` | `boolean` | `false` | Whether the group is required for form submission. |
+| `name` | `string` | - | The name attribute for form submission. |
+| `className` | `string` | - | Additional CSS classes. |
+| `orientation` | `"horizontal"` \| `"vertical"` | `"vertical"` | The orientation of the group. |
+| `dir` | `"ltr"` \| `"rtl"` | - | The reading direction. |
+| `loop` | `boolean` | `true` | Whether keyboard navigation should loop. |
+
+### `RadioGroupItem`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | - | The value of this radio item. |
+| `disabled` | `boolean` | `false` | Whether this item is disabled. |
+| `required` | `boolean` | `false` | Whether this item is required. |
+| `className` | `string` | - | Additional CSS classes. |
+| `id` | `string` | - | The HTML id attribute. |
+
+## Accessibility
+
+The RadioGroup component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys to navigate between options, Space to select
+- **Screen Reader Support** - Proper ARIA attributes and role announcements
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Form Integration** - Works seamlessly with form validation and submission
+- **Label Association** - Proper label association with radio items
+- **Group Semantics** - Uses proper radiogroup role for screen readers
+
+## Common Use Cases
+
+The RadioGroup component is perfect for:
+
+- **Settings & Preferences** - Theme selection, notification preferences, display options
+- **Forms & Surveys** - Single-choice questions, rating scales, category selection
+- **Product Configuration** - Size selection, color options, plan choices
+- **Filters & Sorting** - Sort order, filter criteria, view modes
+- **Payment & Shipping** - Payment methods, shipping options, billing preferences
+- **User Onboarding** - Setup wizards, preference collection, account type selection
+
+## Best Practices
+
+1. **Clear Labels** - Use descriptive labels that clearly explain each option
+2. **Logical Grouping** - Group related options together with clear headings
+3. **Default Selection** - Provide sensible defaults when appropriate
+4. **Consistent Layout** - Maintain consistent spacing and alignment
+5. **Accessibility** - Always associate labels with radio items using htmlFor/id
+6. **Visual Hierarchy** - Use typography and spacing to create clear hierarchy
+7. **Mobile Optimization** - Ensure touch targets are large enough for mobile devices
+8. **Form Validation** - Provide clear feedback for required radio groups

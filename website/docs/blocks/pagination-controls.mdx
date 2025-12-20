@@ -1,3 +1,635 @@
 ---
 id: pagination-controls
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { PaginationControls, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Database, Users, FileText } from 'lucide-react';
+
+# Pagination Controls
+
+<StorybookLink path="blocks-paginationcontrols--default" />
+
+The `PaginationControls` component provides a comprehensive pagination interface with page numbers, navigation buttons, and item counters. Built with accessibility and usability in mind, it handles large datasets efficiently with smart page number truncation. Perfect for data tables, search results, and any interface displaying paginated content.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { PaginationControls } from "buildgrid-ui";
+import React from "react";
+
+function BasicPaginationControls() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const totalPages = 10;
+  const totalItems = 100;
+  const itemsPerPage = 10;
+  
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+  return (
+    <PaginationControls
+      currentPage={currentPage}
+      totalPages={totalPages}
+      totalItems={totalItems}
+      startIndex={startIndex}
+      endIndex={endIndex}
+      onPageChange={setCurrentPage}
+      onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+      onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+    />
+  );
+}`}
+  storybookPath="blocks-paginationcontrols--default"
+>
+  {(() => {
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const totalPages = 10;
+    const totalItems = 100;
+    const itemsPerPage = 10;
+    
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+    return (
+      <PaginationControls
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalItems={totalItems}
+        startIndex={startIndex}
+        endIndex={endIndex}
+        onPageChange={setCurrentPage}
+        onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+        onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Data Table Integration
+
+<ComponentDocSection
+  code={`import { PaginationControls, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Database } from "lucide-react";
+import React from "react";
+
+function DataTableWithPagination() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const itemsPerPage = 5;
+  
+  // Sample data
+  const allUsers = Array.from({ length: 47 }, (_, i) => ({
+    id: i + 1,
+    name: \`User \${i + 1}\`,
+    email: \`user\${i + 1}@example.com\`,
+    role: ['Admin', 'Editor', 'Viewer'][i % 3]
+  }));
+  
+  const totalPages = Math.ceil(allUsers.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, allUsers.length);
+  const currentUsers = allUsers.slice(startIndex, endIndex);
+
+  return (
+    <Card className="w-full max-w-4xl">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Database className="h-5 w-5" />
+          User Management
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left p-2">ID</th>
+                <th className="text-left p-2">Name</th>
+                <th className="text-left p-2">Email</th>
+                <th className="text-left p-2">Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentUsers.map(user => (
+                <tr key={user.id} className="border-b hover:bg-gray-50">
+                  <td className="p-2">{user.id}</td>
+                  <td className="p-2 font-medium">{user.name}</td>
+                  <td className="p-2 text-gray-600">{user.email}</td>
+                  <td className="p-2">
+                    <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm">
+                      {user.role}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={allUsers.length}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          onPageChange={setCurrentPage}
+          onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+        />
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const itemsPerPage = 5;
+    
+    const allUsers = Array.from({ length: 47 }, (_, i) => ({
+      id: i + 1,
+      name: `User ${i + 1}`,
+      email: `user${i + 1}@example.com`,
+      role: ['Admin', 'Editor', 'Viewer'][i % 3]
+    }));
+    
+    const totalPages = Math.ceil(allUsers.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, allUsers.length);
+    const currentUsers = allUsers.slice(startIndex, endIndex);
+
+    return (
+      <Card className="w-full max-w-4xl">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Database className="h-5 w-5" />
+            User Management
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left p-2">ID</th>
+                  <th className="text-left p-2">Name</th>
+                  <th className="text-left p-2">Email</th>
+                  <th className="text-left p-2">Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentUsers.map(user => (
+                  <tr key={user.id} className="border-b hover:bg-gray-50">
+                    <td className="p-2">{user.id}</td>
+                    <td className="p-2 font-medium">{user.name}</td>
+                    <td className="p-2 text-gray-600">{user.email}</td>
+                    <td className="p-2">
+                      <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm">
+                        {user.role}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalItems={allUsers.length}
+            startIndex={startIndex}
+            endIndex={endIndex}
+            onPageChange={setCurrentPage}
+            onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+          />
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Custom Counter Text
+
+<ComponentDocSection
+  code={`import { PaginationControls } from "buildgrid-ui";
+import React from "react";
+
+function CustomCounterText() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const totalPages = 8;
+  const totalItems = 156;
+  const itemsPerPage = 20;
+  
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h4 className="font-medium mb-2">Default Counter</h4>
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={totalItems}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          onPageChange={setCurrentPage}
+          onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+        />
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-2">Custom Counter Text</h4>
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={totalItems}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          counterText="Displaying items {{startIndex}}-{{endIndex}} from {{totalItems}} total"
+          onPageChange={setCurrentPage}
+          onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+        />
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-2">No Counter</h4>
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={totalItems}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          showItemsCounter={false}
+          onPageChange={setCurrentPage}
+          onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const totalPages = 8;
+    const totalItems = 156;
+    const itemsPerPage = 20;
+    
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+    return (
+      <div className="space-y-6">
+        <div>
+          <h4 className="font-medium mb-2">Default Counter</h4>
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalItems={totalItems}
+            startIndex={startIndex}
+            endIndex={endIndex}
+            onPageChange={setCurrentPage}
+            onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+          />
+        </div>
+        
+        <div>
+          <h4 className="font-medium mb-2">Custom Counter Text</h4>
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalItems={totalItems}
+            startIndex={startIndex}
+            endIndex={endIndex}
+            counterText="Displaying items {{startIndex}}-{{endIndex}} from {{totalItems}} total"
+            onPageChange={setCurrentPage}
+            onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+          />
+        </div>
+        
+        <div>
+          <h4 className="font-medium mb-2">No Counter</h4>
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalItems={totalItems}
+            startIndex={startIndex}
+            endIndex={endIndex}
+            showItemsCounter={false}
+            onPageChange={setCurrentPage}
+            onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Large Dataset Example
+
+<ComponentDocSection
+  code={`import { PaginationControls } from "buildgrid-ui";
+import React from "react";
+
+function LargeDatasetExample() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const totalPages = 250; // Large dataset
+  const totalItems = 12500;
+  const itemsPerPage = 50;
+  
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+  return (
+    <div className="space-y-4">
+      <div className="bg-blue-50 p-4 rounded-lg">
+        <h4 className="font-medium text-blue-900 mb-2">Large Dataset Pagination</h4>
+        <p className="text-sm text-blue-800">
+          This example shows how the pagination handles large datasets with smart truncation.
+          Notice how it shows ellipsis (...) to indicate hidden pages.
+        </p>
+      </div>
+      
+      <PaginationControls
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalItems={totalItems}
+        startIndex={startIndex}
+        endIndex={endIndex}
+        onPageChange={setCurrentPage}
+        onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+        onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+      />
+      
+      <div className="text-sm text-gray-600 space-y-1">
+        <p>Current page: {currentPage}</p>
+        <p>Total pages: {totalPages}</p>
+        <p>Items per page: {itemsPerPage}</p>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const totalPages = 250;
+    const totalItems = 12500;
+    const itemsPerPage = 50;
+    
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+    return (
+      <div className="space-y-4">
+        <div className="bg-blue-50 p-4 rounded-lg">
+          <h4 className="font-medium text-blue-900 mb-2">Large Dataset Pagination</h4>
+          <p className="text-sm text-blue-800">
+            This example shows how the pagination handles large datasets with smart truncation.
+            Notice how it shows ellipsis (...) to indicate hidden pages.
+          </p>
+        </div>
+        
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={totalItems}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          onPageChange={setCurrentPage}
+          onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+        />
+        
+        <div className="text-sm text-gray-600 space-y-1">
+          <p>Current page: {currentPage}</p>
+          <p>Total pages: {totalPages}</p>
+          <p>Items per page: {itemsPerPage}</p>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Search Results Integration
+
+<ComponentDocSection
+  code={`import { PaginationControls, Card, CardContent } from "buildgrid-ui";
+import { FileText } from "lucide-react";
+import React from "react";
+
+function SearchResultsExample() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const itemsPerPage = 8;
+  
+  // Sample search results
+  const allResults = Array.from({ length: 73 }, (_, i) => ({
+    id: i + 1,
+    title: \`Search Result \${i + 1}\`,
+    description: \`This is the description for search result \${i + 1}. It contains relevant information about the topic.\`,
+    url: \`/result/\${i + 1}\`,
+    category: ['Documentation', 'Tutorial', 'Guide', 'Reference'][i % 4]
+  }));
+  
+  const totalPages = Math.ceil(allResults.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, allResults.length);
+  const currentResults = allResults.slice(startIndex, endIndex);
+
+  return (
+    <div className="w-full max-w-4xl space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold">Search Results</h3>
+        <span className="text-sm text-gray-500">
+          Found {allResults.length} results
+        </span>
+      </div>
+      
+      <div className="space-y-3">
+        {currentResults.map(result => (
+          <Card key={result.id} className="hover:shadow-md transition-shadow">
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <FileText className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
+                <div className="flex-1">
+                  <h4 className="font-medium text-blue-600 hover:text-blue-800 cursor-pointer">
+                    {result.title}
+                  </h4>
+                  <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                    {result.description}
+                  </p>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="text-xs bg-gray-100 px-2 py-1 rounded">
+                      {result.category}
+                    </span>
+                    <span className="text-xs text-gray-500">{result.url}</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      
+      <PaginationControls
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalItems={allResults.length}
+        startIndex={startIndex}
+        endIndex={endIndex}
+        counterText="Showing {{startIndex}} to {{endIndex}} of {{totalItems}} search results"
+        onPageChange={setCurrentPage}
+        onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+        onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+      />
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const itemsPerPage = 8;
+    
+    const allResults = Array.from({ length: 73 }, (_, i) => ({
+      id: i + 1,
+      title: `Search Result ${i + 1}`,
+      description: `This is the description for search result ${i + 1}. It contains relevant information about the topic.`,
+      url: `/result/${i + 1}`,
+      category: ['Documentation', 'Tutorial', 'Guide', 'Reference'][i % 4]
+    }));
+    
+    const totalPages = Math.ceil(allResults.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, allResults.length);
+    const currentResults = allResults.slice(startIndex, endIndex);
+
+    return (
+      <div className="w-full max-w-4xl space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Search Results</h3>
+          <span className="text-sm text-gray-500">
+            Found {allResults.length} results
+          </span>
+        </div>
+        
+        <div className="space-y-3">
+          {currentResults.map(result => (
+            <Card key={result.id} className="hover:shadow-md transition-shadow">
+              <CardContent className="p-4">
+                <div className="flex items-start gap-3">
+                  <FileText className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
+                  <div className="flex-1">
+                    <h4 className="font-medium text-blue-600 hover:text-blue-800 cursor-pointer">
+                      {result.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                      {result.description}
+                    </p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <span className="text-xs bg-gray-100 px-2 py-1 rounded">
+                        {result.category}
+                      </span>
+                      <span className="text-xs text-gray-500">{result.url}</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={allResults.length}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          counterText="Showing {{startIndex}} to {{endIndex}} of {{totalItems}} search results"
+          onPageChange={setCurrentPage}
+          onPreviousPage={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+          onNextPage={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `PaginationControls`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `currentPage` | `number` | - | The current active page number. |
+| `totalPages` | `number` | - | Total number of pages available. |
+| `totalItems` | `number` | - | Total number of items across all pages. |
+| `startIndex` | `number` | - | Zero-based start index of current page items. |
+| `endIndex` | `number` | - | Zero-based end index of current page items. |
+| `onPageChange` | `(page: number) => void` | - | Callback fired when a specific page is selected. |
+| `onPreviousPage` | `() => void` | - | Callback fired when previous button is clicked. |
+| `onNextPage` | `() => void` | - | Callback fired when next button is clicked. |
+| `showItemsCounter` | `boolean` | `true` | Whether to display the items counter text. |
+| `counterText` | `string` | `'Showing {{startIndex}} to {{endIndex}} of {{totalItems}} results'` | Template string for the counter text. |
+| `className` | `string` | - | Additional CSS classes for the container. |
+
+## Counter Text Variables
+
+The `counterText` prop supports template variables that are automatically replaced:
+
+| Variable | Description | Example Value |
+|---|---|---|
+| `{{startIndex}}` | First item number on current page (1-based) | `21` |
+| `{{endIndex}}` | Last item number on current page | `30` |
+| `{{totalItems}}` | Total number of items | `156` |
+
+## Page Number Algorithm
+
+The component uses smart truncation for large datasets:
+
+- **Small datasets** (≤7 pages): Shows all page numbers
+- **Large datasets** (>7 pages): Shows first page, ellipsis, current page ±1, ellipsis, last page
+- **Current page context**: Always shows 1-2 pages around the current page
+- **Ellipsis indicators**: Shows "..." when pages are hidden
+
+## Accessibility
+
+The PaginationControls component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Tab navigation through all interactive elements
+- **Screen Reader Support** - Proper ARIA labels and page announcements
+- **Focus Management** - Clear focus indicators on buttons
+- **Disabled States** - Previous/next buttons disabled at boundaries
+- **Semantic HTML** - Uses proper button elements with descriptive labels
+- **Page Context** - Current page clearly indicated visually and programmatically
+
+## Common Use Cases
+
+The PaginationControls component is perfect for:
+
+- **Data Tables** - Navigate through large datasets efficiently
+- **Search Results** - Browse through search result pages
+- **Product Catalogs** - Navigate product listings in e-commerce
+- **User Lists** - Manage large user directories
+- **Content Archives** - Browse blog posts, articles, or documents
+- **Admin Dashboards** - Navigate through administrative data
+- **API Results** - Handle paginated API responses
+- **File Browsers** - Navigate through file listings
+
+## Best Practices
+
+1. **Consistent Page Sizes** - Use consistent items per page across your application
+2. **Loading States** - Show loading indicators during page transitions
+3. **URL Synchronization** - Sync current page with URL parameters when possible
+4. **Mobile Optimization** - Ensure pagination works well on small screens
+5. **Performance** - Implement virtual scrolling for very large datasets
+6. **Error Handling** - Handle edge cases like empty results gracefully
+7. **Analytics** - Track pagination usage to optimize page sizes
+8. **Accessibility Testing** - Test with screen readers and keyboard navigation

@@ -1,3 +1,534 @@
 ---
 id: separator
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Separator, Card, CardContent, Avatar, AvatarImage, AvatarFallback, Button } from "buildgrid-ui";
+
+# Separator
+
+<StorybookLink path="components-separator--default" />
+
+The `Separator` component provides a visual divider to separate content sections. Built on Radix UI, it supports both horizontal and vertical orientations with accessibility features. Perfect for organizing content, creating visual hierarchy, and improving readability in layouts.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Separator } from "buildgrid-ui";
+
+function BasicSeparator() {
+  return (
+    <div>
+      <div className="space-y-1">
+        <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
+        <p className="text-sm text-muted-foreground">
+          An open-source UI component library.
+        </p>
+      </div>
+      <Separator className="my-4" />
+      <div className="space-y-1">
+        <h4 className="text-sm font-medium leading-none">Next.js</h4>
+        <p className="text-sm text-muted-foreground">
+          The React framework for production.
+        </p>
+      </div>
+    </div>
+  );
+}`}
+  storybookPath="components-separator--default"
+>
+  <div>
+    <div className="space-y-1">
+      <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
+      <p className="text-sm text-muted-foreground">
+        An open-source UI component library.
+      </p>
+    </div>
+    <Separator className="my-4" />
+    <div className="space-y-1">
+      <h4 className="text-sm font-medium leading-none">Next.js</h4>
+      <p className="text-sm text-muted-foreground">
+        The React framework for production.
+      </p>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Vertical Separator
+
+<ComponentDocSection
+  code={`import { Separator } from "buildgrid-ui";
+
+function VerticalSeparator() {
+  return (
+    <div className="flex h-5 items-center space-x-4 text-sm">
+      <div>Blog</div>
+      <Separator orientation="vertical" />
+      <div>Docs</div>
+      <Separator orientation="vertical" />
+      <div>Source</div>
+    </div>
+  );
+}`}
+>
+  <div className="flex h-5 items-center space-x-4 text-sm">
+    <div>Blog</div>
+    <Separator orientation="vertical" />
+    <div>Docs</div>
+    <Separator orientation="vertical" />
+    <div>Source</div>
+  </div>
+</ComponentDocSection>
+
+## Navigation Menu
+
+<ComponentDocSection
+  code={`import { Separator } from "buildgrid-ui";
+
+function NavigationMenu() {
+  return (
+    <nav className="flex items-center space-x-4 text-sm font-medium">
+      <a href="#" className="text-foreground hover:text-foreground/80">
+        Home
+      </a>
+      <Separator orientation="vertical" className="h-4" />
+      <a href="#" className="text-foreground hover:text-foreground/80">
+        Products
+      </a>
+      <Separator orientation="vertical" className="h-4" />
+      <a href="#" className="text-foreground hover:text-foreground/80">
+        About
+      </a>
+      <Separator orientation="vertical" className="h-4" />
+      <a href="#" className="text-foreground hover:text-foreground/80">
+        Contact
+      </a>
+    </nav>
+  );
+}`}
+>
+  <nav className="flex items-center space-x-4 text-sm font-medium">
+    <a href="#" className="text-foreground hover:text-foreground/80">
+      Home
+    </a>
+    <Separator orientation="vertical" className="h-4" />
+    <a href="#" className="text-foreground hover:text-foreground/80">
+      Products
+    </a>
+    <Separator orientation="vertical" className="h-4" />
+    <a href="#" className="text-foreground hover:text-foreground/80">
+      About
+    </a>
+    <Separator orientation="vertical" className="h-4" />
+    <a href="#" className="text-foreground hover:text-foreground/80">
+      Contact
+    </a>
+  </nav>
+</ComponentDocSection>
+
+## Card Sections
+
+<ComponentDocSection
+  code={`import { Separator, Card, CardContent } from "buildgrid-ui";
+
+function CardSections() {
+  return (
+    <Card className="w-96">
+      <CardContent className="p-6">
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold">Account Settings</h3>
+            <p className="text-sm text-gray-600">
+              Manage your account preferences and security settings.
+            </p>
+          </div>
+          
+          <Separator />
+          
+          <div>
+            <h4 className="font-medium mb-2">Profile Information</h4>
+            <p className="text-sm text-gray-600">
+              Update your personal information and profile picture.
+            </p>
+          </div>
+          
+          <Separator />
+          
+          <div>
+            <h4 className="font-medium mb-2">Privacy Settings</h4>
+            <p className="text-sm text-gray-600">
+              Control who can see your information and activity.
+            </p>
+          </div>
+          
+          <Separator />
+          
+          <div>
+            <h4 className="font-medium mb-2">Notifications</h4>
+            <p className="text-sm text-gray-600">
+              Choose what notifications you want to receive.
+            </p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  <Card className="w-96">
+    <CardContent className="p-6">
+      <div className="space-y-4">
+        <div>
+          <h3 className="font-semibold">Account Settings</h3>
+          <p className="text-sm text-gray-600">
+            Manage your account preferences and security settings.
+          </p>
+        </div>
+        
+        <Separator />
+        
+        <div>
+          <h4 className="font-medium mb-2">Profile Information</h4>
+          <p className="text-sm text-gray-600">
+            Update your personal information and profile picture.
+          </p>
+        </div>
+        
+        <Separator />
+        
+        <div>
+          <h4 className="font-medium mb-2">Privacy Settings</h4>
+          <p className="text-sm text-gray-600">
+            Control who can see your information and activity.
+          </p>
+        </div>
+        
+        <Separator />
+        
+        <div>
+          <h4 className="font-medium mb-2">Notifications</h4>
+          <p className="text-sm text-gray-600">
+            Choose what notifications you want to receive.
+          </p>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+</ComponentDocSection>
+
+## User Profile Layout
+
+<ComponentDocSection
+  code={`import { Separator, Avatar, AvatarImage, AvatarFallback, Button } from "buildgrid-ui";
+
+function UserProfileLayout() {
+  return (
+    <div className="max-w-md mx-auto p-6 border rounded-lg">
+      <div className="flex items-center space-x-4">
+        <Avatar className="h-16 w-16">
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>JS</AvatarFallback>
+        </Avatar>
+        <div>
+          <h2 className="text-xl font-semibold">John Smith</h2>
+          <p className="text-gray-600">Frontend Developer</p>
+        </div>
+      </div>
+      
+      <Separator className="my-6" />
+      
+      <div className="space-y-4">
+        <div>
+          <h3 className="font-medium mb-2">About</h3>
+          <p className="text-sm text-gray-600">
+            Passionate developer with 5+ years of experience in React and TypeScript.
+          </p>
+        </div>
+        
+        <Separator />
+        
+        <div>
+          <h3 className="font-medium mb-2">Skills</h3>
+          <div className="flex flex-wrap gap-2">
+            <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">React</span>
+            <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">TypeScript</span>
+            <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">Node.js</span>
+          </div>
+        </div>
+        
+        <Separator />
+        
+        <div className="flex space-x-2">
+          <Button variant="outline" size="sm" className="flex-1">
+            Message
+          </Button>
+          <Button size="sm" className="flex-1">
+            Follow
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="max-w-md mx-auto p-6 border rounded-lg">
+    <div className="flex items-center space-x-4">
+      <Avatar className="h-16 w-16">
+        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarFallback>JS</AvatarFallback>
+      </Avatar>
+      <div>
+        <h2 className="text-xl font-semibold">John Smith</h2>
+        <p className="text-gray-600">Frontend Developer</p>
+      </div>
+    </div>
+    
+    <Separator className="my-6" />
+    
+    <div className="space-y-4">
+      <div>
+        <h3 className="font-medium mb-2">About</h3>
+        <p className="text-sm text-gray-600">
+          Passionate developer with 5+ years of experience in React and TypeScript.
+        </p>
+      </div>
+      
+      <Separator />
+      
+      <div>
+        <h3 className="font-medium mb-2">Skills</h3>
+        <div className="flex flex-wrap gap-2">
+          <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">React</span>
+          <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">TypeScript</span>
+          <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">Node.js</span>
+        </div>
+      </div>
+      
+      <Separator />
+      
+      <div className="flex space-x-2">
+        <Button variant="outline" size="sm" className="flex-1">
+          Message
+        </Button>
+        <Button size="sm" className="flex-1">
+          Follow
+        </Button>
+      </div>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Sidebar Layout
+
+<ComponentDocSection
+  code={`import { Separator } from "buildgrid-ui";
+
+function SidebarLayout() {
+  return (
+    <div className="flex w-full max-w-4xl mx-auto border rounded-lg overflow-hidden">
+      <div className="w-64 bg-gray-50 p-4">
+        <h3 className="font-semibold mb-4">Navigation</h3>
+        
+        <div className="space-y-2">
+          <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+            Dashboard
+          </a>
+          <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+            Projects
+          </a>
+          <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+            Tasks
+          </a>
+        </div>
+        
+        <Separator className="my-4" />
+        
+        <h4 className="font-medium mb-2">Settings</h4>
+        <div className="space-y-2">
+          <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+            Profile
+          </a>
+          <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+            Preferences
+          </a>
+        </div>
+      </div>
+      
+      <Separator orientation="vertical" />
+      
+      <div className="flex-1 p-6">
+        <h2 className="text-2xl font-bold mb-4">Main Content</h2>
+        <p className="text-gray-600">
+          This is the main content area. The vertical separator creates a clear
+          division between the sidebar and the main content.
+        </p>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="flex w-full max-w-4xl mx-auto border rounded-lg overflow-hidden">
+    <div className="w-64 bg-gray-50 p-4">
+      <h3 className="font-semibold mb-4">Navigation</h3>
+      
+      <div className="space-y-2">
+        <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+          Dashboard
+        </a>
+        <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+          Projects
+        </a>
+        <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+          Tasks
+        </a>
+      </div>
+      
+      <Separator className="my-4" />
+      
+      <h4 className="font-medium mb-2">Settings</h4>
+      <div className="space-y-2">
+        <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+          Profile
+        </a>
+        <a href="#" className="block py-2 px-3 rounded hover:bg-gray-200">
+          Preferences
+        </a>
+      </div>
+    </div>
+    
+    <Separator orientation="vertical" />
+    
+    <div className="flex-1 p-6">
+      <h2 className="text-2xl font-bold mb-4">Main Content</h2>
+      <p className="text-gray-600">
+        This is the main content area. The vertical separator creates a clear
+        division between the sidebar and the main content.
+      </p>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Custom Styling
+
+<ComponentDocSection
+  code={`import { Separator } from "buildgrid-ui";
+
+function CustomSeparators() {
+  return (
+    <div className="space-y-8">
+      <div>
+        <h4 className="font-medium mb-2">Default Separator</h4>
+        <Separator />
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-2">Thick Separator</h4>
+        <Separator className="h-1 bg-blue-200" />
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-2">Dashed Separator</h4>
+        <Separator className="border-dashed border-t border-gray-300 bg-transparent h-0" />
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-2">Gradient Separator</h4>
+        <Separator className="h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+      </div>
+      
+      <div>
+        <h4 className="font-medium mb-2">Vertical Separators with Custom Heights</h4>
+        <div className="flex items-center space-x-4">
+          <span>Item 1</span>
+          <Separator orientation="vertical" className="h-4" />
+          <span>Item 2</span>
+          <Separator orientation="vertical" className="h-6 bg-red-300" />
+          <span>Item 3</span>
+          <Separator orientation="vertical" className="h-8 bg-green-300" />
+          <span>Item 4</span>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-8">
+    <div>
+      <h4 className="font-medium mb-2">Default Separator</h4>
+      <Separator />
+    </div>
+    
+    <div>
+      <h4 className="font-medium mb-2">Thick Separator</h4>
+      <Separator className="h-1 bg-blue-200" />
+    </div>
+    
+    <div>
+      <h4 className="font-medium mb-2">Dashed Separator</h4>
+      <Separator className="border-dashed border-t border-gray-300 bg-transparent h-0" />
+    </div>
+    
+    <div>
+      <h4 className="font-medium mb-2">Gradient Separator</h4>
+      <Separator className="h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+    </div>
+    
+    <div>
+      <h4 className="font-medium mb-2">Vertical Separators with Custom Heights</h4>
+      <div className="flex items-center space-x-4">
+        <span>Item 1</span>
+        <Separator orientation="vertical" className="h-4" />
+        <span>Item 2</span>
+        <Separator orientation="vertical" className="h-6 bg-red-300" />
+        <span>Item 3</span>
+        <Separator orientation="vertical" className="h-8 bg-green-300" />
+        <span>Item 4</span>
+      </div>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Separator`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `orientation` | `"horizontal"` \| `"vertical"` | `"horizontal"` | The orientation of the separator. |
+| `decorative` | `boolean` | `true` | Whether the separator is decorative (not focusable). |
+| `className` | `string` | - | Additional CSS classes for custom styling. |
+
+## Accessibility
+
+The Separator component includes comprehensive accessibility features:
+
+- **Semantic HTML** - Uses proper ARIA separator role
+- **Screen Reader Support** - Properly announced as a separator element
+- **Decorative by Default** - Non-focusable decorative separators by default
+- **Keyboard Navigation** - Can be made focusable when `decorative={false}`
+- **Visual Clarity** - Clear visual distinction between content sections
+
+## Common Use Cases
+
+The Separator component is perfect for:
+
+- **Content Organization** - Dividing sections in articles, forms, and layouts
+- **Navigation Menus** - Separating navigation items and menu sections
+- **Card Layouts** - Creating sections within cards and panels
+- **Sidebar Navigation** - Organizing navigation groups and categories
+- **User Profiles** - Separating different information sections
+- **Settings Pages** - Dividing configuration groups and options
+- **Data Lists** - Creating visual breaks between list items or groups
+
+## Best Practices
+
+1. **Consistent Spacing** - Use consistent margins around separators
+2. **Appropriate Orientation** - Use horizontal for content sections, vertical for inline items
+3. **Visual Hierarchy** - Use separators to enhance, not overwhelm content structure
+4. **Accessibility** - Keep decorative separators non-focusable for better screen reader experience
+5. **Custom Styling** - Use className to match your design system colors and thickness
+6. **Semantic Usage** - Use separators to logically group related content
+7. **Responsive Design** - Consider how separators behave on different screen sizes
+8. **Color Contrast** - Ensure separators have appropriate contrast for visibility

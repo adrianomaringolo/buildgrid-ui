@@ -1,3 +1,970 @@
 ---
 id: data-table
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { DataTable, Badge, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Mail, Phone, Edit, Trash2, Users, TrendingUp, FileDown } from 'lucide-react';
+
+# Data Table
+
+<StorybookLink path="blocks-datatable--default" />
+
+The `DataTable` component provides a powerful, feature-rich table for displaying and managing large datasets. Built with advanced functionality including sorting, filtering, searching, pagination, row selection, and data export. Perfect for admin panels, user management, analytics dashboards, and any interface requiring complex data presentation.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { DataTable } from "buildgrid-ui";
+
+function BasicDataTable() {
+  const data = [
+    { id: 1, name: "John Doe", email: "john@example.com", role: "Admin" },
+    { id: 2, name: "Jane Smith", email: "jane@example.com", role: "User" },
+    { id: 3, name: "Bob Johnson", email: "bob@example.com", role: "Editor" }
+  ];
+
+  const columns = [
+    { key: 'id', title: 'ID', sortable: true },
+    { key: 'name', title: 'Name', sortable: true },
+    { key: 'email', title: 'Email', sortable: true },
+    { key: 'role', title: 'Role', sortable: true }
+  ];
+
+  const searchFields = ['name', 'email', 'role'];
+
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      searchFields={searchFields}
+      pageSize={10}
+    />
+  );
+}`}
+  storybookPath="blocks-datatable--default"
+>
+  {(() => {
+    const data = [
+      { id: 1, name: "John Doe", email: "john@example.com", role: "Admin" },
+      { id: 2, name: "Jane Smith", email: "jane@example.com", role: "User" },
+      { id: 3, name: "Bob Johnson", email: "bob@example.com", role: "Editor" },
+      { id: 4, name: "Alice Wilson", email: "alice@example.com", role: "Manager" },
+      { id: 5, name: "Charlie Brown", email: "charlie@example.com", role: "User" }
+    ];
+
+    const columns = [
+      { key: 'id', title: 'ID', sortable: true },
+      { key: 'name', title: 'Name', sortable: true },
+      { key: 'email', title: 'Email', sortable: true },
+      { key: 'role', title: 'Role', sortable: true }
+    ];
+
+    const searchFields = ['name', 'email', 'role'];
+
+    return (
+      <DataTable
+        data={data}
+        columns={columns}
+        searchFields={searchFields}
+        pageSize={5}
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## With Custom Renderers
+
+<ComponentDocSection
+  code={`import { DataTable, Badge } from "buildgrid-ui";
+import { Mail, Phone } from "lucide-react";
+
+function CustomRendererTable() {
+  const data = [
+    { 
+      id: 1, 
+      name: "John Doe", 
+      email: "john@example.com", 
+      phone: "+1 (555) 123-4567",
+      status: "active",
+      role: "Admin" 
+    },
+    { 
+      id: 2, 
+      name: "Jane Smith", 
+      email: "jane@example.com", 
+      phone: "+1 (555) 234-5678",
+      status: "inactive",
+      role: "User" 
+    },
+    { 
+      id: 3, 
+      name: "Bob Johnson", 
+      email: "bob@example.com", 
+      phone: "+1 (555) 345-6789",
+      status: "pending",
+      role: "Editor" 
+    }
+  ];
+
+  const columns = [
+    {
+      key: 'name',
+      title: 'Name',
+      sortable: true,
+      customRenderer: (value) => (
+        <div className="font-medium">{value}</div>
+      )
+    },
+    {
+      key: 'email',
+      title: 'Email',
+      sortable: true,
+      customRenderer: (value) => (
+        <div className="flex items-center gap-2">
+          <Mail className="h-4 w-4 text-gray-500" />
+          <span className="text-sm">{value}</span>
+        </div>
+      )
+    },
+    {
+      key: 'phone',
+      title: 'Phone',
+      customRenderer: (value) => (
+        <div className="flex items-center gap-2">
+          <Phone className="h-4 w-4 text-gray-500" />
+          <span className="text-sm font-mono">{value}</span>
+        </div>
+      )
+    },
+    {
+      key: 'status',
+      title: 'Status',
+      sortable: true,
+      customRenderer: (value) => (
+        <Badge
+          variant={
+            value === 'active' ? 'default' :
+            value === 'inactive' ? 'destructive' : 'secondary'
+          }
+        >
+          {value}
+        </Badge>
+      )
+    },
+    {
+      key: 'role',
+      title: 'Role',
+      sortable: true
+    }
+  ];
+
+  const searchFields = ['name', 'email', 'role'];
+
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      searchFields={searchFields}
+      pageSize={5}
+    />
+  );
+}`}
+>
+  {(() => {
+    const data = [
+      { 
+        id: 1, 
+        name: "John Doe", 
+        email: "john@example.com", 
+        phone: "+1 (555) 123-4567",
+        status: "active",
+        role: "Admin" 
+      },
+      { 
+        id: 2, 
+        name: "Jane Smith", 
+        email: "jane@example.com", 
+        phone: "+1 (555) 234-5678",
+        status: "inactive",
+        role: "User" 
+      },
+      { 
+        id: 3, 
+        name: "Bob Johnson", 
+        email: "bob@example.com", 
+        phone: "+1 (555) 345-6789",
+        status: "pending",
+        role: "Editor" 
+      }
+    ];
+
+    const columns = [
+      {
+        key: 'name',
+        title: 'Name',
+        sortable: true,
+        customRenderer: (value) => (
+          <div className="font-medium">{value}</div>
+        )
+      },
+      {
+        key: 'email',
+        title: 'Email',
+        sortable: true,
+        customRenderer: (value) => (
+          <div className="flex items-center gap-2">
+            <Mail className="h-4 w-4 text-gray-500" />
+            <span className="text-sm">{value}</span>
+          </div>
+        )
+      },
+      {
+        key: 'phone',
+        title: 'Phone',
+        customRenderer: (value) => (
+          <div className="flex items-center gap-2">
+            <Phone className="h-4 w-4 text-gray-500" />
+            <span className="text-sm font-mono">{value}</span>
+          </div>
+        )
+      },
+      {
+        key: 'status',
+        title: 'Status',
+        sortable: true,
+        customRenderer: (value) => (
+          <Badge
+            variant={
+              value === 'active' ? 'default' :
+              value === 'inactive' ? 'destructive' : 'secondary'
+            }
+          >
+            {value}
+          </Badge>
+        )
+      },
+      {
+        key: 'role',
+        title: 'Role',
+        sortable: true
+      }
+    ];
+
+    const searchFields = ['name', 'email', 'role'];
+
+    return (
+      <DataTable
+        data={data}
+        columns={columns}
+        searchFields={searchFields}
+        pageSize={5}
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## With Filters and Actions
+
+<ComponentDocSection
+  code={`import { DataTable, Badge, Button } from "buildgrid-ui";
+import { Edit, Trash2 } from "lucide-react";
+
+function FilterableDataTable() {
+  const data = [
+    { 
+      id: 1, 
+      name: "John Doe", 
+      email: "john@example.com", 
+      status: "active",
+      role: "Admin",
+      department: "Engineering"
+    },
+    { 
+      id: 2, 
+      name: "Jane Smith", 
+      email: "jane@example.com", 
+      status: "active",
+      role: "User",
+      department: "Marketing"
+    },
+    { 
+      id: 3, 
+      name: "Bob Johnson", 
+      email: "bob@example.com", 
+      status: "inactive",
+      role: "Editor",
+      department: "Engineering"
+    },
+    { 
+      id: 4, 
+      name: "Alice Wilson", 
+      email: "alice@example.com", 
+      status: "pending",
+      role: "Manager",
+      department: "Sales"
+    }
+  ];
+
+  const columns = [
+    {
+      key: 'name',
+      title: 'Name',
+      sortable: true,
+      customRenderer: (value) => (
+        <div className="font-medium">{value}</div>
+      )
+    },
+    {
+      key: 'email',
+      title: 'Email',
+      sortable: true
+    },
+    {
+      key: 'status',
+      title: 'Status',
+      sortable: true,
+      customRenderer: (value) => (
+        <Badge
+          variant={
+            value === 'active' ? 'default' :
+            value === 'inactive' ? 'destructive' : 'secondary'
+          }
+        >
+          {value}
+        </Badge>
+      )
+    },
+    {
+      key: 'role',
+      title: 'Role',
+      sortable: true
+    },
+    {
+      key: 'department',
+      title: 'Department',
+      sortable: true
+    },
+    {
+      key: 'id',
+      title: 'Actions',
+      width: '120px',
+      customRenderer: (_, row) => (
+        <div className="flex gap-2">
+          <Button variant="ghost" size="sm">
+            <Edit className="h-4 w-4" />
+          </Button>
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-red-600 hover:text-red-700"
+          >
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        </div>
+      )
+    }
+  ];
+
+  const filters = [
+    {
+      field: 'status',
+      label: 'Status',
+      options: [
+        { label: 'Active', value: 'active' },
+        { label: 'Inactive', value: 'inactive' },
+        { label: 'Pending', value: 'pending' }
+      ]
+    },
+    {
+      field: 'role',
+      label: 'Role',
+      options: [
+        { label: 'Admin', value: 'Admin' },
+        { label: 'User', value: 'User' },
+        { label: 'Editor', value: 'Editor' },
+        { label: 'Manager', value: 'Manager' }
+      ]
+    },
+    {
+      field: 'department',
+      label: 'Department',
+      options: [
+        { label: 'Engineering', value: 'Engineering' },
+        { label: 'Marketing', value: 'Marketing' },
+        { label: 'Sales', value: 'Sales' }
+      ]
+    }
+  ];
+
+  const searchFields = ['name', 'email', 'role', 'department'];
+
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      searchFields={searchFields}
+      filters={filters}
+      pageSize={5}
+      tools={{
+        search: {
+          placeholder: 'Search users...'
+        }
+      }}
+    />
+  );
+}`}
+>
+  {(() => {
+    const data = [
+      { 
+        id: 1, 
+        name: "John Doe", 
+        email: "john@example.com", 
+        status: "active",
+        role: "Admin",
+        department: "Engineering"
+      },
+      { 
+        id: 2, 
+        name: "Jane Smith", 
+        email: "jane@example.com", 
+        status: "active",
+        role: "User",
+        department: "Marketing"
+      },
+      { 
+        id: 3, 
+        name: "Bob Johnson", 
+        email: "bob@example.com", 
+        status: "inactive",
+        role: "Editor",
+        department: "Engineering"
+      },
+      { 
+        id: 4, 
+        name: "Alice Wilson", 
+        email: "alice@example.com", 
+        status: "pending",
+        role: "Manager",
+        department: "Sales"
+      }
+    ];
+
+    const columns = [
+      {
+        key: 'name',
+        title: 'Name',
+        sortable: true,
+        customRenderer: (value) => (
+          <div className="font-medium">{value}</div>
+        )
+      },
+      {
+        key: 'email',
+        title: 'Email',
+        sortable: true
+      },
+      {
+        key: 'status',
+        title: 'Status',
+        sortable: true,
+        customRenderer: (value) => (
+          <Badge
+            variant={
+              value === 'active' ? 'default' :
+              value === 'inactive' ? 'destructive' : 'secondary'
+            }
+          >
+            {value}
+          </Badge>
+        )
+      },
+      {
+        key: 'role',
+        title: 'Role',
+        sortable: true
+      },
+      {
+        key: 'department',
+        title: 'Department',
+        sortable: true
+      },
+      {
+        key: 'id',
+        title: 'Actions',
+        width: '120px',
+        customRenderer: (_, row) => (
+          <div className="flex gap-2">
+            <Button variant="ghost" size="sm">
+              <Edit className="h-4 w-4" />
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="text-red-600 hover:text-red-700"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
+        )
+      }
+    ];
+
+    const filters = [
+      {
+        field: 'status',
+        label: 'Status',
+        options: [
+          { label: 'Active', value: 'active' },
+          { label: 'Inactive', value: 'inactive' },
+          { label: 'Pending', value: 'pending' }
+        ]
+      },
+      {
+        field: 'role',
+        label: 'Role',
+        options: [
+          { label: 'Admin', value: 'Admin' },
+          { label: 'User', value: 'User' },
+          { label: 'Editor', value: 'Editor' },
+          { label: 'Manager', value: 'Manager' }
+        ]
+      },
+      {
+        field: 'department',
+        label: 'Department',
+        options: [
+          { label: 'Engineering', value: 'Engineering' },
+          { label: 'Marketing', value: 'Marketing' },
+          { label: 'Sales', value: 'Sales' }
+        ]
+      }
+    ];
+
+    const searchFields = ['name', 'email', 'role', 'department'];
+
+    return (
+      <DataTable
+        data={data}
+        columns={columns}
+        searchFields={searchFields}
+        filters={filters}
+        pageSize={5}
+        tools={{
+          search: {
+            placeholder: 'Search users...'
+          }
+        }}
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Loading State
+
+<ComponentDocSection
+  code={`import { DataTable } from "buildgrid-ui";
+
+function LoadingDataTable() {
+  const columns = [
+    { key: 'id', title: 'ID', sortable: true },
+    { key: 'name', title: 'Name', sortable: true },
+    { key: 'email', title: 'Email', sortable: true },
+    { key: 'role', title: 'Role', sortable: true }
+  ];
+
+  const searchFields = ['name', 'email', 'role'];
+
+  return (
+    <DataTable
+      data={[]}
+      columns={columns}
+      searchFields={searchFields}
+      loading={true}
+      pageSize={5}
+    />
+  );
+}`}
+>
+  {(() => {
+    const columns = [
+      { key: 'id', title: 'ID', sortable: true },
+      { key: 'name', title: 'Name', sortable: true },
+      { key: 'email', title: 'Email', sortable: true },
+      { key: 'role', title: 'Role', sortable: true }
+    ];
+
+    const searchFields = ['name', 'email', 'role'];
+
+    return (
+      <DataTable
+        data={[]}
+        columns={columns}
+        searchFields={searchFields}
+        loading={true}
+        pageSize={5}
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Analytics Dashboard
+
+<ComponentDocSection
+  code={`import { DataTable, Badge, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Users, TrendingUp, FileDown } from "lucide-react";
+
+function AnalyticsDashboard() {
+  const analyticsData = [
+    {
+      id: 1,
+      metric: "Page Views",
+      value: 12543,
+      change: "+12.5%",
+      trend: "up",
+      category: "Traffic"
+    },
+    {
+      id: 2,
+      metric: "Unique Visitors",
+      value: 8921,
+      change: "+8.2%",
+      trend: "up",
+      category: "Users"
+    },
+    {
+      id: 3,
+      metric: "Bounce Rate",
+      value: 34.2,
+      change: "-2.1%",
+      trend: "down",
+      category: "Engagement"
+    },
+    {
+      id: 4,
+      metric: "Conversion Rate",
+      value: 3.8,
+      change: "+0.5%",
+      trend: "up",
+      category: "Sales"
+    }
+  ];
+
+  const columns = [
+    {
+      key: 'metric',
+      title: 'Metric',
+      sortable: true,
+      customRenderer: (value) => (
+        <div className="font-medium">{value}</div>
+      )
+    },
+    {
+      key: 'value',
+      title: 'Value',
+      sortable: true,
+      align: 'right',
+      customRenderer: (value, row) => (
+        <div className="text-right font-mono">
+          {row.metric.includes('Rate') ? \`\${value}%\` : value.toLocaleString()}
+        </div>
+      )
+    },
+    {
+      key: 'change',
+      title: 'Change',
+      sortable: true,
+      align: 'right',
+      customRenderer: (value, row) => (
+        <div className={\`text-right font-medium \${
+          row.trend === 'up' ? 'text-green-600' : 'text-red-600'
+        }\`}>
+          {value}
+        </div>
+      )
+    },
+    {
+      key: 'category',
+      title: 'Category',
+      sortable: true,
+      customRenderer: (value) => (
+        <Badge variant="outline">{value}</Badge>
+      )
+    }
+  ];
+
+  const filters = [
+    {
+      field: 'category',
+      label: 'Category',
+      options: [
+        { label: 'Traffic', value: 'Traffic' },
+        { label: 'Users', value: 'Users' },
+        { label: 'Engagement', value: 'Engagement' },
+        { label: 'Sales', value: 'Sales' }
+      ]
+    }
+  ];
+
+  const searchFields = ['metric', 'category'];
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <TrendingUp className="h-5 w-5" />
+          Analytics Overview
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <DataTable
+          data={analyticsData}
+          columns={columns}
+          searchFields={searchFields}
+          filters={filters}
+          pageSize={10}
+          tools={{
+            search: {
+              placeholder: 'Search metrics...'
+            },
+            export: {
+              label: 'Export Report'
+            }
+          }}
+        />
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const analyticsData = [
+      {
+        id: 1,
+        metric: "Page Views",
+        value: 12543,
+        change: "+12.5%",
+        trend: "up",
+        category: "Traffic"
+      },
+      {
+        id: 2,
+        metric: "Unique Visitors",
+        value: 8921,
+        change: "+8.2%",
+        trend: "up",
+        category: "Users"
+      },
+      {
+        id: 3,
+        metric: "Bounce Rate",
+        value: 34.2,
+        change: "-2.1%",
+        trend: "down",
+        category: "Engagement"
+      },
+      {
+        id: 4,
+        metric: "Conversion Rate",
+        value: 3.8,
+        change: "+0.5%",
+        trend: "up",
+        category: "Sales"
+      }
+    ];
+
+    const columns = [
+      {
+        key: 'metric',
+        title: 'Metric',
+        sortable: true,
+        customRenderer: (value) => (
+          <div className="font-medium">{value}</div>
+        )
+      },
+      {
+        key: 'value',
+        title: 'Value',
+        sortable: true,
+        align: 'right',
+        customRenderer: (value, row) => (
+          <div className="text-right font-mono">
+            {row.metric.includes('Rate') ? `${value}%` : value.toLocaleString()}
+          </div>
+        )
+      },
+      {
+        key: 'change',
+        title: 'Change',
+        sortable: true,
+        align: 'right',
+        customRenderer: (value, row) => (
+          <div className={`text-right font-medium ${
+            row.trend === 'up' ? 'text-green-600' : 'text-red-600'
+          }`}>
+            {value}
+          </div>
+        )
+      },
+      {
+        key: 'category',
+        title: 'Category',
+        sortable: true,
+        customRenderer: (value) => (
+          <Badge variant="outline">{value}</Badge>
+        )
+      }
+    ];
+
+    const filters = [
+      {
+        field: 'category',
+        label: 'Category',
+        options: [
+          { label: 'Traffic', value: 'Traffic' },
+          { label: 'Users', value: 'Users' },
+          { label: 'Engagement', value: 'Engagement' },
+          { label: 'Sales', value: 'Sales' }
+        ]
+      }
+    ];
+
+    const searchFields = ['metric', 'category'];
+
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <TrendingUp className="h-5 w-5" />
+            Analytics Overview
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <DataTable
+            data={analyticsData}
+            columns={columns}
+            searchFields={searchFields}
+            filters={filters}
+            pageSize={10}
+            tools={{
+              search: {
+                placeholder: 'Search metrics...'
+              },
+              export: {
+                label: 'Export Report'
+              }
+            }}
+          />
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `DataTable`
+
+| Property | Type | Description |
+|---|---|---|
+| `data` | `T[]` | Array of data objects to display in the table. |
+| `columns` | `DataTableColumn<T>[]` | Column configuration array. |
+| `searchFields` | `(keyof T)[]` | Fields to include in search functionality. |
+| `filters` | `DataTableFilter<T>[]` | Filter configuration array. |
+| `pageSize` | `number` | Number of rows per page. Default is 40. |
+| `loading` | `boolean` | Whether the table is in loading state. |
+| `className` | `string` | Additional CSS classes for the table container. |
+| `activeFilters` | `Record<string, string>` | Default active filters. |
+| `tools` | `DataTableTools` | Configuration for table tools and features. |
+
+### `DataTableColumn`
+
+| Property | Type | Description |
+|---|---|---|
+| `key` | `keyof T` | Data field key for this column. |
+| `title` | `string` | Column header title. |
+| `sortable` | `boolean` | Whether this column is sortable. |
+| `width` | `string` | CSS width value for the column. |
+| `align` | `"left" \| "center" \| "right"` | Text alignment for the column. |
+| `hidden` | `boolean` | Whether the column is hidden. |
+| `headerClassName` | `string` | Additional CSS classes for the header cell. |
+| `customRenderer` | `(value: any, row: T) => ReactNode` | Custom render function for cell content. |
+
+### `DataTableFilter`
+
+| Property | Type | Description |
+|---|---|---|
+| `field` | `keyof T` | Data field to filter on. |
+| `label` | `string` | Display label for the filter. |
+| `options` | `FilterOption[]` | Available filter options. |
+
+### `FilterOption`
+
+| Property | Type | Description |
+|---|---|---|
+| `label` | `string` | Display label for the option. |
+| `value` | `string` | Value to filter by. |
+
+### `DataTableTools`
+
+| Property | Type | Description |
+|---|---|---|
+| `search` | `{ hide?: boolean; placeholder?: string }` | Search tool configuration. |
+| `export` | `{ hide?: boolean; label?: string }` | Export tool configuration. |
+| `columnSelector` | `{ hide?: boolean }` | Column visibility tool configuration. |
+| `clearFilters` | `{ hide?: boolean; label?: string }` | Clear filters tool configuration. |
+| `rowSelector` | `{ hide?: boolean }` | Row selection tool configuration. |
+| `pagination` | `{ label?: string }` | Pagination tool configuration. |
+
+## Ref Methods
+
+The DataTable component exposes several methods through a ref:
+
+| Method | Type | Description |
+|---|---|---|
+| `getSelectedItems` | `() => T[]` | Get array of currently selected items. |
+| `clearSelection` | `() => void` | Clear all row selections. |
+| `getSelectionCount` | `() => number` | Get count of selected rows. |
+| `selectItems` | `(ids: string[]) => void` | Select specific items by ID. |
+| `getFilteredData` | `() => T[]` | Get current filtered dataset. |
+| `resetFilters` | `() => void` | Reset all filters and search. |
+| `exportData` | `(filename?: string) => void` | Export current data to CSV. |
+| `goToPage` | `(page: number) => void` | Navigate to specific page. |
+| `refresh` | `() => void` | Refresh the table data. |
+
+## Accessibility
+
+The DataTable component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support for sorting, filtering, and selection
+- **Screen Reader Support** - Proper ARIA labels and table semantics
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Sort Indicators** - Visual and audible sort direction indicators
+- **Loading States** - Proper loading announcements for screen readers
+- **Selection States** - Clear indication of selected rows and bulk actions
+
+## Common Use Cases
+
+The DataTable component is perfect for:
+
+- **User Management** - Admin panels with user lists and actions
+- **Analytics Dashboards** - Metrics and performance data display
+- **Content Management** - Articles, posts, and media management
+- **E-commerce** - Product catalogs and order management
+- **Financial Data** - Transaction lists and financial reports
+- **System Logs** - Error logs and activity monitoring
+- **Inventory Management** - Stock levels and product tracking
+
+## Best Practices
+
+1. **Performance** - Use pagination for large datasets (1000+ rows)
+2. **Search Fields** - Include relevant fields in search configuration
+3. **Custom Renderers** - Use for complex data formatting and actions
+4. **Loading States** - Always show loading indicators for async operations
+5. **Error Handling** - Implement proper error states and retry mechanisms
+6. **Responsive Design** - Consider mobile layouts and horizontal scrolling
+7. **Export Functionality** - Provide data export for user convenience
+8. **Accessibility** - Test with keyboard navigation and screen readers

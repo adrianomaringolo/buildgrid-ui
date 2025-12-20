@@ -1,3 +1,669 @@
 ---
 id: month-navigator
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { MonthNavigator, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Calendar, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
+
+# Month Navigator
+
+<StorybookLink path="blocks-monthnavigator--default" />
+
+The `MonthNavigator` component provides an intuitive interface for navigating between months and years. Built with accessibility in mind, it offers both month-by-month and year-by-year navigation modes. Perfect for calendar interfaces, date pickers, scheduling applications, and any interface that requires temporal navigation.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { MonthNavigator } from "buildgrid-ui";
+import React from "react";
+
+function BasicMonthNavigator() {
+  const [month, setMonth] = React.useState(new Date().getMonth());
+  const [year, setYear] = React.useState(new Date().getFullYear());
+
+  return (
+    <div className="w-96 border rounded-md p-4">
+      <MonthNavigator
+        currentMonth={month}
+        currentYear={year}
+        onChangeMonthYear={(month, year) => {
+          setMonth(month);
+          setYear(year);
+        }}
+      />
+    </div>
+  );
+}`}
+  storybookPath="blocks-monthnavigator--default"
+>
+  {(() => {
+    const [month, setMonth] = React.useState(new Date().getMonth());
+    const [year, setYear] = React.useState(new Date().getFullYear());
+
+    return (
+      <div className="w-96 border rounded-md p-4">
+        <MonthNavigator
+          currentMonth={month}
+          currentYear={year}
+          onChangeMonthYear={(month, year) => {
+            setMonth(month);
+            setYear(year);
+          }}
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Year Navigation Mode
+
+<ComponentDocSection
+  code={`import { MonthNavigator } from "buildgrid-ui";
+import React from "react";
+
+function YearNavigator() {
+  const [month, setMonth] = React.useState(new Date().getMonth());
+  const [year, setYear] = React.useState(new Date().getFullYear());
+
+  return (
+    <div className="w-96 border rounded-md p-4">
+      <MonthNavigator
+        currentMonth={month}
+        currentYear={year}
+        mode="year"
+        onChangeMonthYear={(month, year) => {
+          setMonth(month);
+          setYear(year);
+        }}
+      />
+    </div>
+  );
+}`}
+  storybookPath="blocks-monthnavigator--year-mode"
+>
+  {(() => {
+    const [month, setMonth] = React.useState(new Date().getMonth());
+    const [year, setYear] = React.useState(new Date().getFullYear());
+
+    return (
+      <div className="w-96 border rounded-md p-4">
+        <MonthNavigator
+          currentMonth={month}
+          currentYear={year}
+          mode="year"
+          onChangeMonthYear={(month, year) => {
+            setMonth(month);
+            setYear(year);
+          }}
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Calendar Integration
+
+<ComponentDocSection
+  code={`import { MonthNavigator, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Calendar } from "lucide-react";
+import React from "react";
+
+function CalendarWithNavigator() {
+  const [month, setMonth] = React.useState(new Date().getMonth());
+  const [year, setYear] = React.useState(new Date().getFullYear());
+
+  // Generate calendar days for display
+  const getDaysInMonth = (month, year) => {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDayOfWeek = firstDay.getDay();
+    
+    const days = [];
+    
+    // Add empty cells for days before the first day of the month
+    for (let i = 0; i < startingDayOfWeek; i++) {
+      days.push(null);
+    }
+    
+    // Add days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+      days.push(day);
+    }
+    
+    return days;
+  };
+
+  const days = getDaysInMonth(month, year);
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  return (
+    <Card className="w-96">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Calendar className="h-5 w-5" />
+          Calendar
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <MonthNavigator
+          currentMonth={month}
+          currentYear={year}
+          onChangeMonthYear={(month, year) => {
+            setMonth(month);
+            setYear(year);
+          }}
+        />
+        
+        <div className="grid grid-cols-7 gap-1 text-center">
+          {weekDays.map(day => (
+            <div key={day} className="p-2 text-sm font-medium text-gray-500">
+              {day}
+            </div>
+          ))}
+          {days.map((day, index) => (
+            <div
+              key={index}
+              className={day 
+                ? 'p-2 text-sm hover:bg-gray-100 cursor-pointer rounded' 
+                : 'p-2 text-sm'
+              }
+            >
+              {day || ''}
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [month, setMonth] = React.useState(new Date().getMonth());
+    const [year, setYear] = React.useState(new Date().getFullYear());
+
+    const getDaysInMonth = (month, year) => {
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDayOfWeek = firstDay.getDay();
+      
+      const days = [];
+      
+      for (let i = 0; i < startingDayOfWeek; i++) {
+        days.push(null);
+      }
+      
+      for (let day = 1; day <= daysInMonth; day++) {
+        days.push(day);
+      }
+      
+      return days;
+    };
+
+    const days = getDaysInMonth(month, year);
+    const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    return (
+      <Card className="w-96">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Calendar className="h-5 w-5" />
+            Calendar
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <MonthNavigator
+            currentMonth={month}
+            currentYear={year}
+            onChangeMonthYear={(month, year) => {
+              setMonth(month);
+              setYear(year);
+            }}
+          />
+          
+          <div className="grid grid-cols-7 gap-1 text-center">
+            {weekDays.map(day => (
+              <div key={day} className="p-2 text-sm font-medium text-gray-500">
+                {day}
+              </div>
+            ))}
+            {days.map((day, index) => (
+              <div
+                key={index}
+                className={day 
+                  ? 'p-2 text-sm hover:bg-gray-100 cursor-pointer rounded' 
+                  : 'p-2 text-sm'
+                }
+              >
+                {day || ''}
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Date Range Selection
+
+<ComponentDocSection
+  code={`import { MonthNavigator, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Clock } from "lucide-react";
+import React from "react";
+
+function DateRangeSelector() {
+  const [startMonth, setStartMonth] = React.useState(new Date().getMonth());
+  const [startYear, setStartYear] = React.useState(new Date().getFullYear());
+  const [endMonth, setEndMonth] = React.useState(new Date().getMonth() + 1);
+  const [endYear, setEndYear] = React.useState(new Date().getFullYear());
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const resetToCurrentMonth = () => {
+    const now = new Date();
+    setStartMonth(now.getMonth());
+    setStartYear(now.getFullYear());
+    setEndMonth(now.getMonth() + 1);
+    setEndYear(now.getFullYear());
+  };
+
+  return (
+    <Card className="w-full max-w-2xl">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Clock className="h-5 w-5" />
+          Date Range Selector
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Start Date</label>
+            <div className="border rounded-md p-4">
+              <MonthNavigator
+                currentMonth={startMonth}
+                currentYear={startYear}
+                onChangeMonthYear={(month, year) => {
+                  setStartMonth(month);
+                  setStartYear(year);
+                }}
+              />
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <label className="text-sm font-medium">End Date</label>
+            <div className="border rounded-md p-4">
+              <MonthNavigator
+                currentMonth={endMonth}
+                currentYear={endYear}
+                onChangeMonthYear={(month, year) => {
+                  setEndMonth(month);
+                  setEndYear(year);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <h4 className="font-medium mb-2">Selected Range:</h4>
+          <p className="text-sm text-gray-600">
+            From {monthNames[startMonth]} {startYear} to {monthNames[endMonth]} {endYear}
+          </p>
+        </div>
+        
+        <Button onClick={resetToCurrentMonth} variant="outline" className="w-full">
+          Reset to Current Month
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [startMonth, setStartMonth] = React.useState(new Date().getMonth());
+    const [startYear, setStartYear] = React.useState(new Date().getFullYear());
+    const [endMonth, setEndMonth] = React.useState(new Date().getMonth() + 1);
+    const [endYear, setEndYear] = React.useState(new Date().getFullYear());
+
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    const resetToCurrentMonth = () => {
+      const now = new Date();
+      setStartMonth(now.getMonth());
+      setStartYear(now.getFullYear());
+      setEndMonth(now.getMonth() + 1);
+      setEndYear(now.getFullYear());
+    };
+
+    return (
+      <Card className="w-full max-w-2xl">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Clock className="h-5 w-5" />
+            Date Range Selector
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Start Date</label>
+              <div className="border rounded-md p-4">
+                <MonthNavigator
+                  currentMonth={startMonth}
+                  currentYear={startYear}
+                  onChangeMonthYear={(month, year) => {
+                    setStartMonth(month);
+                    setStartYear(year);
+                  }}
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium">End Date</label>
+              <div className="border rounded-md p-4">
+                <MonthNavigator
+                  currentMonth={endMonth}
+                  currentYear={endYear}
+                  onChangeMonthYear={(month, year) => {
+                    setEndMonth(month);
+                    setEndYear(year);
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <h4 className="font-medium mb-2">Selected Range:</h4>
+            <p className="text-sm text-gray-600">
+              From {monthNames[startMonth]} {startYear} to {monthNames[endMonth]} {endYear}
+            </p>
+          </div>
+          
+          <Button onClick={resetToCurrentMonth} variant="outline" className="w-full">
+            Reset to Current Month
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Localization Support
+
+<ComponentDocSection
+  code={`import { MonthNavigator } from "buildgrid-ui";
+import { es, fr, de, ja } from "date-fns/locale";
+import React from "react";
+
+function LocalizedNavigators() {
+  const [month, setMonth] = React.useState(new Date().getMonth());
+  const [year, setYear] = React.useState(new Date().getFullYear());
+
+  const locales = [
+    { name: 'English', locale: undefined, code: 'en' },
+    { name: 'Español', locale: es, code: 'es' },
+    { name: 'Français', locale: fr, code: 'fr' },
+    { name: 'Deutsch', locale: de, code: 'de' },
+    { name: '日本語', locale: ja, code: 'ja' }
+  ];
+
+  return (
+    <div className="space-y-6">
+      {locales.map(({ name, locale, code }) => (
+        <div key={code} className="space-y-2">
+          <h4 className="font-medium">{name}</h4>
+          <div className="w-80 border rounded-md p-4">
+            <MonthNavigator
+              currentMonth={month}
+              currentYear={year}
+              locale={locale}
+              onChangeMonthYear={(month, year) => {
+                setMonth(month);
+                setYear(year);
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [month, setMonth] = React.useState(new Date().getMonth());
+    const [year, setYear] = React.useState(new Date().getFullYear());
+
+    // Note: For demo purposes, we'll show English only since locale imports may not be available
+    return (
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <h4 className="font-medium">English (Default)</h4>
+          <div className="w-80 border rounded-md p-4">
+            <MonthNavigator
+              currentMonth={month}
+              currentYear={year}
+              onChangeMonthYear={(month, year) => {
+                setMonth(month);
+                setYear(year);
+              }}
+            />
+          </div>
+        </div>
+        <div className="bg-blue-50 p-4 rounded-lg">
+          <p className="text-sm text-blue-800">
+            💡 The MonthNavigator supports all date-fns locales. Import your desired locale and pass it to the locale prop for internationalization.
+          </p>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Different Navigation Modes
+
+<ComponentDocSection
+  code={`import { MonthNavigator, Button, Card, CardContent } from "buildgrid-ui";
+import React from "react";
+
+function NavigationModes() {
+  const [monthMode, setMonthMode] = React.useState({
+    month: new Date().getMonth(),
+    year: new Date().getFullYear()
+  });
+  
+  const [yearMode, setYearMode] = React.useState({
+    month: new Date().getMonth(),
+    year: new Date().getFullYear()
+  });
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Card>
+        <CardContent className="p-6 space-y-4">
+          <div className="space-y-2">
+            <h4 className="font-medium">Month Navigation</h4>
+            <p className="text-sm text-gray-600">
+              Navigate month by month with year display
+            </p>
+          </div>
+          <MonthNavigator
+            currentMonth={monthMode.month}
+            currentYear={monthMode.year}
+            mode="month"
+            onChangeMonthYear={(month, year) => {
+              setMonthMode({ month, year });
+            }}
+          />
+          <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+            Mode: month | Wraps to next/previous year
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-6 space-y-4">
+          <div className="space-y-2">
+            <h4 className="font-medium">Year Navigation</h4>
+            <p className="text-sm text-gray-600">
+              Navigate year by year, month stays constant
+            </p>
+          </div>
+          <MonthNavigator
+            currentMonth={yearMode.month}
+            currentYear={yearMode.year}
+            mode="year"
+            onChangeMonthYear={(month, year) => {
+              setYearMode({ month, year });
+            }}
+          />
+          <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+            Mode: year | Only changes year value
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [monthMode, setMonthMode] = React.useState({
+      month: new Date().getMonth(),
+      year: new Date().getFullYear()
+    });
+    
+    const [yearMode, setYearMode] = React.useState({
+      month: new Date().getMonth(),
+      year: new Date().getFullYear()
+    });
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card>
+          <CardContent className="p-6 space-y-4">
+            <div className="space-y-2">
+              <h4 className="font-medium">Month Navigation</h4>
+              <p className="text-sm text-gray-600">
+                Navigate month by month with year display
+              </p>
+            </div>
+            <MonthNavigator
+              currentMonth={monthMode.month}
+              currentYear={monthMode.year}
+              mode="month"
+              onChangeMonthYear={(month, year) => {
+                setMonthMode({ month, year });
+              }}
+            />
+            <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+              Mode: month | Wraps to next/previous year
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-6 space-y-4">
+            <div className="space-y-2">
+              <h4 className="font-medium">Year Navigation</h4>
+              <p className="text-sm text-gray-600">
+                Navigate year by year, month stays constant
+              </p>
+            </div>
+            <MonthNavigator
+              currentMonth={yearMode.month}
+              currentYear={yearMode.year}
+              mode="year"
+              onChangeMonthYear={(month, year) => {
+                setYearMode({ month, year });
+              }}
+            />
+            <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+              Mode: year | Only changes year value
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `MonthNavigator`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `currentMonth` | `Month` | - | The currently selected month (0-11). |
+| `currentYear` | `number` | - | The currently selected year. |
+| `onChangeMonthYear` | `(month: Month, year: number) => void` | - | Callback fired when the month or year changes. |
+| `mode` | `'month' \| 'year'` | `'month'` | Navigation mode - month-by-month or year-by-year. |
+| `locale` | `Locale` | `enUS` | Date-fns locale for internationalization. |
+
+### `Month` Type
+
+```typescript
+type Month = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
+```
+
+Represents months as zero-indexed numbers (0 = January, 11 = December).
+
+## Navigation Behavior
+
+### Month Mode
+- **Previous**: Decrements month, wraps to December of previous year when at January
+- **Next**: Increments month, wraps to January of next year when at December
+- **Display**: Shows full month name and year
+
+### Year Mode  
+- **Previous**: Decrements year by 1, month stays constant
+- **Next**: Increments year by 1, month stays constant
+- **Display**: Shows only the year value
+
+## Accessibility
+
+The MonthNavigator component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys and Enter/Space for button activation
+- **Screen Reader Support** - Proper ARIA labels describing navigation actions
+- **Focus Management** - Clear focus indicators on navigation buttons
+- **Semantic HTML** - Uses proper button elements with descriptive labels
+- **High Contrast** - Supports high contrast mode and custom themes
+- **Reduced Motion** - Respects user's motion preferences
+
+## Common Use Cases
+
+The MonthNavigator component is perfect for:
+
+- **Calendar Interfaces** - Navigate between months in calendar views
+- **Date Pickers** - Provide month/year selection in date picker components
+- **Scheduling Applications** - Navigate time periods for appointments and events
+- **Reporting Dashboards** - Select time periods for data visualization
+- **Content Archives** - Browse content by month and year
+- **Event Planning** - Navigate dates for event scheduling
+- **Financial Applications** - Select periods for financial reports
+- **Analytics Tools** - Choose time ranges for data analysis
+
+## Best Practices
+
+1. **State Management** - Always use controlled state for month and year values
+2. **Validation** - Validate month/year combinations for your use case
+3. **Localization** - Use appropriate date-fns locale for your target audience
+4. **Mode Selection** - Choose the right navigation mode for your use case
+5. **Visual Integration** - Style the navigator to match your application's design
+6. **Responsive Design** - Ensure the navigator works well on mobile devices
+7. **Accessibility** - Test with screen readers and keyboard navigation
+8. **Performance** - Memoize callback functions to prevent unnecessary re-renders

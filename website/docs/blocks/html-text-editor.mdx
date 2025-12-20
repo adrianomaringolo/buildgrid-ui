@@ -1,3 +1,596 @@
 ---
 id: html-text-editor
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { HtmlTextEditor, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { FileText, Save, Eye, Code, Send } from 'lucide-react';
+
+# HTML Text Editor
+
+<StorybookLink path="blocks-htmltexteditor--default" />
+
+The `HtmlTextEditor` component provides a rich text editing experience with HTML output. Built with contentEditable and document.execCommand, it offers a WYSIWYG editor with formatting toolbar and real-time HTML generation. Perfect for content management systems, blog editors, email composition, and any application requiring rich text input.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { HtmlTextEditor } from "buildgrid-ui";
+import { useState } from "react";
+
+function BasicHtmlEditor() {
+  const [content, setContent] = useState("Start typing your content here...");
+
+  return (
+    <div className="h-96">
+      <HtmlTextEditor
+        initialValue={content}
+        onChange={setContent}
+      />
+    </div>
+  );
+}`}
+  storybookPath="blocks-htmltexteditor--default"
+>
+  {(() => {
+    const [content, setContent] = React.useState("Start typing your content here...");
+
+    return (
+      <div className="h-96">
+        <HtmlTextEditor
+          initialValue={content}
+          onChange={setContent}
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Blog Post Editor
+
+<ComponentDocSection
+  code={`import { HtmlTextEditor, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { useState } from "react";
+import { Save, Eye } from "lucide-react";
+
+function BlogPostEditor() {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("<p>Write your blog post content here...</p>");
+  const [showPreview, setShowPreview] = useState(false);
+
+  const handleSave = () => {
+    console.log('Saving post:', { title, content });
+    alert('Blog post saved!');
+  };
+
+  return (
+    <Card className="w-full max-w-4xl">
+      <CardHeader>
+        <CardTitle>Create Blog Post</CardTitle>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={() => setShowPreview(!showPreview)}>
+            <Eye className="h-4 w-4 mr-2" />
+            {showPreview ? 'Edit' : 'Preview'}
+          </Button>
+          <Button size="sm" onClick={handleSave}>
+            <Save className="h-4 w-4 mr-2" />
+            Save Post
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-2">Title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter your blog post title..."
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium mb-2">Content</label>
+          {showPreview ? (
+            <div 
+              className="min-h-[300px] p-4 border border-gray-300 rounded-md bg-gray-50"
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
+          ) : (
+            <div className="h-80">
+              <HtmlTextEditor
+                initialValue={content}
+                onChange={setContent}
+              />
+            </div>
+          )}
+        </div>
+        
+        <div className="text-xs text-gray-500">
+          Characters: {content.replace(/<[^>]*>/g, '').length}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [title, setTitle] = React.useState("");
+    const [content, setContent] = React.useState("<p>Write your blog post content here...</p>");
+    const [showPreview, setShowPreview] = React.useState(false);
+
+    const handleSave = () => {
+      console.log('Saving post:', { title, content });
+      alert('Blog post saved!');
+    };
+
+    return (
+      <Card className="w-full max-w-4xl">
+        <CardHeader>
+          <CardTitle>Create Blog Post</CardTitle>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={() => setShowPreview(!showPreview)}>
+              <Eye className="h-4 w-4 mr-2" />
+              {showPreview ? 'Edit' : 'Preview'}
+            </Button>
+            <Button size="sm" onClick={handleSave}>
+              <Save className="h-4 w-4 mr-2" />
+              Save Post
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-2">Title</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Enter your blog post title..."
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium mb-2">Content</label>
+            {showPreview ? (
+              <div 
+                className="min-h-[300px] p-4 border border-gray-300 rounded-md bg-gray-50"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
+            ) : (
+              <div className="h-80">
+                <HtmlTextEditor
+                  initialValue={content}
+                  onChange={setContent}
+                />
+              </div>
+            )}
+          </div>
+          
+          <div className="text-xs text-gray-500">
+            Characters: {content.replace(/<[^>]*>/g, '').length}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Email Composer
+
+<ComponentDocSection
+  code={`import { HtmlTextEditor, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { useState } from "react";
+import { Send, Save } from "lucide-react";
+
+function EmailComposer() {
+  const [to, setTo] = useState("");
+  const [subject, setSubject] = useState("");
+  const [body, setBody] = useState("<p>Dear [Name],</p><p></p><p>Best regards,<br>Your Name</p>");
+
+  const handleSend = () => {
+    console.log('Sending email:', { to, subject, body });
+    alert('Email sent!');
+  };
+
+  const handleSaveDraft = () => {
+    console.log('Saving draft:', { to, subject, body });
+    alert('Draft saved!');
+  };
+
+  return (
+    <Card className="w-full max-w-3xl">
+      <CardHeader>
+        <CardTitle>Compose Email</CardTitle>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={handleSaveDraft}>
+            <Save className="h-4 w-4 mr-2" />
+            Save Draft
+          </Button>
+          <Button size="sm" onClick={handleSend}>
+            <Send className="h-4 w-4 mr-2" />
+            Send Email
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="grid grid-cols-1 gap-4">
+          <div>
+            <label className="block text-sm font-medium mb-1">To</label>
+            <input
+              type="email"
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              placeholder="recipient@example.com"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium mb-1">Subject</label>
+            <input
+              type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              placeholder="Email subject..."
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+        
+        <div>
+          <label className="block text-sm font-medium mb-2">Message</label>
+          <div className="h-64">
+            <HtmlTextEditor
+              initialValue={body}
+              onChange={setBody}
+            />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [to, setTo] = React.useState("");
+    const [subject, setSubject] = React.useState("");
+    const [body, setBody] = React.useState("<p>Dear [Name],</p><p></p><p>Best regards,<br>Your Name</p>");
+
+    const handleSend = () => {
+      console.log('Sending email:', { to, subject, body });
+      alert('Email sent!');
+    };
+
+    const handleSaveDraft = () => {
+      console.log('Saving draft:', { to, subject, body });
+      alert('Draft saved!');
+    };
+
+    return (
+      <Card className="w-full max-w-3xl">
+        <CardHeader>
+          <CardTitle>Compose Email</CardTitle>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={handleSaveDraft}>
+              <Save className="h-4 w-4 mr-2" />
+              Save Draft
+            </Button>
+            <Button size="sm" onClick={handleSend}>
+              <Send className="h-4 w-4 mr-2" />
+              Send Email
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-1 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">To</label>
+              <input
+                type="email"
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+                placeholder="recipient@example.com"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-1">Subject</label>
+              <input
+                type="text"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                placeholder="Email subject..."
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium mb-2">Message</label>
+            <div className="h-64">
+              <HtmlTextEditor
+                initialValue={body}
+                onChange={setBody}
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Content Management
+
+<ComponentDocSection
+  code={`import { HtmlTextEditor, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { useState } from "react";
+import { FileText, Code } from "lucide-react";
+
+function ContentManagement() {
+  const [content, setContent] = useState("<h2>Page Title</h2><p>Edit your page content here...</p>");
+  const [showHtml, setShowHtml] = useState(false);
+
+  return (
+    <Card className="w-full max-w-4xl">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <FileText className="h-5 w-5" />
+          Page Editor
+        </CardTitle>
+        <div className="flex gap-2">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => setShowHtml(!showHtml)}
+          >
+            <Code className="h-4 w-4 mr-2" />
+            {showHtml ? 'Visual Editor' : 'HTML Source'}
+          </Button>
+          <Button size="sm">
+            Publish Changes
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent>
+        {showHtml ? (
+          <div className="space-y-2">
+            <label className="block text-sm font-medium">HTML Source</label>
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              className="w-full h-80 p-3 font-mono text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <label className="block text-sm font-medium">Visual Editor</label>
+            <div className="h-80">
+              <HtmlTextEditor
+                initialValue={content}
+                onChange={setContent}
+              />
+            </div>
+          </div>
+        )}
+        
+        <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+          <h4 className="text-sm font-medium mb-2">Preview</h4>
+          <div 
+            className="prose prose-sm max-w-none"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [content, setContent] = React.useState("<h2>Page Title</h2><p>Edit your page content here...</p>");
+    const [showHtml, setShowHtml] = React.useState(false);
+
+    return (
+      <Card className="w-full max-w-4xl">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileText className="h-5 w-5" />
+            Page Editor
+          </CardTitle>
+          <div className="flex gap-2">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => setShowHtml(!showHtml)}
+            >
+              <Code className="h-4 w-4 mr-2" />
+              {showHtml ? 'Visual Editor' : 'HTML Source'}
+            </Button>
+            <Button size="sm">
+              Publish Changes
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {showHtml ? (
+            <div className="space-y-2">
+              <label className="block text-sm font-medium">HTML Source</label>
+              <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                className="w-full h-80 p-3 font-mono text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <label className="block text-sm font-medium">Visual Editor</label>
+              <div className="h-80">
+                <HtmlTextEditor
+                  initialValue={content}
+                  onChange={setContent}
+                />
+              </div>
+            </div>
+          )}
+          
+          <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+            <h4 className="text-sm font-medium mb-2">Preview</h4>
+            <div 
+              className="prose prose-sm max-w-none"
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Simple Note Editor
+
+<ComponentDocSection
+  code={`import { HtmlTextEditor } from "buildgrid-ui";
+import { useState } from "react";
+
+function SimpleNoteEditor() {
+  const [note, setNote] = useState("<p>Take your notes here...</p>");
+
+  return (
+    <div className="w-full max-w-2xl">
+      <h3 className="text-lg font-semibold mb-3">Quick Notes</h3>
+      <div className="h-48">
+        <HtmlTextEditor
+          initialValue={note}
+          onChange={setNote}
+          className="border-2 border-dashed border-gray-300"
+        />
+      </div>
+      <div className="mt-2 text-xs text-gray-500">
+        Auto-saved • Last updated: {new Date().toLocaleTimeString()}
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [note, setNote] = React.useState("<p>Take your notes here...</p>");
+
+    return (
+      <div className="w-full max-w-2xl">
+        <h3 className="text-lg font-semibold mb-3">Quick Notes</h3>
+        <div className="h-48">
+          <HtmlTextEditor
+            initialValue={note}
+            onChange={setNote}
+            className="border-2 border-dashed border-gray-300"
+          />
+        </div>
+        <div className="mt-2 text-xs text-gray-500">
+          Auto-saved • Last updated: {new Date().toLocaleTimeString()}
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `HtmlTextEditor`
+
+| Property | Type | Description |
+|---|---|---|
+| `initialValue` | `string` | Initial HTML content for the editor. Default is empty string. |
+| `onChange` | `(value: string) => void` | Callback fired when content changes. Receives HTML string. |
+| `className` | `string` | Additional CSS classes for the editor container. |
+
+## Toolbar Features
+
+The HtmlTextEditor includes a built-in formatting toolbar with the following options:
+
+### Text Formatting
+- **Bold** - Make text bold (Ctrl+B)
+- **Italic** - Make text italic (Ctrl+I)
+- **Underline** - Underline text (Ctrl+U)
+- **Strikethrough** - Strike through text
+
+### Text Alignment
+- **Align Left** - Left align text
+- **Align Center** - Center align text
+- **Align Right** - Right align text
+- **Justify** - Justify text
+
+### Lists and Structure
+- **Bullet List** - Create unordered lists
+- **Numbered List** - Create ordered lists
+- **Indent** - Increase indentation
+- **Outdent** - Decrease indentation
+
+### Advanced Features
+- **Link** - Insert/edit hyperlinks
+- **Image** - Insert images (URL-based)
+- **Horizontal Rule** - Insert horizontal dividers
+- **Clear Formatting** - Remove all formatting
+
+## Keyboard Shortcuts
+
+The editor supports standard keyboard shortcuts:
+
+- **Ctrl+B** - Bold
+- **Ctrl+I** - Italic
+- **Ctrl+U** - Underline
+- **Ctrl+Z** - Undo
+- **Ctrl+Y** - Redo
+- **Ctrl+A** - Select all
+- **Tab** - Indent (in lists)
+- **Shift+Tab** - Outdent (in lists)
+
+## Accessibility
+
+The HtmlTextEditor component includes accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support for all formatting options
+- **Screen Reader Support** - Toolbar buttons have proper ARIA labels
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Semantic HTML** - Generates proper semantic HTML structure
+- **Content Editable** - Uses standard contentEditable for native editing support
+- **Toolbar Labels** - All formatting buttons have descriptive labels
+
+## Common Use Cases
+
+The HtmlTextEditor component is perfect for:
+
+- **Content Management** - Blog posts, articles, and page content
+- **Email Composition** - Rich text email creation
+- **Documentation** - User manuals and help content
+- **Comments Systems** - Rich text comments and replies
+- **Note Taking** - Personal or collaborative note applications
+- **Product Descriptions** - E-commerce product content
+- **News Articles** - Editorial content creation
+- **Forum Posts** - Community discussion platforms
+
+## Best Practices
+
+1. **Content Validation** - Always sanitize HTML output on the server side
+2. **Auto-Save** - Implement periodic auto-saving for longer content
+3. **Preview Mode** - Provide preview functionality for content review
+4. **Mobile Support** - Test editor functionality on mobile devices
+5. **Performance** - Debounce onChange callbacks for better performance
+6. **Accessibility** - Ensure proper keyboard navigation and screen reader support
+7. **Content Limits** - Set reasonable content length limits
+8. **Error Handling** - Handle edge cases and provide user feedback
+
+## Security Considerations
+
+⚠️ **Important Security Notes:**
+
+1. **HTML Sanitization** - Always sanitize HTML content on the server before storing or displaying
+2. **XSS Prevention** - Never trust user-generated HTML content without proper sanitization
+3. **Content Security Policy** - Implement CSP headers to prevent script injection
+4. **Input Validation** - Validate and filter HTML content according to your security requirements
+5. **Safe Rendering** - Use proper HTML sanitization libraries when rendering user content

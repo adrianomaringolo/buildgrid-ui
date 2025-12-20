@@ -1,3 +1,687 @@
 ---
 id: toaster
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Toaster, toast, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
+
+# Toaster
+
+<StorybookLink path="components-toast--default" />
+
+The `Toaster` component provides elegant toast notifications for your application. Built on Sonner, it offers multiple notification types, automatic theming, and smooth animations. Perfect for success messages, error alerts, warnings, and general information display.
+
+## Setup
+
+First, add the Toaster component to your app root:
+
+<ComponentDocSection
+  code={`import { Toaster } from "buildgrid-ui";
+
+function App() {
+  return (
+    <div>
+      {/* Your app content */}
+      <Toaster />
+    </div>
+  );
+}`}
+>
+  <div className="p-4 bg-gray-50 rounded-lg text-sm">
+    <p>Add the Toaster component to your app root to enable toast notifications.</p>
+  </div>
+</ComponentDocSection>
+
+## Basic Toast Types
+
+<ComponentDocSection
+  code={`import { toast, Button } from "buildgrid-ui";
+
+function BasicToasts() {
+  return (
+    <div className="flex flex-col gap-2">
+      <Button onClick={() => toast.success('Operation completed successfully!')}>
+        Success Toast
+      </Button>
+      <Button onClick={() => toast.error('Something went wrong!')}>
+        Error Toast
+      </Button>
+      <Button onClick={() => toast.warning('Please check your input!')}>
+        Warning Toast
+      </Button>
+      <Button onClick={() => toast.info('Here is some information')}>
+        Info Toast
+      </Button>
+    </div>
+  );
+}`}
+  storybookPath="components-toast--default"
+>
+  <div className="flex flex-col gap-2">
+	 
+    <Button onClick={() => toast.success('Operation completed successfully!')}>
+      Success Toast
+    </Button>
+    <Button onClick={() => toast.error('Something went wrong!')}>
+      Error Toast
+    </Button>
+    <Button onClick={() => toast.warning('Please check your input!')}>
+      Warning Toast
+    </Button>
+    <Button onClick={() => toast.info('Here is some information')}>
+      Info Toast
+    </Button>
+		
+  </div>
+</ComponentDocSection>
+
+## Toast with Actions
+
+<ComponentDocSection
+  code={`import { toast, Button } from "buildgrid-ui";
+
+function ToastWithActions() {
+  const showActionToast = () => {
+    toast.success('File uploaded successfully!', {
+      action: {
+        label: 'View',
+        onClick: () => {
+          console.log('View action clicked');
+          toast.info('Opening file viewer...');
+        }
+      }
+    });
+  };
+
+  const showUndoToast = () => {
+    toast.success('Item deleted', {
+      action: {
+        label: 'Undo',
+        onClick: () => {
+          console.log('Undo action clicked');
+          toast.info('Item restored');
+        }
+      }
+    });
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Button onClick={showActionToast}>
+        Toast with View Action
+      </Button>
+      <Button onClick={showUndoToast}>
+        Toast with Undo Action
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-col gap-2">
+    <Button onClick={() => {
+      toast.success('File uploaded successfully!', {
+        action: {
+          label: 'View',
+          onClick: () => {
+            console.log('View action clicked');
+            toast.info('Opening file viewer...');
+          }
+        }
+      });
+    }}>
+      Toast with View Action
+    </Button>
+    <Button onClick={() => {
+      toast.success('Item deleted', {
+        action: {
+          label: 'Undo',
+          onClick: () => {
+            console.log('Undo action clicked');
+            toast.info('Item restored');
+          }
+        }
+      });
+    }}>
+      Toast with Undo Action
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Custom Duration and Position
+
+<ComponentDocSection
+  code={`import { toast, Button } from "buildgrid-ui";
+
+function CustomToasts() {
+  const showPersistentToast = () => {
+    toast.info('This toast will stay until dismissed', {
+      duration: Infinity
+    });
+  };
+
+  const showQuickToast = () => {
+    toast.success('Quick message!', {
+      duration: 1000
+    });
+  };
+
+  const showLongToast = () => {
+    toast.warning('This message will stay for 10 seconds', {
+      duration: 10000
+    });
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Button onClick={showPersistentToast}>
+        Persistent Toast (Manual Dismiss)
+      </Button>
+      <Button onClick={showQuickToast}>
+        Quick Toast (1s)
+      </Button>
+      <Button onClick={showLongToast}>
+        Long Toast (10s)
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-col gap-2">
+    <Button onClick={() => {
+      toast.info('This toast will stay until dismissed', {
+        duration: Infinity
+      });
+    }}>
+      Persistent Toast (Manual Dismiss)
+    </Button>
+    <Button onClick={() => {
+      toast.success('Quick message!', {
+        duration: 1000
+      });
+    }}>
+      Quick Toast (1s)
+    </Button>
+    <Button onClick={() => {
+      toast.warning('This message will stay for 10 seconds', {
+        duration: 10000
+      });
+    }}>
+      Long Toast (10s)
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Rich Content Toasts
+
+<ComponentDocSection
+  code={`import { toast, Button } from "buildgrid-ui";
+import { CheckCircle, AlertCircle, Info, AlertTriangle } from "lucide-react";
+
+function RichContentToasts() {
+  const showRichSuccess = () => {
+    toast.success(
+      <div className="flex items-center gap-2">
+        <CheckCircle className="h-4 w-4" />
+        <div>
+          <p className="font-medium">Upload Complete</p>
+          <p className="text-sm opacity-80">3 files uploaded successfully</p>
+        </div>
+      </div>
+    );
+  };
+
+  const showRichError = () => {
+    toast.error(
+      <div className="flex items-center gap-2">
+        <AlertCircle className="h-4 w-4" />
+        <div>
+          <p className="font-medium">Connection Failed</p>
+          <p className="text-sm opacity-80">Please check your internet connection</p>
+        </div>
+      </div>
+    );
+  };
+
+  const showRichInfo = () => {
+    toast.info(
+      <div className="flex items-center gap-2">
+        <Info className="h-4 w-4" />
+        <div>
+          <p className="font-medium">New Update Available</p>
+          <p className="text-sm opacity-80">Version 2.1.0 is ready to install</p>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Button onClick={showRichSuccess}>
+        Rich Success Toast
+      </Button>
+      <Button onClick={showRichError}>
+        Rich Error Toast
+      </Button>
+      <Button onClick={showRichInfo}>
+        Rich Info Toast
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-col gap-2">
+    <Button onClick={() => {
+      toast.success(
+        <div className="flex items-center gap-2">
+          <CheckCircle className="h-4 w-4" />
+          <div>
+            <p className="font-medium">Upload Complete</p>
+            <p className="text-sm opacity-80">3 files uploaded successfully</p>
+          </div>
+        </div>
+      );
+    }}>
+      Rich Success Toast
+    </Button>
+    <Button onClick={() => {
+      toast.error(
+        <div className="flex items-center gap-2">
+          <AlertCircle className="h-4 w-4" />
+          <div>
+            <p className="font-medium">Connection Failed</p>
+            <p className="text-sm opacity-80">Please check your internet connection</p>
+          </div>
+        </div>
+      );
+    }}>
+      Rich Error Toast
+    </Button>
+    <Button onClick={() => {
+      toast.info(
+        <div className="flex items-center gap-2">
+          <Info className="h-4 w-4" />
+          <div>
+            <p className="font-medium">New Update Available</p>
+            <p className="text-sm opacity-80">Version 2.1.0 is ready to install</p>
+          </div>
+        </div>
+      );
+    }}>
+      Rich Info Toast
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Promise-based Toasts
+
+<ComponentDocSection
+  code={`import { toast, Button } from "buildgrid-ui";
+
+function PromiseToasts() {
+  const simulateAsyncOperation = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        Math.random() > 0.5 ? resolve('Success!') : reject('Failed!');
+      }, 2000);
+    });
+  };
+
+  const showPromiseToast = () => {
+    const promise = simulateAsyncOperation();
+    
+    toast.promise(promise, {
+      loading: 'Processing your request...',
+      success: (data) => \`Operation completed: \${data}\`,
+      error: (error) => \`Operation failed: \${error}\`
+    });
+  };
+
+  const showFileUploadToast = () => {
+    const uploadPromise = new Promise((resolve) => {
+      setTimeout(() => resolve('file.pdf'), 3000);
+    });
+    
+    toast.promise(uploadPromise, {
+      loading: 'Uploading file...',
+      success: (filename) => \`\${filename} uploaded successfully!\`,
+      error: 'Upload failed. Please try again.'
+    });
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Button onClick={showPromiseToast}>
+        Promise Toast (Random Result)
+      </Button>
+      <Button onClick={showFileUploadToast}>
+        File Upload Toast
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-col gap-2">
+    <Button onClick={() => {
+      const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          Math.random() > 0.5 ? resolve('Success!') : reject('Failed!');
+        }, 2000);
+      });
+      
+      toast.promise(promise, {
+        loading: 'Processing your request...',
+        success: (data) => `Operation completed: ${data}`,
+        error: (error) => `Operation failed: ${error}`
+      });
+    }}>
+      Promise Toast (Random Result)
+    </Button>
+    <Button onClick={() => {
+      const uploadPromise = new Promise((resolve) => {
+        setTimeout(() => resolve('file.pdf'), 3000);
+      });
+      
+      toast.promise(uploadPromise, {
+        loading: 'Uploading file...',
+        success: (filename) => `${filename} uploaded successfully!`,
+        error: 'Upload failed. Please try again.'
+      });
+    }}>
+      File Upload Toast
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Toast Management
+
+<ComponentDocSection
+  code={`import { toast, Button } from "buildgrid-ui";
+
+function ToastManagement() {
+  const showMultipleToasts = () => {
+    toast.success('First toast');
+    toast.info('Second toast');
+    toast.warning('Third toast');
+  };
+
+  const dismissAllToasts = () => {
+    toast.dismiss();
+  };
+
+  const showDismissibleToast = () => {
+    const toastId = toast.info('This toast can be dismissed programmatically', {
+      duration: Infinity
+    });
+    
+    setTimeout(() => {
+      toast.dismiss(toastId);
+    }, 3000);
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Button onClick={showMultipleToasts}>
+        Show Multiple Toasts
+      </Button>
+      <Button onClick={dismissAllToasts} variant="outline">
+        Dismiss All Toasts
+      </Button>
+      <Button onClick={showDismissibleToast}>
+        Auto-Dismiss Toast (3s)
+      </Button>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-col gap-2">
+    <Button onClick={() => {
+      toast.success('First toast');
+      toast.info('Second toast');
+      toast.warning('Third toast');
+    }}>
+      Show Multiple Toasts
+    </Button>
+    <Button onClick={() => toast.dismiss()} variant="outline">
+      Dismiss All Toasts
+    </Button>
+    <Button onClick={() => {
+      const toastId = toast.info('This toast can be dismissed programmatically', {
+        duration: Infinity
+      });
+      
+      setTimeout(() => {
+        toast.dismiss(toastId);
+      }, 3000);
+    }}>
+      Auto-Dismiss Toast (3s)
+    </Button>
+  </div>
+</ComponentDocSection>
+
+## Form Integration
+
+<ComponentDocSection
+  code={`import { toast, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { useState } from "react";
+
+function FormWithToasts() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast.success('Form submitted successfully!', {
+        action: {
+          label: 'View',
+          onClick: () => toast.info('Opening submission details...')
+        }
+      });
+    } catch (error) {
+      toast.error('Failed to submit form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleSaveDraft = () => {
+    toast.info('Draft saved automatically', {
+      duration: 2000
+    });
+  };
+
+  const handleValidationError = () => {
+    toast.error('Please fill in all required fields');
+  };
+
+  return (
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Contact Form</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Button 
+            type="submit" 
+            className="w-full"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit Form'}
+          </Button>
+        </form>
+        
+        <div className="flex gap-2">
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={handleSaveDraft}
+          >
+            Save Draft
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={handleValidationError}
+          >
+            Trigger Validation Error
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+      
+      try {
+        // Simulate form submission
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        toast.success('Form submitted successfully!', {
+          action: {
+            label: 'View',
+            onClick: () => toast.info('Opening submission details...')
+          }
+        });
+      } catch (error) {
+        toast.error('Failed to submit form. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+
+    const handleSaveDraft = () => {
+      toast.info('Draft saved automatically', {
+        duration: 2000
+      });
+    };
+
+    const handleValidationError = () => {
+      toast.error('Please fill in all required fields');
+    };
+
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Contact Form</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Button 
+              type="submit" 
+              className="w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit Form'}
+            </Button>
+          </form>
+          
+          <div className="flex gap-2">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleSaveDraft}
+            >
+              Save Draft
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleValidationError}
+            >
+              Trigger Validation Error
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Toaster`
+
+| Property | Type | Description |
+|---|---|---|
+| `position` | `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right"` | Position of the toast container. |
+| `hotkey` | `string[]` | Keyboard shortcut to focus toaster. |
+| `richColors` | `boolean` | Whether to use rich colors for different toast types. |
+| `expand` | `boolean` | Whether toasts should expand on hover. |
+| `duration` | `number` | Default duration for all toasts in milliseconds. |
+| `gap` | `number` | Gap between toasts in pixels. |
+| `visibleToasts` | `number` | Maximum number of visible toasts. |
+| `closeButton` | `boolean` | Whether to show close button on toasts. |
+| `toastOptions` | `object` | Default options for all toasts. |
+| `className` | `string` | Additional CSS classes for the toaster. |
+
+### `toast` Functions
+
+| Function | Parameters | Description |
+|---|---|---|
+| `toast.success` | `(message, options?)` | Show a success toast. |
+| `toast.error` | `(message, options?)` | Show an error toast. |
+| `toast.warning` | `(message, options?)` | Show a warning toast. |
+| `toast.info` | `(message, options?)` | Show an info toast. |
+| `toast.promise` | `(promise, options)` | Show toast based on promise state. |
+| `toast.dismiss` | `(toastId?)` | Dismiss specific toast or all toasts. |
+| `toast.loading` | `(message, options?)` | Show a loading toast. |
+
+### Toast Options
+
+| Property | Type | Description |
+|---|---|---|
+| `duration` | `number` | Duration in milliseconds. Use `Infinity` for persistent. |
+| `action` | `{ label: string, onClick: () => void }` | Action button for the toast. |
+| `cancel` | `{ label: string, onClick: () => void }` | Cancel button for the toast. |
+| `id` | `string` | Custom ID for the toast. |
+| `onDismiss` | `() => void` | Callback when toast is dismissed. |
+| `onAutoClose` | `() => void` | Callback when toast auto-closes. |
+
+## Accessibility
+
+The Toaster component includes comprehensive accessibility features:
+
+- **Screen Reader Support** - Toast messages announced to screen readers
+- **Keyboard Navigation** - Keyboard shortcuts and focus management
+- **ARIA Live Regions** - Proper ARIA live regions for dynamic content
+- **Focus Management** - Maintains focus context when toasts appear
+- **High Contrast** - Supports high contrast mode and themes
+- **Reduced Motion** - Respects user's motion preferences
+
+## Common Use Cases
+
+The Toaster component is perfect for:
+
+- **Form Feedback** - Success and error messages for form submissions
+- **Action Confirmations** - Confirm user actions like save, delete, update
+- **System Notifications** - System status updates and alerts
+- **Progress Updates** - Show progress of long-running operations
+- **Undo Actions** - Provide undo functionality for destructive actions
+- **API Responses** - Display API success and error responses
+- **Real-time Updates** - Show real-time notifications and updates
+
+## Best Practices
+
+1. **Appropriate Types** - Use correct toast types for different message contexts
+2. **Clear Messages** - Write concise and actionable toast messages
+3. **Reasonable Duration** - Set appropriate durations based on message importance
+4. **Action Buttons** - Provide relevant actions when applicable
+5. **Avoid Overuse** - Don't overwhelm users with too many toasts
+6. **Consistent Positioning** - Use consistent toast positioning throughout your app
+7. **Error Handling** - Always provide clear error messages and recovery options
+8. **Performance** - Limit the number of simultaneous toasts for better UX
+
+<Toaster />

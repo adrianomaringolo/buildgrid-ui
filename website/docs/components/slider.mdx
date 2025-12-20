@@ -1,37 +1,52 @@
 ---
 id: slider
-title: Slider
-description: Um controle deslizante para selecionar valores numéricos dentro de um intervalo específico.
 ---
 
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
 import { StorybookLink } from "@site/src/components/docs/StorybookLink";
-import { Slider, Label } from 'buildgrid-ui'
+import { Slider, Label, Card, CardContent, Button } from "buildgrid-ui";
 
 # Slider
 
 <StorybookLink path="components-slider--default" />
 
-O componente Slider permite aos usuários selecionar um valor ou intervalo de valores deslizando um controle ao longo de uma trilha. É ideal para configurações, filtros e qualquer interface que precise de seleção de valores numéricos.
+The `Slider` component allows users to select a value or range of values by sliding a handle along a track. Built on Radix UI, it provides accessibility features, keyboard navigation, and smooth interactions. Perfect for settings, filters, volume controls, and any interface requiring numeric value selection.
 
-## Importação
+## Basic Usage
 
-```tsx
-import { Slider } from 'buildgrid-ui'
-```
-
-## Uso Básico
-
-```tsx
-import { Slider } from 'buildgrid-ui'
-import { useState } from 'react'
+<ComponentDocSection
+  code={`import { Slider } from "buildgrid-ui";
 
 function BasicSlider() {
-  const [value, setValue] = useState([50])
-
   return (
-    <div className="space-y-4">
+    <div className="w-96">
+      <Slider defaultValue={[50]} max={100} step={1} />
+    </div>
+  );
+}`}
+  storybookPath="components-slider--default"
+>
+  <div className="w-96">
+    <Slider defaultValue={[50]} max={100} step={1} />
+  </div>
+</ComponentDocSection>
+
+## Controlled Slider
+
+<ComponentDocSection
+  code={`import { Slider, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function ControlledSlider() {
+  const [value, setValue] = useState([25]);
+  
+  return (
+    <div className="w-96 space-y-4">
       <div>
-        <label className="text-sm font-medium">Volume: {value[0]}%</label>
+        <Label className="text-sm font-medium">
+          Volume: {value[0]}%
+        </Label>
         <Slider
           value={value}
           onValueChange={setValue}
@@ -41,22 +56,700 @@ function BasicSlider() {
         />
       </div>
     </div>
-  )
-}
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = React.useState([25]);
+    
+    return (
+      <div className="w-96 space-y-4">
+        <div>
+          <Label className="text-sm font-medium">
+            Volume: {value[0]}%
+          </Label>
+          <Slider
+            value={value}
+            onValueChange={setValue}
+            max={100}
+            step={1}
+            className="mt-2"
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Range Slider
+
+<ComponentDocSection
+  code={`import { Slider, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function RangeSlider() {
+  const [range, setRange] = useState([25, 75]);
+  
+  return (
+    <div className="w-96 space-y-4">
+      <div>
+        <Label className="text-sm font-medium">
+          Price Range: $\{range[0]} - $\{range[1]}
+        </Label>
+        <Slider
+          value={range}
+          onValueChange={setRange}
+          max={100}
+          step={1}
+          className="mt-2"
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [range, setRange] = React.useState([25, 75]);
+    
+    return (
+      <div className="w-96 space-y-4">
+        <div>
+          <Label className="text-sm font-medium">
+            Price Range: ${range[0]} - ${range[1]}
+          </Label>
+          <Slider
+            value={range}
+            onValueChange={setRange}
+            max={100}
+            step={1}
+            className="mt-2"
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Different Steps
+
+<ComponentDocSection
+  code={`import { Slider, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function StepSliders() {
+  const [step1, setStep1] = useState([50]);
+  const [step5, setStep5] = useState([50]);
+  const [step10, setStep10] = useState([50]);
+  
+  return (
+    <div className="w-96 space-y-6">
+      <div>
+        <Label className="text-sm font-medium">
+          Step 1: {step1[0]}
+        </Label>
+        <Slider
+          value={step1}
+          onValueChange={setStep1}
+          max={100}
+          step={1}
+          className="mt-2"
+        />
+      </div>
+      
+      <div>
+        <Label className="text-sm font-medium">
+          Step 5: {step5[0]}
+        </Label>
+        <Slider
+          value={step5}
+          onValueChange={setStep5}
+          max={100}
+          step={5}
+          className="mt-2"
+        />
+      </div>
+      
+      <div>
+        <Label className="text-sm font-medium">
+          Step 10: {step10[0]}
+        </Label>
+        <Slider
+          value={step10}
+          onValueChange={setStep10}
+          max={100}
+          step={10}
+          className="mt-2"
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [step1, setStep1] = React.useState([50]);
+    const [step5, setStep5] = React.useState([50]);
+    const [step10, setStep10] = React.useState([50]);
+    
+    return (
+      <div className="w-96 space-y-6">
+        <div>
+          <Label className="text-sm font-medium">
+            Step 1: {step1[0]}
+          </Label>
+          <Slider
+            value={step1}
+            onValueChange={setStep1}
+            max={100}
+            step={1}
+            className="mt-2"
+          />
+        </div>
+        
+        <div>
+          <Label className="text-sm font-medium">
+            Step 5: {step5[0]}
+          </Label>
+          <Slider
+            value={step5}
+            onValueChange={setStep5}
+            max={100}
+            step={5}
+            className="mt-2"
+          />
+        </div>
+        
+        <div>
+          <Label className="text-sm font-medium">
+            Step 10: {step10[0]}
+          </Label>
+          <Slider
+            value={step10}
+            onValueChange={setStep10}
+            max={100}
+            step={10}
+            className="mt-2"
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Settings Panel
+
+<ComponentDocSection
+  code={`import { Slider, Label, Card, CardContent } from "buildgrid-ui";
+import { useState } from "react";
+
+function SettingsPanel() {
+  const [settings, setSettings] = useState({
+    volume: [75],
+    brightness: [60],
+    contrast: [50],
+    saturation: [80]
+  });
+  
+  const updateSetting = (key, value) => {
+    setSettings(prev => ({ ...prev, [key]: value }));
+  };
+  
+  return (
+    <Card className="w-96">
+      <CardContent className="p-6">
+        <h3 className="font-semibold mb-4">Display & Audio Settings</h3>
+        
+        <div className="space-y-6">
+          <div>
+            <Label className="text-sm font-medium">
+              Volume: {settings.volume[0]}%
+            </Label>
+            <Slider
+              value={settings.volume}
+              onValueChange={(value) => updateSetting('volume', value)}
+              max={100}
+              step={1}
+              className="mt-2"
+            />
+          </div>
+          
+          <div>
+            <Label className="text-sm font-medium">
+              Brightness: {settings.brightness[0]}%
+            </Label>
+            <Slider
+              value={settings.brightness}
+              onValueChange={(value) => updateSetting('brightness', value)}
+              max={100}
+              step={1}
+              className="mt-2"
+            />
+          </div>
+          
+          <div>
+            <Label className="text-sm font-medium">
+              Contrast: {settings.contrast[0]}%
+            </Label>
+            <Slider
+              value={settings.contrast}
+              onValueChange={(value) => updateSetting('contrast', value)}
+              max={100}
+              step={1}
+              className="mt-2"
+            />
+          </div>
+          
+          <div>
+            <Label className="text-sm font-medium">
+              Saturation: {settings.saturation[0]}%
+            </Label>
+            <Slider
+              value={settings.saturation}
+              onValueChange={(value) => updateSetting('saturation', value)}
+              max={100}
+              step={1}
+              className="mt-2"
+            />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [settings, setSettings] = React.useState({
+      volume: [75],
+      brightness: [60],
+      contrast: [50],
+      saturation: [80]
+    });
+    
+    const updateSetting = (key, value) => {
+      setSettings(prev => ({ ...prev, [key]: value }));
+    };
+    
+    return (
+      <Card className="w-96">
+        <CardContent className="p-6">
+          <h3 className="font-semibold mb-4">Display & Audio Settings</h3>
+          
+          <div className="space-y-6">
+            <div>
+              <Label className="text-sm font-medium">
+                Volume: {settings.volume[0]}%
+              </Label>
+              <Slider
+                value={settings.volume}
+                onValueChange={(value) => updateSetting('volume', value)}
+                max={100}
+                step={1}
+                className="mt-2"
+              />
+            </div>
+            
+            <div>
+              <Label className="text-sm font-medium">
+                Brightness: {settings.brightness[0]}%
+              </Label>
+              <Slider
+                value={settings.brightness}
+                onValueChange={(value) => updateSetting('brightness', value)}
+                max={100}
+                step={1}
+                className="mt-2"
+              />
+            </div>
+            
+            <div>
+              <Label className="text-sm font-medium">
+                Contrast: {settings.contrast[0]}%
+              </Label>
+              <Slider
+                value={settings.contrast}
+                onValueChange={(value) => updateSetting('contrast', value)}
+                max={100}
+                step={1}
+                className="mt-2"
+              />
+            </div>
+            
+            <div>
+              <Label className="text-sm font-medium">
+                Saturation: {settings.saturation[0]}%
+              </Label>
+              <Slider
+                value={settings.saturation}
+                onValueChange={(value) => updateSetting('saturation', value)}
+                max={100}
+                step={1}
+                className="mt-2"
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Price Filter
+
+<ComponentDocSection
+  code={`import { Slider, Label, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function PriceFilter() {
+  const [priceRange, setPriceRange] = useState([200, 800]);
+  const [tempRange, setTempRange] = useState([200, 800]);
+  
+  const applyFilter = () => {
+    setPriceRange(tempRange);
+    alert(\`Filter applied: $\${tempRange[0]} - $\${tempRange[1]}\`);
+  };
+  
+  const resetFilter = () => {
+    setTempRange([0, 1000]);
+    setPriceRange([0, 1000]);
+  };
+  
+  return (
+    <Card className="w-96">
+      <CardContent className="p-6">
+        <h3 className="font-semibold mb-4">Price Filter</h3>
+        
+        <div className="space-y-4">
+          <div>
+            <Label className="text-sm font-medium">
+              Price Range: $\{tempRange[0]} - $\{tempRange[1]}
+            </Label>
+            <Slider
+              value={tempRange}
+              onValueChange={setTempRange}
+              max={1000}
+              min={0}
+              step={10}
+              className="mt-2"
+            />
+          </div>
+          
+          <div className="flex gap-2">
+            <Button onClick={applyFilter} size="sm">
+              Apply Filter
+            </Button>
+            <Button onClick={resetFilter} variant="outline" size="sm">
+              Reset
+            </Button>
+          </div>
+          
+          <div className="text-sm text-gray-600">
+            Current filter: $\{priceRange[0]} - $\{priceRange[1]}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [priceRange, setPriceRange] = React.useState([200, 800]);
+    const [tempRange, setTempRange] = React.useState([200, 800]);
+    
+    const applyFilter = () => {
+      setPriceRange(tempRange);
+      alert(`Filter applied: $${tempRange[0]} - $${tempRange[1]}`);
+    };
+    
+    const resetFilter = () => {
+      setTempRange([0, 1000]);
+      setPriceRange([0, 1000]);
+    };
+    
+    return (
+      <Card className="w-96">
+        <CardContent className="p-6">
+          <h3 className="font-semibold mb-4">Price Filter</h3>
+          
+          <div className="space-y-4">
+            <div>
+              <Label className="text-sm font-medium">
+                Price Range: ${tempRange[0]} - ${tempRange[1]}
+              </Label>
+              <Slider
+                value={tempRange}
+                onValueChange={setTempRange}
+                max={1000}
+                min={0}
+                step={10}
+                className="mt-2"
+              />
+            </div>
+            
+            <div className="flex gap-2">
+              <Button onClick={applyFilter} size="sm">
+                Apply Filter
+              </Button>
+              <Button onClick={resetFilter} variant="outline" size="sm">
+                Reset
+              </Button>
+            </div>
+            
+            <div className="text-sm text-gray-600">
+              Current filter: ${priceRange[0]} - ${priceRange[1]}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { Slider, Label } from "buildgrid-ui";
+
+function DisabledSliders() {
+  return (
+    <div className="w-96 space-y-6">
+      <div>
+        <Label className="text-sm font-medium text-gray-400">
+          Disabled Single Value: 30
+        </Label>
+        <Slider
+          defaultValue={[30]}
+          max={100}
+          step={1}
+          disabled
+          className="mt-2"
+        />
+      </div>
+      
+      <div>
+        <Label className="text-sm font-medium text-gray-400">
+          Disabled Range: 20 - 80
+        </Label>
+        <Slider
+          defaultValue={[20, 80]}
+          max={100}
+          step={1}
+          disabled
+          className="mt-2"
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="w-96 space-y-6">
+    <div>
+      <Label className="text-sm font-medium text-gray-400">
+        Disabled Single Value: 30
+      </Label>
+      <Slider
+        defaultValue={[30]}
+        max={100}
+        step={1}
+        disabled
+        className="mt-2"
+      />
+    </div>
+    
+    <div>
+      <Label className="text-sm font-medium text-gray-400">
+        Disabled Range: 20 - 80
+      </Label>
+      <Slider
+        defaultValue={[20, 80]}
+        max={100}
+        step={1}
+        disabled
+        className="mt-2"
+      />
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Vertical Orientation
+
+<ComponentDocSection
+  code={`import { Slider, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function VerticalSliders() {
+  const [value1, setValue1] = useState([30]);
+  const [value2, setValue2] = useState([60]);
+  const [value3, setValue3] = useState([80]);
+  
+  return (
+    <div className="flex gap-8 items-end h-64">
+      <div className="flex flex-col items-center gap-2">
+        <Label className="text-sm font-medium">
+          {value1[0]}%
+        </Label>
+        <Slider
+          value={value1}
+          onValueChange={setValue1}
+          orientation="vertical"
+          max={100}
+          step={1}
+          className="h-48"
+        />
+        <Label className="text-xs text-gray-500">Bass</Label>
+      </div>
+      
+      <div className="flex flex-col items-center gap-2">
+        <Label className="text-sm font-medium">
+          {value2[0]}%
+        </Label>
+        <Slider
+          value={value2}
+          onValueChange={setValue2}
+          orientation="vertical"
+          max={100}
+          step={1}
+          className="h-48"
+        />
+        <Label className="text-xs text-gray-500">Mid</Label>
+      </div>
+      
+      <div className="flex flex-col items-center gap-2">
+        <Label className="text-sm font-medium">
+          {value3[0]}%
+        </Label>
+        <Slider
+          value={value3}
+          onValueChange={setValue3}
+          orientation="vertical"
+          max={100}
+          step={1}
+          className="h-48"
+        />
+        <Label className="text-xs text-gray-500">Treble</Label>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value1, setValue1] = React.useState([30]);
+    const [value2, setValue2] = React.useState([60]);
+    const [value3, setValue3] = React.useState([80]);
+    
+    return (
+      <div className="flex gap-8 items-end h-64">
+        <div className="flex flex-col items-center gap-2">
+          <Label className="text-sm font-medium">
+            {value1[0]}%
+          </Label>
+          <Slider
+            value={value1}
+            onValueChange={setValue1}
+            orientation="vertical"
+            max={100}
+            step={1}
+            className="h-48"
+          />
+          <Label className="text-xs text-gray-500">Bass</Label>
+        </div>
+        
+        <div className="flex flex-col items-center gap-2">
+          <Label className="text-sm font-medium">
+            {value2[0]}%
+          </Label>
+          <Slider
+            value={value2}
+            onValueChange={setValue2}
+            orientation="vertical"
+            max={100}
+            step={1}
+            className="h-48"
+          />
+          <Label className="text-xs text-gray-500">Mid</Label>
+        </div>
+        
+        <div className="flex flex-col items-center gap-2">
+          <Label className="text-sm font-medium">
+            {value3[0]}%
+          </Label>
+          <Slider
+            value={value3}
+            onValueChange={setValue3}
+            orientation="vertical"
+            max={100}
+            step={1}
+            className="h-48"
+          />
+          <Label className="text-xs text-gray-500">Treble</Label>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Slider`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number[]` | - | The controlled value of the slider. |
+| `defaultValue` | `number[]` | - | The default value for uncontrolled usage. |
+| `onValueChange` | `(value: number[]) => void` | - | Callback when the value changes. |
+| `min` | `number` | `0` | The minimum value of the slider. |
+| `max` | `number` | `100` | The maximum value of the slider. |
+| `step` | `number` | `1` | The step increment between values. |
+| `orientation` | `"horizontal"` \| `"vertical"` | `"horizontal"` | The orientation of the slider. |
+| `disabled` | `boolean` | `false` | Whether the slider is disabled. |
+| `className` | `string` | - | Additional CSS classes for custom styling. |
+| `dir` | `"ltr"` \| `"rtl"` | - | The reading direction. |
+| `inverted` | `boolean` | `false` | Whether the slider is inverted. |
+| `name` | `string` | - | The name attribute for form submission. |
+
+## Value Handling
+
+### Single Value
+For single value sliders, pass an array with one element:
+```tsx
+const [value, setValue] = useState([50]);
+<Slider value={value} onValueChange={setValue} />
 ```
 
-## API Reference
+### Range Values
+For range sliders, pass an array with two elements:
+```tsx
+const [range, setRange] = useState([25, 75]);
+<Slider value={range} onValueChange={setRange} />
+```
 
-### Slider
+## Accessibility
 
-| Prop | Tipo | Padrão | Descrição |
-|---|---|---|---|
-| `defaultValue` | `number[]` | - | Valor inicial do slider (não controlado). |
-| `value` | `number[]` | - | Valor atual do slider (controlado). |
-| `onValueChange` | `(value: number[]) => void` | - | Callback chamado quando o valor muda. |
-| `min` | `number` | `0` | Valor mínimo. |
-| `max` | `number` | `100` | Valor máximo. |
-| `step` | `number` | `1` | Incremento entre valores. |
-| `orientation` | `"horizontal"` \| `"vertical"` | `"horizontal"` | Orientação do slider. |
-| `disabled` | `boolean` | `false` | Se `true`, desabilita o slider. |
-| `className` | `string` | - | Classes CSS adicionais. |
+The Slider component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys to adjust values, Home/End for min/max
+- **Screen Reader Support** - Proper ARIA attributes and value announcements
+- **Focus Management** - Clear focus indicators for each thumb
+- **Touch Support** - Optimized for touch devices and mobile interactions
+- **Value Constraints** - Automatic clamping to min/max values
+- **Step Validation** - Values automatically snap to valid step increments
+
+## Common Use Cases
+
+The Slider component is perfect for:
+
+- **Settings & Preferences** - Volume, brightness, contrast, and other adjustable settings
+- **Filters & Search** - Price ranges, date ranges, and numeric filters
+- **Media Controls** - Audio/video scrubbing, volume control, playback speed
+- **Data Visualization** - Interactive charts, timeline controls, zoom levels
+- **Form Inputs** - Numeric input with visual feedback and constraints
+- **Gaming & Apps** - Difficulty levels, sensitivity settings, configuration options
+
+## Best Practices
+
+1. **Clear Labels** - Always provide descriptive labels showing current values
+2. **Appropriate Steps** - Choose step sizes that make sense for your use case
+3. **Visual Feedback** - Show current values and provide immediate visual feedback
+4. **Reasonable Ranges** - Set min/max values that are meaningful to users
+5. **Accessibility** - Ensure keyboard navigation works properly
+6. **Mobile Optimization** - Test touch interactions on various devices
+7. **Performance** - Debounce rapid value changes for expensive operations
+8. **Consistent Behavior** - Maintain consistent slider behavior across your application

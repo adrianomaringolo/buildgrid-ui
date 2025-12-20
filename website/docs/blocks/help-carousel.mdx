@@ -1,3 +1,746 @@
 ---
 id: help-carousel
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { HelpCarousel, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { HelpCircle, Info, BookOpen, Users, Settings, Lightbulb, Play, MessageCircle } from 'lucide-react';
+
+# Help Carousel
+
+<StorybookLink path="blocks-helpcarousel--default" />
+
+The `HelpCarousel` component provides an interactive walkthrough experience for guiding users through your application. Built as a dialog-based carousel, it allows you to create step-by-step tutorials, onboarding flows, and feature introductions. Perfect for user onboarding, feature announcements, and contextual help systems.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { HelpCarousel, Button } from "buildgrid-ui";
+import { HelpCircle } from "lucide-react";
+
+function BasicHelpCarousel() {
+  const steps = [
+    {
+      title: "Welcome!",
+      description: "Let's take a quick tour of the main features."
+    },
+    {
+      title: "Dashboard",
+      description: "Your dashboard shows an overview of your activity and key metrics."
+    },
+    {
+      title: "Navigation",
+      description: "Use the sidebar to navigate between different sections of the app."
+    }
+  ];
+
+  return (
+    <HelpCarousel
+      steps={steps}
+      triggerElement={
+        <Button variant="outline">
+          <HelpCircle className="h-4 w-4 mr-2" />
+          Help
+        </Button>
+      }
+    />
+  );
+}`}
+  storybookPath="blocks-helpcarousel--default"
+>
+  {(() => {
+    const steps = [
+      {
+        title: "Welcome!",
+        description: "Let's take a quick tour of the main features."
+      },
+      {
+        title: "Dashboard",
+        description: "Your dashboard shows an overview of your activity and key metrics."
+      },
+      {
+        title: "Navigation",
+        description: "Use the sidebar to navigate between different sections of the app."
+      }
+    ];
+
+    return (
+      <HelpCarousel
+        steps={steps}
+        triggerElement={
+          <Button variant="outline">
+            <HelpCircle className="h-4 w-4 mr-2" />
+            Help
+          </Button>
+        }
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Onboarding Flow
+
+<ComponentDocSection
+  code={`import { HelpCarousel, Button } from "buildgrid-ui";
+import { Play } from "lucide-react";
+
+function OnboardingFlow() {
+  const onboardingSteps = [
+    {
+      title: "Welcome to TaskFlow",
+      description: (
+        <div className="space-y-3">
+          <p>Welcome to TaskFlow! We're excited to help you manage your projects more efficiently.</p>
+          <p className="text-sm text-gray-600">This quick tour will show you the key features to get you started.</p>
+        </div>
+      )
+    },
+    {
+      title: "Create Your First Project",
+      description: (
+        <div className="space-y-3">
+          <p>Click the "New Project" button to create your first project.</p>
+          <div className="bg-blue-50 p-3 rounded-lg">
+            <p className="text-sm text-blue-800">💡 Tip: Give your project a descriptive name to make it easy to find later.</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Invite Team Members",
+      description: (
+        <div className="space-y-3">
+          <p>Collaborate with your team by inviting members to your projects.</p>
+          <ul className="text-sm space-y-1 text-gray-600">
+            <li>• Go to the Team tab</li>
+            <li>• Click "Invite Member"</li>
+            <li>• Enter their email address</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      title: "Track Progress",
+      description: (
+        <div className="space-y-3">
+          <p>Monitor your project progress with our built-in analytics dashboard.</p>
+          <p className="text-sm text-gray-600">You can view task completion rates, team performance, and project timelines.</p>
+        </div>
+      )
+    },
+    {
+      title: "You're All Set!",
+      description: (
+        <div className="space-y-3">
+          <p>🎉 Congratulations! You're ready to start using TaskFlow.</p>
+          <p className="text-sm text-gray-600">If you need help later, click the help button in the top navigation.</p>
+        </div>
+      )
+    }
+  ];
+
+  return (
+    <HelpCarousel
+      steps={onboardingSteps}
+      triggerElement={
+        <Button>
+          <Play className="h-4 w-4 mr-2" />
+          Start Tour
+        </Button>
+      }
+    />
+  );
+}`}
+>
+  {(() => {
+    const onboardingSteps = [
+      {
+        title: "Welcome to TaskFlow",
+        description: (
+          <div className="space-y-3">
+            <p>Welcome to TaskFlow! We're excited to help you manage your projects more efficiently.</p>
+            <p className="text-sm text-gray-600">This quick tour will show you the key features to get you started.</p>
+          </div>
+        )
+      },
+      {
+        title: "Create Your First Project",
+        description: (
+          <div className="space-y-3">
+            <p>Click the "New Project" button to create your first project.</p>
+            <div className="bg-blue-50 p-3 rounded-lg">
+              <p className="text-sm text-blue-800">💡 Tip: Give your project a descriptive name to make it easy to find later.</p>
+            </div>
+          </div>
+        )
+      },
+      {
+        title: "Invite Team Members",
+        description: (
+          <div className="space-y-3">
+            <p>Collaborate with your team by inviting members to your projects.</p>
+            <ul className="text-sm space-y-1 text-gray-600">
+              <li>• Go to the Team tab</li>
+              <li>• Click "Invite Member"</li>
+              <li>• Enter their email address</li>
+            </ul>
+          </div>
+        )
+      },
+      {
+        title: "Track Progress",
+        description: (
+          <div className="space-y-3">
+            <p>Monitor your project progress with our built-in analytics dashboard.</p>
+            <p className="text-sm text-gray-600">You can view task completion rates, team performance, and project timelines.</p>
+          </div>
+        )
+      },
+      {
+        title: "You're All Set!",
+        description: (
+          <div className="space-y-3">
+            <p>🎉 Congratulations! You're ready to start using TaskFlow.</p>
+            <p className="text-sm text-gray-600">If you need help later, click the help button in the top navigation.</p>
+          </div>
+        )
+      }
+    ];
+
+    return (
+      <HelpCarousel
+        steps={onboardingSteps}
+        triggerElement={
+          <Button>
+            <Play className="h-4 w-4 mr-2" />
+            Start Tour
+          </Button>
+        }
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Feature Announcement
+
+<ComponentDocSection
+  code={`import { HelpCarousel, Button } from "buildgrid-ui";
+import { Lightbulb } from "lucide-react";
+
+function FeatureAnnouncement() {
+  const featureSteps = [
+    {
+      title: "🎉 New Features Available!",
+      description: (
+        <div className="space-y-3">
+          <p>We've added some exciting new features to improve your workflow.</p>
+          <p className="text-sm text-gray-600">Let's explore what's new in this update.</p>
+        </div>
+      )
+    },
+    {
+      title: "Real-time Collaboration",
+      description: (
+        <div className="space-y-3">
+          <p>Now you can see team members working on tasks in real-time.</p>
+          <div className="bg-green-50 p-3 rounded-lg">
+            <p className="text-sm text-green-800">✨ Look for the colored dots next to task names to see who's working on what.</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Advanced Filtering",
+      description: (
+        <div className="space-y-3">
+          <p>Filter tasks by multiple criteria to find exactly what you need.</p>
+          <ul className="text-sm space-y-1 text-gray-600">
+            <li>• Filter by assignee, priority, and status</li>
+            <li>• Save custom filter presets</li>
+            <li>• Quick filter shortcuts</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      title: "Mobile App Updates",
+      description: (
+        <div className="space-y-3">
+          <p>Our mobile app now supports offline mode and push notifications.</p>
+          <p className="text-sm text-gray-600">Download the latest version from your app store to get these features.</p>
+        </div>
+      )
+    }
+  ];
+
+  return (
+    <HelpCarousel
+      steps={featureSteps}
+      triggerElement={
+        <Button variant="outline" className="border-orange-200 text-orange-700 hover:bg-orange-50">
+          <Lightbulb className="h-4 w-4 mr-2" />
+          What's New
+        </Button>
+      }
+    />
+  );
+}`}
+>
+  {(() => {
+    const featureSteps = [
+      {
+        title: "🎉 New Features Available!",
+        description: (
+          <div className="space-y-3">
+            <p>We've added some exciting new features to improve your workflow.</p>
+            <p className="text-sm text-gray-600">Let's explore what's new in this update.</p>
+          </div>
+        )
+      },
+      {
+        title: "Real-time Collaboration",
+        description: (
+          <div className="space-y-3">
+            <p>Now you can see team members working on tasks in real-time.</p>
+            <div className="bg-green-50 p-3 rounded-lg">
+              <p className="text-sm text-green-800">✨ Look for the colored dots next to task names to see who's working on what.</p>
+            </div>
+          </div>
+        )
+      },
+      {
+        title: "Advanced Filtering",
+        description: (
+          <div className="space-y-3">
+            <p>Filter tasks by multiple criteria to find exactly what you need.</p>
+            <ul className="text-sm space-y-1 text-gray-600">
+              <li>• Filter by assignee, priority, and status</li>
+              <li>• Save custom filter presets</li>
+              <li>• Quick filter shortcuts</li>
+            </ul>
+          </div>
+        )
+      },
+      {
+        title: "Mobile App Updates",
+        description: (
+          <div className="space-y-3">
+            <p>Our mobile app now supports offline mode and push notifications.</p>
+            <p className="text-sm text-gray-600">Download the latest version from your app store to get these features.</p>
+          </div>
+        )
+      }
+    ];
+
+    return (
+      <HelpCarousel
+        steps={featureSteps}
+        triggerElement={
+          <Button variant="outline" className="border-orange-200 text-orange-700 hover:bg-orange-50">
+            <Lightbulb className="h-4 w-4 mr-2" />
+            What's New
+          </Button>
+        }
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Contextual Help
+
+<ComponentDocSection
+  code={`import { HelpCarousel, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Info, Users, Settings, MessageCircle } from "lucide-react";
+
+function ContextualHelp() {
+  const dashboardHelp = [
+    {
+      title: "Dashboard Overview",
+      description: (
+        <div className="space-y-3">
+          <p>Your dashboard provides a comprehensive view of your account activity.</p>
+          <p className="text-sm text-gray-600">Here's what each section shows:</p>
+        </div>
+      )
+    },
+    {
+      title: "Activity Feed",
+      description: (
+        <div className="space-y-3">
+          <p>The activity feed shows recent actions across all your projects.</p>
+          <div className="bg-blue-50 p-3 rounded-lg">
+            <p className="text-sm text-blue-800">💡 Click on any activity item to jump directly to that project or task.</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Quick Stats",
+      description: (
+        <div className="space-y-3">
+          <p>The stats cards show your key performance metrics at a glance.</p>
+          <ul className="text-sm space-y-1 text-gray-600">
+            <li>• Total tasks completed this week</li>
+            <li>• Active projects count</li>
+            <li>• Team collaboration score</li>
+          </ul>
+        </div>
+      )
+    }
+  ];
+
+  const teamHelp = [
+    {
+      title: "Team Management",
+      description: "Learn how to effectively manage your team members and their permissions."
+    },
+    {
+      title: "Adding Members",
+      description: "Invite new team members by email and assign them to specific projects."
+    },
+    {
+      title: "Role Permissions",
+      description: "Set appropriate permissions for different team roles: Admin, Editor, or Viewer."
+    }
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Info className="h-5 w-5" />
+            Dashboard Help
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-gray-600 mb-4">
+            Learn about your dashboard features and how to use them effectively.
+          </p>
+          <HelpCarousel
+            steps={dashboardHelp}
+            triggerElement={
+              <Button variant="outline" size="sm">
+                Learn More
+              </Button>
+            }
+          />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Users className="h-5 w-5" />
+            Team Management
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-gray-600 mb-4">
+            Get help with managing your team members and their access levels.
+          </p>
+          <HelpCarousel
+            steps={teamHelp}
+            triggerElement={
+              <Button variant="outline" size="sm">
+                Team Guide
+              </Button>
+            }
+          />
+        </CardContent>
+      </Card>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const dashboardHelp = [
+      {
+        title: "Dashboard Overview",
+        description: (
+          <div className="space-y-3">
+            <p>Your dashboard provides a comprehensive view of your account activity.</p>
+            <p className="text-sm text-gray-600">Here's what each section shows:</p>
+          </div>
+        )
+      },
+      {
+        title: "Activity Feed",
+        description: (
+          <div className="space-y-3">
+            <p>The activity feed shows recent actions across all your projects.</p>
+            <div className="bg-blue-50 p-3 rounded-lg">
+              <p className="text-sm text-blue-800">💡 Click on any activity item to jump directly to that project or task.</p>
+            </div>
+          </div>
+        )
+      },
+      {
+        title: "Quick Stats",
+        description: (
+          <div className="space-y-3">
+            <p>The stats cards show your key performance metrics at a glance.</p>
+            <ul className="text-sm space-y-1 text-gray-600">
+              <li>• Total tasks completed this week</li>
+              <li>• Active projects count</li>
+              <li>• Team collaboration score</li>
+            </ul>
+          </div>
+        )
+      }
+    ];
+
+    const teamHelp = [
+      {
+        title: "Team Management",
+        description: "Learn how to effectively manage your team members and their permissions."
+      },
+      {
+        title: "Adding Members",
+        description: "Invite new team members by email and assign them to specific projects."
+      },
+      {
+        title: "Role Permissions",
+        description: "Set appropriate permissions for different team roles: Admin, Editor, or Viewer."
+      }
+    ];
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Info className="h-5 w-5" />
+              Dashboard Help
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">
+              Learn about your dashboard features and how to use them effectively.
+            </p>
+            <HelpCarousel
+              steps={dashboardHelp}
+              triggerElement={
+                <Button variant="outline" size="sm">
+                  Learn More
+                </Button>
+              }
+            />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              Team Management
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">
+              Get help with managing your team members and their access levels.
+            </p>
+            <HelpCarousel
+              steps={teamHelp}
+              triggerElement={
+                <Button variant="outline" size="sm">
+                  Team Guide
+                </Button>
+              }
+            />
+          </CardContent>
+        </Card>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Different Trigger Elements
+
+<ComponentDocSection
+  code={`import { HelpCarousel, Button } from "buildgrid-ui";
+import { HelpCircle, BookOpen, MessageCircle } from "lucide-react";
+
+function DifferentTriggers() {
+  const steps = [
+    {
+      title: "Getting Started",
+      description: "This help system can be triggered by any element you choose."
+    },
+    {
+      title: "Flexible Design",
+      description: "Use buttons, icons, links, or any clickable element as a trigger."
+    },
+    {
+      title: "Consistent Experience",
+      description: "The carousel dialog provides a consistent help experience across your app."
+    }
+  ];
+
+  return (
+    <div className="flex flex-wrap gap-4">
+      {/* Icon Button */}
+      <HelpCarousel
+        steps={steps}
+        triggerElement={
+          <Button variant="ghost" size="icon">
+            <HelpCircle className="h-4 w-4" />
+          </Button>
+        }
+      />
+
+      {/* Text Link */}
+      <HelpCarousel
+        steps={steps}
+        triggerElement={
+          <Button variant="link" className="p-0 h-auto">
+            Need help?
+          </Button>
+        }
+      />
+
+      {/* Documentation Button */}
+      <HelpCarousel
+        steps={steps}
+        triggerElement={
+          <Button variant="outline">
+            <BookOpen className="h-4 w-4 mr-2" />
+            Documentation
+          </Button>
+        }
+      />
+
+      {/* Support Button */}
+      <HelpCarousel
+        steps={steps}
+        triggerElement={
+          <Button>
+            <MessageCircle className="h-4 w-4 mr-2" />
+            Get Support
+          </Button>
+        }
+      />
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const steps = [
+      {
+        title: "Getting Started",
+        description: "This help system can be triggered by any element you choose."
+      },
+      {
+        title: "Flexible Design",
+        description: "Use buttons, icons, links, or any clickable element as a trigger."
+      },
+      {
+        title: "Consistent Experience",
+        description: "The carousel dialog provides a consistent help experience across your app."
+      }
+    ];
+
+    return (
+      <div className="flex flex-wrap gap-4">
+        <HelpCarousel
+          steps={steps}
+          triggerElement={
+            <Button variant="ghost" size="icon">
+              <HelpCircle className="h-4 w-4" />
+            </Button>
+          }
+        />
+
+        <HelpCarousel
+          steps={steps}
+          triggerElement={
+            <Button variant="link" className="p-0 h-auto">
+              Need help?
+            </Button>
+          }
+        />
+
+        <HelpCarousel
+          steps={steps}
+          triggerElement={
+            <Button variant="outline">
+              <BookOpen className="h-4 w-4 mr-2" />
+              Documentation
+            </Button>
+          }
+        />
+
+        <HelpCarousel
+          steps={steps}
+          triggerElement={
+            <Button>
+              <MessageCircle className="h-4 w-4 mr-2" />
+              Get Support
+            </Button>
+          }
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `HelpCarousel`
+
+| Property | Type | Description |
+|---|---|---|
+| `triggerElement` | `ReactNode` | The element that opens the help carousel when clicked. |
+| `steps` | `HelpStep[]` | Array of help steps to display in the carousel. |
+
+### `HelpStep`
+
+| Property | Type | Description |
+|---|---|---|
+| `title` | `string` | The title for this help step. |
+| `description` | `string \| ReactNode` | The content/description for this step. Can be text or JSX. |
+
+## Navigation Features
+
+The HelpCarousel includes built-in navigation features:
+
+- **Previous/Next Buttons** - Navigate between steps with arrow buttons
+- **Step Indicators** - Visual dots showing current step and total steps
+- **Keyboard Support** - Arrow keys for navigation, Escape to close
+- **Auto-disable** - Previous button disabled on first step, Next button disabled on last step
+
+## Accessibility
+
+The HelpCarousel component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support with arrow keys and Escape
+- **Screen Reader Support** - Proper ARIA labels and dialog semantics
+- **Focus Management** - Focus trapped within dialog during interaction
+- **Step Announcements** - Current step and total steps announced to screen readers
+- **Dialog Semantics** - Uses proper dialog role and labeling
+- **Button States** - Clear indication of disabled navigation buttons
+
+## Common Use Cases
+
+The HelpCarousel component is perfect for:
+
+- **User Onboarding** - Guide new users through key features
+- **Feature Announcements** - Showcase new functionality and updates
+- **Contextual Help** - Provide help specific to current page or feature
+- **Tutorial Flows** - Create step-by-step learning experiences
+- **Product Tours** - Highlight important areas of your application
+- **Documentation** - Present help content in digestible chunks
+- **Training Materials** - Create interactive training sequences
+
+## Best Practices
+
+1. **Keep Steps Focused** - Each step should cover one concept or action
+2. **Use Clear Titles** - Make step titles descriptive and scannable
+3. **Progressive Disclosure** - Start with basics and build complexity
+4. **Visual Consistency** - Maintain consistent styling across all help content
+5. **Appropriate Length** - Limit carousels to 3-7 steps for optimal engagement
+6. **Rich Content** - Use JSX for formatted text, lists, and visual elements
+7. **Context Awareness** - Tailor help content to the user's current context
+8. **Exit Options** - Always provide clear ways to close or skip the help flow

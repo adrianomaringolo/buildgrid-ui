@@ -1,3 +1,774 @@
 ---
 id: popover
 ---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Popover, PopoverContent, PopoverTrigger, Button, Input, Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+import { Settings, User, Bell, Calendar, Info, HelpCircle, MoreHorizontal } from 'lucide-react';
+
+# Popover
+
+<StorybookLink path="components-popover--default" />
+
+The `Popover` component displays rich content in a floating panel anchored to a trigger element. Built on Radix UI, it provides flexible positioning, focus management, and accessibility features. Perfect for tooltips, menus, forms, and contextual information.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Popover, PopoverContent, PopoverTrigger, Button } from "buildgrid-ui";
+
+function BasicPopover() {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Open popover</Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80">
+        <div className="space-y-2">
+          <h4 className="font-medium">Popover Title</h4>
+          <p className="text-sm text-gray-600">
+            This is the content of the popover. You can put any content here.
+          </p>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}`}
+  storybookPath="components-popover--default"
+>
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outline">Open popover</Button>
+    </PopoverTrigger>
+    <PopoverContent className="w-80">
+      <div className="space-y-2">
+        <h4 className="font-medium">Popover Title</h4>
+        <p className="text-sm text-gray-600">
+          This is the content of the popover. You can put any content here.
+        </p>
+      </div>
+    </PopoverContent>
+  </Popover>
+</ComponentDocSection>
+
+## With Form
+
+<ComponentDocSection
+  code={`import { Popover, PopoverContent, PopoverTrigger, Button, Input } from "buildgrid-ui";
+import { Settings } from "lucide-react";
+
+function PopoverWithForm() {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">
+          <Settings className="h-4 w-4 mr-2" />
+          Settings
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80">
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h4 className="font-medium">Account Settings</h4>
+            <p className="text-sm text-gray-600">
+              Update your account preferences.
+            </p>
+          </div>
+          
+          <div className="space-y-3">
+            <div>
+              <label htmlFor="username" className="text-sm font-medium">
+                Username
+              </label>
+              <Input 
+                id="username" 
+                placeholder="Enter username" 
+                defaultValue="john_doe"
+              />
+            </div>
+            
+            <div>
+              <label htmlFor="email" className="text-sm font-medium">
+                Email
+              </label>
+              <Input 
+                id="email" 
+                type="email"
+                placeholder="Enter email" 
+                defaultValue="john@example.com"
+              />
+            </div>
+            
+            <div className="flex gap-2 pt-2">
+              <Button size="sm" className="flex-1">Save</Button>
+              <Button size="sm" variant="outline" className="flex-1">Cancel</Button>
+            </div>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}`}
+>
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outline">
+        <Settings className="h-4 w-4 mr-2" />
+        Settings
+      </Button>
+    </PopoverTrigger>
+    <PopoverContent className="w-80">
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h4 className="font-medium">Account Settings</h4>
+          <p className="text-sm text-gray-600">
+            Update your account preferences.
+          </p>
+        </div>
+        
+        <div className="space-y-3">
+          <div>
+            <label htmlFor="username" className="text-sm font-medium">
+              Username
+            </label>
+            <Input 
+              id="username" 
+              placeholder="Enter username" 
+              defaultValue="john_doe"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="email" className="text-sm font-medium">
+              Email
+            </label>
+            <Input 
+              id="email" 
+              type="email"
+              placeholder="Enter email" 
+              defaultValue="john@example.com"
+            />
+          </div>
+          
+          <div className="flex gap-2 pt-2">
+            <Button size="sm" className="flex-1">Save</Button>
+            <Button size="sm" variant="outline" className="flex-1">Cancel</Button>
+          </div>
+        </div>
+      </div>
+    </PopoverContent>
+  </Popover>
+</ComponentDocSection>
+
+## User Profile Popover
+
+<ComponentDocSection
+  code={`import { Popover, PopoverContent, PopoverTrigger, Button, Avatar, AvatarImage, AvatarFallback } from "buildgrid-ui";
+import { User } from "lucide-react";
+
+function UserProfilePopover() {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="ghost" className="h-8 w-8 rounded-full">
+          <Avatar className="h-8 w-8">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>JS</AvatarFallback>
+          </Avatar>
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-64" align="end">
+        <div className="space-y-3">
+          <div className="flex items-center gap-3">
+            <Avatar className="h-12 w-12">
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>JS</AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="font-medium">John Smith</p>
+              <p className="text-sm text-gray-600">john@example.com</p>
+            </div>
+          </div>
+          
+          <div className="border-t pt-3 space-y-1">
+            <Button variant="ghost" className="w-full justify-start" size="sm">
+              <User className="h-4 w-4 mr-2" />
+              Profile
+            </Button>
+            <Button variant="ghost" className="w-full justify-start" size="sm">
+              <Settings className="h-4 w-4 mr-2" />
+              Settings
+            </Button>
+            <Button variant="ghost" className="w-full justify-start" size="sm">
+              Sign out
+            </Button>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}`}
+>
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="ghost" className="h-8 w-8 rounded-full">
+        <Avatar className="h-8 w-8">
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>JS</AvatarFallback>
+        </Avatar>
+      </Button>
+    </PopoverTrigger>
+    <PopoverContent className="w-64" align="end">
+      <div className="space-y-3">
+        <div className="flex items-center gap-3">
+          <Avatar className="h-12 w-12">
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>JS</AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="font-medium">John Smith</p>
+            <p className="text-sm text-gray-600">john@example.com</p>
+          </div>
+        </div>
+        
+        <div className="border-t pt-3 space-y-1">
+          <Button variant="ghost" className="w-full justify-start" size="sm">
+            <User className="h-4 w-4 mr-2" />
+            Profile
+          </Button>
+          <Button variant="ghost" className="w-full justify-start" size="sm">
+            <Settings className="h-4 w-4 mr-2" />
+            Settings
+          </Button>
+          <Button variant="ghost" className="w-full justify-start" size="sm">
+            Sign out
+          </Button>
+        </div>
+      </div>
+    </PopoverContent>
+  </Popover>
+</ComponentDocSection>
+
+## Information Popover
+
+<ComponentDocSection
+  code={`import { Popover, PopoverContent, PopoverTrigger, Button } from "buildgrid-ui";
+import { Info, HelpCircle } from "lucide-react";
+
+function InformationPopover() {
+  return (
+    <div className="flex gap-4">
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Info className="h-4 w-4" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-72">
+          <div className="space-y-2">
+            <h4 className="font-medium flex items-center gap-2">
+              <Info className="h-4 w-4" />
+              Information
+            </h4>
+            <p className="text-sm text-gray-600">
+              This feature helps you manage your data more efficiently. 
+              Click on items to select them, or use the bulk actions menu 
+              for multiple operations.
+            </p>
+          </div>
+        </PopoverContent>
+      </Popover>
+      
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <HelpCircle className="h-4 w-4" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-80">
+          <div className="space-y-3">
+            <h4 className="font-medium flex items-center gap-2">
+              <HelpCircle className="h-4 w-4" />
+              Need Help?
+            </h4>
+            <div className="space-y-2 text-sm">
+              <p><strong>Keyboard shortcuts:</strong></p>
+              <ul className="space-y-1 text-gray-600">
+                <li>• <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">Ctrl+S</kbd> - Save changes</li>
+                <li>• <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">Ctrl+Z</kbd> - Undo action</li>
+                <li>• <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">Esc</kbd> - Close dialog</li>
+              </ul>
+            </div>
+            <Button size="sm" className="w-full">
+              View Full Documentation
+            </Button>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-4">
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="ghost" size="icon">
+          <Info className="h-4 w-4" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-72">
+        <div className="space-y-2">
+          <h4 className="font-medium flex items-center gap-2">
+            <Info className="h-4 w-4" />
+            Information
+          </h4>
+          <p className="text-sm text-gray-600">
+            This feature helps you manage your data more efficiently. 
+            Click on items to select them, or use the bulk actions menu 
+            for multiple operations.
+          </p>
+        </div>
+      </PopoverContent>
+    </Popover>
+    
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="ghost" size="icon">
+          <HelpCircle className="h-4 w-4" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80">
+        <div className="space-y-3">
+          <h4 className="font-medium flex items-center gap-2">
+            <HelpCircle className="h-4 w-4" />
+            Need Help?
+          </h4>
+          <div className="space-y-2 text-sm">
+            <p><strong>Keyboard shortcuts:</strong></p>
+            <ul className="space-y-1 text-gray-600">
+              <li>• <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">Ctrl+S</kbd> - Save changes</li>
+              <li>• <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">Ctrl+Z</kbd> - Undo action</li>
+              <li>• <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">Esc</kbd> - Close dialog</li>
+            </ul>
+          </div>
+          <Button size="sm" className="w-full">
+            View Full Documentation
+          </Button>
+        </div>
+      </PopoverContent>
+    </Popover>
+  </div>
+</ComponentDocSection>
+
+## Positioning
+
+<ComponentDocSection
+  code={`import { Popover, PopoverContent, PopoverTrigger, Button } from "buildgrid-ui";
+
+function PopoverPositioning() {
+  return (
+    <div className="grid grid-cols-3 gap-4 place-items-center">
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline">Top</Button>
+        </PopoverTrigger>
+        <PopoverContent side="top" className="w-48">
+          <p className="text-sm">Popover positioned on top</p>
+        </PopoverContent>
+      </Popover>
+      
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline">Right</Button>
+        </PopoverTrigger>
+        <PopoverContent side="right" className="w-48">
+          <p className="text-sm">Popover positioned on right</p>
+        </PopoverContent>
+      </Popover>
+      
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline">Bottom</Button>
+        </PopoverTrigger>
+        <PopoverContent side="bottom" className="w-48">
+          <p className="text-sm">Popover positioned on bottom</p>
+        </PopoverContent>
+      </Popover>
+      
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline">Left</Button>
+        </PopoverTrigger>
+        <PopoverContent side="left" className="w-48">
+          <p className="text-sm">Popover positioned on left</p>
+        </PopoverContent>
+      </Popover>
+      
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline">Center</Button>
+        </PopoverTrigger>
+        <PopoverContent align="center" className="w-48">
+          <p className="text-sm">Centered alignment</p>
+        </PopoverContent>
+      </Popover>
+      
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="outline">End</Button>
+        </PopoverTrigger>
+        <PopoverContent align="end" className="w-48">
+          <p className="text-sm">End alignment</p>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}`}
+>
+  <div className="grid grid-cols-3 gap-4 place-items-center">
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Top</Button>
+      </PopoverTrigger>
+      <PopoverContent side="top" className="w-48">
+        <p className="text-sm">Popover positioned on top</p>
+      </PopoverContent>
+    </Popover>
+    
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Right</Button>
+      </PopoverTrigger>
+      <PopoverContent side="right" className="w-48">
+        <p className="text-sm">Popover positioned on right</p>
+      </PopoverContent>
+    </Popover>
+    
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Bottom</Button>
+      </PopoverTrigger>
+      <PopoverContent side="bottom" className="w-48">
+        <p className="text-sm">Popover positioned on bottom</p>
+      </PopoverContent>
+    </Popover>
+    
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Left</Button>
+      </PopoverTrigger>
+      <PopoverContent side="left" className="w-48">
+        <p className="text-sm">Popover positioned on left</p>
+      </PopoverContent>
+    </Popover>
+    
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Center</Button>
+      </PopoverTrigger>
+      <PopoverContent align="center" className="w-48">
+        <p className="text-sm">Centered alignment</p>
+      </PopoverContent>
+    </Popover>
+    
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">End</Button>
+      </PopoverTrigger>
+      <PopoverContent align="end" className="w-48">
+        <p className="text-sm">End alignment</p>
+      </PopoverContent>
+    </Popover>
+  </div>
+</ComponentDocSection>
+
+## Notification Popover
+
+<ComponentDocSection
+  code={`import { Popover, PopoverContent, PopoverTrigger, Button } from "buildgrid-ui";
+import { Bell } from "lucide-react";
+
+function NotificationPopover() {
+  const notifications = [
+    { id: 1, title: 'New message', time: '2 min ago', unread: true },
+    { id: 2, title: 'System update', time: '1 hour ago', unread: true },
+    { id: 3, title: 'Task completed', time: '3 hours ago', unread: false },
+    { id: 4, title: 'Meeting reminder', time: '1 day ago', unread: false },
+  ];
+  
+  const unreadCount = notifications.filter(n => n.unread).length;
+  
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="ghost" size="icon" className="relative">
+          <Bell className="h-4 w-4" />
+          {unreadCount > 0 && (
+            <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+              {unreadCount}
+            </span>
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80" align="end">
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h4 className="font-medium">Notifications</h4>
+            <Button variant="ghost" size="sm">
+              Mark all read
+            </Button>
+          </div>
+          
+          <div className="space-y-2 max-h-64 overflow-y-auto">
+            {notifications.map((notification) => (
+              <div 
+                key={notification.id}
+                className={\`p-2 rounded-lg hover:bg-gray-50 cursor-pointer \${
+                  notification.unread ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+                }\`}
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <p className={\`text-sm \${notification.unread ? 'font-medium' : ''}\`}>
+                      {notification.title}
+                    </p>
+                    <p className="text-xs text-gray-500">{notification.time}</p>
+                  </div>
+                  {notification.unread && (
+                    <div className="h-2 w-2 bg-blue-500 rounded-full mt-1"></div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="border-t pt-2">
+            <Button variant="outline" size="sm" className="w-full">
+              View all notifications
+            </Button>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}`}
+>
+  {(() => {
+    const notifications = [
+      { id: 1, title: 'New message', time: '2 min ago', unread: true },
+      { id: 2, title: 'System update', time: '1 hour ago', unread: true },
+      { id: 3, title: 'Task completed', time: '3 hours ago', unread: false },
+      { id: 4, title: 'Meeting reminder', time: '1 day ago', unread: false },
+    ];
+    
+    const unreadCount = notifications.filter(n => n.unread).length;
+    
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="ghost" size="icon" className="relative">
+            <Bell className="h-4 w-4" />
+            {unreadCount > 0 && (
+              <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                {unreadCount}
+              </span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-80" align="end">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h4 className="font-medium">Notifications</h4>
+              <Button variant="ghost" size="sm">
+                Mark all read
+              </Button>
+            </div>
+            
+            <div className="space-y-2 max-h-64 overflow-y-auto">
+              {notifications.map((notification) => (
+                <div 
+                  key={notification.id}
+                  className={`p-2 rounded-lg hover:bg-gray-50 cursor-pointer ${
+                    notification.unread ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <p className={`text-sm ${notification.unread ? 'font-medium' : ''}`}>
+                        {notification.title}
+                      </p>
+                      <p className="text-xs text-gray-500">{notification.time}</p>
+                    </div>
+                    {notification.unread && (
+                      <div className="h-2 w-2 bg-blue-500 rounded-full mt-1"></div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="border-t pt-2">
+              <Button variant="outline" size="sm" className="w-full">
+                View all notifications
+              </Button>
+            </div>
+          </div>
+        </PopoverContent>
+      </Popover>
+    );
+  })()}
+</ComponentDocSection>
+
+## Context Menu Popover
+
+<ComponentDocSection
+  code={`import { Popover, PopoverContent, PopoverTrigger, Button } from "buildgrid-ui";
+import { MoreHorizontal } from "lucide-react";
+
+function ContextMenuPopover() {
+  return (
+    <div className="p-4 border rounded-lg">
+      <div className="flex items-center justify-between">
+        <div>
+          <h4 className="font-medium">Project Alpha</h4>
+          <p className="text-sm text-gray-600">Last updated 2 hours ago</p>
+        </div>
+        
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-48" align="end">
+            <div className="space-y-1">
+              <Button variant="ghost" className="w-full justify-start" size="sm">
+                Edit
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" size="sm">
+                Duplicate
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" size="sm">
+                Share
+              </Button>
+              <div className="border-t my-1"></div>
+              <Button variant="ghost" className="w-full justify-start text-red-600" size="sm">
+                Delete
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="p-4 border rounded-lg">
+    <div className="flex items-center justify-between">
+      <div>
+        <h4 className="font-medium">Project Alpha</h4>
+        <p className="text-sm text-gray-600">Last updated 2 hours ago</p>
+      </div>
+      
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-48" align="end">
+          <div className="space-y-1">
+            <Button variant="ghost" className="w-full justify-start" size="sm">
+              Edit
+            </Button>
+            <Button variant="ghost" className="w-full justify-start" size="sm">
+              Duplicate
+            </Button>
+            <Button variant="ghost" className="w-full justify-start" size="sm">
+              Share
+            </Button>
+            <div className="border-t my-1"></div>
+            <Button variant="ghost" className="w-full justify-start text-red-600" size="sm">
+              Delete
+            </Button>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `Popover`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | Popover trigger and content components. |
+| `defaultOpen` | `boolean` | Whether the popover is open by default. |
+| `open` | `boolean` | Controlled open state. |
+| `onOpenChange` | `(open: boolean) => void` | Callback when open state changes. |
+
+### `PopoverTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | Render as child element instead of button. |
+| `children` | `ReactNode` | Trigger element content. |
+
+### `PopoverContent`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `side` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` | `"bottom"` | Preferred side to render the popover. |
+| `align` | `"start"` \| `"center"` \| `"end"` | `"center"` | Alignment relative to the trigger. |
+| `sideOffset` | `number` | `4` | Distance from the trigger element. |
+| `alignOffset` | `number` | `0` | Offset along the alignment axis. |
+| `avoidCollisions` | `boolean` | `true` | Whether to avoid viewport collisions. |
+| `collisionBoundary` | `Element \| Element[]` | - | Boundary elements for collision detection. |
+| `sticky` | `"partial"` \| `"always"` | `"partial"` | Sticky behavior when scrolling. |
+| `hideWhenDetached` | `boolean` | `false` | Hide when trigger becomes detached. |
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Popover content. |
+
+### `PopoverAnchor`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | Render as child element. |
+| `children` | `ReactNode` | Anchor element content. |
+
+## Accessibility
+
+The Popover component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support with Escape to close
+- **Focus Management** - Automatic focus handling and restoration
+- **Screen Reader Support** - Proper ARIA attributes and announcements
+- **Portal Rendering** - Renders in document body to avoid z-index issues
+- **Collision Detection** - Automatically repositions to stay in viewport
+- **Dismissible** - Closes on outside click and Escape key
+
+## Common Use Cases
+
+The Popover component is perfect for:
+
+- **Context Menus** - Right-click or action menus for items
+- **User Profiles** - Quick profile information and actions
+- **Notifications** - Notification panels and activity feeds
+- **Forms** - Inline editing and quick input forms
+- **Help & Info** - Contextual help and information tooltips
+- **Settings** - Quick settings and preference panels
+- **Navigation** - Dropdown menus and navigation options
+
+## Best Practices
+
+1. **Appropriate Triggers** - Use clear, accessible trigger elements
+2. **Content Size** - Keep content concise and scannable
+3. **Positioning** - Choose appropriate side and alignment for context
+4. **Mobile Considerations** - Ensure popovers work well on touch devices
+5. **Focus Management** - Test keyboard navigation and focus restoration
+6. **Performance** - Avoid heavy content that might cause layout shifts
+7. **Collision Handling** - Let the component handle viewport collisions automatically
+8. **Consistent Styling** - Maintain consistent popover styling across your app

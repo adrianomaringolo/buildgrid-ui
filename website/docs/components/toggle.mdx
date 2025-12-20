@@ -1,3 +1,675 @@
 ---
 id: toggle
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Toggle, Label, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { Bold, Italic, Underline, Volume2, VolumeX, Wifi, WifiOff, Bell, BellOff, Eye, EyeOff, Heart, Star, Bookmark } from 'lucide-react';
+
+# Toggle
+
+<StorybookLink path="components-toggle--default" />
+
+The `Toggle` component provides a two-state button for binary choices. Built on Radix UI, it offers consistent styling, accessibility features, and smooth state transitions. Perfect for on/off controls, favorites, bookmarks, and any interface requiring toggle functionality.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Toggle } from "buildgrid-ui";
+
+function BasicToggle() {
+  return (
+    <Toggle aria-label="Toggle bold">
+      <Bold className="h-4 w-4" />
+    </Toggle>
+  );
+}`}
+  storybookPath="components-toggle--default"
+>
+  <Toggle aria-label="Toggle bold">
+    <Bold className="h-4 w-4" />
+  </Toggle>
+</ComponentDocSection>
+
+## With Text
+
+<ComponentDocSection
+  code={`import { Toggle } from "buildgrid-ui";
+
+function TextToggle() {
+  return (
+    <div className="flex gap-2">
+      <Toggle>Toggle Me</Toggle>
+      <Toggle defaultPressed>Initially On</Toggle>
+      <Toggle disabled>Disabled</Toggle>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2">
+    <Toggle>Toggle Me</Toggle>
+    <Toggle defaultPressed>Initially On</Toggle>
+    <Toggle disabled>Disabled</Toggle>
+  </div>
+</ComponentDocSection>
+
+## Controlled Toggle
+
+<ComponentDocSection
+  code={`import { Toggle, Label } from "buildgrid-ui";
+import { Volume2, VolumeX } from "lucide-react";
+import { useState } from "react";
+
+function ControlledToggle() {
+  const [isMuted, setIsMuted] = useState(false);
+
+  return (
+    <div className="flex items-center space-x-3">
+      <Toggle 
+        pressed={isMuted} 
+        onPressedChange={setIsMuted}
+        aria-label="Toggle mute"
+      >
+        {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+      </Toggle>
+      <Label>
+        Audio is {isMuted ? 'muted' : 'unmuted'}
+      </Label>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [isMuted, setIsMuted] = React.useState(false);
+
+    return (
+      <div className="flex items-center space-x-3">
+        <Toggle 
+          pressed={isMuted} 
+          onPressedChange={setIsMuted}
+          aria-label="Toggle mute"
+        >
+          {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+        </Toggle>
+        <Label>
+          Audio is {isMuted ? 'muted' : 'unmuted'}
+        </Label>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Different Variants
+
+<ComponentDocSection
+  code={`import { Toggle } from "buildgrid-ui";
+import { Bold } from "lucide-react";
+
+function ToggleVariants() {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Default Variant</h4>
+        <div className="flex gap-2">
+          <Toggle variant="default">
+            <Bold className="h-4 w-4" />
+          </Toggle>
+          <Toggle variant="default" defaultPressed>
+            <Bold className="h-4 w-4" />
+          </Toggle>
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Outline Variant</h4>
+        <div className="flex gap-2">
+          <Toggle variant="outline">
+            <Bold className="h-4 w-4" />
+          </Toggle>
+          <Toggle variant="outline" defaultPressed>
+            <Bold className="h-4 w-4" />
+          </Toggle>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Default Variant</h4>
+      <div className="flex gap-2">
+        <Toggle variant="default">
+          <Bold className="h-4 w-4" />
+        </Toggle>
+        <Toggle variant="default" defaultPressed>
+          <Bold className="h-4 w-4" />
+        </Toggle>
+      </div>
+    </div>
+    
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Outline Variant</h4>
+      <div className="flex gap-2">
+        <Toggle variant="outline">
+          <Bold className="h-4 w-4" />
+        </Toggle>
+        <Toggle variant="outline" defaultPressed>
+          <Bold className="h-4 w-4" />
+        </Toggle>
+      </div>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Different Sizes
+
+<ComponentDocSection
+  code={`import { Toggle } from "buildgrid-ui";
+import { Bold } from "lucide-react";
+
+function ToggleSizes() {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Small</h4>
+        <Toggle size="sm">
+          <Bold className="h-3 w-3" />
+        </Toggle>
+      </div>
+      
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Default</h4>
+        <Toggle size="default">
+          <Bold className="h-4 w-4" />
+        </Toggle>
+      </div>
+      
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Large</h4>
+        <Toggle size="lg">
+          <Bold className="h-5 w-5" />
+        </Toggle>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Small</h4>
+      <Toggle size="sm">
+        <Bold className="h-3 w-3" />
+      </Toggle>
+    </div>
+    
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Default</h4>
+      <Toggle size="default">
+        <Bold className="h-4 w-4" />
+      </Toggle>
+    </div>
+    
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Large</h4>
+      <Toggle size="lg">
+        <Bold className="h-5 w-5" />
+      </Toggle>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Settings Panel
+
+<ComponentDocSection
+  code={`import { Toggle, Label, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Wifi, Bell, Eye } from "lucide-react";
+import { useState } from "react";
+
+function SettingsPanel() {
+  const [settings, setSettings] = useState({
+    wifi: true,
+    notifications: false,
+    visibility: true
+  });
+
+  const updateSetting = (key, value) => {
+    setSettings(prev => ({ ...prev, [key]: value }));
+  };
+
+  return (
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Settings</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Wifi className="h-4 w-4" />
+            <Label htmlFor="wifi-toggle">Wi-Fi</Label>
+          </div>
+          <Toggle
+            id="wifi-toggle"
+            pressed={settings.wifi}
+            onPressedChange={(pressed) => updateSetting('wifi', pressed)}
+            aria-label="Toggle Wi-Fi"
+          />
+        </div>
+        
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Bell className="h-4 w-4" />
+            <Label htmlFor="notifications-toggle">Notifications</Label>
+          </div>
+          <Toggle
+            id="notifications-toggle"
+            pressed={settings.notifications}
+            onPressedChange={(pressed) => updateSetting('notifications', pressed)}
+            aria-label="Toggle notifications"
+          />
+        </div>
+        
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Eye className="h-4 w-4" />
+            <Label htmlFor="visibility-toggle">Public Profile</Label>
+          </div>
+          <Toggle
+            id="visibility-toggle"
+            pressed={settings.visibility}
+            onPressedChange={(pressed) => updateSetting('visibility', pressed)}
+            aria-label="Toggle profile visibility"
+          />
+        </div>
+        
+        <div className="pt-4 border-t">
+          <h4 className="text-sm font-medium mb-2">Current Settings:</h4>
+          <ul className="text-sm text-gray-600 space-y-1">
+            <li>Wi-Fi: {settings.wifi ? 'On' : 'Off'}</li>
+            <li>Notifications: {settings.notifications ? 'On' : 'Off'}</li>
+            <li>Public Profile: {settings.visibility ? 'On' : 'Off'}</li>
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [settings, setSettings] = React.useState({
+      wifi: true,
+      notifications: false,
+      visibility: true
+    });
+
+    const updateSetting = (key, value) => {
+      setSettings(prev => ({ ...prev, [key]: value }));
+    };
+
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Settings</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Wifi className="h-4 w-4" />
+              <Label htmlFor="wifi-toggle">Wi-Fi</Label>
+            </div>
+            <Toggle
+              id="wifi-toggle"
+              pressed={settings.wifi}
+              onPressedChange={(pressed) => updateSetting('wifi', pressed)}
+              aria-label="Toggle Wi-Fi"
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Bell className="h-4 w-4" />
+              <Label htmlFor="notifications-toggle">Notifications</Label>
+            </div>
+            <Toggle
+              id="notifications-toggle"
+              pressed={settings.notifications}
+              onPressedChange={(pressed) => updateSetting('notifications', pressed)}
+              aria-label="Toggle notifications"
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Eye className="h-4 w-4" />
+              <Label htmlFor="visibility-toggle">Public Profile</Label>
+            </div>
+            <Toggle
+              id="visibility-toggle"
+              pressed={settings.visibility}
+              onPressedChange={(pressed) => updateSetting('visibility', pressed)}
+              aria-label="Toggle profile visibility"
+            />
+          </div>
+          
+          <div className="pt-4 border-t">
+            <h4 className="text-sm font-medium mb-2">Current Settings:</h4>
+            <ul className="text-sm text-gray-600 space-y-1">
+              <li>Wi-Fi: {settings.wifi ? 'On' : 'Off'}</li>
+              <li>Notifications: {settings.notifications ? 'On' : 'Off'}</li>
+              <li>Public Profile: {settings.visibility ? 'On' : 'Off'}</li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Interactive Actions
+
+<ComponentDocSection
+  code={`import { Toggle } from "buildgrid-ui";
+import { Heart, Star, Bookmark } from "lucide-react";
+import { useState } from "react";
+
+function InteractiveActions() {
+  const [liked, setLiked] = useState(false);
+  const [starred, setStarred] = useState(true);
+  const [bookmarked, setBookmarked] = useState(false);
+
+  return (
+    <Card className="w-full max-w-md">
+      <CardContent className="p-6">
+        <div className="space-y-4">
+          <h3 className="font-semibold">Article Title</h3>
+          <p className="text-sm text-gray-600">
+            This is a sample article that demonstrates interactive toggle actions.
+          </p>
+          
+          <div className="flex items-center gap-4 pt-4 border-t">
+            <div className="flex items-center gap-2">
+              <Toggle
+                pressed={liked}
+                onPressedChange={setLiked}
+                aria-label="Like article"
+                className="data-[state=on]:text-red-500"
+              >
+                <Heart className={\`h-4 w-4 \${liked ? 'fill-current' : ''}\`} />
+              </Toggle>
+              <span className="text-sm">Like</span>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <Toggle
+                pressed={starred}
+                onPressedChange={setStarred}
+                aria-label="Star article"
+                className="data-[state=on]:text-yellow-500"
+              >
+                <Star className={\`h-4 w-4 \${starred ? 'fill-current' : ''}\`} />
+              </Toggle>
+              <span className="text-sm">Star</span>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <Toggle
+                pressed={bookmarked}
+                onPressedChange={setBookmarked}
+                aria-label="Bookmark article"
+                className="data-[state=on]:text-blue-500"
+              >
+                <Bookmark className={\`h-4 w-4 \${bookmarked ? 'fill-current' : ''}\`} />
+              </Toggle>
+              <span className="text-sm">Save</span>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [liked, setLiked] = React.useState(false);
+    const [starred, setStarred] = React.useState(true);
+    const [bookmarked, setBookmarked] = React.useState(false);
+
+    return (
+      <Card className="w-full max-w-md">
+        <CardContent className="p-6">
+          <div className="space-y-4">
+            <h3 className="font-semibold">Article Title</h3>
+            <p className="text-sm text-gray-600">
+              This is a sample article that demonstrates interactive toggle actions.
+            </p>
+            
+            <div className="flex items-center gap-4 pt-4 border-t">
+              <div className="flex items-center gap-2">
+                <Toggle
+                  pressed={liked}
+                  onPressedChange={setLiked}
+                  aria-label="Like article"
+                  className="data-[state=on]:text-red-500"
+                >
+                  <Heart className={`h-4 w-4 ${liked ? 'fill-current' : ''}`} />
+                </Toggle>
+                <span className="text-sm">Like</span>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <Toggle
+                  pressed={starred}
+                  onPressedChange={setStarred}
+                  aria-label="Star article"
+                  className="data-[state=on]:text-yellow-500"
+                >
+                  <Star className={`h-4 w-4 ${starred ? 'fill-current' : ''}`} />
+                </Toggle>
+                <span className="text-sm">Star</span>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <Toggle
+                  pressed={bookmarked}
+                  onPressedChange={setBookmarked}
+                  aria-label="Bookmark article"
+                  className="data-[state=on]:text-blue-500"
+                >
+                  <Bookmark className={`h-4 w-4 ${bookmarked ? 'fill-current' : ''}`} />
+                </Toggle>
+                <span className="text-sm">Save</span>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Text Formatting Toolbar
+
+<ComponentDocSection
+  code={`import { Toggle } from "buildgrid-ui";
+import { Bold, Italic, Underline } from "lucide-react";
+import { useState } from "react";
+
+function FormattingToolbar() {
+  const [formatting, setFormatting] = useState({
+    bold: false,
+    italic: false,
+    underline: false
+  });
+
+  const toggleFormat = (format) => {
+    setFormatting(prev => ({
+      ...prev,
+      [format]: !prev[format]
+    }));
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-1 p-2 bg-gray-100 rounded-lg w-fit">
+        <Toggle
+          pressed={formatting.bold}
+          onPressedChange={() => toggleFormat('bold')}
+          aria-label="Toggle bold"
+          size="sm"
+        >
+          <Bold className="h-4 w-4" />
+        </Toggle>
+        <Toggle
+          pressed={formatting.italic}
+          onPressedChange={() => toggleFormat('italic')}
+          aria-label="Toggle italic"
+          size="sm"
+        >
+          <Italic className="h-4 w-4" />
+        </Toggle>
+        <Toggle
+          pressed={formatting.underline}
+          onPressedChange={() => toggleFormat('underline')}
+          aria-label="Toggle underline"
+          size="sm"
+        >
+          <Underline className="h-4 w-4" />
+        </Toggle>
+      </div>
+      
+      <div className="p-4 border rounded-lg bg-white min-h-[100px]">
+        <p className={\`
+          \${formatting.bold ? 'font-bold' : ''}
+          \${formatting.italic ? 'italic' : ''}
+          \${formatting.underline ? 'underline' : ''}
+        \`}>
+          This text will be formatted based on the toolbar selections above.
+        </p>
+      </div>
+      
+      <div className="text-sm text-gray-600">
+        Active formatting: {Object.entries(formatting)
+          .filter(([_, active]) => active)
+          .map(([format]) => format)
+          .join(', ') || 'none'}
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [formatting, setFormatting] = React.useState({
+      bold: false,
+      italic: false,
+      underline: false
+    });
+
+    const toggleFormat = (format) => {
+      setFormatting(prev => ({
+        ...prev,
+        [format]: !prev[format]
+      }));
+    };
+
+    return (
+      <div className="space-y-4">
+        <div className="flex gap-1 p-2 bg-gray-100 rounded-lg w-fit">
+          <Toggle
+            pressed={formatting.bold}
+            onPressedChange={() => toggleFormat('bold')}
+            aria-label="Toggle bold"
+            size="sm"
+          >
+            <Bold className="h-4 w-4" />
+          </Toggle>
+          <Toggle
+            pressed={formatting.italic}
+            onPressedChange={() => toggleFormat('italic')}
+            aria-label="Toggle italic"
+            size="sm"
+          >
+            <Italic className="h-4 w-4" />
+          </Toggle>
+          <Toggle
+            pressed={formatting.underline}
+            onPressedChange={() => toggleFormat('underline')}
+            aria-label="Toggle underline"
+            size="sm"
+          >
+            <Underline className="h-4 w-4" />
+          </Toggle>
+        </div>
+        
+        <div className="p-4 border rounded-lg bg-white min-h-[100px]">
+          <p className={`
+            ${formatting.bold ? 'font-bold' : ''}
+            ${formatting.italic ? 'italic' : ''}
+            ${formatting.underline ? 'underline' : ''}
+          `}>
+            This text will be formatted based on the toolbar selections above.
+          </p>
+        </div>
+        
+        <div className="text-sm text-gray-600">
+          Active formatting: {Object.entries(formatting)
+            .filter(([_, active]) => active)
+            .map(([format]) => format)
+            .join(', ') || 'none'}
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Toggle`
+
+| Property | Type | Description |
+|---|---|---|
+| `pressed` | `boolean` | Controlled pressed state of the toggle. |
+| `defaultPressed` | `boolean` | Default pressed state when uncontrolled. |
+| `onPressedChange` | `(pressed: boolean) => void` | Callback fired when pressed state changes. |
+| `disabled` | `boolean` | Whether the toggle is disabled. |
+| `variant` | `"default" \| "outline"` | Visual variant of the toggle. |
+| `size` | `"sm" \| "default" \| "lg"` | Size variant of the toggle. |
+| `className` | `string` | Additional CSS classes for the toggle. |
+| `children` | `ReactNode` | Content of the toggle button. |
+| `asChild` | `boolean` | Render as child element instead of button. |
+| `aria-label` | `string` | Accessible label for screen readers. |
+
+## Accessibility
+
+The Toggle component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Space and Enter keys activate the toggle
+- **Focus Management** - Proper focus indicators and handling
+- **ARIA Support** - Full ARIA attributes including pressed state
+- **Screen Reader Support** - Toggle state changes announced
+- **Semantic HTML** - Uses proper button semantics
+- **High Contrast** - Supports high contrast mode and themes
+
+## Common Use Cases
+
+The Toggle component is perfect for:
+
+- **Settings Controls** - On/off switches for application preferences
+- **Text Formatting** - Bold, italic, underline controls in editors
+- **Interactive Actions** - Like, favorite, bookmark buttons
+- **Visibility Controls** - Show/hide content toggles
+- **Feature Flags** - Enable/disable feature controls
+- **Audio/Video Controls** - Mute, play/pause toggles
+- **Notification Settings** - Enable/disable notification types
+
+## Best Practices
+
+1. **Clear Labels** - Always provide descriptive aria-labels for screen readers
+2. **Visual Feedback** - Ensure clear visual indication of pressed/unpressed states
+3. **Consistent Behavior** - Use consistent toggle behavior throughout your app
+4. **Icon Usage** - Use recognizable icons that clearly indicate the toggle function
+5. **State Management** - Handle controlled vs uncontrolled state appropriately
+6. **Keyboard Support** - Ensure proper keyboard navigation and activation
+7. **Touch Targets** - Ensure adequate touch target size for mobile devices
+8. **Color Contrast** - Maintain sufficient color contrast in all states

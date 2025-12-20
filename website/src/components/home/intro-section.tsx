@@ -62,7 +62,7 @@ export const IntroSection = ({ className }: IntroSectionProps) => {
 						<a
 							href="/buildgrid-ui/docs/intro"
 							className={cn(
-								'group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white!',
+								'border-2 border-purple-600 group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white!',
 								'font-semibold rounded-full hover:from-purple-700 hover:to-blue-700 transform hover:scale-105',
 								'transition-all duration-300 shadow-lg hover:shadow-purple-500/25',
 							)}

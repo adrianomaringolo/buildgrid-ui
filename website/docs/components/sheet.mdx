@@ -1,78 +1,782 @@
 ---
 id: sheet
-title: Sheet
-description: Um painel deslizante que aparece a partir das bordas da tela, ideal para navegação, formulários e conteúdo adicional.
 ---
 
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
 import { StorybookLink } from "@site/src/components/docs/StorybookLink";
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Button, Input, Label } from 'buildgrid-ui'
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Button, Input, Label, Card, CardContent } from "buildgrid-ui";
+import { Menu, Settings, User, Bell, Search, X } from 'lucide-react';
 
 # Sheet
 
 <StorybookLink path="components-sheet--default" />
 
-O componente Sheet é um painel deslizante que aparece a partir das bordas da tela. É perfeito para menus de navegação, formulários, configurações ou qualquer conteúdo que precisa de mais espaço sem sair da página atual.
+The `Sheet` component is a sliding panel that appears from the edges of the screen. Built on Radix UI, it provides smooth animations, accessibility features, and flexible positioning. Perfect for navigation menus, forms, settings panels, and any content that needs additional space without leaving the current page.
 
-## Importação
+## Basic Usage
 
-```tsx
-import { 
-  Sheet, 
-  SheetContent, 
-  SheetDescription, 
-  SheetFooter, 
-  SheetHeader, 
-  SheetTitle, 
-  SheetTrigger 
-} from 'buildgrid-ui'
-```
-
-## Uso Básico
-
-```tsx
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Button } from 'buildgrid-ui'
+<ComponentDocSection
+  code={`import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Button } from "buildgrid-ui";
 
 function BasicSheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button>Abrir Sheet</Button>
+        <Button>Open Sheet</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Título do Sheet</SheetTitle>
+          <SheetTitle>Sheet Title</SheetTitle>
           <SheetDescription>
-            Descrição do conteúdo que será exibido no sheet.
+            This is a description of what this sheet contains.
           </SheetDescription>
         </SheetHeader>
         <div className="py-4">
-          <p>Conteúdo do sheet aqui.</p>
+          <p>Sheet content goes here.</p>
         </div>
       </SheetContent>
     </Sheet>
-  )
-}
-```
+  );
+}`}
+  storybookPath="components-sheet--default"
+>
+  <Sheet>
+    <SheetTrigger asChild>
+      <Button>Open Sheet</Button>
+    </SheetTrigger>
+    <SheetContent>
+      <SheetHeader>
+        <SheetTitle>Sheet Title</SheetTitle>
+        <SheetDescription>
+          This is a description of what this sheet contains.
+        </SheetDescription>
+      </SheetHeader>
+      <div className="py-4">
+        <p>Sheet content goes here.</p>
+      </div>
+    </SheetContent>
+  </Sheet>
+</ComponentDocSection>
 
-## API Reference
+## Different Sides
 
-### Sheet
+<ComponentDocSection
+  code={`import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Button } from "buildgrid-ui";
 
-| Prop | Tipo | Descrição |
+function SheetSides() {
+  return (
+    <div className="flex gap-4 flex-wrap">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline">From Right</Button>
+        </SheetTrigger>
+        <SheetContent side="right">
+          <SheetHeader>
+            <SheetTitle>Right Sheet</SheetTitle>
+            <SheetDescription>
+              This sheet slides in from the right side.
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+      
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline">From Left</Button>
+        </SheetTrigger>
+        <SheetContent side="left">
+          <SheetHeader>
+            <SheetTitle>Left Sheet</SheetTitle>
+            <SheetDescription>
+              This sheet slides in from the left side.
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+      
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline">From Top</Button>
+        </SheetTrigger>
+        <SheetContent side="top">
+          <SheetHeader>
+            <SheetTitle>Top Sheet</SheetTitle>
+            <SheetDescription>
+              This sheet slides in from the top.
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+      
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline">From Bottom</Button>
+        </SheetTrigger>
+        <SheetContent side="bottom">
+          <SheetHeader>
+            <SheetTitle>Bottom Sheet</SheetTitle>
+            <SheetDescription>
+              This sheet slides in from the bottom.
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-4 flex-wrap">
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">From Right</Button>
+      </SheetTrigger>
+      <SheetContent side="right">
+        <SheetHeader>
+          <SheetTitle>Right Sheet</SheetTitle>
+          <SheetDescription>
+            This sheet slides in from the right side.
+          </SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+    
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">From Left</Button>
+      </SheetTrigger>
+      <SheetContent side="left">
+        <SheetHeader>
+          <SheetTitle>Left Sheet</SheetTitle>
+          <SheetDescription>
+            This sheet slides in from the left side.
+          </SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+    
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">From Top</Button>
+      </SheetTrigger>
+      <SheetContent side="top">
+        <SheetHeader>
+          <SheetTitle>Top Sheet</SheetTitle>
+          <SheetDescription>
+            This sheet slides in from the top.
+          </SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+    
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">From Bottom</Button>
+      </SheetTrigger>
+      <SheetContent side="bottom">
+        <SheetHeader>
+          <SheetTitle>Bottom Sheet</SheetTitle>
+          <SheetDescription>
+            This sheet slides in from the bottom.
+          </SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  </div>
+</ComponentDocSection>
+
+## Navigation Menu
+
+<ComponentDocSection
+  code={`import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, Button } from "buildgrid-ui";
+import { Menu, User, Settings, Bell, Search } from "lucide-react";
+
+function NavigationSheet() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline" size="icon">
+          <Menu className="h-4 w-4" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-80">
+        <SheetHeader>
+          <SheetTitle>Navigation</SheetTitle>
+        </SheetHeader>
+        
+        <div className="py-4">
+          <nav className="space-y-2">
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100">
+              <User className="h-4 w-4" />
+              Profile
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100">
+              <Settings className="h-4 w-4" />
+              Settings
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100">
+              <Bell className="h-4 w-4" />
+              Notifications
+            </a>
+            <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100">
+              <Search className="h-4 w-4" />
+              Search
+            </a>
+          </nav>
+          
+          <div className="mt-6 pt-6 border-t">
+            <h4 className="font-medium mb-3">Recent</h4>
+            <div className="space-y-2">
+              <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg">
+                Project Alpha
+              </a>
+              <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg">
+                Dashboard Analytics
+              </a>
+              <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg">
+                User Management
+              </a>
+            </div>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}`}
+>
+  <Sheet>
+    <SheetTrigger asChild>
+      <Button variant="outline" size="icon">
+        <Menu className="h-4 w-4" />
+      </Button>
+    </SheetTrigger>
+    <SheetContent side="left" className="w-80">
+      <SheetHeader>
+        <SheetTitle>Navigation</SheetTitle>
+      </SheetHeader>
+      
+      <div className="py-4">
+        <nav className="space-y-2">
+          <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100">
+            <User className="h-4 w-4" />
+            Profile
+          </a>
+          <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100">
+            <Settings className="h-4 w-4" />
+            Settings
+          </a>
+          <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100">
+            <Bell className="h-4 w-4" />
+            Notifications
+          </a>
+          <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100">
+            <Search className="h-4 w-4" />
+            Search
+          </a>
+        </nav>
+        
+        <div className="mt-6 pt-6 border-t">
+          <h4 className="font-medium mb-3">Recent</h4>
+          <div className="space-y-2">
+            <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg">
+              Project Alpha
+            </a>
+            <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg">
+              Dashboard Analytics
+            </a>
+            <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg">
+              User Management
+            </a>
+          </div>
+        </div>
+      </div>
+    </SheetContent>
+  </Sheet>
+</ComponentDocSection>
+
+## Form Sheet
+
+<ComponentDocSection
+  code={`import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Button, Input, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function FormSheet() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(\`Form submitted: \${JSON.stringify(formData, null, 2)}\`);
+  };
+  
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button>Contact Us</Button>
+      </SheetTrigger>
+      <SheetContent className="w-[400px] sm:w-[540px]">
+        <SheetHeader>
+          <SheetTitle>Contact Form</SheetTitle>
+          <SheetDescription>
+            Send us a message and we'll get back to you as soon as possible.
+          </SheetDescription>
+        </SheetHeader>
+        
+        <form onSubmit={handleSubmit} className="space-y-4 py-4">
+          <div>
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              value={formData.name}
+              onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+              placeholder="Your name"
+              required
+            />
+          </div>
+          
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+              placeholder="your@email.com"
+              required
+            />
+          </div>
+          
+          <div>
+            <Label htmlFor="message">Message</Label>
+            <textarea
+              id="message"
+              value={formData.message}
+              onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+              placeholder="Your message..."
+              className="w-full min-h-[100px] px-3 py-2 border border-gray-300 rounded-md resize-none"
+              required
+            />
+          </div>
+          
+          <SheetFooter>
+            <Button type="submit" className="w-full">
+              Send Message
+            </Button>
+          </SheetFooter>
+        </form>
+      </SheetContent>
+    </Sheet>
+  );
+}`}
+>
+  {(() => {
+    const [formData, setFormData] = React.useState({
+      name: '',
+      email: '',
+      message: ''
+    });
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      alert(`Form submitted: ${JSON.stringify(formData, null, 2)}`);
+    };
+    
+    return (
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button>Contact Us</Button>
+        </SheetTrigger>
+        <SheetContent className="w-[400px] sm:w-[540px]">
+          <SheetHeader>
+            <SheetTitle>Contact Form</SheetTitle>
+            <SheetDescription>
+              Send us a message and we'll get back to you as soon as possible.
+            </SheetDescription>
+          </SheetHeader>
+          
+          <form onSubmit={handleSubmit} className="space-y-4 py-4">
+            <div>
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                value={formData.name}
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                placeholder="Your name"
+                required
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="message">Message</Label>
+              <textarea
+                id="message"
+                value={formData.message}
+                onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                placeholder="Your message..."
+                className="w-full min-h-[100px] px-3 py-2 border border-gray-300 rounded-md resize-none"
+                required
+              />
+            </div>
+            
+            <SheetFooter>
+              <Button type="submit" className="w-full">
+                Send Message
+              </Button>
+            </SheetFooter>
+          </form>
+        </SheetContent>
+      </Sheet>
+    );
+  })()}
+</ComponentDocSection>
+
+## Settings Panel
+
+<ComponentDocSection
+  code={`import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Button, Card, CardContent } from "buildgrid-ui";
+import { Settings } from "lucide-react";
+
+function SettingsSheet() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">
+          <Settings className="h-4 w-4 mr-2" />
+          Settings
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="w-[400px] sm:w-[540px]">
+        <SheetHeader>
+          <SheetTitle>Application Settings</SheetTitle>
+          <SheetDescription>
+            Manage your application preferences and configuration.
+          </SheetDescription>
+        </SheetHeader>
+        
+        <div className="py-4 space-y-4">
+          <Card>
+            <CardContent className="p-4">
+              <h4 className="font-medium mb-2">Appearance</h4>
+              <div className="space-y-2">
+                <label className="flex items-center space-x-2">
+                  <input type="radio" name="theme" value="light" defaultChecked />
+                  <span className="text-sm">Light theme</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input type="radio" name="theme" value="dark" />
+                  <span className="text-sm">Dark theme</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input type="radio" name="theme" value="system" />
+                  <span className="text-sm">System preference</span>
+                </label>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="p-4">
+              <h4 className="font-medium mb-2">Notifications</h4>
+              <div className="space-y-2">
+                <label className="flex items-center space-x-2">
+                  <input type="checkbox" defaultChecked />
+                  <span className="text-sm">Email notifications</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input type="checkbox" />
+                  <span className="text-sm">Push notifications</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input type="checkbox" defaultChecked />
+                  <span className="text-sm">Weekly digest</span>
+                </label>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="p-4">
+              <h4 className="font-medium mb-2">Privacy</h4>
+              <div className="space-y-2">
+                <label className="flex items-center space-x-2">
+                  <input type="checkbox" defaultChecked />
+                  <span className="text-sm">Analytics tracking</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input type="checkbox" />
+                  <span className="text-sm">Marketing emails</span>
+                </label>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}`}
+>
+  <Sheet>
+    <SheetTrigger asChild>
+      <Button variant="outline">
+        <Settings className="h-4 w-4 mr-2" />
+        Settings
+      </Button>
+    </SheetTrigger>
+    <SheetContent className="w-[400px] sm:w-[540px]">
+      <SheetHeader>
+        <SheetTitle>Application Settings</SheetTitle>
+        <SheetDescription>
+          Manage your application preferences and configuration.
+        </SheetDescription>
+      </SheetHeader>
+      
+      <div className="py-4 space-y-4">
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="font-medium mb-2">Appearance</h4>
+            <div className="space-y-2">
+              <label className="flex items-center space-x-2">
+                <input type="radio" name="theme" value="light" defaultChecked />
+                <span className="text-sm">Light theme</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input type="radio" name="theme" value="dark" />
+                <span className="text-sm">Dark theme</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input type="radio" name="theme" value="system" />
+                <span className="text-sm">System preference</span>
+              </label>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="font-medium mb-2">Notifications</h4>
+            <div className="space-y-2">
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" defaultChecked />
+                <span className="text-sm">Email notifications</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" />
+                <span className="text-sm">Push notifications</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" defaultChecked />
+                <span className="text-sm">Weekly digest</span>
+              </label>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-4">
+            <h4 className="font-medium mb-2">Privacy</h4>
+            <div className="space-y-2">
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" defaultChecked />
+                <span className="text-sm">Analytics tracking</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input type="checkbox" />
+                <span className="text-sm">Marketing emails</span>
+              </label>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </SheetContent>
+  </Sheet>
+</ComponentDocSection>
+
+## Controlled Sheet
+
+<ComponentDocSection
+  code={`import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function ControlledSheet() {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2">
+        <Button onClick={() => setIsOpen(true)}>
+          Open Sheet
+        </Button>
+        <Button variant="outline" onClick={() => setIsOpen(false)}>
+          Close Sheet
+        </Button>
+      </div>
+      
+      <p className="text-sm text-gray-600">
+        Sheet is currently: {isOpen ? 'Open' : 'Closed'}
+      </p>
+      
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Controlled Sheet</SheetTitle>
+            <SheetDescription>
+              This sheet's open state is controlled by external buttons.
+            </SheetDescription>
+          </SheetHeader>
+          
+          <div className="py-4">
+            <p className="mb-4">
+              You can control this sheet's visibility from outside components.
+            </p>
+            <Button onClick={() => setIsOpen(false)}>
+              Close from inside
+            </Button>
+          </div>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    
+    return (
+      <div className="space-y-4">
+        <div className="flex gap-2">
+          <Button onClick={() => setIsOpen(true)}>
+            Open Sheet
+          </Button>
+          <Button variant="outline" onClick={() => setIsOpen(false)}>
+            Close Sheet
+          </Button>
+        </div>
+        
+        <p className="text-sm text-gray-600">
+          Sheet is currently: {isOpen ? 'Open' : 'Closed'}
+        </p>
+        
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Controlled Sheet</SheetTitle>
+              <SheetDescription>
+                This sheet's open state is controlled by external buttons.
+              </SheetDescription>
+            </SheetHeader>
+            
+            <div className="py-4">
+              <p className="mb-4">
+                You can control this sheet's visibility from outside components.
+              </p>
+              <Button onClick={() => setIsOpen(false)}>
+                Close from inside
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Sheet`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `defaultOpen` | `boolean` | `false` | The default open state for uncontrolled usage. |
+| `open` | `boolean` | - | The controlled open state of the sheet. |
+| `onOpenChange` | `(open: boolean) => void` | - | Callback when the open state changes. |
+
+### `SheetTrigger`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `asChild` | `boolean` | `false` | Render as child element instead of button. |
+| `children` | `ReactNode` | - | Trigger element content. |
+
+### `SheetContent`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `side` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` | `"right"` | Side of the screen where the sheet appears. |
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Sheet content. |
+
+### `SheetHeader`
+
+| Property | Type | Description |
 |---|---|---|
-| `defaultOpen` | `boolean` | Estado inicial do sheet (não controlado). |
-| `open` | `boolean` | Estado atual do sheet (controlado). |
-| `onOpenChange` | `(open: boolean) => void` | Callback chamado quando o estado muda. |
+| `className` | `string` | Additional CSS classes for the header. |
+| `children` | `ReactNode` | Header content (title, description). |
 
-### SheetTrigger
+### `SheetTitle`
 
-| Prop | Tipo | Descrição |
+| Property | Type | Description |
 |---|---|---|
-| `asChild` | `boolean` | Se `true`, renderiza como o elemento filho em vez de um botão. |
+| `className` | `string` | Additional CSS classes for the title. |
+| `children` | `ReactNode` | Title text. |
 
-### SheetContent
+### `SheetDescription`
 
-| Prop | Tipo | Descrição |
+| Property | Type | Description |
 |---|---|---|
-| `side` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` | Lado da tela de onde o sheet aparece. Padrão: `"right"`. |
-| `className` | `string` | Classes CSS adicionais. |
+| `className` | `string` | Additional CSS classes for the description. |
+| `children` | `ReactNode` | Description text. |
+
+### `SheetFooter`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the footer. |
+| `children` | `ReactNode` | Footer content (buttons, actions). |
+
+## Accessibility
+
+The Sheet component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Escape key to close, Tab navigation within sheet
+- **Focus Management** - Automatic focus trapping and restoration
+- **Screen Reader Support** - Proper ARIA attributes and announcements
+- **Portal Rendering** - Renders in document body to avoid z-index issues
+- **Overlay Interaction** - Click outside to close (can be disabled)
+
+## Common Use Cases
+
+The Sheet component is perfect for:
+
+- **Navigation Menus** - Mobile-friendly navigation and menu systems
+- **Forms & Wizards** - Multi-step forms and data entry workflows
+- **Settings Panels** - Application preferences and configuration
+- **Content Details** - Additional information without page navigation
+- **Shopping Carts** - E-commerce cart and checkout flows
+- **User Profiles** - Profile editing and account management
+- **Filters & Search** - Advanced filtering and search interfaces
+
+## Best Practices
+
+1. **Appropriate Side** - Choose the side that makes sense for your layout and content
+2. **Clear Purpose** - Use descriptive titles and descriptions
+3. **Proper Width** - Set appropriate width for content, especially on larger screens
+4. **Mobile First** - Design sheets with mobile experience in mind
+5. **Focus Management** - Ensure proper focus handling for accessibility
+6. **Content Organization** - Use headers and footers to organize content clearly
+7. **Performance** - Avoid heavy content that might cause layout shifts
+8. **Consistent Behavior** - Maintain consistent sheet behavior across your application

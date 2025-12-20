@@ -1,3 +1,564 @@
 ---
 id: empty-message
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { EmptyItems, Button, Card, CardContent } from "buildgrid-ui";
+import { Search, Users, FileText, ShoppingCart, Mail, Plus, RefreshCw, Upload } from 'lucide-react';
+
+# Empty Message
+
+<StorybookLink path="blocks-emptyitems--default" />
+
+The `EmptyItems` component provides a user-friendly way to display empty states in your application. It helps communicate when no data is available and can guide users on what to do next. Perfect for empty lists, search results, dashboards, and any interface that might not have content to display.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { EmptyItems } from "buildgrid-ui";
+
+function BasicEmptyMessage() {
+  return (
+    <EmptyItems
+      notFoundText="No items found"
+      notFoundAction={
+        <p className="text-sm text-gray-600 text-center mt-2">
+          Try adjusting your search or filters
+        </p>
+      }
+    />
+  );
+}`}
+  storybookPath="blocks-emptyitems--default"
+>
+  <EmptyItems
+    notFoundText="No items found"
+    notFoundAction={
+      <p className="text-sm text-gray-600 text-center mt-2">
+        Try adjusting your search or filters
+      </p>
+    }
+  />
+</ComponentDocSection>
+
+## With Custom Icon
+
+<ComponentDocSection
+  code={`import { EmptyItems } from "buildgrid-ui";
+import { Search } from "lucide-react";
+
+function CustomIconEmptyMessage() {
+  return (
+    <EmptyItems
+      icon={<Search className="h-12 w-12 text-gray-400" />}
+      notFoundText="No search results"
+      notFoundAction={
+        <p className="text-sm text-gray-600 text-center mt-2">
+          We couldn't find any results for your search term
+        </p>
+      }
+    />
+  );
+}`}
+>
+  <EmptyItems
+    icon={<Search className="h-12 w-12 text-gray-400" />}
+    notFoundText="No search results"
+    notFoundAction={
+      <p className="text-sm text-gray-600 text-center mt-2">
+        We couldn't find any results for your search term
+      </p>
+    }
+  />
+</ComponentDocSection>
+
+## With Action Button
+
+<ComponentDocSection
+  code={`import { EmptyItems, Button } from "buildgrid-ui";
+import { Plus } from "lucide-react";
+
+function EmptyMessageWithAction() {
+  return (
+    <EmptyItems
+      icon={<Users className="h-12 w-12 text-gray-400" />}
+      notFoundText="No users yet"
+      notFoundAction={
+        <div className="text-center mt-4">
+          <p className="text-sm text-gray-600 mb-4">
+            Get started by adding your first user
+          </p>
+          <Button>
+            <Plus className="h-4 w-4 mr-2" />
+            Add User
+          </Button>
+        </div>
+      }
+    />
+  );
+}`}
+>
+  <EmptyItems
+    icon={<Users className="h-12 w-12 text-gray-400" />}
+    notFoundText="No users yet"
+    notFoundAction={
+      <div className="text-center mt-4">
+        <p className="text-sm text-gray-600 mb-4">
+          Get started by adding your first user
+        </p>
+        <Button>
+          <Plus className="h-4 w-4 mr-2" />
+          Add User
+        </Button>
+      </div>
+    }
+  />
+</ComponentDocSection>
+
+## Different Scenarios
+
+<ComponentDocSection
+  code={`import { EmptyItems, Button } from "buildgrid-ui";
+import { FileText, ShoppingCart, Mail, RefreshCw } from "lucide-react";
+
+function DifferentScenarios() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Empty Documents */}
+      <Card className="p-4">
+        <EmptyItems
+          icon={<FileText className="h-10 w-10 text-blue-400" />}
+          notFoundText="No documents"
+          notFoundAction={
+            <div className="text-center mt-3">
+              <p className="text-xs text-gray-500 mb-3">
+                Upload your first document to get started
+              </p>
+              <Button size="sm" variant="outline">
+                Upload Document
+              </Button>
+            </div>
+          }
+          className="py-8"
+        />
+      </Card>
+
+      {/* Empty Cart */}
+      <Card className="p-4">
+        <EmptyItems
+          icon={<ShoppingCart className="h-10 w-10 text-green-400" />}
+          notFoundText="Your cart is empty"
+          notFoundAction={
+            <div className="text-center mt-3">
+              <p className="text-xs text-gray-500 mb-3">
+                Add some items to your cart
+              </p>
+              <Button size="sm">
+                Continue Shopping
+              </Button>
+            </div>
+          }
+          className="py-8"
+        />
+      </Card>
+
+      {/* No Messages */}
+      <Card className="p-4">
+        <EmptyItems
+          icon={<Mail className="h-10 w-10 text-purple-400" />}
+          notFoundText="No messages"
+          notFoundAction={
+            <div className="text-center mt-3">
+              <p className="text-xs text-gray-500">
+                Your inbox is empty
+              </p>
+            </div>
+          }
+          className="py-8"
+        />
+      </Card>
+
+      {/* Connection Error */}
+      <Card className="p-4">
+        <EmptyItems
+          icon={<RefreshCw className="h-10 w-10 text-red-400" />}
+          notFoundText="Connection failed"
+          notFoundAction={
+            <div className="text-center mt-3">
+              <p className="text-xs text-gray-500 mb-3">
+                Unable to load data. Please try again.
+              </p>
+              <Button size="sm" variant="outline">
+                <RefreshCw className="h-3 w-3 mr-2" />
+                Retry
+              </Button>
+            </div>
+          }
+          className="py-8"
+        />
+      </Card>
+    </div>
+  );
+}`}
+>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <Card className="p-4">
+      <EmptyItems
+        icon={<FileText className="h-10 w-10 text-blue-400" />}
+        notFoundText="No documents"
+        notFoundAction={
+          <div className="text-center mt-3">
+            <p className="text-xs text-gray-500 mb-3">
+              Upload your first document to get started
+            </p>
+            <Button size="sm" variant="outline">
+              Upload Document
+            </Button>
+          </div>
+        }
+        className="py-8"
+      />
+    </Card>
+
+    <Card className="p-4">
+      <EmptyItems
+        icon={<ShoppingCart className="h-10 w-10 text-green-400" />}
+        notFoundText="Your cart is empty"
+        notFoundAction={
+          <div className="text-center mt-3">
+            <p className="text-xs text-gray-500 mb-3">
+              Add some items to your cart
+            </p>
+            <Button size="sm">
+              Continue Shopping
+            </Button>
+          </div>
+        }
+        className="py-8"
+      />
+    </Card>
+
+    <Card className="p-4">
+      <EmptyItems
+        icon={<Mail className="h-10 w-10 text-purple-400" />}
+        notFoundText="No messages"
+        notFoundAction={
+          <div className="text-center mt-3">
+            <p className="text-xs text-gray-500">
+              Your inbox is empty
+            </p>
+          </div>
+        }
+        className="py-8"
+      />
+    </Card>
+
+    <Card className="p-4">
+      <EmptyItems
+        icon={<RefreshCw className="h-10 w-10 text-red-400" />}
+        notFoundText="Connection failed"
+        notFoundAction={
+          <div className="text-center mt-3">
+            <p className="text-xs text-gray-500 mb-3">
+              Unable to load data. Please try again.
+            </p>
+            <Button size="sm" variant="outline">
+              <RefreshCw className="h-3 w-3 mr-2" />
+              Retry
+            </Button>
+          </div>
+        }
+        className="py-8"
+      />
+    </Card>
+  </div>
+</ComponentDocSection>
+
+## Search Results Empty State
+
+<ComponentDocSection
+  code={`import { EmptyItems, Button } from "buildgrid-ui";
+import { Search } from "lucide-react";
+
+function SearchEmptyState() {
+  const searchTerm = "nonexistent item";
+  
+  return (
+    <div className="border rounded-lg p-8">
+      <EmptyItems
+        icon={<Search className="h-16 w-16 text-gray-300" />}
+        notFoundText={\`No results for "\${searchTerm}"\`}
+        notFoundAction={
+          <div className="text-center mt-4 space-y-3">
+            <p className="text-sm text-gray-600">
+              We couldn't find any results matching your search.
+            </p>
+            <div className="space-y-2">
+              <p className="text-xs text-gray-500">Try:</p>
+              <ul className="text-xs text-gray-500 space-y-1">
+                <li>• Checking your spelling</li>
+                <li>• Using different keywords</li>
+                <li>• Using more general terms</li>
+              </ul>
+            </div>
+            <div className="flex gap-2 justify-center mt-4">
+              <Button variant="outline" size="sm">
+                Clear Search
+              </Button>
+              <Button size="sm">
+                Browse All Items
+              </Button>
+            </div>
+          </div>
+        }
+        className="py-12"
+      />
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const searchTerm = "nonexistent item";
+    
+    return (
+      <div className="border rounded-lg p-8">
+        <EmptyItems
+          icon={<Search className="h-16 w-16 text-gray-300" />}
+          notFoundText={`No results for "${searchTerm}"`}
+          notFoundAction={
+            <div className="text-center mt-4 space-y-3">
+              <p className="text-sm text-gray-600">
+                We couldn't find any results matching your search.
+              </p>
+              <div className="space-y-2">
+                <p className="text-xs text-gray-500">Try:</p>
+                <ul className="text-xs text-gray-500 space-y-1">
+                  <li>• Checking your spelling</li>
+                  <li>• Using different keywords</li>
+                  <li>• Using more general terms</li>
+                </ul>
+              </div>
+              <div className="flex gap-2 justify-center mt-4">
+                <Button variant="outline" size="sm">
+                  Clear Search
+                </Button>
+                <Button size="sm">
+                  Browse All Items
+                </Button>
+              </div>
+            </div>
+          }
+          className="py-12"
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## File Upload Empty State
+
+<ComponentDocSection
+  code={`import { EmptyItems, Button } from "buildgrid-ui";
+import { Upload } from "lucide-react";
+
+function FileUploadEmptyState() {
+  return (
+    <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
+      <EmptyItems
+        icon={<Upload className="h-12 w-12 text-gray-400" />}
+        notFoundText="No files uploaded"
+        notFoundAction={
+          <div className="text-center mt-4">
+            <p className="text-sm text-gray-600 mb-4">
+              Drag and drop files here, or click to browse
+            </p>
+            <div className="space-y-2">
+              <Button>
+                <Upload className="h-4 w-4 mr-2" />
+                Choose Files
+              </Button>
+              <p className="text-xs text-gray-500">
+                Supports: JPG, PNG, PDF, DOC (Max 10MB)
+              </p>
+            </div>
+          </div>
+        }
+        className="py-8 bg-transparent"
+      />
+    </div>
+  );
+}`}
+>
+  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
+    <EmptyItems
+      icon={<Upload className="h-12 w-12 text-gray-400" />}
+      notFoundText="No files uploaded"
+      notFoundAction={
+        <div className="text-center mt-4">
+          <p className="text-sm text-gray-600 mb-4">
+            Drag and drop files here, or click to browse
+          </p>
+          <div className="space-y-2">
+            <Button>
+              <Upload className="h-4 w-4 mr-2" />
+              Choose Files
+            </Button>
+            <p className="text-xs text-gray-500">
+              Supports: JPG, PNG, PDF, DOC (Max 10MB)
+            </p>
+          </div>
+        </div>
+      }
+      className="py-8 bg-transparent"
+    />
+  </div>
+</ComponentDocSection>
+
+## Custom Styling
+
+<ComponentDocSection
+  code={`import { EmptyItems, Button } from "buildgrid-ui";
+import { Users } from "lucide-react";
+
+function CustomStyledEmptyMessage() {
+  return (
+    <div className="space-y-6">
+      {/* Minimal Style */}
+      <EmptyItems
+        icon={<Users className="h-8 w-8 text-blue-500" />}
+        notFoundText="No team members"
+        notFoundAction={
+          <Button variant="link" className="mt-2">
+            Invite team members
+          </Button>
+        }
+        className="bg-blue-50 border border-blue-200 rounded-lg py-6"
+      />
+
+      {/* Dark Style */}
+      <EmptyItems
+        icon={<Users className="h-10 w-10 text-gray-300" />}
+        notFoundText="No users found"
+        notFoundAction={
+          <p className="text-gray-400 text-sm mt-2">
+            Add users to get started
+          </p>
+        }
+        className="bg-gray-900 text-white rounded-lg py-8"
+      />
+
+      {/* Colorful Style */}
+      <EmptyItems
+        icon={
+          <div className="h-12 w-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+            <Users className="h-6 w-6 text-white" />
+          </div>
+        }
+        notFoundText="Welcome to your dashboard!"
+        notFoundAction={
+          <div className="mt-4">
+            <p className="text-gray-600 text-sm mb-3">
+              Start by adding your first project
+            </p>
+            <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+              Create Project
+            </Button>
+          </div>
+        }
+        className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl py-10"
+      />
+    </div>
+  );
+}`}
+>
+  <div className="space-y-6">
+    <EmptyItems
+      icon={<Users className="h-8 w-8 text-blue-500" />}
+      notFoundText="No team members"
+      notFoundAction={
+        <Button variant="link" className="mt-2">
+          Invite team members
+        </Button>
+      }
+      className="bg-blue-50 border border-blue-200 rounded-lg py-6"
+    />
+
+    <EmptyItems
+      icon={<Users className="h-10 w-10 text-gray-300" />}
+      notFoundText="No users found"
+      notFoundAction={
+        <p className="text-gray-400 text-sm mt-2">
+          Add users to get started
+        </p>
+      }
+      className="bg-gray-900 text-white rounded-lg py-8"
+    />
+
+    <EmptyItems
+      icon={
+        <div className="h-12 w-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+          <Users className="h-6 w-6 text-white" />
+        </div>
+      }
+      notFoundText="Welcome to your dashboard!"
+      notFoundAction={
+        <div className="mt-4">
+          <p className="text-gray-600 text-sm mb-3">
+            Start by adding your first project
+          </p>
+          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+            Create Project
+          </Button>
+        </div>
+      }
+      className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl py-10"
+    />
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `EmptyItems`
+
+| Property | Type | Description |
+|---|---|---|
+| `notFoundText` | `string` | Main message text to display. |
+| `notFoundAction` | `ReactElement` | Optional action element (buttons, links, additional text). |
+| `icon` | `ReactNode` | Custom icon to display. Defaults to CircleOff icon. |
+| `className` | `string` | Additional CSS classes for styling the container. |
+
+## Accessibility
+
+The EmptyItems component includes basic accessibility features:
+
+- **Semantic Structure** - Uses proper div elements with meaningful content
+- **Screen Reader Support** - Text content is accessible to screen readers
+- **Focus Management** - Interactive elements within actions are focusable
+- **Color Contrast** - Default styling maintains good contrast ratios
+- **Responsive Design** - Adapts to different screen sizes
+
+## Common Use Cases
+
+The EmptyItems component is perfect for:
+
+- **Empty Lists** - When data arrays are empty or filtered out
+- **Search Results** - No matches found for search queries
+- **File Uploads** - Before any files have been uploaded
+- **Shopping Carts** - When cart is empty
+- **Dashboards** - No data available for widgets
+- **User Management** - No users or team members yet
+- **Content Management** - No articles, posts, or media
+- **Error States** - Connection failures or loading errors
+
+## Best Practices
+
+1. **Clear Messaging** - Use descriptive, helpful text that explains the situation
+2. **Actionable Content** - Provide next steps or actions when appropriate
+3. **Consistent Icons** - Use relevant icons that match the context
+4. **Appropriate Tone** - Match the tone to your application's voice
+5. **Visual Hierarchy** - Make the message and actions clearly distinguishable
+6. **Responsive Design** - Ensure the component works well on all screen sizes
+7. **Loading States** - Don't show empty states while data is still loading
+8. **Context Awareness** - Tailor messages to the specific situation or user state

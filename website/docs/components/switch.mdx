@@ -1,3 +1,837 @@
 ---
 id: switch
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Switch, Label, Card, CardContent, Button } from "buildgrid-ui";
+
+# Switch
+
+<StorybookLink path="components-switch--default" />
+
+The `Switch` component provides a toggle control for binary choices. Built on Radix UI, it offers accessibility features, keyboard navigation, and smooth animations. Perfect for settings, preferences, feature toggles, and any on/off controls in your application.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Switch } from "buildgrid-ui";
+
+function BasicSwitch() {
+  return (
+    <Switch />
+  );
+}`}
+  storybookPath="components-switch--default"
+>
+  <Switch />
+</ComponentDocSection>
+
+## With Label
+
+<ComponentDocSection
+  code={`import { Switch, Label } from "buildgrid-ui";
+
+function SwitchWithLabel() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Switch id="notifications" />
+      <Label htmlFor="notifications">Enable notifications</Label>
+    </div>
+  );
+}`}
+>
+  <div className="flex items-center space-x-2">
+    <Switch id="notifications" />
+    <Label htmlFor="notifications">Enable notifications</Label>
+  </div>
+</ComponentDocSection>
+
+## Controlled Switch
+
+<ComponentDocSection
+  code={`import { Switch, Label } from "buildgrid-ui";
+import { useState } from "react";
+
+function ControlledSwitch() {
+  const [isEnabled, setIsEnabled] = useState(true);
+  
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Switch 
+          id="controlled" 
+          checked={isEnabled}
+          onCheckedChange={setIsEnabled}
+        />
+        <Label htmlFor="controlled">
+          Notifications are {isEnabled ? 'enabled' : 'disabled'}
+        </Label>
+      </div>
+      
+      <p className="text-sm text-gray-600">
+        Current state: {isEnabled ? 'ON' : 'OFF'}
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [isEnabled, setIsEnabled] = React.useState(true);
+    
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center space-x-2">
+          <Switch 
+            id="controlled" 
+            checked={isEnabled}
+            onCheckedChange={setIsEnabled}
+          />
+          <Label htmlFor="controlled">
+            Notifications are {isEnabled ? 'enabled' : 'disabled'}
+          </Label>
+        </div>
+        
+        <p className="text-sm text-gray-600">
+          Current state: {isEnabled ? 'ON' : 'OFF'}
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Settings Panel
+
+<ComponentDocSection
+  code={`import { Switch, Label, Card, CardContent } from "buildgrid-ui";
+import { useState } from "react";
+
+function SettingsPanel() {
+  const [settings, setSettings] = useState({
+    notifications: true,
+    darkMode: false,
+    autoSave: true,
+    analytics: false,
+    marketing: false
+  });
+  
+  const updateSetting = (key, value) => {
+    setSettings(prev => ({ ...prev, [key]: value }));
+  };
+  
+  return (
+    <Card className="w-96">
+      <CardContent className="p-6">
+        <h3 className="font-semibold mb-4">Preferences</h3>
+        
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="notifications" className="font-medium">
+                Push Notifications
+              </Label>
+              <p className="text-sm text-gray-600">
+                Receive notifications about updates
+              </p>
+            </div>
+            <Switch 
+              id="notifications"
+              checked={settings.notifications}
+              onCheckedChange={(value) => updateSetting('notifications', value)}
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="darkMode" className="font-medium">
+                Dark Mode
+              </Label>
+              <p className="text-sm text-gray-600">
+                Use dark theme interface
+              </p>
+            </div>
+            <Switch 
+              id="darkMode"
+              checked={settings.darkMode}
+              onCheckedChange={(value) => updateSetting('darkMode', value)}
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="autoSave" className="font-medium">
+                Auto Save
+              </Label>
+              <p className="text-sm text-gray-600">
+                Automatically save your work
+              </p>
+            </div>
+            <Switch 
+              id="autoSave"
+              checked={settings.autoSave}
+              onCheckedChange={(value) => updateSetting('autoSave', value)}
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="analytics" className="font-medium">
+                Analytics
+              </Label>
+              <p className="text-sm text-gray-600">
+                Help improve our service
+              </p>
+            </div>
+            <Switch 
+              id="analytics"
+              checked={settings.analytics}
+              onCheckedChange={(value) => updateSetting('analytics', value)}
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="marketing" className="font-medium">
+                Marketing Emails
+              </Label>
+              <p className="text-sm text-gray-600">
+                Receive product updates and offers
+              </p>
+            </div>
+            <Switch 
+              id="marketing"
+              checked={settings.marketing}
+              onCheckedChange={(value) => updateSetting('marketing', value)}
+            />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [settings, setSettings] = React.useState({
+      notifications: true,
+      darkMode: false,
+      autoSave: true,
+      analytics: false,
+      marketing: false
+    });
+    
+    const updateSetting = (key, value) => {
+      setSettings(prev => ({ ...prev, [key]: value }));
+    };
+    
+    return (
+      <Card className="w-96">
+        <CardContent className="p-6">
+          <h3 className="font-semibold mb-4">Preferences</h3>
+          
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="notifications" className="font-medium">
+                  Push Notifications
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Receive notifications about updates
+                </p>
+              </div>
+              <Switch 
+                id="notifications"
+                checked={settings.notifications}
+                onCheckedChange={(value) => updateSetting('notifications', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="darkMode" className="font-medium">
+                  Dark Mode
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Use dark theme interface
+                </p>
+              </div>
+              <Switch 
+                id="darkMode"
+                checked={settings.darkMode}
+                onCheckedChange={(value) => updateSetting('darkMode', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="autoSave" className="font-medium">
+                  Auto Save
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Automatically save your work
+                </p>
+              </div>
+              <Switch 
+                id="autoSave"
+                checked={settings.autoSave}
+                onCheckedChange={(value) => updateSetting('autoSave', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="analytics" className="font-medium">
+                  Analytics
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Help improve our service
+                </p>
+              </div>
+              <Switch 
+                id="analytics"
+                checked={settings.analytics}
+                onCheckedChange={(value) => updateSetting('analytics', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="marketing" className="font-medium">
+                  Marketing Emails
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Receive product updates and offers
+                </p>
+              </div>
+              <Switch 
+                id="marketing"
+                checked={settings.marketing}
+                onCheckedChange={(value) => updateSetting('marketing', value)}
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Feature Toggles
+
+<ComponentDocSection
+  code={`import { Switch, Label, Card, CardContent } from "buildgrid-ui";
+import { useState } from "react";
+
+function FeatureToggles() {
+  const [features, setFeatures] = useState({
+    betaFeatures: false,
+    advancedMode: false,
+    debugMode: false,
+    experimentalUI: false
+  });
+  
+  const toggleFeature = (feature, enabled) => {
+    setFeatures(prev => ({ ...prev, [feature]: enabled }));
+  };
+  
+  return (
+    <Card className="w-96">
+      <CardContent className="p-6">
+        <h3 className="font-semibold mb-4">Feature Flags</h3>
+        
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="betaFeatures" className="font-medium">
+                Beta Features
+              </Label>
+              <p className="text-sm text-gray-600">
+                Access experimental features
+              </p>
+            </div>
+            <Switch 
+              id="betaFeatures"
+              checked={features.betaFeatures}
+              onCheckedChange={(value) => toggleFeature('betaFeatures', value)}
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="advancedMode" className="font-medium">
+                Advanced Mode
+              </Label>
+              <p className="text-sm text-gray-600">
+                Show advanced options and controls
+              </p>
+            </div>
+            <Switch 
+              id="advancedMode"
+              checked={features.advancedMode}
+              onCheckedChange={(value) => toggleFeature('advancedMode', value)}
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="debugMode" className="font-medium">
+                Debug Mode
+              </Label>
+              <p className="text-sm text-gray-600">
+                Enable debugging information
+              </p>
+            </div>
+            <Switch 
+              id="debugMode"
+              checked={features.debugMode}
+              onCheckedChange={(value) => toggleFeature('debugMode', value)}
+            />
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <Label htmlFor="experimentalUI" className="font-medium">
+                Experimental UI
+              </Label>
+              <p className="text-sm text-gray-600">
+                Try our new interface design
+              </p>
+            </div>
+            <Switch 
+              id="experimentalUI"
+              checked={features.experimentalUI}
+              onCheckedChange={(value) => toggleFeature('experimentalUI', value)}
+            />
+          </div>
+        </div>
+        
+        {(features.betaFeatures || features.debugMode) && (
+          <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-sm text-yellow-700">
+              ⚠️ You have experimental features enabled. Some functionality may be unstable.
+            </p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [features, setFeatures] = React.useState({
+      betaFeatures: false,
+      advancedMode: false,
+      debugMode: false,
+      experimentalUI: false
+    });
+    
+    const toggleFeature = (feature, enabled) => {
+      setFeatures(prev => ({ ...prev, [feature]: enabled }));
+    };
+    
+    return (
+      <Card className="w-96">
+        <CardContent className="p-6">
+          <h3 className="font-semibold mb-4">Feature Flags</h3>
+          
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="betaFeatures" className="font-medium">
+                  Beta Features
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Access experimental features
+                </p>
+              </div>
+              <Switch 
+                id="betaFeatures"
+                checked={features.betaFeatures}
+                onCheckedChange={(value) => toggleFeature('betaFeatures', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="advancedMode" className="font-medium">
+                  Advanced Mode
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Show advanced options and controls
+                </p>
+              </div>
+              <Switch 
+                id="advancedMode"
+                checked={features.advancedMode}
+                onCheckedChange={(value) => toggleFeature('advancedMode', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="debugMode" className="font-medium">
+                  Debug Mode
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Enable debugging information
+                </p>
+              </div>
+              <Switch 
+                id="debugMode"
+                checked={features.debugMode}
+                onCheckedChange={(value) => toggleFeature('debugMode', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <div>
+                <Label htmlFor="experimentalUI" className="font-medium">
+                  Experimental UI
+                </Label>
+                <p className="text-sm text-gray-600">
+                  Try our new interface design
+                </p>
+              </div>
+              <Switch 
+                id="experimentalUI"
+                checked={features.experimentalUI}
+                onCheckedChange={(value) => toggleFeature('experimentalUI', value)}
+              />
+            </div>
+          </div>
+          
+          {(features.betaFeatures || features.debugMode) && (
+            <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-sm text-yellow-700">
+                ⚠️ You have experimental features enabled. Some functionality may be unstable.
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { Switch, Label } from "buildgrid-ui";
+
+function DisabledSwitches() {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Switch id="disabled-off" disabled />
+        <Label htmlFor="disabled-off" className="text-gray-400">
+          Disabled (Off)
+        </Label>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Switch id="disabled-on" disabled defaultChecked />
+        <Label htmlFor="disabled-on" className="text-gray-400">
+          Disabled (On)
+        </Label>
+      </div>
+      
+      <div className="p-4 bg-gray-50 rounded-lg">
+        <p className="text-sm text-gray-600 mb-3">
+          These switches are disabled due to insufficient permissions:
+        </p>
+        
+        <div className="space-y-2">
+          <div className="flex items-center space-x-2">
+            <Switch id="admin-1" disabled />
+            <Label htmlFor="admin-1" className="text-gray-400 text-sm">
+              Admin Settings
+            </Label>
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <Switch id="admin-2" disabled />
+            <Label htmlFor="admin-2" className="text-gray-400 text-sm">
+              System Configuration
+            </Label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div className="flex items-center space-x-2">
+      <Switch id="disabled-off" disabled />
+      <Label htmlFor="disabled-off" className="text-gray-400">
+        Disabled (Off)
+      </Label>
+    </div>
+    
+    <div className="flex items-center space-x-2">
+      <Switch id="disabled-on" disabled defaultChecked />
+      <Label htmlFor="disabled-on" className="text-gray-400">
+        Disabled (On)
+      </Label>
+    </div>
+    
+    <div className="p-4 bg-gray-50 rounded-lg">
+      <p className="text-sm text-gray-600 mb-3">
+        These switches are disabled due to insufficient permissions:
+      </p>
+      
+      <div className="space-y-2">
+        <div className="flex items-center space-x-2">
+          <Switch id="admin-1" disabled />
+          <Label htmlFor="admin-1" className="text-gray-400 text-sm">
+            Admin Settings
+          </Label>
+        </div>
+        
+        <div className="flex items-center space-x-2">
+          <Switch id="admin-2" disabled />
+          <Label htmlFor="admin-2" className="text-gray-400 text-sm">
+            System Configuration
+          </Label>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Form Integration
+
+<ComponentDocSection
+  code={`import { Switch, Label, Button, Card, CardContent } from "buildgrid-ui";
+import { useState } from "react";
+
+function SwitchForm() {
+  const [formData, setFormData] = useState({
+    emailNotifications: true,
+    smsNotifications: false,
+    pushNotifications: true,
+    weeklyDigest: false,
+    marketingEmails: false
+  });
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(\`Form submitted with settings: \${JSON.stringify(formData, null, 2)}\`);
+  };
+  
+  const updateSetting = (key, value) => {
+    setFormData(prev => ({ ...prev, [key]: value }));
+  };
+  
+  return (
+    <Card className="w-96">
+      <CardContent className="p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <h3 className="font-semibold">Notification Preferences</h3>
+          
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="emailNotifications" className="font-medium">
+                Email Notifications
+              </Label>
+              <Switch 
+                id="emailNotifications"
+                checked={formData.emailNotifications}
+                onCheckedChange={(value) => updateSetting('emailNotifications', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <Label htmlFor="smsNotifications" className="font-medium">
+                SMS Notifications
+              </Label>
+              <Switch 
+                id="smsNotifications"
+                checked={formData.smsNotifications}
+                onCheckedChange={(value) => updateSetting('smsNotifications', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <Label htmlFor="pushNotifications" className="font-medium">
+                Push Notifications
+              </Label>
+              <Switch 
+                id="pushNotifications"
+                checked={formData.pushNotifications}
+                onCheckedChange={(value) => updateSetting('pushNotifications', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <Label htmlFor="weeklyDigest" className="font-medium">
+                Weekly Digest
+              </Label>
+              <Switch 
+                id="weeklyDigest"
+                checked={formData.weeklyDigest}
+                onCheckedChange={(value) => updateSetting('weeklyDigest', value)}
+              />
+            </div>
+            
+            <div className="flex items-center justify-between">
+              <Label htmlFor="marketingEmails" className="font-medium">
+                Marketing Emails
+              </Label>
+              <Switch 
+                id="marketingEmails"
+                checked={formData.marketingEmails}
+                onCheckedChange={(value) => updateSetting('marketingEmails', value)}
+              />
+            </div>
+          </div>
+          
+          <Button type="submit" className="w-full">
+            Save Preferences
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [formData, setFormData] = React.useState({
+      emailNotifications: true,
+      smsNotifications: false,
+      pushNotifications: true,
+      weeklyDigest: false,
+      marketingEmails: false
+    });
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      alert(`Form submitted with settings: ${JSON.stringify(formData, null, 2)}`);
+    };
+    
+    const updateSetting = (key, value) => {
+      setFormData(prev => ({ ...prev, [key]: value }));
+    };
+    
+    return (
+      <Card className="w-96">
+        <CardContent className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <h3 className="font-semibold">Notification Preferences</h3>
+            
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="emailNotifications" className="font-medium">
+                  Email Notifications
+                </Label>
+                <Switch 
+                  id="emailNotifications"
+                  checked={formData.emailNotifications}
+                  onCheckedChange={(value) => updateSetting('emailNotifications', value)}
+                />
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <Label htmlFor="smsNotifications" className="font-medium">
+                  SMS Notifications
+                </Label>
+                <Switch 
+                  id="smsNotifications"
+                  checked={formData.smsNotifications}
+                  onCheckedChange={(value) => updateSetting('smsNotifications', value)}
+                />
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <Label htmlFor="pushNotifications" className="font-medium">
+                  Push Notifications
+                </Label>
+                <Switch 
+                  id="pushNotifications"
+                  checked={formData.pushNotifications}
+                  onCheckedChange={(value) => updateSetting('pushNotifications', value)}
+                />
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <Label htmlFor="weeklyDigest" className="font-medium">
+                  Weekly Digest
+                </Label>
+                <Switch 
+                  id="weeklyDigest"
+                  checked={formData.weeklyDigest}
+                  onCheckedChange={(value) => updateSetting('weeklyDigest', value)}
+                />
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <Label htmlFor="marketingEmails" className="font-medium">
+                  Marketing Emails
+                </Label>
+                <Switch 
+                  id="marketingEmails"
+                  checked={formData.marketingEmails}
+                  onCheckedChange={(value) => updateSetting('marketingEmails', value)}
+                />
+              </div>
+            </div>
+            
+            <Button type="submit" className="w-full">
+              Save Preferences
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Switch`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `checked` | `boolean` | - | The controlled checked state of the switch. |
+| `defaultChecked` | `boolean` | `false` | The default checked state for uncontrolled usage. |
+| `onCheckedChange` | `(checked: boolean) => void` | - | Callback when the checked state changes. |
+| `disabled` | `boolean` | `false` | Whether the switch is disabled. |
+| `required` | `boolean` | `false` | Whether the switch is required for form submission. |
+| `name` | `string` | - | The name attribute for form submission. |
+| `value` | `string` | `"on"` | The value attribute for form submission. |
+| `id` | `string` | - | The HTML id attribute. |
+| `className` | `string` | - | Additional CSS classes for custom styling. |
+
+## Accessibility
+
+The Switch component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Space and Enter keys to toggle the switch
+- **Screen Reader Support** - Proper ARIA attributes and role announcements
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Form Integration** - Works seamlessly with form validation and submission
+- **Label Association** - Proper label association with switch elements
+- **State Announcement** - Screen readers announce checked/unchecked states
+
+## Common Use Cases
+
+The Switch component is perfect for:
+
+- **Settings & Preferences** - Theme toggles, notification settings, privacy controls
+- **Feature Toggles** - Enable/disable features, beta access, experimental options
+- **User Permissions** - Access controls, role-based permissions, visibility settings
+- **Application State** - Online/offline mode, auto-save, sync settings
+- **Content Filters** - Show/hide content, filter options, display preferences
+- **System Configuration** - Debug mode, maintenance mode, feature flags
+- **Accessibility Options** - High contrast, reduced motion, screen reader mode
+
+## Best Practices
+
+1. **Clear Labels** - Use descriptive labels that clearly explain what the switch controls
+2. **Immediate Feedback** - Provide immediate visual feedback when toggled
+3. **Consistent Behavior** - Ensure switches behave consistently across your application
+4. **Appropriate Defaults** - Choose sensible default states for switches
+5. **Group Related Switches** - Organize related switches together in settings panels
+6. **Accessibility** - Always associate switches with proper labels using htmlFor/id
+7. **Form Integration** - Include switches in form validation and submission logic
+8. **Visual Hierarchy** - Use proper spacing and typography to create clear hierarchy

@@ -1,85 +1,596 @@
 ---
 id: file-upload-dropzone
-title: File Upload Dropzone
-description: Uma área de upload de arquivos com drag & drop, preview de imagens, controle de progresso e validação avançada.
 ---
 
-import { FileUploadDropzone } from 'buildgrid-ui'
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { FileUploadDropzone, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { Upload, FileText, Image, AlertCircle } from 'lucide-react';
 
 # File Upload Dropzone
 
-O FileUploadDropzone é um componente completo para upload de arquivos que oferece uma interface intuitiva com drag & drop, preview de imagens, controle de progresso e validação robusta. Ideal para formulários que precisam de upload de documentos, imagens ou qualquer tipo de arquivo.
+<StorybookLink path="blocks-fileupload--default" />
 
-## Importação
+The `FileUploadDropzone` component provides a complete file upload solution with drag & drop functionality, file previews, progress tracking, and validation. Built with react-dropzone, it offers an intuitive interface for handling single or multiple file uploads with comprehensive error handling and customization options.
 
-```tsx
-import { FileUploadDropzone } from 'buildgrid-ui'
-import type { FileUploadConfig, UploadedFile } from 'buildgrid-ui'
-```
+## Basic Usage
 
-## Uso Básico
-
-```tsx
-import { FileUploadDropzone } from 'buildgrid-ui'
-import { useState } from 'react'
+<ComponentDocSection
+  code={`import { FileUploadDropzone } from "buildgrid-ui";
+import { useState } from "react";
 
 function BasicFileUpload() {
-  const [files, setFiles] = useState<UploadedFile[]>([])
+  const [files, setFiles] = useState([]);
 
   return (
     <FileUploadDropzone
       onFilesChange={setFiles}
-      placeholder="Arraste arquivos aqui ou clique para selecionar"
+      placeholder="Drag files here or click to select"
     />
-  )
-}
-```
+  );
+}`}
+  storybookPath="blocks-fileupload--default"
+>
+  {(() => {
+    const [files, setFiles] = React.useState([]);
 
-## Configuração Personalizada
+    return (
+      <FileUploadDropzone
+        onFilesChange={setFiles}
+        placeholder="Drag files here or click to select"
+      />
+    );
+  })()}
+</ComponentDocSection>
 
-```tsx
-import { FileUploadDropzone } from 'buildgrid-ui'
-import type { FileUploadConfig } from 'buildgrid-ui'
+## With Custom Configuration
+
+<ComponentDocSection
+  code={`import { FileUploadDropzone } from "buildgrid-ui";
+import { useState } from "react";
 
 function CustomConfigUpload() {
-  const config: FileUploadConfig = {
+  const [files, setFiles] = useState([]);
+  
+  const config = {
     maxFiles: 3,
     maxSize: 5 * 1024 * 1024, // 5MB
-    acceptedFileTypes: ['image/*', 'application/pdf', '.doc', '.docx'],
+    acceptedFileTypes: ['image/*', 'application/pdf'],
     multiple: true,
     showPreview: true,
     showProgress: true
-  }
+  };
 
   return (
     <FileUploadDropzone
       config={config}
-      placeholder="Máximo 3 arquivos (imagens ou documentos)"
+      onFilesChange={setFiles}
+      placeholder="Upload up to 3 images or PDFs (max 5MB each)"
     />
-  )
-}
-```
+  );
+}`}
+>
+  {(() => {
+    const [files, setFiles] = React.useState([]);
+    
+    const config = {
+      maxFiles: 3,
+      maxSize: 5 * 1024 * 1024, // 5MB
+      acceptedFileTypes: ['image/*', 'application/pdf'],
+      multiple: true,
+      showPreview: true,
+      showProgress: true
+    };
 
-## API Reference
+    return (
+      <FileUploadDropzone
+        config={config}
+        onFilesChange={setFiles}
+        placeholder="Upload up to 3 images or PDFs (max 5MB each)"
+      />
+    );
+  })()}
+</ComponentDocSection>
 
-### FileUploadDropzone
+## Single File Upload
 
-| Prop | Tipo | Descrição |
+<ComponentDocSection
+  code={`import { FileUploadDropzone } from "buildgrid-ui";
+import { useState } from "react";
+
+function SingleFileUpload() {
+  const [files, setFiles] = useState([]);
+  
+  const config = {
+    maxFiles: 1,
+    multiple: false,
+    acceptedFileTypes: ['image/*'],
+    showPreview: true
+  };
+
+  return (
+    <div className="space-y-4">
+      <FileUploadDropzone
+        config={config}
+        onFilesChange={setFiles}
+        placeholder="Upload a profile picture"
+      />
+      {files.length > 0 && (
+        <div className="text-sm text-gray-600">
+          Selected: {files[0].name}
+        </div>
+      )}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [files, setFiles] = React.useState([]);
+    
+    const config = {
+      maxFiles: 1,
+      multiple: false,
+      acceptedFileTypes: ['image/*'],
+      showPreview: true
+    };
+
+    return (
+      <div className="space-y-4">
+        <FileUploadDropzone
+          config={config}
+          onFilesChange={setFiles}
+          placeholder="Upload a profile picture"
+        />
+        {files.length > 0 && (
+          <div className="text-sm text-gray-600">
+            Selected: {files[0].name}
+          </div>
+        )}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Upload Progress
+
+<ComponentDocSection
+  code={`import { FileUploadDropzone } from "buildgrid-ui";
+import { useState } from "react";
+
+function ProgressUpload() {
+  const [files, setFiles] = useState([]);
+  
+  const handleFileUpload = async (file) => {
+    // Simulate upload progress
+    return new Promise((resolve) => {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 20;
+        // Update file progress here in real implementation
+        if (progress >= 100) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, 500);
+    });
+  };
+
+  const config = {
+    maxFiles: 5,
+    showProgress: true,
+    showPreview: true
+  };
+
+  return (
+    <FileUploadDropzone
+      config={config}
+      onFilesChange={setFiles}
+      onFileUpload={handleFileUpload}
+      placeholder="Files will show upload progress"
+    />
+  );
+}`}
+>
+  {(() => {
+    const [files, setFiles] = React.useState([]);
+    
+    const handleFileUpload = async (file) => {
+      // Simulate upload progress
+      return new Promise((resolve) => {
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += 20;
+          if (progress >= 100) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, 500);
+      });
+    };
+
+    const config = {
+      maxFiles: 5,
+      showProgress: true,
+      showPreview: true
+    };
+
+    return (
+      <FileUploadDropzone
+        config={config}
+        onFilesChange={setFiles}
+        onFileUpload={handleFileUpload}
+        placeholder="Files will show upload progress"
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Document Upload Form
+
+<ComponentDocSection
+  code={`import { FileUploadDropzone, Card, CardContent, CardHeader, CardTitle, Button } from "buildgrid-ui";
+import { useState } from "react";
+import { FileText } from "lucide-react";
+
+function DocumentUploadForm() {
+  const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  
+  const config = {
+    maxFiles: 10,
+    maxSize: 10 * 1024 * 1024, // 10MB
+    acceptedFileTypes: [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'text/plain'
+    ],
+    multiple: true,
+    showPreview: false,
+    showProgress: true
+  };
+
+  const handleSubmit = async () => {
+    if (files.length === 0) return;
+    
+    setUploading(true);
+    // Simulate upload process
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setUploading(false);
+    
+    alert(\`Successfully uploaded \${files.length} document(s)\`);
+    setFiles([]);
+  };
+
+  return (
+    <Card className="w-full max-w-2xl">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <FileText className="h-5 w-5" />
+          Document Upload
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <FileUploadDropzone
+          config={config}
+          onFilesChange={setFiles}
+          placeholder="Upload documents (PDF, DOC, DOCX, TXT)"
+        />
+        
+        {files.length > 0 && (
+          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <span className="text-sm text-gray-600">
+              {files.length} file(s) ready to upload
+            </span>
+            <div className="flex gap-2">
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => setFiles([])}
+                disabled={uploading}
+              >
+                Clear All
+              </Button>
+              <Button 
+                size="sm"
+                onClick={handleSubmit}
+                disabled={uploading}
+              >
+                {uploading ? 'Uploading...' : 'Upload Files'}
+              </Button>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [files, setFiles] = React.useState([]);
+    const [uploading, setUploading] = React.useState(false);
+    
+    const config = {
+      maxFiles: 10,
+      maxSize: 10 * 1024 * 1024, // 10MB
+      acceptedFileTypes: [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'text/plain'
+      ],
+      multiple: true,
+      showPreview: false,
+      showProgress: true
+    };
+
+    const handleSubmit = async () => {
+      if (files.length === 0) return;
+      
+      setUploading(true);
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setUploading(false);
+      
+      alert(`Successfully uploaded ${files.length} document(s)`);
+      setFiles([]);
+    };
+
+    return (
+      <Card className="w-full max-w-2xl">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileText className="h-5 w-5" />
+            Document Upload
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <FileUploadDropzone
+            config={config}
+            onFilesChange={setFiles}
+            placeholder="Upload documents (PDF, DOC, DOCX, TXT)"
+          />
+          
+          {files.length > 0 && (
+            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <span className="text-sm text-gray-600">
+                {files.length} file(s) ready to upload
+              </span>
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setFiles([])}
+                  disabled={uploading}
+                >
+                  Clear All
+                </Button>
+                <Button 
+                  size="sm"
+                  onClick={handleSubmit}
+                  disabled={uploading}
+                >
+                  {uploading ? 'Uploading...' : 'Upload Files'}
+                </Button>
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Image Gallery Upload
+
+<ComponentDocSection
+  code={`import { FileUploadDropzone, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { useState } from "react";
+import { Image } from "lucide-react";
+
+function ImageGalleryUpload() {
+  const [files, setFiles] = useState([]);
+  
+  const config = {
+    maxFiles: 6,
+    maxSize: 5 * 1024 * 1024, // 5MB
+    acceptedFileTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    multiple: true,
+    showPreview: true,
+    showProgress: true
+  };
+
+  return (
+    <Card className="w-full max-w-2xl">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Image className="h-5 w-5" />
+          Photo Gallery
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <FileUploadDropzone
+          config={config}
+          onFilesChange={setFiles}
+          placeholder="Upload photos for your gallery (JPEG, PNG, WebP)"
+        />
+        
+        {files.length > 0 && (
+          <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+            <p className="text-sm text-blue-800">
+              📸 {files.length} photo(s) selected. Images will be automatically resized and optimized.
+            </p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const [files, setFiles] = React.useState([]);
+    
+    const config = {
+      maxFiles: 6,
+      maxSize: 5 * 1024 * 1024, // 5MB
+      acceptedFileTypes: ['image/jpeg', 'image/png', 'image/webp'],
+      multiple: true,
+      showPreview: true,
+      showProgress: true
+    };
+
+    return (
+      <Card className="w-full max-w-2xl">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Image className="h-5 w-5" />
+            Photo Gallery
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <FileUploadDropzone
+            config={config}
+            onFilesChange={setFiles}
+            placeholder="Upload photos for your gallery (JPEG, PNG, WebP)"
+          />
+          
+          {files.length > 0 && (
+            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+              <p className="text-sm text-blue-800">
+                📸 {files.length} photo(s) selected. Images will be automatically resized and optimized.
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { FileUploadDropzone } from "buildgrid-ui";
+
+function DisabledUpload() {
+  const config = {
+    disabled: true,
+    maxFiles: 5
+  };
+
+  return (
+    <div className="space-y-4">
+      <FileUploadDropzone
+        config={config}
+        placeholder="Upload is currently disabled"
+      />
+      <p className="text-sm text-gray-500 text-center">
+        File upload is temporarily unavailable. Please try again later.
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const config = {
+      disabled: true,
+      maxFiles: 5
+    };
+
+    return (
+      <div className="space-y-4">
+        <FileUploadDropzone
+          config={config}
+          placeholder="Upload is currently disabled"
+        />
+        <p className="text-sm text-gray-500 text-center">
+          File upload is temporarily unavailable. Please try again later.
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `FileUploadDropzone`
+
+| Property | Type | Description |
 |---|---|---|
-| `config` | `FileUploadConfig` | Configurações do upload. |
-| `onFilesChange` | `(files: UploadedFile[]) => void` | Callback chamado quando a lista de arquivos muda. |
-| `onFileUpload` | `(file: UploadedFile) => Promise<void>` | Função para processar upload individual. |
-| `className` | `string` | Classes CSS adicionais. |
-| `placeholder` | `string` | Texto exibido na área de drop. |
+| `config` | `FileUploadConfig` | Configuration object for upload behavior. |
+| `onFilesChange` | `(files: UploadedFile[]) => void` | Callback fired when file list changes. |
+| `onFileUpload` | `(file: UploadedFile) => Promise<void>` | Function to handle individual file upload. |
+| `className` | `string` | Additional CSS classes for the container. |
+| `placeholder` | `string` | Text displayed in the drop zone. |
 
-### FileUploadConfig
+### `FileUploadConfig`
 
-| Propriedade | Tipo | Padrão | Descrição |
+| Property | Type | Default | Description |
 |---|---|---|---|
-| `maxFiles` | `number` | `5` | Número máximo de arquivos. |
-| `maxSize` | `number` | `10MB` | Tamanho máximo por arquivo (bytes). |
-| `acceptedFileTypes` | `string[]` | `['image/*', 'application/pdf', '.doc', '.docx']` | Tipos de arquivo aceitos. |
-| `multiple` | `boolean` | `true` | Permite múltiplos arquivos. |
-| `disabled` | `boolean` | `false` | Desabilita o upload. |
-| `showPreview` | `boolean` | `true` | Mostra preview de imagens. |
-| `showProgress` | `boolean` | `true` | Mostra barra de progresso. |
+| `maxFiles` | `number` | `5` | Maximum number of files allowed. |
+| `maxSize` | `number` | `10MB` | Maximum file size in bytes. |
+| `acceptedFileTypes` | `string[]` | `['image/*', 'application/pdf', '.doc', '.docx']` | Accepted file types/extensions. |
+| `multiple` | `boolean` | `true` | Whether multiple files are allowed. |
+| `disabled` | `boolean` | `false` | Whether the upload is disabled. |
+| `showPreview` | `boolean` | `true` | Whether to show image previews. |
+| `showProgress` | `boolean` | `true` | Whether to show upload progress bars. |
+
+### `UploadedFile`
+
+| Property | Type | Description |
+|---|---|---|
+| `id` | `string` | Unique identifier for the file. |
+| `name` | `string` | Original filename. |
+| `size` | `number` | File size in bytes. |
+| `type` | `string` | MIME type of the file. |
+| `preview` | `string` | Preview URL for images (optional). |
+| `progress` | `number` | Upload progress percentage (0-100). |
+| `error` | `string` | Error message if upload failed (optional). |
+
+## File Type Examples
+
+### Common MIME Types
+- **Images**: `image/*`, `image/jpeg`, `image/png`, `image/gif`, `image/webp`
+- **Documents**: `application/pdf`, `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
+- **Text**: `text/plain`, `text/csv`
+- **Archives**: `application/zip`, `application/x-rar-compressed`
+
+### File Extensions
+- **Images**: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`
+- **Documents**: `.pdf`, `.doc`, `.docx`, `.txt`, `.rtf`
+- **Spreadsheets**: `.xls`, `.xlsx`, `.csv`
+- **Presentations**: `.ppt`, `.pptx`
+
+## Accessibility
+
+The FileUploadDropzone component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support for file selection
+- **Screen Reader Support** - Proper ARIA labels and file status announcements
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Drag and Drop** - Accessible drag and drop with keyboard alternatives
+- **Error Handling** - Clear error messages for validation failures
+- **Progress Indicators** - Accessible progress bars and status updates
+
+## Common Use Cases
+
+The FileUploadDropzone component is perfect for:
+
+- **Profile Pictures** - Single image upload with preview
+- **Document Management** - Multiple document upload with validation
+- **Media Galleries** - Batch image upload for galleries
+- **Form Attachments** - File attachments in contact or support forms
+- **Content Management** - Article images and media uploads
+- **Data Import** - CSV and Excel file uploads
+- **Backup Uploads** - Archive and backup file handling
+
+## Best Practices
+
+1. **File Validation** - Always validate file types and sizes on both client and server
+2. **Progress Feedback** - Show upload progress for better user experience
+3. **Error Handling** - Provide clear, actionable error messages
+4. **Preview Images** - Show thumbnails for image files when possible
+5. **Size Limits** - Set reasonable file size limits based on your use case
+6. **Security** - Scan uploaded files for malware and validate content
+7. **Storage Management** - Implement proper file storage and cleanup
+8. **Mobile Support** - Ensure the component works well on touch devices

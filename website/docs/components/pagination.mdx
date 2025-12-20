@@ -1,3 +1,688 @@
 ---
 id: pagination
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, Button } from "buildgrid-ui";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+# Pagination
+
+<StorybookLink path="components-pagination--default" />
+
+The `Pagination` component provides navigation for paginated content. Built with accessibility in mind, it includes previous/next buttons, page numbers, and ellipsis for large page sets. Perfect for tables, search results, and content lists.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "buildgrid-ui";
+
+function BasicPagination() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink isActive>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}`}
+  storybookPath="components-pagination--default"
+>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>1</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink isActive>2</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>3</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+</ComponentDocSection>
+
+## With Ellipsis
+
+<ComponentDocSection
+  code={`import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationEllipsis, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "buildgrid-ui";
+
+function PaginationWithEllipsis() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink isActive>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>10</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}`}
+>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>1</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink isActive>2</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>3</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationEllipsis />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>10</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+</ComponentDocSection>
+
+## Disabled States
+
+<ComponentDocSection
+  code={`import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "buildgrid-ui";
+
+function DisabledPagination() {
+  return (
+    <div className="space-y-4">
+      {/* First page - Previous disabled */}
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious disabled />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink isActive>1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink>2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink>3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+      
+      {/* Last page - Next disabled */}
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink>1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink>2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink isActive>3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext disabled />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious disabled />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink isActive>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+    
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink isActive>3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext disabled />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  </div>
+</ComponentDocSection>
+
+## Large Page Set
+
+<ComponentDocSection
+  code={`import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationEllipsis, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "buildgrid-ui";
+
+function LargePagination() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>4</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink isActive>5</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>6</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink>20</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}`}
+>
+  <Pagination>
+    <PaginationContent>
+      <PaginationItem>
+        <PaginationPrevious />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>1</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationEllipsis />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>4</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink isActive>5</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>6</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationEllipsis />
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationLink>20</PaginationLink>
+      </PaginationItem>
+      <PaginationItem>
+        <PaginationNext />
+      </PaginationItem>
+    </PaginationContent>
+  </Pagination>
+</ComponentDocSection>
+
+## Compact Pagination
+
+<ComponentDocSection
+  code={`import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "buildgrid-ui";
+
+function CompactPagination() {
+  return (
+    <div className="space-y-4">
+      {/* Only navigation buttons */}
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious />
+          </PaginationItem>
+          <PaginationItem>
+            <span className="px-4 py-2 text-sm">Page 5 of 20</span>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+      
+      {/* Minimal with current page */}
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink isActive>5</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious />
+        </PaginationItem>
+        <PaginationItem>
+          <span className="px-4 py-2 text-sm">Page 5 of 20</span>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+    
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink isActive>5</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  </div>
+</ComponentDocSection>
+
+## Interactive Example
+
+<ComponentDocSection
+  code={`import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationEllipsis, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function InteractivePagination() {
+  const [currentPage, setCurrentPage] = useState(3);
+  const totalPages = 10;
+  
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+  
+  return (
+    <div className="space-y-4">
+      <div className="text-center text-sm text-gray-600">
+        Current page: {currentPage} of {totalPages}
+      </div>
+      
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious 
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            />
+          </PaginationItem>
+          
+          {currentPage > 2 && (
+            <>
+              <PaginationItem>
+                <PaginationLink onClick={() => handlePageChange(1)}>
+                  1
+                </PaginationLink>
+              </PaginationItem>
+              {currentPage > 3 && (
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              )}
+            </>
+          )}
+          
+          {currentPage > 1 && (
+            <PaginationItem>
+              <PaginationLink onClick={() => handlePageChange(currentPage - 1)}>
+                {currentPage - 1}
+              </PaginationLink>
+            </PaginationItem>
+          )}
+          
+          <PaginationItem>
+            <PaginationLink isActive>
+              {currentPage}
+            </PaginationLink>
+          </PaginationItem>
+          
+          {currentPage < totalPages && (
+            <PaginationItem>
+              <PaginationLink onClick={() => handlePageChange(currentPage + 1)}>
+                {currentPage + 1}
+              </PaginationLink>
+            </PaginationItem>
+          )}
+          
+          {currentPage < totalPages - 1 && (
+            <>
+              {currentPage < totalPages - 2 && (
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              )}
+              <PaginationItem>
+                <PaginationLink onClick={() => handlePageChange(totalPages)}>
+                  {totalPages}
+                </PaginationLink>
+              </PaginationItem>
+            </>
+          )}
+          
+          <PaginationItem>
+            <PaginationNext 
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [currentPage, setCurrentPage] = React.useState(3);
+    const totalPages = 10;
+    
+    const handlePageChange = (page) => {
+      if (page >= 1 && page <= totalPages) {
+        setCurrentPage(page);
+      }
+    };
+    
+    return (
+      <div className="space-y-4">
+        <div className="text-center text-sm text-gray-600">
+          Current page: {currentPage} of {totalPages}
+        </div>
+        
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious 
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              />
+            </PaginationItem>
+            
+            {currentPage > 2 && (
+              <>
+                <PaginationItem>
+                  <PaginationLink onClick={() => handlePageChange(1)}>
+                    1
+                  </PaginationLink>
+                </PaginationItem>
+                {currentPage > 3 && (
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                )}
+              </>
+            )}
+            
+            {currentPage > 1 && (
+              <PaginationItem>
+                <PaginationLink onClick={() => handlePageChange(currentPage - 1)}>
+                  {currentPage - 1}
+                </PaginationLink>
+              </PaginationItem>
+            )}
+            
+            <PaginationItem>
+              <PaginationLink isActive>
+                {currentPage}
+              </PaginationLink>
+            </PaginationItem>
+            
+            {currentPage < totalPages && (
+              <PaginationItem>
+                <PaginationLink onClick={() => handlePageChange(currentPage + 1)}>
+                  {currentPage + 1}
+                </PaginationLink>
+              </PaginationItem>
+            )}
+            
+            {currentPage < totalPages - 1 && (
+              <>
+                {currentPage < totalPages - 2 && (
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                )}
+                <PaginationItem>
+                  <PaginationLink onClick={() => handlePageChange(totalPages)}>
+                    {totalPages}
+                  </PaginationLink>
+                </PaginationItem>
+              </>
+            )}
+            
+            <PaginationItem>
+              <PaginationNext 
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Pagination`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the pagination container. |
+| `children` | `ReactNode` | Pagination content (typically PaginationContent). |
+
+### `PaginationContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the content container. |
+| `children` | `ReactNode` | Pagination items. |
+
+### `PaginationItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the item container. |
+| `children` | `ReactNode` | Item content (links, buttons, ellipsis). |
+
+### `PaginationLink`
+
+| Property | Type | Description |
+|---|---|---|
+| `isActive` | `boolean` | Whether this page is currently active. |
+| `disabled` | `boolean` | Whether the link is disabled. |
+| `onClick` | `() => void` | Click handler for the page link. |
+| `className` | `string` | Additional CSS classes. |
+| `children` | `ReactNode` | Link content (usually page number). |
+
+### `PaginationPrevious`
+
+| Property | Type | Description |
+|---|---|---|
+| `disabled` | `boolean` | Whether the previous button is disabled. |
+| `onClick` | `() => void` | Click handler for previous navigation. |
+| `className` | `string` | Additional CSS classes. |
+
+### `PaginationNext`
+
+| Property | Type | Description |
+|---|---|---|
+| `disabled` | `boolean` | Whether the next button is disabled. |
+| `onClick` | `() => void` | Click handler for next navigation. |
+| `className` | `string` | Additional CSS classes. |
+
+### `PaginationEllipsis`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the ellipsis. |
+
+## Accessibility
+
+The Pagination component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Full keyboard support with arrow keys and Enter
+- **Screen Reader Support** - Proper ARIA labels and navigation landmarks
+- **Focus Management** - Clear focus indicators and logical tab order
+- **Active State** - Clear indication of current page with `aria-current="page"`
+- **Disabled States** - Proper handling of disabled navigation buttons
+- **Semantic HTML** - Uses proper navigation and list elements
+
+## Common Use Cases
+
+The Pagination component is perfect for:
+
+- **Data Tables** - Navigate through large datasets and table rows
+- **Search Results** - Browse through search result pages
+- **Product Listings** - Navigate e-commerce product catalogs
+- **Blog Posts** - Browse through article archives and categories
+- **User Lists** - Navigate through user directories and member lists
+- **Content Galleries** - Browse through image and media galleries
+- **API Results** - Handle paginated API responses and data feeds
+
+## Best Practices
+
+1. **Show Current Context** - Always indicate current page and total pages
+2. **Disable Appropriately** - Disable previous on first page, next on last page
+3. **Use Ellipsis Wisely** - Show ellipsis when there are many pages to navigate
+4. **Provide Shortcuts** - Include first/last page links for large page sets
+5. **Mobile Optimization** - Consider compact layouts for smaller screens
+6. **Loading States** - Show loading indicators during page transitions
+7. **URL Synchronization** - Keep pagination state in sync with browser URL
+8. **Performance** - Implement efficient data loading and caching strategies

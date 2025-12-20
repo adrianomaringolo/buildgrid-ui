@@ -1,3 +1,654 @@
 ---
 id: tooltip
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { Info, HelpCircle, Settings, Download, Share, Copy, Trash2, Edit, Plus } from 'lucide-react';
+
+# Tooltip
+
+<StorybookLink path="components-tooltip--default" />
+
+The `Tooltip` component provides contextual information when users hover or focus on an element. Built on Radix UI, it offers flexible positioning, customizable delays, and accessibility features. Perfect for providing additional context, help text, or explanations without cluttering the interface.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button } from "buildgrid-ui";
+
+function BasicTooltip() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Hover me</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>This is a tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}`}
+  storybookPath="components-tooltip--default"
+>
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button variant="outline">Hover me</Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>This is a tooltip</p>
+      </TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+</ComponentDocSection>
+
+## Different Positions
+
+<ComponentDocSection
+  code={`import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button } from "buildgrid-ui";
+
+function TooltipPositions() {
+  return (
+    <TooltipProvider>
+      <div className="grid grid-cols-2 gap-4 max-w-md">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Top</Button>
+          </TooltipTrigger>
+          <TooltipContent side="top">
+            <p>Tooltip on top</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Right</Button>
+          </TooltipTrigger>
+          <TooltipContent side="right">
+            <p>Tooltip on right</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Bottom</Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            <p>Tooltip on bottom</p>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Left</Button>
+          </TooltipTrigger>
+          <TooltipContent side="left">
+            <p>Tooltip on left</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
+  );
+}`}
+>
+  <TooltipProvider>
+    <div className="grid grid-cols-2 gap-4 max-w-md">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Top</Button>
+        </TooltipTrigger>
+        <TooltipContent side="top">
+          <p>Tooltip on top</p>
+        </TooltipContent>
+      </Tooltip>
+      
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Right</Button>
+        </TooltipTrigger>
+        <TooltipContent side="right">
+          <p>Tooltip on right</p>
+        </TooltipContent>
+      </Tooltip>
+      
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Bottom</Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          <p>Tooltip on bottom</p>
+        </TooltipContent>
+      </Tooltip>
+      
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Left</Button>
+        </TooltipTrigger>
+        <TooltipContent side="left">
+          <p>Tooltip on left</p>
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  </TooltipProvider>
+</ComponentDocSection>
+
+## Rich Content Tooltips
+
+<ComponentDocSection
+  code={`import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button } from "buildgrid-ui";
+import { Info, HelpCircle } from "lucide-react";
+
+function RichContentTooltips() {
+  return (
+    <TooltipProvider>
+      <div className="flex gap-4">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" size="sm">
+              <Info className="h-4 w-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className="max-w-xs">
+            <div className="space-y-2">
+              <h4 className="font-semibold">Information</h4>
+              <p className="text-sm">
+                This tooltip contains rich content with multiple lines of text and formatting.
+              </p>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" size="sm">
+              <HelpCircle className="h-4 w-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className="max-w-sm">
+            <div className="space-y-2">
+              <h4 className="font-semibold">Help</h4>
+              <ul className="text-sm space-y-1">
+                <li>• Click to perform action</li>
+                <li>• Hold Shift for multiple selection</li>
+                <li>• Press Escape to cancel</li>
+              </ul>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
+  );
+}`}
+>
+  <TooltipProvider>
+    <div className="flex gap-4">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline" size="sm">
+            <Info className="h-4 w-4" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent className="max-w-xs">
+          <div className="space-y-2">
+            <h4 className="font-semibold">Information</h4>
+            <p className="text-sm">
+              This tooltip contains rich content with multiple lines of text and formatting.
+            </p>
+          </div>
+        </TooltipContent>
+      </Tooltip>
+      
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline" size="sm">
+            <HelpCircle className="h-4 w-4" />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent className="max-w-sm">
+          <div className="space-y-2">
+            <h4 className="font-semibold">Help</h4>
+            <ul className="text-sm space-y-1">
+              <li>• Click to perform action</li>
+              <li>• Hold Shift for multiple selection</li>
+              <li>• Press Escape to cancel</li>
+            </ul>
+          </div>
+        </TooltipContent>
+      </Tooltip>
+    </div>
+  </TooltipProvider>
+</ComponentDocSection>
+
+## Custom Delays
+
+<ComponentDocSection
+  code={`import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button } from "buildgrid-ui";
+
+function CustomDelayTooltips() {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">No Delay</h4>
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline">Instant tooltip</Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Shows immediately on hover</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+      
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Long Delay</h4>
+        <TooltipProvider delayDuration={1000}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline">Delayed tooltip</Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Shows after 1 second delay</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">No Delay</h4>
+      <TooltipProvider delayDuration={0}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Instant tooltip</Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Shows immediately on hover</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </div>
+    
+    <div className="space-y-2">
+      <h4 className="text-sm font-medium">Long Delay</h4>
+      <TooltipProvider delayDuration={1000}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Delayed tooltip</Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Shows after 1 second delay</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Toolbar with Tooltips
+
+<ComponentDocSection
+  code={`import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button } from "buildgrid-ui";
+import { Settings, Download, Share, Copy, Trash2, Edit, Plus } from "lucide-react";
+
+function ToolbarWithTooltips() {
+  const actions = [
+    { icon: Plus, label: "Add new item", shortcut: "Ctrl+N" },
+    { icon: Edit, label: "Edit selected", shortcut: "Ctrl+E" },
+    { icon: Copy, label: "Copy to clipboard", shortcut: "Ctrl+C" },
+    { icon: Share, label: "Share with others", shortcut: "Ctrl+S" },
+    { icon: Download, label: "Download file", shortcut: "Ctrl+D" },
+    { icon: Settings, label: "Open settings", shortcut: "Ctrl+," },
+    { icon: Trash2, label: "Delete item", shortcut: "Del" }
+  ];
+
+  return (
+    <TooltipProvider>
+      <Card className="w-full max-w-2xl">
+        <CardHeader>
+          <CardTitle>Document Editor</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex gap-1 p-2 bg-gray-50 rounded-lg mb-4">
+            {actions.map((action, index) => (
+              <Tooltip key={index}>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    <action.icon className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <div className="text-center">
+                    <p className="font-medium">{action.label}</p>
+                    <p className="text-xs opacity-75">{action.shortcut}</p>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            ))}
+          </div>
+          
+          <div className="min-h-[200px] p-4 border border-gray-200 rounded-lg bg-white">
+            <p className="text-gray-500">
+              Hover over the toolbar buttons above to see their tooltips with keyboard shortcuts.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </TooltipProvider>
+  );
+}`}
+>
+  <TooltipProvider>
+    <Card className="w-full max-w-2xl">
+      <CardHeader>
+        <CardTitle>Document Editor</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex gap-1 p-2 bg-gray-50 rounded-lg mb-4">
+          {[
+            { icon: Plus, label: "Add new item", shortcut: "Ctrl+N" },
+            { icon: Edit, label: "Edit selected", shortcut: "Ctrl+E" },
+            { icon: Copy, label: "Copy to clipboard", shortcut: "Ctrl+C" },
+            { icon: Share, label: "Share with others", shortcut: "Ctrl+S" },
+            { icon: Download, label: "Download file", shortcut: "Ctrl+D" },
+            { icon: Settings, label: "Open settings", shortcut: "Ctrl+," },
+            { icon: Trash2, label: "Delete item", shortcut: "Del" }
+          ].map((action, index) => (
+            <Tooltip key={index}>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="sm">
+                  <action.icon className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <div className="text-center">
+                  <p className="font-medium">{action.label}</p>
+                  <p className="text-xs opacity-75">{action.shortcut}</p>
+                </div>
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
+        
+        <div className="min-h-[200px] p-4 border border-gray-200 rounded-lg bg-white">
+          <p className="text-gray-500">
+            Hover over the toolbar buttons above to see their tooltips with keyboard shortcuts.
+          </p>
+        </div>
+      </CardContent>
+    </Card>
+  </TooltipProvider>
+</ComponentDocSection>
+
+## Form Field Help
+
+<ComponentDocSection
+  code={`import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button, Card, CardContent, CardHeader, CardTitle } from "buildgrid-ui";
+import { HelpCircle } from "lucide-react";
+
+function FormFieldHelp() {
+  return (
+    <TooltipProvider>
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>User Registration</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium">Username</label>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-4 w-4 p-0">
+                    <HelpCircle className="h-3 w-3" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p className="text-sm">
+                    Username must be 3-20 characters long and can only contain letters, numbers, and underscores.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            <input 
+              type="text" 
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              placeholder="Enter username"
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium">Password</label>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-4 w-4 p-0">
+                    <HelpCircle className="h-3 w-3" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <div className="space-y-1 text-sm">
+                    <p className="font-medium">Password requirements:</p>
+                    <ul className="space-y-0.5">
+                      <li>• At least 8 characters</li>
+                      <li>• One uppercase letter</li>
+                      <li>• One lowercase letter</li>
+                      <li>• One number</li>
+                      <li>• One special character</li>
+                    </ul>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            <input 
+              type="password" 
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              placeholder="Enter password"
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium">Email</label>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" size="sm" className="h-4 w-4 p-0">
+                    <HelpCircle className="h-3 w-3" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-sm">
+                    We'll use this email for account verification and important notifications.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            <input 
+              type="email" 
+              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              placeholder="Enter email"
+            />
+          </div>
+          
+          <Button className="w-full">Create Account</Button>
+        </CardContent>
+      </Card>
+    </TooltipProvider>
+  );
+}`}
+>
+  <TooltipProvider>
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>User Registration</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium">Username</label>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-4 w-4 p-0">
+                  <HelpCircle className="h-3 w-3" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs">
+                <p className="text-sm">
+                  Username must be 3-20 characters long and can only contain letters, numbers, and underscores.
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          <input 
+            type="text" 
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            placeholder="Enter username"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium">Password</label>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-4 w-4 p-0">
+                  <HelpCircle className="h-3 w-3" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs">
+                <div className="space-y-1 text-sm">
+                  <p className="font-medium">Password requirements:</p>
+                  <ul className="space-y-0.5">
+                    <li>• At least 8 characters</li>
+                    <li>• One uppercase letter</li>
+                    <li>• One lowercase letter</li>
+                    <li>• One number</li>
+                    <li>• One special character</li>
+                  </ul>
+                </div>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          <input 
+            type="password" 
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            placeholder="Enter password"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium">Email</label>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="sm" className="h-4 w-4 p-0">
+                  <HelpCircle className="h-3 w-3" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-sm">
+                  We'll use this email for account verification and important notifications.
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          <input 
+            type="email" 
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            placeholder="Enter email"
+          />
+        </div>
+        
+        <Button className="w-full">Create Account</Button>
+      </CardContent>
+    </Card>
+  </TooltipProvider>
+</ComponentDocSection>
+
+## Properties
+
+### `TooltipProvider`
+
+| Property | Type | Description |
+|---|---|---|
+| `delayDuration` | `number` | Delay in milliseconds before tooltip appears. Default is 0. |
+| `skipDelayDuration` | `number` | Duration to skip delay when moving between tooltips. |
+| `disableHoverableContent` | `boolean` | Disable hoverable content to prevent tooltip from staying open. |
+| `children` | `ReactNode` | Tooltip components that will use this provider. |
+
+### `Tooltip`
+
+| Property | Type | Description |
+|---|---|---|
+| `open` | `boolean` | Controlled open state of the tooltip. |
+| `defaultOpen` | `boolean` | Default open state when uncontrolled. |
+| `onOpenChange` | `(open: boolean) => void` | Callback fired when open state changes. |
+| `delayDuration` | `number` | Override provider delay duration for this tooltip. |
+| `disableHoverableContent` | `boolean` | Override provider hoverable content setting. |
+
+### `TooltipTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | Render as child element instead of button. Default is false. |
+| `children` | `ReactNode` | Element that triggers the tooltip. |
+
+### `TooltipContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | Preferred side to display the tooltip. |
+| `sideOffset` | `number` | Distance in pixels from the trigger. |
+| `align` | `"start" \| "center" \| "end"` | Alignment relative to the trigger. |
+| `alignOffset` | `number` | Offset in pixels from the aligned position. |
+| `avoidCollisions` | `boolean` | Whether to avoid collisions with viewport edges. |
+| `collisionBoundary` | `Element \| Element[]` | Boundary elements for collision detection. |
+| `collisionPadding` | `number \| Partial<Record<Side, number>>` | Padding for collision detection. |
+| `arrowPadding` | `number` | Padding between arrow and content edges. |
+| `sticky` | `"partial" \| "always"` | Sticky behavior when trigger moves. |
+| `hideWhenDetached` | `boolean` | Hide when trigger becomes detached. |
+| `className` | `string` | Additional CSS classes for the content. |
+| `children` | `ReactNode` | Content of the tooltip. |
+
+## Accessibility
+
+The Tooltip component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Tooltips appear on focus and disappear on blur
+- **Screen Reader Support** - Proper ARIA attributes and announcements
+- **Focus Management** - Maintains focus on trigger element
+- **ESC Key Support** - Press Escape to close tooltip
+- **Portal Rendering** - Renders in portal to avoid z-index issues
+- **Auto-positioning** - Automatically adjusts position to stay in viewport
+
+## Common Use Cases
+
+The Tooltip component is perfect for:
+
+- **Help Text** - Provide additional context for form fields and controls
+- **Keyboard Shortcuts** - Display keyboard shortcuts for toolbar actions
+- **Icon Explanations** - Explain the purpose of icon-only buttons
+- **Feature Descriptions** - Describe features without cluttering the UI
+- **Status Information** - Show detailed status or error information
+- **Truncated Content** - Show full text for truncated content
+- **Interactive Hints** - Guide users through complex interfaces
+
+## Best Practices
+
+1. **Concise Content** - Keep tooltip content brief and focused
+2. **Appropriate Timing** - Use reasonable delay durations (0-700ms)
+3. **Clear Triggers** - Make it obvious which elements have tooltips
+4. **Avoid Essential Info** - Don't put critical information only in tooltips
+5. **Mobile Considerations** - Consider touch interactions and alternative patterns
+6. **Positioning** - Choose appropriate positioning to avoid covering important content
+7. **Consistent Styling** - Maintain consistent tooltip appearance throughout your app
+8. **Performance** - Use TooltipProvider to share configuration across multiple tooltips

@@ -1,3 +1,982 @@
 ---
 id: sidebar
 ---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Sidebar, SidebarHeader, SidebarBody, SidebarNav, SidebarList, SidebarListItem, SidebarFooter, Button, Card, CardContent } from "buildgrid-ui";
+import { Menu, Home, Users, Settings, FileText, BarChart, Bell, Search, X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+# Sidebar
+
+<StorybookLink path="blocks-sidebar--default" />
+
+The `Sidebar` component provides a flexible navigation panel that can slide in from any direction. Built with accessibility and responsive design in mind, it supports fixed and collapsible modes, multiple directions, and customizable content areas. Perfect for navigation menus, filters, settings panels, and any interface requiring additional space.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Sidebar, SidebarHeader, SidebarBody, SidebarNav, SidebarList, SidebarListItem, SidebarFooter, Button } from "buildgrid-ui";
+import { Menu, Home, Users, Settings } from "lucide-react";
+import React from "react";
+
+function BasicSidebar() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div className="relative h-96 bg-gray-100 overflow-hidden">
+      <Button 
+        onClick={() => setIsOpen(true)}
+        className="m-4"
+      >
+        <Menu className="h-4 w-4 mr-2" />
+        Open Sidebar
+      </Button>
+      
+      <Sidebar 
+        fixed={false} 
+        isOpen={isOpen} 
+        onToggle={setIsOpen}
+        direction="left"
+      >
+        <SidebarHeader>
+          <h2 className="font-semibold">Navigation</h2>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={() => setIsOpen(false)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </SidebarHeader>
+        
+        <SidebarNav>
+          <SidebarList>
+            <SidebarListItem className="px-4 py-2 cursor-pointer">
+              <Home className="h-4 w-4" />
+              <span>Dashboard</span>
+            </SidebarListItem>
+            <SidebarListItem className="px-4 py-2 cursor-pointer">
+              <Users className="h-4 w-4" />
+              <span>Users</span>
+            </SidebarListItem>
+            <SidebarListItem className="px-4 py-2 cursor-pointer">
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </SidebarListItem>
+          </SidebarList>
+        </SidebarNav>
+        
+        <SidebarFooter>
+          <p className="text-xs text-gray-500">© 2024 My App</p>
+        </SidebarFooter>
+      </Sidebar>
+    </div>
+  );
+}`}
+  storybookPath="blocks-sidebar--default"
+>
+  {(() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+      <div className="relative h-96 bg-gray-100 overflow-hidden">
+        <Button 
+          onClick={() => setIsOpen(true)}
+          className="m-4"
+        >
+          <Menu className="h-4 w-4 mr-2" />
+          Open Sidebar
+        </Button>
+        
+        <Sidebar 
+          fixed={false} 
+          isOpen={isOpen} 
+          onToggle={setIsOpen}
+          direction="left"
+        >
+          <SidebarHeader>
+            <h2 className="font-semibold">Navigation</h2>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setIsOpen(false)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </SidebarHeader>
+          
+          <SidebarNav>
+            <SidebarList>
+              <SidebarListItem className="px-4 py-2 cursor-pointer">
+                <Home className="h-4 w-4" />
+                <span>Dashboard</span>
+              </SidebarListItem>
+              <SidebarListItem className="px-4 py-2 cursor-pointer">
+                <Users className="h-4 w-4" />
+                <span>Users</span>
+              </SidebarListItem>
+              <SidebarListItem className="px-4 py-2 cursor-pointer">
+                <Settings className="h-4 w-4" />
+                <span>Settings</span>
+              </SidebarListItem>
+            </SidebarList>
+          </SidebarNav>
+          
+          <SidebarFooter>
+            <p className="text-xs text-gray-500">© 2024 My App</p>
+          </SidebarFooter>
+        </Sidebar>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Different Directions
+
+<ComponentDocSection
+  code={`import { Sidebar, SidebarHeader, SidebarBody, Button } from "buildgrid-ui";
+import { ChevronLeft, ChevronRight, Menu } from "lucide-react";
+import React from "react";
+
+function DifferentDirections() {
+  const [activeDirection, setActiveDirection] = React.useState(null);
+
+  const directions = [
+    { key: 'left', label: 'Left', icon: ChevronLeft },
+    { key: 'right', label: 'Right', icon: ChevronRight },
+    { key: 'top', label: 'Top', icon: Menu },
+    { key: 'bottom', label: 'Bottom', icon: Menu }
+  ];
+
+  return (
+    <div className="relative h-96 bg-gray-100 overflow-hidden">
+      <div className="p-4 space-x-2">
+        {directions.map(({ key, label, icon: Icon }) => (
+          <Button 
+            key={key}
+            variant="outline"
+            size="sm"
+            onClick={() => setActiveDirection(key)}
+          >
+            <Icon className="h-4 w-4 mr-1" />
+            {label}
+          </Button>
+        ))}
+      </div>
+      
+      {directions.map(({ key, label }) => (
+        <Sidebar 
+          key={key}
+          fixed={false} 
+          isOpen={activeDirection === key} 
+          onToggle={(open) => setActiveDirection(open ? key : null)}
+          direction={key}
+        >
+          <SidebarHeader>
+            <h3 className="font-medium">{label} Sidebar</h3>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setActiveDirection(null)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </SidebarHeader>
+          
+          <SidebarBody>
+            <p className="text-sm text-gray-600">
+              This sidebar slides in from the {label.toLowerCase()} side.
+            </p>
+          </SidebarBody>
+        </Sidebar>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [activeDirection, setActiveDirection] = React.useState(null);
+
+    const directions = [
+      { key: 'left', label: 'Left', icon: ChevronLeft },
+      { key: 'right', label: 'Right', icon: ChevronRight },
+      { key: 'top', label: 'Top', icon: Menu },
+      { key: 'bottom', label: 'Bottom', icon: Menu }
+    ];
+
+    return (
+      <div className="relative h-96 bg-gray-100 overflow-hidden">
+        <div className="p-4 space-x-2">
+          {directions.map(({ key, label, icon: Icon }) => (
+            <Button 
+              key={key}
+              variant="outline"
+              size="sm"
+              onClick={() => setActiveDirection(key)}
+            >
+              <Icon className="h-4 w-4 mr-1" />
+              {label}
+            </Button>
+          ))}
+        </div>
+        
+        {directions.map(({ key, label }) => (
+          <Sidebar 
+            key={key}
+            fixed={false} 
+            isOpen={activeDirection === key} 
+            onToggle={(open) => setActiveDirection(open ? key : null)}
+            direction={key}
+          >
+            <SidebarHeader>
+              <h3 className="font-medium">{label} Sidebar</h3>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setActiveDirection(null)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </SidebarHeader>
+            
+            <SidebarBody>
+              <p className="text-sm text-gray-600">
+                This sidebar slides in from the {label.toLowerCase()} side.
+              </p>
+            </SidebarBody>
+          </Sidebar>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Navigation Menu
+
+<ComponentDocSection
+  code={`import { Sidebar, SidebarHeader, SidebarNav, SidebarList, SidebarListItem, SidebarFooter, Button } from "buildgrid-ui";
+import { Menu, Home, Users, FileText, BarChart, Settings, Bell, Search } from "lucide-react";
+import React from "react";
+
+function NavigationMenu() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [activeItem, setActiveItem] = React.useState('dashboard');
+
+  const menuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: Home },
+    { id: 'users', label: 'Users', icon: Users },
+    { id: 'documents', label: 'Documents', icon: FileText },
+    { id: 'analytics', label: 'Analytics', icon: BarChart },
+    { id: 'notifications', label: 'Notifications', icon: Bell },
+    { id: 'search', label: 'Search', icon: Search },
+    { id: 'settings', label: 'Settings', icon: Settings }
+  ];
+
+  return (
+    <div className="relative h-96 bg-gray-50 overflow-hidden">
+      <div className="p-4 border-b bg-white">
+        <div className="flex items-center justify-between">
+          <Button 
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsOpen(true)}
+          >
+            <Menu className="h-4 w-4" />
+          </Button>
+          <h1 className="font-semibold">My Application</h1>
+          <div className="w-8" />
+        </div>
+      </div>
+      
+      <div className="p-4">
+        <p className="text-sm text-gray-600">
+          Current page: <span className="font-medium capitalize">{activeItem}</span>
+        </p>
+      </div>
+      
+      <Sidebar 
+        fixed={false} 
+        isOpen={isOpen} 
+        onToggle={setIsOpen}
+        direction="left"
+        className="w-64"
+      >
+        <SidebarHeader>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
+              <span className="text-white font-bold text-sm">MA</span>
+            </div>
+            <span className="font-semibold">My App</span>
+          </div>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={() => setIsOpen(false)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </SidebarHeader>
+        
+        <SidebarNav>
+          <SidebarList>
+            {menuItems.map(({ id, label, icon: Icon }) => (
+              <SidebarListItem 
+                key={id}
+                className={\`px-4 py-3 cursor-pointer transition-colors \${
+                  activeItem === id 
+                    ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-500' 
+                    : 'hover:bg-gray-50'
+                }\`}
+                onClick={() => {
+                  setActiveItem(id);
+                  setIsOpen(false);
+                }}
+              >
+                <Icon className="h-4 w-4" />
+                <span className="font-medium">{label}</span>
+              </SidebarListItem>
+            ))}
+          </SidebarList>
+        </SidebarNav>
+        
+        <SidebarFooter>
+          <div className="flex items-center gap-2 p-2 bg-gray-50 rounded">
+            <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+              <span className="text-xs font-medium">JD</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium truncate">John Doe</p>
+              <p className="text-xs text-gray-500 truncate">john@example.com</p>
+            </div>
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [activeItem, setActiveItem] = React.useState('dashboard');
+
+    const menuItems = [
+      { id: 'dashboard', label: 'Dashboard', icon: Home },
+      { id: 'users', label: 'Users', icon: Users },
+      { id: 'documents', label: 'Documents', icon: FileText },
+      { id: 'analytics', label: 'Analytics', icon: BarChart },
+      { id: 'notifications', label: 'Notifications', icon: Bell },
+      { id: 'search', label: 'Search', icon: Search },
+      { id: 'settings', label: 'Settings', icon: Settings }
+    ];
+
+    return (
+      <div className="relative h-96 bg-gray-50 overflow-hidden">
+        <div className="p-4 border-b bg-white">
+          <div className="flex items-center justify-between">
+            <Button 
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsOpen(true)}
+            >
+              <Menu className="h-4 w-4" />
+            </Button>
+            <h1 className="font-semibold">My Application</h1>
+            <div className="w-8" />
+          </div>
+        </div>
+        
+        <div className="p-4">
+          <p className="text-sm text-gray-600">
+            Current page: <span className="font-medium capitalize">{activeItem}</span>
+          </p>
+        </div>
+        
+        <Sidebar 
+          fixed={false} 
+          isOpen={isOpen} 
+          onToggle={setIsOpen}
+          direction="left"
+          className="w-64"
+        >
+          <SidebarHeader>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
+                <span className="text-white font-bold text-sm">MA</span>
+              </div>
+              <span className="font-semibold">My App</span>
+            </div>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setIsOpen(false)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </SidebarHeader>
+          
+          <SidebarNav>
+            <SidebarList>
+              {menuItems.map(({ id, label, icon: Icon }) => (
+                <SidebarListItem 
+                  key={id}
+                  className={`px-4 py-3 cursor-pointer transition-colors ${
+                    activeItem === id 
+                      ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-500' 
+                      : 'hover:bg-gray-50'
+                  }`}
+                  onClick={() => {
+                    setActiveItem(id);
+                    setIsOpen(false);
+                  }}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="font-medium">{label}</span>
+                </SidebarListItem>
+              ))}
+            </SidebarList>
+          </SidebarNav>
+          
+          <SidebarFooter>
+            <div className="flex items-center gap-2 p-2 bg-gray-50 rounded">
+              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                <span className="text-xs font-medium">JD</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium truncate">John Doe</p>
+                <p className="text-xs text-gray-500 truncate">john@example.com</p>
+              </div>
+            </div>
+          </SidebarFooter>
+        </Sidebar>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Filter Panel
+
+<ComponentDocSection
+  code={`import { Sidebar, SidebarHeader, SidebarBody, Button, Card, CardContent } from "buildgrid-ui";
+import { Search, X } from "lucide-react";
+import React from "react";
+
+function FilterPanel() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [filters, setFilters] = React.useState({
+    category: '',
+    priceRange: [0, 1000],
+    inStock: false,
+    rating: 0
+  });
+
+  const categories = ['Electronics', 'Clothing', 'Books', 'Home & Garden', 'Sports'];
+  const ratings = [5, 4, 3, 2, 1];
+
+  return (
+    <div className="relative h-96 bg-gray-50 overflow-hidden">
+      <div className="p-4 border-b bg-white">
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold">Product Catalog</h2>
+          <Button 
+            variant="outline"
+            size="sm"
+            onClick={() => setIsOpen(true)}
+          >
+            <Search className="h-4 w-4 mr-2" />
+            Filters
+          </Button>
+        </div>
+      </div>
+      
+      <div className="p-4">
+        <div className="grid grid-cols-2 gap-4">
+          {Array.from({ length: 6 }, (_, i) => (
+            <Card key={i} className="h-32">
+              <CardContent className="p-4 flex items-center justify-center">
+                <span className="text-gray-500">Product {i + 1}</span>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+      
+      <Sidebar 
+        fixed={false} 
+        isOpen={isOpen} 
+        onToggle={setIsOpen}
+        direction="right"
+        className="w-80"
+      >
+        <SidebarHeader>
+          <h3 className="font-semibold">Filters</h3>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={() => setIsOpen(false)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </SidebarHeader>
+        
+        <SidebarBody className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium mb-2">Category</label>
+            <select 
+              className="w-full p-2 border rounded"
+              value={filters.category}
+              onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value }))}
+            >
+              <option value="">All Categories</option>
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium mb-2">
+              Price Range: $0 - $1000
+            </label>
+            <input 
+              type="range" 
+              min="0" 
+              max="1000" 
+              className="w-full"
+            />
+          </div>
+          
+          <div>
+            <label className="flex items-center gap-2">
+              <input 
+                type="checkbox" 
+                checked={filters.inStock}
+                onChange={(e) => setFilters(prev => ({ ...prev, inStock: e.target.checked }))}
+              />
+              <span className="text-sm">In Stock Only</span>
+            </label>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium mb-2">Minimum Rating</label>
+            <div className="space-y-2">
+              {ratings.map(rating => (
+                <label key={rating} className="flex items-center gap-2">
+                  <input 
+                    type="radio" 
+                    name="rating"
+                    value={rating}
+                    checked={filters.rating === rating}
+                    onChange={(e) => setFilters(prev => ({ ...prev, rating: Number(e.target.value) }))}
+                  />
+                  <span className="text-sm">
+                    {rating} star{rating !== 1 ? 's' : ''} & up
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+          
+          <div className="flex gap-2 pt-4 border-t">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="flex-1"
+              onClick={() => setFilters({ category: '', priceRange: [0, 1000], inStock: false, rating: 0 })}
+            >
+              Clear All
+            </Button>
+            <Button 
+              size="sm" 
+              className="flex-1"
+              onClick={() => setIsOpen(false)}
+            >
+              Apply Filters
+            </Button>
+          </div>
+        </SidebarBody>
+      </Sidebar>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [filters, setFilters] = React.useState({
+      category: '',
+      priceRange: [0, 1000],
+      inStock: false,
+      rating: 0
+    });
+
+    const categories = ['Electronics', 'Clothing', 'Books', 'Home & Garden', 'Sports'];
+    const ratings = [5, 4, 3, 2, 1];
+
+    return (
+      <div className="relative h-96 bg-gray-50 overflow-hidden">
+        <div className="p-4 border-b bg-white">
+          <div className="flex items-center justify-between">
+            <h2 className="font-semibold">Product Catalog</h2>
+            <Button 
+              variant="outline"
+              size="sm"
+              onClick={() => setIsOpen(true)}
+            >
+              <Search className="h-4 w-4 mr-2" />
+              Filters
+            </Button>
+          </div>
+        </div>
+        
+        <div className="p-4">
+          <div className="grid grid-cols-2 gap-4">
+            {Array.from({ length: 6 }, (_, i) => (
+              <Card key={i} className="h-32">
+                <CardContent className="p-4 flex items-center justify-center">
+                  <span className="text-gray-500">Product {i + 1}</span>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+        
+        <Sidebar 
+          fixed={false} 
+          isOpen={isOpen} 
+          onToggle={setIsOpen}
+          direction="right"
+          className="w-80"
+        >
+          <SidebarHeader>
+            <h3 className="font-semibold">Filters</h3>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setIsOpen(false)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </SidebarHeader>
+          
+          <SidebarBody className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium mb-2">Category</label>
+              <select 
+                className="w-full p-2 border rounded"
+                value={filters.category}
+                onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value }))}
+              >
+                <option value="">All Categories</option>
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Price Range: $0 - $1000
+              </label>
+              <input 
+                type="range" 
+                min="0" 
+                max="1000" 
+                className="w-full"
+              />
+            </div>
+            
+            <div>
+              <label className="flex items-center gap-2">
+                <input 
+                  type="checkbox" 
+                  checked={filters.inStock}
+                  onChange={(e) => setFilters(prev => ({ ...prev, inStock: e.target.checked }))}
+                />
+                <span className="text-sm">In Stock Only</span>
+              </label>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-2">Minimum Rating</label>
+              <div className="space-y-2">
+                {ratings.map(rating => (
+                  <label key={rating} className="flex items-center gap-2">
+                    <input 
+                      type="radio" 
+                      name="rating"
+                      value={rating}
+                      checked={filters.rating === rating}
+                      onChange={(e) => setFilters(prev => ({ ...prev, rating: Number(e.target.value) }))}
+                    />
+                    <span className="text-sm">
+                      {rating} star{rating !== 1 ? 's' : ''} & up
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex gap-2 pt-4 border-t">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="flex-1"
+                onClick={() => setFilters({ category: '', priceRange: [0, 1000], inStock: false, rating: 0 })}
+              >
+                Clear All
+              </Button>
+              <Button 
+                size="sm" 
+                className="flex-1"
+                onClick={() => setIsOpen(false)}
+              >
+                Apply Filters
+              </Button>
+            </div>
+          </SidebarBody>
+        </Sidebar>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Block Click Outside
+
+<ComponentDocSection
+  code={`import { Sidebar, SidebarHeader, SidebarBody, Button } from "buildgrid-ui";
+import { Menu, X } from "lucide-react";
+import React from "react";
+
+function BlockClickOutside() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div className="relative h-96 bg-gray-100 overflow-hidden">
+      <div className="p-4 space-y-4">
+        <Button onClick={() => setIsOpen(true)}>
+          <Menu className="h-4 w-4 mr-2" />
+          Open Sidebar (Click Outside Blocked)
+        </Button>
+        
+        <div className="bg-yellow-50 p-3 rounded border border-yellow-200">
+          <p className="text-sm text-yellow-800">
+            <strong>Note:</strong> This sidebar has \`blockClickOutSide=true\`, 
+            so clicking outside won't close it. You must use the close button.
+          </p>
+        </div>
+      </div>
+      
+      <Sidebar 
+        fixed={false} 
+        isOpen={isOpen} 
+        onToggle={setIsOpen}
+        direction="left"
+        blockClickOutSide={true}
+      >
+        <SidebarHeader>
+          <h3 className="font-medium">Modal Sidebar</h3>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={() => setIsOpen(false)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </SidebarHeader>
+        
+        <SidebarBody>
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600">
+              This sidebar blocks click outside events. You must explicitly close it 
+              using the close button or programmatically.
+            </p>
+            
+            <div className="bg-blue-50 p-3 rounded">
+              <p className="text-sm text-blue-800">
+                This is useful for modal-like sidebars where you want to ensure 
+                the user completes an action before closing.
+              </p>
+            </div>
+            
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => setIsOpen(false)}
+            >
+              Close Sidebar
+            </Button>
+          </div>
+        </SidebarBody>
+      </Sidebar>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+      <div className="relative h-96 bg-gray-100 overflow-hidden">
+        <div className="p-4 space-y-4">
+          <Button onClick={() => setIsOpen(true)}>
+            <Menu className="h-4 w-4 mr-2" />
+            Open Sidebar (Click Outside Blocked)
+          </Button>
+          
+          <div className="bg-yellow-50 p-3 rounded border border-yellow-200">
+            <p className="text-sm text-yellow-800">
+              <strong>Note:</strong> This sidebar has `blockClickOutSide=true`, 
+              so clicking outside won't close it. You must use the close button.
+            </p>
+          </div>
+        </div>
+        
+        <Sidebar 
+          fixed={false} 
+          isOpen={isOpen} 
+          onToggle={setIsOpen}
+          direction="left"
+          blockClickOutSide={true}
+        >
+          <SidebarHeader>
+            <h3 className="font-medium">Modal Sidebar</h3>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setIsOpen(false)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </SidebarHeader>
+          
+          <SidebarBody>
+            <div className="space-y-4">
+              <p className="text-sm text-gray-600">
+                This sidebar blocks click outside events. You must explicitly close it 
+                using the close button or programmatically.
+              </p>
+              
+              <div className="bg-blue-50 p-3 rounded">
+                <p className="text-sm text-blue-800">
+                  This is useful for modal-like sidebars where you want to ensure 
+                  the user completes an action before closing.
+                </p>
+              </div>
+              
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => setIsOpen(false)}
+              >
+                Close Sidebar
+              </Button>
+            </div>
+          </SidebarBody>
+        </Sidebar>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Sidebar`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `fixed` | `boolean` | - | Whether the sidebar is fixed (always visible) or collapsible. |
+| `isOpen` | `boolean` | - | Controlled open state of the sidebar. |
+| `onToggle` | `(open: boolean) => void` | - | Callback fired when the sidebar open state changes. |
+| `children` | `ReactNode` | - | Sidebar content. |
+| `className` | `string` | - | Additional CSS classes for the sidebar. |
+| `direction` | `'top' \| 'bottom' \| 'left' \| 'right' \| 'full'` | `'left'` | Direction from which the sidebar slides in. |
+| `blockClickOutSide` | `boolean` | `false` | Whether to prevent closing when clicking outside. |
+
+### `SidebarHeader`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | Header content (title, close button, etc.). |
+| `className` | `string` | Additional CSS classes for the header. |
+
+### `SidebarBody`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | Main body content. |
+| `className` | `string` | Additional CSS classes for the body. |
+
+### `SidebarNav`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | Navigation content (typically SidebarList). |
+| `className` | `string` | Additional CSS classes for the nav. |
+
+### `SidebarList`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | List items (SidebarListItem components). |
+| `className` | `string` | Additional CSS classes for the list. |
+
+### `SidebarListItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | List item content. |
+| `className` | `string` | Additional CSS classes for the item. |
+| `onClick` | `() => void` | Click handler for the item. |
+
+### `SidebarFooter`
+
+| Property | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | Footer content. |
+| `className` | `string` | Additional CSS classes for the footer. |
+
+## Direction Behavior
+
+| Direction | Slide Animation | Default Size | Use Case |
+|---|---|---|---|
+| `left` | Slides from left edge | 288px width | Primary navigation, menu |
+| `right` | Slides from right edge | 288px width | Filters, settings, details |
+| `top` | Slides from top edge | 288px height | Notifications, search |
+| `bottom` | Slides from bottom edge | 288px height | Actions, mobile menus |
+| `full` | Slides from top-left | Full screen | Modal-like overlays |
+
+## Accessibility
+
+The Sidebar component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Escape key to close, Tab navigation within sidebar
+- **Focus Management** - Automatic focus restoration when closed
+- **Screen Reader Support** - Proper ARIA attributes and hidden states
+- **Semantic HTML** - Uses proper nav, header, and footer elements
+- **Click Outside** - Configurable click-outside-to-close behavior
+- **ARIA Labels** - Descriptive labels for all interactive elements
+
+## Common Use Cases
+
+The Sidebar component is perfect for:
+
+- **Navigation Menus** - Primary and secondary navigation systems
+- **Filter Panels** - Advanced filtering and search interfaces
+- **Settings Panels** - Application preferences and configuration
+- **User Profiles** - Profile information and account management
+- **Shopping Carts** - E-commerce cart and checkout flows
+- **Notifications** - System notifications and alerts
+- **Help & Support** - Documentation and help content
+- **Mobile Menus** - Responsive navigation for mobile devices
+
+## Best Practices
+
+1. **Appropriate Direction** - Choose the direction that makes sense for your layout
+2. **Clear Purpose** - Use descriptive headers to indicate sidebar purpose
+3. **Consistent Behavior** - Maintain consistent sidebar behavior across your app
+4. **Mobile Optimization** - Ensure sidebars work well on mobile devices
+5. **Performance** - Avoid heavy content that might cause layout shifts
+6. **Accessibility** - Test with screen readers and keyboard navigation
+7. **Visual Hierarchy** - Use proper spacing and typography in sidebar content
+8. **State Management** - Handle sidebar state consistently across components
