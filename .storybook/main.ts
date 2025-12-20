@@ -1,4 +1,3 @@
-
 import type { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {
@@ -7,11 +6,6 @@ const config: StorybookConfig = {
 	framework: {
 		name: '@storybook/react-vite',
 		options: {},
-	},
-	viteFinal: async (config) => {
-		// Set the base URL to match Docusaurus baseUrl + storybook path
-		config.base = '/buildgrid-ui/storybook/'
-		return config
 	},
 }
 export default config

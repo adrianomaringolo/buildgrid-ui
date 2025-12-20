@@ -51,6 +51,27 @@ function Button({
 }: ButtonProps) {
 	const Comp = asChild ? Slot : 'button'
 
+	// When using asChild, we cannot show loading state as it would create multiple children
+	// The Slot component expects exactly one child element
+	if (asChild) {
+		// Log a warning if trying to use loading with asChild
+		if (isLoading && process.env.NODE_ENV === 'development') {
+			console.warn(
+				'Button: isLoading prop is ignored when asChild is true. The loading state should be handled by the child component.',
+			)
+		}
+
+		return (
+			<Comp
+				data-slot="button"
+				className={cn(buttonVariants({ variant, size, className }))}
+				{...props}
+			>
+				{props.children}
+			</Comp>
+		)
+	}
+
 	return (
 		<Comp
 			data-slot="button"

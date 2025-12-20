@@ -79,7 +79,7 @@ module.exports = {
 
 ### Explore the Components
 
-Check out the full list of components and their usage in our Storybook documentation.
+Check out the full list of components and their usage in our comprehensive documentation.
 
 ## Next Steps
 

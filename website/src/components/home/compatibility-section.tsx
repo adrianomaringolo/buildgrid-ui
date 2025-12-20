@@ -4,7 +4,6 @@ import {
 	SiRadixui,
 	SiReact,
 	SiShadcnui,
-	SiStorybook,
 	SiTailwindcss,
 	SiVite,
 } from '@icons-pack/react-simple-icons'
@@ -208,16 +207,6 @@ export const CompatibilitySection: React.FC = () => {
 							</div>
 							<span className="font-semibold text-gray-700 dark:text-gray-300">
 								Tailwind CSS
-							</span>
-						</div>
-
-						{/* Storybook */}
-						<div className="flex items-center gap-3 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:scale-105 transition-transform duration-200">
-							<div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-red-500 rounded flex items-center justify-center">
-								<SiStorybook size={20} className="text-gray-700 dark:text-gray-300" />
-							</div>
-							<span className="font-semibold text-gray-700 dark:text-gray-300">
-								Storybook
 							</span>
 						</div>
 

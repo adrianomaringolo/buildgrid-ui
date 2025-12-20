@@ -3,10 +3,13 @@ id: button
 ---
 
 import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
 import { Button } from "buildgrid-ui";
 import { Download, Mail, ArrowRight, Save, X, Trash2 } from 'lucide-react';
 
 # Button
+
+<StorybookLink path="components-button--default" />
 
 The `Button` component is a fundamental UI element that offers multiple visual variants, sizes, and states. Built with accessibility in mind, it supports icons, loading states, and can be rendered as other elements.
 
@@ -22,6 +25,7 @@ function BasicButton() {
     </Button>
   );
 }`}
+  storybookPath="components-button--default"
 >
   <Button onClick={() => alert('Clicked!')}>
     Click me
@@ -45,6 +49,7 @@ function ButtonVariants() {
     </div>
   );
 }`}
+  storybookPath="components-button--variants"
 >
   <div className="flex gap-2 flex-wrap">
     <Button variant="default">Default</Button>

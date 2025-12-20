@@ -119,9 +119,9 @@ const config: Config = {
 					label: 'Documentation',
 				},
 				{ to: '/blog', label: 'Blog', position: 'left' },
-				{ to: '/storybook', label: 'Storybook', position: 'left' },
 				{
-					hreel: 'GitHub',
+					href: 'https://github.com/adrianomaringolo/buildgrid-ui',
+					label: 'GitHub',
 					position: 'right',
 				},
 			],

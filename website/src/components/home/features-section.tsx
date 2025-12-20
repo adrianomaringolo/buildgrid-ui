@@ -59,7 +59,7 @@ const features: Feature[] = [
 		icon: '🤝',
 		title: 'Developer-Friendly',
 		description:
-			'Includes Storybook for testing and exploration, linting and formatting with ESLint and Prettier, and clear contribution guidelines.',
+			'Includes comprehensive documentation, linting and formatting with ESLint and Prettier, and clear contribution guidelines.',
 	},
 ]
 

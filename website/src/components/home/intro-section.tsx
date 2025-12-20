@@ -86,6 +86,19 @@ export const IntroSection = ({ className }: IntroSectionProps) => {
 						>
 							View Components
 						</a>
+
+						<a
+							href="https://main--6944355833ad98d1ee729cd0.chromatic.com/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className={cn(
+								'px-8 py-4 border-2 border-orange-500 dark:border-orange-400 text-orange-600! dark:text-orange-300',
+								'font-semibold rounded-full hover:bg-orange-500 dark:hover:bg-orange-400 hover:text-white! transform hover:scale-105 transition-all duration-300',
+								'animate-fade-in-up animation-delay-1800',
+							)}
+						>
+							View Storybook
+						</a>
 					</div>
 				</div>
 			</div>
