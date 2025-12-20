@@ -4,84 +4,121 @@
         <title>BuidgridUI Blog</title>
         <link>https://adrianomaringolo.github.io/buildgrid-ui/blog</link>
         <description>BuidgridUI Blog</description>
-        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 20 Dec 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Welcome]]></title>
-            <link>https://adrianomaringolo.github.io/buildgrid-ui/blog/welcome</link>
-            <guid>https://adrianomaringolo.github.io/buildgrid-ui/blog/welcome</guid>
-            <pubDate>Thu, 26 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Docusaurus blogging features are powered by the blog plugin.]]></description>
-            <content:encoded><![CDATA[<p><a href="https://docusaurus.io/docs/blog" target="_blank" rel="noopener noreferrer" class="">Docusaurus blogging features</a> are powered by the <a href="https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog" target="_blank" rel="noopener noreferrer" class="">blog plugin</a>.</p>
-<p>Here are a few tips you might find useful.</p>
-<p>Simply add Markdown files (or folders) to the <code>blog</code> directory.</p>
-<p>Regular blog authors can be added to <code>authors.yml</code>.</p>
-<p>The blog post date can be extracted from filenames, such as:</p>
+            <title><![CDATA[Introducing BuildGrid UI - A Modern React Component Library]]></title>
+            <link>https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui</link>
+            <guid>https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui</guid>
+            <pubDate>Sat, 20 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[BuildGrid UI Launch]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="BuildGrid UI Launch" src="https://adrianomaringolo.github.io/buildgrid-ui/assets/images/buildgrid-ui-launch-0df921f6559272569468298e74d3d7b8.png" width="1446" height="772" class="img_ev3q"></p>
+<p>Today, I'm excited to announce the public release of <strong>BuildGrid UI</strong> - a comprehensive React component library that I've been developing throughout 2024 and 2025. This marks my first open-source project, and I'm thrilled to share it with the developer community.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-story-behind-buildgrid-ui">The Story Behind BuildGrid UI<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#the-story-behind-buildgrid-ui" class="hash-link" aria-label="Direct link to The Story Behind BuildGrid UI" title="Direct link to The Story Behind BuildGrid UI" translate="no">​</a></h2>
+<p>Like many developers, I found myself constantly facing the same challenge: <strong>component consistency across projects</strong>. While there are excellent UI libraries available, I always needed to make numerous modifications to adapt them to my specific needs. This led to a frustrating cycle of copying, pasting, and re-adapting the same components across different projects.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-problem-i-wanted-to-solve">The Problem I Wanted to Solve<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#the-problem-i-wanted-to-solve" class="hash-link" aria-label="Direct link to The Problem I Wanted to Solve" title="Direct link to The Problem I Wanted to Solve" translate="no">​</a></h3>
+<p>My journey started with <a href="https://ui.shadcn.com/" target="_blank" rel="noopener noreferrer" class="">shadcn/ui</a>, which I absolutely love and use extensively in my projects. However, I realized that maintaining copies of the same components across multiple projects wasn't sustainable. Every time I needed to make an improvement or fix a bug, I had to update it in every single project - a maintenance nightmare.</p>
+<p>That's when I decided to create <strong>BuildGrid UI</strong>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-makes-buildgrid-ui-different">What Makes BuildGrid UI Different<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#what-makes-buildgrid-ui-different" class="hash-link" aria-label="Direct link to What Makes BuildGrid UI Different" title="Direct link to What Makes BuildGrid UI Different" translate="no">​</a></h2>
+<p>BuildGrid UI isn't just another component library. It's a <strong>curated collection of production-ready components</strong> that I've refined through real-world usage in my own projects. Here's what sets it apart:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-battle-tested-components">🎯 <strong>Battle-Tested Components</strong><a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#-battle-tested-components" class="hash-link" aria-label="Direct link to -battle-tested-components" title="Direct link to -battle-tested-components" translate="no">​</a></h3>
+<p>Every component in BuildGrid UI has been used in actual production applications. They're not just theoretical implementations - they're proven solutions to real problems.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-two-tier-architecture">🧩 <strong>Two-Tier Architecture</strong><a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#-two-tier-architecture" class="hash-link" aria-label="Direct link to -two-tier-architecture" title="Direct link to -two-tier-architecture" translate="no">​</a></h3>
 <ul>
-<li class=""><code>2019-05-30-welcome.md</code></li>
-<li class=""><code>2019-05-30-welcome/index.md</code></li>
+<li class=""><strong>Components</strong>: Basic, reusable UI elements (buttons, inputs, cards, etc.)</li>
+<li class=""><strong>Blocks</strong>: Complex, composed components for specific use cases (data tables, file upload zones, HTML editors, etc.)</li>
 </ul>
-<p>A blog post folder can be convenient to co-locate blog post images:</p>
-<p><img decoding="async" loading="lazy" alt="Docusaurus Plushie" src="https://adrianomaringolo.github.io/buildgrid-ui/assets/images/docusaurus-plushie-banner-a60f7593abca1e3eef26a9afa244e4fb.jpeg" width="1500" height="500" class="img_ev3q"></p>
-<p>The blog supports tags as well!</p>
-<p><strong>And if you don't want a blog</strong>: just delete this directory, and use <code>blog: false</code> in your Docusaurus config.</p>]]></content:encoded>
-            <category>Facebook</category>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[MDX Blog Post]]></title>
-            <link>https://adrianomaringolo.github.io/buildgrid-ui/blog/mdx-blog-post</link>
-            <guid>https://adrianomaringolo.github.io/buildgrid-ui/blog/mdx-blog-post</guid>
-            <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Blog posts support Docusaurus Markdown features, such as MDX.]]></description>
-            <content:encoded><![CDATA[<p>Blog posts support <a href="https://docusaurus.io/docs/markdown-features" target="_blank" rel="noopener noreferrer" class="">Docusaurus Markdown features</a>, such as <a href="https://mdxjs.com/" target="_blank" rel="noopener noreferrer" class="">MDX</a>.</p>
-<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>Use the power of React to create interactive blog posts.</p></div></div>
-<!-- -->
-<p>For example, use JSX to create an interactive button:</p>
-<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token operator">&lt;</span><span class="token plain">button onClick</span><span class="token operator">=</span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token arrow operator">=&gt;</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">alert</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token string" style="color:rgb(255, 121, 198)">'button clicked!'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token operator">&gt;</span><span class="token maybe-class-name">Click</span><span class="token plain"> me</span><span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span><span class="token plain">button</span><span class="token operator">&gt;</span><br></span></code></pre></div></div>
-<button>Click me!</button>]]></content:encoded>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[Long Blog Post]]></title>
-            <link>https://adrianomaringolo.github.io/buildgrid-ui/blog/long-blog-post</link>
-            <guid>https://adrianomaringolo.github.io/buildgrid-ui/blog/long-blog-post</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[This is the summary of a very long blog post,]]></description>
-            <content:encoded><![CDATA[<p>This is the summary of a very long blog post,</p>
-<p>Use a <code>&lt;!--</code> <code>truncate</code> <code>--&gt;</code> comment to limit blog post size in the list view.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[First Blog Post]]></title>
-            <link>https://adrianomaringolo.github.io/buildgrid-ui/blog/first-blog-post</link>
-            <guid>https://adrianomaringolo.github.io/buildgrid-ui/blog/first-blog-post</guid>
-            <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet...]]></description>
-            <content:encoded><![CDATA[<p>Lorem ipsum dolor sit amet...</p>
-<p>...consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hola</category>
-            <category>Docusaurus</category>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-built-on-solid-foundations">🛠 <strong>Built on Solid Foundations</strong><a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#-built-on-solid-foundations" class="hash-link" aria-label="Direct link to -built-on-solid-foundations" title="Direct link to -built-on-solid-foundations" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>React 19</strong> with TypeScript for type safety</li>
+<li class=""><strong>Tailwind CSS</strong> for styling flexibility</li>
+<li class=""><strong>Radix UI</strong> primitives for accessibility</li>
+<li class=""><strong>Storybook</strong> integration for component development</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-rich-documentation">📚 <strong>Rich Documentation</strong><a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#-rich-documentation" class="hash-link" aria-label="Direct link to -rich-documentation" title="Direct link to -rich-documentation" translate="no">​</a></h3>
+<p>Each component comes with:</p>
+<ul>
+<li class="">Interactive examples</li>
+<li class="">Comprehensive API documentation</li>
+<li class="">Accessibility guidelines</li>
+<li class="">Best practices and common use cases</li>
+<li class="">Storybook integration</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="whats-included">What's Included<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#whats-included" class="hash-link" aria-label="Direct link to What's Included" title="Direct link to What's Included" translate="no">​</a></h2>
+<p>BuildGrid UI currently offers <strong>44 components</strong> and <strong>12 blocks</strong>, plus utility functions for common tasks:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="core-components">Core Components<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#core-components" class="hash-link" aria-label="Direct link to Core Components" title="Direct link to Core Components" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Form Elements</strong>: Input, Textarea, Select, Checkbox, Radio Group, etc.</li>
+<li class=""><strong>Navigation</strong>: Button, Navigation Menu, Tabs, Pagination, etc.</li>
+<li class=""><strong>Feedback</strong>: Alert, Toast, Progress, Spinner, Skeleton, etc.</li>
+<li class=""><strong>Layout</strong>: Card, Separator, Sheet, Dialog, Popover, etc.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="advanced-blocks">Advanced Blocks<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#advanced-blocks" class="hash-link" aria-label="Direct link to Advanced Blocks" title="Direct link to Advanced Blocks" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Data Table</strong>: Feature-rich table with sorting, filtering, and pagination</li>
+<li class=""><strong>HTML Text Editor</strong>: Rich text editor with toolbar and formatting options</li>
+<li class=""><strong>File Upload Dropzone</strong>: Drag-and-drop file upload with progress tracking</li>
+<li class=""><strong>Lazy Image Gallery</strong>: Performance-optimized image gallery</li>
+<li class=""><strong>Month Navigator</strong>: Calendar navigation component</li>
+<li class="">And many more...</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="utility-functions">Utility Functions<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#utility-functions" class="hash-link" aria-label="Direct link to Utility Functions" title="Direct link to Utility Functions" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Hooks</strong>: <code>useLocalStorage</code>, <code>useDebounce</code>, <code>useCopyToClipboard</code></li>
+<li class=""><strong>Formatters</strong>: Currency and date formatting utilities</li>
+<li class=""><strong>Types</strong>: TypeScript utility types for better development experience</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="getting-started">Getting Started<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#getting-started" class="hash-link" aria-label="Direct link to Getting Started" title="Direct link to Getting Started" translate="no">​</a></h2>
+<p>Installing BuildGrid UI is straightforward:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">npm install buildgrid-ui</span><br></span></code></pre></div></div>
+<p>Then import and use components in your React application:</p>
+<div class="language-tsx codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-tsx codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">import</span><span class="token plain"> </span><span class="token imports punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token imports"> </span><span class="token imports maybe-class-name">Button</span><span class="token imports punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token imports"> </span><span class="token imports maybe-class-name">Card</span><span class="token imports punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token imports"> </span><span class="token imports maybe-class-name">Input</span><span class="token imports"> </span><span class="token imports punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">from</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">'buildgrid-ui'</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">function</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">MyComponent</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">return</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">    </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;</span><span class="token tag class-name" style="color:rgb(255, 121, 198)">Card</span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&gt;</span><span class="token plain-text"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain-text">      </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;</span><span class="token tag class-name" style="color:rgb(255, 121, 198)">Input</span><span class="token tag" style="color:rgb(255, 121, 198)"> </span><span class="token tag attr-name" style="color:rgb(241, 250, 140)">placeholder</span><span class="token tag attr-value punctuation attr-equals" style="color:rgb(248, 248, 242)">=</span><span class="token tag attr-value punctuation" style="color:rgb(248, 248, 242)">"</span><span class="token tag attr-value" style="color:rgb(255, 121, 198)">Enter your name</span><span class="token tag attr-value punctuation" style="color:rgb(248, 248, 242)">"</span><span class="token tag" style="color:rgb(255, 121, 198)"> </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">/&gt;</span><span class="token plain-text"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain-text">      </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;</span><span class="token tag class-name" style="color:rgb(255, 121, 198)">Button</span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&gt;</span><span class="token plain-text">Submit</span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;/</span><span class="token tag class-name" style="color:rgb(255, 121, 198)">Button</span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&gt;</span><span class="token plain-text"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain-text">    </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;/</span><span class="token tag class-name" style="color:rgb(255, 121, 198)">Card</span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  </span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"></span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="my-first-open-source-journey">My First Open Source Journey<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#my-first-open-source-journey" class="hash-link" aria-label="Direct link to My First Open Source Journey" title="Direct link to My First Open Source Journey" translate="no">​</a></h2>
+<p>This is my first open-source project, and it's been an incredible learning experience. Creating BuildGrid UI taught me about:</p>
+<ul>
+<li class=""><strong>API Design</strong>: How to create intuitive, flexible component APIs</li>
+<li class=""><strong>Documentation</strong>: The importance of clear, comprehensive documentation</li>
+<li class=""><strong>Testing</strong>: Building reliable components that work across different scenarios</li>
+<li class=""><strong>Community</strong>: The value of sharing knowledge and tools with other developers</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="whats-next">What's Next<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#whats-next" class="hash-link" aria-label="Direct link to What's Next" title="Direct link to What's Next" translate="no">​</a></h2>
+<p>I'm committed to continuously improving BuildGrid UI based on community feedback and real-world usage. Here's what's on the roadmap:</p>
+<ul>
+<li class=""><strong>More Components</strong>: Additional form elements, layout components, and specialized blocks</li>
+<li class=""><strong>Theming System</strong>: Enhanced customization options for different design systems</li>
+<li class=""><strong>Performance Optimizations</strong>: Continued focus on bundle size and runtime performance</li>
+<li class=""><strong>Community Contributions</strong>: I'm excited to see how the community will help shape the library</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="join-the-community">Join the Community<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#join-the-community" class="hash-link" aria-label="Direct link to Join the Community" title="Direct link to Join the Community" translate="no">​</a></h2>
+<p>I believe that the best libraries are built by communities, not individuals. If you find BuildGrid UI useful, I'd love your contributions:</p>
+<ul>
+<li class=""><strong>Try it out</strong> in your projects and share your feedback</li>
+<li class=""><strong>Report issues</strong> or suggest improvements on GitHub</li>
+<li class=""><strong>Contribute code</strong> - whether it's bug fixes, new components, or documentation improvements</li>
+<li class=""><strong>Share your experience</strong> - blog posts, tutorials, or social media mentions help others discover the library</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conclusion">Conclusion<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" translate="no">​</a></h2>
+<p>BuildGrid UI represents my vision of what a modern React component library should be: <strong>practical, well-documented, and built for real-world use cases</strong>. It's the library I wish I had when I started building React applications.</p>
+<p>I'm excited to see how the community will use and improve BuildGrid UI. Whether you're building a small side project or a large-scale application, I hope these components will save you time and help you create better user experiences.</p>
+<hr>
+<p><strong>Ready to get started?</strong></p>
+<ul>
+<li class="">📖 <a class="" href="https://adrianomaringolo.github.io/buildgrid-ui/">Explore the Documentation</a></li>
+<li class="">📦 <a href="https://www.npmjs.com/package/buildgrid-ui" target="_blank" rel="noopener noreferrer" class="">Install from NPM</a></li>
+<li class="">🐙 <a href="https://github.com/adrianomaringolo/buildgrid-ui" target="_blank" rel="noopener noreferrer" class="">View on GitHub</a></li>
+<li class="">📊 <a href="https://adrianomaringolo.github.io/buildgrid-ui/" target="_blank" rel="noopener noreferrer" class="">Browse Storybook Examples</a></li>
+</ul>
+<p>Thank you for taking the time to learn about BuildGrid UI. I can't wait to see what you'll build with it!</p>
+<p><em>Happy coding!</em><br>
+<strong>Adriano Maringolo</strong><br>
+<em>Creator of BuildGrid UI</em></p>]]></content:encoded>
+            <category>Launch</category>
+            <category>React</category>
+            <category>UI Library</category>
+            <category>Open Source</category>
+            <category>TypeScript</category>
         </item>
     </channel>
 </rss>
