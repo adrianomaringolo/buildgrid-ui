@@ -1,3 +1,15 @@
+# [1.16.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.32...v1.16.0) (2025-12-20)
+
+
+### Bug Fixes
+
+* **blocks:** Export navigable-list component from blocks module ([8e5d8be](https://github.com/adrianomaringolo/buildgrid-ui/commit/8e5d8be47c1dceaddd00f5680f274cddde00fe63))
+
+
+### Features
+
+* **storybook:** Integrate Storybook into documentation and update build configuration ([6d164ce](https://github.com/adrianomaringolo/buildgrid-ui/commit/6d164ce5d26555a3df31ab918e9fca9074d34a5b))
+
 ## [1.15.32](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.31...v1.15.32) (2025-10-24)
 
 
