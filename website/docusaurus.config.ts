@@ -35,6 +35,7 @@ const config: Config = {
 				},
 			}
 		},
+		require('./plugins/changelog-plugin.js'),
 	],
 
 	// Even if you don't use internationalization, you can use this field to set
@@ -119,6 +120,7 @@ const config: Config = {
 					label: 'Documentation',
 				},
 				{ to: '/blog', label: 'Blog', position: 'left' },
+				{ to: '/changelog', label: 'Changelog', position: 'left' },
 				{
 					href: 'https://github.com/adrianomaringolo/buildgrid-ui',
 					label: 'GitHub',
@@ -166,6 +168,10 @@ const config: Config = {
 						{
 							label: 'Blog',
 							to: '/blog',
+						},
+						{
+							label: 'Changelog',
+							to: '/changelog',
 						},
 						{
 							label: 'GitHub',

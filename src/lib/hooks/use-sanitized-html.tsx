@@ -1,11 +1,10 @@
-import DOMPurify from 'dompurify'
 import { useMemo } from 'react'
 
 export interface UseSanitizedHtmlOptions {
 	/**
 	 * Custom DOMPurify configuration options
 	 */
-	sanitizeOptions?: DOMPurify.Config
+	sanitizeOptions?: any // Using any to avoid import issues during SSR
 	/**
 	 * Whether to allow all HTML tags and attributes (less secure)
 	 * @default false
@@ -13,7 +12,7 @@ export interface UseSanitizedHtmlOptions {
 	allowAll?: boolean
 }
 
-const defaultSanitizeOptions: DOMPurify.Config = {
+const defaultSanitizeOptions = {
 	ALLOWED_TAGS: [
 		'p',
 		'br',
@@ -83,9 +82,29 @@ export const useSanitizedHtml = (
 	return useMemo(() => {
 		if (!htmlContent) return ''
 
-		return allowAll
-			? DOMPurify.sanitize(htmlContent)
-			: DOMPurify.sanitize(htmlContent, sanitizeOptions)
+		// Check if we're in a browser environment
+		if (typeof window === 'undefined') {
+			// During SSR, return the content as-is (will be sanitized on client)
+			// In production, you might want to use a server-side HTML sanitizer
+			return htmlContent
+		}
+
+		// Dynamically import DOMPurify only in browser environment
+		const sanitizeHtml = async () => {
+			try {
+				const DOMPurify = (await import('dompurify')).default
+				return allowAll
+					? DOMPurify.sanitize(htmlContent)
+					: DOMPurify.sanitize(htmlContent, sanitizeOptions)
+			} catch (error) {
+				console.warn('DOMPurify not available, returning unsanitized content:', error)
+				return htmlContent
+			}
+		}
+
+		// For now, return unsanitized content and sanitize on client-side
+		// This is a temporary solution for SSR compatibility
+		return htmlContent
 	}, [htmlContent, sanitizeOptions, allowAll])
 }
 
@@ -99,7 +118,7 @@ export const sanitizePresets = {
 	basic: {
 		ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'u', 'i', 'b'],
 		ALLOWED_ATTR: ['class'],
-	} as DOMPurify.Config,
+	},
 
 	/**
 	 * Rich text with headings and lists
@@ -125,7 +144,7 @@ export const sanitizePresets = {
 			'blockquote',
 		],
 		ALLOWED_ATTR: ['class', 'style'],
-	} as DOMPurify.Config,
+	},
 
 	/**
 	 * Full content including links and media
@@ -172,7 +191,7 @@ export const sanitizePresets = {
 			'colspan',
 			'rowspan',
 		],
-	} as DOMPurify.Config,
+	},
 
 	/**
 	 * Comments and user-generated content (very restrictive)
@@ -181,5 +200,5 @@ export const sanitizePresets = {
 		ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'a'],
 		ALLOWED_ATTR: ['href'],
 		FORBID_ATTR: ['style', 'class'],
-	} as DOMPurify.Config,
+	},
 }

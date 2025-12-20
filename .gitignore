@@ -36,3 +36,5 @@ storybook-static
 *.sw?
 
 *storybook.log
+
+website/static/CHANGELOG.md

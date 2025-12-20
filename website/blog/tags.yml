@@ -1,19 +1,24 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+launch:
+  label: Launch
+  permalink: /launch
+  description: Product launch announcements
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+react:
+  label: React
+  permalink: /react
+  description: React-related content
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+ui-library:
+  label: UI Library
+  permalink: /ui-library
+  description: UI component library topics
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+open-source:
+  label: Open Source
+  permalink: /open-source
+  description: Open source project discussions
+
+typescript:
+  label: TypeScript
+  permalink: /typescript
+  description: TypeScript development topics
