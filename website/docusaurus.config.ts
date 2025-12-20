@@ -124,6 +124,11 @@ const config: Config = {
 					label: 'GitHub',
 					position: 'right',
 				},
+				{
+					href: 'https://www.npmjs.com/package/buildgrid-ui',
+					label: 'NPM',
+					position: 'right',
+				},
 			],
 		},
 		footer: {
@@ -165,6 +170,10 @@ const config: Config = {
 						{
 							label: 'GitHub',
 							href: 'https://github.com/adrianomaringolo/buildgrid-ui',
+						},
+						{
+							label: 'NPM',
+							href: 'https://www.npmjs.com/package/buildgrid-ui',
 						},
 					],
 				},

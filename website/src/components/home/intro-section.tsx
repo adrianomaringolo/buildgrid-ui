@@ -1,4 +1,5 @@
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import { BUILDGRID_UI_VERSION } from '@site/src/utils/version'
 import Logo from '@site/static/img/buildgrid-ui-logo.png'
 import { cn } from 'buildgrid-ui'
 
@@ -52,6 +53,38 @@ export const IntroSection = ({ className }: IntroSectionProps) => {
 					<p className="mb-4! text-xl md:text-2xl text-purple-700 dark:text-purple-200 font-light animate-fade-in-up animation-delay-600">
 						A comprehensive UI component library
 					</p>
+
+					{/* Version Badge - Clickable link to NPM */}
+					<div className="mb-6 animate-fade-in-up animation-delay-700">
+						<a
+							href="https://www.npmjs.com/package/buildgrid-ui"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="version-badge-link inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 border border-purple-200 dark:border-purple-700 hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors duration-200 no-underline hover:no-underline group"
+							title="View buildgrid-ui on NPM"
+						>
+							<svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fillRule="evenodd"
+									d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+									clipRule="evenodd"
+								/>
+							</svg>
+							v{BUILDGRID_UI_VERSION}
+							<svg
+								className="w-3 h-3 ml-2 opacity-60 group-hover:opacity-100 transition-opacity duration-200"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+							>
+								<path
+									fillRule="evenodd"
+									d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+									clipRule="evenodd"
+								/>
+							</svg>
+						</a>
+					</div>
+
 					<p className="mb-12! text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-900">
 						Build modern, accessible, and beautiful React applications with our collection
 						of components, blocks, and utility functions. Make your creation easier!

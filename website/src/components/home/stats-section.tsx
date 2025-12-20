@@ -1,17 +1,17 @@
 const stats = [
 	{
 		title: 'Components',
-		value: '41',
+		value: '44',
 		subtitle: 'ready to use',
 	},
 	{
 		title: 'Blocks',
-		value: '13',
+		value: '12',
 		subtitle: 'complex layouts',
 	},
 	{
 		title: 'Utilities',
-		value: '18',
+		value: '6',
 		subtitle: 'hooks & formatters',
 	},
 ]
