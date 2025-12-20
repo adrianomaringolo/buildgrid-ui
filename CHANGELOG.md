@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.16.0...v1.17.0) (2025-12-20)
+
+
+### Features
+
+* **html-text-editor:** Add HTML sanitization with DOMPurify integration ([0bfac62](https://github.com/adrianomaringolo/buildgrid-ui/commit/0bfac6223b2bae891506197fe1c026d5eea3d8f0))
+
 # [1.16.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.15.32...v1.16.0) (2025-12-20)
 
 
