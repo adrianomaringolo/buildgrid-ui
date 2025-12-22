@@ -143,6 +143,10 @@ const config: Config = {
 							label: 'Tutorial',
 							to: '/docs/intro',
 						},
+						{
+							label: 'Components',
+							to: '/components-grid',
+						},
 					],
 				},
 				{

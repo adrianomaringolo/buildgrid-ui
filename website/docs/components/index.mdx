@@ -1,0 +1,329 @@
+---
+id: index
+title: Components Overview
+sidebar_label: Overview
+slug: /components
+---
+
+import { ComponentCard } from '@site/src/components/docs/ComponentCard'
+
+# Components Overview
+
+BuildGrid UI provides **44 carefully crafted components** that form the foundation of modern React applications. Each component is designed with accessibility, performance, and developer experience in mind.
+
+## Quick Stats
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">44</div>
+    <div className="text-sm text-blue-700 dark:text-blue-300">Components</div>
+  </div>
+  <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 text-center">
+    <div className="text-2xl font-bold text-green-600 dark:text-green-400">100%</div>
+    <div className="text-sm text-green-700 dark:text-green-300">TypeScript</div>
+  </div>
+  <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
+    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">WCAG</div>
+    <div className="text-sm text-purple-700 dark:text-purple-300">Accessible</div>
+  </div>
+</div>
+
+## Component Categories
+
+### Form Elements
+Essential input components for building interactive forms and user interfaces.
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+  <ComponentCard 
+    title="Input" 
+    description="Text input fields with multiple sizes and types"
+    href="/docs/components/input"
+    tags={['form', 'text']}
+  />
+  <ComponentCard 
+    title="Textarea" 
+    description="Multi-line text input with auto-resize"
+    href="/docs/components/textarea"
+    tags={['form', 'text']}
+  />
+  <ComponentCard 
+    title="Select" 
+    description="Dropdown selection with search and grouping"
+    href="/docs/components/select"
+    tags={['form', 'selection']}
+  />
+  <ComponentCard 
+    title="Checkbox" 
+    description="Multi-selection input with indeterminate state"
+    href="/docs/components/checkbox"
+    tags={['form', 'selection']}
+  />
+  <ComponentCard 
+    title="Radio Group" 
+    description="Single selection from multiple options"
+    href="/docs/components/radio-group"
+    tags={['form', 'selection']}
+  />
+  <ComponentCard 
+    title="Switch" 
+    description="Toggle switches for boolean values"
+    href="/docs/components/switch"
+    tags={['form', 'toggle']}
+  />
+</div>
+
+### Advanced Inputs
+Specialized input components for complex data types and enhanced user experience.
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+  <ComponentCard 
+    title="Autocomplete" 
+    description="Input with intelligent suggestions and completion"
+    href="/docs/components/autocomplete"
+    tags={['form', 'search']}
+  />
+  <ComponentCard 
+    title="Multi Select" 
+    description="Multiple selection dropdown with search"
+    href="/docs/components/multi-select"
+    tags={['form', 'selection']}
+  />
+  <ComponentCard 
+    title="Tag Input" 
+    description="Input for creating and managing tags"
+    href="/docs/components/tag-input"
+    tags={['form', 'tags']}
+  />
+  <ComponentCard 
+    title="Currency Input" 
+    description="Formatted input for monetary values"
+    href="/docs/components/currency-input"
+    tags={['form', 'number']}
+  />
+  <ComponentCard 
+    title="Password Input" 
+    description="Secure password input with visibility toggle"
+    href="/docs/components/password-input"
+    tags={['form', 'security']}
+  />
+  <ComponentCard 
+    title="Number Stepper" 
+    description="Numeric input with increment/decrement controls"
+    href="/docs/components/number-stepper"
+    tags={['form', 'number']}
+  />
+</div>
+
+### Navigation & Actions
+Components for user navigation and interactive actions.
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+  <ComponentCard 
+    title="Button" 
+    description="Interactive buttons with multiple variants and states"
+    href="/docs/components/button"
+    tags={['form', 'action']}
+  />
+  <ComponentCard 
+    title="Navigation Menu" 
+    description="Hierarchical navigation with dropdowns"
+    href="/docs/components/navigation-menu"
+    tags={['navigation', 'menu']}
+  />
+  <ComponentCard 
+    title="Tabs" 
+    description="Tabbed content navigation"
+    href="/docs/components/tabs"
+    tags={['navigation', 'layout']}
+  />
+  <ComponentCard 
+    title="Pagination" 
+    description="Page navigation for large datasets"
+    href="/docs/components/pagination"
+    tags={['navigation', 'data']}
+  />
+  <ComponentCard 
+    title="Dropdown Menu" 
+    description="Contextual menus and action lists"
+    href="/docs/components/dropdown-menu"
+    tags={['navigation', 'menu']}
+  />
+  <ComponentCard 
+    title="Command" 
+    description="Command palette for quick actions and navigation"
+    href="/docs/components/command"
+    tags={['navigation', 'search']}
+  />
+</div>
+
+### Feedback & Status
+Components for providing user feedback and displaying status information.
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+  <ComponentCard 
+    title="Alert" 
+    description="Display important messages and notifications"
+    href="/docs/components/alert"
+    tags={['feedback', 'notification']}
+  />
+  <ComponentCard 
+    title="Alert Dialog" 
+    description="Modal dialogs for confirmations and alerts"
+    href="/docs/components/alert-dialog"
+    tags={['overlay', 'modal']}
+  />
+  <ComponentCard 
+    title="Toaster" 
+    description="Toast notifications and alerts"
+    href="/docs/components/toaster"
+    tags={['feedback', 'notification']}
+  />
+  <ComponentCard 
+    title="Progress" 
+    description="Progress bars and loading indicators"
+    href="/docs/components/progress"
+    tags={['feedback', 'loading']}
+  />
+  <ComponentCard 
+    title="Spinner" 
+    description="Loading spinners and activity indicators"
+    href="/docs/components/spinner"
+    tags={['loading', 'feedback']}
+  />
+  <ComponentCard 
+    title="Skeleton" 
+    description="Loading placeholders for content"
+    href="/docs/components/skeleton"
+    tags={['loading', 'placeholder']}
+  />
+</div>
+
+### Layout & Structure
+Components for organizing and structuring your application layout.
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+  <ComponentCard 
+    title="Card" 
+    description="Flexible content containers with header and footer"
+    href="/docs/components/card"
+    tags={['layout', 'container']}
+  />
+  <ComponentCard 
+    title="Separator" 
+    description="Visual dividers for content sections"
+    href="/docs/components/separator"
+    tags={['layout', 'divider']}
+  />
+  <ComponentCard 
+    title="Sheet" 
+    description="Slide-out panels and drawers"
+    href="/docs/components/sheet"
+    tags={['overlay', 'panel']}
+  />
+  <ComponentCard 
+    title="Dialog" 
+    description="Modal dialogs and overlays"
+    href="/docs/components/dialog"
+    tags={['overlay', 'modal']}
+  />
+  <ComponentCard 
+    title="Accordion" 
+    description="Collapsible content sections with smooth animations"
+    href="/docs/components/accordion"
+    tags={['layout', 'navigation']}
+  />
+  <ComponentCard 
+    title="Collapsible" 
+    description="Expandable content sections"
+    href="/docs/components/collapsible"
+    tags={['layout', 'navigation']}
+  />
+</div>
+
+### Display & Media
+Components for displaying content, media, and user information.
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+  <ComponentCard 
+    title="Avatar" 
+    description="User profile pictures with fallback options"
+    href="/docs/components/avatar"
+    tags={['display', 'user']}
+  />
+  <ComponentCard 
+    title="Badge" 
+    description="Small status indicators and labels"
+    href="/docs/components/badge"
+    tags={['display', 'status']}
+  />
+  <ComponentCard 
+    title="Calendar" 
+    description="Date picker and calendar component"
+    href="/docs/components/calendar"
+    tags={['form', 'date']}
+  />
+  <ComponentCard 
+    title="Carousel" 
+    description="Image and content slider with navigation"
+    href="/docs/components/carousel"
+    tags={['display', 'media']}
+  />
+  <ComponentCard 
+    title="Table" 
+    description="Data tables with sorting and styling"
+    href="/docs/components/table"
+    tags={['data', 'display']}
+  />
+  <ComponentCard 
+    title="Tooltip" 
+    description="Contextual help and information overlays"
+    href="/docs/components/tooltip"
+    tags={['overlay', 'help']}
+  />
+</div>
+
+## Getting Started
+
+To start using components, install BuildGrid UI and import the components you need:
+
+```bash
+npm install buildgrid-ui
+```
+
+```tsx
+import { Button, Input, Card } from 'buildgrid-ui'
+
+function MyComponent() {
+  return (
+    <Card>
+      <Card.Header>
+        <Card.Title>Example Form</Card.Title>
+      </Card.Header>
+      <Card.Content>
+        <Input placeholder="Enter your name" />
+      </Card.Content>
+      <Card.Footer>
+        <Button>Submit</Button>
+      </Card.Footer>
+    </Card>
+  )
+}
+```
+
+## Design Principles
+
+All BuildGrid UI components follow these core principles:
+
+- **Accessibility First** - WCAG compliant with full keyboard navigation
+- **TypeScript Native** - Complete type safety and IntelliSense support
+- **Customizable** - Flexible styling with Tailwind CSS
+- **Consistent** - Unified design language across all components
+- **Performance** - Optimized for production use
+- **Developer Experience** - Intuitive APIs and comprehensive documentation
+
+## Need Help?
+
+- 📖 Browse individual component documentation in the sidebar
+- 🎨 View live examples in our [Storybook](https://main--6944355833ad98d1ee729cd0.chromatic.com/)
+- 💬 Join discussions on [GitHub](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
+- 🐛 Report issues on [GitHub Issues](https://github.com/adrianomaringolo/buildgrid-ui/issues)

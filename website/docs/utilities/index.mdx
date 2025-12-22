@@ -1,0 +1,334 @@
+---
+id: index
+title: Utilities Overview
+sidebar_label: Overview
+slug: /utilities
+---
+
+import { ComponentCard } from '@site/src/components/docs/ComponentCard'
+
+# Utilities Overview
+
+BuildGrid UI provides a comprehensive set of **utility functions, hooks, and TypeScript types** to enhance your development experience. These utilities solve common problems and provide reusable functionality across your React applications.
+
+## Quick Stats
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 text-center">
+    <div className="text-2xl font-bold text-green-600 dark:text-green-400">3</div>
+    <div className="text-sm text-green-700 dark:text-green-300">Custom Hooks</div>
+  </div>
+  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">2</div>
+    <div className="text-sm text-blue-700 dark:text-blue-300">Formatters</div>
+  </div>
+  <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
+    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">TS</div>
+    <div className="text-sm text-purple-700 dark:text-purple-300">Type Utilities</div>
+  </div>
+</div>
+
+## What are Utilities?
+
+Utilities are **helper functions, custom hooks, and TypeScript types** that provide common functionality needed in React applications. They include:
+
+- **Custom Hooks** - Reusable stateful logic
+- **Formatters** - Data formatting functions
+- **Type Utilities** - TypeScript helper types
+- **Helper Functions** - Common utility functions
+
+## Custom Hooks
+
+Powerful React hooks for common use cases.
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+  <ComponentCard 
+    title="useLocalStorage" 
+    description="Persistent state management with localStorage sync"
+    href="/docs/utilities/hooks/use-local-storage"
+    tags={['hook', 'storage', 'state']}
+  />
+  <ComponentCard 
+    title="useDebounce" 
+    description="Debounced values for performance optimization"
+    href="/docs/utilities/hooks/use-debounce"
+    tags={['hook', 'performance', 'debounce']}
+  />
+  <ComponentCard 
+    title="useCopyToClipboard" 
+    description="Copy text to clipboard with feedback"
+    href="/docs/utilities/hooks/use-copy-to-clipboard"
+    tags={['hook', 'clipboard', 'copy']}
+  />
+</div>
+
+## Formatters
+
+Utility functions for formatting data consistently.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+  <ComponentCard 
+    title="Currency Formatters" 
+    description="Format monetary values with locale support"
+    href="/docs/utilities/formatters/currency"
+    tags={['formatter', 'currency', 'locale']}
+  />
+  <ComponentCard 
+    title="Date Formatters" 
+    description="Format dates and times with various options"
+    href="/docs/utilities/formatters/date-formatters"
+    tags={['formatter', 'date', 'time']}
+  />
+</div>
+
+## TypeScript Types
+
+Helper types for better TypeScript development experience.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+  <ComponentCard 
+    title="TypeScript Utilities" 
+    description="Utility types for common TypeScript patterns"
+    href="/docs/utilities/types/typescript-utilities"
+    tags={['typescript', 'types', 'utilities']}
+  />
+</div>
+
+## Getting Started
+
+Import utilities directly from the main package:
+
+```bash
+npm install buildgrid-ui
+```
+
+```tsx
+import { 
+  useLocalStorage, 
+  useDebounce, 
+  useCopyToClipboard,
+  formatCurrency,
+  formatDate 
+} from 'buildgrid-ui'
+
+function MyComponent() {
+  // Persistent state with localStorage
+  const [name, setName] = useLocalStorage('userName', '')
+  
+  // Debounced search value
+  const [search, setSearch] = useState('')
+  const debouncedSearch = useDebounce(search, 300)
+  
+  // Copy to clipboard functionality
+  const { copyToClipboard, isCopied } = useCopyToClipboard()
+  
+  // Format currency and dates
+  const price = formatCurrency(29.99, 'USD')
+  const date = formatDate(new Date(), 'MMM dd, yyyy')
+  
+  return (
+    <div>
+      <input 
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Your name (saved to localStorage)"
+      />
+      
+      <input 
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search (debounced)"
+      />
+      
+      <button onClick={() => copyToClipboard('Hello World!')}>
+        {isCopied ? 'Copied!' : 'Copy Text'}
+      </button>
+      
+      <p>Price: {price}</p>
+      <p>Date: {date}</p>
+    </div>
+  )
+}
+```
+
+## Hook Examples
+
+### useLocalStorage
+
+Synchronize state with localStorage automatically:
+
+```tsx
+const [settings, setSettings] = useLocalStorage('appSettings', {
+  theme: 'dark',
+  language: 'en'
+})
+
+// Updates both state and localStorage
+setSettings({ ...settings, theme: 'light' })
+```
+
+### useDebounce
+
+Optimize performance by debouncing rapid changes:
+
+```tsx
+const [query, setQuery] = useState('')
+const debouncedQuery = useDebounce(query, 500)
+
+// API call only happens after user stops typing for 500ms
+useEffect(() => {
+  if (debouncedQuery) {
+    searchAPI(debouncedQuery)
+  }
+}, [debouncedQuery])
+```
+
+### useCopyToClipboard
+
+Easy clipboard operations with feedback:
+
+```tsx
+const { copyToClipboard, isCopied, error } = useCopyToClipboard()
+
+const handleCopy = () => {
+  copyToClipboard('Text to copy')
+}
+
+return (
+  <button onClick={handleCopy}>
+    {isCopied ? 'Copied!' : 'Copy'}
+    {error && <span>Failed to copy</span>}
+  </button>
+)
+```
+
+## Formatter Examples
+
+### Currency Formatting
+
+```tsx
+import { formatCurrency } from 'buildgrid-ui'
+
+// Basic formatting
+formatCurrency(1234.56) // "$1,234.56"
+formatCurrency(1234.56, 'EUR') // "€1,234.56"
+formatCurrency(1234.56, 'USD', 'en-US') // "$1,234.56"
+
+// With options
+formatCurrency(1234.56, 'USD', 'en-US', {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0
+}) // "$1,235"
+```
+
+### Date Formatting
+
+```tsx
+import { formatDate, formatRelativeTime } from 'buildgrid-ui'
+
+const date = new Date('2024-01-15')
+
+// Various formats
+formatDate(date, 'MM/dd/yyyy') // "01/15/2024"
+formatDate(date, 'MMM dd, yyyy') // "Jan 15, 2024"
+formatDate(date, 'EEEE, MMMM do, yyyy') // "Monday, January 15th, 2024"
+
+// Relative time
+formatRelativeTime(date) // "2 days ago" (relative to now)
+```
+
+## TypeScript Utilities
+
+Helper types for common patterns:
+
+```tsx
+import type { 
+  Optional, 
+  Prettify, 
+  DeepPartial,
+  NonEmptyArray 
+} from 'buildgrid-ui'
+
+// Make specific properties optional
+type User = {
+  id: string
+  name: string
+  email: string
+}
+
+type CreateUser = Optional<User, 'id'> // id is optional
+
+// Flatten complex types for better IntelliSense
+type ComplexType = Prettify<User & { settings: UserSettings }>
+
+// Make all properties optional recursively
+type PartialUser = DeepPartial<User>
+
+// Ensure array has at least one item
+type Categories = NonEmptyArray<string>
+```
+
+## Best Practices
+
+### Performance
+- Use `useDebounce` for search inputs and API calls
+- Leverage `useLocalStorage` for user preferences
+- Implement `useCopyToClipboard` for better UX
+
+### Formatting
+- Use consistent currency formatting across your app
+- Format dates according to user locale
+- Provide fallbacks for formatting errors
+
+### TypeScript
+- Use utility types to create cleaner interfaces
+- Leverage type helpers for better IntelliSense
+- Create reusable type patterns with utilities
+
+## Advanced Usage
+
+### Custom Hook Composition
+
+Combine hooks for complex functionality:
+
+```tsx
+function useSearchWithHistory() {
+  const [query, setQuery] = useState('')
+  const [history, setHistory] = useLocalStorage('searchHistory', [])
+  const debouncedQuery = useDebounce(query, 300)
+  
+  const addToHistory = (searchTerm: string) => {
+    setHistory(prev => [searchTerm, ...prev.slice(0, 9)]) // Keep last 10
+  }
+  
+  useEffect(() => {
+    if (debouncedQuery) {
+      addToHistory(debouncedQuery)
+    }
+  }, [debouncedQuery])
+  
+  return { query, setQuery, debouncedQuery, history }
+}
+```
+
+### Custom Formatters
+
+Extend built-in formatters:
+
+```tsx
+import { formatCurrency } from 'buildgrid-ui'
+
+function formatPrice(amount: number, showFree = true) {
+  if (amount === 0 && showFree) {
+    return 'Free'
+  }
+  return formatCurrency(amount)
+}
+```
+
+## Need Help?
+
+- 📖 Browse individual utility documentation in the sidebar
+- 🎨 View live examples in our [Storybook](https://main--6944355833ad98d1ee729cd0.chromatic.com/)
+- 💬 Join discussions on [GitHub](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
+- 🐛 Report issues on [GitHub Issues](https://github.com/adrianomaringolo/buildgrid-ui/issues)

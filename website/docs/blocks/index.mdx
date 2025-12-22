@@ -1,0 +1,263 @@
+---
+id: index
+title: Blocks Overview
+sidebar_label: Overview
+slug: /blocks
+---
+
+import { ComponentCard } from '@site/src/components/docs/ComponentCard'
+
+# Blocks Overview
+
+BuildGrid UI provides **13 powerful blocks** - complex, composed components that solve specific use cases out of the box. These blocks combine multiple components to provide advanced functionality for common application patterns.
+
+## Quick Stats
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
+    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">13</div>
+    <div className="text-sm text-purple-700 dark:text-purple-300">Blocks</div>
+  </div>
+  <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 text-center">
+    <div className="text-2xl font-bold text-green-600 dark:text-green-400">Production</div>
+    <div className="text-sm text-green-700 dark:text-green-300">Ready</div>
+  </div>
+  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">Advanced</div>
+    <div className="text-sm text-blue-700 dark:text-blue-300">Features</div>
+  </div>
+</div>
+
+## What are Blocks?
+
+Blocks are **complex, composed components** that combine multiple basic components to solve specific use cases. Unlike basic components, blocks provide:
+
+- **Advanced Functionality** - Rich features like sorting, filtering, drag-and-drop
+- **Complete Solutions** - Ready-to-use components for common patterns
+- **Customizable** - Flexible APIs for different use cases
+- **Production Ready** - Battle-tested in real applications
+
+## Available Blocks
+
+### Data Management
+Powerful components for handling and displaying data.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+  <ComponentCard 
+    title="Data Table" 
+    description="Advanced table with sorting, filtering, pagination, and export"
+    href="/docs/blocks/data-table"
+    tags={['data', 'table', 'advanced']}
+  />
+  <ComponentCard 
+    title="Paginated Items" 
+    description="Pagination wrapper for any content type with controls"
+    href="/docs/blocks/paginated-items"
+    tags={['pagination', 'data']}
+  />
+  <ComponentCard 
+    title="Pagination Controls" 
+    description="Customizable pagination interface with multiple styles"
+    href="/docs/blocks/pagination-controls"
+    tags={['pagination', 'navigation']}
+  />
+  <ComponentCard 
+    title="Navigable List" 
+    description="Keyboard-navigable list with selection and actions"
+    href="/docs/blocks/navigable-list"
+    tags={['navigation', 'list', 'keyboard']}
+  />
+</div>
+
+### Content & Media
+Rich components for content creation and media handling.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+  <ComponentCard 
+    title="HTML Text Editor" 
+    description="Rich text editor with formatting toolbar and HTML output"
+    href="/docs/blocks/html-text-editor"
+    tags={['editor', 'rich-text', 'html']}
+  />
+  <ComponentCard 
+    title="File Upload Dropzone" 
+    description="Drag-and-drop file upload with progress and validation"
+    href="/docs/blocks/file-upload-dropzone"
+    tags={['upload', 'files', 'drag-drop']}
+  />
+  <ComponentCard 
+    title="Lazy Image Gallery" 
+    description="Performance-optimized image gallery with lazy loading"
+    href="/docs/blocks/lazy-image-gallery"
+    tags={['media', 'gallery', 'performance']}
+  />
+  <ComponentCard 
+    title="Empty Message" 
+    description="Elegant empty state component with actions and illustrations"
+    href="/docs/blocks/empty-message"
+    tags={['feedback', 'state', 'empty']}
+  />
+</div>
+
+### Layout & Navigation
+Advanced layout components for complex application structures.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+  <ComponentCard 
+    title="Bento Grid" 
+    description="Flexible masonry-style grid layout system"
+    href="/docs/blocks/bento-grid"
+    tags={['layout', 'grid', 'masonry']}
+  />
+  <ComponentCard 
+    title="Sidebar" 
+    description="Flexible sidebar with multiple directions and responsive behavior"
+    href="/docs/blocks/sidebar"
+    tags={['layout', 'navigation', 'responsive']}
+  />
+  <ComponentCard 
+    title="Month Navigator" 
+    description="Calendar navigation for month-based data and events"
+    href="/docs/blocks/month-navigator"
+    tags={['calendar', 'navigation', 'date']}
+  />
+  <ComponentCard 
+    title="Help Carousel" 
+    description="Interactive tutorial and help carousel with steps"
+    href="/docs/blocks/help-carousel"
+    tags={['help', 'tutorial', 'onboarding']}
+  />
+</div>
+
+## Block vs Component
+
+Understanding when to use blocks vs components:
+
+| **Components** | **Blocks** |
+|---|---|
+| Basic UI elements | Complex composed solutions |
+| Single responsibility | Multiple features combined |
+| Highly reusable | Specific use cases |
+| Building blocks | Complete solutions |
+| Examples: Button, Input | Examples: Data Table, File Upload |
+
+## Getting Started with Blocks
+
+Blocks are imported the same way as components:
+
+```bash
+npm install buildgrid-ui
+```
+
+```tsx
+import { DataTable, FileUploadDropzone, HTMLTextEditor } from 'buildgrid-ui'
+
+function MyApp() {
+  const data = [
+    { id: 1, name: 'John Doe', email: 'john@example.com' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com' }
+  ]
+
+  const columns = [
+    { key: 'name', title: 'Name', sortable: true },
+    { key: 'email', title: 'Email', sortable: true }
+  ]
+
+  return (
+    <div>
+      {/* Advanced data table with sorting and filtering */}
+      <DataTable 
+        data={data} 
+        columns={columns} 
+        searchFields={['name', 'email']}
+      />
+      
+      {/* File upload with drag and drop */}
+      <FileUploadDropzone 
+        onFilesSelected={(files) => console.log(files)}
+        accept="image/*"
+        maxFiles={5}
+      />
+      
+      {/* Rich text editor */}
+      <HTMLTextEditor 
+        onChange={(html) => console.log(html)}
+        placeholder="Start writing..."
+      />
+    </div>
+  )
+}
+```
+
+## Advanced Features
+
+Blocks come with advanced features out of the box:
+
+### Data Table
+- **Sorting** - Click column headers to sort
+- **Filtering** - Built-in filter dropdowns
+- **Search** - Global search across specified fields
+- **Pagination** - Automatic pagination for large datasets
+- **Selection** - Row selection with bulk actions
+- **Export** - CSV export functionality
+- **Custom Renderers** - Custom cell rendering
+
+### File Upload Dropzone
+- **Drag & Drop** - Intuitive file dropping
+- **Progress Tracking** - Upload progress indicators
+- **File Validation** - Type and size validation
+- **Preview** - Image preview before upload
+- **Multiple Files** - Support for multiple file selection
+- **Error Handling** - Comprehensive error states
+
+### HTML Text Editor
+- **Rich Formatting** - Bold, italic, lists, links
+- **Toolbar** - Customizable formatting toolbar
+- **HTML Output** - Clean HTML generation
+- **Sanitization** - Built-in XSS protection
+- **Keyboard Shortcuts** - Standard editor shortcuts
+- **Responsive** - Works on all screen sizes
+
+## Customization
+
+All blocks are highly customizable:
+
+```tsx
+// Customize Data Table
+<DataTable
+  data={data}
+  columns={columns}
+  pageSize={20}
+  tools={{
+    search: { placeholder: 'Search users...' },
+    export: { label: 'Export CSV' }
+  }}
+  className="custom-table"
+/>
+
+// Customize File Upload
+<FileUploadDropzone
+  maxFiles={10}
+  maxSize={5 * 1024 * 1024} // 5MB
+  accept="image/*,application/pdf"
+  onFilesSelected={handleFiles}
+  className="custom-dropzone"
+/>
+```
+
+## Performance
+
+Blocks are optimized for performance:
+
+- **Lazy Loading** - Components load only when needed
+- **Virtual Scrolling** - Efficient rendering of large lists
+- **Memoization** - Optimized re-rendering
+- **Bundle Splitting** - Import only what you use
+- **Accessibility** - Full keyboard and screen reader support
+
+## Need Help?
+
+- 📖 Browse individual block documentation in the sidebar
+- 🎨 View live examples in our [Storybook](https://main--6944355833ad98d1ee729cd0.chromatic.com/)
+- 💬 Join discussions on [GitHub](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
+- 🐛 Report issues on [GitHub Issues](https://github.com/adrianomaringolo/buildgrid-ui/issues)

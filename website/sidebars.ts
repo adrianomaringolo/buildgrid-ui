@@ -6,7 +6,10 @@ const sidebars: SidebarsConfig = {
 		{
 			type: 'category',
 			label: 'Components',
+			collapsible: true,
+			collapsed: false,
 			items: [
+				'components/index',
 				'components/accordion',
 				'components/adaptive-input',
 				'components/alert',
@@ -56,7 +59,10 @@ const sidebars: SidebarsConfig = {
 		{
 			type: 'category',
 			label: 'Blocks',
+			collapsible: true,
+			collapsed: false,
 			items: [
+				'blocks/index',
 				'blocks/bento-grid',
 				'blocks/data-table',
 				'blocks/empty-message',
@@ -74,7 +80,10 @@ const sidebars: SidebarsConfig = {
 		{
 			type: 'category',
 			label: 'Utilities',
+			collapsible: true,
+			collapsed: false,
 			items: [
+				'utilities/index',
 				{
 					type: 'category',
 					label: 'Formatters',
