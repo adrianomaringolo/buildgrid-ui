@@ -338,7 +338,7 @@ We follow [Semantic Versioning](https://semver.org/):
 ### Resources
 
 - 📖 [Documentation](https://adrianomaringolo.github.io/buildgrid-ui/)
-- 🎨 [Storybook](https://buildgrid-ui-storybook.netlify.app/)
+- 🎨 [Storybook](https://main--6944355833ad98d1ee729cd0.chromatic.com/)
 - 💬 [GitHub Discussions](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
 - 🐛 [Issues](https://github.com/adrianomaringolo/buildgrid-ui/issues)
 
