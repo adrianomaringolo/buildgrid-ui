@@ -180,6 +180,7 @@ describe('CurrencyInput', () => {
 			const input = screen.getByRole('textbox')
 			await user.clear(input)
 
+			// When input is cleared, it should call with 0
 			expect(handleValueChange).toHaveBeenCalledWith(0)
 			expect(input).toHaveValue('$ 0.00')
 		})

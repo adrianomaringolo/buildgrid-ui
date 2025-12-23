@@ -36,7 +36,16 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
 		// Handle input change
 		const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 			const rawValue = e.target.value
-			const numericValue = parseFloat(rawValue.replace(/\D/g, '')) / 100
+			const digitsOnly = rawValue.replace(/\D/g, '')
+
+			// Handle empty input
+			if (digitsOnly === '') {
+				setInputValue(formatNumber(0))
+				onValueChange(0)
+				return
+			}
+
+			const numericValue = parseFloat(digitsOnly) / 100
 
 			// Update the input with formatted value
 			setInputValue(formatNumber(numericValue))
