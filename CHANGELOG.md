@@ -1,3 +1,10 @@
+## [1.17.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.0...v1.17.1) (2025-12-22)
+
+
+### Bug Fixes
+
+* **website:** Add comprehensive blocks, components, and utilities documentation pages ([47c322b](https://github.com/adrianomaringolo/buildgrid-ui/commit/47c322b0225107430db918ddf34edcf9fbfaf80d))
+
 # [1.17.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.16.0...v1.17.0) (2025-12-20)
 
 
