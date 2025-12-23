@@ -53,15 +53,17 @@ export const Autocomplete = forwardRef(function Autocomplete(
 	const listRef = useRef<HTMLUListElement>(null)
 
 	useEffect(() => {
-		if (value) {
-			const option = options.find((opt) => opt.value === value)
-			if (option) {
-				setSelectedOption(option)
-				setInputValue(option.label)
+		if (value !== undefined) {
+			if (value) {
+				const option = options.find((opt) => opt.value === value)
+				if (option) {
+					setSelectedOption(option)
+					setInputValue(option.label)
+				}
+			} else {
+				setSelectedOption(null)
+				setInputValue('')
 			}
-		} else {
-			setSelectedOption(null)
-			setInputValue('')
 		}
 	}, [value, options])
 

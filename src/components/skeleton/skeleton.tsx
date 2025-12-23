@@ -5,9 +5,18 @@ type SkeletonProps = {
 } & React.ComponentProps<'div'>
 
 export const Skeleton = ({ className, repeat = 1, ...props }: SkeletonProps) => {
+	// Handle invalid repeat values
+	const validRepeat =
+		repeat == null || Number.isNaN(repeat) || repeat < 0 ? 1 : Math.floor(repeat)
+
+	// Handle zero repeat
+	if (validRepeat === 0) {
+		return null
+	}
+
 	return (
 		<>
-			{Array.from({ length: repeat ?? 1 }).map((_, index) => (
+			{Array.from({ length: validRepeat }).map((_, index) => (
 				<div
 					key={index}
 					className={cn(

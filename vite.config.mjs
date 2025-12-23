@@ -11,6 +11,30 @@ export default defineConfig({
 		globals: true, // Use global APIs like `describe` and `it`
 		environment: 'jsdom', // Simulates the browser environment
 		setupFiles: './vitest.setup.ts', // Path to setup file
+		coverage: {
+			provider: 'v8',
+			reporter: ['text', 'json', 'html', 'lcov'],
+			exclude: [
+				'node_modules/',
+				'dist/',
+				'website/',
+				'storybook-static/',
+				'**/*.stories.{js,jsx,ts,tsx}',
+				'**/*.config.{js,mjs,ts}',
+				'**/*.d.ts',
+				'src/index.ts',
+				'src/**/index.ts',
+				'vitest.setup.ts',
+			],
+			thresholds: {
+				global: {
+					branches: 80,
+					functions: 80,
+					lines: 80,
+					statements: 80,
+				},
+			},
+		},
 	},
 	resolve: {
 		alias: {

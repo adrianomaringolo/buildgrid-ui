@@ -7,6 +7,8 @@
   <p>
     <a href="https://www.npmjs.com/package/buildgrid-ui"><img src="https://img.shields.io/npm/v/buildgrid-ui.svg" alt="npm version"></a>
     <a href="https://www.npmjs.com/package/buildgrid-ui"><img src="https://img.shields.io/npm/dm/buildgrid-ui.svg" alt="npm downloads"></a>
+    <a href="https://github.com/adrianomaringolo/buildgrid-ui/actions/workflows/test.yml"><img src="https://github.com/adrianomaringolo/buildgrid-ui/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+    <a href="https://codecov.io/gh/adrianomaringolo/buildgrid-ui"><img src="https://codecov.io/gh/adrianomaringolo/buildgrid-ui/branch/main/graph/badge.svg" alt="Coverage"></a>
     <a href="https://github.com/adrianomaringolo/buildgrid-ui/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/buildgrid-ui.svg" alt="license"></a>
     <a href="https://github.com/adrianomaringolo/buildgrid-ui"><img src="https://img.shields.io/github/stars/adrianomaringolo/buildgrid-ui.svg" alt="github stars"></a>
   </p>
@@ -185,7 +187,150 @@ npm run build
 
 # Run tests
 npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
 ```
+
+### Testing
+
+BuildGrid UI uses **Vitest** for comprehensive testing with exceptional coverage and quality standards:
+
+#### Testing Framework & Architecture
+- **Framework**: [Vitest](https://vitest.dev/) - Fast, modern testing framework built on Vite
+- **Environment**: jsdom - Browser-like environment for realistic component testing
+- **Utilities**: @testing-library/react + @testing-library/user-event for user-centric testing
+- **Coverage**: v8 provider with detailed HTML, JSON, and LCOV reporting
+- **CI/CD**: Automated testing pipeline with multi-version Node.js support
+
+#### Test Categories & Coverage
+
+**🔧 Unit Tests**
+- Component rendering and props validation
+- State management and lifecycle testing
+- Event handling and user interactions
+- Custom hooks and utility functions
+
+**♿ Accessibility Tests**
+- WCAG 2.1 compliance verification
+- Keyboard navigation testing (Tab, Enter, Space, Arrow keys)
+- Screen reader compatibility and ARIA attributes
+- Focus management and visual indicators
+
+**🔄 Integration Tests**
+- Component composition and interaction patterns
+- Form validation and submission workflows
+- Complex user scenarios and edge cases
+- Cross-component communication
+
+**📊 Coverage Metrics**
+```
+Target Coverage: 80%+
+├── Statements: 80%
+├── Branches: 80%
+├── Functions: 80%
+└── Lines: 80%
+```
+
+#### Available Test Commands
+
+```bash
+# Development - Watch mode with instant feedback
+npm test
+
+# CI/Production - Single run with exit codes
+npm run test:run
+
+# Coverage Analysis - Generate detailed coverage reports
+npm run test:coverage
+
+# Visual Interface - Interactive test runner with GUI
+npm run test:ui
+
+# Coverage + Browser - Generate and automatically open coverage report
+npm run test:coverage:open
+```
+
+#### Test Examples
+
+**Component Behavior Testing**
+```typescript
+describe('Accordion', () => {
+  it('opens and closes items correctly', async () => {
+    const user = userEvent.setup()
+    render(<Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Item 1</AccordionTrigger>
+        <AccordionContent>Content 1</AccordionContent>
+      </AccordionItem>
+    </Accordion>)
+    
+    const trigger = screen.getByText('Item 1')
+    expect(trigger).toHaveAttribute('aria-expanded', 'false')
+    
+    await user.click(trigger)
+    expect(trigger).toHaveAttribute('aria-expanded', 'true')
+    expect(screen.getByText('Content 1')).toBeInTheDocument()
+  })
+})
+```
+
+**Accessibility Testing**
+```typescript
+describe('Keyboard Navigation', () => {
+  it('supports full keyboard interaction', async () => {
+    const user = userEvent.setup()
+    render(<AccordionExample />)
+    
+    // Tab navigation
+    await user.tab()
+    expect(screen.getAllByRole('button')[0]).toHaveFocus()
+    
+    // Enter/Space activation
+    await user.keyboard('{Enter}')
+    expect(screen.getByRole('button')).toHaveAttribute('aria-expanded', 'true')
+  })
+})
+```
+
+#### Quality Assurance Pipeline
+
+**GitHub Actions Workflow**
+- ✅ Multi-version Node.js testing (18.x, 20.x)
+- ✅ Automated linting with ESLint + Prettier
+- ✅ TypeScript strict mode compilation
+- ✅ Coverage reporting to Codecov with badges
+- ✅ Build verification for library and Storybook
+- ✅ Parallel execution for optimal performance
+
+**Quality Gates**
+- All tests must pass before merge approval
+- Coverage thresholds enforced automatically
+- Zero TypeScript compilation errors
+- ESLint rules compliance required
+- Accessibility standards validation
+
+For comprehensive testing guidelines, patterns, and best practices, see **[TESTING.md](TESTING.md)**.
+
+#### Current Test Statistics
+
+```
+📊 Test Coverage Status
+├── Total Tests: 30+ (and growing)
+├── Components Tested: Accordion, Number Stepper, Input, Button
+├── Test Categories: Unit, Integration, Accessibility, Edge Cases
+├── Coverage Target: 80%+ across all metrics
+└── CI Status: ✅ All tests passing
+```
+
+**Test Distribution:**
+- 🧪 **Unit Tests**: Component behavior, props, state management
+- ♿ **Accessibility**: WCAG compliance, keyboard navigation, ARIA
+- 🔄 **Integration**: Component interactions, user workflows
+- 🎯 **Edge Cases**: Error handling, boundary conditions
 
 ### Project Structure
 
@@ -213,18 +358,40 @@ We welcome contributions from the community! This is my first open-source projec
 - ✨ **Request features** - [Create a feature request](https://github.com/adrianomaringolo/buildgrid-ui/issues/new?template=feature_request.yml)
 - 📖 **Improve docs** - [Create a documentation issue](https://github.com/adrianomaringolo/buildgrid-ui/issues/new?template=documentation.yml)
 - 🔧 **Submit PRs** - Fix bugs or add features
+- 🧪 **Write tests** - Help us reach 100% coverage by adding tests for components
 - 💬 **Join discussions** - [GitHub Discussions](https://github.com/adrianomaringolo/buildgrid-ui/discussions)
 
 ### Quick Start for Contributors
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes and test them
-4. Commit using conventional commits: `git commit -m 'feat: add amazing feature'`
-5. Push to your fork: `git push origin feature/amazing-feature`
-6. Open a Pull Request
+3. Make your changes and test them: `npm test`
+4. Ensure tests pass and coverage is maintained: `npm run test:coverage`
+5. Commit using conventional commits: `git commit -m 'feat: add amazing feature'`
+6. Push to your fork: `git push origin feature/amazing-feature`
+7. Open a Pull Request
 
-Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
+#### Contributing Tests
+
+When adding new components or features, please include comprehensive tests:
+
+```bash
+# Create test file alongside your component
+src/components/my-component/
+├── my-component.tsx
+├── my-component.test.tsx  # ← Add this
+├── my-component.stories.tsx
+└── index.ts
+```
+
+**Test Requirements:**
+- ✅ Component rendering and props
+- ✅ User interactions (click, keyboard, etc.)
+- ✅ Accessibility (ARIA, keyboard navigation)
+- ✅ Edge cases and error handling
+- ✅ Maintain 80%+ coverage
+
+Please read our [Contributing Guide](CONTRIBUTING.md), [Testing Guide](TESTING.md), and [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 
 ## 📋 Roadmap
 
