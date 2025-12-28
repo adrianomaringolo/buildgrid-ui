@@ -100,7 +100,7 @@ const config: Config = {
 
 	themeConfig: {
 		// Replace with your project's social card
-		image: 'img/buildgrid-ui-social-card.png',
+		image: 'img/buildgrid-ui-social-card.jpeg',
 		colorMode: {
 			defaultMode: 'dark',
 			disableSwitch: false,

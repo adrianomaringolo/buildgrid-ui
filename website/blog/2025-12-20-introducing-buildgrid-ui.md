@@ -3,13 +3,13 @@ slug: introducing-buildgrid-ui
 title: Introducing BuildGrid UI - A Modern React Component Library
 authors: [adriano]
 tags: [launch, react, ui-library, open-source, typescript]
-image: /img/blog/buildgrid-ui-launch.png
+image: /img/blog/buildgrid-ui-launch.jpeg
 date: 2025-12-20
 ---
 
 # Introducing BuildGrid UI: A Modern React Component Library Built for Real-World Projects
 
-![BuildGrid UI Launch](/img/blog/buildgrid-ui-launch.png)
+![BuildGrid UI Launch](/img/blog/buildgrid-ui-launch.jpeg)
 
 Today, I'm excited to announce the public release of **BuildGrid UI** - a comprehensive React component library that I've been developing throughout 2024 and 2025. This marks my first open-source project, and I'm thrilled to share it with the developer community.
 
