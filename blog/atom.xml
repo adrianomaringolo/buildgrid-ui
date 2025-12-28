@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://adrianomaringolo.github.io/buildgrid-ui/blog</id>
-    <title>BuidgridUI Blog</title>
+    <title>BuildgridUI Blog</title>
     <updated>2025-12-20T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://adrianomaringolo.github.io/buildgrid-ui/blog"/>
-    <subtitle>BuidgridUI Blog</subtitle>
+    <subtitle>BuildgridUI Blog</subtitle>
     <icon>https://adrianomaringolo.github.io/buildgrid-ui/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Introducing BuildGrid UI - A Modern React Component Library]]></title>
