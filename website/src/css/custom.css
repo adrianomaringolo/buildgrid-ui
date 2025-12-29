@@ -99,6 +99,11 @@ h3.anchor {
 	margin: 0 auto 1rem;
 }
 
+ul,
+li {
+	list-style-type: disc;
+}
+
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);

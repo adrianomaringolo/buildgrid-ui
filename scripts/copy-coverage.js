@@ -39,6 +39,14 @@ function copyCoverageReport() {
 	try {
 		// Check if coverage directory exists
 		if (!fs.existsSync(sourceCoverageDir)) {
+			// In CI environments, coverage might not be available - handle gracefully
+			if (process.env.CI || process.env.GITHUB_ACTIONS) {
+				console.log('⚠️  Coverage directory not found in CI environment - skipping copy')
+				console.log(
+					'   This is expected when building website without running tests first',
+				)
+				return
+			}
 			console.error('❌ Coverage directory not found:', sourceCoverageDir)
 			console.error('   Run "npm run test:coverage" first to generate coverage report')
 			process.exit(1)
@@ -47,6 +55,14 @@ function copyCoverageReport() {
 		// Check if coverage/index.html exists
 		const coverageIndexFile = path.join(sourceCoverageDir, 'index.html')
 		if (!fs.existsSync(coverageIndexFile)) {
+			// In CI environments, coverage might not be available - handle gracefully
+			if (process.env.CI || process.env.GITHUB_ACTIONS) {
+				console.log('⚠️  Coverage report not found in CI environment - skipping copy')
+				console.log(
+					'   This is expected when building website without running tests first',
+				)
+				return
+			}
 			console.error('❌ Coverage report index.html not found:', coverageIndexFile)
 			console.error('   Run "npm run test:coverage" first to generate coverage report')
 			process.exit(1)

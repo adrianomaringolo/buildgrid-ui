@@ -37,6 +37,11 @@ jobs:
             ${{ runner.os }}-website-
 
       - run: npm ci
+      - name: Install root dependencies and run tests with coverage
+        run: |
+          cd ../
+          npm ci
+          npm run test:coverage
       - run: npm run build
 
       - name: Deploy
