@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[7472],{55513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Introducing BuildGrid UI - A Modern React Component Library","permalink":"/buildgrid-ui/blog/introducing-buildgrid-ui","unlisted":false,"date":"2025-12-20T00:00:00.000Z"}]}')}}]);

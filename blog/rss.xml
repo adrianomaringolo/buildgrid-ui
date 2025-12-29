@@ -4,16 +4,114 @@
         <title>BuildgridUI Blog</title>
         <link>https://adrianomaringolo.github.io/buildgrid-ui/blog</link>
         <description>BuildgridUI Blog</description>
-        <lastBuildDate>Sat, 20 Dec 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 29 Dec 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Why Contributing to Open Source Will Make You a Better Developer]]></title>
+            <link>https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source</link>
+            <guid>https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source</guid>
+            <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Learn why contributing to open source will make you a better developer and how you can start with BuildGrid UI.]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="Open Source Contributions" src="https://adrianomaringolo.github.io/buildgrid-ui/assets/images/open-source-contributions-6be184be1f7e142f08431c290d26206c.png" width="1200" height="800" class="img_ev3q"></p>
+<p>You know that feeling when you're using a library and think "this could be better"? Or when you find a bug and wish someone would fix it? Well, here's the thing - you can be that someone.</p>
+<p>Contributing to open source has been one of the most rewarding parts of my journey as a developer. It's not just about giving back - it's about becoming a better programmer and connecting with amazing people.</p>
+<p>If you've been on the fence about contributing to open source, let me share why it's worth it - and how you can start with BuildGrid UI.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-open-source-actually-teaches-you">What Open Source Actually Teaches You<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#what-open-source-actually-teaches-you" class="hash-link" aria-label="Direct link to What Open Source Actually Teaches You" title="Direct link to What Open Source Actually Teaches You" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="real-code-reviews">Real Code Reviews<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#real-code-reviews" class="hash-link" aria-label="Direct link to Real Code Reviews" title="Direct link to Real Code Reviews" translate="no">​</a></h3>
+<p>When I started contributing to open source, I was nervous about having my code reviewed by strangers. Turns out, it was exactly what I needed. These reviews will actually dig into your code and help you make it better.</p>
+<p>I've learned more about clean code and best practices from open source reviews than from any tutorial.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="professional-development-practices">Professional Development Practices<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#professional-development-practices" class="hash-link" aria-label="Direct link to Professional Development Practices" title="Direct link to Professional Development Practices" translate="no">​</a></h3>
+<p>Working on open source projects exposes you to:</p>
+<ul>
+<li class="">Proper project structure and testing strategies</li>
+<li class="">Real CI/CD workflows</li>
+<li class="">Documentation that people actually use</li>
+<li class="">Collaboration with developers worldwide</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="better-communication-skills">Better Communication Skills<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#better-communication-skills" class="hash-link" aria-label="Direct link to Better Communication Skills" title="Direct link to Better Communication Skills" translate="no">​</a></h3>
+<p>Open source taught me that being a good developer isn't just about writing code - it's about explaining your decisions and collaborating with people across different time zones and cultures.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="getting-started-its-easier-than-you-think">Getting Started (It's Easier Than You Think)<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#getting-started-its-easier-than-you-think" class="hash-link" aria-label="Direct link to Getting Started (It's Easier Than You Think)" title="Direct link to Getting Started (It's Easier Than You Think)" translate="no">​</a></h2>
+<p>Start small - fix typos in documentation, add missing test cases, or improve error messages. These "small" contributions are often the most appreciated because they improve the experience for everyone.</p>
+<p>Pick projects you actually use. You understand the pain points, and you're motivated to see improvements.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="about-buildgrid-ui-a-personal-project-open-to-all">About BuildGrid UI: A Personal Project Open to All<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#about-buildgrid-ui-a-personal-project-open-to-all" class="hash-link" aria-label="Direct link to About BuildGrid UI: A Personal Project Open to All" title="Direct link to About BuildGrid UI: A Personal Project Open to All" translate="no">​</a></h2>
+<p>Let me be honest about something - BuildGrid UI is primarily a personal project. I built it to solve my own problems: maintaining consistent components across my projects without copying and pasting code everywhere.</p>
+<p>I don't expect it to become the next big thing with thousands of downloads. It's not trying to compete with established libraries like Material-UI or Ant Design. It's just a collection of components that I've refined through real-world usage in my own projects.</p>
+<p><strong>But here's the thing - you're absolutely welcome to contribute.</strong></p>
+<p>Whether you want to:</p>
+<ul>
+<li class="">Fix a bug you found</li>
+<li class="">Add a component you need</li>
+<li class="">Improve the documentation</li>
+<li class="">Suggest a better approach</li>
+</ul>
+<p>Your contributions are valued, regardless of the project's size or popularity. Sometimes the best learning experiences come from smaller projects where you can have a real impact and work closely with maintainers.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-buildgrid-ui-is-great-for-learning">Why BuildGrid UI Is Great for Learning<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#why-buildgrid-ui-is-great-for-learning" class="hash-link" aria-label="Direct link to Why BuildGrid UI Is Great for Learning" title="Direct link to Why BuildGrid UI Is Great for Learning" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="clear-simple-codebase">Clear, Simple Codebase<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#clear-simple-codebase" class="hash-link" aria-label="Direct link to Clear, Simple Codebase" title="Direct link to Clear, Simple Codebase" translate="no">​</a></h3>
+<p>Since it's a personal project, the codebase is straightforward and well-documented. You won't get lost in enterprise-level complexity.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="direct-feedback">Direct Feedback<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#direct-feedback" class="hash-link" aria-label="Direct link to Direct Feedback" title="Direct link to Direct Feedback" translate="no">​</a></h3>
+<p>As the main maintainer, I can provide quick, personalized feedback on your contributions.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="modern-stack">Modern Stack<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#modern-stack" class="hash-link" aria-label="Direct link to Modern Stack" title="Direct link to Modern Stack" translate="no">​</a></h3>
+<ul>
+<li class="">TypeScript for better development experience</li>
+<li class="">Vitest for testing</li>
+<li class="">Storybook for component development</li>
+<li class="">Modern React patterns and hooks</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="real-world-components">Real-World Components<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#real-world-components" class="hash-link" aria-label="Direct link to Real-World Components" title="Direct link to Real-World Components" translate="no">​</a></h3>
+<p>Every component has been used in actual projects, so you're working on practical, tested solutions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="how-to-make-your-first-contribution">How to Make Your First Contribution<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#how-to-make-your-first-contribution" class="hash-link" aria-label="Direct link to How to Make Your First Contribution" title="Direct link to How to Make Your First Contribution" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-explore-the-project">1. Explore the Project<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#1-explore-the-project" class="hash-link" aria-label="Direct link to 1. Explore the Project" title="Direct link to 1. Explore the Project" translate="no">​</a></h3>
+<ul>
+<li class="">Check out the <a href="https://adrianomaringolo.github.io/buildgrid-ui/" target="_blank" rel="noopener noreferrer" class="">documentation</a></li>
+<li class="">Browse the <a href="https://github.com/adrianomaringolo/buildgrid-ui" target="_blank" rel="noopener noreferrer" class="">GitHub repository</a></li>
+<li class="">Look for issues labeled <code>good first issue</code></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-set-up-your-environment">2. Set Up Your Environment<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#2-set-up-your-environment" class="hash-link" aria-label="Direct link to 2. Set Up Your Environment" title="Direct link to 2. Set Up Your Environment" translate="no">​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain"># Fork and clone the repository</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">git clone https://github.com/YOUR_USERNAME/buildgrid-ui.git</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">cd buildgrid-ui</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"># Install dependencies and start development</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">npm install</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">npm run storybook</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-make-your-changes">3. Make Your Changes<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#3-make-your-changes" class="hash-link" aria-label="Direct link to 3. Make Your Changes" title="Direct link to 3. Make Your Changes" translate="no">​</a></h3>
+<ul>
+<li class="">Create a new branch for your work</li>
+<li class="">Follow the coding standards</li>
+<li class="">Add tests for new functionality</li>
+<li class="">Update documentation as needed</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-submit-your-pull-request">4. Submit Your Pull Request<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#4-submit-your-pull-request" class="hash-link" aria-label="Direct link to 4. Submit Your Pull Request" title="Direct link to 4. Submit Your Pull Request" translate="no">​</a></h3>
+<p>Write a clear description of what you changed and why. I'm friendly and want to help you succeed, so don't be afraid to ask questions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-real-benefits">The Real Benefits<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#the-real-benefits" class="hash-link" aria-label="Direct link to The Real Benefits" title="Direct link to The Real Benefits" translate="no">​</a></h2>
+<p>Contributing to open source - whether it's a massive project or a small personal one like BuildGrid UI - will:</p>
+<ul>
+<li class="">Make you a better programmer through code reviews and collaboration</li>
+<li class="">Help you learn modern development practices</li>
+<li class="">Connect you with other developers</li>
+<li class="">Give you a portfolio of public work</li>
+<li class="">Provide the satisfaction of helping others</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="ready-to-start">Ready to Start?<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/contributing-to-open-source#ready-to-start" class="hash-link" aria-label="Direct link to Ready to Start?" title="Direct link to Ready to Start?" translate="no">​</a></h2>
+<p>If you're interested in contributing to BuildGrid UI:</p>
+<ul>
+<li class="">📖 <a href="https://adrianomaringolo.github.io/buildgrid-ui/" target="_blank" rel="noopener noreferrer" class="">Browse the Documentation</a></li>
+<li class="">🐙 <a href="https://github.com/adrianomaringolo/buildgrid-ui" target="_blank" rel="noopener noreferrer" class="">Check Out the GitHub Repository</a></li>
+<li class="">📋 <a href="https://github.com/adrianomaringolo/buildgrid-ui/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" target="_blank" rel="noopener noreferrer" class="">Find a Good First Issue</a></li>
+<li class="">💬 <a href="https://github.com/adrianomaringolo/buildgrid-ui/discussions" target="_blank" rel="noopener noreferrer" class="">Join the Discussions</a></li>
+</ul>
+<p>Remember, every expert was once a beginner. Your perspective and contributions are valuable, regardless of your experience level or the project's size.</p>
+<hr>
+<p><strong>Happy coding!</strong><br>
+<strong>Adriano Maringolo</strong><br>
+<em>Creator of BuildGrid UI</em></p>]]></content:encoded>
+            <category>Open Source</category>
+            <category>React</category>
+            <category>TypeScript</category>
+            <category>Community</category>
+        </item>
         <item>
             <title><![CDATA[Introducing BuildGrid UI - A Modern React Component Library]]></title>
             <link>https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui</link>
             <guid>https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui</guid>
             <pubDate>Sat, 20 Dec 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[BuildGrid UI Launch]]></description>
+            <description><![CDATA[Today, I'm excited to announce the public release of BuildGrid UI - a comprehensive React component library that I've been developing throughout 2024 and 2025. This marks my first open-source project, and I'm thrilled to share it with the developer community.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="BuildGrid UI Launch" src="https://adrianomaringolo.github.io/buildgrid-ui/assets/images/buildgrid-ui-launch-4b82e6cc61aeb924503a7f0919d24c3b.jpeg" width="1366" height="735" class="img_ev3q"></p>
 <p>Today, I'm excited to announce the public release of <strong>BuildGrid UI</strong> - a comprehensive React component library that I've been developing throughout 2024 and 2025. This marks my first open-source project, and I'm thrilled to share it with the developer community.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-story-behind-buildgrid-ui">The Story Behind BuildGrid UI<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#the-story-behind-buildgrid-ui" class="hash-link" aria-label="Direct link to The Story Behind BuildGrid UI" title="Direct link to The Story Behind BuildGrid UI" translate="no">​</a></h2>
@@ -47,7 +145,7 @@
 <li class="">Storybook integration</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="whats-included">What's Included<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#whats-included" class="hash-link" aria-label="Direct link to What's Included" title="Direct link to What's Included" translate="no">​</a></h2>
-<p>BuildGrid UI currently offers <strong>44 components</strong> and <strong>12 blocks</strong>, plus utility functions for common tasks:</p>
+<p>BuildGrid UI currently offers <strong>41 components</strong> and <strong>13 blocks</strong>, plus utility functions for common tasks:</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="core-components">Core Components<a href="https://adrianomaringolo.github.io/buildgrid-ui/blog/introducing-buildgrid-ui#core-components" class="hash-link" aria-label="Direct link to Core Components" title="Direct link to Core Components" translate="no">​</a></h3>
 <ul>
 <li class=""><strong>Form Elements</strong>: Input, Textarea, Select, Checkbox, Radio Group, etc.</li>
