@@ -1,10 +1,11 @@
 ---
 slug: contributing-to-open-source
 title: Why Contributing to Open Source Will Make You a Better Developer
+description: Learn why contributing to open source will make you a better developer and how you can start with BuildGrid UI.
 authors: [adriano]
 tags: [open-source, react, typescript, community]
 image: /img/blog/open-source-contributions.png
-date: 2025-12-24
+date: 2025-12-29
 ---
 
 # Why Contributing to Open Source Will Make You a Better Developer

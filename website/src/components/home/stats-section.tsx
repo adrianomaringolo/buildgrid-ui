@@ -1,22 +1,30 @@
-const stats = [
-	{
-		title: 'Components',
-		value: '44',
-		subtitle: 'ready to use',
-	},
-	{
-		title: 'Blocks',
-		value: '12',
-		subtitle: 'complex layouts',
-	},
-	{
-		title: 'Utilities',
-		value: '6',
-		subtitle: 'hooks & formatters',
-	},
-]
+import { useStats } from '../../hooks/useStats'
 
 export const StatsSection = () => {
+	const { stats, loading } = useStats()
+
+	if (loading) {
+		return null
+	}
+
+	const statsData = [
+		{
+			title: 'Components',
+			value: stats.components.toString(),
+			subtitle: 'ready to use',
+		},
+		{
+			title: 'Blocks',
+			value: stats.blocks.toString(),
+			subtitle: 'complex layouts',
+		},
+		{
+			title: 'Utilities',
+			value: stats.utilities.toString(),
+			subtitle: 'hooks & formatters',
+		},
+	]
+
 	return (
 		<section className="py-20 bg-gradient-to-r from-purple-100 via-blue-100 to-purple-100 dark:from-purple-900 dark:via-blue-900 dark:to-purple-900 relative overflow-hidden">
 			{/* Animated background */}
@@ -37,7 +45,7 @@ export const StatsSection = () => {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-					{stats.map((stat, index) => (
+					{statsData.map((stat, index) => (
 						<div
 							key={stat.title}
 							className="group relative bg-white/80 dark:bg-white/10 backdrop-blur-sm border border-gray-200 dark:border-white/20 rounded-2xl p-8 text-center hover:bg-white dark:hover:bg-white/20 transition-all duration-500 hover:scale-105 shadow-lg dark:shadow-none"

@@ -1,6 +1,7 @@
 ---
 slug: introducing-buildgrid-ui
 title: Introducing BuildGrid UI - A Modern React Component Library
+description: Today, I'm excited to announce the public release of BuildGrid UI - a comprehensive React component library that I've been developing throughout 2024 and 2025. This marks my first open-source project, and I'm thrilled to share it with the developer community.
 authors: [adriano]
 tags: [launch, react, ui-library, open-source, typescript]
 image: /img/blog/buildgrid-ui-launch.jpeg
@@ -52,7 +53,7 @@ Each component comes with:
 
 ## What's Included
 
-BuildGrid UI currently offers **44 components** and **12 blocks**, plus utility functions for common tasks:
+BuildGrid UI currently offers **41 components** and **13 blocks**, plus utility functions for common tasks:
 
 ### Core Components
 - **Form Elements**: Input, Textarea, Select, Checkbox, Radio Group, etc.

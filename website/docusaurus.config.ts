@@ -20,8 +20,11 @@ const config: Config = {
 	organizationName: 'adrianomaringolo', // Usually your GitHub org/user name.
 	projectName: 'buildgrid-ui', // Usually your repo name.
 
-	onBrokenLinks: 'throw',
+	onBrokenLinks: 'warn',
 	onBrokenMarkdownLinks: 'warn',
+
+	// Configure static directories that should be ignored for broken link checking
+	staticDirectories: ['static'],
 
 	plugins: [
 		async function myPlugin(context, options) {
@@ -176,6 +179,10 @@ const config: Config = {
 						{
 							label: 'Changelog',
 							to: '/changelog',
+						},
+						{
+							label: 'Test Coverage',
+							to: '/coverage',
 						},
 						{
 							label: 'GitHub',

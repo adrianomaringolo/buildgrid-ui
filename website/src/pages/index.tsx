@@ -1,6 +1,7 @@
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import Layout from '@theme/Layout'
 import type { ReactNode } from 'react'
+import { BlogSection } from '../components/home/blog-section'
 import { CodePreviewSection } from '../components/home/code-preview-section'
 import { CompatibilitySection } from '../components/home/compatibility-section'
 import { CTASection } from '../components/home/cta-section'
@@ -21,6 +22,7 @@ export default function Home(): ReactNode {
 				<FeaturesSection />
 				<CodePreviewSection />
 				<CompatibilitySection />
+				<BlogSection />
 				<CTASection />
 			</main>
 		</Layout>
