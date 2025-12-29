@@ -47,7 +47,7 @@ export function FileUploadDropzone({
 	onFilesChange,
 	onFileUpload,
 	className,
-	placeholder = 'Arraste arquivos aqui ou clique para selecionar',
+	placeholder = 'Drag files here or click to select',
 }: FileUploadDropzoneProps) {
 	const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
 	const [isUploading, setIsUploading] = useState(false)
@@ -83,7 +83,7 @@ export function FileUploadDropzone({
 						)
 					} catch (error) {
 						setUploadedFiles((prev) =>
-							prev.map((f) => (f.id === file.id ? { ...f, error: 'Erro no upload' } : f)),
+							prev.map((f) => (f.id === file.id ? { ...f, error: 'Upload error' } : f)),
 						)
 					}
 				}
@@ -154,15 +154,15 @@ export function FileUploadDropzone({
 				<input {...getInputProps()} />
 				<Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
 				<p className="text-lg font-medium mb-2">
-					{isDragActive ? 'Solte os arquivos aqui' : placeholder}
+					{isDragActive ? 'Drop files here' : placeholder}
 				</p>
 				<p className="text-sm text-muted-foreground">
-					Máximo {finalConfig.maxFiles} arquivo{finalConfig.maxFiles !== 1 ? 's' : ''} •
-					Até {Math.round((finalConfig.maxSize || 0) / 1024 / 1024)}MB cada
+					Maximum {finalConfig.maxFiles} file{finalConfig.maxFiles !== 1 ? 's' : ''} • Up
+					to {Math.round((finalConfig.maxSize || 0) / 1024 / 1024)}MB each
 				</p>
 			</div>
 
-			{/* Erros de validação */}
+			{/* Validation errors */}
 			{fileRejections.length > 0 && (
 				<div className="space-y-2">
 					{fileRejections.map(({ file, errors }) => (
@@ -176,10 +176,10 @@ export function FileUploadDropzone({
 				</div>
 			)}
 
-			{/* Lista de arquivos */}
+			{/* File list */}
 			{uploadedFiles.length > 0 && (
 				<div className="space-y-2">
-					<h4 className="font-medium">Arquivos selecionados:</h4>
+					<h4 className="font-medium">Selected files:</h4>
 					{uploadedFiles.map((file) => (
 						<div key={file.id} className="flex items-center gap-3 p-3 border rounded-lg">
 							{finalConfig.showPreview && file.preview ? (
@@ -196,7 +196,7 @@ export function FileUploadDropzone({
 
 							<div className="flex-1 min-w-0">
 								<p className="text-sm font-medium truncate" title={file.name}>
-									{file.name || 'Arquivo sem nome'}
+									{file.name || 'Unnamed file'}
 								</p>
 								<p className="text-xs text-muted-foreground">
 									{formatFileSize(file.size)}

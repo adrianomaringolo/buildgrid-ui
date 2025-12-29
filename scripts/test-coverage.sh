@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Script para executar testes com cobertura e abrir relatório
+# Script to run tests with coverage and open report
 
-echo "🧪 Executando testes com cobertura..."
+echo "🧪 Running tests with coverage..."
 npm run test:coverage
 
-echo "📊 Abrindo relatório de cobertura..."
+echo "📊 Opening coverage report..."
 if command -v open &> /dev/null; then
     # macOS
     open coverage/index.html
@@ -16,5 +16,5 @@ elif command -v start &> /dev/null; then
     # Windows
     start coverage/index.html
 else
-    echo "Relatório de cobertura disponível em: coverage/index.html"
+    echo "Coverage report available at: coverage/index.html"
 fi

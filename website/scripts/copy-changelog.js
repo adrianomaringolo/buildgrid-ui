@@ -4,8 +4,8 @@ const fs = require('fs')
 const path = require('path')
 
 /**
- * Script para copiar o CHANGELOG.md da raiz do projeto para website/static/
- * Executa automaticamente antes do build do Docusaurus
+ * Script to copy CHANGELOG.md from project root to website/static/
+ * Runs automatically before Docusaurus build
  */
 
 const rootDir = path.resolve(__dirname, '../..')
@@ -16,44 +16,44 @@ const targetFile = path.join(websiteDir, 'static', 'CHANGELOG.md')
 
 function copyChangelog() {
 	try {
-		// Verificar se o arquivo fonte existe
+		// Check if source file exists
 		if (!fs.existsSync(sourceFile)) {
-			console.error('❌ CHANGELOG.md não encontrado na raiz do projeto:', sourceFile)
+			console.error('❌ CHANGELOG.md not found in the root directory:', sourceFile)
 			process.exit(1)
 		}
 
-		// Criar diretório static se não existir
+		// Create static directory if it doesn't exist
 		const staticDir = path.dirname(targetFile)
 		if (!fs.existsSync(staticDir)) {
 			fs.mkdirSync(staticDir, { recursive: true })
-			console.log('📁 Diretório static criado:', staticDir)
+			console.log('📁 static folder created:', staticDir)
 		}
 
-		// Copiar o arquivo
+		// Copy the file
 		fs.copyFileSync(sourceFile, targetFile)
 
-		// Verificar se a cópia foi bem-sucedida
+		// Verify if copy was successful
 		const sourceStats = fs.statSync(sourceFile)
 		const targetStats = fs.statSync(targetFile)
 
 		if (sourceStats.size === targetStats.size) {
-			console.log('✅ CHANGELOG.md copiado com sucesso!')
-			console.log(`   Fonte: ${sourceFile}`)
-			console.log(`   Destino: ${targetFile}`)
-			console.log(`   Tamanho: ${sourceStats.size} bytes`)
+			console.log('✅ CHANGELOG.md successfully copied')
+			console.log(`   Source: ${sourceFile}`)
+			console.log(`   Destination: ${targetFile}`)
+			console.log(`   Size: ${sourceStats.size} bytes`)
 		} else {
-			console.error('❌ Erro na cópia: tamanhos diferentes')
+			console.error('❌ Copy error: different sizes')
 			process.exit(1)
 		}
 	} catch (error) {
-		console.error('❌ Erro ao copiar CHANGELOG.md:', error.message)
+		console.error('❌ Error copying CHANGELOG.md:', error.message)
 		process.exit(1)
 	}
 }
 
-// Executar apenas se chamado diretamente
+// Execute only if called directly
 if (require.main === module) {
-	console.log('🔄 Copiando CHANGELOG.md...')
+	console.log('🔄 Copying CHANGELOG.md...')
 	copyChangelog()
 }
 

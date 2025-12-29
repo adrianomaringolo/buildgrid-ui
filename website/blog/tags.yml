@@ -22,3 +22,8 @@ typescript:
   label: TypeScript
   permalink: /typescript
   description: TypeScript development topics
+
+community:
+  label: Community
+  permalink: /community
+  description: Developer community and collaboration topics

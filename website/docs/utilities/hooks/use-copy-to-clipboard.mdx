@@ -1,19 +1,19 @@
 ---
 title: useCopyToClipboard
-description: Hook para copiar texto para a área de transferência com feedback de sucesso e tratamento de erros.
+description: Hook to copy text to clipboard with success feedback and error handling.
 ---
 
 # useCopyToClipboard
 
-O hook `useCopyToClipboard` fornece uma interface simples para copiar texto para a área de transferência do usuário, com feedback de sucesso e tratamento robusto de erros. É ideal para botões de compartilhamento, códigos, links e qualquer conteúdo que o usuário possa querer copiar.
+The `useCopyToClipboard` hook provides a simple interface to copy text to the user's clipboard, with success feedback and robust error handling. It's ideal for share buttons, codes, links, and any content that users might want to copy.
 
-## Importação
+## Import
 
 ```tsx
 import { useCopyToClipboard } from 'buildgrid-ui'
 ```
 
-## Uso Básico
+## Basic Usage
 
 ```tsx
 import { useCopyToClipboard } from 'buildgrid-ui'
@@ -22,9 +22,9 @@ function CopyButton() {
   const [copiedText, copy] = useCopyToClipboard()
 
   const handleCopy = async () => {
-    const success = await copy('Texto copiado!')
+    const success = await copy('Text copied!')
     if (success) {
-      console.log('Texto copiado com sucesso!')
+      console.log('Text copied successfully!')
     }
   }
 
@@ -34,12 +34,12 @@ function CopyButton() {
         onClick={handleCopy}
         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
       >
-        Copiar Texto
+        Copy Text
       </button>
       
       {copiedText && (
         <p className="text-sm text-green-600">
-          ✓ Copiado: {copiedText}
+          ✓ Copied: {copiedText}
         </p>
       )}
     </div>
@@ -58,9 +58,9 @@ type CopiedValue = string | null
 type CopyFn = (text: string) => Promise<boolean>
 ```
 
-#### Retorno
+#### Return Value
 
-| Índice | Tipo | Descrição |
+| Index | Type | Description |
 |---|---|---|
-| `[0]` | `string \| null` | Último texto copiado com sucesso, ou `null` se nenhum. |
-| `[1]` | `(text: string) => Promise<boolean>` | Função para copiar texto. Retorna `true` se bem-sucedida. |
+| `[0]` | `string \| null` | Last successfully copied text, or `null` if none. |
+| `[1]` | `(text: string) => Promise<boolean>` | Function to copy text. Returns `true` if successful. |
