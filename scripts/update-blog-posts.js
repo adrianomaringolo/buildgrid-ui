@@ -46,8 +46,6 @@ function extractBlogPosts() {
 		const files = fs
 			.readdirSync(blogDir)
 			.filter((file) => file.endsWith('.md') && !file.startsWith('_'))
-			.sort()
-			.reverse() // Most recent first
 
 		const blogPosts = []
 
@@ -78,6 +76,13 @@ function extractBlogPosts() {
 			blogPosts.push(blogPost)
 			console.log(`   ✓ ${blogPost.title}`)
 		}
+
+		// Sort blog posts by date (most recent first)
+		blogPosts.sort((a, b) => {
+			const dateA = new Date(a.date)
+			const dateB = new Date(b.date)
+			return dateB.getTime() - dateA.getTime() // Descending order (newest first)
+		})
 
 		return blogPosts
 	} catch (error) {

@@ -99,8 +99,8 @@ h3.anchor {
 	margin: 0 auto 1rem;
 }
 
-ul,
-li {
+ul:not(:has([class^='table-of-contents'])),
+ul:not(:has([class^='table-of-contents'])) li {
 	list-style-type: disc;
 }
 
