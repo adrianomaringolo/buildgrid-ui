@@ -27,11 +27,28 @@ function getLibraryVersion() {
 		const buildgridVersion = websitePackageJson.dependencies['buildgrid-ui']
 
 		// Remove ^ or ~ prefix if present
-		return buildgridVersion.replace(/^[\^~]/, '')
+		const version = buildgridVersion.replace(/^[\^~]/, '')
+
+		// Try to get release date from npm
+		let releaseDate = null
+		try {
+			const { execSync } = require('child_process')
+			const result = execSync('npm view buildgrid-ui time --json', {
+				encoding: 'utf-8',
+				stdio: ['pipe', 'pipe', 'pipe'],
+			})
+			const timeData = JSON.parse(result)
+			releaseDate = timeData[version]
+		} catch (error) {
+			// Release date not available, will be null
+		}
+
+		return { version, releaseDate }
 	} catch (error) {
 		// Fallback to root package.json version
 		console.warn('⚠️  Could not read website package.json, using root version')
-		return require(path.join(rootDir, 'package.json')).version
+		const rootVersion = require(path.join(rootDir, 'package.json')).version
+		return { version: rootVersion, releaseDate: null }
 	}
 }
 
@@ -95,6 +112,7 @@ function updateStats() {
 		)
 
 		// Create stats object
+		const versionInfo = getLibraryVersion()
 		const stats = {
 			components: componentsCount,
 			blocks: blocksCount,
@@ -105,7 +123,8 @@ function updateStats() {
 				types: typesCount,
 			},
 			lastUpdated: new Date().toISOString(),
-			version: getLibraryVersion(),
+			version: versionInfo.version,
+			releaseDate: versionInfo.releaseDate,
 		}
 
 		// Ensure website/static directory exists

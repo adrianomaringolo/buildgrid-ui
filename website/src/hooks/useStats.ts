@@ -11,15 +11,17 @@ export interface Stats {
 	}
 	lastUpdated: string
 	version: string
+	releaseDate?: string | null
 }
 
 const defaultStats: Stats = {
-	components: 41,
+	components: 42,
 	blocks: 13,
 	utilities: 19,
 	breakdown: { hooks: 13, utils: 5, types: 1 },
 	lastUpdated: new Date().toISOString(),
-	version: '1.17.1',
+	version: '1.18.0',
+	releaseDate: null,
 }
 
 export const useStats = () => {

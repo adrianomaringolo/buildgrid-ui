@@ -1,4 +1,5 @@
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import { useStats } from '@site/src/hooks/useStats'
 import { BUILDGRID_UI_VERSION } from '@site/src/utils/version'
 import Logo from '@site/static/img/buildgrid-ui-logo.png'
 import { cn } from 'buildgrid-ui'
@@ -9,6 +10,22 @@ interface IntroSectionProps {
 
 export const IntroSection = ({ className }: IntroSectionProps) => {
 	const { siteConfig } = useDocusaurusContext()
+	const { stats } = useStats()
+
+	// Format release date
+	const formatReleaseDate = (dateString?: string | null) => {
+		if (!dateString) return null
+		try {
+			const date = new Date(dateString)
+			return date.toLocaleDateString('en-US', {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric',
+			})
+		} catch {
+			return null
+		}
+	}
 
 	return (
 		<section
@@ -83,6 +100,11 @@ export const IntroSection = ({ className }: IntroSectionProps) => {
 								/>
 							</svg>
 						</a>
+						{stats.releaseDate && (
+							<div className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+								Released on {formatReleaseDate(stats.releaseDate)}
+							</div>
+						)}
 					</div>
 
 					<p className="mb-12! text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-900">
