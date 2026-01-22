@@ -1,3 +1,10 @@
+## [1.17.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.1...v1.17.2) (2026-01-22)
+
+
+### Bug Fixes
+
+* **components:** Enhance card component with comprehensive storybook stories ([bef0627](https://github.com/adrianomaringolo/buildgrid-ui/commit/bef0627fd54725e2832436f90dc6bfccc8b6f9a9))
+
 ## [1.17.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.0...v1.17.1) (2025-12-22)
 
 
