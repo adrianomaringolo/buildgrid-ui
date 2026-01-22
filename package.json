@@ -98,6 +98,7 @@
 		"embla-carousel-react": "^8.6.0",
 		"highlight.js": "^11.11.1",
 		"lucide-react": "^0.539.0",
+		"radix-ui": "^1.4.3",
 		"react-day-picker": "^9.8.1",
 		"react-dropzone": "^14.3.8",
 		"sonner": "^1.7.1",
