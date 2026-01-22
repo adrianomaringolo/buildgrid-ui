@@ -19,16 +19,15 @@ describe('Card', () => {
 			const card = screen.getByText('Card content')
 			expect(card).toBeInTheDocument()
 			expect(card).toHaveAttribute('data-slot', 'card')
+			expect(card).toHaveAttribute('data-size', 'default')
 			expect(card).toHaveClass(
 				'bg-card',
 				'text-card-foreground',
 				'flex',
 				'flex-col',
-				'gap-6',
+				'gap-4',
 				'rounded-xl',
-				'border',
-				'py-6',
-				'shadow-sm',
+				'py-4',
 			)
 		})
 
@@ -57,6 +56,13 @@ describe('Card', () => {
 			const card = screen.getByText('Card content')
 			expect(card.tagName).toBe('DIV')
 		})
+
+		it('renders card with small size variant', () => {
+			render(<Card size="sm">Card content</Card>)
+
+			const card = screen.getByText('Card content')
+			expect(card).toHaveAttribute('data-size', 'sm')
+		})
 	})
 
 	describe('CardHeader Component', () => {
@@ -70,10 +76,9 @@ describe('Card', () => {
 				'@container/card-header',
 				'grid',
 				'auto-rows-min',
-				'grid-rows-[auto_auto]',
 				'items-start',
-				'gap-1.5',
-				'px-6',
+				'gap-1',
+				'px-4',
 			)
 		})
 
@@ -103,7 +108,7 @@ describe('Card', () => {
 			const title = screen.getByText('Title content')
 			expect(title).toBeInTheDocument()
 			expect(title).toHaveAttribute('data-slot', 'card-title')
-			expect(title).toHaveClass('leading-none', 'font-semibold')
+			expect(title).toHaveClass('text-base', 'leading-snug', 'font-medium')
 		})
 
 		it('renders card title with custom className', () => {
@@ -200,7 +205,7 @@ describe('Card', () => {
 			const content = screen.getByText('Content text')
 			expect(content).toBeInTheDocument()
 			expect(content).toHaveAttribute('data-slot', 'card-content')
-			expect(content).toHaveClass('px-6')
+			expect(content).toHaveClass('px-4')
 		})
 
 		it('renders card content with custom className', () => {
@@ -229,7 +234,7 @@ describe('Card', () => {
 			const footer = screen.getByText('Footer content')
 			expect(footer).toBeInTheDocument()
 			expect(footer).toHaveAttribute('data-slot', 'card-footer')
-			expect(footer).toHaveClass('flex', 'items-center', 'px-6')
+			expect(footer).toHaveClass('flex', 'items-center', 'p-4', 'border-t')
 		})
 
 		it('renders card footer with custom className', () => {

@@ -45,11 +45,15 @@ describe('Accordion', () => {
 		it('renders chevron icons in triggers', () => {
 			render(<AccordionExample />)
 
-			const chevronIcons = document.querySelectorAll('svg')
-			expect(chevronIcons).toHaveLength(3)
+			const chevronIcons = document.querySelectorAll(
+				'[data-slot="accordion-trigger-icon"]',
+			)
+			// Each trigger has 2 icons (ChevronDown and ChevronUp), so 3 triggers = 6 icons
+			expect(chevronIcons).toHaveLength(6)
 
 			chevronIcons.forEach((icon) => {
-				expect(icon).toHaveClass('h-4', 'w-4', 'shrink-0')
+				expect(icon).toHaveAttribute('data-slot', 'accordion-trigger-icon')
+				expect(icon).toHaveClass('shrink-0')
 			})
 		})
 	})
@@ -258,18 +262,26 @@ describe('Accordion', () => {
 	})
 
 	describe('Animation and State', () => {
-		it('rotates chevron icon when item is open', async () => {
+		it('shows correct chevron icon when item is open', async () => {
 			const user = userEvent.setup()
 			render(<AccordionExample />)
 
 			const trigger = screen.getByText('First Item')
 
-			// Initially has rotation class for open state
-			expect(trigger).toHaveClass('[&[data-state=open]>svg]:rotate-180')
+			// Initially closed - ChevronDown should be visible, ChevronUp hidden
+			const chevronDown = trigger.querySelector(
+				'.group-aria-expanded\\/accordion-trigger\\:hidden',
+			)
+			const chevronUp = trigger.querySelector(
+				'.hidden.group-aria-expanded\\/accordion-trigger\\:inline',
+			)
+
+			expect(chevronDown).toBeInTheDocument()
+			expect(chevronUp).toBeInTheDocument()
 
 			// Click to open
 			await user.click(trigger)
-			expect(trigger).toHaveAttribute('data-state', 'open')
+			expect(trigger).toHaveAttribute('aria-expanded', 'true')
 		})
 
 		it('applies transition classes to trigger', () => {
