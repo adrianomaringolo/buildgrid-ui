@@ -1,3 +1,10 @@
+## [1.17.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.2...v1.17.3) (2026-01-22)
+
+
+### Bug Fixes
+
+* **components:** Enhance accordion component with comprehensive storybook stories ([24d6274](https://github.com/adrianomaringolo/buildgrid-ui/commit/24d62747f2f42f1566ff1cd905892d479ed8b355))
+
 ## [1.17.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.1...v1.17.2) (2026-01-22)
 
 
