@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.3...v1.18.0) (2026-01-22)
+
+
+### Features
+
+* **components:** Add DatePicker component with calendar integration ([7763bb4](https://github.com/adrianomaringolo/buildgrid-ui/commit/7763bb44f4c488549a6cf6e8b7471837312d2fcb))
+
 ## [1.17.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.2...v1.17.3) (2026-01-22)
 
 
