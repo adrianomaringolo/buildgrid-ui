@@ -1,0 +1,564 @@
+---
+id: date-picker
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { DatePicker } from "buildgrid-ui";
+import { useState } from 'react';
+import { addDays, subDays } from 'date-fns';
+
+# DatePicker
+
+<StorybookLink path="components-datepicker--default" />
+
+The `DatePicker` component combines a button trigger with a calendar popover for intuitive date selection. It provides a clean, accessible interface for picking dates in forms and applications.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { DatePicker } from "buildgrid-ui";
+import { useState } from "react";
+
+function BasicDatePicker() {
+  const [date, setDate] = useState();
+
+  return (
+    <DatePicker 
+      date={date}
+      onDateChange={setDate}
+      placeholder="Pick a date"
+    />
+  );
+}`}
+>
+  {(() => {
+    const [date, setDate] = useState();
+
+    return (
+      <DatePicker 
+        date={date}
+        onDateChange={setDate}
+        placeholder="Pick a date"
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## With Pre-selected Date
+
+<ComponentDocSection
+  code={`import { DatePicker } from "buildgrid-ui";
+import { useState } from "react";
+
+function PreselectedDatePicker() {
+  const [date, setDate] = useState(new Date());
+
+  return (
+    <div className="space-y-4">
+      <DatePicker 
+        date={date}
+        onDateChange={setDate}
+        placeholder="Pick a date"
+      />
+      <p className="text-sm text-gray-600">
+        Selected: {date ? date.toLocaleDateString() : 'No date selected'}
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [date, setDate] = useState(new Date());
+
+    return (
+      <div className="space-y-4">
+        <DatePicker 
+          date={date}
+          onDateChange={setDate}
+          placeholder="Pick a date"
+        />
+        <p className="text-sm text-gray-600">
+          Selected: {date ? date.toLocaleDateString() : 'No date selected'}
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Custom Placeholder
+
+<ComponentDocSection
+  code={`import { DatePicker } from "buildgrid-ui";
+import { useState } from "react";
+
+function CustomPlaceholderDatePicker() {
+  const [date, setDate] = useState();
+
+  return (
+    <DatePicker 
+      date={date}
+      onDateChange={setDate}
+      placeholder="Select your birthday"
+    />
+  );
+}`}
+>
+  {(() => {
+    const [date, setDate] = useState();
+
+    return (
+      <DatePicker 
+        date={date}
+        onDateChange={setDate}
+        placeholder="Select your birthday"
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Button Variants
+
+<ComponentDocSection
+  code={`import { DatePicker } from "buildgrid-ui";
+import { useState } from "react";
+
+function ButtonVariantsDatePicker() {
+  const [date1, setDate1] = useState();
+  const [date2, setDate2] = useState();
+  const [date3, setDate3] = useState();
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <p className="text-sm text-gray-600 mb-2">Outline (default)</p>
+        <DatePicker 
+          date={date1}
+          onDateChange={setDate1}
+          buttonVariant="outline"
+        />
+      </div>
+      <div>
+        <p className="text-sm text-gray-600 mb-2">Default</p>
+        <DatePicker 
+          date={date2}
+          onDateChange={setDate2}
+          buttonVariant="default"
+        />
+      </div>
+      <div>
+        <p className="text-sm text-gray-600 mb-2">Ghost</p>
+        <DatePicker 
+          date={date3}
+          onDateChange={setDate3}
+          buttonVariant="ghost"
+        />
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [date1, setDate1] = useState();
+    const [date2, setDate2] = useState();
+    const [date3, setDate3] = useState();
+
+    return (
+      <div className="space-y-4">
+        <div>
+          <p className="text-sm text-gray-600 mb-2">Outline (default)</p>
+          <DatePicker 
+            date={date1}
+            onDateChange={setDate1}
+            buttonVariant="outline"
+          />
+        </div>
+        <div>
+          <p className="text-sm text-gray-600 mb-2">Default</p>
+          <DatePicker 
+            date={date2}
+            onDateChange={setDate2}
+            buttonVariant="default"
+          />
+        </div>
+        <div>
+          <p className="text-sm text-gray-600 mb-2">Ghost</p>
+          <DatePicker 
+            date={date3}
+            onDateChange={setDate3}
+            buttonVariant="ghost"
+          />
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Disabled State
+
+<ComponentDocSection
+  code={`import { DatePicker } from "buildgrid-ui";
+import { useState } from "react";
+
+function DisabledDatePicker() {
+  const [date, setDate] = useState(new Date());
+
+  return (
+    <DatePicker 
+      date={date}
+      onDateChange={setDate}
+      disabled
+    />
+  );
+}`}
+>
+  {(() => {
+    const [date, setDate] = useState(new Date());
+
+    return (
+      <DatePicker 
+        date={date}
+        onDateChange={setDate}
+        disabled
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Form Example
+
+<ComponentDocSection
+  code={`import { DatePicker } from "buildgrid-ui";
+import { useState } from "react";
+
+function EventForm() {
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
+  const calculateDuration = () => {
+    if (!startDate || !endDate) return null;
+    const days = Math.ceil(
+      (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+    );
+    return days;
+  };
+
+  return (
+    <div className="space-y-4 max-w-md">
+      <div>
+        <label className="text-sm font-medium mb-2 block">
+          Event Start Date
+        </label>
+        <DatePicker
+          date={startDate}
+          onDateChange={setStartDate}
+          placeholder="Select start date"
+        />
+      </div>
+      
+      <div>
+        <label className="text-sm font-medium mb-2 block">
+          Event End Date
+        </label>
+        <DatePicker
+          date={endDate}
+          onDateChange={setEndDate}
+          placeholder="Select end date"
+        />
+      </div>
+      
+      {startDate && endDate && (
+        <div className="p-4 bg-blue-50 rounded-lg">
+          <p className="text-sm">
+            <strong>Duration:</strong> {calculateDuration()} days
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
+
+    const calculateDuration = () => {
+      if (!startDate || !endDate) return null;
+      const days = Math.ceil(
+        (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+      );
+      return days;
+    };
+
+    return (
+      <div className="space-y-4 max-w-md">
+        <div>
+          <label className="text-sm font-medium mb-2 block">
+            Event Start Date
+          </label>
+          <DatePicker
+            date={startDate}
+            onDateChange={setStartDate}
+            placeholder="Select start date"
+          />
+        </div>
+        
+        <div>
+          <label className="text-sm font-medium mb-2 block">
+            Event End Date
+          </label>
+          <DatePicker
+            date={endDate}
+            onDateChange={setEndDate}
+            placeholder="Select end date"
+          />
+        </div>
+        
+        {startDate && endDate && (
+          <div className="p-4 bg-blue-50 rounded-lg">
+            <p className="text-sm">
+              <strong>Duration:</strong> {calculateDuration()} days
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Preset Dates
+
+<ComponentDocSection
+  code={`import { DatePicker } from "buildgrid-ui";
+import { useState } from "react";
+import { addDays, subDays } from "date-fns";
+
+function PresetDatePicker() {
+  const [date, setDate] = useState();
+
+  const presets = [
+    { label: 'Today', date: new Date() },
+    { label: 'Tomorrow', date: addDays(new Date(), 1) },
+    { label: 'In 3 days', date: addDays(new Date(), 3) },
+    { label: 'In 1 week', date: addDays(new Date(), 7) },
+    { label: 'Yesterday', date: subDays(new Date(), 1) },
+  ];
+
+  return (
+    <div className="space-y-4">
+      <DatePicker 
+        date={date}
+        onDateChange={setDate}
+        placeholder="Pick a date"
+      />
+      
+      <div className="flex flex-wrap gap-2">
+        {presets.map((preset) => (
+          <button
+            key={preset.label}
+            onClick={() => setDate(preset.date)}
+            className="px-3 py-1 text-sm border rounded hover:bg-gray-100"
+          >
+            {preset.label}
+          </button>
+        ))}
+      </div>
+      
+      {date && (
+        <p className="text-sm text-gray-600">
+          Selected: {date.toLocaleDateString()}
+        </p>
+      )}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [date, setDate] = useState();
+
+    const presets = [
+      { label: 'Today', date: new Date() },
+      { label: 'Tomorrow', date: addDays(new Date(), 1) },
+      { label: 'In 3 days', date: addDays(new Date(), 3) },
+      { label: 'In 1 week', date: addDays(new Date(), 7) },
+      { label: 'Yesterday', date: subDays(new Date(), 1) },
+    ];
+
+    return (
+      <div className="space-y-4">
+        <DatePicker 
+          date={date}
+          onDateChange={setDate}
+          placeholder="Pick a date"
+        />
+        
+        <div className="flex flex-wrap gap-2">
+          {presets.map((preset) => (
+            <button
+              key={preset.label}
+              onClick={() => setDate(preset.date)}
+              className="px-3 py-1 text-sm border rounded hover:bg-gray-100"
+            >
+              {preset.label}
+            </button>
+          ))}
+        </div>
+        
+        {date && (
+          <p className="text-sm text-gray-600">
+            Selected: {date.toLocaleDateString()}
+          </p>
+        )}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Custom Width
+
+<ComponentDocSection
+  code={`import { DatePicker } from "buildgrid-ui";
+import { useState } from "react";
+
+function CustomWidthDatePicker() {
+  const [date, setDate] = useState();
+
+  return (
+    <DatePicker 
+      date={date}
+      onDateChange={setDate}
+      placeholder="Pick a date"
+      className="w-full max-w-md"
+    />
+  );
+}`}
+>
+  {(() => {
+    const [date, setDate] = useState();
+
+    return (
+      <DatePicker 
+        date={date}
+        onDateChange={setDate}
+        placeholder="Pick a date"
+        className="w-full max-w-md"
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `DatePicker`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `date` | `Date \| undefined` | `undefined` | The selected date. |
+| `onDateChange` | `(date: Date \| undefined) => void` | `undefined` | Callback fired when the date changes. |
+| `placeholder` | `string` | `"Pick a date"` | Placeholder text when no date is selected. |
+| `disabled` | `boolean` | `false` | Whether the date picker is disabled. |
+| `className` | `string` | `undefined` | Additional CSS classes for the button. |
+| `language` | `"enUS"` \| `"ptBR"` | `"enUS"` | Language for date formatting in the calendar. |
+| `buttonVariant` | `"default"` \| `"outline"` \| `"ghost"` \| `"link"` \| `"destructive"` \| `"secondary"` | `"outline"` | Button style variant. |
+
+## Features
+
+### Accessibility
+- Full keyboard navigation support
+- ARIA attributes for screen readers
+- Focus management between button and calendar
+- Proper labeling and descriptions
+
+### User Experience
+- Click outside to close popover
+- Escape key to dismiss
+- Visual feedback for selected dates
+- Smooth animations
+
+### Customization
+- Multiple button variants
+- Custom placeholder text
+- Flexible width with className
+- Language support
+
+## Common Use Cases
+
+The DatePicker component is perfect for:
+
+- **Form inputs** - Date selection in registration or booking forms
+- **Event scheduling** - Choose dates for appointments or meetings
+- **Deadline setting** - Set due dates for tasks or projects
+- **Birthday selection** - User profile date inputs
+- **Date range start/end** - First step in range selection
+- **Availability selection** - Choose available dates for services
+- **Filtering** - Date-based filtering in data tables
+
+## Best Practices
+
+1. **Clear labels** - Always provide a descriptive label for the date picker
+2. **Validation** - Validate selected dates (e.g., end date after start date)
+3. **Feedback** - Show selected date clearly in the button
+4. **Accessibility** - Ensure keyboard navigation works properly
+5. **Mobile friendly** - Test on touch devices for usability
+6. **Error handling** - Handle invalid dates gracefully
+7. **Localization** - Use appropriate language for your users
+8. **Default values** - Consider pre-selecting sensible defaults
+
+## Keyboard Navigation
+
+- **Tab** - Navigate to the date picker button
+- **Enter/Space** - Open the calendar popover
+- **Escape** - Close the popover
+- **Arrow keys** - Navigate dates within the calendar (when open)
+- **Enter/Space** - Select the focused date (when calendar is open)
+
+## Integration with Forms
+
+The DatePicker works seamlessly with form libraries:
+
+```tsx
+// React Hook Form example
+import { DatePicker } from "buildgrid-ui";
+import { Controller, useForm } from "react-hook-form";
+
+function MyForm() {
+  const { control, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="eventDate"
+        control={control}
+        render={({ field }) => (
+          <DatePicker
+            date={field.value}
+            onDateChange={field.onChange}
+            placeholder="Select event date"
+          />
+        )}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+## Related Components
+
+- [Calendar](./calendar) - The underlying calendar component
+- [Popover](./popover) - The popover container used by DatePicker
+- [Button](./button) - The trigger button component
+- [Input](./input) - Alternative for manual date entry
+
+## Tips
+
+- Use `date-fns` or similar libraries for date manipulation
+- Consider time zones when working with dates
+- Validate date ranges on both client and server
+- Provide clear error messages for invalid selections
+- Test with different locales and date formats
+- Consider adding a "Clear" button for optional dates

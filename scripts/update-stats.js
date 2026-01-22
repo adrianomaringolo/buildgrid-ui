@@ -20,6 +20,21 @@ const typesDir = path.join(srcDir, 'lib', 'types')
 
 const statsFile = path.join(websiteDir, 'static', 'stats.json')
 
+function getLibraryVersion() {
+	try {
+		// Try to get version from website's package.json (buildgrid-ui dependency)
+		const websitePackageJson = require(path.join(websiteDir, 'package.json'))
+		const buildgridVersion = websitePackageJson.dependencies['buildgrid-ui']
+
+		// Remove ^ or ~ prefix if present
+		return buildgridVersion.replace(/^[\^~]/, '')
+	} catch (error) {
+		// Fallback to root package.json version
+		console.warn('⚠️  Could not read website package.json, using root version')
+		return require(path.join(rootDir, 'package.json')).version
+	}
+}
+
 function countDirectories(dir) {
 	try {
 		if (!fs.existsSync(dir)) {
@@ -90,7 +105,7 @@ function updateStats() {
 				types: typesCount,
 			},
 			lastUpdated: new Date().toISOString(),
-			version: require(path.join(rootDir, 'package.json')).version,
+			version: getLibraryVersion(),
 		}
 
 		// Ensure website/static directory exists

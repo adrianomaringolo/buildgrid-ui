@@ -43,6 +43,8 @@
 		"sync-docs-version": "node scripts/verify-docs-version.js sync",
 		"update-stats": "node scripts/update-stats.js",
 		"update-blog-posts": "node scripts/update-blog-posts.js",
+		"update-lib-version": "node scripts/update-lib-version.js",
+		"update-data": "npm run update-lib-version && npm run update-stats && npm run update-blog-posts",
 		"copy-coverage": "node scripts/copy-coverage.js",
 		"pre-push": "npm run verify-docs-version && npm run test:coverage && npm run copy-coverage && npm run build:storybook",
 		"build": "vite build && npm run build:types",

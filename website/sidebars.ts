@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
 				'components/collapsible',
 				'components/command',
 				'components/currency-input',
+				'components/date-picker',
 				'components/dialog',
 				'components/dropdown-menu',
 				'components/html-text-area',

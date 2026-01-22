@@ -8,7 +8,16 @@ The library statistics (components, blocks, and utilities counts) are automatica
 
 ## How It Works
 
-### 1. Automatic Counting Script
+### 1. Library Version Update Script
+
+The `scripts/update-lib-version.js` script automatically updates the buildgrid-ui version in `website/package.json`:
+
+- Checks the latest version available on npm registry
+- Compares with the current version in website's package.json
+- Updates the version if a newer one is available
+- Falls back to local package.json version if npm is unavailable
+
+### 2. Automatic Counting Script
 
 The `scripts/update-stats.js` script automatically counts:
 
@@ -16,7 +25,9 @@ The `scripts/update-stats.js` script automatically counts:
 - **Blocks**: Directories in `src/blocks/`
 - **Utilities**: Files in `src/lib/hooks/`, `src/lib/utils/`, and `src/lib/types/` (excluding index files and test/story files)
 
-### 2. Stats JSON File
+The version in stats.json is read from the buildgrid-ui dependency in `website/package.json`, ensuring it matches the version actually used by the documentation site.
+
+### 3. Stats JSON File
 
 The script generates `website/static/stats.json` with the current counts:
 
@@ -35,7 +46,7 @@ The script generates `website/static/stats.json` with the current counts:
 }
 ```
 
-### 3. Integration with Pre-Push Workflow
+### 4. Integration with Pre-Push Workflow
 
 The stats update is automatically triggered during:
 - `npm run verify-docs-version` (part of pre-push hook)
@@ -96,8 +107,17 @@ The following files are automatically updated with current statistics:
 ### Manual Commands
 
 ```bash
+# Update all data (lib version + stats + blog posts)
+npm run update-data
+
+# Update library version only
+npm run update-lib-version
+
 # Update statistics only
 npm run update-stats
+
+# Update blog posts only
+npm run update-blog-posts
 
 # Update statistics + verify version
 npm run verify-docs-version
@@ -105,6 +125,21 @@ npm run verify-docs-version
 # Update statistics + sync version
 npm run sync-docs-version
 ```
+
+### Automatic Execution
+
+The stats are automatically updated when running:
+
+**Root package.json:**
+- `npm run update-data` - Updates lib version, stats, and blog posts
+- `npm run verify-docs-version` - Part of pre-push hook
+- `npm run sync-docs-version` - Manual version sync
+
+**Website package.json:**
+- `npm start` - Runs `update-data` before starting dev server
+- `npm run build` - Runs `update-data` before building
+- `npm run deploy` - Runs `update-data` before deploying
+- `npm run update-data` - Updates lib version, stats, and blog posts
 
 ## Maintenance
 

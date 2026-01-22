@@ -1,5 +1,5 @@
 {
-  "components": 41,
+  "components": 42,
   "blocks": 13,
   "utilities": 19,
   "breakdown": {
@@ -7,6 +7,6 @@
     "utils": 5,
     "types": 1
   },
-  "lastUpdated": "2025-12-29T18:14:01.744Z",
-  "version": "1.17.1"
+  "lastUpdated": "2026-01-22T13:16:14.304Z",
+  "version": "1.18.0"
 }
