@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.18.0...v1.19.0) (2026-01-22)
+
+
+### Features
+
+* **automation:** Add release date tracking to version and stats updates ([fcabeec](https://github.com/adrianomaringolo/buildgrid-ui/commit/fcabeec912c20de65f92620c20390667741086bd))
+
 # [1.18.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.3...v1.18.0) (2026-01-22)
 
 
