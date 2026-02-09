@@ -28,7 +28,7 @@
 BuildGrid UI is a comprehensive React component library featuring **44+ components** and **12 specialized blocks**, all built with production use in mind.
 
 - 🎯 **Battle-Tested** - Components refined through real-world usage
-- 🎨 **Modern Stack** - Built with React 19, TypeScript, and Tailwind CSS
+- 🎨 **Modern Stack** - Built with React 18+, TypeScript, and Tailwind CSS
 - ♿ **Accessible** - WCAG compliant with full keyboard navigation
 - 📱 **Responsive** - Mobile-first design approach
 - 🎭 **Customizable** - Flexible theming and styling options
