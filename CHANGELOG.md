@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.0...v1.19.1) (2026-02-09)
+
+
+### Bug Fixes
+
+* **deps:** Update React peer dependencies to support v18 and v19 ([532bcaf](https://github.com/adrianomaringolo/buildgrid-ui/commit/532bcaf46fca7a4921c43a14d2269803c37cb05a))
+
 # [1.19.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.18.0...v1.19.0) (2026-01-22)
 
 
