@@ -22,6 +22,7 @@ export function SearchInput({
 				value={value}
 				onChange={(e) => onChange(e.target.value)}
 				className="pl-10"
+				style={{ paddingLeft: '2.5rem' }}
 			/>
 		</div>
 	)
