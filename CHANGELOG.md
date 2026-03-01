@@ -1,3 +1,10 @@
+## [1.19.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.1...v1.19.2) (2026-03-01)
+
+
+### Bug Fixes
+
+* **style:** add explicit paddingLeft to SearchInput for consistency ([2ebab7c](https://github.com/adrianomaringolo/buildgrid-ui/commit/2ebab7c1608f3e1f10301aedefd68a18787e72aa))
+
 ## [1.19.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.0...v1.19.1) (2026-02-09)
 
 
