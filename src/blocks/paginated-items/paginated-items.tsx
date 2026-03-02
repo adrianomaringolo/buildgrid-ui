@@ -1,7 +1,32 @@
-import { Skeleton, Spinner } from '@/components'
+import { Skeleton } from '@/components'
 import { Fragment, ReactNode, useEffect, useState } from 'react'
 import { EmptyItems } from '../empty-message'
 import { PaginationControls } from '../pagination-controls'
+
+export interface PaginatedItemsServerPagination {
+	/** Total number of items on the server. */
+	totalItems: number
+	/** Total number of pages on the server. */
+	totalPages: number
+	/** Current active page (controlled externally). */
+	currentPage: number
+	/** Called when the user navigates to a different page. */
+	onPageChange: (page: number) => void
+}
+
+export interface PaginatedItemsLabels {
+	/**
+	 * Text shown in the default empty state.
+	 * Ignored when `emptyState` prop is provided.
+	 * Default: `'No item found!'`
+	 */
+	noItemsFound?: string
+	/**
+	 * Pagination counter template. Supports `{{startIndex}}`, `{{endIndex}}`, `{{totalItems}}`.
+	 * Superseded by the top-level `counterText` prop when both are set.
+	 */
+	paginationCounter?: string
+}
 
 interface PaginatedControlsProps {
 	initIndex: number
@@ -23,9 +48,18 @@ interface PaginatedItemsProps<Entry> {
 	children: (item: Entry, index: number) => React.ReactNode
 	emptyState?: ReactNode
 	isLoading?: boolean
-	loadingVariant?: 'loader' | 'skeleton'
+	/** Height class for skeleton items (e.g. `'h-24'`). Default: `'h-24'`. */
+	skeletonHeight?: string
 	showItemsCounter?: boolean
+	/** Custom pagination counter text. Takes priority over `labels.paginationCounter`. */
 	counterText?: string
+	/**
+	 * When provided, the component delegates pagination to the caller.
+	 * `data` must contain only the items for the current page.
+	 */
+	serverPagination?: PaginatedItemsServerPagination
+	/** Override text rendered by the component. All fields are optional. */
+	labels?: PaginatedItemsLabels
 }
 
 const PaginatedControls = ({
@@ -67,52 +101,75 @@ export const PaginatedItems = <Entry extends { id?: string }>(
 		initialPage = 1,
 		children,
 		itemsContainerClass = '',
-		emptyState = <EmptyItems notFoundText="No item found!" />,
+		emptyState,
 		isLoading = false,
+		skeletonHeight = 'h-24',
 		showItemsCounter = true,
-		loadingVariant = 'loader',
+		serverPagination,
+		labels,
+		counterText,
 	} = props
 
-	const [data, setData] = useState<Entry[]>(originalData)
+	const isServerPaginated = serverPagination !== undefined
+
+	// labels.paginationCounter < counterText (top-level prop wins)
+	const resolvedCounterText = counterText ?? labels?.paginationCounter
+
+	// emptyState prop wins over labels.noItemsFound
+	const resolvedEmptyState = emptyState ?? (
+		<EmptyItems notFoundText={labels?.noItemsFound ?? 'No item found!'} />
+	)
+
+	const [localData, setLocalData] = useState<Entry[]>(originalData)
+	const [currentPage, setCurrentPage] = useState(initialPage)
 
 	useEffect(() => {
-		setData(originalData)
-		setCurrentPage(1)
-	}, [originalData])
+		if (!isServerPaginated) {
+			setLocalData(originalData)
+			setCurrentPage(1)
+		}
+	}, [originalData, isServerPaginated])
 
-	const [currentPage, setCurrentPage] = useState(initialPage)
-	const totalPages = Math.ceil(data.length / perPage)
-	const initIndex = (currentPage - 1) * perPage
-	const endIndex = currentPage * perPage
-	const currentPageItems = data.slice(initIndex, endIndex)
+	// Unified pagination values
+	const activePage = isServerPaginated ? serverPagination.currentPage : currentPage
+	const totalItems = isServerPaginated ? serverPagination.totalItems : localData.length
+	const totalPages = isServerPaginated
+		? serverPagination.totalPages
+		: Math.ceil(localData.length / perPage)
+	const initIndex = (activePage - 1) * perPage
+	const currentPageItems = isServerPaginated
+		? originalData
+		: localData.slice(initIndex, initIndex + perPage)
+	const handlePageChange = isServerPaginated
+		? serverPagination.onPageChange
+		: setCurrentPage
 
-	const alternativeDisplay = isLoading ? (
-		<section className="w-full">
-			{loadingVariant === 'loader' ? (
-				<Spinner size="lg" />
-			) : (
-				<Skeleton className="h-12 w-full" repeat={perPage} />
-			)}
-		</section>
-	) : data.length === 0 ? (
-		emptyState
-	) : undefined
+	const isEmpty = isServerPaginated
+		? serverPagination.totalItems === 0
+		: localData.length === 0
 
 	return (
 		<div className="flex flex-col gap-4 items-end">
 			<PaginatedControls
 				initIndex={initIndex}
-				endIndex={endIndex}
-				totalItems={data.length}
+				endIndex={initIndex + currentPageItems.length}
+				totalItems={totalItems}
 				totalPages={totalPages}
-				currentPage={currentPage}
+				currentPage={activePage}
 				pageTotalItems={currentPageItems.length}
-				onPageChange={setCurrentPage}
+				onPageChange={handlePageChange}
 				showItemsCounter={showItemsCounter}
+				counterText={resolvedCounterText}
 			/>
 
-			{alternativeDisplay ? (
-				<section className="w-full">{alternativeDisplay}</section>
+			{isLoading ? (
+				<section className={`w-full ${itemsContainerClass}`}>
+					{Array.from({ length: perPage }, (_, i) => (
+						<Skeleton key={i} className={`w-full ${skeletonHeight}`} />
+					))}
+				</section>
+			) : isEmpty ? (
+				resolvedEmptyState
 			) : (
 				<section className={`w-full ${itemsContainerClass}`}>
 					{currentPageItems.map((item, i) => (
@@ -120,15 +177,17 @@ export const PaginatedItems = <Entry extends { id?: string }>(
 					))}
 				</section>
 			)}
+
 			<PaginatedControls
 				initIndex={initIndex}
-				endIndex={endIndex}
-				totalItems={data.length}
+				endIndex={initIndex + currentPageItems.length}
+				totalItems={totalItems}
 				totalPages={totalPages}
-				currentPage={currentPage}
+				currentPage={activePage}
 				pageTotalItems={currentPageItems.length}
-				onPageChange={setCurrentPage}
+				onPageChange={handlePageChange}
 				showItemsCounter={showItemsCounter}
+				counterText={resolvedCounterText}
 			/>
 		</div>
 	)

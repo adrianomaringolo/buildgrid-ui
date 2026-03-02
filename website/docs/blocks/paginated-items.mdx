@@ -455,6 +455,193 @@ function DifferentPageSizes() {
   })()}
 </ComponentDocSection>
 
+## Server-side Pagination
+
+When items come from an API page-by-page, pass the `serverPagination` prop. The `data` prop must contain **only the current page's items**; the component renders them as-is and delegates navigation to your callback.
+
+<ComponentDocSection
+  code={`import { PaginatedItems } from "buildgrid-ui";
+import { User } from "lucide-react";
+import React from "react";
+
+const ALL_USERS = Array.from({ length: 100 }, (_, i) => ({
+  id: (i + 1).toString(),
+  name: \`User \${i + 1}\`,
+  email: \`user\${i + 1}@example.com\`,
+}));
+
+const PAGE_SIZE = 8;
+
+function ServerPaginatedList() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [loading, setLoading] = React.useState(false);
+  const [pageData, setPageData] = React.useState(
+    ALL_USERS.slice(0, PAGE_SIZE)
+  );
+
+  const totalItems = ALL_USERS.length;
+  const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+
+  const handlePageChange = (page) => {
+    setLoading(true);
+    setTimeout(() => {
+      const start = (page - 1) * PAGE_SIZE;
+      setPageData(ALL_USERS.slice(start, start + PAGE_SIZE));
+      setCurrentPage(page);
+      setLoading(false);
+    }, 400);
+  };
+
+  return (
+    <PaginatedItems
+      data={pageData}
+      isLoading={loading}
+      itemsContainerClass="grid grid-cols-1 gap-3"
+      serverPagination={{
+        totalItems,
+        totalPages,
+        currentPage,
+        onPageChange: handlePageChange,
+      }}
+    >
+      {(user) => (
+        <div className="border rounded-lg p-4 flex items-center gap-3">
+          <User className="h-5 w-5 text-gray-500" />
+          <div>
+            <div className="font-medium">{user.name}</div>
+            <div className="text-sm text-gray-500">{user.email}</div>
+          </div>
+        </div>
+      )}
+    </PaginatedItems>
+  );
+}`}
+  storybookPath="blocks-paginateditems--server-pagination"
+>
+  {(() => {
+    const ALL_USERS = Array.from({ length: 100 }, (_, i) => ({
+      id: (i + 1).toString(),
+      name: `User ${i + 1}`,
+      email: `user${i + 1}@example.com`,
+    }));
+
+    const PAGE_SIZE = 8;
+
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [loading, setLoading] = React.useState(false);
+    const [pageData, setPageData] = React.useState(ALL_USERS.slice(0, PAGE_SIZE));
+
+    const totalItems = ALL_USERS.length;
+    const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+
+    const handlePageChange = (page) => {
+      setLoading(true);
+      setTimeout(() => {
+        const start = (page - 1) * PAGE_SIZE;
+        setPageData(ALL_USERS.slice(start, start + PAGE_SIZE));
+        setCurrentPage(page);
+        setLoading(false);
+      }, 400);
+    };
+
+    return (
+      <PaginatedItems
+        data={pageData}
+        isLoading={loading}
+        itemsContainerClass="grid grid-cols-1 gap-3"
+        serverPagination={{
+          totalItems,
+          totalPages,
+          currentPage,
+          onPageChange: handlePageChange,
+        }}
+      >
+        {(user) => (
+          <div className="border rounded-lg p-4 flex items-center gap-3">
+            <User className="h-5 w-5 text-gray-500" />
+            <div>
+              <div className="font-medium">{user.name}</div>
+              <div className="text-sm text-gray-500">{user.email}</div>
+            </div>
+          </div>
+        )}
+      </PaginatedItems>
+    );
+  })()}
+</ComponentDocSection>
+
+## Localization
+
+Pass the `labels` prop to override any text rendered by the component. The `emptyState` prop (accepts a `ReactNode`) takes priority over `labels.noItemsFound` when both are set.
+
+<ComponentDocSection
+  code={`import { PaginatedItems } from "buildgrid-ui";
+import { User } from "lucide-react";
+
+function LocalizedList() {
+  const users = Array.from({ length: 30 }, (_, i) => ({
+    id: (i + 1).toString(),
+    name: \`Usuário \${i + 1}\`,
+    email: \`usuario\${i + 1}@exemplo.com.br\`,
+  }));
+
+  return (
+    <PaginatedItems
+      data={users}
+      perPage={8}
+      itemsContainerClass="grid grid-cols-1 gap-3"
+      labels={{
+        noItemsFound: "Nenhum item encontrado!",
+        paginationCounter:
+          "Exibindo {{startIndex}} a {{endIndex}} de {{totalItems}} registros",
+      }}
+    >
+      {(user) => (
+        <div className="border rounded-lg p-4 flex items-center gap-3">
+          <User className="h-5 w-5 text-gray-500" />
+          <div>
+            <div className="font-medium">{user.name}</div>
+            <div className="text-sm text-gray-500">{user.email}</div>
+          </div>
+        </div>
+      )}
+    </PaginatedItems>
+  );
+}`}
+  storybookPath="blocks-paginateditems--localization"
+>
+  {(() => {
+    const users = Array.from({ length: 30 }, (_, i) => ({
+      id: (i + 1).toString(),
+      name: `Usuário ${i + 1}`,
+      email: `usuario${i + 1}@exemplo.com.br`,
+    }));
+
+    return (
+      <PaginatedItems
+        data={users}
+        perPage={8}
+        itemsContainerClass="grid grid-cols-1 gap-3"
+        labels={{
+          noItemsFound: "Nenhum item encontrado!",
+          paginationCounter:
+            "Exibindo {{startIndex}} a {{endIndex}} de {{totalItems}} registros",
+        }}
+      >
+        {(user) => (
+          <div className="border rounded-lg p-4 flex items-center gap-3">
+            <User className="h-5 w-5 text-gray-500" />
+            <div>
+              <div className="font-medium">{user.name}</div>
+              <div className="text-sm text-gray-500">{user.email}</div>
+            </div>
+          </div>
+        )}
+      </PaginatedItems>
+    );
+  })()}
+</ComponentDocSection>
+
 ## Properties
 
 ### `PaginatedItems<Entry>`
@@ -466,11 +653,29 @@ function DifferentPageSizes() {
 | `initialPage` | `number` | `1` | Initial page number to display. |
 | `itemsContainerClass` | `string` | `''` | CSS classes for the items container. |
 | `children` | `(item: Entry, index: number) => ReactNode` | - | Function to render each item. |
-| `emptyState` | `ReactNode` | Default empty message | Custom component to show when no items exist. |
+| `emptyState` | `ReactNode` | Default empty message | Custom component to show when no items exist. Takes priority over `labels.noItemsFound`. |
 | `isLoading` | `boolean` | `false` | Whether to show loading state. |
 | `loadingVariant` | `'loader' \| 'skeleton'` | `'loader'` | Type of loading indicator to show. |
 | `showItemsCounter` | `boolean` | `true` | Whether to show the items counter. |
-| `counterText` | `string` | - | Custom text for the items counter. |
+| `counterText` | `string` | - | Custom pagination counter text. Takes priority over `labels.paginationCounter`. |
+| `labels` | `PaginatedItemsLabels` | - | Override any text rendered by the component. All fields are optional. |
+| `serverPagination` | `PaginatedItemsServerPagination` | - | Delegates pagination to the caller. When provided, `data` must contain only the current page's items. |
+
+### `PaginatedItemsLabels`
+
+| Field | Default | Description |
+|---|---|---|
+| `noItemsFound` | `'No item found!'` | Text in the default empty state. Ignored when `emptyState` prop is set. |
+| `paginationCounter` | `'Showing {{startIndex}} to {{endIndex}} of {{totalItems}} results'` | Pagination counter template. Supports `{{startIndex}}`, `{{endIndex}}`, `{{totalItems}}`. Superseded by `counterText` when both are set. |
+
+### `PaginatedItemsServerPagination`
+
+| Property | Type | Description |
+|---|---|---|
+| `totalItems` | `number` | Total number of items on the server. |
+| `totalPages` | `number` | Total number of pages on the server. |
+| `currentPage` | `number` | Current active page (controlled externally). |
+| `onPageChange` | `(page: number) => void` | Called when the user navigates to a different page. |
 
 ### Entry Type Constraint
 
