@@ -1,3 +1,10 @@
+## [1.19.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.3...v1.19.4) (2026-03-02)
+
+
+### Bug Fixes
+
+* **paginated-items:** add server-side pagination and localization support ([01e11d9](https://github.com/adrianomaringolo/buildgrid-ui/commit/01e11d965168b12bce8693f42387db025eb08683))
+
 ## [1.19.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.2...v1.19.3) (2026-03-02)
 
 
