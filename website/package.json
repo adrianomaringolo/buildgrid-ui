@@ -11,6 +11,7 @@
 		"deploy": "npm run update-data && npm run copy-changelog && npm run copy-coverage && docusaurus deploy",
 		"clear": "docusaurus clear",
 		"serve": "docusaurus serve",
+		"chromatic": "chromatic --exit-zero-on-changes",
 		"write-translations": "docusaurus write-translations",
 		"write-heading-ids": "docusaurus write-heading-ids",
 		"generate-mdx": "node ./scripts/generate-mdx.js",
