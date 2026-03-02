@@ -22,7 +22,13 @@ import { exportToCSV } from './utils/export'
 import { Skeleton } from '@/components'
 import { useDebounce } from '@/lib/hooks'
 import { PaginationControls } from '../pagination-controls'
-import type { DataTableProps, DataTableRef, SortState } from './types/data-table'
+import type {
+	DataTableLabels,
+	DataTableProps,
+	DataTableRef,
+	ServerPaginationConfig,
+	SortState,
+} from './types/data-table'
 
 function DataTableInner<T extends Record<string, any>>(
 	{
@@ -35,9 +41,36 @@ function DataTableInner<T extends Record<string, any>>(
 		loading = false,
 		tools,
 		activeFilters: defaultFilters = {},
+		serverPagination,
+		labels,
 	}: DataTableProps<T>,
 	ref: React.Ref<DataTableRef<T>>,
 ) {
+	const isServerPaginated = serverPagination !== undefined
+
+	// Resolve labels: tools.*.label > labels.* > built-in English defaults
+	const resolvedLabels: Required<DataTableLabels> = {
+		searchPlaceholder: tools?.search?.placeholder ?? labels?.searchPlaceholder ?? 'Search...',
+		exportButton: tools?.export?.label ?? labels?.exportButton ?? 'Export CSV',
+		clearAllButton: tools?.clearFilters?.label ?? labels?.clearAllButton ?? 'Clear All',
+		paginationCounter:
+			tools?.pagination?.label ??
+			labels?.paginationCounter ??
+			'Showing {{startIndex}} to {{endIndex}} of {{totalItems}} results',
+		noDataAvailable: labels?.noDataAvailable ?? 'No data available.',
+		noResultsWithFilters:
+			labels?.noResultsWithFilters ?? 'No results found for the current filters.',
+		searchBadgePrefix: labels?.searchBadgePrefix ?? 'Search',
+		sortBadgePrefix: labels?.sortBadgePrefix ?? 'Sort',
+		columnsButton: labels?.columnsButton ?? 'Columns',
+		toggleColumnsMenuLabel: labels?.toggleColumnsMenuLabel ?? 'Toggle columns',
+		resetColumnsButton: labels?.resetColumnsButton ?? 'Reset columns',
+		allFilterOption: labels?.allFilterOption ?? ((filterLabel) => `All ${filterLabel}`),
+		rowSelectedSingular: labels?.rowSelectedSingular ?? 'row selected',
+		rowSelectedPlural: labels?.rowSelectedPlural ?? 'rows selected',
+		clearSelectionButton: labels?.clearSelectionButton ?? 'Clear selection',
+	}
+
 	const [searchTerm, setSearchTerm] = useState('')
 	const [currentPage, setCurrentPage] = useState(1)
 	const [activeFilters, setActiveFilters] =
@@ -112,6 +145,19 @@ function DataTableInner<T extends Record<string, any>>(
 
 	// Memoized pagination calculations
 	const paginationData = useMemo(() => {
+		if (isServerPaginated) {
+			// Server already sent only the current page — render data as-is
+			const sp = serverPagination as ServerPaginationConfig
+			const startIndex = (sp.currentPage - 1) * pageSize
+			return {
+				currentData: processedData,
+				totalItems: sp.totalItems,
+				totalPages: sp.totalPages,
+				startIndex,
+				endIndex: Math.min(startIndex + pageSize, sp.totalItems),
+			}
+		}
+
 		const totalItems = processedData.length
 		const totalPages = Math.ceil(totalItems / pageSize)
 		const startIndex = (currentPage - 1) * pageSize
@@ -125,7 +171,7 @@ function DataTableInner<T extends Record<string, any>>(
 			startIndex,
 			endIndex: Math.min(endIndex, totalItems),
 		}
-	}, [processedData, currentPage, pageSize])
+	}, [processedData, currentPage, pageSize, isServerPaginated, serverPagination])
 
 	// Reset to first page when search or filters change
 	React.useEffect(() => {
@@ -174,11 +220,13 @@ function DataTableInner<T extends Record<string, any>>(
 	// Go to specific page
 	const goToPage = useCallback(
 		(page: number) => {
-			if (page >= 1 && page <= paginationData.totalPages) {
+			if (isServerPaginated) {
+				serverPagination!.onPageChange(page)
+			} else if (page >= 1 && page <= paginationData.totalPages) {
 				setCurrentPage(page)
 			}
 		},
-		[paginationData.totalPages],
+		[isServerPaginated, serverPagination, paginationData.totalPages],
 	)
 
 	// Refresh table
@@ -267,12 +315,22 @@ function DataTableInner<T extends Record<string, any>>(
 
 	// Pagination handlers
 	const handlePreviousPage = useCallback(() => {
-		setCurrentPage((prev) => Math.max(prev - 1, 1))
-	}, [])
+		if (isServerPaginated) {
+			serverPagination!.onPageChange(Math.max(serverPagination!.currentPage - 1, 1))
+		} else {
+			setCurrentPage((prev) => Math.max(prev - 1, 1))
+		}
+	}, [isServerPaginated, serverPagination])
 
 	const handleNextPage = useCallback(() => {
-		setCurrentPage((prev) => Math.min(prev + 1, paginationData.totalPages))
-	}, [paginationData.totalPages])
+		if (isServerPaginated) {
+			serverPagination!.onPageChange(
+				Math.min(serverPagination!.currentPage + 1, serverPagination!.totalPages),
+			)
+		} else {
+			setCurrentPage((prev) => Math.min(prev + 1, paginationData.totalPages))
+		}
+	}, [isServerPaginated, serverPagination, paginationData.totalPages])
 
 	const handlePageChange = useCallback(
 		(page: number) => {
@@ -360,7 +418,7 @@ function DataTableInner<T extends Record<string, any>>(
 			<div className="flex flex-wrap items-center gap-4">
 				{!Boolean(tools?.search?.hide) ? (
 					<SearchInput
-						placeholder={tools?.search?.placeholder}
+						placeholder={resolvedLabels.searchPlaceholder}
 						value={searchTerm}
 						onChange={setSearchTerm}
 					/>
@@ -372,28 +430,32 @@ function DataTableInner<T extends Record<string, any>>(
 						filter={filter}
 						value={activeFilters[String(filter.field)]}
 						onChange={(value) => handleFilterChange(String(filter.field), value)}
+						allOptionLabel={resolvedLabels.allFilterOption}
 					/>
 				))}
 
-				{Boolean(tools?.columnSelector?.hide) ? (
+				{!Boolean(tools?.columnSelector?.hide) ? (
 					<ColumnVisibilityDropdown
 						columns={columns}
 						onToggleVisibility={toggleColumnVisibility}
 						onReset={resetColumnVisibility}
+						triggerLabel={resolvedLabels.columnsButton}
+						menuLabel={resolvedLabels.toggleColumnsMenuLabel}
+						resetLabel={resolvedLabels.resetColumnsButton}
 					/>
 				) : null}
 
-				{Boolean(tools?.export?.hide) ? (
+				{!Boolean(tools?.export?.hide) ? (
 					<Button variant="outline" onClick={handleExport}>
 						<FileDown className="h-4 w-4 mr-2" />
-						{tools?.export?.label ?? 'Export CSV'}
+						{resolvedLabels.exportButton}
 					</Button>
 				) : null}
 
 				{!Boolean(tools?.clearFilters?.hide) && hasActiveFilters && (
 					<Button variant="outline" onClick={clearAllFilters}>
 						<X className="h-4 w-4 mr-2" />
-						{tools?.clearFilters?.label ?? 'Clear All'}
+						{resolvedLabels.clearAllButton}
 					</Button>
 				)}
 			</div>
@@ -408,12 +470,17 @@ function DataTableInner<T extends Record<string, any>>(
 				onClearSearch={() => setSearchTerm('')}
 				onClearFilter={clearFilter}
 				onClearSort={() => setSortState({ field: null, direction: null })}
+				searchPrefix={resolvedLabels.searchBadgePrefix}
+				sortPrefix={resolvedLabels.sortBadgePrefix}
 			/>
 
 			{/* Selected Rows Count */}
 			<SelectionInfo
 				selectedCount={selectedCount}
 				onClearSelection={() => setSelectedRows(new Set())}
+				rowSingular={resolvedLabels.rowSelectedSingular}
+				rowPlural={resolvedLabels.rowSelectedPlural}
+				clearLabel={resolvedLabels.clearSelectionButton}
 			/>
 
 			{/* Table */}
@@ -438,8 +505,8 @@ function DataTableInner<T extends Record<string, any>>(
 									className="h-24 text-center text-muted-foreground"
 								>
 									{hasActiveFilters
-										? 'No results found for the current filters.'
-										: 'No data available.'}
+										? resolvedLabels.noResultsWithFilters
+										: resolvedLabels.noDataAvailable}
 								</TableCell>
 							</tr>
 						) : (
@@ -465,7 +532,7 @@ function DataTableInner<T extends Record<string, any>>(
 
 			{/* Pagination */}
 			<PaginationControls
-				currentPage={currentPage}
+				currentPage={isServerPaginated ? serverPagination!.currentPage : currentPage}
 				totalPages={paginationData.totalPages}
 				totalItems={paginationData.totalItems}
 				startIndex={paginationData.startIndex}
@@ -473,7 +540,7 @@ function DataTableInner<T extends Record<string, any>>(
 				onPageChange={handlePageChange}
 				onPreviousPage={handlePreviousPage}
 				onNextPage={handleNextPage}
-				counterText={tools?.pagination?.label}
+				counterText={resolvedLabels.paginationCounter}
 			/>
 		</div>
 	)
@@ -490,6 +557,8 @@ export const DataTable = React.forwardRef(DataTableInner) as <
 export type {
 	DataTableColumn,
 	DataTableFilter,
+	DataTableLabels,
 	DataTableProps,
 	DataTableRef,
+	ServerPaginationConfig,
 } from './types/data-table'

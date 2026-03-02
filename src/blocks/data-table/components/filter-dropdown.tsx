@@ -14,9 +14,10 @@ interface FilterDropdownProps<T> {
 	filter: DataTableFilter<T>
 	value: string
 	onChange: (value: string) => void
+	allOptionLabel: (filterLabel: string) => string
 }
 
-export function FilterDropdown<T>({ filter, value, onChange }: FilterDropdownProps<T>) {
+export function FilterDropdown<T>({ filter, value, onChange, allOptionLabel }: FilterDropdownProps<T>) {
 	return (
 		<Select value={value || 'all'} onValueChange={onChange}>
 			<SelectTrigger className="w-40">
@@ -26,7 +27,7 @@ export function FilterDropdown<T>({ filter, value, onChange }: FilterDropdownPro
 				</div>
 			</SelectTrigger>
 			<SelectContent>
-				<SelectItem value="all">All {filter.label}</SelectItem>
+				<SelectItem value="all">{allOptionLabel(filter.label)}</SelectItem>
 				{filter.options.map((option) => (
 					<SelectItem key={option.value} value={option.value}>
 						{option.label}

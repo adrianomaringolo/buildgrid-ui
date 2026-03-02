@@ -1,5 +1,45 @@
 import type React from 'react'
 
+export interface DataTableLabels {
+	/** Search input placeholder. Default: `'Search...'` */
+	searchPlaceholder?: string
+	/** Export button text. Default: `'Export CSV'` */
+	exportButton?: string
+	/** Clear-all-filters button text. Default: `'Clear All'` */
+	clearAllButton?: string
+	/**
+	 * Pagination counter template. Supports `{{startIndex}}`, `{{endIndex}}`, `{{totalItems}}`.
+	 * Default: `'Showing {{startIndex}} to {{endIndex}} of {{totalItems}} results'`
+	 */
+	paginationCounter?: string
+	/** Empty-state label when there is no data. Default: `'No data available.'` */
+	noDataAvailable?: string
+	/** Empty-state label when filters produce no results. Default: `'No results found for the current filters.'` */
+	noResultsWithFilters?: string
+	/** Prefix shown in the active-search badge. Default: `'Search'` */
+	searchBadgePrefix?: string
+	/** Prefix shown in the active-sort badge. Default: `'Sort'` */
+	sortBadgePrefix?: string
+	/** Column-visibility dropdown trigger label. Default: `'Columns'` */
+	columnsButton?: string
+	/** Column-visibility dropdown menu label. Default: `'Toggle columns'` */
+	toggleColumnsMenuLabel?: string
+	/** Reset column-visibility button label. Default: `'Reset columns'` */
+	resetColumnsButton?: string
+	/**
+	 * Factory for the "All" option in filter dropdowns.
+	 * Receives the filter label and returns the option text.
+	 * Default: `(label) => \`All \${label}\``
+	 */
+	allFilterOption?: (filterLabel: string) => string
+	/** Selected-rows label (singular). Default: `'row selected'` */
+	rowSelectedSingular?: string
+	/** Selected-rows label (plural). Default: `'rows selected'` */
+	rowSelectedPlural?: string
+	/** Clear-selection button label. Default: `'Clear selection'` */
+	clearSelectionButton?: string
+}
+
 export interface DataTableColumn<T> {
 	key: keyof T
 	/** The title of the column, can be a string or a React node */
@@ -30,6 +70,17 @@ export interface DataTableFilter<T> {
 	label: string
 	defaultValue?: string
 	options: FilterOption[]
+}
+
+export interface ServerPaginationConfig {
+	/** Total number of items on the server */
+	totalItems: number
+	/** Total number of pages on the server */
+	totalPages: number
+	/** Current page controlled externally */
+	currentPage: number
+	/** Callback invoked when the user requests a different page */
+	onPageChange: (page: number) => void
 }
 
 export interface DataTableToolsProps {
@@ -73,6 +124,20 @@ export interface DataTableProps<T> {
 	className?: string
 	loading?: boolean
 	tools?: DataTableToolsProps
+	/**
+	 * Override any text rendered by the table and its sub-components.
+	 * All fields are optional — omitted ones fall back to English defaults.
+	 * Existing `tools.*.label` fields take precedence when both are set (backward-compatible).
+	 */
+	labels?: DataTableLabels
+	/**
+	 * When provided, the component delegates pagination control to the server.
+	 * - `data` must contain only the items for the current page (already paginated).
+	 * - Client-side slicing is skipped; `totalItems`, `totalPages` and `currentPage`
+	 *   from this config are used directly by the pagination UI.
+	 * - `onPageChange` is called whenever the user navigates to a different page.
+	 */
+	serverPagination?: ServerPaginationConfig
 }
 
 export type SortDirection = 'asc' | 'desc' | null

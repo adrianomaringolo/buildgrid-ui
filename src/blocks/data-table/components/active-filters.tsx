@@ -13,6 +13,8 @@ interface ActiveFiltersProps<T> {
 	onClearSearch: () => void
 	onClearFilter: (field: string) => void
 	onClearSort: () => void
+	searchPrefix: string
+	sortPrefix: string
 }
 
 export function ActiveFilters<T>({
@@ -24,6 +26,8 @@ export function ActiveFilters<T>({
 	onClearSearch,
 	onClearFilter,
 	onClearSort,
+	searchPrefix,
+	sortPrefix,
 }: ActiveFiltersProps<T>) {
 	const hasActiveFilters =
 		Object.values(activeFilters).filter((value) => value && value !== 'all').length > 0 ||
@@ -36,7 +40,7 @@ export function ActiveFilters<T>({
 		<div className="flex flex-wrap gap-2">
 			{searchTerm.trim() && (
 				<Badge variant="secondary" className="gap-1">
-					Search: {searchTerm}
+					{searchPrefix}: {searchTerm}
 					<X
 						className="h-3 w-3 cursor-pointer hover:text-destructive"
 						onClick={onClearSearch}
@@ -59,7 +63,7 @@ export function ActiveFilters<T>({
 			})}
 			{sortState.field && (
 				<Badge variant="secondary" className="gap-1">
-					Sort:{' '}
+					{sortPrefix}:{' '}
 					{columns.find((col) => String(col.key) === sortState.field)?.title ||
 						sortState.field}{' '}
 					{sortState.direction === 'asc' ? '↑' : '↓'}

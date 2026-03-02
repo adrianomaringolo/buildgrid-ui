@@ -2,7 +2,11 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState, useRef } from 'react'
-import { DataTable, type DataTableColumn, type DataTableFilter } from './data-table'
+import {
+	DataTable,
+	type DataTableColumn,
+	type DataTableFilter,
+} from './data-table'
 import { Badge } from '../../components/badge'
 import { Button } from '../../components/button'
 import { Mail, Phone, Edit, RefreshCw, Trash2 } from 'lucide-react'
@@ -281,5 +285,218 @@ const Template = () => {
 
 export const Default: Story = {
 	render: Template.bind({}),
+	args: {},
+}
+
+// ---------------------------------------------------------------------------
+// Server-side Pagination story
+// ---------------------------------------------------------------------------
+
+const SERVER_PAGE_SIZE = 10
+
+/** Simulates a server response: returns the slice for the requested page. */
+function fakeServerFetch(page: number) {
+	const start = (page - 1) * SERVER_PAGE_SIZE
+	return mockUsers.slice(start, start + SERVER_PAGE_SIZE)
+}
+
+const ServerPaginationTemplate = () => {
+	const [currentPage, setCurrentPage] = useState(1)
+	const [pageData, setPageData] = useState<User[]>(() => fakeServerFetch(1))
+	const [loading, setLoading] = useState(false)
+
+	const totalItems = mockUsers.length
+	const totalPages = Math.ceil(totalItems / SERVER_PAGE_SIZE)
+
+	const handlePageChange = (page: number) => {
+		setLoading(true)
+		// Simulate network latency
+		setTimeout(() => {
+			setPageData(fakeServerFetch(page))
+			setCurrentPage(page)
+			setLoading(false)
+		}, 600)
+	}
+
+	const columns: DataTableColumn<User>[] = [
+		{ key: 'id', title: 'ID', sortable: true },
+		{
+			key: 'name',
+			title: 'Name',
+			sortable: true,
+			customRenderer: (value) => <div className="font-medium">{value}</div>,
+		},
+		{
+			key: 'email',
+			title: 'Email',
+			sortable: true,
+			customRenderer: (value) => (
+				<div className="flex items-center gap-2">
+					<Mail className="h-4 w-4 text-muted-foreground" />
+					<span className="text-sm">{value}</span>
+				</div>
+			),
+		},
+		{
+			key: 'status',
+			title: 'Status',
+			customRenderer: (value) => (
+				<Badge
+					variant={
+						value === 'active'
+							? 'default'
+							: value === 'inactive'
+								? 'destructive'
+								: 'secondary'
+					}
+				>
+					{value}
+				</Badge>
+			),
+		},
+		{ key: 'role', title: 'Role', sortable: true },
+		{ key: 'department', title: 'Department', sortable: true },
+	]
+
+	return (
+		<div className="container mx-auto py-8">
+			<div className="mb-6">
+				<h1 className="text-3xl font-bold">Server-side Pagination</h1>
+				<p className="text-muted-foreground">
+					The table receives one page of data at a time. Navigation triggers a
+					simulated server request (600 ms delay).
+				</p>
+			</div>
+
+			<DataTable<User>
+				data={pageData}
+				columns={columns}
+				searchFields={['name', 'email', 'role', 'department']}
+				loading={loading}
+				serverPagination={{
+					totalItems,
+					totalPages,
+					currentPage,
+					onPageChange: handlePageChange,
+				}}
+			/>
+		</div>
+	)
+}
+
+export const ServerPagination: Story = {
+	render: ServerPaginationTemplate.bind({}),
+	args: {},
+}
+
+// ---------------------------------------------------------------------------
+// Localization story — all labels in pt-BR
+// ---------------------------------------------------------------------------
+
+const LocalizationTemplate = () => {
+	const [data, setData] = useState(mockUsers.slice(0, 30))
+
+	const columns: DataTableColumn<User>[] = [
+		{ key: 'id', title: 'ID', sortable: true },
+		{
+			key: 'name',
+			title: 'Nome',
+			sortable: true,
+			customRenderer: (value) => <div className="font-medium">{value}</div>,
+		},
+		{
+			key: 'email',
+			title: 'E-mail',
+			sortable: true,
+			customRenderer: (value) => (
+				<div className="flex items-center gap-2">
+					<Mail className="h-4 w-4 text-muted-foreground" />
+					<span className="text-sm">{value}</span>
+				</div>
+			),
+		},
+		{
+			key: 'status',
+			title: 'Status',
+			customRenderer: (value) => (
+				<Badge
+					variant={
+						value === 'active'
+							? 'default'
+							: value === 'inactive'
+								? 'destructive'
+								: 'secondary'
+					}
+				>
+					{value}
+				</Badge>
+			),
+		},
+		{ key: 'role', title: 'Função', sortable: true },
+		{ key: 'department', title: 'Departamento', sortable: true },
+	]
+
+	const filters: DataTableFilter<User>[] = [
+		{
+			field: 'status',
+			label: 'Status',
+			options: [
+				{ label: 'Ativo', value: 'active' },
+				{ label: 'Inativo', value: 'inactive' },
+				{ label: 'Pendente', value: 'pending' },
+			],
+		},
+		{
+			field: 'role',
+			label: 'Função',
+			options: [
+				{ label: 'Admin', value: 'Admin' },
+				{ label: 'Usuário', value: 'User' },
+				{ label: 'Gerente', value: 'Manager' },
+				{ label: 'Editor', value: 'Editor' },
+			],
+		},
+	]
+
+	return (
+		<div className="container mx-auto py-8">
+			<div className="mb-6">
+				<h1 className="text-3xl font-bold">Localização (pt-BR)</h1>
+				<p className="text-muted-foreground">
+					Todos os textos da tabela traduzidos via a prop <code>labels</code>.
+				</p>
+			</div>
+
+			<DataTable<User>
+				data={data}
+				columns={columns}
+				searchFields={['name', 'email', 'role', 'department']}
+				filters={filters}
+				pageSize={10}
+				labels={{
+					searchPlaceholder: 'Buscar...',
+					exportButton: 'Exportar CSV',
+					clearAllButton: 'Limpar tudo',
+					paginationCounter:
+						'Exibindo {{startIndex}} a {{endIndex}} de {{totalItems}} registros',
+					noDataAvailable: 'Nenhum dado disponível.',
+					noResultsWithFilters: 'Nenhum resultado para os filtros ativos.',
+					searchBadgePrefix: 'Busca',
+					sortBadgePrefix: 'Ordem',
+					columnsButton: 'Colunas',
+					toggleColumnsMenuLabel: 'Exibir colunas',
+					resetColumnsButton: 'Restaurar colunas',
+					allFilterOption: (label) => `Todos: ${label}`,
+					rowSelectedSingular: 'linha selecionada',
+					rowSelectedPlural: 'linhas selecionadas',
+					clearSelectionButton: 'Limpar seleção',
+				}}
+			/>
+		</div>
+	)
+}
+
+export const Localization: Story = {
+	render: LocalizationTemplate.bind({}),
 	args: {},
 }
