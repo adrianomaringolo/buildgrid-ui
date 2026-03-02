@@ -1,3 +1,31 @@
+## [1.19.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.2...v1.19.3) (2026-03-02)
+
+
+### Bug Fixes
+
+* **data-table:** add i18n labels prop and server-side pagination ([3a307b7](https://github.com/adrianomaringolo/buildgrid-ui/commit/3a307b7e1f6571b8bca136ef9d0a48b5ad977f54))
+
+## [1.19.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.1...v1.19.2) (2026-03-01)
+
+
+### Bug Fixes
+
+* **style:** add explicit paddingLeft to SearchInput for consistency ([2ebab7c](https://github.com/adrianomaringolo/buildgrid-ui/commit/2ebab7c1608f3e1f10301aedefd68a18787e72aa))
+
+## [1.19.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.0...v1.19.1) (2026-02-09)
+
+
+### Bug Fixes
+
+* **deps:** Update React peer dependencies to support v18 and v19 ([532bcaf](https://github.com/adrianomaringolo/buildgrid-ui/commit/532bcaf46fca7a4921c43a14d2269803c37cb05a))
+
+# [1.19.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.18.0...v1.19.0) (2026-01-22)
+
+
+### Features
+
+* **automation:** Add release date tracking to version and stats updates ([fcabeec](https://github.com/adrianomaringolo/buildgrid-ui/commit/fcabeec912c20de65f92620c20390667741086bd))
+
 # [1.18.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.17.3...v1.18.0) (2026-01-22)
 
 

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
@@ -87,7 +87,16 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -96,6 +105,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,7 +124,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -118,19 +136,28 @@
 interface SelectionInfoProps {
 	selectedCount: number
 	onClearSelection: () =&gt; void
+	rowSingular: string
+	rowPlural: string
+	clearLabel: string
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function SelectionInfo({ selectedCount, onClearSelection }: SelectionInfoProps) {</span>
+<span class="cstat-no" title="statement not covered" >export function SelectionInfo({</span>
+<span class="cstat-no" title="statement not covered" >	selectedCount,</span>
+<span class="cstat-no" title="statement not covered" >	onClearSelection,</span>
+<span class="cstat-no" title="statement not covered" >	rowSingular,</span>
+<span class="cstat-no" title="statement not covered" >	rowPlural,</span>
+<span class="cstat-no" title="statement not covered" >	clearLabel,</span>
+<span class="cstat-no" title="statement not covered" >}: SelectionInfoProps) {</span>
 <span class="cstat-no" title="statement not covered" >	if (selectedCount === 0) return null</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >	return (</span>
 <span class="cstat-no" title="statement not covered" >		&lt;div className="bg-muted/50 p-2 rounded-md flex items-center justify-between"&gt;</span>
 <span class="cstat-no" title="statement not covered" >			&lt;div className="text-sm"&gt;</span>
 <span class="cstat-no" title="statement not covered" >				&lt;span className="font-medium"&gt;{selectedCount}&lt;/span&gt;{' '}</span>
-<span class="cstat-no" title="statement not covered" >				{selectedCount === 1 ? 'row' : 'rows'} selected</span>
+<span class="cstat-no" title="statement not covered" >				{selectedCount === 1 ? rowSingular : rowPlural}</span>
 <span class="cstat-no" title="statement not covered" >			&lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >			&lt;Button variant="ghost" size="sm" onClick={onClearSelection}&gt;</span>
-				Clear selection
+<span class="cstat-no" title="statement not covered" >				{clearLabel}</span>
 <span class="cstat-no" title="statement not covered" >			&lt;/Button&gt;</span>
 <span class="cstat-no" title="statement not covered" >		&lt;/div&gt;</span>
 	)
@@ -142,7 +169,7 @@ interface SelectionInfoProps {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-01-22T17:26:36.046Z
+                at 2026-03-02T03:31:49.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

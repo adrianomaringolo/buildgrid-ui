@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/37</span>
+                <span class='fraction'>0/41</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/37</span>
+                <span class='fraction'>0/41</span>
             </div>
         
             
@@ -121,7 +121,13 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -141,6 +147,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -161,19 +184,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -197,23 +209,29 @@ interface ColumnVisibilityDropdownProps&lt;T&gt; {
 	columns: DataTableColumn&lt;T&gt;[]
 	onToggleVisibility: (key: string, visible: boolean) =&gt; void
 	onReset: () =&gt; void
+	triggerLabel: string
+	menuLabel: string
+	resetLabel: string
 }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export function ColumnVisibilityDropdown&lt;T&gt;({</span>
 <span class="cstat-no" title="statement not covered" >	columns,</span>
 <span class="cstat-no" title="statement not covered" >	onToggleVisibility,</span>
 <span class="cstat-no" title="statement not covered" >	onReset,</span>
+<span class="cstat-no" title="statement not covered" >	triggerLabel,</span>
+<span class="cstat-no" title="statement not covered" >	menuLabel,</span>
+<span class="cstat-no" title="statement not covered" >	resetLabel,</span>
 <span class="cstat-no" title="statement not covered" >}: ColumnVisibilityDropdownProps&lt;T&gt;) {</span>
 <span class="cstat-no" title="statement not covered" >	return (</span>
 <span class="cstat-no" title="statement not covered" >		&lt;DropdownMenu&gt;</span>
 <span class="cstat-no" title="statement not covered" >			&lt;DropdownMenuTrigger asChild&gt;</span>
 <span class="cstat-no" title="statement not covered" >				&lt;Button variant="outline" className="ml-auto"&gt;</span>
 <span class="cstat-no" title="statement not covered" >					&lt;SlidersHorizontal className="h-4 w-4 mr-2" /&gt;</span>
-					Columns
+<span class="cstat-no" title="statement not covered" >					{triggerLabel}</span>
 <span class="cstat-no" title="statement not covered" >				&lt;/Button&gt;</span>
 <span class="cstat-no" title="statement not covered" >			&lt;/DropdownMenuTrigger&gt;</span>
 <span class="cstat-no" title="statement not covered" >			&lt;DropdownMenuContent align="end" className="w-48"&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;DropdownMenuLabel&gt;Toggle columns&lt;/DropdownMenuLabel&gt;</span>
+<span class="cstat-no" title="statement not covered" >				&lt;DropdownMenuLabel&gt;{menuLabel}&lt;/DropdownMenuLabel&gt;</span>
 <span class="cstat-no" title="statement not covered" >				&lt;DropdownMenuSeparator /&gt;</span>
 <span class="cstat-no" title="statement not covered" >				{columns.map((column) =&gt; (</span>
 <span class="cstat-no" title="statement not covered" >					&lt;DropdownMenuCheckboxItem</span>
@@ -230,8 +248,8 @@ interface ColumnVisibilityDropdownProps&lt;T&gt; {
 <span class="cstat-no" title="statement not covered" >					size="sm"</span>
 <span class="cstat-no" title="statement not covered" >					className="w-full justify-start"</span>
 <span class="cstat-no" title="statement not covered" >					onClick={onReset}</span>
-<span class="cstat-no" title="statement not covered" >				&gt;</span>
-					Reset columns
+				&gt;
+<span class="cstat-no" title="statement not covered" >					{resetLabel}</span>
 <span class="cstat-no" title="statement not covered" >				&lt;/Button&gt;</span>
 <span class="cstat-no" title="statement not covered" >			&lt;/DropdownMenuContent&gt;</span>
 <span class="cstat-no" title="statement not covered" >		&lt;/DropdownMenu&gt;</span>
@@ -244,7 +262,7 @@ interface ColumnVisibilityDropdownProps&lt;T&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-01-22T17:26:36.046Z
+                at 2026-03-02T03:31:49.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
