@@ -864,6 +864,239 @@ function AnalyticsDashboard() {
   })()}
 </ComponentDocSection>
 
+## Server-side Pagination
+
+When data is fetched page-by-page from an API, pass the `serverPagination` prop instead of relying on the built-in client-side slicing. The `data` prop must contain **only the current page's rows**; the table renders them as-is and delegates page navigation to your callback.
+
+<ComponentDocSection
+  code={`import { DataTable } from "buildgrid-ui";
+import React from "react";
+
+const ALL_USERS = Array.from({ length: 50 }, (_, i) => ({
+  id: i + 1,
+  name: \`User \${i + 1}\`,
+  email: \`user\${i + 1}@example.com\`,
+  role: ["Admin", "User", "Editor"][i % 3],
+}));
+
+const PAGE_SIZE = 5;
+
+function ServerPaginatedTable() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [loading, setLoading] = React.useState(false);
+  const [pageData, setPageData] = React.useState(ALL_USERS.slice(0, PAGE_SIZE));
+
+  const totalItems = ALL_USERS.length;
+  const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+
+  const handlePageChange = (page) => {
+    setLoading(true);
+    setTimeout(() => {
+      const start = (page - 1) * PAGE_SIZE;
+      setPageData(ALL_USERS.slice(start, start + PAGE_SIZE));
+      setCurrentPage(page);
+      setLoading(false);
+    }, 400);
+  };
+
+  const columns = [
+    { key: "id", title: "ID", sortable: true },
+    { key: "name", title: "Name", sortable: true },
+    { key: "email", title: "Email" },
+    { key: "role", title: "Role", sortable: true },
+  ];
+
+  return (
+    <DataTable
+      data={pageData}
+      columns={columns}
+      searchFields={["name", "email", "role"]}
+      loading={loading}
+      serverPagination={{
+        totalItems,
+        totalPages,
+        currentPage,
+        onPageChange: handlePageChange,
+      }}
+    />
+  );
+}`}
+  storybookPath="blocks-datatable--server-pagination"
+>
+  {(() => {
+    const ALL_USERS = Array.from({ length: 50 }, (_, i) => ({
+      id: i + 1,
+      name: `User ${i + 1}`,
+      email: `user${i + 1}@example.com`,
+      role: ["Admin", "User", "Editor"][i % 3],
+    }));
+
+    const PAGE_SIZE = 5;
+
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [loading, setLoading] = React.useState(false);
+    const [pageData, setPageData] = React.useState(ALL_USERS.slice(0, PAGE_SIZE));
+
+    const totalItems = ALL_USERS.length;
+    const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+
+    const handlePageChange = (page) => {
+      setLoading(true);
+      setTimeout(() => {
+        const start = (page - 1) * PAGE_SIZE;
+        setPageData(ALL_USERS.slice(start, start + PAGE_SIZE));
+        setCurrentPage(page);
+        setLoading(false);
+      }, 400);
+    };
+
+    const columns = [
+      { key: "id", title: "ID", sortable: true },
+      { key: "name", title: "Name", sortable: true },
+      { key: "email", title: "Email" },
+      { key: "role", title: "Role", sortable: true },
+    ];
+
+    return (
+      <DataTable
+        data={pageData}
+        columns={columns}
+        searchFields={["name", "email", "role"]}
+        loading={loading}
+        serverPagination={{
+          totalItems,
+          totalPages,
+          currentPage,
+          onPageChange: handlePageChange,
+        }}
+      />
+    );
+  })()}
+</ComponentDocSection>
+
+## Localization
+
+All text rendered by the table can be overridden through the `labels` prop. Every field is optional — omitted ones fall back to the English default. This is the recommended approach for i18n.
+
+> **Priority:** `tools.*.label` > `labels.*` > built-in default. Existing `tools` label fields keep working as before.
+
+<ComponentDocSection
+  code={`import { DataTable } from "buildgrid-ui";
+
+function LocalizedTable() {
+  const data = [
+    { id: 1, name: "João Silva", email: "joao@exemplo.com.br", status: "active", role: "Admin" },
+    { id: 2, name: "Maria Souza", email: "maria@exemplo.com.br", status: "inactive", role: "User" },
+    { id: 3, name: "Carlos Lima", email: "carlos@exemplo.com.br", status: "pending", role: "Editor" },
+  ];
+
+  const columns = [
+    { key: "id", title: "ID", sortable: true },
+    { key: "name", title: "Nome", sortable: true },
+    { key: "email", title: "E-mail", sortable: true },
+    { key: "status", title: "Status", sortable: true },
+    { key: "role", title: "Função", sortable: true },
+  ];
+
+  const filters = [
+    {
+      field: "status",
+      label: "Status",
+      options: [
+        { label: "Ativo", value: "active" },
+        { label: "Inativo", value: "inactive" },
+        { label: "Pendente", value: "pending" },
+      ],
+    },
+  ];
+
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      searchFields={["name", "email", "role"]}
+      filters={filters}
+      pageSize={5}
+      labels={{
+        searchPlaceholder: "Buscar...",
+        exportButton: "Exportar CSV",
+        clearAllButton: "Limpar tudo",
+        paginationCounter: "Exibindo {{startIndex}} a {{endIndex}} de {{totalItems}} registros",
+        noDataAvailable: "Nenhum dado disponível.",
+        noResultsWithFilters: "Nenhum resultado para os filtros ativos.",
+        searchBadgePrefix: "Busca",
+        sortBadgePrefix: "Ordem",
+        columnsButton: "Colunas",
+        toggleColumnsMenuLabel: "Exibir colunas",
+        resetColumnsButton: "Restaurar colunas",
+        allFilterOption: (label) => \`Todos: \${label}\`,
+        rowSelectedSingular: "linha selecionada",
+        rowSelectedPlural: "linhas selecionadas",
+        clearSelectionButton: "Limpar seleção",
+      }}
+    />
+  );
+}`}
+  storybookPath="blocks-datatable--localization"
+>
+  {(() => {
+    const data = [
+      { id: 1, name: "João Silva", email: "joao@exemplo.com.br", status: "active", role: "Admin" },
+      { id: 2, name: "Maria Souza", email: "maria@exemplo.com.br", status: "inactive", role: "User" },
+      { id: 3, name: "Carlos Lima", email: "carlos@exemplo.com.br", status: "pending", role: "Editor" },
+      { id: 4, name: "Ana Costa", email: "ana@exemplo.com.br", status: "active", role: "Editor" },
+      { id: 5, name: "Paulo Mendes", email: "paulo@exemplo.com.br", status: "pending", role: "Admin" },
+    ];
+
+    const columns = [
+      { key: "id", title: "ID", sortable: true },
+      { key: "name", title: "Nome", sortable: true },
+      { key: "email", title: "E-mail", sortable: true },
+      { key: "status", title: "Status", sortable: true },
+      { key: "role", title: "Função", sortable: true },
+    ];
+
+    const filters = [
+      {
+        field: "status",
+        label: "Status",
+        options: [
+          { label: "Ativo", value: "active" },
+          { label: "Inativo", value: "inactive" },
+          { label: "Pendente", value: "pending" },
+        ],
+      },
+    ];
+
+    return (
+      <DataTable
+        data={data}
+        columns={columns}
+        searchFields={["name", "email", "role"]}
+        filters={filters}
+        pageSize={5}
+        labels={{
+          searchPlaceholder: "Buscar...",
+          exportButton: "Exportar CSV",
+          clearAllButton: "Limpar tudo",
+          paginationCounter: "Exibindo {{startIndex}} a {{endIndex}} de {{totalItems}} registros",
+          noDataAvailable: "Nenhum dado disponível.",
+          noResultsWithFilters: "Nenhum resultado para os filtros ativos.",
+          searchBadgePrefix: "Busca",
+          sortBadgePrefix: "Ordem",
+          columnsButton: "Colunas",
+          toggleColumnsMenuLabel: "Exibir colunas",
+          resetColumnsButton: "Restaurar colunas",
+          allFilterOption: (label) => `Todos: ${label}`,
+          rowSelectedSingular: "linha selecionada",
+          rowSelectedPlural: "linhas selecionadas",
+          clearSelectionButton: "Limpar seleção",
+        }}
+      />
+    );
+  })()}
+</ComponentDocSection>
+
 ## Properties
 
 ### `DataTable`
@@ -879,6 +1112,8 @@ function AnalyticsDashboard() {
 | `className` | `string` | Additional CSS classes for the table container. |
 | `activeFilters` | `Record<string, string>` | Default active filters. |
 | `tools` | `DataTableTools` | Configuration for table tools and features. |
+| `labels` | `DataTableLabels` | Override any text rendered by the table. All fields optional; omitted ones fall back to English defaults. |
+| `serverPagination` | `ServerPaginationConfig` | Delegates pagination to the caller. When provided, `data` must contain only the current page's items. |
 
 ### `DataTableColumn`
 
@@ -913,11 +1148,42 @@ function AnalyticsDashboard() {
 | Property | Type | Description |
 |---|---|---|
 | `search` | `{ hide?: boolean; placeholder?: string }` | Search tool configuration. |
-| `export` | `{ hide?: boolean; label?: string }` | Export tool configuration. |
-| `columnSelector` | `{ hide?: boolean }` | Column visibility tool configuration. |
-| `clearFilters` | `{ hide?: boolean; label?: string }` | Clear filters tool configuration. |
-| `rowSelector` | `{ hide?: boolean }` | Row selection tool configuration. |
-| `pagination` | `{ label?: string }` | Pagination tool configuration. |
+| `export` | `{ hide?: boolean; label?: string }` | Export button configuration. Visible by default. |
+| `columnSelector` | `{ hide?: boolean }` | Column visibility dropdown configuration. Visible by default. |
+| `clearFilters` | `{ hide?: boolean; label?: string }` | Clear filters button configuration. |
+| `rowSelector` | `{ hide?: boolean }` | Row selection checkboxes configuration. |
+| `pagination` | `{ label?: string }` | Pagination counter template. |
+
+### `DataTableLabels`
+
+Override any text displayed by the table. All fields are optional.
+
+| Field | Default | Description |
+|---|---|---|
+| `searchPlaceholder` | `'Search...'` | Search input placeholder. |
+| `exportButton` | `'Export CSV'` | Export button label. |
+| `clearAllButton` | `'Clear All'` | Clear-all-filters button label. |
+| `paginationCounter` | `'Showing {{startIndex}} to {{endIndex}} of {{totalItems}} results'` | Pagination counter template. Supports `{{startIndex}}`, `{{endIndex}}`, `{{totalItems}}`. |
+| `noDataAvailable` | `'No data available.'` | Empty-state label when there is no data. |
+| `noResultsWithFilters` | `'No results found for the current filters.'` | Empty-state label when filters produce no results. |
+| `searchBadgePrefix` | `'Search'` | Prefix in the active-search badge. |
+| `sortBadgePrefix` | `'Sort'` | Prefix in the active-sort badge. |
+| `columnsButton` | `'Columns'` | Column-visibility dropdown trigger label. |
+| `toggleColumnsMenuLabel` | `'Toggle columns'` | Column-visibility dropdown menu label. |
+| `resetColumnsButton` | `'Reset columns'` | Reset column-visibility button label. |
+| `allFilterOption` | `(filterLabel: string) => string` | Factory for the "All" option in filter dropdowns. Default: returns `"All {filterLabel}"`. |
+| `rowSelectedSingular` | `'row selected'` | Selection info label (singular). |
+| `rowSelectedPlural` | `'rows selected'` | Selection info label (plural). |
+| `clearSelectionButton` | `'Clear selection'` | Clear-selection button label. |
+
+### `ServerPaginationConfig`
+
+| Property | Type | Description |
+|---|---|---|
+| `totalItems` | `number` | Total number of items on the server. |
+| `totalPages` | `number` | Total number of pages on the server. |
+| `currentPage` | `number` | Current active page (controlled externally). |
+| `onPageChange` | `(page: number) => void` | Called when the user navigates to a different page. |
 
 ## Ref Methods
 
@@ -932,7 +1198,7 @@ The DataTable component exposes several methods through a ref:
 | `getFilteredData` | `() => T[]` | Get current filtered dataset. |
 | `resetFilters` | `() => void` | Reset all filters and search. |
 | `exportData` | `(filename?: string) => void` | Export current data to CSV. |
-| `goToPage` | `(page: number) => void` | Navigate to specific page. |
+| `goToPage` | `(page: number) => void` | Navigate to specific page. In server pagination mode, calls `serverPagination.onPageChange`. |
 | `refresh` | `() => void` | Refresh the table data. |
 
 ## Accessibility
