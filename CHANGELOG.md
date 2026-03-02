@@ -1,3 +1,10 @@
+## [1.19.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.2...v1.19.3) (2026-03-02)
+
+
+### Bug Fixes
+
+* **data-table:** add i18n labels prop and server-side pagination ([3a307b7](https://github.com/adrianomaringolo/buildgrid-ui/commit/3a307b7e1f6571b8bca136ef9d0a48b5ad977f54))
+
 ## [1.19.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.1...v1.19.2) (2026-03-01)
 
 
