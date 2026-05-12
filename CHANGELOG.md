@@ -1,3 +1,10 @@
+## [1.19.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.5...v1.19.6) (2026-05-12)
+
+
+### Bug Fixes
+
+* **update:** bump dependencies to latest versions ([4f6bf71](https://github.com/adrianomaringolo/buildgrid-ui/commit/4f6bf717ecc0430f08d66b46f707827b2ded34e8))
+
 ## [1.19.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.4...v1.19.5) (2026-05-12)
 
 
