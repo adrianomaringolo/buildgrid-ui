@@ -66,6 +66,10 @@
 	"author": "",
 	"license": "ISC",
 	"description": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/adrianomaringolo/buildgrid-ui"
+	},
 	"dependencies": {
 		"@radix-ui/react-accordion": "^1.2.11",
 		"@radix-ui/react-alert-dialog": "^1.1.7",
