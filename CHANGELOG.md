@@ -1,3 +1,10 @@
+## [1.19.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.6...v1.19.7) (2026-05-12)
+
+
+### Bug Fixes
+
+* cast toast object to SoonerToast type ([c910396](https://github.com/adrianomaringolo/buildgrid-ui/commit/c910396fcd8f88af64ae3326a88fa3951ed20251))
+
 ## [1.19.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.5...v1.19.6) (2026-05-12)
 
 
