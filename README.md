@@ -2,7 +2,7 @@
   <h1>BuildGrid UI</h1>
   <p><strong>A modern React component library built for real-world projects</strong></p>
   
-  <img src="https://adrianomaringolo.github.io/buildgrid-ui/assets/images/buildgrid-ui-launch-0df921f6559272569468298e74d3d7b8.png" alt="BuildGrid UI - Modern React Component Library" width="100%" style="max-width: 800px; border-radius: 12px; margin: 20px 0;" />
+  <img src="website/static/img/buildgrid-ui-logo.png" alt="BuildGrid UI - Modern React Component Library" style="width: 200px; border-radius: 12px; margin: 20px 0;"/>
   
   <p>
     <a href="https://www.npmjs.com/package/buildgrid-ui"><img src="https://img.shields.io/npm/v/buildgrid-ui.svg" alt="npm version"></a>
