@@ -1,3 +1,16 @@
+## [1.19.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.4...v1.19.5) (2026-05-12)
+
+
+### Bug Fixes
+
+* **alert:** add tip variant and multi-message navigation ([91d3d80](https://github.com/adrianomaringolo/buildgrid-ui/commit/91d3d80ccd3b2bf72f4383db16daf89ccf554675))
+* **ci:** update package-lock.json ([1a9a0fd](https://github.com/adrianomaringolo/buildgrid-ui/commit/1a9a0fd6246ddb7d90e2b21aa0eb0edb6ea3465f))
+* **ci:** updating packages ([4c1e883](https://github.com/adrianomaringolo/buildgrid-ui/commit/4c1e883a568ea7e15fdf452662563077c2baebbe))
+* **ci:** upgrade Node.js version to 22 in release workflow ([d72be94](https://github.com/adrianomaringolo/buildgrid-ui/commit/d72be94951c26cd2f63c73cc318d280f20c3e922))
+* **ci:** upgrade semantic-release and commitlint dependencies ([3bf2175](https://github.com/adrianomaringolo/buildgrid-ui/commit/3bf217594847bfdd3727ac2d8b8d46417870261a))
+* improve gh actions release ([a09ff80](https://github.com/adrianomaringolo/buildgrid-ui/commit/a09ff805c4d9193ad322d27aad557fbe3374cbec))
+* remove registry-url from Node.js setup in release workflow ([644a60c](https://github.com/adrianomaringolo/buildgrid-ui/commit/644a60caf0f0b3bb9816f271935c9c2d61837821))
+
 ## [1.19.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.3...v1.19.4) (2026-03-02)
 
 
