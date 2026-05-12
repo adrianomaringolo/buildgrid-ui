@@ -71,6 +71,16 @@ describe('Alert', () => {
 			const icon = alert.querySelector('svg')
 			expect(icon).toHaveClass('text-green-600')
 		})
+
+		it('renders tip variant correctly', () => {
+			render(<Alert variant="tip">Tip message</Alert>)
+
+			const alert = screen.getByRole('alert')
+			expect(alert).toHaveClass('bg-purple-50', 'border-purple-200', 'text-purple-800')
+
+			const icon = alert.querySelector('svg')
+			expect(icon).toHaveClass('text-purple-600')
+		})
 	})
 
 	describe('Close Button', () => {
@@ -418,6 +428,74 @@ describe('Alert', () => {
 			const title = screen.getByText('Important Notice')
 			expect(title.tagName).toBe('H3')
 			expect(title).toHaveClass('text-sm', 'font-medium', 'mb-1')
+		})
+	})
+
+	describe('Messages Navigation', () => {
+		it('renders single message without navigation controls', () => {
+			render(<Alert messages={['Only one message']} />)
+
+			expect(screen.getByText('Only one message')).toBeInTheDocument()
+			expect(screen.queryByLabelText('Previous message')).not.toBeInTheDocument()
+			expect(screen.queryByLabelText('Next message')).not.toBeInTheDocument()
+		})
+
+		it('renders first message and navigation when multiple messages provided', () => {
+			render(<Alert messages={['First message', 'Second message', 'Third message']} />)
+
+			expect(screen.getByText('First message')).toBeInTheDocument()
+			expect(screen.getByLabelText('Previous message')).toBeInTheDocument()
+			expect(screen.getByLabelText('Next message')).toBeInTheDocument()
+			expect(screen.getByText('1/3')).toBeInTheDocument()
+		})
+
+		it('navigates to next message when next button is clicked', async () => {
+			const user = userEvent.setup()
+			render(<Alert messages={['First message', 'Second message', 'Third message']} />)
+
+			await user.click(screen.getByLabelText('Next message'))
+
+			expect(screen.getByText('Second message')).toBeInTheDocument()
+			expect(screen.getByText('2/3')).toBeInTheDocument()
+		})
+
+		it('navigates to previous message when prev button is clicked', async () => {
+			const user = userEvent.setup()
+			render(<Alert messages={['First message', 'Second message', 'Third message']} />)
+
+			await user.click(screen.getByLabelText('Next message'))
+			await user.click(screen.getByLabelText('Previous message'))
+
+			expect(screen.getByText('First message')).toBeInTheDocument()
+			expect(screen.getByText('1/3')).toBeInTheDocument()
+		})
+
+		it('wraps to last message when navigating prev from first', async () => {
+			const user = userEvent.setup()
+			render(<Alert messages={['First message', 'Second message', 'Third message']} />)
+
+			await user.click(screen.getByLabelText('Previous message'))
+
+			expect(screen.getByText('Third message')).toBeInTheDocument()
+			expect(screen.getByText('3/3')).toBeInTheDocument()
+		})
+
+		it('wraps to first message when navigating next from last', async () => {
+			const user = userEvent.setup()
+			render(<Alert messages={['First message', 'Second message']} />)
+
+			await user.click(screen.getByLabelText('Next message'))
+			await user.click(screen.getByLabelText('Next message'))
+
+			expect(screen.getByText('First message')).toBeInTheDocument()
+			expect(screen.getByText('1/2')).toBeInTheDocument()
+		})
+
+		it('messages prop takes priority over children', () => {
+			render(<Alert messages={['Message from prop']}>Children content</Alert>)
+
+			expect(screen.getByText('Message from prop')).toBeInTheDocument()
+			expect(screen.queryByText('Children content')).not.toBeInTheDocument()
 		})
 	})
 

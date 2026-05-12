@@ -155,6 +155,43 @@ function AlertDemo() {
 								This is a success alert. It confirms that an action was completed
 								successfully.
 							</Alert>
+
+							<Alert variant="tip">
+								This is a tip alert. Use it to provide helpful hints or suggestions.
+							</Alert>
+						</div>
+					</section>
+
+					<section>
+						<h2 className="text-xl font-semibold mb-4">Multiple Messages (Navigation)</h2>
+						<div className="space-y-4">
+							<Alert
+								variant="tip"
+								title="Daily Tips"
+								messages={[
+									'You can use keyboard shortcuts to navigate faster. Press Ctrl+K to open the command palette.',
+									'Dark mode is available in your profile settings under Appearance.',
+									'Export your data anytime from the Settings → Data Export section.',
+								]}
+							/>
+
+							<Alert
+								variant="info"
+								title="System Notices"
+								messages={[
+									'Scheduled maintenance on Sunday from 2–4 AM EST.',
+									'New analytics dashboard is now available for all users.',
+								]}
+							/>
+
+							<Alert
+								variant="warning"
+								messages={[
+									'Your storage is at 90% capacity.',
+									'3 API integrations will expire in the next 7 days.',
+									'Two-factor authentication is not enabled on your account.',
+								]}
+							/>
 						</div>
 					</section>
 
