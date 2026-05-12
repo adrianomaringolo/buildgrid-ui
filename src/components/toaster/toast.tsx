@@ -39,4 +39,4 @@ export const toast = {
 		})
 		return toastId
 	},
-}
+} as typeof SoonerToast
