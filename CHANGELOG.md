@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.7...v1.20.0) (2026-05-13)
+
+
+### Features
+
+* **blocks:** add MultiSelectList component with shift-click range support ([fb18710](https://github.com/adrianomaringolo/buildgrid-ui/commit/fb1871022167950dface2492f93abb56d3cec9b6))
+
 ## [1.19.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.6...v1.19.7) (2026-05-12)
 
 
