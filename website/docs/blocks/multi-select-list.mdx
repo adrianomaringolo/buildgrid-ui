@@ -5,8 +5,8 @@ id: multi-select-list
 import React from 'react';
 import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
 import { StorybookLink } from "@site/src/components/docs/StorybookLink";
-import { MultiSelectList, Card, CardContent, CardHeader, CardTitle, Badge } from "buildgrid-ui";
-import { Users, Tag } from 'lucide-react';
+import { MultiSelectList, Card, CardContent, CardHeader, CardTitle, Badge, Avatar, AvatarFallback } from "buildgrid-ui";
+import { Users } from 'lucide-react';
 
 # Multi Select List
 
@@ -142,6 +142,151 @@ function MemberSelectList() {
             </span>
           )}
           labels={{ title: "Team members" }}
+        />
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Rich Item Rendering
+
+Combine `Avatar`, `Badge`, and multi-line text to build user-card-style rows. The status dot is positioned as an overlay on the avatar using relative/absolute positioning.
+
+<ComponentDocSection
+  code={`import { MultiSelectList, Avatar, AvatarFallback, Badge } from "buildgrid-ui";
+import React from "react";
+
+type User = {
+  id: string;
+  name: string;
+  email: string;
+  role: "Admin" | "Editor" | "Viewer";
+  department: string;
+  status: "online" | "away" | "offline";
+};
+
+const users: User[] = [
+  { id: "u1", name: "Alice Johnson",  email: "alice@acme.com",  role: "Admin",  department: "Engineering", status: "online"  },
+  { id: "u2", name: "Bruno Souza",    email: "bruno@acme.com",  role: "Editor", department: "Design",      status: "away"    },
+  { id: "u3", name: "Carla Lima",     email: "carla@acme.com",  role: "Viewer", department: "Marketing",   status: "offline" },
+  { id: "u4", name: "Daniel Park",    email: "daniel@acme.com", role: "Editor", department: "Engineering", status: "online"  },
+  { id: "u5", name: "Eva Müller",     email: "eva@acme.com",    role: "Admin",  department: "Product",     status: "online"  },
+  { id: "u6", name: "Felipe Torres",  email: "felipe@acme.com", role: "Viewer", department: "Sales",       status: "away"    },
+];
+
+const avatarColors: Record<string, string> = {
+  u1: "bg-violet-500", u2: "bg-blue-500",  u3: "bg-emerald-500",
+  u4: "bg-orange-500", u5: "bg-rose-500",  u6: "bg-cyan-500",
+};
+
+const roleVariant = {
+  Admin: "default", Editor: "secondary", Viewer: "outline",
+} as const;
+
+const statusDot = {
+  online:  "bg-emerald-500",
+  away:    "bg-yellow-400",
+  offline: "bg-gray-400",
+} as const;
+
+function initials(name: string) {
+  return name.split(" ").slice(0, 2).map((n) => n[0]).join("").toUpperCase();
+}
+
+function TeamMemberList() {
+  const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+
+  return (
+    <div className="w-[420px]">
+      <MultiSelectList
+        items={users}
+        selectedIds={selectedIds}
+        onChange={setSelectedIds}
+        getItemId={(u) => u.id}
+        labels={{ title: "Team members" }}
+        renderItem={(u) => (
+          <span className="flex items-center gap-3 w-full pr-2">
+            <span className="relative shrink-0">
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className={\`text-xs text-white \${avatarColors[u.id]}\`}>
+                  {initials(u.name)}
+                </AvatarFallback>
+              </Avatar>
+              <span
+                className={\`absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-background \${statusDot[u.status]}\`}
+                title={u.status}
+              />
+            </span>
+
+            <span className="flex-1 min-w-0">
+              <span className="block text-sm font-medium truncate">{u.name}</span>
+              <span className="block text-xs text-muted-foreground truncate">
+                {u.email} · {u.department}
+              </span>
+            </span>
+
+            <Badge variant={roleVariant[u.role]} className="shrink-0 text-xs">
+              {u.role}
+            </Badge>
+          </span>
+        )}
+      />
+    </div>
+  );
+}`}
+  storybookPath="blocks-multiselectlist--rich-items"
+>
+  {(() => {
+    const users = [
+      { id: "u1", name: "Alice Johnson",  email: "alice@acme.com",  role: "Admin",  department: "Engineering", status: "online"  },
+      { id: "u2", name: "Bruno Souza",    email: "bruno@acme.com",  role: "Editor", department: "Design",      status: "away"    },
+      { id: "u3", name: "Carla Lima",     email: "carla@acme.com",  role: "Viewer", department: "Marketing",   status: "offline" },
+      { id: "u4", name: "Daniel Park",    email: "daniel@acme.com", role: "Editor", department: "Engineering", status: "online"  },
+      { id: "u5", name: "Eva Müller",     email: "eva@acme.com",    role: "Admin",  department: "Product",     status: "online"  },
+      { id: "u6", name: "Felipe Torres",  email: "felipe@acme.com", role: "Viewer", department: "Sales",       status: "away"    },
+    ];
+    const avatarColors = {
+      u1: "bg-violet-500", u2: "bg-blue-500",  u3: "bg-emerald-500",
+      u4: "bg-orange-500", u5: "bg-rose-500",  u6: "bg-cyan-500",
+    };
+    const roleVariant = { Admin: "default", Editor: "secondary", Viewer: "outline" };
+    const statusDot   = { online: "bg-emerald-500", away: "bg-yellow-400", offline: "bg-gray-400" };
+    const initials = (name) => name.split(" ").slice(0, 2).map((n) => n[0]).join("").toUpperCase();
+    const [selectedIds, setSelectedIds] = React.useState([]);
+    return (
+      <div className="w-[420px]">
+        <MultiSelectList
+          items={users}
+          selectedIds={selectedIds}
+          onChange={setSelectedIds}
+          getItemId={(u) => u.id}
+          labels={{ title: "Team members" }}
+          renderItem={(u) => (
+            <span className="flex items-center gap-3 w-full pr-2">
+              <span className="relative shrink-0">
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback className={`text-xs text-white ${avatarColors[u.id]}`}>
+                    {initials(u.name)}
+                  </AvatarFallback>
+                </Avatar>
+                <span
+                  className={`absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-background ${statusDot[u.status]}`}
+                  title={u.status}
+                />
+              </span>
+
+              <span className="flex-1 min-w-0">
+                <span className="block text-sm font-medium truncate">{u.name}</span>
+                <span className="block text-xs text-muted-foreground truncate">
+                  {u.email} · {u.department}
+                </span>
+              </span>
+
+              <Badge variant={roleVariant[u.role]} className="shrink-0 text-xs">
+                {u.role}
+              </Badge>
+            </span>
+          )}
         />
       </div>
     );

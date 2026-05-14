@@ -10,9 +10,15 @@ date: 2026-05-14
 
 # Why Component Libraries Matter More Than Ever in the Age of AI
 
+![Component Libraries in the Age of AI](/img/blog/component-libraries-ai-era.jpg)
+
 AI coding assistants have fundamentally changed how we build software. You can describe a button, a data table, or an entire form in plain language and get working code back in seconds. It's genuinely impressive — and it's creating a quiet mess inside many codebases.
 
 <!--truncate-->
+
+:::tip TL;DR
+AI tools generate UI components fast — but without a shared library, you end up with invisible duplication, inconsistent visuals, untested edge cases, and maintenance fragmentation. The fix isn't to stop using AI; it's to give it a solid component library to work with. AI shines as a force multiplier on top of a good foundation, not as a replacement for one.
+:::
 
 ## The Double-Edged Sword of AI-Generated UI
 

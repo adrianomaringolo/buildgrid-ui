@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import 'buildgrid-ui/theme';
 @import 'tailwindcss';
+@source '../../node_modules/buildgrid-ui';
 @import './animations.css';
 
 /**
@@ -97,6 +98,10 @@ h3.anchor {
 	height: 40px;
 	animation: spin 2s linear infinite;
 	margin: 0 auto 1rem;
+}
+
+ul:not(:has([class^='theme-doc-sidebar-menu'])) li {
+	list-style: none !important;
 }
 
 ul:not(:has([class^='table-of-contents'])),

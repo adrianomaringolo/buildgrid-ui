@@ -1,4 +1,20 @@
 /* Reset class that removes Docusaurus styles but preserves buildgrid-ui components */
+
+/* Restore themed border color overridden by Infima outside @layer */
+.reset-all * {
+	border-color: var(--border, var(--color-gray-200, currentColor));
+}
+
+/* Suppress bullet points added by custom.css on all ul/li in component previews */
+.reset-all ul,
+.reset-all ol {
+	list-style: none;
+}
+.reset-all ul li,
+.reset-all ol li {
+	list-style: none;
+}
+
 .reset-all {
 	/* Reset only Docusaurus/Infima specific styles */
 	--ifm-color-primary: initial;
@@ -66,7 +82,7 @@
 	padding: 0;
 }
 
-.reset-all li:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]) {
+.reset-all li:not([class*='buildgrid']):not([data-radix]):not([data-state]):not([role]):not([class*='flex']):not([class*='grid']):not([class*='px-']):not([class*='py-']):not([class*='p-']) {
 	list-style: none;
 	margin: 0;
 	padding: 0;
