@@ -21,7 +21,11 @@ const config: Config = {
 	projectName: 'buildgrid-ui', // Usually your repo name.
 
 	onBrokenLinks: 'warn',
-	onBrokenMarkdownLinks: 'warn',
+	markdown: {
+		hooks: {
+			onBrokenMarkdownLinks: 'warn',
+		},
+	},
 
 	// Configure static directories that should be ignored for broken link checking
 	staticDirectories: ['static'],

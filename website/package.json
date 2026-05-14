@@ -23,14 +23,14 @@
 		"update-data": "npm run update-lib-version && npm run update-stats && npm run update-blog-posts"
 	},
 	"dependencies": {
-		"@docusaurus/core": "3.9.2",
-		"@docusaurus/preset-classic": "3.9.2",
+		"@docusaurus/core": "^3.10.1",
+		"@docusaurus/preset-classic": "^3.10.1",
 		"@easyops-cn/docusaurus-search-local": "^0.52.2",
 		"@icons-pack/react-simple-icons": "^13.8.0",
 		"@mdx-js/react": "^3.1.1",
 		"@tailwindcss/postcss": "^4.1.18",
 		"autoprefixer": "^10.4.23",
-		"buildgrid-ui": "^1.19.7",
+		"buildgrid-ui": "^1.20.0",
 		"clsx": "^2.1.1",
 		"postcss": "^8.5.6",
 		"prettier": "^3.7.4",
@@ -45,9 +45,9 @@
 		"tailwindcss": "^4.1.11"
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "3.9.2",
-		"@docusaurus/tsconfig": "3.9.2",
-		"@docusaurus/types": "3.9.2",
+		"@docusaurus/module-type-aliases": "^3.10.1",
+		"@docusaurus/tsconfig": "^3.10.1",
+		"@docusaurus/types": "^3.10.1",
 		"@types/node": "^25.0.2",
 		"@types/react-syntax-highlighter": "^15.5.13",
 		"ts-node": "^10.9.2",

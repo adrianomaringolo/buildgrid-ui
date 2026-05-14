@@ -72,6 +72,7 @@ const sidebars: SidebarsConfig = {
 				'blocks/html-text-editor',
 				'blocks/lazy-image-gallery',
 				'blocks/month-navigator',
+				'blocks/multi-select-list',
 				'blocks/navigable-list',
 				'blocks/paginated-items',
 				'blocks/pagination-controls',

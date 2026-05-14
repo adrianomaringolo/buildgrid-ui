@@ -27,3 +27,13 @@ community:
   label: Community
   permalink: /community
   description: Developer community and collaboration topics
+
+ai:
+  label: AI
+  permalink: /ai
+  description: Artificial intelligence and AI-assisted development topics
+
+best-practices:
+  label: Best Practices
+  permalink: /best-practices
+  description: Software development best practices and patterns
