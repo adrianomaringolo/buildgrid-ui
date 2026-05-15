@@ -1,3 +1,15 @@
+# [1.21.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.20.0...v1.21.0) (2026-05-15)
+
+
+### Bug Fixes
+
+* **alert:** add dark mode support and per-variant stories ([8995786](https://github.com/adrianomaringolo/buildgrid-ui/commit/8995786956a87ef8ae8bf241d9f0a625afd5d206))
+
+
+### Features
+
+* **components:** add 13 new shadcn-parity components with stories and tests ([8ffa450](https://github.com/adrianomaringolo/buildgrid-ui/commit/8ffa450291f51210055e6d62edbf2de7d376d996))
+
 # [1.20.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.7...v1.20.0) (2026-05-13)
 
 
