@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.21.0...v1.22.0) (2026-05-15)
+
+
+### Features
+
+* **components:** add 13 new shadcn-parity components with stories and tests ([8c975c4](https://github.com/adrianomaringolo/buildgrid-ui/commit/8c975c4d4674fb48e423167568faed95ba5cedbd))
+
 # [1.21.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.20.0...v1.21.0) (2026-05-15)
 
 
