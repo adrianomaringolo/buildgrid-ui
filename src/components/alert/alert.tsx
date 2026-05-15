@@ -32,39 +32,49 @@ export interface AlertProps {
 
 const alertVariants = {
 	info: {
-		container: 'bg-blue-50 border-blue-200 text-blue-800',
+		container:
+			'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-950 dark:border-blue-800 dark:text-blue-200',
 		icon: Info,
-		iconColor: 'text-blue-600',
-		navColor: 'text-blue-600 hover:bg-blue-100',
-		closeColor: 'text-blue-500 hover:bg-blue-100 focus:ring-blue-600',
+		iconColor: 'text-blue-600 dark:text-blue-400',
+		navColor: 'text-blue-600 hover:bg-blue-100 dark:text-blue-400 dark:hover:bg-blue-900',
+		closeColor:
+			'text-blue-500 hover:bg-blue-100 focus:ring-blue-600 dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:ring-blue-400',
 	},
 	warning: {
-		container: 'bg-yellow-50 border-yellow-200 text-yellow-800',
+		container:
+			'bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-950 dark:border-yellow-800 dark:text-yellow-200',
 		icon: AlertTriangle,
-		iconColor: 'text-yellow-600',
-		navColor: 'text-yellow-600 hover:bg-yellow-100',
-		closeColor: 'text-yellow-500 hover:bg-yellow-100 focus:ring-yellow-600',
+		iconColor: 'text-yellow-600 dark:text-yellow-400',
+		navColor: 'text-yellow-600 hover:bg-yellow-100 dark:text-yellow-400 dark:hover:bg-yellow-900',
+		closeColor:
+			'text-yellow-500 hover:bg-yellow-100 focus:ring-yellow-600 dark:text-yellow-400 dark:hover:bg-yellow-900 dark:focus:ring-yellow-400',
 	},
 	error: {
-		container: 'bg-red-50 border-red-200 text-red-800',
+		container:
+			'bg-red-50 border-red-200 text-red-800 dark:bg-red-950 dark:border-red-800 dark:text-red-200',
 		icon: AlertCircle,
-		iconColor: 'text-red-600',
-		navColor: 'text-red-600 hover:bg-red-100',
-		closeColor: 'text-red-500 hover:bg-red-100 focus:ring-red-600',
+		iconColor: 'text-red-600 dark:text-red-400',
+		navColor: 'text-red-600 hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-900',
+		closeColor:
+			'text-red-500 hover:bg-red-100 focus:ring-red-600 dark:text-red-400 dark:hover:bg-red-900 dark:focus:ring-red-400',
 	},
 	success: {
-		container: 'bg-green-50 border-green-200 text-green-800',
+		container:
+			'bg-green-50 border-green-200 text-green-800 dark:bg-green-950 dark:border-green-800 dark:text-green-200',
 		icon: CheckCircle,
-		iconColor: 'text-green-600',
-		navColor: 'text-green-600 hover:bg-green-100',
-		closeColor: 'text-green-500 hover:bg-green-100 focus:ring-green-600',
+		iconColor: 'text-green-600 dark:text-green-400',
+		navColor: 'text-green-600 hover:bg-green-100 dark:text-green-400 dark:hover:bg-green-900',
+		closeColor:
+			'text-green-500 hover:bg-green-100 focus:ring-green-600 dark:text-green-400 dark:hover:bg-green-900 dark:focus:ring-green-400',
 	},
 	tip: {
-		container: 'bg-purple-50 border-purple-200 text-purple-800',
+		container:
+			'bg-purple-50 border-purple-200 text-purple-800 dark:bg-purple-950 dark:border-purple-800 dark:text-purple-200',
 		icon: Lightbulb,
-		iconColor: 'text-purple-600',
-		navColor: 'text-purple-600 hover:bg-purple-100',
-		closeColor: 'text-purple-500 hover:bg-purple-100 focus:ring-purple-600',
+		iconColor: 'text-purple-600 dark:text-purple-400',
+		navColor: 'text-purple-600 hover:bg-purple-100 dark:text-purple-400 dark:hover:bg-purple-900',
+		closeColor:
+			'text-purple-500 hover:bg-purple-100 focus:ring-purple-600 dark:text-purple-400 dark:hover:bg-purple-900 dark:focus:ring-purple-400',
 	},
 }
 
