@@ -1,0 +1,251 @@
+---
+id: kbd
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Kbd } from "buildgrid-ui";
+
+# Kbd
+
+<StorybookLink path="components-kbd--default" />
+
+The `Kbd` component renders keyboard key labels in a visually distinct, monospaced style. It is useful for documenting shortcuts, showing hotkeys in UI hints, and building shortcut reference tables. It renders a native `<kbd>` element styled with a bordered, shadowed pill appearance.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { Kbd } from "buildgrid-ui";
+
+function BasicKeys() {
+  return (
+    <div className="flex gap-2 flex-wrap items-center">
+      <Kbd>Enter</Kbd>
+      <Kbd>Escape</Kbd>
+      <Kbd>Tab</Kbd>
+      <Kbd>Space</Kbd>
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-2 flex-wrap items-center">
+    <Kbd>Enter</Kbd>
+    <Kbd>Escape</Kbd>
+    <Kbd>Tab</Kbd>
+    <Kbd>Space</Kbd>
+  </div>
+</ComponentDocSection>
+
+## Keyboard Shortcuts
+
+Combine multiple `Kbd` elements with `+` separators to express multi-key shortcuts.
+
+<ComponentDocSection
+  code={`import { Kbd } from "buildgrid-ui";
+
+function KeyboardShortcuts() {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-1">
+        <Kbd>⌘</Kbd>
+        <span className="text-muted-foreground text-sm">+</span>
+        <Kbd>K</Kbd>
+      </div>
+      <div className="flex items-center gap-1">
+        <Kbd>Ctrl</Kbd>
+        <span className="text-muted-foreground text-sm">+</span>
+        <Kbd>Shift</Kbd>
+        <span className="text-muted-foreground text-sm">+</span>
+        <Kbd>P</Kbd>
+      </div>
+      <div className="flex items-center gap-1">
+        <Kbd>Alt</Kbd>
+        <span className="text-muted-foreground text-sm">+</span>
+        <Kbd>F4</Kbd>
+      </div>
+      <div className="flex items-center gap-1">
+        <Kbd>Ctrl</Kbd>
+        <span className="text-muted-foreground text-sm">+</span>
+        <Kbd>Z</Kbd>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-col gap-3">
+    <div className="flex items-center gap-1">
+      <Kbd>⌘</Kbd>
+      <span className="text-muted-foreground text-sm">+</span>
+      <Kbd>K</Kbd>
+    </div>
+    <div className="flex items-center gap-1">
+      <Kbd>Ctrl</Kbd>
+      <span className="text-muted-foreground text-sm">+</span>
+      <Kbd>Shift</Kbd>
+      <span className="text-muted-foreground text-sm">+</span>
+      <Kbd>P</Kbd>
+    </div>
+    <div className="flex items-center gap-1">
+      <Kbd>Alt</Kbd>
+      <span className="text-muted-foreground text-sm">+</span>
+      <Kbd>F4</Kbd>
+    </div>
+    <div className="flex items-center gap-1">
+      <Kbd>Ctrl</Kbd>
+      <span className="text-muted-foreground text-sm">+</span>
+      <Kbd>Z</Kbd>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Inline Usage
+
+`Kbd` is an inline element and can be embedded directly inside paragraphs or tooltip content.
+
+<ComponentDocSection
+  code={`import { Kbd } from "buildgrid-ui";
+
+function InlineKbd() {
+  return (
+    <div className="space-y-3 text-sm leading-7">
+      <p>
+        Press <Kbd>⌘K</Kbd> to open the command palette and search for any action.
+      </p>
+      <p>
+        Use <Kbd>Tab</Kbd> and <Kbd>Shift</Kbd>+<Kbd>Tab</Kbd> to move focus between form fields.
+      </p>
+      <p>
+        Hit <Kbd>Escape</Kbd> at any time to dismiss the active dialog or popover.
+      </p>
+      <p>
+        To submit the form without a mouse, press <Kbd>Ctrl</Kbd>+<Kbd>Enter</Kbd>.
+      </p>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-3 text-sm leading-7">
+    <p>
+      Press <Kbd>⌘K</Kbd> to open the command palette and search for any action.
+    </p>
+    <p>
+      Use <Kbd>Tab</Kbd> and <Kbd>Shift</Kbd>+<Kbd>Tab</Kbd> to move focus between form fields.
+    </p>
+    <p>
+      Hit <Kbd>Escape</Kbd> at any time to dismiss the active dialog or popover.
+    </p>
+    <p>
+      To submit the form without a mouse, press <Kbd>Ctrl</Kbd>+<Kbd>Enter</Kbd>.
+    </p>
+  </div>
+</ComponentDocSection>
+
+## Shortcut Reference Table
+
+Use `Kbd` to build structured shortcut references that users can quickly scan.
+
+<ComponentDocSection
+  code={`import { Kbd } from "buildgrid-ui";
+
+function ShortcutReference() {
+  const shortcuts = [
+    { action: 'Save', mac: ['⌘', 'S'], win: ['Ctrl', 'S'] },
+    { action: 'Undo', mac: ['⌘', 'Z'], win: ['Ctrl', 'Z'] },
+    { action: 'Redo', mac: ['⌘', 'Shift', 'Z'], win: ['Ctrl', 'Y'] },
+    { action: 'Find', mac: ['⌘', 'F'], win: ['Ctrl', 'F'] },
+    { action: 'Cut', mac: ['⌘', 'X'], win: ['Ctrl', 'X'] },
+    { action: 'Copy', mac: ['⌘', 'C'], win: ['Ctrl', 'C'] },
+    { action: 'Paste', mac: ['⌘', 'V'], win: ['Ctrl', 'V'] },
+  ];
+
+  const KeyCombo = ({ keys }) => (
+    <span className="flex items-center gap-0.5">
+      {keys.map((key, i) => (
+        <span key={i} className="flex items-center gap-0.5">
+          {i > 0 && <span className="text-muted-foreground text-xs">+</span>}
+          <Kbd>{key}</Kbd>
+        </span>
+      ))}
+    </span>
+  );
+
+  return (
+    <div className="rounded-lg border overflow-hidden">
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="border-b bg-muted/50">
+            <th className="px-4 py-2 text-left font-medium">Action</th>
+            <th className="px-4 py-2 text-left font-medium">macOS</th>
+            <th className="px-4 py-2 text-left font-medium">Windows / Linux</th>
+          </tr>
+        </thead>
+        <tbody>
+          {shortcuts.map((row, i) => (
+            <tr key={row.action} className={i % 2 === 0 ? '' : 'bg-muted/20'}>
+              <td className="px-4 py-2 font-medium">{row.action}</td>
+              <td className="px-4 py-2"><KeyCombo keys={row.mac} /></td>
+              <td className="px-4 py-2"><KeyCombo keys={row.win} /></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const shortcuts = [
+      { action: 'Save', mac: ['⌘', 'S'], win: ['Ctrl', 'S'] },
+      { action: 'Undo', mac: ['⌘', 'Z'], win: ['Ctrl', 'Z'] },
+      { action: 'Redo', mac: ['⌘', 'Shift', 'Z'], win: ['Ctrl', 'Y'] },
+      { action: 'Find', mac: ['⌘', 'F'], win: ['Ctrl', 'F'] },
+      { action: 'Cut', mac: ['⌘', 'X'], win: ['Ctrl', 'X'] },
+      { action: 'Copy', mac: ['⌘', 'C'], win: ['Ctrl', 'C'] },
+      { action: 'Paste', mac: ['⌘', 'V'], win: ['Ctrl', 'V'] },
+    ];
+
+    const KeyCombo = ({ keys }) => (
+      <span className="flex items-center gap-0.5">
+        {keys.map((key, i) => (
+          <span key={i} className="flex items-center gap-0.5">
+            {i > 0 && <span className="text-muted-foreground text-xs">+</span>}
+            <Kbd>{key}</Kbd>
+          </span>
+        ))}
+      </span>
+    );
+
+    return (
+      <div className="rounded-lg border overflow-hidden">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b bg-muted/50">
+              <th className="px-4 py-2 text-left font-medium">Action</th>
+              <th className="px-4 py-2 text-left font-medium">macOS</th>
+              <th className="px-4 py-2 text-left font-medium">Windows / Linux</th>
+            </tr>
+          </thead>
+          <tbody>
+            {shortcuts.map((row, i) => (
+              <tr key={row.action} className={i % 2 === 0 ? '' : 'bg-muted/20'}>
+                <td className="px-4 py-2 font-medium">{row.action}</td>
+                <td className="px-4 py-2"><KeyCombo keys={row.mac} /></td>
+                <td className="px-4 py-2"><KeyCombo keys={row.win} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Kbd`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Additional CSS classes to merge with the default styles. |
+| `children` | `ReactNode` | — | The key label or content rendered inside the element. |
+| (All native `kbd` attributes) | — | — | All standard HTML `<kbd>` attributes are forwarded to the underlying element. |

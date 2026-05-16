@@ -1,0 +1,313 @@
+---
+id: button-group
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { ButtonGroup, Button } from "buildgrid-ui";
+import { AlignLeft, AlignCenter, AlignRight, AlignJustify, Bold, Italic, Underline, ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react";
+import { useState } from "react";
+
+# ButtonGroup
+
+<StorybookLink path="components-button-group--default" />
+
+The `ButtonGroup` component visually merges a set of related buttons into a single cohesive control. Adjacent borders are collapsed and border radii are adjusted automatically so the group reads as a unit rather than a collection of separate buttons. It supports both horizontal and vertical orientations.
+
+## Basic Usage
+
+Wrap any number of `Button` components in a `ButtonGroup` to connect them into a segmented control.
+
+<ComponentDocSection
+  code={`import { ButtonGroup, Button } from "buildgrid-ui";
+
+function BasicButtonGroup() {
+  return (
+    <ButtonGroup>
+      <Button variant="outline">Previous</Button>
+      <Button variant="outline">Current</Button>
+      <Button variant="outline">Next</Button>
+    </ButtonGroup>
+  );
+}`}
+>
+  <ButtonGroup>
+    <Button variant="outline">Previous</Button>
+    <Button variant="outline">Current</Button>
+    <Button variant="outline">Next</Button>
+  </ButtonGroup>
+</ComponentDocSection>
+
+## Vertical Orientation
+
+Set `orientation="vertical"` to stack buttons in a column. Borders and border radii adjust automatically.
+
+<ComponentDocSection
+  code={`import { ButtonGroup, Button } from "buildgrid-ui";
+import { Bold, Italic, Underline } from "lucide-react";
+
+function VerticalButtonGroup() {
+  return (
+    <ButtonGroup orientation="vertical">
+      <Button variant="outline">
+        <Bold className="h-4 w-4 mr-1" />
+        Bold
+      </Button>
+      <Button variant="outline">
+        <Italic className="h-4 w-4 mr-1" />
+        Italic
+      </Button>
+      <Button variant="outline">
+        <Underline className="h-4 w-4 mr-1" />
+        Underline
+      </Button>
+    </ButtonGroup>
+  );
+}`}
+>
+  <ButtonGroup orientation="vertical">
+    <Button variant="outline">
+      <Bold className="h-4 w-4 mr-1" />
+      Bold
+    </Button>
+    <Button variant="outline">
+      <Italic className="h-4 w-4 mr-1" />
+      Italic
+    </Button>
+    <Button variant="outline">
+      <Underline className="h-4 w-4 mr-1" />
+      Underline
+    </Button>
+  </ButtonGroup>
+</ComponentDocSection>
+
+## With Icons
+
+Icon-only button groups are a common pattern for toolbar alignment controls. Keep buttons equal width for a polished look.
+
+<ComponentDocSection
+  code={`import { ButtonGroup, Button } from "buildgrid-ui";
+import { AlignLeft, AlignCenter, AlignRight, AlignJustify } from "lucide-react";
+import { useState } from "react";
+
+function AlignmentGroup() {
+  const [active, setActive] = useState("left");
+
+  const options = [
+    { value: "left", icon: AlignLeft, label: "Align left" },
+    { value: "center", icon: AlignCenter, label: "Align center" },
+    { value: "right", icon: AlignRight, label: "Align right" },
+    { value: "justify", icon: AlignJustify, label: "Justify" },
+  ];
+
+  return (
+    <ButtonGroup>
+      {options.map(({ value, icon: Icon, label }) => (
+        <Button
+          key={value}
+          variant={active === value ? "default" : "outline"}
+          size="icon"
+          aria-label={label}
+          onClick={() => setActive(value)}
+        >
+          <Icon className="h-4 w-4" />
+        </Button>
+      ))}
+    </ButtonGroup>
+  );
+}`}
+>
+  {(() => {
+    const [active, setActive] = React.useState("left");
+
+    const options = [
+      { value: "left", icon: AlignLeft, label: "Align left" },
+      { value: "center", icon: AlignCenter, label: "Align center" },
+      { value: "right", icon: AlignRight, label: "Align right" },
+      { value: "justify", icon: AlignJustify, label: "Justify" },
+    ];
+
+    return (
+      <ButtonGroup>
+        {options.map(({ value, icon: Icon, label }) => (
+          <Button
+            key={value}
+            variant={active === value ? "default" : "outline"}
+            size="icon"
+            aria-label={label}
+            onClick={() => setActive(value)}
+          >
+            <Icon className="h-4 w-4" />
+          </Button>
+        ))}
+      </ButtonGroup>
+    );
+  })()}
+</ComponentDocSection>
+
+## Mixed Variants
+
+Different button variants can coexist inside a single group to communicate distinct action weights — for example, a primary save action alongside a neutral preview and a destructive delete.
+
+<ComponentDocSection
+  code={`import { ButtonGroup, Button } from "buildgrid-ui";
+
+function MixedVariants() {
+  return (
+    <ButtonGroup>
+      <Button variant="default">Save</Button>
+      <Button variant="outline">Preview</Button>
+      <Button variant="destructive">Delete</Button>
+    </ButtonGroup>
+  );
+}`}
+>
+  <ButtonGroup>
+    <Button variant="default">Save</Button>
+    <Button variant="outline">Preview</Button>
+    <Button variant="destructive">Delete</Button>
+  </ButtonGroup>
+</ComponentDocSection>
+
+## Pagination Controls
+
+`ButtonGroup` with `size="sm"` is well suited for compact pagination toolbars. Combine jump-to-end buttons with numbered pages for a complete control.
+
+<ComponentDocSection
+  code={`import { ButtonGroup, Button } from "buildgrid-ui";
+import { ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react";
+import { useState } from "react";
+
+function PaginationGroup() {
+  const [page, setPage] = useState(1);
+  const totalPages = 5;
+
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <ButtonGroup>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(1)}
+          disabled={page === 1}
+          aria-label="First page"
+        >
+          <ChevronsLeft className="h-4 w-4" />
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(p => Math.max(1, p - 1))}
+          disabled={page === 1}
+          aria-label="Previous page"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+          <Button
+            key={n}
+            variant={page === n ? "default" : "outline"}
+            size="sm"
+            onClick={() => setPage(n)}
+            aria-label={\`Page \${n}\`}
+            aria-current={page === n ? "page" : undefined}
+          >
+            {n}
+          </Button>
+        ))}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+          disabled={page === totalPages}
+          aria-label="Next page"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setPage(totalPages)}
+          disabled={page === totalPages}
+          aria-label="Last page"
+        >
+          <ChevronsRight className="h-4 w-4" />
+        </Button>
+      </ButtonGroup>
+      <span className="text-sm text-muted-foreground">Page {page} of {totalPages}</span>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [page, setPage] = React.useState(1);
+    const totalPages = 5;
+
+    return (
+      <div className="flex flex-col items-center gap-3">
+        <ButtonGroup>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage(1)}
+            disabled={page === 1}
+            aria-label="First page"
+          >
+            <ChevronsLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage(p => Math.max(1, p - 1))}
+            disabled={page === 1}
+            aria-label="Previous page"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+            <Button
+              key={n}
+              variant={page === n ? "default" : "outline"}
+              size="sm"
+              onClick={() => setPage(n)}
+              aria-label={`Page ${n}`}
+              aria-current={page === n ? "page" : undefined}
+            >
+              {n}
+            </Button>
+          ))}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
+            aria-label="Next page"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage(totalPages)}
+            disabled={page === totalPages}
+            aria-label="Last page"
+          >
+            <ChevronsRight className="h-4 w-4" />
+          </Button>
+        </ButtonGroup>
+        <span className="text-sm text-muted-foreground">Page {page} of {totalPages}</span>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `ButtonGroup`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `orientation` | `"horizontal"` \| `"vertical"` | `"horizontal"` | Controls whether buttons are arranged in a row or a column. |
+| `className` | `string` | — | Additional CSS classes merged with the group container. |
+| `children` | `ReactNode` | — | The `Button` elements that make up the group. |
+| (All native `div` attributes) | — | — | All standard HTML `<div>` attributes are forwarded to the underlying element. |

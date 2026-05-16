@@ -1,0 +1,596 @@
+---
+id: context-menu
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuGroup, ContextMenuPortal, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuItem, ContextMenuCheckboxItem, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut } from "buildgrid-ui";
+import { File, Folder, Share2, Info, Eye, SortAsc, Search } from "lucide-react";
+import { useState } from "react";
+
+# Context Menu
+
+<StorybookLink path="components-context-menu--default" />
+
+The `ContextMenu` component displays a menu of actions or options triggered by a right-click (or long-press on touch devices). Built on Radix UI primitives, it supports keyboard navigation, submenus, checkboxes, radio groups, and keyboard shortcuts.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+} from "buildgrid-ui";
+
+function BasicContextMenu() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger>
+        <div className="flex h-32 items-center justify-center border-2 border-dashed rounded-lg text-sm text-muted-foreground">
+          Right-click to open menu
+        </div>
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-56">
+        <ContextMenuItem>
+          New File
+          <ContextMenuShortcut>⌘N</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem>
+          New Folder
+        </ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem>
+          Open
+          <ContextMenuShortcut>⌘O</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem>
+          Rename
+        </ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem>
+          Delete
+        </ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}`}
+>
+  <ContextMenu>
+    <ContextMenuTrigger>
+      <div className="flex h-32 items-center justify-center border-2 border-dashed rounded-lg text-sm text-muted-foreground">
+        Right-click to open menu
+      </div>
+    </ContextMenuTrigger>
+    <ContextMenuContent className="w-56">
+      <ContextMenuItem>
+        New File
+        <ContextMenuShortcut>⌘N</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem>
+        New Folder
+      </ContextMenuItem>
+      <ContextMenuSeparator />
+      <ContextMenuItem>
+        Open
+        <ContextMenuShortcut>⌘O</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem>
+        Rename
+      </ContextMenuItem>
+      <ContextMenuSeparator />
+      <ContextMenuItem>
+        Delete
+      </ContextMenuItem>
+    </ContextMenuContent>
+  </ContextMenu>
+</ComponentDocSection>
+
+## File Manager
+
+A more complete example with labels, icons, a View submenu with checkboxes and radio groups, a Share submenu, and a Properties item.
+
+<ComponentDocSection
+  code={`import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuGroup,
+  ContextMenuSub,
+  ContextMenuSubTrigger,
+  ContextMenuSubContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+} from "buildgrid-ui";
+import { Eye, SortAsc, Share2, Info } from "lucide-react";
+
+function FileManagerContextMenu() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger>
+        <div className="flex h-32 items-center justify-center border-2 border-dashed rounded-lg text-sm text-muted-foreground">
+          Right-click to open menu
+        </div>
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-64">
+        <ContextMenuLabel>File Options</ContextMenuLabel>
+        <ContextMenuSeparator />
+        <ContextMenuSub>
+          <ContextMenuSubTrigger>
+            <Eye className="mr-2 h-4 w-4" />
+            View
+          </ContextMenuSubTrigger>
+          <ContextMenuSubContent className="w-48">
+            <ContextMenuCheckboxItem checked>
+              Show Hidden Files
+            </ContextMenuCheckboxItem>
+            <ContextMenuSeparator />
+            <ContextMenuLabel inset>Sort By</ContextMenuLabel>
+            <ContextMenuRadioGroup value="name">
+              <ContextMenuRadioItem value="name">Name</ContextMenuRadioItem>
+              <ContextMenuRadioItem value="date">Date</ContextMenuRadioItem>
+              <ContextMenuRadioItem value="size">Size</ContextMenuRadioItem>
+            </ContextMenuRadioGroup>
+          </ContextMenuSubContent>
+        </ContextMenuSub>
+        <ContextMenuSub>
+          <ContextMenuSubTrigger>
+            <Share2 className="mr-2 h-4 w-4" />
+            Share
+          </ContextMenuSubTrigger>
+          <ContextMenuSubContent>
+            <ContextMenuItem>Copy Link</ContextMenuItem>
+            <ContextMenuItem>Send via Email</ContextMenuItem>
+            <ContextMenuItem>Share to Team</ContextMenuItem>
+          </ContextMenuSubContent>
+        </ContextMenuSub>
+        <ContextMenuSeparator />
+        <ContextMenuItem>
+          <Info className="mr-2 h-4 w-4" />
+          Properties
+        </ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}`}
+>
+  <ContextMenu>
+    <ContextMenuTrigger>
+      <div className="flex h-32 items-center justify-center border-2 border-dashed rounded-lg text-sm text-muted-foreground">
+        Right-click to open menu
+      </div>
+    </ContextMenuTrigger>
+    <ContextMenuContent className="w-64">
+      <ContextMenuLabel>File Options</ContextMenuLabel>
+      <ContextMenuSeparator />
+      <ContextMenuSub>
+        <ContextMenuSubTrigger>
+          <Eye className="mr-2 h-4 w-4" />
+          View
+        </ContextMenuSubTrigger>
+        <ContextMenuSubContent className="w-48">
+          <ContextMenuCheckboxItem checked>
+            Show Hidden Files
+          </ContextMenuCheckboxItem>
+          <ContextMenuSeparator />
+          <ContextMenuLabel inset>Sort By</ContextMenuLabel>
+          <ContextMenuRadioGroup value="name">
+            <ContextMenuRadioItem value="name">Name</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="date">Date</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="size">Size</ContextMenuRadioItem>
+          </ContextMenuRadioGroup>
+        </ContextMenuSubContent>
+      </ContextMenuSub>
+      <ContextMenuSub>
+        <ContextMenuSubTrigger>
+          <Share2 className="mr-2 h-4 w-4" />
+          Share
+        </ContextMenuSubTrigger>
+        <ContextMenuSubContent>
+          <ContextMenuItem>Copy Link</ContextMenuItem>
+          <ContextMenuItem>Send via Email</ContextMenuItem>
+          <ContextMenuItem>Share to Team</ContextMenuItem>
+        </ContextMenuSubContent>
+      </ContextMenuSub>
+      <ContextMenuSeparator />
+      <ContextMenuItem>
+        <Info className="mr-2 h-4 w-4" />
+        Properties
+      </ContextMenuItem>
+    </ContextMenuContent>
+  </ContextMenu>
+</ComponentDocSection>
+
+## With Checkboxes and Radio
+
+A stateful example demonstrating `ContextMenuCheckboxItem` and `ContextMenuRadioGroup` with controlled state.
+
+<ComponentDocSection
+  code={`import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function CheckboxAndRadioContextMenu() {
+  const [showToolbar, setShowToolbar] = useState(true);
+  const [showLineNumbers, setShowLineNumbers] = useState(false);
+  const [theme, setTheme] = useState("system");
+
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger>
+        <div className="flex h-32 items-center justify-center border-2 border-dashed rounded-lg text-sm text-muted-foreground">
+          Right-click to open menu
+        </div>
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-56">
+        <ContextMenuLabel>Editor Preferences</ContextMenuLabel>
+        <ContextMenuSeparator />
+        <ContextMenuCheckboxItem
+          checked={showToolbar}
+          onCheckedChange={setShowToolbar}
+        >
+          Show Toolbar
+        </ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem
+          checked={showLineNumbers}
+          onCheckedChange={setShowLineNumbers}
+        >
+          Show Line Numbers
+        </ContextMenuCheckboxItem>
+        <ContextMenuSeparator />
+        <ContextMenuLabel>Theme</ContextMenuLabel>
+        <ContextMenuRadioGroup value={theme} onValueChange={setTheme}>
+          <ContextMenuRadioItem value="light">Light</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="dark">Dark</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="system">System</ContextMenuRadioItem>
+        </ContextMenuRadioGroup>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}`}
+>
+  {(() => {
+    const [showToolbar, setShowToolbar] = useState(true);
+    const [showLineNumbers, setShowLineNumbers] = useState(false);
+    const [theme, setTheme] = useState("system");
+
+    return (
+      <ContextMenu>
+        <ContextMenuTrigger>
+          <div className="flex h-32 items-center justify-center border-2 border-dashed rounded-lg text-sm text-muted-foreground">
+            Right-click to open menu
+          </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent className="w-56">
+          <ContextMenuLabel>Editor Preferences</ContextMenuLabel>
+          <ContextMenuSeparator />
+          <ContextMenuCheckboxItem
+            checked={showToolbar}
+            onCheckedChange={setShowToolbar}
+          >
+            Show Toolbar
+          </ContextMenuCheckboxItem>
+          <ContextMenuCheckboxItem
+            checked={showLineNumbers}
+            onCheckedChange={setShowLineNumbers}
+          >
+            Show Line Numbers
+          </ContextMenuCheckboxItem>
+          <ContextMenuSeparator />
+          <ContextMenuLabel>Theme</ContextMenuLabel>
+          <ContextMenuRadioGroup value={theme} onValueChange={setTheme}>
+            <ContextMenuRadioItem value="light">Light</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="dark">Dark</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="system">System</ContextMenuRadioItem>
+          </ContextMenuRadioGroup>
+        </ContextMenuContent>
+      </ContextMenu>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Submenus
+
+Demonstrates deeply nested submenus, such as an Edit menu with a Find submenu containing multiple options.
+
+<ComponentDocSection
+  code={`import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuSub,
+  ContextMenuSubTrigger,
+  ContextMenuSubContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+} from "buildgrid-ui";
+import { Search } from "lucide-react";
+
+function SubmenusContextMenu() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger>
+        <div className="flex h-32 items-center justify-center border-2 border-dashed rounded-lg text-sm text-muted-foreground">
+          Right-click to open menu
+        </div>
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-56">
+        <ContextMenuLabel>Edit</ContextMenuLabel>
+        <ContextMenuSeparator />
+        <ContextMenuItem>
+          Undo
+          <ContextMenuShortcut>⌘Z</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem>
+          Redo
+          <ContextMenuShortcut>⌘Y</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuSub>
+          <ContextMenuSubTrigger>
+            <Search className="mr-2 h-4 w-4" />
+            Find
+          </ContextMenuSubTrigger>
+          <ContextMenuSubContent className="w-48">
+            <ContextMenuItem>
+              Find in Files
+              <ContextMenuShortcut>⌘⇧F</ContextMenuShortcut>
+            </ContextMenuItem>
+            <ContextMenuItem>
+              Find Next
+              <ContextMenuShortcut>⌘G</ContextMenuShortcut>
+            </ContextMenuItem>
+            <ContextMenuItem>
+              Find Previous
+              <ContextMenuShortcut>⌘⇧G</ContextMenuShortcut>
+            </ContextMenuItem>
+          </ContextMenuSubContent>
+        </ContextMenuSub>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}`}
+>
+  <ContextMenu>
+    <ContextMenuTrigger>
+      <div className="flex h-32 items-center justify-center border-2 border-dashed rounded-lg text-sm text-muted-foreground">
+        Right-click to open menu
+      </div>
+    </ContextMenuTrigger>
+    <ContextMenuContent className="w-56">
+      <ContextMenuLabel>Edit</ContextMenuLabel>
+      <ContextMenuSeparator />
+      <ContextMenuItem>
+        Undo
+        <ContextMenuShortcut>⌘Z</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem>
+        Redo
+        <ContextMenuShortcut>⌘Y</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuSeparator />
+      <ContextMenuSub>
+        <ContextMenuSubTrigger>
+          <Search className="mr-2 h-4 w-4" />
+          Find
+        </ContextMenuSubTrigger>
+        <ContextMenuSubContent className="w-48">
+          <ContextMenuItem>
+            Find in Files
+            <ContextMenuShortcut>⌘⇧F</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuItem>
+            Find Next
+            <ContextMenuShortcut>⌘G</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuItem>
+            Find Previous
+            <ContextMenuShortcut>⌘⇧G</ContextMenuShortcut>
+          </ContextMenuItem>
+        </ContextMenuSubContent>
+      </ContextMenuSub>
+    </ContextMenuContent>
+  </ContextMenu>
+</ComponentDocSection>
+
+## Custom Trigger Area
+
+The `ContextMenuTrigger` can wrap any element. Here it wraps a styled area to create a visually distinct right-click region.
+
+<ComponentDocSection
+  code={`import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+} from "buildgrid-ui";
+
+function CustomTriggerContextMenu() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger>
+        <div className="flex h-32 items-center justify-center rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-dashed border-primary/30 text-sm font-medium text-primary cursor-context-menu select-none">
+          Right-click anywhere in this area
+        </div>
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-48">
+        <ContextMenuItem>
+          Copy
+          <ContextMenuShortcut>⌘C</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem>
+          Paste
+          <ContextMenuShortcut>⌘V</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem>
+          Select All
+          <ContextMenuShortcut>⌘A</ContextMenuShortcut>
+        </ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}`}
+>
+  <ContextMenu>
+    <ContextMenuTrigger>
+      <div className="flex h-32 items-center justify-center rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-dashed border-primary/30 text-sm font-medium text-primary cursor-context-menu select-none">
+        Right-click anywhere in this area
+      </div>
+    </ContextMenuTrigger>
+    <ContextMenuContent className="w-48">
+      <ContextMenuItem>
+        Copy
+        <ContextMenuShortcut>⌘C</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem>
+        Paste
+        <ContextMenuShortcut>⌘V</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuSeparator />
+      <ContextMenuItem>
+        Select All
+        <ContextMenuShortcut>⌘A</ContextMenuShortcut>
+      </ContextMenuItem>
+    </ContextMenuContent>
+  </ContextMenu>
+</ComponentDocSection>
+
+## Properties
+
+### `ContextMenu`
+
+| Property | Type | Description |
+|---|---|---|
+| `open` | `boolean` | The controlled open state of the context menu. |
+| `defaultOpen` | `boolean` | The open state when initially rendered. |
+| `onOpenChange` | `(open: boolean) => void` | Event handler called when the open state changes. |
+| `modal` | `boolean` | The modality of the context menu. Default: `true`. |
+
+### `ContextMenuTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `asChild` | `boolean` | Change the default rendered element for the one passed as a child. |
+| `disabled` | `boolean` | When `true`, prevents the context menu from opening on right-click. |
+| `children` | `React.ReactNode` | The element that will become the right-clickable trigger. |
+
+### `ContextMenuContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `sideOffset` | `number` | The distance in pixels from the trigger. Default: `4`. |
+| `align` | `"start"` \| `"center"` \| `"end"` | The preferred alignment against the trigger. |
+| `loop` | `boolean` | When `true`, keyboard navigation will loop from the last item to the first and vice versa. |
+
+### `ContextMenuItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `inset` | `boolean` | Adds left padding for alignment with items that have icons. |
+| `disabled` | `boolean` | When `true`, prevents the user from interacting with the item. |
+| `onSelect` | `(event: Event) => void` | Event handler called when the item is selected. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `ContextMenuCheckboxItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `checked` | `boolean` \| `"indeterminate"` | The controlled checked state of the item. |
+| `onCheckedChange` | `(checked: boolean) => void` | Event handler called when the checked state changes. |
+| `disabled` | `boolean` | When `true`, prevents the user from interacting with the item. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `ContextMenuRadioGroup`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | The controlled value of the radio group. |
+| `onValueChange` | `(value: string) => void` | Event handler called when the value changes. |
+
+### `ContextMenuRadioItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | The unique value of the radio item. |
+| `disabled` | `boolean` | When `true`, prevents the user from interacting with the item. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `ContextMenuLabel`
+
+| Property | Type | Description |
+|---|---|---|
+| `inset` | `boolean` | Adds left padding to align the label with inset menu items. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `ContextMenuSeparator`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `ContextMenuShortcut`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The shortcut text displayed on the right side of a menu item (e.g., `⌘N`). |
+
+### `ContextMenuSubTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `inset` | `boolean` | Adds left padding for alignment with items that have icons. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The label for the submenu trigger. A chevron icon is appended automatically. |
+
+## Accessibility
+
+The ContextMenu component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys, Enter, and Escape key support
+- **Focus Management** - Proper focus handling when the menu opens and closes
+- **Screen Reader Support** - ARIA roles and attributes for assistive technologies
+- **Type-ahead** - Users can type characters to jump to matching menu items
+- **Right-click and Long-press** - Works on both desktop and touch devices
+
+## Common Use Cases
+
+The ContextMenu component is ideal for:
+
+- **File Managers** - Actions like open, rename, delete, copy, move
+- **Canvas / Editor Surfaces** - Paste, select all, format options
+- **Data Tables** - Row-level actions like edit, delete, view details
+- **Image Viewers** - Save, copy, share, rotate options
+- **Code Editors** - Refactor, find references, run selection
+- **Workspace Layouts** - Add widget, customize area, reset layout
+
+## Best Practices
+
+1. **Mirror system conventions** - Match actions users expect from OS-level context menus
+2. **Limit menu depth** - Avoid more than two levels of submenus to prevent confusion
+3. **Use separators** - Group related actions with `ContextMenuSeparator` for clarity
+4. **Show keyboard shortcuts** - Use `ContextMenuShortcut` to reinforce discoverability
+5. **Disable unavailable items** - Use the `disabled` prop rather than hiding items
+6. **Keep labels concise** - Short, action-oriented labels reduce cognitive load
+7. **Avoid destructive actions at the top** - Place delete/remove items below safer actions

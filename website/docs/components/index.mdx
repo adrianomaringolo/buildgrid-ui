@@ -9,13 +9,13 @@ import { ComponentCard } from '@site/src/components/docs/ComponentCard'
 
 # Components Overview
 
-BuildGrid UI provides **44 carefully crafted components** that form the foundation of modern React applications. Each component is designed with accessibility, performance, and developer experience in mind.
+BuildGrid UI provides **56 carefully crafted components** that form the foundation of modern React applications. Each component is designed with accessibility, performance, and developer experience in mind.
 
 ## Quick Stats
 
 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
   <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
-    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">44</div>
+    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">56</div>
     <div className="text-sm text-blue-700 dark:text-blue-300">Components</div>
   </div>
   <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 text-center">
@@ -112,6 +112,12 @@ Specialized input components for complex data types and enhanced user experience
     href="/docs/components/number-stepper"
     tags={['form', 'number']}
   />
+  <ComponentCard 
+    title="Input OTP" 
+    description="One-time password and PIN code input with grouped slots"
+    href="/docs/components/input-otp"
+    tags={['form', 'security']}
+  />
 </div>
 
 ### Navigation & Actions
@@ -125,9 +131,33 @@ Components for user navigation and interactive actions.
     tags={['form', 'action']}
   />
   <ComponentCard 
+    title="Button Group" 
+    description="Visually connected groups of related buttons"
+    href="/docs/components/button-group"
+    tags={['form', 'action']}
+  />
+  <ComponentCard 
     title="Navigation Menu" 
     description="Hierarchical navigation with dropdowns"
     href="/docs/components/navigation-menu"
+    tags={['navigation', 'menu']}
+  />
+  <ComponentCard 
+    title="Breadcrumb" 
+    description="Hierarchical path navigation with ellipsis support"
+    href="/docs/components/breadcrumb"
+    tags={['navigation', 'layout']}
+  />
+  <ComponentCard 
+    title="Menubar" 
+    description="Application-style horizontal menu bar with submenus"
+    href="/docs/components/menubar"
+    tags={['navigation', 'menu']}
+  />
+  <ComponentCard 
+    title="Context Menu" 
+    description="Right-click contextual menus with checkboxes and submenus"
+    href="/docs/components/context-menu"
     tags={['navigation', 'menu']}
   />
   <ComponentCard 
@@ -221,10 +251,34 @@ Components for organizing and structuring your application layout.
     tags={['overlay', 'panel']}
   />
   <ComponentCard 
+    title="Drawer" 
+    description="Mobile-friendly bottom and side sheets with drag handle"
+    href="/docs/components/drawer"
+    tags={['overlay', 'panel']}
+  />
+  <ComponentCard 
     title="Dialog" 
     description="Modal dialogs and overlays"
     href="/docs/components/dialog"
     tags={['overlay', 'modal']}
+  />
+  <ComponentCard 
+    title="Resizable" 
+    description="Drag-to-resize panel groups, horizontal and vertical"
+    href="/docs/components/resizable"
+    tags={['layout', 'panel']}
+  />
+  <ComponentCard 
+    title="Scroll Area" 
+    description="Cross-browser custom scrollbars for overflow content"
+    href="/docs/components/scroll-area"
+    tags={['layout', 'scroll']}
+  />
+  <ComponentCard 
+    title="Aspect Ratio" 
+    description="Maintain consistent width-to-height ratios for media"
+    href="/docs/components/aspect-ratio"
+    tags={['layout', 'media']}
   />
   <ComponentCard 
     title="Accordion" 
@@ -255,6 +309,24 @@ Components for displaying content, media, and user information.
     description="Small status indicators and labels"
     href="/docs/components/badge"
     tags={['display', 'status']}
+  />
+  <ComponentCard 
+    title="Typography" 
+    description="Semantic text components: headings, body, blockquote, code, list"
+    href="/docs/components/typography"
+    tags={['display', 'text']}
+  />
+  <ComponentCard 
+    title="Kbd" 
+    description="Styled keyboard key and shortcut display"
+    href="/docs/components/kbd"
+    tags={['display', 'text']}
+  />
+  <ComponentCard 
+    title="Hover Card" 
+    description="Rich preview cards triggered on hover"
+    href="/docs/components/hover-card"
+    tags={['overlay', 'display']}
   />
   <ComponentCard 
     title="Calendar" 

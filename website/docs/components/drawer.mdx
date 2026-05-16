@@ -1,0 +1,601 @@
+---
+id: drawer
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerOverlay,
+  DrawerPortal,
+  Button,
+} from "buildgrid-ui";
+import { useState } from 'react';
+
+# Drawer
+
+<StorybookLink path="components-drawer--default" />
+
+The `Drawer` component is a panel that slides in from any edge of the screen — bottom, top, left, or right. It is ideal for mobile-friendly bottom sheets, side navigation panels, confirmation dialogs, and forms that need more space than a modal dialog.
+
+## Bottom Sheet
+
+<ComponentDocSection
+  code={`import {
+  Drawer, DrawerTrigger, DrawerClose, DrawerContent,
+  DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription,
+  Button,
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function BottomSheet() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger asChild>
+        <Button>View Order Summary</Button>
+      </DrawerTrigger>
+      <DrawerContent direction="bottom">
+        <DrawerHeader>
+          <DrawerTitle>Order Summary</DrawerTitle>
+          <DrawerDescription>Review your items before confirming.</DrawerDescription>
+        </DrawerHeader>
+        <div className="p-4 space-y-3">
+          {[
+            { name: "Wireless Headphones", qty: 1, price: "$89.99" },
+            { name: "Phone Case", qty: 2, price: "$14.99" },
+            { name: "USB-C Cable", qty: 3, price: "$9.99" },
+          ].map((item) => (
+            <div key={item.name} className="flex items-center justify-between text-sm">
+              <span>{item.name} × {item.qty}</span>
+              <span className="font-medium">{item.price}</span>
+            </div>
+          ))}
+          <div className="border-t pt-3 flex justify-between font-semibold">
+            <span>Total</span>
+            <span>$129.95</span>
+          </div>
+        </div>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+          <Button>Confirm Order</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}`}
+>
+  {(() => {
+    const [open, setOpen] = useState(false);
+    return (
+      <Drawer open={open} onOpenChange={setOpen}>
+        <DrawerTrigger asChild>
+          <Button>View Order Summary</Button>
+        </DrawerTrigger>
+        <DrawerContent direction="bottom">
+          <DrawerHeader>
+            <DrawerTitle>Order Summary</DrawerTitle>
+            <DrawerDescription>Review your items before confirming.</DrawerDescription>
+          </DrawerHeader>
+          <div className="p-4 space-y-3">
+            {[
+              { name: "Wireless Headphones", qty: 1, price: "$89.99" },
+              { name: "Phone Case", qty: 2, price: "$14.99" },
+              { name: "USB-C Cable", qty: 3, price: "$9.99" },
+            ].map((item) => (
+              <div key={item.name} className="flex items-center justify-between text-sm">
+                <span>{item.name} × {item.qty}</span>
+                <span className="font-medium">{item.price}</span>
+              </div>
+            ))}
+            <div className="border-t pt-3 flex justify-between font-semibold">
+              <span>Total</span>
+              <span>$129.95</span>
+            </div>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+            <Button>Confirm Order</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  })()}
+</ComponentDocSection>
+
+## Right Panel
+
+<ComponentDocSection
+  code={`import {
+  Drawer, DrawerTrigger, DrawerClose, DrawerContent,
+  DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription,
+  Button,
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function RightPanel() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Details</Button>
+      </DrawerTrigger>
+      <DrawerContent direction="right">
+        <DrawerHeader>
+          <DrawerTitle>Project Details</DrawerTitle>
+          <DrawerDescription>Full information about this project.</DrawerDescription>
+        </DrawerHeader>
+        <div className="p-4 space-y-4 text-sm">
+          <div className="space-y-1">
+            <p className="font-medium text-muted-foreground uppercase text-xs tracking-wide">Name</p>
+            <p className="font-semibold">BuildGrid UI</p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-muted-foreground uppercase text-xs tracking-wide">Owner</p>
+            <p>Adriano Maringolo</p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-muted-foreground uppercase text-xs tracking-wide">Status</p>
+            <p className="text-green-600 font-medium">Active</p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-muted-foreground uppercase text-xs tracking-wide">Description</p>
+            <p className="text-muted-foreground">
+              A React component library built with Tailwind CSS and shadcn/ui primitives.
+            </p>
+          </div>
+        </div>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button variant="outline">Close</Button>
+          </DrawerClose>
+          <Button>Edit Project</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}`}
+>
+  {(() => {
+    const [open, setOpen] = useState(false);
+    return (
+      <Drawer open={open} onOpenChange={setOpen}>
+        <DrawerTrigger asChild>
+          <Button variant="outline">Open Details</Button>
+        </DrawerTrigger>
+        <DrawerContent direction="right">
+          <DrawerHeader>
+            <DrawerTitle>Project Details</DrawerTitle>
+            <DrawerDescription>Full information about this project.</DrawerDescription>
+          </DrawerHeader>
+          <div className="p-4 space-y-4 text-sm">
+            <div className="space-y-1">
+              <p className="font-medium text-muted-foreground uppercase text-xs tracking-wide">Name</p>
+              <p className="font-semibold">BuildGrid UI</p>
+            </div>
+            <div className="space-y-1">
+              <p className="font-medium text-muted-foreground uppercase text-xs tracking-wide">Owner</p>
+              <p>Adriano Maringolo</p>
+            </div>
+            <div className="space-y-1">
+              <p className="font-medium text-muted-foreground uppercase text-xs tracking-wide">Status</p>
+              <p className="text-green-600 font-medium">Active</p>
+            </div>
+            <div className="space-y-1">
+              <p className="font-medium text-muted-foreground uppercase text-xs tracking-wide">Description</p>
+              <p className="text-muted-foreground">
+                A React component library built with Tailwind CSS and shadcn/ui primitives.
+              </p>
+            </div>
+          </div>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button variant="outline">Close</Button>
+            </DrawerClose>
+            <Button>Edit Project</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  })()}
+</ComponentDocSection>
+
+## Left Sidebar
+
+<ComponentDocSection
+  code={`import {
+  Drawer, DrawerTrigger, DrawerClose, DrawerContent,
+  DrawerHeader, DrawerTitle, DrawerDescription,
+  Button,
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function LeftSidebar() {
+  const [open, setOpen] = useState(false);
+
+  const navItems = [
+    { label: "Dashboard", active: true },
+    { label: "Projects", active: false },
+    { label: "Team", active: false },
+    { label: "Reports", active: false },
+    { label: "Settings", active: false },
+  ];
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Navigation</Button>
+      </DrawerTrigger>
+      <DrawerContent direction="left">
+        <DrawerHeader>
+          <DrawerTitle>Navigation</DrawerTitle>
+          <DrawerDescription>Main application menu</DrawerDescription>
+        </DrawerHeader>
+        <nav className="p-4 space-y-1">
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              className={\`w-full text-left px-3 py-2 rounded-md text-sm transition-colors \${
+                item.active
+                  ? "bg-primary text-primary-foreground font-medium"
+                  : "hover:bg-muted text-foreground"
+              }\`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+        <div className="p-4 mt-auto border-t">
+          <DrawerClose asChild>
+            <Button variant="outline" className="w-full">Close</Button>
+          </DrawerClose>
+        </div>
+      </DrawerContent>
+    </Drawer>
+  );
+}`}
+>
+  {(() => {
+    const [open, setOpen] = useState(false);
+    const navItems = [
+      { label: "Dashboard", active: true },
+      { label: "Projects", active: false },
+      { label: "Team", active: false },
+      { label: "Reports", active: false },
+      { label: "Settings", active: false },
+    ];
+    return (
+      <Drawer open={open} onOpenChange={setOpen}>
+        <DrawerTrigger asChild>
+          <Button variant="outline">Open Navigation</Button>
+        </DrawerTrigger>
+        <DrawerContent direction="left">
+          <DrawerHeader>
+            <DrawerTitle>Navigation</DrawerTitle>
+            <DrawerDescription>Main application menu</DrawerDescription>
+          </DrawerHeader>
+          <nav className="p-4 space-y-1">
+            {navItems.map((item) => (
+              <button
+                key={item.label}
+                className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
+                  item.active
+                    ? "bg-primary text-primary-foreground font-medium"
+                    : "hover:bg-muted text-foreground"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+          <div className="p-4 mt-auto border-t">
+            <DrawerClose asChild>
+              <Button variant="outline" className="w-full">Close</Button>
+            </DrawerClose>
+          </div>
+        </DrawerContent>
+      </Drawer>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Form
+
+<ComponentDocSection
+  code={`import {
+  Drawer, DrawerTrigger, DrawerClose, DrawerContent,
+  DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription,
+  Button,
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function DrawerWithForm() {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setOpen(false);
+    setName("");
+    setEmail("");
+  };
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger asChild>
+        <Button>Invite Member</Button>
+      </DrawerTrigger>
+      <DrawerContent direction="bottom">
+        <DrawerHeader>
+          <DrawerTitle>Invite Team Member</DrawerTitle>
+          <DrawerDescription>
+            Fill in the details below to send an invitation.
+          </DrawerDescription>
+        </DrawerHeader>
+        <form onSubmit={handleSubmit} className="p-4 space-y-4">
+          <div className="space-y-1">
+            <label className="text-sm font-medium" htmlFor="drawer-name">Name</label>
+            <input
+              id="drawer-name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Jane Smith"
+              className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="text-sm font-medium" htmlFor="drawer-email">Email</label>
+            <input
+              id="drawer-email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="jane@example.com"
+              className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+            />
+          </div>
+        </form>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+          <Button onClick={handleSubmit} disabled={!name || !email}>
+            Send Invitation
+          </Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}`}
+>
+  {(() => {
+    const [open, setOpen] = useState(false);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+
+    const handleSubmit = (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      setOpen(false);
+      setName("");
+      setEmail("");
+    };
+
+    return (
+      <Drawer open={open} onOpenChange={setOpen}>
+        <DrawerTrigger asChild>
+          <Button>Invite Member</Button>
+        </DrawerTrigger>
+        <DrawerContent direction="bottom">
+          <DrawerHeader>
+            <DrawerTitle>Invite Team Member</DrawerTitle>
+            <DrawerDescription>
+              Fill in the details below to send an invitation.
+            </DrawerDescription>
+          </DrawerHeader>
+          <form onSubmit={handleSubmit} className="p-4 space-y-4">
+            <div className="space-y-1">
+              <label className="text-sm font-medium" htmlFor="drawer-name">Name</label>
+              <input
+                id="drawer-name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Jane Smith"
+                className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+            </div>
+            <div className="space-y-1">
+              <label className="text-sm font-medium" htmlFor="drawer-email">Email</label>
+              <input
+                id="drawer-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="jane@example.com"
+                className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+            </div>
+          </form>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+            <Button onClick={handleSubmit} disabled={!name || !email}>
+              Send Invitation
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+  })()}
+</ComponentDocSection>
+
+## Direction Variants
+
+<ComponentDocSection
+  code={`import {
+  Drawer, DrawerTrigger, DrawerClose, DrawerContent,
+  DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription,
+  Button,
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function DirectionVariants() {
+  const [direction, setDirection] = useState(null);
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {["bottom", "top", "left", "right"].map((dir) => (
+        <Drawer key={dir} open={direction === dir} onOpenChange={(o) => setDirection(o ? dir : null)}>
+          <DrawerTrigger asChild>
+            <Button variant="outline" className="capitalize" onClick={() => setDirection(dir)}>
+              {dir}
+            </Button>
+          </DrawerTrigger>
+          <DrawerContent direction={dir}>
+            <DrawerHeader>
+              <DrawerTitle className="capitalize">{dir} Drawer</DrawerTitle>
+              <DrawerDescription>This drawer slides in from the {dir}.</DrawerDescription>
+            </DrawerHeader>
+            <div className="p-4 text-sm text-muted-foreground">
+              Drawer content goes here. Use the <code>direction</code> prop on{" "}
+              <code>DrawerContent</code> to control which edge the panel appears from.
+            </div>
+            <DrawerFooter>
+              <DrawerClose asChild>
+                <Button variant="outline">Close</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [direction, setDirection] = useState(null);
+    return (
+      <div className="flex flex-wrap gap-2">
+        {["bottom", "top", "left", "right"].map((dir) => (
+          <Drawer key={dir} open={direction === dir} onOpenChange={(o) => setDirection(o ? dir : null)}>
+            <DrawerTrigger asChild>
+              <Button variant="outline" className="capitalize" onClick={() => setDirection(dir)}>
+                {dir}
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent direction={dir}>
+              <DrawerHeader>
+                <DrawerTitle className="capitalize">{dir} Drawer</DrawerTitle>
+                <DrawerDescription>This drawer slides in from the {dir}.</DrawerDescription>
+              </DrawerHeader>
+              <div className="p-4 text-sm text-muted-foreground">
+                Drawer content goes here. Use the <code>direction</code> prop on{" "}
+                <code>DrawerContent</code> to control which edge the panel appears from.
+              </div>
+              <DrawerFooter>
+                <DrawerClose asChild>
+                  <Button variant="outline">Close</Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Drawer`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | - | Controlled open state of the drawer. |
+| `onOpenChange` | `(open: boolean) => void` | - | Callback fired when the open state changes. |
+| `children` | `ReactNode` | - | Must include `DrawerTrigger` and `DrawerContent`. |
+
+### `DrawerContent`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `direction` | `"top"` \| `"bottom"` \| `"left"` \| `"right"` | `"bottom"` | Edge from which the drawer slides in. |
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Drawer body, typically `DrawerHeader`, content, and `DrawerFooter`. |
+
+### `DrawerTrigger`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `asChild` | `boolean` | `false` | Merges props onto the immediate child element instead of rendering a wrapper. |
+| `children` | `ReactNode` | - | The element that opens the drawer on click. |
+
+### `DrawerClose`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `asChild` | `boolean` | `false` | Merges props onto the immediate child element. |
+| `children` | `ReactNode` | - | The element that closes the drawer on click. |
+
+### `DrawerHeader`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Typically `DrawerTitle` and `DrawerDescription`. |
+
+### `DrawerFooter`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Action buttons, typically `DrawerClose` and a primary action. |
+
+### `DrawerTitle`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Title text for the drawer. |
+
+### `DrawerDescription`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Supplementary description text. |
+
+## Features
+
+### Direction Control
+The `direction` prop on `DrawerContent` determines which screen edge the panel slides from. All four directions — `top`, `bottom`, `left`, and `right` — are supported.
+
+### Controlled State
+The `Drawer` component is fully controlled via `open` and `onOpenChange`, giving you precise control over open/close logic including confirmation dialogs or form validation before closing.
+
+### Portal Rendering
+`DrawerPortal` renders the content outside the normal DOM tree, preventing clipping issues with `overflow: hidden` parent elements.
+
+## Common Use Cases
+
+- **Bottom sheets** — mobile-style action sheets and order summaries
+- **Side navigation** — collapsible left or right navigation drawers
+- **Detail panels** — contextual information panels that slide in alongside content
+- **Forms** — data entry forms with more space than a dialog
+- **Confirmations** — actions that require confirmation before proceeding

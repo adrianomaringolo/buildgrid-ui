@@ -1,5 +1,11 @@
 # BuildGrid UI — Developer Guide
 
+## Component registry
+
+`components-manifest.json` (repo root) is a machine-readable index of every component and block: exports, variants, key props, and a usage snippet. **Check it first** before exploring `src/` — it tells you what exists and what import path to use.
+
+---
+
 ## Tech stack
 
 - React component library — Tailwind CSS v4 + shadcn/ui primitives (Radix UI)

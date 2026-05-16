@@ -77,6 +77,27 @@ h2.anchor {
 h3.anchor {
 	font-size: 1.5rem;
 }
+
+/* Sidebar "New" badge */
+.sidebar-new-item .menu__link::after {
+	content: 'New';
+	display: inline-block;
+	background-color: #10b981;
+	color: #fff;
+	font-size: 0.55rem;
+	font-weight: 700;
+	line-height: 1;
+	padding: 2px 5px;
+	border-radius: 20px;
+	margin-left: 6px;
+	vertical-align: middle;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+[data-theme='dark'] .sidebar-new-item .menu__link::after {
+	background-color: #059669;
+}
 /* Version badge link styles */
 .version-badge-link {
 	cursor: pointer;

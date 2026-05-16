@@ -1,0 +1,676 @@
+---
+id: menubar
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarGroup, MenubarPortal, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarItem, MenubarCheckboxItem, MenubarRadioGroup, MenubarRadioItem, MenubarLabel, MenubarSeparator, MenubarShortcut } from "buildgrid-ui";
+import { FileText, Download, HelpCircle } from "lucide-react";
+import { useState } from "react";
+
+# Menubar
+
+<StorybookLink path="components-menubar--default" />
+
+The `Menubar` component renders a horizontal application-style menu bar — the kind found at the top of desktop applications. Built on Radix UI primitives, it supports keyboard navigation, submenus, checkboxes, radio groups, and keyboard shortcuts.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarShortcut,
+} from "buildgrid-ui";
+
+function BasicMenubar() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>
+            New
+            <MenubarShortcut>⌘N</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Open
+            <MenubarShortcut>⌘O</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Save
+            <MenubarShortcut>⌘S</MenubarShortcut>
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>
+            Undo
+            <MenubarShortcut>⌘Z</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>
+            Redo
+            <MenubarShortcut>⌘Y</MenubarShortcut>
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}`}
+>
+  <Menubar>
+    <MenubarMenu>
+      <MenubarTrigger>File</MenubarTrigger>
+      <MenubarContent>
+        <MenubarItem>
+          New
+          <MenubarShortcut>⌘N</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem>
+          Open
+          <MenubarShortcut>⌘O</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem>
+          Save
+          <MenubarShortcut>⌘S</MenubarShortcut>
+        </MenubarItem>
+      </MenubarContent>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger>Edit</MenubarTrigger>
+      <MenubarContent>
+        <MenubarItem>
+          Undo
+          <MenubarShortcut>⌘Z</MenubarShortcut>
+        </MenubarItem>
+        <MenubarSeparator />
+        <MenubarItem>
+          Redo
+          <MenubarShortcut>⌘Y</MenubarShortcut>
+        </MenubarItem>
+      </MenubarContent>
+    </MenubarMenu>
+  </Menubar>
+</ComponentDocSection>
+
+## Full Text Editor
+
+A realistic text-editor menubar with File, Edit, View, and Help menus, including submenus, checkboxes, and a radio group.
+
+<ComponentDocSection
+  code={`import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+  MenubarItem,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarLabel,
+  MenubarSeparator,
+  MenubarShortcut,
+} from "buildgrid-ui";
+import { FileText, Download, HelpCircle } from "lucide-react";
+import { useState } from "react";
+
+function FullTextEditorMenubar() {
+  const [showToolbar, setShowToolbar] = useState(true);
+  const [showStatusBar, setShowStatusBar] = useState(true);
+  const [theme, setTheme] = useState("system");
+
+  return (
+    <Menubar>
+      {/* File */}
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>
+            New
+            <MenubarShortcut>⌘N</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Open
+            <MenubarShortcut>⌘O</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Save
+            <MenubarShortcut>⌘S</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>Save As...</MenubarItem>
+          <MenubarSeparator />
+          <MenubarSub>
+            <MenubarSubTrigger>
+              <Download className="mr-2 h-4 w-4" />
+              Export As
+            </MenubarSubTrigger>
+            <MenubarSubContent>
+              <MenubarItem>PDF</MenubarItem>
+              <MenubarItem>HTML</MenubarItem>
+              <MenubarItem>Markdown</MenubarItem>
+            </MenubarSubContent>
+          </MenubarSub>
+          <MenubarSeparator />
+          <MenubarItem>Close</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+
+      {/* Edit */}
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>
+            Undo
+            <MenubarShortcut>⌘Z</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Redo
+            <MenubarShortcut>⌘Y</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>
+            Cut
+            <MenubarShortcut>⌘X</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Copy
+            <MenubarShortcut>⌘C</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Paste
+            <MenubarShortcut>⌘V</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>
+            Find
+            <MenubarShortcut>⌘F</MenubarShortcut>
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+
+      {/* View */}
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarCheckboxItem
+            checked={showToolbar}
+            onCheckedChange={setShowToolbar}
+          >
+            Show Toolbar
+          </MenubarCheckboxItem>
+          <MenubarCheckboxItem
+            checked={showStatusBar}
+            onCheckedChange={setShowStatusBar}
+          >
+            Show Status Bar
+          </MenubarCheckboxItem>
+          <MenubarSeparator />
+          <MenubarItem>
+            Zoom In
+            <MenubarShortcut>⌘+</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Zoom Out
+            <MenubarShortcut>⌘-</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          <MenubarLabel>Theme</MenubarLabel>
+          <MenubarRadioGroup value={theme} onValueChange={setTheme}>
+            <MenubarRadioItem value="light">Light</MenubarRadioItem>
+            <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
+            <MenubarRadioItem value="system">System</MenubarRadioItem>
+          </MenubarRadioGroup>
+        </MenubarContent>
+      </MenubarMenu>
+
+      {/* Help */}
+      <MenubarMenu>
+        <MenubarTrigger>Help</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>
+            <HelpCircle className="mr-2 h-4 w-4" />
+            Documentation
+          </MenubarItem>
+          <MenubarItem>Keyboard Shortcuts</MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>About</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}`}
+>
+  {(() => {
+    const [showToolbar, setShowToolbar] = useState(true);
+    const [showStatusBar, setShowStatusBar] = useState(true);
+    const [theme, setTheme] = useState("system");
+
+    return (
+      <Menubar>
+        <MenubarMenu>
+          <MenubarTrigger>File</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>
+              New
+              <MenubarShortcut>⌘N</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem>
+              Open
+              <MenubarShortcut>⌘O</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem>
+              Save
+              <MenubarShortcut>⌘S</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem>Save As...</MenubarItem>
+            <MenubarSeparator />
+            <MenubarSub>
+              <MenubarSubTrigger>
+                <Download className="mr-2 h-4 w-4" />
+                Export As
+              </MenubarSubTrigger>
+              <MenubarSubContent>
+                <MenubarItem>PDF</MenubarItem>
+                <MenubarItem>HTML</MenubarItem>
+                <MenubarItem>Markdown</MenubarItem>
+              </MenubarSubContent>
+            </MenubarSub>
+            <MenubarSeparator />
+            <MenubarItem>Close</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+
+        <MenubarMenu>
+          <MenubarTrigger>Edit</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>
+              Undo
+              <MenubarShortcut>⌘Z</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem>
+              Redo
+              <MenubarShortcut>⌘Y</MenubarShortcut>
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem>
+              Cut
+              <MenubarShortcut>⌘X</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem>
+              Copy
+              <MenubarShortcut>⌘C</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem>
+              Paste
+              <MenubarShortcut>⌘V</MenubarShortcut>
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem>
+              Find
+              <MenubarShortcut>⌘F</MenubarShortcut>
+            </MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+
+        <MenubarMenu>
+          <MenubarTrigger>View</MenubarTrigger>
+          <MenubarContent>
+            <MenubarCheckboxItem
+              checked={showToolbar}
+              onCheckedChange={setShowToolbar}
+            >
+              Show Toolbar
+            </MenubarCheckboxItem>
+            <MenubarCheckboxItem
+              checked={showStatusBar}
+              onCheckedChange={setShowStatusBar}
+            >
+              Show Status Bar
+            </MenubarCheckboxItem>
+            <MenubarSeparator />
+            <MenubarItem>
+              Zoom In
+              <MenubarShortcut>⌘+</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem>
+              Zoom Out
+              <MenubarShortcut>⌘-</MenubarShortcut>
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarLabel>Theme</MenubarLabel>
+            <MenubarRadioGroup value={theme} onValueChange={setTheme}>
+              <MenubarRadioItem value="light">Light</MenubarRadioItem>
+              <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
+              <MenubarRadioItem value="system">System</MenubarRadioItem>
+            </MenubarRadioGroup>
+          </MenubarContent>
+        </MenubarMenu>
+
+        <MenubarMenu>
+          <MenubarTrigger>Help</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>
+              <HelpCircle className="mr-2 h-4 w-4" />
+              Documentation
+            </MenubarItem>
+            <MenubarItem>Keyboard Shortcuts</MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem>About</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Checkboxes
+
+A stateful View menu demonstrating toggled `MenubarCheckboxItem` entries controlled with `useState`.
+
+<ComponentDocSection
+  code={`import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarCheckboxItem,
+  MenubarLabel,
+  MenubarSeparator,
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function CheckboxMenubar() {
+  const [showRuler, setShowRuler] = useState(false);
+  const [showGrid, setShowGrid] = useState(true);
+  const [showGuides, setShowGuides] = useState(false);
+  const [snapToGrid, setSnapToGrid] = useState(true);
+
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarLabel>Show</MenubarLabel>
+          <MenubarSeparator />
+          <MenubarCheckboxItem
+            checked={showRuler}
+            onCheckedChange={setShowRuler}
+          >
+            Ruler
+          </MenubarCheckboxItem>
+          <MenubarCheckboxItem
+            checked={showGrid}
+            onCheckedChange={setShowGrid}
+          >
+            Grid
+          </MenubarCheckboxItem>
+          <MenubarCheckboxItem
+            checked={showGuides}
+            onCheckedChange={setShowGuides}
+          >
+            Smart Guides
+          </MenubarCheckboxItem>
+          <MenubarSeparator />
+          <MenubarCheckboxItem
+            checked={snapToGrid}
+            onCheckedChange={setSnapToGrid}
+          >
+            Snap to Grid
+          </MenubarCheckboxItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}`}
+>
+  {(() => {
+    const [showRuler, setShowRuler] = useState(false);
+    const [showGrid, setShowGrid] = useState(true);
+    const [showGuides, setShowGuides] = useState(false);
+    const [snapToGrid, setSnapToGrid] = useState(true);
+
+    return (
+      <Menubar>
+        <MenubarMenu>
+          <MenubarTrigger>View</MenubarTrigger>
+          <MenubarContent>
+            <MenubarLabel>Show</MenubarLabel>
+            <MenubarSeparator />
+            <MenubarCheckboxItem
+              checked={showRuler}
+              onCheckedChange={setShowRuler}
+            >
+              Ruler
+            </MenubarCheckboxItem>
+            <MenubarCheckboxItem
+              checked={showGrid}
+              onCheckedChange={setShowGrid}
+            >
+              Grid
+            </MenubarCheckboxItem>
+            <MenubarCheckboxItem
+              checked={showGuides}
+              onCheckedChange={setShowGuides}
+            >
+              Smart Guides
+            </MenubarCheckboxItem>
+            <MenubarSeparator />
+            <MenubarCheckboxItem
+              checked={snapToGrid}
+              onCheckedChange={setSnapToGrid}
+            >
+              Snap to Grid
+            </MenubarCheckboxItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Radio Group
+
+A stateful example where a `MenubarRadioGroup` controls the active theme selection.
+
+<ComponentDocSection
+  code={`import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarLabel,
+  MenubarSeparator,
+} from "buildgrid-ui";
+import { useState } from "react";
+
+function RadioGroupMenubar() {
+  const [theme, setTheme] = useState("system");
+  const [fontSize, setFontSize] = useState("medium");
+
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>Appearance</MenubarTrigger>
+        <MenubarContent>
+          <MenubarLabel>Theme</MenubarLabel>
+          <MenubarRadioGroup value={theme} onValueChange={setTheme}>
+            <MenubarRadioItem value="light">Light</MenubarRadioItem>
+            <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
+            <MenubarRadioItem value="system">System</MenubarRadioItem>
+          </MenubarRadioGroup>
+          <MenubarSeparator />
+          <MenubarLabel>Font Size</MenubarLabel>
+          <MenubarRadioGroup value={fontSize} onValueChange={setFontSize}>
+            <MenubarRadioItem value="small">Small</MenubarRadioItem>
+            <MenubarRadioItem value="medium">Medium</MenubarRadioItem>
+            <MenubarRadioItem value="large">Large</MenubarRadioItem>
+          </MenubarRadioGroup>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}`}
+>
+  {(() => {
+    const [theme, setTheme] = useState("system");
+    const [fontSize, setFontSize] = useState("medium");
+
+    return (
+      <Menubar>
+        <MenubarMenu>
+          <MenubarTrigger>Appearance</MenubarTrigger>
+          <MenubarContent>
+            <MenubarLabel>Theme</MenubarLabel>
+            <MenubarRadioGroup value={theme} onValueChange={setTheme}>
+              <MenubarRadioItem value="light">Light</MenubarRadioItem>
+              <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
+              <MenubarRadioItem value="system">System</MenubarRadioItem>
+            </MenubarRadioGroup>
+            <MenubarSeparator />
+            <MenubarLabel>Font Size</MenubarLabel>
+            <MenubarRadioGroup value={fontSize} onValueChange={setFontSize}>
+              <MenubarRadioItem value="small">Small</MenubarRadioItem>
+              <MenubarRadioItem value="medium">Medium</MenubarRadioItem>
+              <MenubarRadioItem value="large">Large</MenubarRadioItem>
+            </MenubarRadioGroup>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `Menubar`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes. Renders as a horizontal `flex` bar with border and shadow. |
+| `children` | `React.ReactNode` | One or more `MenubarMenu` components. |
+
+### `MenubarMenu`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | A unique value for the menu (used when controlling the open menu externally). |
+| `children` | `React.ReactNode` | A `MenubarTrigger` + `MenubarContent` pair. |
+
+### `MenubarTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the trigger tab. |
+| `children` | `React.ReactNode` | The label text displayed in the menu bar. |
+
+### `MenubarContent`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for the dropdown panel. |
+| `align` | `"start"` \| `"center"` \| `"end"` | Alignment against the trigger. Default: `"start"`. |
+| `alignOffset` | `number` | Offset along the alignment axis. Default: `-4`. |
+| `sideOffset` | `number` | Distance from the trigger. Default: `8`. |
+
+### `MenubarItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `inset` | `boolean` | Adds left padding to align with items that have icons. |
+| `disabled` | `boolean` | When `true`, prevents interaction with the item. |
+| `onSelect` | `(event: Event) => void` | Event handler called when the item is selected. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `MenubarCheckboxItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `checked` | `boolean` \| `"indeterminate"` | The controlled checked state of the item. |
+| `onCheckedChange` | `(checked: boolean) => void` | Event handler called when the checked state changes. |
+| `disabled` | `boolean` | When `true`, prevents interaction with the item. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `MenubarRadioGroup`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | The controlled value of the selected radio item. |
+| `onValueChange` | `(value: string) => void` | Event handler called when the selected value changes. |
+
+### `MenubarRadioItem`
+
+| Property | Type | Description |
+|---|---|---|
+| `value` | `string` | The unique value of the radio item. |
+| `disabled` | `boolean` | When `true`, prevents interaction with the item. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `MenubarLabel`
+
+| Property | Type | Description |
+|---|---|---|
+| `inset` | `boolean` | Adds left padding to align the label with inset menu items. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `MenubarSeparator`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+
+### `MenubarShortcut`
+
+| Property | Type | Description |
+|---|---|---|
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The shortcut text displayed on the right side of a menu item (e.g., `⌘S`). |
+
+### `MenubarSubTrigger`
+
+| Property | Type | Description |
+|---|---|---|
+| `inset` | `boolean` | Adds left padding for alignment with items that have icons. |
+| `className` | `string` | Additional CSS classes for custom styling. |
+| `children` | `React.ReactNode` | The label for the submenu trigger. A chevron icon is appended automatically. |
+
+## Accessibility
+
+The Menubar component includes comprehensive accessibility features:
+
+- **Keyboard Navigation** - Arrow keys move between menus and items; Enter opens a menu or selects an item; Escape closes the open menu
+- **Focus Management** - Focus moves into the open menu and returns to the trigger on close
+- **Screen Reader Support** - ARIA `menubar`, `menu`, `menuitem`, `menuitemcheckbox`, and `menuitemradio` roles
+- **Type-ahead** - Typing a character jumps to the first matching item in the open menu
+- **Roving Tabindex** - Only the active trigger is focusable in the bar at any time
+
+## Common Use Cases
+
+The Menubar component is ideal for:
+
+- **Text and Code Editors** - File, Edit, View, and Help menus with shortcuts
+- **Design Tools** - Layer actions, view toggles, grid and guide options
+- **Admin Dashboards** - Navigation structure that mirrors a desktop application
+- **Data Tools** - Import, export, filter, and view configuration menus
+- **Settings Pages** - Organized preference panels with checkboxes and radio groups
+
+## Best Practices
+
+1. **Follow desktop conventions** - Users expect menu bar labels like File, Edit, View, Help
+2. **Group logically** - Use `MenubarSeparator` and `MenubarLabel` to organize related items
+3. **Include keyboard shortcuts** - Add `MenubarShortcut` for frequently used actions
+4. **Limit top-level menus** - Keep the bar readable; avoid more than 6-7 top-level triggers
+5. **Disable unavailable items** - Use `disabled` rather than hiding items to maintain layout stability
+6. **Use submenus sparingly** - One level of nesting is usually sufficient; avoid deeper hierarchies
+7. **Keep trigger labels short** - Single words like "File" or "View" work best in the bar

@@ -1,0 +1,376 @@
+---
+id: resizable
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "buildgrid-ui";
+
+# Resizable
+
+<StorybookLink path="components-resizable--default" />
+
+The `Resizable` components provide a set of drag-to-resize panels. `ResizablePanelGroup` establishes the layout direction, `ResizablePanel` defines each section with a default size, and `ResizableHandle` renders the draggable divider between panels. Sizes are expressed as percentages and always sum to 100.
+
+## Horizontal Panels
+
+<ComponentDocSection
+  code={`import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "buildgrid-ui";
+
+function HorizontalPanels() {
+  return (
+    <ResizablePanelGroup direction="horizontal" className="h-64 rounded-lg border">
+      <ResizablePanel defaultSize={30}>
+        <div className="flex h-full items-start justify-start p-4 bg-muted/40">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Sidebar</p>
+            <ul className="space-y-1 text-sm">
+              <li className="font-medium">Dashboard</li>
+              <li className="text-muted-foreground">Projects</li>
+              <li className="text-muted-foreground">Reports</li>
+              <li className="text-muted-foreground">Settings</li>
+            </ul>
+          </div>
+        </div>
+      </ResizablePanel>
+      <ResizableHandle />
+      <ResizablePanel defaultSize={70}>
+        <div className="flex h-full flex-col p-4 bg-background">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Main Content</p>
+          <p className="text-sm text-muted-foreground">
+            Drag the handle to resize the panels. The sidebar starts at 30% and the main area at 70%.
+          </p>
+        </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}`}
+>
+  <ResizablePanelGroup direction="horizontal" className="h-64 rounded-lg border">
+    <ResizablePanel defaultSize={30}>
+      <div className="flex h-full items-start justify-start p-4 bg-muted/40">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Sidebar</p>
+          <ul className="space-y-1 text-sm">
+            <li className="font-medium">Dashboard</li>
+            <li className="text-muted-foreground">Projects</li>
+            <li className="text-muted-foreground">Reports</li>
+            <li className="text-muted-foreground">Settings</li>
+          </ul>
+        </div>
+      </div>
+    </ResizablePanel>
+    <ResizableHandle />
+    <ResizablePanel defaultSize={70}>
+      <div className="flex h-full flex-col p-4 bg-background">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Main Content</p>
+        <p className="text-sm text-muted-foreground">
+          Drag the handle to resize the panels. The sidebar starts at 30% and the main area at 70%.
+        </p>
+      </div>
+    </ResizablePanel>
+  </ResizablePanelGroup>
+</ComponentDocSection>
+
+## Vertical Split
+
+<ComponentDocSection
+  code={`import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "buildgrid-ui";
+
+function VerticalSplit() {
+  return (
+    <ResizablePanelGroup direction="vertical" className="h-72 rounded-lg border">
+      <ResizablePanel defaultSize={60}>
+        <div className="flex h-full flex-col p-4 bg-background">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Editor</p>
+          <div className="flex-1 rounded-md bg-muted/40 p-3 font-mono text-xs text-muted-foreground">
+            <p>{"function greet(name) {"}</p>
+            <p>{"  return \`Hello, \${name}!\`;"}</p>
+            <p>{"}"}</p>
+          </div>
+        </div>
+      </ResizablePanel>
+      <ResizableHandle />
+      <ResizablePanel defaultSize={40}>
+        <div className="flex h-full flex-col p-4 bg-muted/20">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Terminal</p>
+          <div className="flex-1 rounded-md bg-black/90 p-3 font-mono text-xs text-green-400">
+            <p>$ node index.js</p>
+            <p>Hello, World!</p>
+          </div>
+        </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}`}
+>
+  <ResizablePanelGroup direction="vertical" className="h-72 rounded-lg border">
+    <ResizablePanel defaultSize={60}>
+      <div className="flex h-full flex-col p-4 bg-background">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Editor</p>
+        <div className="flex-1 rounded-md bg-muted/40 p-3 font-mono text-xs text-muted-foreground">
+          <p>{"function greet(name) {"}</p>
+          <p>{"  return `Hello, ${name}!`;"}</p>
+          <p>{"}"}</p>
+        </div>
+      </div>
+    </ResizablePanel>
+    <ResizableHandle />
+    <ResizablePanel defaultSize={40}>
+      <div className="flex h-full flex-col p-4 bg-muted/20">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Terminal</p>
+        <div className="flex-1 rounded-md bg-black/90 p-3 font-mono text-xs text-green-400">
+          <p>$ node index.js</p>
+          <p>Hello, World!</p>
+        </div>
+      </div>
+    </ResizablePanel>
+  </ResizablePanelGroup>
+</ComponentDocSection>
+
+## Three Panels
+
+<ComponentDocSection
+  code={`import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "buildgrid-ui";
+
+function ThreePanels() {
+  return (
+    <ResizablePanelGroup direction="horizontal" className="h-64 rounded-lg border">
+      <ResizablePanel defaultSize={20}>
+        <div className="flex h-full flex-col p-3 bg-muted/40">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Files</p>
+          <ul className="space-y-1 text-xs text-muted-foreground">
+            <li>index.tsx</li>
+            <li>styles.css</li>
+            <li>utils.ts</li>
+            <li>types.ts</li>
+          </ul>
+        </div>
+      </ResizablePanel>
+      <ResizableHandle />
+      <ResizablePanel defaultSize={60}>
+        <div className="flex h-full flex-col p-3 bg-background">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Editor</p>
+          <div className="flex-1 rounded-md bg-muted/20 p-3 font-mono text-xs text-foreground">
+            <p>{"// Main content area"}</p>
+            <p>{"export default function App() {"}</p>
+            <p>{"  return <div>Hello</div>;"}</p>
+            <p>{"}"}</p>
+          </div>
+        </div>
+      </ResizablePanel>
+      <ResizableHandle />
+      <ResizablePanel defaultSize={20}>
+        <div className="flex h-full flex-col p-3 bg-muted/40">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Properties</p>
+          <ul className="space-y-1 text-xs text-muted-foreground">
+            <li>Width: 320px</li>
+            <li>Height: auto</li>
+            <li>Color: #000</li>
+          </ul>
+        </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}`}
+>
+  <ResizablePanelGroup direction="horizontal" className="h-64 rounded-lg border">
+    <ResizablePanel defaultSize={20}>
+      <div className="flex h-full flex-col p-3 bg-muted/40">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Files</p>
+        <ul className="space-y-1 text-xs text-muted-foreground">
+          <li>index.tsx</li>
+          <li>styles.css</li>
+          <li>utils.ts</li>
+          <li>types.ts</li>
+        </ul>
+      </div>
+    </ResizablePanel>
+    <ResizableHandle />
+    <ResizablePanel defaultSize={60}>
+      <div className="flex h-full flex-col p-3 bg-background">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Editor</p>
+        <div className="flex-1 rounded-md bg-muted/20 p-3 font-mono text-xs text-foreground">
+          <p>{"// Main content area"}</p>
+          <p>{"export default function App() {"}</p>
+          <p>{"  return <div>Hello</div>;"}</p>
+          <p>{"}"}</p>
+        </div>
+      </div>
+    </ResizablePanel>
+    <ResizableHandle />
+    <ResizablePanel defaultSize={20}>
+      <div className="flex h-full flex-col p-3 bg-muted/40">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Properties</p>
+        <ul className="space-y-1 text-xs text-muted-foreground">
+          <li>Width: 320px</li>
+          <li>Height: auto</li>
+          <li>Color: #000</li>
+        </ul>
+      </div>
+    </ResizablePanel>
+  </ResizablePanelGroup>
+</ComponentDocSection>
+
+## With Grip Handle
+
+<ComponentDocSection
+  code={`import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "buildgrid-ui";
+
+function WithGripHandle() {
+  return (
+    <ResizablePanelGroup direction="horizontal" className="h-48 rounded-lg border">
+      <ResizablePanel defaultSize={40}>
+        <div className="flex h-full items-center justify-center bg-muted/30">
+          <p className="text-sm text-muted-foreground">Left Panel (40%)</p>
+        </div>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={60}>
+        <div className="flex h-full items-center justify-center bg-background">
+          <p className="text-sm text-muted-foreground">Right Panel (60%)</p>
+        </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}`}
+>
+  <ResizablePanelGroup direction="horizontal" className="h-48 rounded-lg border">
+    <ResizablePanel defaultSize={40}>
+      <div className="flex h-full items-center justify-center bg-muted/30">
+        <p className="text-sm text-muted-foreground">Left Panel (40%)</p>
+      </div>
+    </ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel defaultSize={60}>
+      <div className="flex h-full items-center justify-center bg-background">
+        <p className="text-sm text-muted-foreground">Right Panel (60%)</p>
+      </div>
+    </ResizablePanel>
+  </ResizablePanelGroup>
+</ComponentDocSection>
+
+## Nested Panels
+
+<ComponentDocSection
+  code={`import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "buildgrid-ui";
+
+function NestedPanels() {
+  return (
+    <ResizablePanelGroup direction="horizontal" className="h-72 rounded-lg border">
+      <ResizablePanel defaultSize={35}>
+        <div className="flex h-full flex-col p-4 bg-muted/30">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">Left Panel</p>
+          <p className="text-sm text-muted-foreground">
+            This panel is a standard fixed panel on the left side of the layout.
+          </p>
+        </div>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={65}>
+        <ResizablePanelGroup direction="vertical">
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full flex-col p-4 bg-background">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Top Right</p>
+              <p className="text-sm text-muted-foreground">
+                Upper section of the nested vertical split.
+              </p>
+            </div>
+          </ResizablePanel>
+          <ResizableHandle />
+          <ResizablePanel defaultSize={50}>
+            <div className="flex h-full flex-col p-4 bg-muted/20">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Bottom Right</p>
+              <p className="text-sm text-muted-foreground">
+                Lower section — e.g., a terminal or output area.
+              </p>
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}`}
+>
+  <ResizablePanelGroup direction="horizontal" className="h-72 rounded-lg border">
+    <ResizablePanel defaultSize={35}>
+      <div className="flex h-full flex-col p-4 bg-muted/30">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">Left Panel</p>
+        <p className="text-sm text-muted-foreground">
+          This panel is a standard fixed panel on the left side of the layout.
+        </p>
+      </div>
+    </ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel defaultSize={65}>
+      <ResizablePanelGroup direction="vertical">
+        <ResizablePanel defaultSize={50}>
+          <div className="flex h-full flex-col p-4 bg-background">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Top Right</p>
+            <p className="text-sm text-muted-foreground">
+              Upper section of the nested vertical split.
+            </p>
+          </div>
+        </ResizablePanel>
+        <ResizableHandle />
+        <ResizablePanel defaultSize={50}>
+          <div className="flex h-full flex-col p-4 bg-muted/20">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">Bottom Right</p>
+            <p className="text-sm text-muted-foreground">
+              Lower section — e.g., a terminal or output area.
+            </p>
+          </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
+    </ResizablePanel>
+  </ResizablePanelGroup>
+</ComponentDocSection>
+
+## Properties
+
+### `ResizablePanelGroup`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `direction` | `"horizontal"` \| `"vertical"` | - | Layout axis for the child panels. |
+| `className` | `string` | - | Additional CSS classes applied to the group container. |
+| `children` | `ReactNode` | - | `ResizablePanel` and `ResizableHandle` elements. |
+
+### `ResizablePanel`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `defaultSize` | `number` | - | Initial size of the panel as a percentage (0–100). All sibling panels must sum to 100. |
+| `minSize` | `number` | - | Minimum size the panel can be dragged to (percentage). |
+| `maxSize` | `number` | - | Maximum size the panel can be dragged to (percentage). |
+| `className` | `string` | - | Additional CSS classes. |
+| `children` | `ReactNode` | - | Panel content. |
+
+### `ResizableHandle`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `withHandle` | `boolean` | `false` | Renders a visible grip icon in the center of the handle for discoverability. |
+| `className` | `string` | - | Additional CSS classes applied to the handle element. |
+
+## Features
+
+### Drag to Resize
+Panels can be resized by dragging the `ResizableHandle` between them. The handle spans the full width (horizontal) or height (vertical) of the group.
+
+### Keyboard Accessible
+The resize handle is focusable and responds to arrow keys, enabling accessible resizing without a mouse.
+
+### Nestable
+`ResizablePanelGroup` components can be nested inside `ResizablePanel` to create complex grid-like layouts (e.g., a three-pane IDE layout).
+
+### Grip Icon
+Pass `withHandle` on `ResizableHandle` to show a visible grip icon, which improves discoverability for users unfamiliar with drag-to-resize interfaces.
+
+## Common Use Cases
+
+- **IDE layouts** — file explorer + code editor + terminal panels
+- **Email clients** — folder list + message list + reading pane
+- **Dashboards** — configurable widget panels
+- **Design tools** — canvas + properties panel + layers panel
+- **Data exploration** — filters panel + data grid + detail view

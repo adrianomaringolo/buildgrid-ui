@@ -1,0 +1,348 @@
+---
+id: hover-card
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+  Avatar,
+  AvatarFallback,
+  Badge,
+} from "buildgrid-ui";
+import { CalendarDays, GitFork, Star, Circle } from 'lucide-react';
+
+# Hover Card
+
+<StorybookLink path="components-hover-card--default" />
+
+`HoverCard` displays rich preview content in a floating card when a user hovers over a trigger element. It renders in a Portal so it is never clipped by overflow constraints, and supports configurable open/close delays for fine-tuned timing.
+
+:::note Live demo note
+The demos below use `defaultOpen` so the card content is visible without needing to hover. Remove `defaultOpen` in your own application to get the standard hover behavior.
+:::
+
+## Basic Usage
+
+A username link that reveals a user profile card on hover — including an avatar placeholder, display name, bio, and join date.
+
+<ComponentDocSection
+  code={`import { HoverCard, HoverCardTrigger, HoverCardContent } from "buildgrid-ui";
+import { CalendarDays } from "lucide-react";
+
+function UserProfileCard() {
+  return (
+    <HoverCard defaultOpen>
+      <HoverCardTrigger asChild>
+        <a href="#" className="text-sm font-medium underline underline-offset-4">
+          @sarahjohnson
+        </a>
+      </HoverCardTrigger>
+      <HoverCardContent className="w-80">
+        <div className="flex gap-4">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-muted font-semibold">
+            SJ
+          </div>
+          <div className="space-y-1">
+            <h4 className="text-sm font-semibold">Sarah Johnson</h4>
+            <p className="text-sm text-muted-foreground">
+              Product designer at Acme Corp. Obsessed with design systems and
+              accessible interfaces.
+            </p>
+            <div className="flex items-center gap-1 pt-1 text-xs text-muted-foreground">
+              <CalendarDays className="h-3.5 w-3.5" />
+              <span>Joined March 2021</span>
+            </div>
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  );
+}`}
+>
+  <HoverCard defaultOpen>
+    <HoverCardTrigger asChild>
+      <a href="#" className="text-sm font-medium underline underline-offset-4">
+        @sarahjohnson
+      </a>
+    </HoverCardTrigger>
+    <HoverCardContent className="w-80">
+      <div className="flex gap-4">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-muted font-semibold">
+          SJ
+        </div>
+        <div className="space-y-1">
+          <h4 className="text-sm font-semibold">Sarah Johnson</h4>
+          <p className="text-sm text-muted-foreground">
+            Product designer at Acme Corp. Obsessed with design systems and accessible interfaces.
+          </p>
+          <div className="flex items-center gap-1 pt-1 text-xs text-muted-foreground">
+            <CalendarDays className="h-3.5 w-3.5" />
+            <span>Joined March 2021</span>
+          </div>
+        </div>
+      </div>
+    </HoverCardContent>
+  </HoverCard>
+</ComponentDocSection>
+
+## Repository Preview
+
+A GitHub-style hover card showing repository metadata — stars, forks, language, and a short description — when hovering over a repo link.
+
+<ComponentDocSection
+  code={`import { HoverCard, HoverCardTrigger, HoverCardContent } from "buildgrid-ui";
+import { Star, GitFork, Circle } from "lucide-react";
+
+function RepoPreviewCard() {
+  return (
+    <HoverCard defaultOpen>
+      <HoverCardTrigger asChild>
+        <a href="#" className="text-sm font-medium text-blue-600 underline underline-offset-4 dark:text-blue-400">
+          buildgrid-ui/buildgrid-ui
+        </a>
+      </HoverCardTrigger>
+      <HoverCardContent className="w-80">
+        <div className="space-y-3">
+          <div>
+            <h4 className="text-sm font-semibold">buildgrid-ui/buildgrid-ui</h4>
+            <p className="mt-1 text-sm text-muted-foreground">
+              A comprehensive React component library built on top of Radix UI and
+              Tailwind CSS with a focus on accessibility and developer experience.
+            </p>
+          </div>
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1">
+              <Circle className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+              TypeScript
+            </span>
+            <span className="flex items-center gap-1">
+              <Star className="h-3.5 w-3.5" />
+              1.2k
+            </span>
+            <span className="flex items-center gap-1">
+              <GitFork className="h-3.5 w-3.5" />
+              94
+            </span>
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  );
+}`}
+>
+  <HoverCard defaultOpen>
+    <HoverCardTrigger asChild>
+      <a href="#" className="text-sm font-medium text-blue-600 underline underline-offset-4 dark:text-blue-400">
+        buildgrid-ui/buildgrid-ui
+      </a>
+    </HoverCardTrigger>
+    <HoverCardContent className="w-80">
+      <div className="space-y-3">
+        <div>
+          <h4 className="text-sm font-semibold">buildgrid-ui/buildgrid-ui</h4>
+          <p className="mt-1 text-sm text-muted-foreground">
+            A comprehensive React component library built on top of Radix UI and Tailwind CSS
+            with a focus on accessibility and developer experience.
+          </p>
+        </div>
+        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <Circle className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+            TypeScript
+          </span>
+          <span className="flex items-center gap-1">
+            <Star className="h-3.5 w-3.5" />
+            1.2k
+          </span>
+          <span className="flex items-center gap-1">
+            <GitFork className="h-3.5 w-3.5" />
+            94
+          </span>
+        </div>
+      </div>
+    </HoverCardContent>
+  </HoverCard>
+</ComponentDocSection>
+
+## Align Variants
+
+`HoverCardContent` accepts an `align` prop (`"start"`, `"center"`, `"end"`) to control how the card aligns relative to the trigger.
+
+<ComponentDocSection
+  code={`import { HoverCard, HoverCardTrigger, HoverCardContent } from "buildgrid-ui";
+
+function AlignVariants() {
+  return (
+    <div className="flex gap-4">
+      {(["start", "center", "end"] as const).map((align) => (
+        <HoverCard key={align} defaultOpen>
+          <HoverCardTrigger asChild>
+            <button
+              type="button"
+              className="rounded-md border px-3 py-1.5 text-sm font-medium hover:bg-muted"
+            >
+              {align}
+            </button>
+          </HoverCardTrigger>
+          <HoverCardContent align={align} className="text-sm">
+            <p className="font-medium capitalize">{align} aligned</p>
+            <p className="mt-1 text-muted-foreground text-xs">
+              The card is aligned to the <strong>{align}</strong> of the trigger.
+            </p>
+          </HoverCardContent>
+        </HoverCard>
+      ))}
+    </div>
+  );
+}`}
+>
+  <div className="flex gap-4">
+    {[["start", "start"], ["center", "center"], ["end", "end"]].map(([align, label]) => (
+      <HoverCard key={align} defaultOpen>
+        <HoverCardTrigger asChild>
+          <button
+            type="button"
+            className="rounded-md border px-3 py-1.5 text-sm font-medium hover:bg-muted"
+          >
+            {label}
+          </button>
+        </HoverCardTrigger>
+        <HoverCardContent align={align} className="text-sm">
+          <p className="font-medium capitalize">{align} aligned</p>
+          <p className="mt-1 text-muted-foreground text-xs">
+            The card is aligned to the <strong>{align}</strong> of the trigger.
+          </p>
+        </HoverCardContent>
+      </HoverCard>
+    ))}
+  </div>
+</ComponentDocSection>
+
+## With Delay
+
+Use `openDelay` and `closeDelay` on the `HoverCard` root to control how quickly the card opens and closes after the cursor enters or leaves the trigger.
+
+<ComponentDocSection
+  code={`import { HoverCard, HoverCardTrigger, HoverCardContent } from "buildgrid-ui";
+
+function DelayedHoverCard() {
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="space-y-1">
+        <p className="text-xs text-muted-foreground">openDelay=200, closeDelay=100</p>
+        <HoverCard openDelay={200} closeDelay={100} defaultOpen>
+          <HoverCardTrigger asChild>
+            <button
+              type="button"
+              className="rounded-md border px-3 py-1.5 text-sm font-medium hover:bg-muted"
+            >
+              Hover me (fast)
+            </button>
+          </HoverCardTrigger>
+          <HoverCardContent className="text-sm">
+            <p className="font-medium">Fast timing</p>
+            <p className="mt-1 text-muted-foreground text-xs">
+              Opens after 200 ms, closes after 100 ms.
+            </p>
+          </HoverCardContent>
+        </HoverCard>
+      </div>
+
+      <div className="space-y-1">
+        <p className="text-xs text-muted-foreground">openDelay=700, closeDelay=400</p>
+        <HoverCard openDelay={700} closeDelay={400}>
+          <HoverCardTrigger asChild>
+            <button
+              type="button"
+              className="rounded-md border px-3 py-1.5 text-sm font-medium hover:bg-muted"
+            >
+              Hover me (slow)
+            </button>
+          </HoverCardTrigger>
+          <HoverCardContent className="text-sm">
+            <p className="font-medium">Slow timing</p>
+            <p className="mt-1 text-muted-foreground text-xs">
+              Opens after 700 ms, closes after 400 ms.
+            </p>
+          </HoverCardContent>
+        </HoverCard>
+      </div>
+    </div>
+  );
+}`}
+>
+  <div className="flex flex-col gap-6">
+    <div className="space-y-1">
+      <p className="text-xs text-muted-foreground">openDelay=200, closeDelay=100</p>
+      <HoverCard openDelay={200} closeDelay={100} defaultOpen>
+        <HoverCardTrigger asChild>
+          <button
+            type="button"
+            className="rounded-md border px-3 py-1.5 text-sm font-medium hover:bg-muted"
+          >
+            Hover me (fast)
+          </button>
+        </HoverCardTrigger>
+        <HoverCardContent className="text-sm">
+          <p className="font-medium">Fast timing</p>
+          <p className="mt-1 text-muted-foreground text-xs">
+            Opens after 200 ms, closes after 100 ms.
+          </p>
+        </HoverCardContent>
+      </HoverCard>
+    </div>
+    <div className="space-y-1">
+      <p className="text-xs text-muted-foreground">openDelay=700, closeDelay=400</p>
+      <HoverCard openDelay={700} closeDelay={400}>
+        <HoverCardTrigger asChild>
+          <button
+            type="button"
+            className="rounded-md border px-3 py-1.5 text-sm font-medium hover:bg-muted"
+          >
+            Hover me (slow)
+          </button>
+        </HoverCardTrigger>
+        <HoverCardContent className="text-sm">
+          <p className="font-medium">Slow timing</p>
+          <p className="mt-1 text-muted-foreground text-xs">
+            Opens after 700 ms, closes after 400 ms.
+          </p>
+        </HoverCardContent>
+      </HoverCard>
+    </div>
+  </div>
+</ComponentDocSection>
+
+## Properties
+
+### `HoverCard`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `defaultOpen` | `boolean` | `false` | Whether the card is open on initial render (uncontrolled). |
+| `open` | `boolean` | - | Controlled open state. |
+| `onOpenChange` | `(open: boolean) => void` | - | Callback fired when the open state changes. |
+| `openDelay` | `number` | `700` | Milliseconds to wait before opening the card after the cursor enters the trigger. |
+| `closeDelay` | `number` | `300` | Milliseconds to wait before closing the card after the cursor leaves. |
+
+### `HoverCardTrigger`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `asChild` | `boolean` | `false` | Merges props onto the child element instead of wrapping it in a `<span>`. Use with `<a>`, `<button>`, or router links. |
+| `children` | `ReactNode` | - | The element that triggers the hover card. |
+
+### `HoverCardContent`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `align` | `"start"` \| `"center"` \| `"end"` | `"center"` | Alignment of the card relative to the trigger. |
+| `sideOffset` | `number` | `4` | Distance in pixels between the trigger and the card. |
+| `side` | `"top"` \| `"right"` \| `"bottom"` \| `"left"` | `"bottom"` | Preferred side for the card to appear. |
+| `className` | `string` | - | Additional CSS classes. The default width is `w-64`. |
+| `children` | `ReactNode` | - | Card content. |
+
+`HoverCardContent` renders inside a Portal, so it is never clipped by ancestor `overflow: hidden` styles.

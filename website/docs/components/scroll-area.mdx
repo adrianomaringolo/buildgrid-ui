@@ -1,0 +1,286 @@
+---
+id: scroll-area
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { ScrollArea, ScrollBar, Badge } from "buildgrid-ui";
+
+# Scroll Area
+
+<StorybookLink path="components-scroll-area--default" />
+
+`ScrollArea` wraps scrollable content in a custom viewport with consistently styled scrollbars across all browsers and operating systems. It replaces native `overflow-auto` wherever a uniform cross-platform appearance is needed.
+
+## Basic Usage
+
+Set a fixed height on `ScrollArea` to create a vertically scrollable region. The styled scrollbar appears automatically.
+
+<ComponentDocSection
+  code={`import { ScrollArea } from "buildgrid-ui";
+
+function BasicScrollArea() {
+  const items = Array.from({ length: 25 }, (_, i) => \`Item \${i + 1}\`);
+
+  return (
+    <ScrollArea className="h-72 w-48 rounded-md border">
+      <div className="p-4">
+        <h4 className="mb-4 text-sm font-medium leading-none">Items</h4>
+        {items.map((item) => (
+          <div key={item} className="text-sm py-2 border-b last:border-b-0">
+            {item}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+  );
+}`}
+>
+  {(() => {
+    const items = Array.from({ length: 25 }, (_, i) => `Item ${i + 1}`);
+    return (
+      <ScrollArea className="h-72 w-48 rounded-md border">
+        <div className="p-4">
+          <h4 className="mb-4 text-sm font-medium leading-none">Items</h4>
+          {items.map((item) => (
+            <div key={item} className="text-sm py-2 border-b last:border-b-0">
+              {item}
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+    );
+  })()}
+</ComponentDocSection>
+
+## Horizontal Scroll
+
+Add `<ScrollBar orientation="horizontal" />` and use `whitespace-nowrap` on the inner content to enable horizontal scrolling.
+
+<ComponentDocSection
+  code={`import { ScrollArea, ScrollBar } from "buildgrid-ui";
+
+function HorizontalScrollArea() {
+  const tags = [
+    "React", "TypeScript", "Tailwind CSS", "Next.js", "Radix UI",
+    "Zustand", "TanStack Query", "Storybook", "Vite", "ESLint",
+    "Prettier", "Vitest", "shadcn/ui", "Framer Motion", "Zod",
+  ];
+
+  return (
+    <ScrollArea className="w-80 whitespace-nowrap rounded-md border">
+      <div className="flex w-max gap-3 p-4">
+        {tags.map((tag) => (
+          <div
+            key={tag}
+            className="flex items-center justify-center rounded-md border px-3 py-1.5 text-sm font-medium"
+          >
+            {tag}
+          </div>
+        ))}
+      </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
+  );
+}`}
+>
+  {(() => {
+    const tags = [
+      "React", "TypeScript", "Tailwind CSS", "Next.js", "Radix UI",
+      "Zustand", "TanStack Query", "Storybook", "Vite", "ESLint",
+      "Prettier", "Vitest", "shadcn/ui", "Framer Motion", "Zod",
+    ];
+    return (
+      <ScrollArea className="w-80 whitespace-nowrap rounded-md border">
+        <div className="flex w-max gap-3 p-4">
+          {tags.map((tag) => (
+            <div
+              key={tag}
+              className="flex items-center justify-center rounded-md border px-3 py-1.5 text-sm font-medium"
+            >
+              {tag}
+            </div>
+          ))}
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+    );
+  })()}
+</ComponentDocSection>
+
+## Fixed Height List
+
+A contact list pattern with avatar placeholders, names, and email addresses in a fixed-height scrollable container.
+
+<ComponentDocSection
+  code={`import { ScrollArea } from "buildgrid-ui";
+
+function ContactList() {
+  const contacts = [
+    { name: "Alice Johnson", email: "alice@example.com" },
+    { name: "Bob Williams", email: "bob@example.com" },
+    { name: "Carol Martinez", email: "carol@example.com" },
+    { name: "David Brown", email: "david@example.com" },
+    { name: "Emma Davis", email: "emma@example.com" },
+    { name: "Frank Wilson", email: "frank@example.com" },
+    { name: "Grace Taylor", email: "grace@example.com" },
+    { name: "Henry Anderson", email: "henry@example.com" },
+    { name: "Isabel Thomas", email: "isabel@example.com" },
+    { name: "Jack Jackson", email: "jack@example.com" },
+  ];
+
+  return (
+    <ScrollArea className="h-64 w-full max-w-sm rounded-md border">
+      <div className="p-2">
+        {contacts.map((contact) => (
+          <div
+            key={contact.email}
+            className="flex items-center gap-3 rounded-md p-2 hover:bg-muted"
+          >
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted font-medium text-sm">
+              {contact.name.split(" ").map((n) => n[0]).join("")}
+            </div>
+            <div className="overflow-hidden">
+              <p className="text-sm font-medium leading-none">{contact.name}</p>
+              <p className="text-xs text-muted-foreground mt-1 truncate">{contact.email}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+  );
+}`}
+>
+  {(() => {
+    const contacts = [
+      { name: "Alice Johnson", email: "alice@example.com" },
+      { name: "Bob Williams", email: "bob@example.com" },
+      { name: "Carol Martinez", email: "carol@example.com" },
+      { name: "David Brown", email: "david@example.com" },
+      { name: "Emma Davis", email: "emma@example.com" },
+      { name: "Frank Wilson", email: "frank@example.com" },
+      { name: "Grace Taylor", email: "grace@example.com" },
+      { name: "Henry Anderson", email: "henry@example.com" },
+      { name: "Isabel Thomas", email: "isabel@example.com" },
+      { name: "Jack Jackson", email: "jack@example.com" },
+    ];
+    return (
+      <ScrollArea className="h-64 w-full max-w-sm rounded-md border">
+        <div className="p-2">
+          {contacts.map((contact) => (
+            <div
+              key={contact.email}
+              className="flex items-center gap-3 rounded-md p-2 hover:bg-muted"
+            >
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted font-medium text-sm">
+                {contact.name.split(" ").map((n) => n[0]).join("")}
+              </div>
+              <div className="overflow-hidden">
+                <p className="text-sm font-medium leading-none">{contact.name}</p>
+                <p className="text-xs text-muted-foreground mt-1 truncate">{contact.email}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+    );
+  })()}
+</ComponentDocSection>
+
+## Long Content
+
+Ideal for terms of service, policy text, or any prose that must be contained within a fixed-size box.
+
+<ComponentDocSection
+  code={`import { ScrollArea } from "buildgrid-ui";
+
+function TermsScrollArea() {
+  return (
+    <ScrollArea className="h-48 w-full max-w-sm rounded-md border p-4">
+      <div className="space-y-3 text-sm">
+        <h4 className="font-semibold">Terms of Service</h4>
+        <p>
+          By accessing or using our service, you agree to be bound by these Terms.
+          If you do not agree to all of these Terms, do not use the service.
+        </p>
+        <p>
+          We reserve the right to update these Terms at any time. Changes become
+          effective immediately upon posting. Your continued use of the service
+          constitutes acceptance of the revised Terms.
+        </p>
+        <p>
+          You are responsible for maintaining the confidentiality of your account
+          credentials and for all activities that occur under your account.
+        </p>
+        <p>
+          We may suspend or terminate your access to the service at any time,
+          for any reason, without notice or liability.
+        </p>
+        <p>
+          All content provided on this service is for informational purposes only.
+          We make no warranties regarding the accuracy or completeness of the
+          information presented.
+        </p>
+        <p>
+          To the fullest extent permitted by law, we disclaim all warranties,
+          express or implied, including warranties of merchantability and fitness
+          for a particular purpose.
+        </p>
+      </div>
+    </ScrollArea>
+  );
+}`}
+>
+  <ScrollArea className="h-48 w-full max-w-sm rounded-md border p-4">
+    <div className="space-y-3 text-sm">
+      <h4 className="font-semibold">Terms of Service</h4>
+      <p>
+        By accessing or using our service, you agree to be bound by these Terms.
+        If you do not agree to all of these Terms, do not use the service.
+      </p>
+      <p>
+        We reserve the right to update these Terms at any time. Changes become
+        effective immediately upon posting. Your continued use of the service
+        constitutes acceptance of the revised Terms.
+      </p>
+      <p>
+        You are responsible for maintaining the confidentiality of your account
+        credentials and for all activities that occur under your account.
+      </p>
+      <p>
+        We may suspend or terminate your access to the service at any time,
+        for any reason, without notice or liability.
+      </p>
+      <p>
+        All content provided on this service is for informational purposes only.
+        We make no warranties regarding the accuracy or completeness of the
+        information presented.
+      </p>
+      <p>
+        To the fullest extent permitted by law, we disclaim all warranties,
+        express or implied, including warranties of merchantability and fitness
+        for a particular purpose.
+      </p>
+    </div>
+  </ScrollArea>
+</ComponentDocSection>
+
+## Properties
+
+### `ScrollArea`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | - | Additional CSS classes applied to the root element. Use to set `h-*` / `w-*` constraints. |
+| `children` | `ReactNode` | - | Scrollable content. Include a `<ScrollBar>` child for custom orientation. |
+
+All props from `@radix-ui/react-scroll-area` Root are forwarded.
+
+### `ScrollBar`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `orientation` | `"vertical"` \| `"horizontal"` | `"vertical"` | Direction of the scrollbar. |
+| `className` | `string` | - | Additional CSS classes for the scrollbar track. |
+
+A vertical `ScrollBar` is rendered automatically inside `ScrollArea`. Add a second `<ScrollBar orientation="horizontal" />` as a child when horizontal scrolling is needed.

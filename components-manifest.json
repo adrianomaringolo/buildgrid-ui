@@ -1,0 +1,791 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_comment": "Machine-readable registry for AI agents. Update when adding/removing components.",
+  "version": "1.0.0",
+  "generatedAt": "2026-05-15",
+  "importRoot": "@/components",
+  "blocksRoot": "@/blocks",
+  "components": [
+    {
+      "name": "Accordion",
+      "importPath": "@/components/accordion",
+      "exports": ["Accordion", "AccordionContent", "AccordionItem", "AccordionTrigger"],
+      "radixPrimitive": "@radix-ui/react-accordion",
+      "useClient": true,
+      "usage": "<Accordion type=\"single\" collapsible><AccordionItem value=\"item-1\"><AccordionTrigger>Label</AccordionTrigger><AccordionContent>Content</AccordionContent></AccordionItem></Accordion>"
+    },
+    {
+      "name": "AdaptiveInput",
+      "importPath": "@/components/adaptive-input",
+      "exports": ["AdaptiveInput"],
+      "useClient": false,
+      "props": {
+        "leftIcon": "ReactNode",
+        "rightIcon": "ReactNode",
+        "mask": "string"
+      },
+      "extends": "InputProps",
+      "usage": "<AdaptiveInput leftIcon={<SearchIcon />} placeholder=\"Search…\" />"
+    },
+    {
+      "name": "Alert",
+      "importPath": "@/components/alert",
+      "exports": ["Alert", "AlertProps"],
+      "useClient": true,
+      "variants": {
+        "variant": ["info", "warning", "error", "success", "tip"]
+      },
+      "usage": "<Alert variant=\"success\">Operation completed.</Alert>"
+    },
+    {
+      "name": "AlertDialog",
+      "importPath": "@/components/alert-dialog",
+      "exports": [
+        "AlertDialog", "AlertDialogTrigger", "AlertDialogPortal", "AlertDialogOverlay",
+        "AlertDialogContent", "AlertDialogHeader", "AlertDialogFooter",
+        "AlertDialogTitle", "AlertDialogDescription", "AlertDialogAction", "AlertDialogCancel"
+      ],
+      "radixPrimitive": "@radix-ui/react-alert-dialog",
+      "usage": "<AlertDialog><AlertDialogTrigger>Delete</AlertDialogTrigger><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Are you sure?</AlertDialogTitle><AlertDialogDescription>This cannot be undone.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Cancel</AlertDialogCancel><AlertDialogAction>Continue</AlertDialogAction></AlertDialogFooter></AlertDialogContent></AlertDialog>"
+    },
+    {
+      "name": "AspectRatio",
+      "importPath": "@/components/aspect-ratio",
+      "exports": ["AspectRatio"],
+      "radixPrimitive": "@radix-ui/react-aspect-ratio",
+      "useClient": true,
+      "usage": "<AspectRatio ratio={16 / 9}><img src=\"…\" /></AspectRatio>"
+    },
+    {
+      "name": "Autocomplete",
+      "importPath": "@/components/autocomplete",
+      "exports": ["Autocomplete", "Option"],
+      "useClient": true,
+      "props": {
+        "options": "Option[]",
+        "value": "string",
+        "onChange": "(value: string) => void",
+        "placeholder": "string"
+      },
+      "notes": "Option = { label: string; value: string }. Supports keyboard navigation and dropdown auto-positioning.",
+      "usage": "<Autocomplete options={[{ label: 'Apple', value: 'apple' }]} onChange={setValue} />"
+    },
+    {
+      "name": "Avatar",
+      "importPath": "@/components/avatar",
+      "exports": ["Avatar", "AvatarImage", "AvatarFallback"],
+      "radixPrimitive": "@radix-ui/react-avatar",
+      "usage": "<Avatar><AvatarImage src=\"/photo.png\" /><AvatarFallback>AB</AvatarFallback></Avatar>"
+    },
+    {
+      "name": "Badge",
+      "importPath": "@/components/badge",
+      "exports": ["Badge", "badgeVariants"],
+      "variants": {
+        "variant": ["default", "secondary", "destructive", "outline"]
+      },
+      "usage": "<Badge variant=\"secondary\">New</Badge>"
+    },
+    {
+      "name": "Breadcrumb",
+      "importPath": "@/components/breadcrumb",
+      "exports": [
+        "Breadcrumb", "BreadcrumbList", "BreadcrumbItem", "BreadcrumbLink",
+        "BreadcrumbPage", "BreadcrumbSeparator", "BreadcrumbEllipsis"
+      ],
+      "radixPrimitive": "@radix-ui/react-slot",
+      "useClient": true,
+      "usage": "<Breadcrumb><BreadcrumbList><BreadcrumbItem><BreadcrumbLink href=\"/\">Home</BreadcrumbLink></BreadcrumbItem><BreadcrumbSeparator /><BreadcrumbItem><BreadcrumbPage>Settings</BreadcrumbPage></BreadcrumbItem></BreadcrumbList></Breadcrumb>"
+    },
+    {
+      "name": "Button",
+      "importPath": "@/components/button",
+      "exports": ["Button", "ButtonProps", "buttonVariants"],
+      "variants": {
+        "variant": ["default", "destructive", "outline", "secondary", "ghost", "link"],
+        "size": ["sm", "md", "lg", "xl", "icon"]
+      },
+      "props": {
+        "isLoading": "boolean",
+        "asChild": "boolean"
+      },
+      "usage": "<Button variant=\"outline\" size=\"sm\">Cancel</Button>"
+    },
+    {
+      "name": "ButtonGroup",
+      "importPath": "@/components/button-group",
+      "exports": ["ButtonGroup", "ButtonGroupProps"],
+      "useClient": true,
+      "props": {
+        "orientation": ["horizontal", "vertical"]
+      },
+      "usage": "<ButtonGroup orientation=\"horizontal\"><Button>A</Button><Button>B</Button></ButtonGroup>"
+    },
+    {
+      "name": "Calendar",
+      "importPath": "@/components/calendar",
+      "exports": ["Calendar"],
+      "props": {
+        "language": ["enUS", "ptBR"],
+        "selectedDate": "Date | undefined",
+        "onChange": "(date: Date) => void"
+      },
+      "usage": "<Calendar language=\"ptBR\" selectedDate={date} onChange={setDate} />"
+    },
+    {
+      "name": "Card",
+      "importPath": "@/components/card",
+      "exports": [
+        "Card", "CardHeader", "CardTitle", "CardDescription",
+        "CardAction", "CardContent", "CardFooter"
+      ],
+      "variants": {
+        "size": ["default", "sm"]
+      },
+      "usage": "<Card><CardHeader><CardTitle>Title</CardTitle><CardDescription>Subtitle</CardDescription></CardHeader><CardContent>Body</CardContent></Card>"
+    },
+    {
+      "name": "Carousel",
+      "importPath": "@/components/carousel",
+      "exports": ["Carousel", "CarouselContent", "CarouselItem", "CarouselPrevious", "CarouselNext", "CarouselApi"],
+      "useClient": true,
+      "externalDep": "embla-carousel-react",
+      "usage": "<Carousel><CarouselContent><CarouselItem>Slide 1</CarouselItem></CarouselContent><CarouselPrevious /><CarouselNext /></Carousel>"
+    },
+    {
+      "name": "Checkbox",
+      "importPath": "@/components/checkbox",
+      "exports": ["Checkbox"],
+      "radixPrimitive": "@radix-ui/react-checkbox",
+      "usage": "<Checkbox id=\"terms\" />"
+    },
+    {
+      "name": "Collapsible",
+      "importPath": "@/components/collapsible",
+      "exports": ["Collapsible", "CollapsibleTrigger", "CollapsibleContent"],
+      "radixPrimitive": "@radix-ui/react-collapsible",
+      "useClient": true,
+      "usage": "<Collapsible><CollapsibleTrigger>Toggle</CollapsibleTrigger><CollapsibleContent>Hidden content</CollapsibleContent></Collapsible>"
+    },
+    {
+      "name": "Command",
+      "importPath": "@/components/command",
+      "exports": [
+        "Command", "CommandDialog", "CommandInput", "CommandList",
+        "CommandEmpty", "CommandGroup", "CommandItem", "CommandSeparator", "CommandShortcut"
+      ],
+      "useClient": true,
+      "externalDep": "cmdk",
+      "usage": "<Command><CommandInput placeholder=\"Search…\" /><CommandList><CommandEmpty>No results.</CommandEmpty><CommandGroup heading=\"Suggestions\"><CommandItem>Calendar</CommandItem></CommandGroup></CommandList></Command>"
+    },
+    {
+      "name": "ContextMenu",
+      "importPath": "@/components/context-menu",
+      "exports": [
+        "ContextMenu", "ContextMenuTrigger", "ContextMenuContent", "ContextMenuItem",
+        "ContextMenuCheckboxItem", "ContextMenuRadioItem", "ContextMenuLabel",
+        "ContextMenuSeparator", "ContextMenuShortcut", "ContextMenuGroup",
+        "ContextMenuPortal", "ContextMenuSub", "ContextMenuSubContent", "ContextMenuSubTrigger",
+        "ContextMenuRadioGroup"
+      ],
+      "radixPrimitive": "@radix-ui/react-context-menu",
+      "useClient": true
+    },
+    {
+      "name": "CurrencyInput",
+      "importPath": "@/components/currency-input",
+      "exports": ["CurrencyInput"],
+      "props": {
+        "currencySymbol": "string",
+        "decimalSeparator": "string",
+        "thousandSeparator": "string",
+        "onValueChange": "(value: number) => void"
+      },
+      "usage": "<CurrencyInput currencySymbol=\"$\" onValueChange={setValue} />"
+    },
+    {
+      "name": "DatePicker",
+      "importPath": "@/components/date-picker",
+      "exports": ["DatePicker", "DatePickerDemo"],
+      "useClient": true,
+      "props": {
+        "language": ["enUS", "ptBR"],
+        "buttonVariant": "string",
+        "date": "Date | undefined",
+        "onDateChange": "(date: Date | undefined) => void"
+      },
+      "usage": "<DatePicker language=\"ptBR\" date={date} onDateChange={setDate} />"
+    },
+    {
+      "name": "Dialog",
+      "importPath": "@/components/dialog",
+      "exports": [
+        "Dialog", "DialogTrigger", "DialogPortal", "DialogClose", "DialogOverlay",
+        "DialogContent", "DialogHeader", "DialogFooter", "DialogTitle", "DialogDescription"
+      ],
+      "radixPrimitive": "@radix-ui/react-dialog",
+      "props": {
+        "showCloseButton": "boolean (on DialogContent)"
+      },
+      "usage": "<Dialog><DialogTrigger>Open</DialogTrigger><DialogContent><DialogHeader><DialogTitle>Title</DialogTitle></DialogHeader>Body</DialogContent></Dialog>"
+    },
+    {
+      "name": "Drawer",
+      "importPath": "@/components/drawer",
+      "exports": [
+        "Drawer", "DrawerTrigger", "DrawerClose", "DrawerPortal", "DrawerOverlay",
+        "DrawerContent", "DrawerHeader", "DrawerFooter", "DrawerTitle", "DrawerDescription",
+        "DrawerContentProps", "DrawerDirection"
+      ],
+      "useClient": true,
+      "variants": {
+        "direction": ["top", "bottom", "left", "right"]
+      },
+      "usage": "<Drawer><DrawerTrigger>Open</DrawerTrigger><DrawerContent direction=\"right\">Content</DrawerContent></Drawer>"
+    },
+    {
+      "name": "DropdownMenu",
+      "importPath": "@/components/dropdown-menu",
+      "exports": [
+        "DropdownMenu", "DropdownMenuTrigger", "DropdownMenuContent", "DropdownMenuItem",
+        "DropdownMenuCheckboxItem", "DropdownMenuRadioItem", "DropdownMenuLabel",
+        "DropdownMenuSeparator", "DropdownMenuShortcut", "DropdownMenuGroup",
+        "DropdownMenuPortal", "DropdownMenuSub", "DropdownMenuSubContent",
+        "DropdownMenuSubTrigger", "DropdownMenuRadioGroup"
+      ],
+      "radixPrimitive": "@radix-ui/react-dropdown-menu"
+    },
+    {
+      "name": "HoverCard",
+      "importPath": "@/components/hover-card",
+      "exports": ["HoverCard", "HoverCardTrigger", "HoverCardContent"],
+      "radixPrimitive": "@radix-ui/react-hover-card",
+      "useClient": true,
+      "usage": "<HoverCard><HoverCardTrigger>@user</HoverCardTrigger><HoverCardContent>Profile info</HoverCardContent></HoverCard>"
+    },
+    {
+      "name": "Input",
+      "importPath": "@/components/input",
+      "exports": ["Input", "InputProps"],
+      "variants": {
+        "sizing": ["sm", "md", "lg", "xl", "2xl"]
+      },
+      "usage": "<Input sizing=\"md\" placeholder=\"Email\" />"
+    },
+    {
+      "name": "InputOTP",
+      "importPath": "@/components/input-otp",
+      "exports": ["InputOTP", "InputOTPSlot", "InputOTPGroup", "InputOTPSeparator", "InputOTPProps", "InputOTPSlotProps"],
+      "radixPrimitive": "@radix-ui/react-one-time-password-field",
+      "useClient": true,
+      "props": {
+        "length": "number",
+        "value": "string",
+        "onValueChange": "(value: string) => void",
+        "validationType": ["alpha", "numeric", "alphanumeric", "none"],
+        "autoSubmit": "boolean"
+      },
+      "usage": "<InputOTP length={6} validationType=\"numeric\" onValueChange={setOtp} />"
+    },
+    {
+      "name": "Kbd",
+      "importPath": "@/components/kbd",
+      "exports": ["Kbd", "KbdProps"],
+      "usage": "Press <Kbd>⌘K</Kbd>"
+    },
+    {
+      "name": "Label",
+      "importPath": "@/components/label",
+      "exports": ["Label"],
+      "radixPrimitive": "@radix-ui/react-label",
+      "usage": "<Label htmlFor=\"email\">Email</Label>"
+    },
+    {
+      "name": "Menubar",
+      "importPath": "@/components/menubar",
+      "exports": [
+        "Menubar", "MenubarMenu", "MenubarTrigger", "MenubarContent", "MenubarItem",
+        "MenubarSeparator", "MenubarLabel", "MenubarCheckboxItem", "MenubarRadioItem",
+        "MenubarRadioGroup", "MenubarShortcut", "MenubarGroup", "MenubarPortal",
+        "MenubarSub", "MenubarSubContent", "MenubarSubTrigger"
+      ],
+      "radixPrimitive": "@radix-ui/react-menubar",
+      "useClient": true
+    },
+    {
+      "name": "MultiSelect",
+      "importPath": "@/components/multi-select",
+      "exports": ["MultiSelect"],
+      "variants": {
+        "variant": ["default", "secondary", "destructive", "inverted"]
+      },
+      "props": {
+        "options": "{ label: string; value: string; icon?: ComponentType }[]",
+        "onValueChange": "(values: string[]) => void",
+        "defaultValue": "string[]",
+        "placeholder": "string",
+        "maxCount": "number",
+        "modalPopover": "boolean",
+        "asChild": "boolean"
+      },
+      "usage": "<MultiSelect options={options} onValueChange={setValues} placeholder=\"Select tags\" />"
+    },
+    {
+      "name": "NavigationMenu",
+      "importPath": "@/components/navigation-menu",
+      "exports": [
+        "NavigationMenu", "NavigationMenuList", "NavigationMenuItem", "NavigationMenuTrigger",
+        "NavigationMenuContent", "NavigationMenuViewport", "NavigationMenuLink",
+        "NavigationMenuIndicator", "navigationMenuTriggerStyle"
+      ],
+      "radixPrimitive": "@radix-ui/react-navigation-menu",
+      "props": {
+        "viewport": "boolean (default: true)"
+      }
+    },
+    {
+      "name": "Pagination",
+      "importPath": "@/components/pagination",
+      "exports": [
+        "Pagination", "PaginationContent", "PaginationItem",
+        "PaginationLink", "PaginationPrevious", "PaginationNext", "PaginationEllipsis"
+      ],
+      "notes": "Low-level pagination primitives. For a full pagination block with page counter, use PaginationControls block instead.",
+      "usage": "<Pagination><PaginationContent><PaginationPrevious /><PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem><PaginationNext /></PaginationContent></Pagination>"
+    },
+    {
+      "name": "PasswordInput",
+      "importPath": "@/components/password-input",
+      "exports": ["PasswordInput"],
+      "props": {
+        "showStrengthMeter": "boolean",
+        "strengthLabels": "string[]",
+        "showPasswordLabel": "string",
+        "hidePasswordLabel": "string",
+        "strengthTitle": "string"
+      },
+      "usage": "<PasswordInput showStrengthMeter />"
+    },
+    {
+      "name": "Popover",
+      "importPath": "@/components/popover",
+      "exports": ["Popover", "PopoverTrigger", "PopoverAnchor", "PopoverContent"],
+      "radixPrimitive": "@radix-ui/react-popover",
+      "usage": "<Popover><PopoverTrigger>Open</PopoverTrigger><PopoverContent>Details</PopoverContent></Popover>"
+    },
+    {
+      "name": "Progress",
+      "importPath": "@/components/progress",
+      "exports": ["Progress"],
+      "radixPrimitive": "@radix-ui/react-progress",
+      "usage": "<Progress value={60} />"
+    },
+    {
+      "name": "RadioGroup",
+      "importPath": "@/components/radio-group",
+      "exports": ["RadioGroup", "RadioGroupItem"],
+      "radixPrimitive": "@radix-ui/react-radio-group",
+      "usage": "<RadioGroup defaultValue=\"a\"><RadioGroupItem value=\"a\" id=\"a\" /><Label htmlFor=\"a\">Option A</Label></RadioGroup>"
+    },
+    {
+      "name": "Resizable",
+      "importPath": "@/components/resizable",
+      "exports": [
+        "ResizablePanelGroup", "ResizablePanel", "ResizableHandle",
+        "ResizablePanelGroupProps", "ResizablePanelProps", "ResizableHandleProps"
+      ],
+      "useClient": true,
+      "props": {
+        "direction": ["horizontal", "vertical"],
+        "defaultSize": "number",
+        "minSize": "number",
+        "withHandle": "boolean"
+      },
+      "usage": "<ResizablePanelGroup direction=\"horizontal\"><ResizablePanel defaultSize={50}>Left</ResizablePanel><ResizableHandle withHandle /><ResizablePanel defaultSize={50}>Right</ResizablePanel></ResizablePanelGroup>"
+    },
+    {
+      "name": "ScrollArea",
+      "importPath": "@/components/scroll-area",
+      "exports": ["ScrollArea", "ScrollBar"],
+      "radixPrimitive": "@radix-ui/react-scroll-area",
+      "useClient": true,
+      "usage": "<ScrollArea className=\"h-72\"><div>Long content</div></ScrollArea>"
+    },
+    {
+      "name": "Select",
+      "importPath": "@/components/select",
+      "exports": [
+        "Select", "SelectGroup", "SelectValue", "SelectTrigger",
+        "SelectScrollUpButton", "SelectScrollDownButton", "SelectContent",
+        "SelectLabel", "SelectItem", "SelectSeparator"
+      ],
+      "radixPrimitive": "@radix-ui/react-select",
+      "usage": "<Select><SelectTrigger><SelectValue placeholder=\"Pick one\" /></SelectTrigger><SelectContent><SelectItem value=\"a\">Option A</SelectItem></SelectContent></Select>"
+    },
+    {
+      "name": "Separator",
+      "importPath": "@/components/separator",
+      "exports": ["Separator"],
+      "radixPrimitive": "@radix-ui/react-separator",
+      "useClient": true,
+      "props": {
+        "orientation": ["horizontal", "vertical"],
+        "decorative": "boolean"
+      },
+      "usage": "<Separator orientation=\"horizontal\" />"
+    },
+    {
+      "name": "Sheet",
+      "importPath": "@/components/sheet",
+      "exports": [
+        "Sheet", "SheetTrigger", "SheetClose", "SheetPortal", "SheetOverlay",
+        "SheetContent", "SheetHeader", "SheetFooter", "SheetTitle", "SheetDescription"
+      ],
+      "radixPrimitive": "@radix-ui/react-dialog",
+      "useClient": true,
+      "variants": {
+        "side": ["top", "right", "bottom", "left"]
+      },
+      "usage": "<Sheet><SheetTrigger>Open</SheetTrigger><SheetContent side=\"right\"><SheetHeader><SheetTitle>Panel</SheetTitle></SheetHeader></SheetContent></Sheet>"
+    },
+    {
+      "name": "Skeleton",
+      "importPath": "@/components/skeleton",
+      "exports": ["Skeleton"],
+      "props": {
+        "repeat": "number"
+      },
+      "usage": "<Skeleton className=\"h-4 w-full\" repeat={3} />"
+    },
+    {
+      "name": "Slider",
+      "importPath": "@/components/slider",
+      "exports": ["Slider"],
+      "radixPrimitive": "@radix-ui/react-slider",
+      "useClient": true,
+      "usage": "<Slider defaultValue={[50]} max={100} step={1} />"
+    },
+    {
+      "name": "Spinner",
+      "importPath": "@/components/spinner",
+      "exports": ["Spinner", "SpinnerProps", "TSpinnerColors", "TSpinnerSizes"],
+      "variants": {
+        "color": ["primary", "secondary", "success", "error", "warning", "info", "white", "neutral"],
+        "size": ["xs", "sm", "md", "lg", "xl", "2xl"]
+      },
+      "props": {
+        "label": "string"
+      },
+      "usage": "<Spinner size=\"md\" color=\"primary\" label=\"Loading…\" />"
+    },
+    {
+      "name": "Switch",
+      "importPath": "@/components/switch",
+      "exports": ["Switch"],
+      "radixPrimitive": "@radix-ui/react-switch",
+      "usage": "<Switch id=\"notifications\" />"
+    },
+    {
+      "name": "Table",
+      "importPath": "@/components/table",
+      "exports": [
+        "Table", "TableHeader", "TableBody", "TableFooter",
+        "TableRow", "TableHead", "TableCell", "TableCaption"
+      ],
+      "notes": "Low-level table primitives. For a full-featured data grid with search/sort/filter/pagination, use the DataTable block instead.",
+      "usage": "<Table><TableHeader><TableRow><TableHead>Name</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Alice</TableCell></TableRow></TableBody></Table>"
+    },
+    {
+      "name": "Tabs",
+      "importPath": "@/components/tabs",
+      "exports": ["Tabs", "TabsList", "TabsTrigger", "TabsContent"],
+      "radixPrimitive": "@radix-ui/react-tabs",
+      "useClient": true,
+      "variants": {
+        "size": ["sm", "md", "lg", "xl"]
+      },
+      "usage": "<Tabs defaultValue=\"a\"><TabsList size=\"md\"><TabsTrigger value=\"a\">Tab A</TabsTrigger></TabsList><TabsContent value=\"a\">Content A</TabsContent></Tabs>"
+    },
+    {
+      "name": "TagInput",
+      "importPath": "@/components/tag-input",
+      "exports": ["TagInput"],
+      "useClient": true,
+      "props": {
+        "value": "string[]",
+        "onChange": "(tags: string[]) => void",
+        "separator": "string",
+        "placeholder": "string",
+        "initialValue": "string[]",
+        "helperText": "string"
+      },
+      "usage": "<TagInput value={tags} onChange={setTags} placeholder=\"Add tag…\" />"
+    },
+    {
+      "name": "Textarea",
+      "importPath": "@/components/textarea",
+      "exports": ["Textarea"],
+      "usage": "<Textarea placeholder=\"Your message\" />"
+    },
+    {
+      "name": "Toaster",
+      "importPath": "@/components/toaster",
+      "exports": ["toast"],
+      "externalDep": "sonner",
+      "notes": "Import the Toaster component and place it in the root layout, then call toast() anywhere.",
+      "usage": "toast.success('Saved!') / toast.error('Failed')"
+    },
+    {
+      "name": "Toggle",
+      "importPath": "@/components/toggle",
+      "exports": ["Toggle", "toggleVariants"],
+      "radixPrimitive": "@radix-ui/react-toggle",
+      "variants": {
+        "variant": ["default", "outline"],
+        "size": ["default", "sm", "lg"]
+      },
+      "usage": "<Toggle variant=\"outline\">Bold</Toggle>"
+    },
+    {
+      "name": "ToggleGroup",
+      "importPath": "@/components/toggle-group",
+      "exports": ["ToggleGroup", "ToggleGroupItem"],
+      "radixPrimitive": "@radix-ui/react-toggle-group",
+      "useClient": true,
+      "usage": "<ToggleGroup type=\"single\"><ToggleGroupItem value=\"a\">A</ToggleGroupItem></ToggleGroup>"
+    },
+    {
+      "name": "Tooltip",
+      "importPath": "@/components/tooltip",
+      "exports": ["Tooltip", "TooltipTrigger", "TooltipContent", "TooltipProvider"],
+      "radixPrimitive": "@radix-ui/react-tooltip",
+      "useClient": true,
+      "notes": "Wrap your app (or the relevant subtree) in TooltipProvider once.",
+      "usage": "<TooltipProvider><Tooltip><TooltipTrigger>Hover me</TooltipTrigger><TooltipContent>Details here</TooltipContent></Tooltip></TooltipProvider>"
+    },
+    {
+      "name": "Typography",
+      "importPath": "@/components/typography",
+      "exports": [
+        "TypographyH1", "TypographyH2", "TypographyH3", "TypographyH4",
+        "TypographyP", "TypographyLead", "TypographyLarge", "TypographySmall",
+        "TypographyMuted", "TypographyBlockquote", "TypographyCode", "TypographyList"
+      ],
+      "useClient": true,
+      "usage": "<TypographyH1>Page Title</TypographyH1>"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "BentoGrid",
+      "importPath": "@/blocks/bento-grid",
+      "exports": ["BentoGrid", "BentoCard"],
+      "usage": "<BentoGrid><BentoCard>Item 1</BentoCard></BentoGrid>"
+    },
+    {
+      "name": "DataTable",
+      "importPath": "@/blocks/data-table",
+      "exports": [
+        "DataTable",
+        "DataTableColumn", "DataTableFilter", "DataTableLabels",
+        "DataTableProps", "DataTableRef", "ServerPaginationConfig"
+      ],
+      "useClient": true,
+      "props": {
+        "data": "T[]",
+        "columns": "DataTableColumn<T>[]",
+        "filters": "DataTableFilter[] (optional)",
+        "serverPagination": "ServerPaginationConfig (optional — enables server-side paging)",
+        "labels": "DataTableLabels (optional — i18n overrides for all UI strings)",
+        "tools": "{ search?, columnSelector?, export?, filter? } (optional — feature flags)"
+      },
+      "notes": "Full-featured data grid. Supports client-side search/sort/filter/pagination by default. Pass serverPagination to delegate paging to the caller — data must contain only the current page. Use DataTableRef (via useRef) to call .exportCsv() or .resetFilters() imperatively.",
+      "usage": "<DataTable data={rows} columns={cols} />"
+    },
+    {
+      "name": "EmptyMessage",
+      "importPath": "@/blocks/empty-message",
+      "exports": ["EmptyItems"],
+      "props": {
+        "notFoundText": "string",
+        "notFoundAction": "ReactNode",
+        "icon": "ReactNode",
+        "className": "string"
+      },
+      "usage": "<EmptyItems notFoundText=\"No results found.\" />"
+    },
+    {
+      "name": "FileUploadDropzone",
+      "importPath": "@/blocks/file-upload-dropzone",
+      "exports": ["FileUploadDropzone", "FileUploadConfig", "UploadedFile"],
+      "useClient": true,
+      "externalDep": "react-dropzone",
+      "props": {
+        "config": "FileUploadConfig (accepted types, max size, etc.)",
+        "onFilesChange": "(files: UploadedFile[]) => void",
+        "onFileUpload": "(file: File) => Promise<void>",
+        "placeholder": "string"
+      },
+      "usage": "<FileUploadDropzone config={{ accept: { 'image/*': [] } }} onFilesChange={setFiles} />"
+    },
+    {
+      "name": "HelpCarousel",
+      "importPath": "@/blocks/help-carousel",
+      "exports": ["HelpCarousel"],
+      "props": {
+        "triggerElement": "ReactNode",
+        "steps": "{ title: string; description: string }[]"
+      },
+      "usage": "<HelpCarousel triggerElement={<Button>Help</Button>} steps={[{ title: 'Step 1', description: '…' }]} />"
+    },
+    {
+      "name": "HtmlTextEditor",
+      "importPath": "@/blocks/html-text-editor",
+      "exports": ["HtmlTextEditor"],
+      "useClient": true,
+      "props": {
+        "initialValue": "string",
+        "onChange": "(html: string) => void",
+        "className": "string"
+      },
+      "notes": "contentEditable-based rich text editor. Uses MutationObserver internally.",
+      "usage": "<HtmlTextEditor initialValue=\"<p>Hello</p>\" onChange={setHtml} />"
+    },
+    {
+      "name": "LazyImageGallery",
+      "importPath": "@/blocks/lazy-image-gallery",
+      "exports": ["LazyImageGallery"],
+      "props": {
+        "images": "string[]",
+        "observerOptions": "IntersectionObserverInit (optional)",
+        "classNames": "object (optional)"
+      },
+      "notes": "Uses IntersectionObserver for lazy loading.",
+      "usage": "<LazyImageGallery images={['/a.jpg', '/b.jpg']} />"
+    },
+    {
+      "name": "MonthNavigator",
+      "importPath": "@/blocks/month-navigator",
+      "exports": ["MonthNavigator", "Month", "Mode"],
+      "props": {
+        "locale": "Locale (date-fns locale object)",
+        "currentMonth": "number (0–11)",
+        "currentYear": "number",
+        "onChangeMonthYear": "(month: number, year: number) => void",
+        "mode": ["month", "year"]
+      },
+      "usage": "<MonthNavigator locale={ptBR} currentMonth={4} currentYear={2026} onChangeMonthYear={handleChange} />"
+    },
+    {
+      "name": "MultiSelectList",
+      "importPath": "@/blocks/multi-select-list",
+      "exports": ["MultiSelectList", "MultiSelectListProps", "MultiSelectListLabels"],
+      "props": {
+        "items": "T[]",
+        "selectedItems": "T[]",
+        "onSelectionChange": "(items: T[]) => void",
+        "renderItem": "(item: T) => ReactNode",
+        "labels": "MultiSelectListLabels (optional i18n)"
+      },
+      "notes": "Supports Shift+click for range selection.",
+      "usage": "<MultiSelectList items={rows} selectedItems={selected} onSelectionChange={setSelected} renderItem={(r) => r.name} />"
+    },
+    {
+      "name": "NavigableList",
+      "importPath": "@/blocks/navigable-list",
+      "exports": ["NavigableList", "RowAction", "Shortcut"],
+      "props": {
+        "items": "T[]",
+        "renderItem": "(item: T) => ReactNode",
+        "actions": "RowAction<T>[]",
+        "className": "string"
+      },
+      "notes": "Arrow-key navigation with custom per-row actions and keyboard shortcuts.",
+      "usage": "<NavigableList items={rows} renderItem={(r) => r.name} actions={[{ label: 'Edit', onAction: handleEdit }]} />"
+    },
+    {
+      "name": "NumberStepper",
+      "importPath": "@/blocks/number-stepper",
+      "exports": ["NumberStepper", "NumberStepperProps"],
+      "useClient": true,
+      "props": {
+        "value": "number",
+        "defaultValue": "number",
+        "onChange": "(value: number) => void",
+        "min": "number",
+        "max": "number",
+        "step": "number",
+        "size": ["sm", "md", "lg", "xl"],
+        "leftSymbol": "string",
+        "rightSymbol": "string",
+        "disabled": "boolean"
+      },
+      "usage": "<NumberStepper defaultValue={1} min={1} max={10} onChange={setQty} />"
+    },
+    {
+      "name": "PaginatedItems",
+      "importPath": "@/blocks/paginated-items",
+      "exports": ["PaginatedItems", "PaginatedItemsServerPagination", "PaginatedItemsLabels"],
+      "props": {
+        "data": "T[]",
+        "perPage": "number",
+        "initialPage": "number",
+        "children": "(items: T[]) => ReactNode",
+        "emptyState": "ReactNode",
+        "isLoading": "boolean",
+        "skeletonHeight": "number",
+        "serverPagination": "PaginatedItemsServerPagination (optional)",
+        "labels": "PaginatedItemsLabels (optional i18n)",
+        "counterText": "string"
+      },
+      "notes": "Generic paginated container. Pass serverPagination to delegate paging. Children is a render-prop receiving the current page's items.",
+      "usage": "<PaginatedItems data={allRows} perPage={10}>{(rows) => rows.map(r => <div key={r.id}>{r.name}</div>)}</PaginatedItems>"
+    },
+    {
+      "name": "PaginationControls",
+      "importPath": "@/blocks/pagination-controls",
+      "exports": ["PaginationControls"],
+      "useClient": true,
+      "props": {
+        "currentPage": "number",
+        "totalPages": "number",
+        "totalItems": "number",
+        "startIndex": "number",
+        "endIndex": "number",
+        "onPageChange": "(page: number) => void",
+        "onPreviousPage": "() => void",
+        "onNextPage": "() => void",
+        "showItemsCounter": "boolean",
+        "counterText": "string"
+      },
+      "notes": "Stateless pagination bar with smart ellipsis. Used internally by DataTable and PaginatedItems.",
+      "usage": "<PaginationControls currentPage={1} totalPages={5} onPageChange={setPage} />"
+    },
+    {
+      "name": "Sidebar",
+      "importPath": "@/blocks/sidebar",
+      "exports": [
+        "Sidebar", "SidebarHeader", "SidebarBody", "SidebarNav",
+        "SidebarList", "SidebarListItem", "SidebarFooter"
+      ],
+      "props": {
+        "fixed": "boolean",
+        "isOpen": "boolean",
+        "onToggle": "() => void",
+        "direction": ["top", "bottom", "left", "right", "full"],
+        "blockClickOutSide": "boolean"
+      },
+      "usage": "<Sidebar isOpen={open} onToggle={toggle} direction=\"left\"><SidebarHeader>Logo</SidebarHeader><SidebarBody><SidebarNav>…</SidebarNav></SidebarBody></Sidebar>"
+    }
+  ],
+  "conventions": {
+    "classNameMerging": "cn() from @/lib/utils",
+    "variantManagement": "cva() from class-variance-authority",
+    "darkMode": "Every colour token must have a dark: counterpart",
+    "dataSlot": "data-slot='…' attribute on every root element for external styling hooks",
+    "newComponent": {
+      "files": ["<name>.tsx", "<name>.stories.tsx", "<name>.test.tsx", "index.ts"],
+      "barrelRegistration": "src/components/index.ts (alphabetical) or src/blocks/index.ts"
+    }
+  }
+}

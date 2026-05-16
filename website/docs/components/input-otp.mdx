@@ -1,0 +1,366 @@
+---
+id: input-otp
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot, Button } from "buildgrid-ui";
+import { useState } from 'react';
+
+# InputOTP
+
+<StorybookLink path="components-input-otp--default" />
+
+The `InputOTP` component provides a styled one-time password input with individual character slots. It supports numeric and alphanumeric modes, custom layouts with groups and separators, and full keyboard navigation for a smooth user experience.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { InputOTP, InputOTPGroup, InputOTPSlot } from "buildgrid-ui";
+import { useState } from "react";
+
+function BasicOTP() {
+  const [value, setValue] = useState("");
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm font-medium">Enter verification code</p>
+      <InputOTP length={6} value={value} onValueChange={setValue} validationType="numeric" />
+      <p className="text-sm text-muted-foreground">
+        Value: <span className="font-mono font-semibold">{value || "—"}</span>
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = useState("");
+    return (
+      <div className="space-y-4">
+        <p className="text-sm font-medium">Enter verification code</p>
+        <InputOTP length={6} value={value} onValueChange={setValue} validationType="numeric" />
+        <p className="text-sm text-muted-foreground">
+          Value: <span className="font-mono font-semibold">{value || "—"}</span>
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## 4-Digit PIN
+
+<ComponentDocSection
+  code={`import { InputOTP } from "buildgrid-ui";
+import { useState } from "react";
+
+function PINInput() {
+  const [value, setValue] = useState("");
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm font-medium">Enter your PIN</p>
+      <InputOTP length={4} value={value} onValueChange={setValue} validationType="numeric" />
+      <p className="text-sm text-muted-foreground">
+        PIN: <span className="font-mono font-semibold">{value || "—"}</span>
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = useState("");
+    return (
+      <div className="space-y-4">
+        <p className="text-sm font-medium">Enter your PIN</p>
+        <InputOTP length={4} value={value} onValueChange={setValue} validationType="numeric" />
+        <p className="text-sm text-muted-foreground">
+          PIN: <span className="font-mono font-semibold">{value || "—"}</span>
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Grouped with Separator
+
+<ComponentDocSection
+  code={`import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "buildgrid-ui";
+import { useState } from "react";
+
+function GroupedOTP() {
+  const [value, setValue] = useState("");
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm font-medium">Enter verification code</p>
+      <InputOTP value={value} onValueChange={setValue}>
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+      <p className="text-sm text-muted-foreground">
+        Value: <span className="font-mono font-semibold">{value || "—"}</span>
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = useState("");
+    return (
+      <div className="space-y-4">
+        <p className="text-sm font-medium">Enter verification code</p>
+        <InputOTP value={value} onValueChange={setValue}>
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+        <p className="text-sm text-muted-foreground">
+          Value: <span className="font-mono font-semibold">{value || "—"}</span>
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Verification Flow
+
+<ComponentDocSection
+  code={`import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot, Button } from "buildgrid-ui";
+import { useState } from "react";
+
+function VerificationFlow() {
+  const [value, setValue] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = () => {
+    if (value.length === 6) setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="flex flex-col items-center gap-3 p-6 border rounded-lg max-w-sm">
+        <p className="text-green-600 font-semibold">Code verified!</p>
+        <Button variant="outline" onClick={() => { setValue(""); setSubmitted(false); }}>
+          Reset
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-4 p-6 border rounded-lg max-w-sm">
+      <div>
+        <h3 className="font-semibold text-lg">Two-factor authentication</h3>
+        <p className="text-sm text-muted-foreground mt-1">
+          Enter the 6-digit code sent to your device to continue.
+        </p>
+      </div>
+      <InputOTP value={value} onValueChange={setValue}>
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+      <p className="text-xs text-muted-foreground font-mono">
+        Entered: {value || "—"}
+      </p>
+      <Button onClick={handleSubmit} disabled={value.length < 6}>
+        Submit
+      </Button>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = useState("");
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = () => {
+      if (value.length === 6) setSubmitted(true);
+    };
+
+    if (submitted) {
+      return (
+        <div className="flex flex-col items-center gap-3 p-6 border rounded-lg max-w-sm">
+          <p className="text-green-600 font-semibold">Code verified!</p>
+          <Button variant="outline" onClick={() => { setValue(""); setSubmitted(false); }}>
+            Reset
+          </Button>
+        </div>
+      );
+    }
+
+    return (
+      <div className="flex flex-col gap-4 p-6 border rounded-lg max-w-sm">
+        <div>
+          <h3 className="font-semibold text-lg">Two-factor authentication</h3>
+          <p className="text-sm text-muted-foreground mt-1">
+            Enter the 6-digit code sent to your device to continue.
+          </p>
+        </div>
+        <InputOTP value={value} onValueChange={setValue}>
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+        <p className="text-xs text-muted-foreground font-mono">
+          Entered: {value || "—"}
+        </p>
+        <Button onClick={handleSubmit} disabled={value.length < 6}>
+          Submit
+        </Button>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Alpha-Numeric
+
+<ComponentDocSection
+  code={`import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "buildgrid-ui";
+import { useState } from "react";
+
+function AlphaNumericOTP() {
+  const [value, setValue] = useState("");
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <p className="text-sm font-medium">Enter access code</p>
+        <p className="text-xs text-muted-foreground">Letters and numbers accepted</p>
+      </div>
+      <InputOTP value={value} onValueChange={setValue} validationType="alphanumeric">
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+      <p className="text-sm text-muted-foreground">
+        Code: <span className="font-mono font-semibold uppercase">{value || "—"}</span>
+      </p>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const [value, setValue] = useState("");
+    return (
+      <div className="space-y-4">
+        <div>
+          <p className="text-sm font-medium">Enter access code</p>
+          <p className="text-xs text-muted-foreground">Letters and numbers accepted</p>
+        </div>
+        <InputOTP value={value} onValueChange={setValue} validationType="alphanumeric">
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+        <p className="text-sm text-muted-foreground">
+          Code: <span className="font-mono font-semibold uppercase">{value || "—"}</span>
+        </p>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `InputOTP`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | - | Controlled value of the OTP input. |
+| `onValueChange` | `(value: string) => void` | - | Callback fired when the value changes. |
+| `length` | `number` | - | Number of slots to auto-generate (used when no children are provided). |
+| `validationType` | `"numeric"` \| `"alphanumeric"` | `"numeric"` | Restricts accepted characters. |
+| `className` | `string` | - | Additional CSS classes applied to the root element. |
+| `children` | `ReactNode` | - | Custom layout using `InputOTPGroup`, `InputOTPSlot`, and `InputOTPSeparator`. |
+
+### `InputOTPSlot`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `index` | `number` | - | Zero-based position of this slot within the full OTP value. |
+| `className` | `string` | - | Additional CSS classes. |
+
+### `InputOTPGroup`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | - | Additional CSS classes applied to the group wrapper. |
+| `children` | `ReactNode` | - | `InputOTPSlot` elements. |
+
+### `InputOTPSeparator`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | - | Additional CSS classes applied to the separator element. |
+
+## Features
+
+### Keyboard Navigation
+- Auto-focuses the next slot when a character is entered
+- Backspace moves focus to the previous slot and clears it
+- Paste support fills slots from the current position
+
+### Validation Modes
+- `numeric` — only digits 0–9 are accepted
+- `alphanumeric` — digits and letters are accepted (useful for access codes)
+
+### Flexible Layout
+- Pass `length` for a simple flat row of slots
+- Use `InputOTPGroup` + `InputOTPSeparator` for grouped layouts (e.g., 3–3, 4–4)
+
+## Common Use Cases
+
+- **Two-factor authentication** — verify identity with a time-based or SMS code
+- **Email verification** — confirm a new account or email address
+- **PIN entry** — unlock a feature or confirm a transaction
+- **Access codes** — alphanumeric codes for invites or licenses

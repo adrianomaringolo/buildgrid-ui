@@ -1,0 +1,234 @@
+---
+id: aspect-ratio
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { AspectRatio } from "buildgrid-ui";
+import { Play, User, BookOpen, Camera, Image } from 'lucide-react';
+
+# AspectRatio
+
+<StorybookLink path="components-aspect-ratio--default" />
+
+The `AspectRatio` component constrains its children to a fixed aspect ratio. It is ideal for images, videos, thumbnails, and any media that must maintain proportional dimensions regardless of the available width.
+
+## Video (16:9)
+
+<ComponentDocSection
+  code={`import { AspectRatio } from "buildgrid-ui";
+import { Play } from "lucide-react";
+
+function VideoPlaceholder() {
+  return (
+    <div className="w-full max-w-lg">
+      <AspectRatio ratio={16 / 9}>
+        <div className="flex h-full w-full items-center justify-center rounded-lg bg-muted">
+          <div className="flex flex-col items-center gap-2 text-muted-foreground">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-background shadow-md">
+              <Play className="h-6 w-6 fill-current" />
+            </div>
+            <p className="text-sm font-medium">16:9 Video</p>
+          </div>
+        </div>
+      </AspectRatio>
+    </div>
+  );
+}`}
+>
+  <div className="w-full max-w-lg">
+    <AspectRatio ratio={16 / 9}>
+      <div className="flex h-full w-full items-center justify-center rounded-lg bg-muted">
+        <div className="flex flex-col items-center gap-2 text-muted-foreground">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-background shadow-md">
+            <Play className="h-6 w-6 fill-current" />
+          </div>
+          <p className="text-sm font-medium">16:9 Video</p>
+        </div>
+      </div>
+    </AspectRatio>
+  </div>
+</ComponentDocSection>
+
+## Square (1:1)
+
+<ComponentDocSection
+  code={`import { AspectRatio } from "buildgrid-ui";
+import { User } from "lucide-react";
+
+function SquarePlaceholder() {
+  return (
+    <div className="w-40">
+      <AspectRatio ratio={1}>
+        <div className="flex h-full w-full items-center justify-center rounded-full bg-muted">
+          <User className="h-12 w-12 text-muted-foreground" />
+        </div>
+      </AspectRatio>
+    </div>
+  );
+}`}
+>
+  <div className="w-40">
+    <AspectRatio ratio={1}>
+      <div className="flex h-full w-full items-center justify-center rounded-full bg-muted">
+        <User className="h-12 w-12 text-muted-foreground" />
+      </div>
+    </AspectRatio>
+  </div>
+</ComponentDocSection>
+
+## Portrait (3:4)
+
+<ComponentDocSection
+  code={`import { AspectRatio } from "buildgrid-ui";
+import { BookOpen } from "lucide-react";
+
+function PortraitPlaceholder() {
+  return (
+    <div className="w-48">
+      <AspectRatio ratio={3 / 4}>
+        <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-muted gap-2">
+          <BookOpen className="h-10 w-10 text-muted-foreground" />
+          <p className="text-xs text-muted-foreground font-medium">3:4 Portrait</p>
+          <p className="text-xs text-muted-foreground">Book cover / mobile</p>
+        </div>
+      </AspectRatio>
+    </div>
+  );
+}`}
+>
+  <div className="w-48">
+    <AspectRatio ratio={3 / 4}>
+      <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-muted gap-2">
+        <BookOpen className="h-10 w-10 text-muted-foreground" />
+        <p className="text-xs text-muted-foreground font-medium">3:4 Portrait</p>
+        <p className="text-xs text-muted-foreground">Book cover / mobile</p>
+      </div>
+    </AspectRatio>
+  </div>
+</ComponentDocSection>
+
+## Photo (4:3)
+
+<ComponentDocSection
+  code={`import { AspectRatio } from "buildgrid-ui";
+import { Camera } from "lucide-react";
+
+function PhotoPlaceholder() {
+  return (
+    <div className="w-full max-w-sm">
+      <AspectRatio ratio={4 / 3}>
+        <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-muted gap-2">
+          <Camera className="h-10 w-10 text-muted-foreground" />
+          <p className="text-xs text-muted-foreground font-medium">4:3 Classic Photo</p>
+        </div>
+      </AspectRatio>
+    </div>
+  );
+}`}
+>
+  <div className="w-full max-w-sm">
+    <AspectRatio ratio={4 / 3}>
+      <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-muted gap-2">
+        <Camera className="h-10 w-10 text-muted-foreground" />
+        <p className="text-xs text-muted-foreground font-medium">4:3 Classic Photo</p>
+      </div>
+    </AspectRatio>
+  </div>
+</ComponentDocSection>
+
+## Responsive Image Grid
+
+<ComponentDocSection
+  code={`import { AspectRatio } from "buildgrid-ui";
+import { Image } from "lucide-react";
+
+function ImageGrid() {
+  const items = [
+    { label: "Nature", bg: "bg-emerald-100 dark:bg-emerald-900/30" },
+    { label: "Architecture", bg: "bg-blue-100 dark:bg-blue-900/30" },
+    { label: "Portrait", bg: "bg-rose-100 dark:bg-rose-900/30" },
+    { label: "Abstract", bg: "bg-violet-100 dark:bg-violet-900/30" },
+    { label: "Travel", bg: "bg-amber-100 dark:bg-amber-900/30" },
+    { label: "Food", bg: "bg-orange-100 dark:bg-orange-900/30" },
+  ];
+
+  return (
+    <div className="grid grid-cols-3 gap-2">
+      {items.map((item) => (
+        <AspectRatio key={item.label} ratio={16 / 9}>
+          <div className={\`flex h-full w-full flex-col items-center justify-center rounded-lg \${item.bg} gap-1\`}>
+            <Image className="h-5 w-5 text-muted-foreground" />
+            <p className="text-xs text-muted-foreground">{item.label}</p>
+          </div>
+        </AspectRatio>
+      ))}
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const items = [
+      { label: "Nature", bg: "bg-emerald-100 dark:bg-emerald-900/30" },
+      { label: "Architecture", bg: "bg-blue-100 dark:bg-blue-900/30" },
+      { label: "Portrait", bg: "bg-rose-100 dark:bg-rose-900/30" },
+      { label: "Abstract", bg: "bg-violet-100 dark:bg-violet-900/30" },
+      { label: "Travel", bg: "bg-amber-100 dark:bg-amber-900/30" },
+      { label: "Food", bg: "bg-orange-100 dark:bg-orange-900/30" },
+    ];
+
+    return (
+      <div className="grid grid-cols-3 gap-2">
+        {items.map((item) => (
+          <AspectRatio key={item.label} ratio={16 / 9}>
+            <div className={`flex h-full w-full flex-col items-center justify-center rounded-lg ${item.bg} gap-1`}>
+              <Image className="h-5 w-5 text-muted-foreground" />
+              <p className="text-xs text-muted-foreground">{item.label}</p>
+            </div>
+          </AspectRatio>
+        ))}
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `AspectRatio`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `ratio` | `number` | - | The desired width-to-height ratio. For example, `16/9` for widescreen or `1` for square. |
+| `className` | `string` | - | Additional CSS classes applied to the wrapper element. |
+| `children` | `ReactNode` | - | Content to be constrained to the given ratio. Use `h-full w-full` on the child to fill the container. |
+
+## Common Ratios
+
+| Name | Value | Typical Use |
+|---|---|---|
+| Widescreen | `16 / 9` | Video players, hero images, thumbnails |
+| Classic photo | `4 / 3` | Traditional camera photos |
+| Square | `1` | Profile pictures, avatars, product cards |
+| Portrait | `3 / 4` | Book covers, mobile screenshots, posters |
+| Cinematic | `21 / 9` | Wide banner images, cinematic video |
+| Golden ratio | `1.618` | Editorial layouts |
+
+## Features
+
+### Intrinsic Sizing
+`AspectRatio` uses a padding-based technique to maintain the ratio without requiring a fixed height, making it fully responsive to its container's width.
+
+### Works with Any Content
+The component works with images, videos, iframes, custom placeholder divs, or any other content — just ensure the child has `h-full w-full` applied.
+
+### CSS-Based
+No JavaScript is used at runtime to maintain the ratio, meaning there is no layout thrash or resize observers required.
+
+## Common Use Cases
+
+- **Media thumbnails** — consistent video or image previews in grids and lists
+- **Profile pictures** — square or circular avatar placeholders
+- **Hero images** — full-width banners that scale proportionally
+- **Embedded videos** — responsive iframes that maintain 16:9 without a fixed height
+- **Product cards** — uniform product image sizes in e-commerce grids
+- **Book / album covers** — portrait-oriented media in catalog views

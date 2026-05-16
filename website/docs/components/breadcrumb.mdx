@@ -1,0 +1,374 @@
+---
+id: breadcrumb
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "buildgrid-ui";
+import { Home, Slash } from 'lucide-react';
+
+# Breadcrumb
+
+<StorybookLink path="components-breadcrumb--default" />
+
+The `Breadcrumb` component provides navigational context by showing users their current location within a hierarchy of pages. It supports custom separators, collapsed paths via ellipsis, and integration with router link components via `asChild`.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "buildgrid-ui";
+
+function BasicBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Documents</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Reports</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}`}
+>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Documents</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Reports</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</ComponentDocSection>
+
+## With Ellipsis
+
+Use `BreadcrumbEllipsis` to collapse middle segments of a long path, keeping the navigation compact while preserving context at the start and end.
+
+<ComponentDocSection
+  code={`import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "buildgrid-ui";
+
+function EllipsisBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbEllipsis />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Settings</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Profile</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}`}
+>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbEllipsis />
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Settings</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Profile</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</ComponentDocSection>
+
+## Custom Separator
+
+`BreadcrumbSeparator` renders a `ChevronRight` icon by default. Pass custom children to use any character or element as the separator.
+
+<ComponentDocSection
+  code={`import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "buildgrid-ui";
+
+function CustomSeparatorBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Library</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbPage>Books</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}`}
+>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator>/</BreadcrumbSeparator>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Library</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator>/</BreadcrumbSeparator>
+      <BreadcrumbItem>
+        <BreadcrumbPage>Books</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</ComponentDocSection>
+
+## Longer Path
+
+A five-level deep path to illustrate how the component handles deeper hierarchies.
+
+<ComponentDocSection
+  code={`import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "buildgrid-ui";
+
+function LongPathBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Projects</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Alpha</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Releases</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>v2.1.0</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}`}
+>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Projects</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Alpha</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="#">Releases</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>v2.1.0</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</ComponentDocSection>
+
+## With asChild
+
+Use `asChild` on `BreadcrumbLink` to delegate rendering to a custom element — for example, a `<button>` or your router's `<Link>` component. The Breadcrumb applies its styles to the child element via the `Slot` primitive.
+
+<ComponentDocSection
+  code={`import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "buildgrid-ui";
+
+function AsChildBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          {/* In a real app, replace <button> with your router's <Link> component */}
+          <BreadcrumbLink asChild>
+            <button type="button" onClick={() => console.log("navigate to Home")}>
+              Home
+            </button>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink asChild>
+            <button type="button" onClick={() => console.log("navigate to Account")}>
+              Account
+            </button>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Security</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+}`}
+>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <BreadcrumbLink asChild>
+          <button type="button" onClick={() => {}}>
+            Home
+          </button>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink asChild>
+          <button type="button" onClick={() => {}}>
+            Account
+          </button>
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Security</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</ComponentDocSection>
+
+## Properties
+
+### `Breadcrumb`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | - | Should contain a `BreadcrumbList`. |
+| `className` | `string` | - | Additional CSS classes for the `<nav>` element. |
+
+Renders as `<nav aria-label="breadcrumb">`. All standard `<nav>` props are forwarded.
+
+### `BreadcrumbList`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | - | `BreadcrumbItem` and `BreadcrumbSeparator` elements. |
+| `className` | `string` | - | Additional CSS classes for the `<ol>` element. |
+
+### `BreadcrumbItem`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | - | A `BreadcrumbLink`, `BreadcrumbPage`, or `BreadcrumbEllipsis`. |
+| `className` | `string` | - | Additional CSS classes for the `<li>` element. |
+
+### `BreadcrumbLink`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `asChild` | `boolean` | `false` | Merges props onto the child element instead of rendering an `<a>`. Use for router integration. |
+| `href` | `string` | - | Navigation target when rendered as an `<a>`. |
+| `className` | `string` | - | Additional CSS classes. |
+
+### `BreadcrumbPage`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | - | The label for the current page. |
+| `className` | `string` | - | Additional CSS classes for the `<span>` element. |
+
+Renders with `aria-current="page"` and `aria-disabled="true"`. Not interactive.
+
+### `BreadcrumbSeparator`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | `<ChevronRight />` | Custom separator content. Pass a string or element to override the default icon. |
+| `className` | `string` | - | Additional CSS classes for the `<li>` element. |
+
+### `BreadcrumbEllipsis`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | - | Additional CSS classes for the `<span>` element. |
+
+Renders a `<MoreHorizontal>` icon with a visually-hidden "More" label for screen readers.

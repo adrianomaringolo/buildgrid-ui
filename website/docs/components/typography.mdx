@@ -1,0 +1,336 @@
+---
+id: typography
+---
+
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyP,
+  TypographyLead,
+  TypographyLarge,
+  TypographySmall,
+  TypographyMuted,
+  TypographyBlockquote,
+  TypographyCode,
+  TypographyList,
+} from "buildgrid-ui";
+
+# Typography
+
+<StorybookLink path="components-typography--default" />
+
+The Typography components provide a set of semantic, styled wrappers for standard HTML text elements. Each component applies consistent Tailwind CSS classes that follow the design system's type scale, ensuring visual harmony across headings, body text, captions, and decorative elements without writing custom styles.
+
+## Headings
+
+Four heading levels are available, each with distinct size and weight. Use them to establish clear visual hierarchy in your content.
+
+<ComponentDocSection
+  code={`import {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+} from "buildgrid-ui";
+
+function Headings() {
+  return (
+    <div className="space-y-4">
+      <TypographyH1>The Art of Typography</TypographyH1>
+      <TypographyH2>Hierarchy and Visual Flow</TypographyH2>
+      <TypographyH3>Spacing and Rhythm</TypographyH3>
+      <TypographyH4>Micro Typography</TypographyH4>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <TypographyH1>The Art of Typography</TypographyH1>
+    <TypographyH2>Hierarchy and Visual Flow</TypographyH2>
+    <TypographyH3>Spacing and Rhythm</TypographyH3>
+    <TypographyH4>Micro Typography</TypographyH4>
+  </div>
+</ComponentDocSection>
+
+## Body Text
+
+Several body text variants cover different levels of emphasis. `TypographyLead` is ideal for article introductions, while `TypographyMuted` works well for captions and secondary notes.
+
+<ComponentDocSection
+  code={`import {
+  TypographyP,
+  TypographyLead,
+  TypographyLarge,
+  TypographySmall,
+  TypographyMuted,
+} from "buildgrid-ui";
+
+function BodyText() {
+  return (
+    <div className="space-y-4 max-w-prose">
+      <TypographyLead>
+        Good typography shapes how readers experience information — it guides the eye,
+        sets the tone, and builds trust before a single word is consciously read.
+      </TypographyLead>
+      <TypographyP>
+        Consistent type scales reduce decision fatigue for designers and create a
+        predictable reading rhythm for users. Every size and weight choice should
+        serve a clear purpose in the content hierarchy.
+      </TypographyP>
+      <TypographyLarge>Feature highlight or callout line</TypographyLarge>
+      <TypographySmall>Published on May 14, 2026 · 5 min read</TypographySmall>
+      <TypographyMuted>
+        This article is for informational purposes only and does not constitute
+        professional design advice.
+      </TypographyMuted>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4 max-w-prose">
+    <TypographyLead>
+      Good typography shapes how readers experience information — it guides the eye,
+      sets the tone, and builds trust before a single word is consciously read.
+    </TypographyLead>
+    <TypographyP>
+      Consistent type scales reduce decision fatigue for designers and create a
+      predictable reading rhythm for users. Every size and weight choice should
+      serve a clear purpose in the content hierarchy.
+    </TypographyP>
+    <TypographyLarge>Feature highlight or callout line</TypographyLarge>
+    <TypographySmall>Published on May 14, 2026 · 5 min read</TypographySmall>
+    <TypographyMuted>
+      This article is for informational purposes only and does not constitute
+      professional design advice.
+    </TypographyMuted>
+  </div>
+</ComponentDocSection>
+
+## Blockquote
+
+Use `TypographyBlockquote` to highlight quotes, pull quotes, or notable excerpts from external sources.
+
+<ComponentDocSection
+  code={`import { TypographyBlockquote } from "buildgrid-ui";
+
+function Blockquote() {
+  return (
+    <TypographyBlockquote>
+      "Typography is the craft of endowing human language with a durable visual
+      form, and thus with an independent existence."
+      <br />
+      — Robert Bringhurst, <em>The Elements of Typographic Style</em>
+    </TypographyBlockquote>
+  );
+}`}
+>
+  <TypographyBlockquote>
+    "Typography is the craft of endowing human language with a durable visual
+    form, and thus with an independent existence."
+    <br />
+    — Robert Bringhurst, <em>The Elements of Typographic Style</em>
+  </TypographyBlockquote>
+</ComponentDocSection>
+
+## Inline Code
+
+`TypographyCode` renders inline code snippets with a monospaced font and muted background, suitable for embedding short code references within prose.
+
+<ComponentDocSection
+  code={`import { TypographyP, TypographyCode } from "buildgrid-ui";
+
+function InlineCode() {
+  return (
+    <div className="space-y-3 max-w-prose">
+      <TypographyP>
+        Pass the <TypographyCode>variant</TypographyCode> prop to control the
+        visual style of the component. Accepted values are{" "}
+        <TypographyCode>"default"</TypographyCode>,{" "}
+        <TypographyCode>"secondary"</TypographyCode>, and{" "}
+        <TypographyCode>"destructive"</TypographyCode>.
+      </TypographyP>
+      <TypographyP>
+        The <TypographyCode>className</TypographyCode> prop is always forwarded,
+        so you can extend styles using Tailwind utility classes.
+      </TypographyP>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-3 max-w-prose">
+    <TypographyP>
+      Pass the <TypographyCode>variant</TypographyCode> prop to control the
+      visual style of the component. Accepted values are{" "}
+      <TypographyCode>"default"</TypographyCode>,{" "}
+      <TypographyCode>"secondary"</TypographyCode>, and{" "}
+      <TypographyCode>"destructive"</TypographyCode>.
+    </TypographyP>
+    <TypographyP>
+      The <TypographyCode>className</TypographyCode> prop is always forwarded,
+      so you can extend styles using Tailwind utility classes.
+    </TypographyP>
+  </div>
+</ComponentDocSection>
+
+## Lists
+
+`TypographyList` renders a disc-style unordered list with consistent vertical spacing between items.
+
+<ComponentDocSection
+  code={`import { TypographyH3, TypographyList } from "buildgrid-ui";
+
+function Lists() {
+  return (
+    <div className="space-y-4">
+      <TypographyH3>What's included</TypographyH3>
+      <TypographyList>
+        <li>Full access to all components and design tokens</li>
+        <li>Storybook documentation with live interactive examples</li>
+        <li>TypeScript definitions for every prop and variant</li>
+        <li>Dark mode support via CSS custom properties</li>
+        <li>Regular updates aligned with the design system roadmap</li>
+      </TypographyList>
+    </div>
+  );
+}`}
+>
+  <div className="space-y-4">
+    <TypographyH3>What's included</TypographyH3>
+    <TypographyList>
+      <li>Full access to all components and design tokens</li>
+      <li>Storybook documentation with live interactive examples</li>
+      <li>TypeScript definitions for every prop and variant</li>
+      <li>Dark mode support via CSS custom properties</li>
+      <li>Regular updates aligned with the design system roadmap</li>
+    </TypographyList>
+  </div>
+</ComponentDocSection>
+
+## Full Article
+
+The real power of the Typography system shows when all components are combined to compose a complete, readable article layout.
+
+<ComponentDocSection
+  code={`import {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyP,
+  TypographyLead,
+  TypographyBlockquote,
+  TypographyCode,
+  TypographyList,
+  TypographyMuted,
+} from "buildgrid-ui";
+
+function FullArticle() {
+  return (
+    <article className="max-w-prose space-y-2">
+      <TypographyH1>Designing for Clarity</TypographyH1>
+      <TypographyLead>
+        A practical guide to building interfaces that communicate effectively
+        without relying on decoration.
+      </TypographyLead>
+      <TypographyP>
+        Clarity in design is not about minimalism — it is about precision.
+        Every element on screen either adds meaning or creates noise. The
+        discipline of type selection, spacing, and hierarchy determines whether
+        users find what they need or give up in frustration.
+      </TypographyP>
+
+      <TypographyH2>Building a Visual Hierarchy</TypographyH2>
+      <TypographyP>
+        Hierarchy guides the reader's eye from the most important information
+        to the least. A well-structured page answers the reader's first question
+        — "what is this?" — within a glance.
+      </TypographyP>
+      <TypographyBlockquote>
+        "The goal of design is not to make something pretty — it is to make
+        something that works so well it becomes invisible."
+      </TypographyBlockquote>
+
+      <TypographyH3>Practical Starting Points</TypographyH3>
+      <TypographyP>
+        When implementing a type system, start with the{" "}
+        <TypographyCode>TypographyH1</TypographyCode> and work downward.
+        Establish contrast between levels before tuning individual weights.
+      </TypographyP>
+      <TypographyList>
+        <li>Define heading levels before body styles</li>
+        <li>Limit your type scale to four or five sizes</li>
+        <li>Use weight and size together — not one alone — for emphasis</li>
+        <li>Reserve muted styles for truly secondary content</li>
+      </TypographyList>
+
+      <TypographyMuted>
+        Last updated May 14, 2026 · Part of the BuildGrid UI design guide series.
+      </TypographyMuted>
+    </article>
+  );
+}`}
+>
+  <article className="max-w-prose space-y-2">
+    <TypographyH1>Designing for Clarity</TypographyH1>
+    <TypographyLead>
+      A practical guide to building interfaces that communicate effectively
+      without relying on decoration.
+    </TypographyLead>
+    <TypographyP>
+      Clarity in design is not about minimalism — it is about precision.
+      Every element on screen either adds meaning or creates noise. The
+      discipline of type selection, spacing, and hierarchy determines whether
+      users find what they need or give up in frustration.
+    </TypographyP>
+
+    <TypographyH2>Building a Visual Hierarchy</TypographyH2>
+    <TypographyP>
+      Hierarchy guides the reader's eye from the most important information
+      to the least. A well-structured page answers the reader's first question
+      — "what is this?" — within a glance.
+    </TypographyP>
+    <TypographyBlockquote>
+      "The goal of design is not to make something pretty — it is to make
+      something that works so well it becomes invisible."
+    </TypographyBlockquote>
+
+    <TypographyH3>Practical Starting Points</TypographyH3>
+    <TypographyP>
+      When implementing a type system, start with the{" "}
+      <TypographyCode>TypographyH1</TypographyCode> and work downward.
+      Establish contrast between levels before tuning individual weights.
+    </TypographyP>
+    <TypographyList>
+      <li>Define heading levels before body styles</li>
+      <li>Limit your type scale to four or five sizes</li>
+      <li>Use weight and size together — not one alone — for emphasis</li>
+      <li>Reserve muted styles for truly secondary content</li>
+    </TypographyList>
+
+    <TypographyMuted>
+      Last updated May 14, 2026 · Part of the BuildGrid UI design guide series.
+    </TypographyMuted>
+  </article>
+</ComponentDocSection>
+
+## Properties
+
+| Component | HTML element | Description |
+|---|---|---|
+| `TypographyH1` | `<h1>` | Extra-large bold heading; the top of the page hierarchy. |
+| `TypographyH2` | `<h2>` | Large semibold heading with a bottom border; major section divider. |
+| `TypographyH3` | `<h3>` | Medium semibold heading; subsection titles. |
+| `TypographyH4` | `<h4>` | Small semibold heading; minor groupings or card titles. |
+| `TypographyP` | `<p>` | Standard body paragraph with comfortable line height. |
+| `TypographyLead` | `<p>` | Larger, muted introductory paragraph. |
+| `TypographyLarge` | `<div>` | Semibold large text for callouts or feature lines. |
+| `TypographySmall` | `<small>` | Small, medium-weight text for metadata and timestamps. |
+| `TypographyMuted` | `<p>` | Small, muted text for captions, footnotes, and disclaimers. |
+| `TypographyBlockquote` | `<blockquote>` | Left-bordered italic blockquote for pull quotes. |
+| `TypographyCode` | `<code>` | Inline monospaced code with a muted background pill. |
+| `TypographyList` | `<ul>` | Disc-style unordered list with consistent item spacing. |
+
+All components accept `className` and all native HTML attributes for the underlying element.
