@@ -20,12 +20,11 @@ import {
 	ContextMenuTrigger,
 } from './context-menu'
 import {
+	ClipboardPaste,
 	Copy,
-	Cut,
 	FilePlus,
 	FolderPlus,
 	Info,
-	Paste,
 	Scissors,
 	Settings,
 } from 'lucide-react'
@@ -72,7 +71,7 @@ const FileManagerTemplate = () => (
 				<ContextMenuSeparator />
 				<ContextMenuLabel>Edit</ContextMenuLabel>
 				<ContextMenuItem>
-					<Cut />
+					<Scissors />
 					Cut
 					<ContextMenuShortcut>⌘X</ContextMenuShortcut>
 				</ContextMenuItem>
@@ -82,7 +81,7 @@ const FileManagerTemplate = () => (
 					<ContextMenuShortcut>⌘C</ContextMenuShortcut>
 				</ContextMenuItem>
 				<ContextMenuItem>
-					<Paste />
+					<ClipboardPaste />
 					Paste
 					<ContextMenuShortcut>⌘V</ContextMenuShortcut>
 				</ContextMenuItem>
@@ -192,7 +191,7 @@ const WithSubmenusTemplate = () => (
 						<ContextMenuShortcut>⌘C</ContextMenuShortcut>
 					</ContextMenuItem>
 					<ContextMenuItem>
-						<Cut />
+						<Scissors />
 						Cut
 						<ContextMenuShortcut>⌘X</ContextMenuShortcut>
 					</ContextMenuItem>
