@@ -32,11 +32,11 @@ jobs:
             website/package-lock.json
             package-lock.json
 
-      - run: npm ci
+      - run: npm ci --omit=optional
       - name: Install root dependencies and run tests with coverage
         run: |
           cd ../
-          npm ci
+          npm ci --omit=optional
           npm run test:coverage
       - run: npm run build
 
