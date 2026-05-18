@@ -21,20 +21,16 @@ jobs:
       run:
         working-directory: website
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "20.8.1"
-
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-website-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-website-
+          node-version: "22"
+          cache: 'npm'
+          cache-dependency-path: |
+            website/package-lock.json
+            package-lock.json
 
       - run: npm ci
       - name: Install root dependencies and run tests with coverage
