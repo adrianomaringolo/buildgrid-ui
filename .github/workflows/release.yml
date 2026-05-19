@@ -28,12 +28,34 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Get npm token via OIDC
         run: |
-          OIDC_TOKEN=$(curl -sf \
-            -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+          OIDC_TOKEN=$(curl -s \
+            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
             "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm" | jq -r '.value')
-          NPM_TOKEN=$(curl -sf -X POST "https://registry.npmjs.org/-/npm/v1/oidc/token" \
+
+          if [ -z "$OIDC_TOKEN" ] || [ "$OIDC_TOKEN" = "null" ]; then
+            echo "::error::Failed to get OIDC token from GitHub Actions"
+            exit 1
+          fi
+          echo "GitHub OIDC token obtained successfully"
+
+          NPM_RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://registry.npmjs.org/-/npm/v1/oidc/token" \
             -H "Content-Type: application/json" \
-            -d "{\"oidcToken\":\"$OIDC_TOKEN\"}" | jq -r '.token')
+            -d "{\"oidcToken\":\"$OIDC_TOKEN\"}")
+
+          HTTP_CODE=$(echo "$NPM_RESPONSE" | tail -1)
+          BODY=$(echo "$NPM_RESPONSE" | head -1)
+
+          echo "npm OIDC exchange HTTP status: $HTTP_CODE"
+          echo "npm OIDC response keys: $(echo "$BODY" | jq 'keys // empty' 2>/dev/null || echo 'invalid JSON')"
+
+          NPM_TOKEN=$(echo "$BODY" | jq -r '.token // empty')
+
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "::error::npm OIDC exchange failed: $(echo "$BODY" | jq -r '.message // .error // "unknown error"')"
+            exit 1
+          fi
+
+          echo "npm token obtained successfully"
           echo "NPM_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
       - name: Run semantic-release
         env:
