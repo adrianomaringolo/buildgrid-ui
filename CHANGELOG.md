@@ -1,3 +1,10 @@
+## [1.22.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.6...v1.22.7) (2026-05-19)
+
+
+### Bug Fixes
+
+* move npm provenance config from semantic-release to .npmrc ([5e1d12a](https://github.com/adrianomaringolo/buildgrid-ui/commit/5e1d12aa57c9f0a0c93efdd003515a70e96db287))
+
 ## [1.22.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.5...v1.22.6) (2026-05-19)
 
 
