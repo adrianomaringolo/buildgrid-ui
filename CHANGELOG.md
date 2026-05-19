@@ -1,3 +1,10 @@
+## [1.22.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.5...v1.22.6) (2026-05-19)
+
+
+### Bug Fixes
+
+* update radix-ui components and date-fns to latest versions ([111a61e](https://github.com/adrianomaringolo/buildgrid-ui/commit/111a61eea09cf9547595fef718f469d541ed1efc))
+
 ## [1.22.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.4...v1.22.5) (2026-05-19)
 
 
