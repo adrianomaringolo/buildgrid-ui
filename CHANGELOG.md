@@ -1,3 +1,10 @@
+## [1.22.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.0...v1.22.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **wizard:** add Wizard block with progress stepper and useWizard hook ([68ae0f4](https://github.com/adrianomaringolo/buildgrid-ui/commit/68ae0f49323b9dfd32ccc41f105c5c75bbf92159))
+
 # [1.22.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.21.0...v1.22.0) (2026-05-15)
 
 
