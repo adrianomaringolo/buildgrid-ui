@@ -1,3 +1,10 @@
+## [1.22.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.2...v1.22.3) (2026-05-19)
+
+
+### Bug Fixes
+
+* **menubar:** add explicit TypeScript types to re-exported components ([72f96d9](https://github.com/adrianomaringolo/buildgrid-ui/commit/72f96d944b0d962e1a9f6412424e00e16e8b7553))
+
 ## [1.22.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.1...v1.22.2) (2026-05-19)
 
 
