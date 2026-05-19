@@ -1,10 +1,54 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "_comment": "Machine-readable registry for AI agents. Update when adding/removing components.",
-  "version": "1.0.0",
-  "generatedAt": "2026-05-15",
+  "version": "1.1.0",
+  "generatedAt": "2026-05-18",
   "importRoot": "@/components",
   "blocksRoot": "@/blocks",
+  "agentHints": {
+    "preferHigherLevel": [
+      { "instead": "Table", "use": "DataTable (block)", "reason": "Table primitives have no search/sort/filter/pagination; DataTable adds all of that" },
+      { "instead": "Pagination primitives", "use": "PaginationControls (block) or let DataTable/PaginatedItems handle it", "reason": "Avoid reimplementing pagination state" },
+      { "instead": "Dialog", "use": "AlertDialog", "reason": "Destructive actions must use alertdialog ARIA role" },
+      { "instead": "Drawer", "use": "Sheet", "reason": "Sheet is simpler; Drawer adds vaul swipe-gestures only needed for mobile-first UIs" }
+    ],
+    "singletonSetup": [
+      { "component": "TooltipProvider", "instruction": "Place once at app root or a common ancestor subtree. Never nest multiple instances." },
+      { "component": "Toaster", "instruction": "Place once in root layout. Then call toast() / toast.success() / toast.error() from anywhere." }
+    ],
+    "compositionPatterns": [
+      {
+        "name": "Client-side data grid",
+        "components": ["DataTable"],
+        "snippet": "<DataTable data={rows} columns={cols} />"
+      },
+      {
+        "name": "Server-side data grid",
+        "components": ["DataTable"],
+        "snippet": "<DataTable data={pageRows} columns={cols} serverPagination={{ currentPage, totalPages, totalItems, onPageChange }} />"
+      },
+      {
+        "name": "Paginated custom list",
+        "components": ["PaginatedItems", "EmptyMessage"],
+        "snippet": "<PaginatedItems data={all} perPage={20} emptyState={<EmptyItems notFoundText='No results.' />}>{(items) => items.map(i => <div key={i.id}>{i.name}</div>)}</PaginatedItems>"
+      },
+      {
+        "name": "Form in a card",
+        "components": ["Card", "CardHeader", "CardContent", "CardFooter", "Label", "Input", "Select", "Button"],
+        "snippet": "<Card><CardHeader><CardTitle>Title</CardTitle></CardHeader><CardContent className='space-y-4'><Label htmlFor='x'>Field</Label><Input id='x' /></CardContent><CardFooter><Button>Save</Button></CardFooter></Card>"
+      },
+      {
+        "name": "Destructive confirmation",
+        "components": ["AlertDialog", "AlertDialogTrigger", "AlertDialogContent", "AlertDialogAction", "AlertDialogCancel"],
+        "snippet": "<AlertDialog><AlertDialogTrigger asChild><Button variant='destructive'>Delete</Button></AlertDialogTrigger><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Sure?</AlertDialogTitle><AlertDialogDescription>Cannot be undone.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Cancel</AlertDialogCancel><AlertDialogAction onClick={handle}>Delete</AlertDialogAction></AlertDialogFooter></AlertDialogContent></AlertDialog>"
+      },
+      {
+        "name": "Side panel with form",
+        "components": ["Sheet", "SheetTrigger", "SheetContent", "SheetHeader", "SheetFooter", "Button"],
+        "snippet": "<Sheet><SheetTrigger asChild><Button>Edit</Button></SheetTrigger><SheetContent side='right'><SheetHeader><SheetTitle>Edit</SheetTitle></SheetHeader><SheetFooter><Button onClick={save}>Save</Button></SheetFooter></SheetContent></Sheet>"
+      }
+    ]
+  },
   "components": [
     {
       "name": "Accordion",
@@ -12,6 +56,7 @@
       "exports": ["Accordion", "AccordionContent", "AccordionItem", "AccordionTrigger"],
       "radixPrimitive": "@radix-ui/react-accordion",
       "useClient": true,
+      "aria": "Disclosure pattern — AccordionTrigger has aria-expanded, AccordionContent has aria-hidden. Keyboard: Enter/Space toggle, arrow keys move between items.",
       "usage": "<Accordion type=\"single\" collapsible><AccordionItem value=\"item-1\"><AccordionTrigger>Label</AccordionTrigger><AccordionContent>Content</AccordionContent></AccordionItem></Accordion>"
     },
     {
@@ -46,6 +91,9 @@
         "AlertDialogTitle", "AlertDialogDescription", "AlertDialogAction", "AlertDialogCancel"
       ],
       "radixPrimitive": "@radix-ui/react-alert-dialog",
+      "aria": "role=alertdialog, focus trap, aria-labelledby on Title, aria-describedby on Description. Use for destructive/irreversible actions — not for informational dialogs (use Dialog instead).",
+      "antiPattern": "Do not use Dialog for destructive confirmations — AlertDialog enforces the correct alertdialog ARIA role and prevents accidental dismissal.",
+      "composedWith": ["Button"],
       "usage": "<AlertDialog><AlertDialogTrigger>Delete</AlertDialogTrigger><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Are you sure?</AlertDialogTitle><AlertDialogDescription>This cannot be undone.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Cancel</AlertDialogCancel><AlertDialogAction>Continue</AlertDialogAction></AlertDialogFooter></AlertDialogContent></AlertDialog>"
     },
     {
@@ -67,6 +115,7 @@
         "onChange": "(value: string) => void",
         "placeholder": "string"
       },
+      "aria": "Combobox pattern — role=combobox on input, aria-expanded, aria-autocomplete=list, role=listbox on dropdown. Keyboard: arrow keys navigate, Enter selects, Escape closes.",
       "notes": "Option = { label: string; value: string }. Supports keyboard navigation and dropdown auto-positioning.",
       "usage": "<Autocomplete options={[{ label: 'Apple', value: 'apple' }]} onChange={setValue} />"
     },
@@ -109,6 +158,8 @@
         "isLoading": "boolean",
         "asChild": "boolean"
       },
+      "aria": "role=button. isLoading adds aria-disabled and shows a spinner. asChild renders as the child element (e.g. <a>) while applying button styles — use for links styled as buttons.",
+      "composedWith": ["Dialog", "AlertDialog", "Sheet", "ButtonGroup", "Form"],
       "usage": "<Button variant=\"outline\" size=\"sm\">Cancel</Button>"
     },
     {
@@ -157,6 +208,8 @@
       "importPath": "@/components/checkbox",
       "exports": ["Checkbox"],
       "radixPrimitive": "@radix-ui/react-checkbox",
+      "aria": "role=checkbox, aria-checked (true/false/mixed for indeterminate). Keyboard: Space toggles. Pair with <Label htmlFor> for accessible labeling.",
+      "composedWith": ["Label"],
       "usage": "<Checkbox id=\"terms\" />"
     },
     {
@@ -227,6 +280,9 @@
       "props": {
         "showCloseButton": "boolean (on DialogContent)"
       },
+      "aria": "role=dialog, focus trap, aria-labelledby on Title, aria-describedby on Description. Keyboard: Escape closes. Use for non-destructive flows; for destructive confirmations use AlertDialog.",
+      "antiPattern": "Do not use Dialog for destructive confirmations (delete, reset, irrecoverable actions) — use AlertDialog which enforces role=alertdialog.",
+      "composedWith": ["Button", "Form", "Input", "Select"],
       "usage": "<Dialog><DialogTrigger>Open</DialogTrigger><DialogContent><DialogHeader><DialogTitle>Title</DialogTitle></DialogHeader>Body</DialogContent></Dialog>"
     },
     {
@@ -270,6 +326,8 @@
       "variants": {
         "sizing": ["sm", "md", "lg", "xl", "2xl"]
       },
+      "aria": "Extends <input> — always pair with <Label htmlFor> for accessibility. For inputs with icons or masks, prefer AdaptiveInput.",
+      "composedWith": ["Label", "AdaptiveInput"],
       "usage": "<Input sizing=\"md\" placeholder=\"Email\" />"
     },
     {
@@ -350,6 +408,8 @@
         "Pagination", "PaginationContent", "PaginationItem",
         "PaginationLink", "PaginationPrevious", "PaginationNext", "PaginationEllipsis"
       ],
+      "aria": "role=navigation on Pagination root. PaginationLink uses aria-current='page' when active.",
+      "antiPattern": "Do not use these primitives directly for interactive pagination — use PaginationControls block (handles ellipsis logic and page counter) or let DataTable/PaginatedItems manage it.",
       "notes": "Low-level pagination primitives. For a full pagination block with page counter, use PaginationControls block instead.",
       "usage": "<Pagination><PaginationContent><PaginationPrevious /><PaginationItem><PaginationLink isActive>1</PaginationLink></PaginationItem><PaginationNext /></PaginationContent></Pagination>"
     },
@@ -385,6 +445,8 @@
       "importPath": "@/components/radio-group",
       "exports": ["RadioGroup", "RadioGroupItem"],
       "radixPrimitive": "@radix-ui/react-radio-group",
+      "aria": "role=radiogroup on RadioGroup, role=radio on each item, aria-checked. Keyboard: arrow keys navigate between items, Tab enters/leaves the group.",
+      "composedWith": ["Label"],
       "usage": "<RadioGroup defaultValue=\"a\"><RadioGroupItem value=\"a\" id=\"a\" /><Label htmlFor=\"a\">Option A</Label></RadioGroup>"
     },
     {
@@ -420,6 +482,8 @@
         "SelectLabel", "SelectItem", "SelectSeparator"
       ],
       "radixPrimitive": "@radix-ui/react-select",
+      "aria": "Listbox pattern — SelectTrigger has role=combobox, aria-expanded, aria-haspopup=listbox. SelectContent has role=listbox. Keyboard: arrow keys navigate, Enter/Space select, Escape closes.",
+      "composedWith": ["Label"],
       "usage": "<Select><SelectTrigger><SelectValue placeholder=\"Pick one\" /></SelectTrigger><SelectContent><SelectItem value=\"a\">Option A</SelectItem></SelectContent></Select>"
     },
     {
@@ -463,6 +527,7 @@
       "exports": ["Slider"],
       "radixPrimitive": "@radix-ui/react-slider",
       "useClient": true,
+      "aria": "role=slider, aria-valuemin, aria-valuemax, aria-valuenow, aria-valuetext. Keyboard: arrow keys adjust value, Home/End jump to min/max.",
       "usage": "<Slider defaultValue={[50]} max={100} step={1} />"
     },
     {
@@ -483,6 +548,8 @@
       "importPath": "@/components/switch",
       "exports": ["Switch"],
       "radixPrimitive": "@radix-ui/react-switch",
+      "aria": "role=switch, aria-checked. Keyboard: Space toggles. Pair with <Label htmlFor> for accessible labeling.",
+      "composedWith": ["Label"],
       "usage": "<Switch id=\"notifications\" />"
     },
     {
@@ -492,6 +559,7 @@
         "Table", "TableHeader", "TableBody", "TableFooter",
         "TableRow", "TableHead", "TableCell", "TableCaption"
       ],
+      "antiPattern": "Do not use Table for interactive data grids — it has no search, sort, filter, or pagination. Use the DataTable block instead. Table primitives are for static, read-only tabular data.",
       "notes": "Low-level table primitives. For a full-featured data grid with search/sort/filter/pagination, use the DataTable block instead.",
       "usage": "<Table><TableHeader><TableRow><TableHead>Name</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Alice</TableCell></TableRow></TableBody></Table>"
     },
@@ -504,6 +572,8 @@
       "variants": {
         "size": ["sm", "md", "lg", "xl"]
       },
+      "aria": "role=tablist on TabsList, role=tab on each TabsTrigger (aria-selected, aria-controls), role=tabpanel on TabsContent (aria-labelledby). Keyboard: arrow keys move between tabs, Tab moves focus into panel.",
+      "composedWith": ["Card"],
       "usage": "<Tabs defaultValue=\"a\"><TabsList size=\"md\"><TabsTrigger value=\"a\">Tab A</TabsTrigger></TabsList><TabsContent value=\"a\">Content A</TabsContent></Tabs>"
     },
     {
@@ -532,7 +602,9 @@
       "importPath": "@/components/toaster",
       "exports": ["toast"],
       "externalDep": "sonner",
-      "notes": "Import the Toaster component and place it in the root layout, then call toast() anywhere.",
+      "aria": "role=status (default) or role=alert (for error toasts). Announced by screen readers via ARIA live regions.",
+      "singleton": true,
+      "notes": "Place <Toaster /> once in root layout. Then import toast from '@/components/toaster' anywhere to call toast.success(), toast.error(), toast.warning(), toast.info(), or toast.loading().",
       "usage": "toast.success('Saved!') / toast.error('Failed')"
     },
     {
@@ -560,6 +632,9 @@
       "exports": ["Tooltip", "TooltipTrigger", "TooltipContent", "TooltipProvider"],
       "radixPrimitive": "@radix-ui/react-tooltip",
       "useClient": true,
+      "aria": "role=tooltip on TooltipContent, aria-describedby on trigger pointing to tooltip id. Keyboard: tooltip shows on focus, hides on Escape or blur.",
+      "antiPattern": "Do not nest TooltipProvider — place it once at app root or a shared ancestor. Multiple providers cause race conditions in show/hide timing.",
+      "singleton": "TooltipProvider",
       "notes": "Wrap your app (or the relevant subtree) in TooltipProvider once.",
       "usage": "<TooltipProvider><Tooltip><TooltipTrigger>Hover me</TooltipTrigger><TooltipContent>Details here</TooltipContent></Tooltip></TooltipProvider>"
     },
@@ -599,7 +674,9 @@
         "labels": "DataTableLabels (optional — i18n overrides for all UI strings)",
         "tools": "{ search?, columnSelector?, export?, filter? } (optional — feature flags)"
       },
-      "notes": "Full-featured data grid. Supports client-side search/sort/filter/pagination by default. Pass serverPagination to delegate paging to the caller — data must contain only the current page. Use DataTableRef (via useRef) to call .exportCsv() or .resetFilters() imperatively.",
+      "aria": "role=table with aria-sort on sortable column headers. Search input has aria-label. Pagination uses role=navigation.",
+      "composedWith": ["Badge", "Button", "Checkbox"],
+      "notes": "Full-featured data grid. Supports client-side search/sort/filter/pagination by default. Pass serverPagination to delegate paging to the caller — data must contain only the current page. Use DataTableRef (via useRef) to call .exportCsv() or .resetFilters() imperatively. tools.columnSelector and tools.export are visible by default (set hide: true to suppress).",
       "usage": "<DataTable data={rows} columns={cols} />"
     },
     {
@@ -738,7 +815,8 @@
         "labels": "PaginatedItemsLabels (optional i18n)",
         "counterText": "string"
       },
-      "notes": "Generic paginated container. Pass serverPagination to delegate paging. Children is a render-prop receiving the current page's items.",
+      "composedWith": ["PaginationControls", "EmptyMessage", "Skeleton"],
+      "notes": "Generic paginated container. Pass serverPagination to delegate paging. Children is a render-prop receiving the current page's items. Use instead of DataTable when items are not tabular (cards, lists, grids).",
       "usage": "<PaginatedItems data={allRows} perPage={10}>{(rows) => rows.map(r => <div key={r.id}>{r.name}</div>)}</PaginatedItems>"
     },
     {
@@ -758,7 +836,8 @@
         "showItemsCounter": "boolean",
         "counterText": "string"
       },
-      "notes": "Stateless pagination bar with smart ellipsis. Used internally by DataTable and PaginatedItems.",
+      "aria": "role=navigation wrapping Pagination primitives. Previous/Next are aria-label'd buttons. Active page has aria-current=page.",
+      "notes": "Stateless pagination bar with smart ellipsis. Used internally by DataTable and PaginatedItems. Use this block instead of the Pagination primitives when you need ellipsis logic and item counters.",
       "usage": "<PaginationControls currentPage={1} totalPages={5} onPageChange={setPage} />"
     },
     {

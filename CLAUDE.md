@@ -151,3 +151,178 @@ export * from './foo'
 | No inline styles | Use Tailwind utilities exclusively |
 | No comments explaining *what* | Only comment *why* (non-obvious constraints) |
 | Shadcn parity | Match shadcn/ui component API shape when a parallel exists |
+
+---
+
+## Component selection — prefer the higher-level option
+
+| Need | Use | Not |
+|---|---|---|
+| Interactive data grid | `DataTable` block | `Table` primitives (static only) |
+| Paginated list (non-tabular) | `PaginatedItems` block | Manual pagination state |
+| Pagination bar | `PaginationControls` block | `Pagination` primitives |
+| Destructive confirmation | `AlertDialog` | `Dialog` |
+| Side panel | `Sheet` | `Drawer` (unless swipe gesture needed) |
+
+---
+
+## Composition patterns
+
+### Paginated data grid — client-side
+
+```tsx
+import { DataTable } from '@/blocks/data-table'
+import type { DataTableColumn } from '@/blocks/data-table'
+
+type Row = { id: string; name: string; status: 'active' | 'inactive' }
+
+const columns: DataTableColumn<Row>[] = [
+  { key: 'name', header: 'Name', sortable: true },
+  { key: 'status', header: 'Status', cell: (row) => <Badge>{row.status}</Badge> },
+]
+
+<DataTable data={rows} columns={columns} />
+```
+
+### Paginated data grid — server-side
+
+```tsx
+// data must contain only the current page's items
+<DataTable
+  data={currentPageRows}
+  columns={columns}
+  serverPagination={{
+    currentPage,
+    totalPages,
+    totalItems,
+    onPageChange: setPage,
+  }}
+/>
+```
+
+### Paginated custom list (cards, not a table)
+
+```tsx
+import { PaginatedItems } from '@/blocks/paginated-items'
+import { EmptyItems } from '@/blocks/empty-message'
+
+<PaginatedItems
+  data={allItems}
+  perPage={20}
+  emptyState={<EmptyItems notFoundText="No results found." />}
+>
+  {(items) =>
+    items.map((item) => (
+      <Card key={item.id}>
+        <CardContent>{item.name}</CardContent>
+      </Card>
+    ))
+  }
+</PaginatedItems>
+```
+
+### Form inside a Card
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Edit profile</CardTitle>
+  </CardHeader>
+  <CardContent className="space-y-4">
+    <div className="space-y-1">
+      <Label htmlFor="name">Name</Label>
+      <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
+    </div>
+    <div className="space-y-1">
+      <Label htmlFor="role">Role</Label>
+      <Select value={role} onValueChange={setRole}>
+        <SelectTrigger id="role"><SelectValue placeholder="Select role" /></SelectTrigger>
+        <SelectContent>
+          <SelectItem value="admin">Admin</SelectItem>
+          <SelectItem value="viewer">Viewer</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </CardContent>
+  <CardFooter className="gap-2 justify-end">
+    <Button variant="outline" onClick={onCancel}>Cancel</Button>
+    <Button onClick={onSave}>Save</Button>
+  </CardFooter>
+</Card>
+```
+
+### Destructive confirmation
+
+```tsx
+<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="destructive">Delete account</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+### Side panel with form (Sheet)
+
+```tsx
+<Sheet>
+  <SheetTrigger asChild>
+    <Button variant="outline">Edit item</Button>
+  </SheetTrigger>
+  <SheetContent side="right">
+    <SheetHeader>
+      <SheetTitle>Edit item</SheetTitle>
+      <SheetDescription>Make changes and save.</SheetDescription>
+    </SheetHeader>
+    {/* form fields */}
+    <SheetFooter>
+      <SheetClose asChild>
+        <Button variant="outline">Cancel</Button>
+      </SheetClose>
+      <Button onClick={onSave}>Save</Button>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>
+```
+
+### Toast notifications
+
+```tsx
+// Place once in root layout:
+import { Toaster } from '@/components/toaster'
+export default function RootLayout({ children }) {
+  return <>{children}<Toaster /></>
+}
+
+// Call from anywhere:
+import { toast } from '@/components/toaster'
+toast.success('Saved successfully.')
+toast.error('Failed to save.')
+toast.loading('Saving…')
+```
+
+### Tooltip (provider once, use many)
+
+```tsx
+// Root layout or shared ancestor — only once:
+<TooltipProvider>
+  <App />
+</TooltipProvider>
+
+// Inside any component:
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button size="icon" variant="ghost"><TrashIcon /></Button>
+  </TooltipTrigger>
+  <TooltipContent>Delete item</TooltipContent>
+</Tooltip>
+```

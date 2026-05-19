@@ -1,0 +1,190 @@
+# BuildGrid UI
+
+> React component library built on Tailwind CSS v4 + shadcn/ui primitives (Radix UI). Provides ~50 low-level components and ~15 composite blocks for building accessible, dark-mode-ready UIs in TypeScript.
+
+## Key resources
+
+- [Component manifest](./components-manifest.json): Machine-readable index of every component and block — check this first before reading source files. Contains exports, variants, props, ARIA roles, and composition patterns.
+- [Developer guide](./CLAUDE.md): Conventions, file structure, and code patterns for adding/modifying components.
+- [Storybook](https://adrianomaringolo.github.io/buildgrid-ui): Live visual documentation with interactive examples for every component.
+- [Source components](./src/components/): Low-level primitives.
+- [Source blocks](./src/blocks/): Composite higher-level components.
+- [Changelog](./CHANGELOG.md): Version history with breaking changes.
+
+## Architecture
+
+Components and blocks live in separate directories and are distinct concepts:
+
+- **Components** (`src/components/`): Single-purpose primitives, usually thin wrappers around Radix UI primitives styled with Tailwind CSS v4. Each component is in its own subdirectory with `.tsx`, `.stories.tsx`, `.test.tsx`, and `index.ts`.
+- **Blocks** (`src/blocks/`): Composite components that combine multiple primitives into a self-contained feature (e.g. `DataTable`, `PaginatedItems`, `Sidebar`, `FileUploadDropzone`). Same file structure as components.
+- All components and blocks are barrel-exported from `src/components/index.ts` and `src/blocks/index.ts` respectively.
+- Path alias: `@/` resolves to `src/`.
+
+## Code patterns
+
+- Class merging: `cn()` from `@/lib/utils` (wraps `clsx` + `tailwind-merge`)
+- Multi-variant components: `cva()` from `class-variance-authority`
+- Every color token requires a `dark:` Tailwind counterpart
+- Every root element carries `data-slot="..."` for external styling hooks
+- `'use client'` directive only when hooks or browser APIs are used
+- Prop types via `React.ComponentProps<typeof Primitive.X>` — not manual re-declaration
+- `className` prop always accepted and forwarded
+
+## Component selection guide
+
+Prefer the more specific component when one exists:
+
+| Need | Use | Not |
+|---|---|---|
+| Interactive data grid with search/sort/filter/pagination | `DataTable` block | `Table` component |
+| Paginated list of any items | `PaginatedItems` block | Manual pagination |
+| Pagination UI bar | `PaginationControls` block | `Pagination` primitives |
+| Destructive confirmation | `AlertDialog` | `Dialog` |
+| Side panel / drawer | `Sheet` | `Drawer` (unless you need swipe gesture) |
+| Toast notifications | `Toaster` + `toast()` from sonner | Any custom solution |
+
+## Common composition patterns
+
+### Paginated data grid (client-side)
+```tsx
+import { DataTable, DataTableColumn } from '@/blocks/data-table'
+
+const columns: DataTableColumn<Row>[] = [
+  { key: 'name', header: 'Name', sortable: true },
+  { key: 'status', header: 'Status', cell: (row) => <Badge>{row.status}</Badge> },
+]
+<DataTable data={rows} columns={columns} />
+```
+
+### Paginated data grid (server-side)
+```tsx
+<DataTable
+  data={currentPageRows}
+  columns={columns}
+  serverPagination={{
+    currentPage,
+    totalPages,
+    totalItems,
+    onPageChange: setPage,
+  }}
+/>
+```
+
+### Paginated custom list
+```tsx
+import { PaginatedItems } from '@/blocks/paginated-items'
+
+<PaginatedItems data={allItems} perPage={20} emptyState={<EmptyItems notFoundText="No results." />}>
+  {(items) => items.map((item) => <Card key={item.id}><CardContent>{item.name}</CardContent></Card>)}
+</PaginatedItems>
+```
+
+### Form with validation feedback
+```tsx
+<Card>
+  <CardHeader><CardTitle>Edit profile</CardTitle></CardHeader>
+  <CardContent className="space-y-4">
+    <div className="space-y-1">
+      <Label htmlFor="name">Name</Label>
+      <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
+    </div>
+    <div className="space-y-1">
+      <Label htmlFor="role">Role</Label>
+      <Select value={role} onValueChange={setRole}>
+        <SelectTrigger><SelectValue placeholder="Select role" /></SelectTrigger>
+        <SelectContent>
+          <SelectItem value="admin">Admin</SelectItem>
+          <SelectItem value="viewer">Viewer</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </CardContent>
+  <CardFooter className="gap-2">
+    <Button variant="outline" onClick={onCancel}>Cancel</Button>
+    <Button onClick={onSave}>Save</Button>
+  </CardFooter>
+</Card>
+```
+
+### Destructive action confirmation
+```tsx
+<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="destructive">Delete account</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+### Side panel with form
+```tsx
+<Sheet>
+  <SheetTrigger asChild><Button>Edit</Button></SheetTrigger>
+  <SheetContent side="right">
+    <SheetHeader><SheetTitle>Edit item</SheetTitle></SheetHeader>
+    {/* form fields */}
+    <SheetFooter>
+      <Button onClick={onSave}>Save</Button>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>
+```
+
+### Toast notifications (set up once)
+```tsx
+// Root layout
+import { Toaster } from '@/components/toaster'
+export default function Layout({ children }) {
+  return <>{children}<Toaster /></>
+}
+
+// Anywhere in the app
+import { toast } from '@/components/toaster'
+toast.success('Saved!')
+toast.error('Failed to save.')
+```
+
+### Tooltip (provider once, use many)
+```tsx
+// Root layout or subtree root
+<TooltipProvider>
+  <App />
+</TooltipProvider>
+
+// Any component inside
+<Tooltip>
+  <TooltipTrigger asChild><Button size="icon"><TrashIcon /></Button></TooltipTrigger>
+  <TooltipContent>Delete item</TooltipContent>
+</Tooltip>
+```
+
+## Anti-patterns to avoid
+
+- Do NOT use `<Table>` primitives for interactive data grids — they have no built-in search, sort, or pagination. Use `<DataTable>` block.
+- Do NOT build custom pagination state — use `<PaginatedItems>` or `<DataTable>` with `serverPagination`.
+- Do NOT nest `<TooltipProvider>` — place it once at app root or a common ancestor.
+- Do NOT use `<Dialog>` for destructive confirmations — use `<AlertDialog>` which has the correct `role="alertdialog"`.
+- Do NOT use `<Drawer>` when you just need a side panel — `<Sheet>` is simpler. `<Drawer>` adds swipe-gesture support (via vaul) which is only needed for mobile-first UIs.
+- Do NOT add `'use client'` to components that don't use hooks or browser APIs — it disables server-side rendering for the entire subtree.
+- Do NOT use inline styles — Tailwind utilities only.
+
+## Adding a new component
+
+Every new component requires four files:
+```
+src/components/<name>/
+  <name>.tsx          # implementation
+  <name>.stories.tsx  # Storybook stories
+  <name>.test.tsx     # unit tests with describe blocks: Rendering, Variants, Accessibility, Interaction, Edge Cases
+  index.ts            # export * from './<name>'
+```
+Then add `export * from './<name>'` to `src/components/index.ts` (alphabetical order) and update `components-manifest.json`.
