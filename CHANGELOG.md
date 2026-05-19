@@ -1,3 +1,10 @@
+## [1.22.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.4...v1.22.5) (2026-05-19)
+
+
+### Bug Fixes
+
+* **ci:** pin release checkout to main branch ([d1b2431](https://github.com/adrianomaringolo/buildgrid-ui/commit/d1b243134561ea0e46533aff9d424cccde1035e1))
+
 ## [1.22.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.3...v1.22.4) (2026-05-19)
 
 
