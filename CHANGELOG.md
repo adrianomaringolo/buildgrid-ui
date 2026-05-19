@@ -1,3 +1,10 @@
+## [1.22.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.1...v1.22.2) (2026-05-19)
+
+
+### Bug Fixes
+
+* updating docs ([afb510e](https://github.com/adrianomaringolo/buildgrid-ui/commit/afb510e6ada806e77ff356daaaf5b4dad87ad765))
+
 ## [1.22.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.0...v1.22.1) (2026-05-19)
 
 
