@@ -26,7 +26,17 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Get npm token via OIDC
+        run: |
+          OIDC_TOKEN=$(curl -sf \
+            -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm" | jq -r '.value')
+          NPM_TOKEN=$(curl -sf -X POST "https://registry.npmjs.org/-/npm/v1/oidc/token" \
+            -H "Content-Type: application/json" \
+            -d "{\"oidcToken\":\"$OIDC_TOKEN\"}" | jq -r '.token')
+          echo "NPM_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
       - name: Run semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
         run: pnpm run release
