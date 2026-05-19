@@ -23,21 +23,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: 'npm'
-          cache-dependency-path: |
-            website/package-lock.json
-            package-lock.json
+          cache-dependency-path: website/package-lock.json
 
       - run: npm ci --omit=optional
       - name: Install root dependencies and run tests with coverage
         run: |
           cd ../
-          npm ci --omit=optional
-          npm run test:coverage
+          pnpm install --frozen-lockfile
+          pnpm run test:coverage
       - run: npm run build
 
       - name: Deploy
