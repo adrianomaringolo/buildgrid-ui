@@ -1,3 +1,12 @@
+## [1.22.10](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.9...v1.22.10) (2026-05-19)
+
+
+### Bug Fixes
+
+* **ci:** accept any 2xx status for npm OIDC exchange check ([1fbefc9](https://github.com/adrianomaringolo/buildgrid-ui/commit/1fbefc9b5d34d6d582eedcabf751774d5f347e61))
+* **ci:** improve OIDC token exchange error handling in release workflow ([3bac1f3](https://github.com/adrianomaringolo/buildgrid-ui/commit/3bac1f3b8aa75ed2dda2d7163c3a80ef3a6f33ea))
+* **ci:** use npm Trusted Publisher OIDC token exchange endpoint ([bb81c77](https://github.com/adrianomaringolo/buildgrid-ui/commit/bb81c77d2f9674ecaf4b1db0dee575c04c392b25))
+
 ## [1.22.9](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.8...v1.22.9) (2026-05-19)
 
 
