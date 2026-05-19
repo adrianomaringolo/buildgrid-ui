@@ -1,3 +1,10 @@
+## [1.22.9](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.8...v1.22.9) (2026-05-19)
+
+
+### Bug Fixes
+
+* use OIDC token for npm publish in release workflow ([ea76149](https://github.com/adrianomaringolo/buildgrid-ui/commit/ea7614942c0b37f8b983bd01a42c4d6dc546abb7))
+
 ## [1.22.8](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.7...v1.22.8) (2026-05-19)
 
 
