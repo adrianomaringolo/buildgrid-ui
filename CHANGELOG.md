@@ -1,3 +1,10 @@
+## [1.22.8](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.7...v1.22.8) (2026-05-19)
+
+
+### Bug Fixes
+
+* use exec plugin for npm publish with provenance ([6bbf2fc](https://github.com/adrianomaringolo/buildgrid-ui/commit/6bbf2fc76958cc2cf7dc61b7a0a21b5e31bd86d8))
+
 ## [1.22.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.6...v1.22.7) (2026-05-19)
 
 
