@@ -47,7 +47,7 @@ jobs:
           HTTP_CODE=$(echo "$NPM_RESPONSE" | tail -1)
           BODY=$(echo "$NPM_RESPONSE" | head -1)
 
-          if [ "$HTTP_CODE" != "200" ]; then
+          if [[ "$HTTP_CODE" != 2* ]]; then
             echo "::error::npm OIDC exchange failed (HTTP $HTTP_CODE): $(echo "$BODY" | jq -r '.message // .error // "unknown"')"
             exit 1
           fi
