@@ -1,3 +1,10 @@
+## [1.22.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.3...v1.22.4) (2026-05-19)
+
+
+### Bug Fixes
+
+* add new Radix UI component dependencies ([7918611](https://github.com/adrianomaringolo/buildgrid-ui/commit/7918611f1531416fd60ba0bbf7065fa0065c72b7))
+
 ## [1.22.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.2...v1.22.3) (2026-05-19)
 
 
