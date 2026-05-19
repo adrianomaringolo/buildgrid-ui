@@ -1,4 +1,5 @@
 name: Release
+
 on:
   push:
     branches:
@@ -6,6 +7,7 @@ on:
       - alpha
       - beta
       - rc
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -13,57 +15,16 @@ jobs:
       contents: write
       id-token: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: main
       - uses: pnpm/action-setup@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Get npm token via OIDC (Trusted Publisher)
-        run: |
-          PACKAGE_NAME=$(node -p "require('./package.json').name")
-
-          OIDC_TOKEN=$(curl -s \
-            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm%3Aregistry.npmjs.org" | jq -r '.value')
-
-          if [ -z "$OIDC_TOKEN" ] || [ "$OIDC_TOKEN" = "null" ]; then
-            echo "::error::Failed to get OIDC token from GitHub Actions"
-            exit 1
-          fi
-          echo "GitHub OIDC token obtained"
-
-          NPM_RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
-            "https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/${PACKAGE_NAME}" \
-            -H "Authorization: Bearer $OIDC_TOKEN")
-
-          HTTP_CODE=$(echo "$NPM_RESPONSE" | tail -1)
-          BODY=$(echo "$NPM_RESPONSE" | head -1)
-
-          if [[ "$HTTP_CODE" != 2* ]]; then
-            echo "::error::npm OIDC exchange failed (HTTP $HTTP_CODE): $(echo "$BODY" | jq -r '.message // .error // "unknown"')"
-            exit 1
-          fi
-
-          NPM_TOKEN=$(echo "$BODY" | jq -r '.token')
-          if [ -z "$NPM_TOKEN" ] || [ "$NPM_TOKEN" = "null" ]; then
-            echo "::error::npm returned no token"
-            exit 1
-          fi
-
-          echo "npm token obtained via Trusted Publisher"
-          echo "NPM_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
-      - name: Run semantic-release
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ env.NPM_TOKEN }}
-          ACTIONS_ID_TOKEN_REQUEST_URL: ""
-          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ""
-        run: pnpm run release
