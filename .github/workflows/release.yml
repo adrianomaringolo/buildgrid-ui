@@ -26,39 +26,44 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Get npm token via OIDC
+      - name: Get npm token via OIDC (Trusted Publisher)
         run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+
           OIDC_TOKEN=$(curl -s \
             -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm" | jq -r '.value')
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm%3Aregistry.npmjs.org" | jq -r '.value')
 
           if [ -z "$OIDC_TOKEN" ] || [ "$OIDC_TOKEN" = "null" ]; then
             echo "::error::Failed to get OIDC token from GitHub Actions"
             exit 1
           fi
-          echo "GitHub OIDC token obtained successfully"
+          echo "GitHub OIDC token obtained"
 
-          NPM_RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://registry.npmjs.org/-/npm/v1/oidc/token" \
-            -H "Content-Type: application/json" \
-            -d "{\"oidcToken\":\"$OIDC_TOKEN\"}")
+          NPM_RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/${PACKAGE_NAME}" \
+            -H "Authorization: Bearer $OIDC_TOKEN")
 
           HTTP_CODE=$(echo "$NPM_RESPONSE" | tail -1)
           BODY=$(echo "$NPM_RESPONSE" | head -1)
 
-          echo "npm OIDC exchange HTTP status: $HTTP_CODE"
-          echo "npm OIDC response keys: $(echo "$BODY" | jq 'keys // empty' 2>/dev/null || echo 'invalid JSON')"
-
-          NPM_TOKEN=$(echo "$BODY" | jq -r '.token // empty')
-
-          if [ -z "$NPM_TOKEN" ]; then
-            echo "::error::npm OIDC exchange failed: $(echo "$BODY" | jq -r '.message // .error // "unknown error"')"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::error::npm OIDC exchange failed (HTTP $HTTP_CODE): $(echo "$BODY" | jq -r '.message // .error // "unknown"')"
             exit 1
           fi
 
-          echo "npm token obtained successfully"
+          NPM_TOKEN=$(echo "$BODY" | jq -r '.token')
+          if [ -z "$NPM_TOKEN" ] || [ "$NPM_TOKEN" = "null" ]; then
+            echo "::error::npm returned no token"
+            exit 1
+          fi
+
+          echo "npm token obtained via Trusted Publisher"
           echo "NPM_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
       - name: Run semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}
+          ACTIONS_ID_TOKEN_REQUEST_URL: ""
+          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ""
         run: pnpm run release
