@@ -1,3 +1,10 @@
+## [1.22.13](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.12...v1.22.13) (2026-05-20)
+
+
+### Bug Fixes
+
+* upgrade typescript to 6.0.3 and tailwindcss to 4.3.0 ([d87e3c7](https://github.com/adrianomaringolo/buildgrid-ui/commit/d87e3c7c303fc58f28f97503b46730e16bc37337))
+
 ## [1.22.12](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.11...v1.22.12) (2026-05-20)
 
 
