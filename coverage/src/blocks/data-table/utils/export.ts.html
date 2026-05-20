@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>24/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>24/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,74 +100,74 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { DataTableColumn } from '../types/data-table'
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function exportToCSV&lt;T&gt;(</span>
-<span class="cstat-no" title="statement not covered" >	data: T[],</span>
-<span class="cstat-no" title="statement not covered" >	columns: DataTableColumn&lt;T&gt;[],</span>
-<span class="cstat-no" title="statement not covered" >	filename: string,</span>
-<span class="cstat-no" title="statement not covered" >) {</span>
+export function exportToCSV&lt;T&gt;(
+	data: T[],
+	columns: DataTableColumn&lt;T&gt;[],
+	filename: string,
+) {
 	// Get visible columns
-<span class="cstat-no" title="statement not covered" >	const visibleColumns = columns.filter((col) =&gt; !col.hidden)</span>
+	const visibleColumns = columns.filter((col) =&gt; !col.hidden)
 &nbsp;
 	// Create header row
-<span class="cstat-no" title="statement not covered" >	const header = visibleColumns.map((col) =&gt; col.title)</span>
+	const header = visibleColumns.map((col) =&gt; col.title)
 &nbsp;
 	// Create data rows
-<span class="cstat-no" title="statement not covered" >	const rows = data.map((item) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >		visibleColumns.map((col) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >			const value = item[col.key]</span>
-<span class="cstat-no" title="statement not covered" >			return value !== null &amp;&amp; value !== undefined ? String(value) : ''</span>
-<span class="cstat-no" title="statement not covered" >		}),</span>
-<span class="cstat-no" title="statement not covered" >	)</span>
+	const rows = data.map((item) =&gt;
+		visibleColumns.map((col) =&gt; {
+			const value = item[col.key]
+			return value !== null &amp;&amp; value !== undefined ? String(value<span class="branch-0 cbranch-no" title="branch not covered" >) : ''</span>
+		}),
+	)
 &nbsp;
 	// Combine header and rows
-<span class="cstat-no" title="statement not covered" >	const csvContent = [header.join(','), ...rows.map((row) =&gt; row.join(','))].join('\n')</span>
+	const csvContent = [header.join(','), ...rows.map((row) =&gt; row.join(','))].join('\n')
 &nbsp;
 	// Create download link
-<span class="cstat-no" title="statement not covered" >	const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })</span>
-<span class="cstat-no" title="statement not covered" >	const url = URL.createObjectURL(blob)</span>
-<span class="cstat-no" title="statement not covered" >	const link = document.createElement('a')</span>
-<span class="cstat-no" title="statement not covered" >	link.setAttribute('href', url)</span>
-<span class="cstat-no" title="statement not covered" >	link.setAttribute('download', `${filename}.csv`)</span>
-<span class="cstat-no" title="statement not covered" >	link.style.visibility = 'hidden'</span>
-<span class="cstat-no" title="statement not covered" >	document.body.appendChild(link)</span>
-<span class="cstat-no" title="statement not covered" >	link.click()</span>
-<span class="cstat-no" title="statement not covered" >	document.body.removeChild(link)</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+	const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+	const url = URL.createObjectURL(blob)
+	const link = document.createElement('a')
+	link.setAttribute('href', url)
+	link.setAttribute('download', `${filename}.csv`)
+	link.style.visibility = 'hidden'
+	document.body.appendChild(link)
+	link.click()
+	document.body.removeChild(link)
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -175,7 +175,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-02T13:12:38.411Z
+                at 2026-05-20T11:18:08.117Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

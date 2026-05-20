@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,8 +94,8 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -103,28 +103,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use client'
 &nbsp;
-<span class="cstat-no" title="statement not covered" >import { Input } from '@/components/input'</span>
-<span class="cstat-no" title="statement not covered" >import { Search } from 'lucide-react'</span>
+import { Input } from '@/components/input'
+import { Search } from 'lucide-react'
 &nbsp;
 interface SearchInputProps {
 	value: string
@@ -132,24 +132,24 @@ interface SearchInputProps {
 	placeholder?: string
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function SearchInput({</span>
-<span class="cstat-no" title="statement not covered" >	value,</span>
-<span class="cstat-no" title="statement not covered" >	onChange,</span>
-<span class="cstat-no" title="statement not covered" >	placeholder = 'Search...',</span>
-<span class="cstat-no" title="statement not covered" >}: SearchInputProps) {</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;div className="relative flex-1 max-w-sm"&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;Input</span>
-<span class="cstat-no" title="statement not covered" >				placeholder={placeholder}</span>
-<span class="cstat-no" title="statement not covered" >				value={value}</span>
-<span class="cstat-no" title="statement not covered" >				onChange={(e) =&gt; onChange(e.target.value)}</span>
-<span class="cstat-no" title="statement not covered" >				className="pl-10"</span>
-<span class="cstat-no" title="statement not covered" >				style={{ paddingLeft: '2.5rem' }}</span>
-<span class="cstat-no" title="statement not covered" >			/&gt;</span>
-<span class="cstat-no" title="statement not covered" >		&lt;/div&gt;</span>
+export function SearchInput({
+	value,
+	onChange,
+	placeholder = 'Search...',
+}: SearchInputProps) {
+	return (
+		&lt;div className="relative flex-1 max-w-sm"&gt;
+			&lt;Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" /&gt;
+			&lt;Input
+				placeholder={placeholder}
+				value={value}
+				onChange={(e) =&gt; onChange(e.target.value)}
+				className="pl-10"
+				style={{ paddingLeft: '2.5rem' }}
+			/&gt;
+		&lt;/div&gt;
 	)
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -157,7 +157,7 @@ interface SearchInputProps {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-02T13:12:38.473Z
+                at 2026-05-20T11:18:08.180Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

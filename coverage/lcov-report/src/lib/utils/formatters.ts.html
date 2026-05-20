@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -81,39 +81,39 @@
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
 <a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const formatCurrency = <span class="fstat-no" title="function not covered" >(</span>
-<span class="cstat-no" title="statement not covered" >	number: number,</span>
-<span class="cstat-no" title="statement not covered" >	language = 'pt-BR',</span>
-<span class="cstat-no" title="statement not covered" >	currency = 'BRL',</span>
-<span class="cstat-no" title="statement not covered" >): string =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >	return new Intl.NumberFormat(language, {</span>
-<span class="cstat-no" title="statement not covered" >		style: 'currency',</span>
-<span class="cstat-no" title="statement not covered" >		currency,</span>
-<span class="cstat-no" title="statement not covered" >		minimumFractionDigits: 2,</span>
-<span class="cstat-no" title="statement not covered" >	}).format(number)</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const formatCurrency = (
+	number: number,
+	language = 'pt-BR',
+	currency = 'BRL',
+): string =&gt; {
+	return new Intl.NumberFormat(language, {
+		style: 'currency',
+		currency,
+		minimumFractionDigits: 2,
+	}).format(number)
+}
 &nbsp;
-export const padString = <span class="fstat-no" title="function not covered" >(num: number | string, size: number = 2) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >	num = num.toString()</span>
-<span class="cstat-no" title="statement not covered" >	while (num.length &lt; size) num = '0' + num</span>
-<span class="cstat-no" title="statement not covered" >	return num</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export const padString = (num: number | string, size: number = 2) =&gt; {
+	num = num.toString()
+	while (num.length &lt; size) num = '0' + num
+	return num
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -121,7 +121,7 @@ export const padString = <span class="fstat-no" title="function not covered" >(n
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-02T13:12:38.473Z
+                at 2026-05-20T11:18:08.180Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

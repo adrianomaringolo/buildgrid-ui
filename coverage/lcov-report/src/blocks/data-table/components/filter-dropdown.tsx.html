@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -104,14 +104,14 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,36 +121,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use client'
 &nbsp;
-<span class="cstat-no" title="statement not covered" >import {</span>
+import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
 } from '@/components/select'
-<span class="cstat-no" title="statement not covered" >import { Filter } from 'lucide-react'</span>
+import { Filter } from 'lucide-react'
 import type { DataTableFilter } from '../types/data-table'
 &nbsp;
 interface FilterDropdownProps&lt;T&gt; {
@@ -160,26 +160,26 @@ interface FilterDropdownProps&lt;T&gt; {
 	allOptionLabel: (filterLabel: string) =&gt; string
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function FilterDropdown&lt;T&gt;({ filter, value, onChange, allOptionLabel }: FilterDropdownProps&lt;T&gt;) {</span>
-<span class="cstat-no" title="statement not covered" >	return (</span>
-<span class="cstat-no" title="statement not covered" >		&lt;Select value={value || 'all'} onValueChange={onChange}&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;SelectTrigger className="w-40"&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;div className="flex items-center gap-2"&gt;</span>
-<span class="cstat-no" title="statement not covered" >					&lt;Filter className="h-4 w-4" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >					&lt;SelectValue placeholder={filter.label} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;/SelectTrigger&gt;</span>
-<span class="cstat-no" title="statement not covered" >			&lt;SelectContent&gt;</span>
-<span class="cstat-no" title="statement not covered" >				&lt;SelectItem value="all"&gt;{allOptionLabel(filter.label)}&lt;/SelectItem&gt;</span>
-<span class="cstat-no" title="statement not covered" >				{filter.options.map((option) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >					&lt;SelectItem key={option.value} value={option.value}&gt;</span>
-<span class="cstat-no" title="statement not covered" >						{option.label}</span>
-<span class="cstat-no" title="statement not covered" >					&lt;/SelectItem&gt;</span>
-<span class="cstat-no" title="statement not covered" >				))}</span>
-<span class="cstat-no" title="statement not covered" >			&lt;/SelectContent&gt;</span>
-<span class="cstat-no" title="statement not covered" >		&lt;/Select&gt;</span>
+export function FilterDropdown&lt;T&gt;({ filter, value, onChange, allOptionLabel }: FilterDropdownProps&lt;T&gt;) {
+	return (
+		&lt;Select value={value || 'all'} onValueChange={onChange}&gt;
+			&lt;SelectTrigger className="w-40"&gt;
+				&lt;div className="flex items-center gap-2"&gt;
+					&lt;Filter className="h-4 w-4" /&gt;
+					&lt;SelectValue placeholder={filter.label} /&gt;
+				&lt;/div&gt;
+			&lt;/SelectTrigger&gt;
+			&lt;SelectContent&gt;
+				&lt;SelectItem value="all"&gt;{allOptionLabel(filter.label)}&lt;/SelectItem&gt;
+				{filter.options.map((option) =&gt; (
+					&lt;SelectItem key={option.value} value={option.value}&gt;
+						{option.label}
+					&lt;/SelectItem&gt;
+				))}
+			&lt;/SelectContent&gt;
+		&lt;/Select&gt;
 	)
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -187,7 +187,7 @@ interface FilterDropdownProps&lt;T&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-02T13:12:38.473Z
+                at 2026-05-20T11:18:08.180Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

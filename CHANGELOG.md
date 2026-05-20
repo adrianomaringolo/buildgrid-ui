@@ -1,3 +1,198 @@
+## [1.22.20](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.19...v1.22.20) (2026-05-20)
+
+
+### Bug Fixes
+
+* **website:** replace React.useState with useState in button-group.mdx ([765de72](https://github.com/adrianomaringolo/buildgrid-ui/commit/765de72077084175ef663d4cb499c120d8a61ce8))
+
+## [1.22.19](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.18...v1.22.19) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** regenerate website package-lock.json on Linux to fix npm ci sync error ([53ebd70](https://github.com/adrianomaringolo/buildgrid-ui/commit/53ebd702b7a717fe7bee993b9686f01bbbc0634d))
+
+## [1.22.18](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.17...v1.22.18) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** exchange OIDC token manually for npm Trusted Publisher auth ([ef27eb1](https://github.com/adrianomaringolo/buildgrid-ui/commit/ef27eb18087fb4f01bafdaf06f466c4d83e6db3e))
+
+## [1.22.17](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.16...v1.22.17) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** restore registry-url and clear NODE_AUTH_TOKEN for OIDC publish ([4aecdc0](https://github.com/adrianomaringolo/buildgrid-ui/commit/4aecdc0e6b213aec188f022e2eddbda0e9fc380b))
+
+## [1.22.16](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.15...v1.22.16) (2026-05-20)
+
+
+### Bug Fixes
+
+* upgrade @types/node to v25 and update lockfile ([700f9b0](https://github.com/adrianomaringolo/buildgrid-ui/commit/700f9b0c60f27799423fab2bbdd065d8c23c60a8))
+
+## [1.22.15](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.14...v1.22.15) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** remove registry-url from setup-node to unblock npm OIDC auth ([4799c90](https://github.com/adrianomaringolo/buildgrid-ui/commit/4799c9069191476351021c12aece247473258e10))
+
+## [1.22.14](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.13...v1.22.14) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ts:** update tsconfig for TypeScript 5.x compatibility ([be48d2d](https://github.com/adrianomaringolo/buildgrid-ui/commit/be48d2d8b16e66c156d02ccb7f2e7f073c7a0be7))
+
+## [1.22.13](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.12...v1.22.13) (2026-05-20)
+
+
+### Bug Fixes
+
+* upgrade typescript to 6.0.3 and tailwindcss to 4.3.0 ([d87e3c7](https://github.com/adrianomaringolo/buildgrid-ui/commit/d87e3c7c303fc58f28f97503b46730e16bc37337))
+
+## [1.22.12](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.11...v1.22.12) (2026-05-20)
+
+
+### Bug Fixes
+
+* update radix-ui alert-dialog, aspect-ratio, and avatar deps ([bc2a81f](https://github.com/adrianomaringolo/buildgrid-ui/commit/bc2a81faa904aa4120b5a8f2df4bb4529e0d4d1d))
+
+## [1.22.11](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.10...v1.22.11) (2026-05-20)
+
+
+### Bug Fixes
+
+* bump @radix-ui/react-accordion to ^1.2.12 ([c9a62a7](https://github.com/adrianomaringolo/buildgrid-ui/commit/c9a62a7b2d51ddf5119f0e2ed227abfde601531c))
+
+## [1.22.10](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.9...v1.22.10) (2026-05-19)
+
+
+### Bug Fixes
+
+* **ci:** accept any 2xx status for npm OIDC exchange check ([1fbefc9](https://github.com/adrianomaringolo/buildgrid-ui/commit/1fbefc9b5d34d6d582eedcabf751774d5f347e61))
+* **ci:** improve OIDC token exchange error handling in release workflow ([3bac1f3](https://github.com/adrianomaringolo/buildgrid-ui/commit/3bac1f3b8aa75ed2dda2d7163c3a80ef3a6f33ea))
+* **ci:** use npm Trusted Publisher OIDC token exchange endpoint ([bb81c77](https://github.com/adrianomaringolo/buildgrid-ui/commit/bb81c77d2f9674ecaf4b1db0dee575c04c392b25))
+
+## [1.22.9](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.8...v1.22.9) (2026-05-19)
+
+
+### Bug Fixes
+
+* use OIDC token for npm publish in release workflow ([ea76149](https://github.com/adrianomaringolo/buildgrid-ui/commit/ea7614942c0b37f8b983bd01a42c4d6dc546abb7))
+
+## [1.22.8](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.7...v1.22.8) (2026-05-19)
+
+
+### Bug Fixes
+
+* use exec plugin for npm publish with provenance ([6bbf2fc](https://github.com/adrianomaringolo/buildgrid-ui/commit/6bbf2fc76958cc2cf7dc61b7a0a21b5e31bd86d8))
+
+## [1.22.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.6...v1.22.7) (2026-05-19)
+
+
+### Bug Fixes
+
+* move npm provenance config from semantic-release to .npmrc ([5e1d12a](https://github.com/adrianomaringolo/buildgrid-ui/commit/5e1d12aa57c9f0a0c93efdd003515a70e96db287))
+
+## [1.22.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.5...v1.22.6) (2026-05-19)
+
+
+### Bug Fixes
+
+* update radix-ui components and date-fns to latest versions ([111a61e](https://github.com/adrianomaringolo/buildgrid-ui/commit/111a61eea09cf9547595fef718f469d541ed1efc))
+
+## [1.22.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.4...v1.22.5) (2026-05-19)
+
+
+### Bug Fixes
+
+* **ci:** pin release checkout to main branch ([d1b2431](https://github.com/adrianomaringolo/buildgrid-ui/commit/d1b243134561ea0e46533aff9d424cccde1035e1))
+
+## [1.22.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.3...v1.22.4) (2026-05-19)
+
+
+### Bug Fixes
+
+* add new Radix UI component dependencies ([7918611](https://github.com/adrianomaringolo/buildgrid-ui/commit/7918611f1531416fd60ba0bbf7065fa0065c72b7))
+
+## [1.22.3](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.2...v1.22.3) (2026-05-19)
+
+
+### Bug Fixes
+
+* **menubar:** add explicit TypeScript types to re-exported components ([72f96d9](https://github.com/adrianomaringolo/buildgrid-ui/commit/72f96d944b0d962e1a9f6412424e00e16e8b7553))
+
+## [1.22.2](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.1...v1.22.2) (2026-05-19)
+
+
+### Bug Fixes
+
+* updating docs ([afb510e](https://github.com/adrianomaringolo/buildgrid-ui/commit/afb510e6ada806e77ff356daaaf5b4dad87ad765))
+
+## [1.22.1](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.0...v1.22.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **wizard:** add Wizard block with progress stepper and useWizard hook ([68ae0f4](https://github.com/adrianomaringolo/buildgrid-ui/commit/68ae0f49323b9dfd32ccc41f105c5c75bbf92159))
+
+# [1.22.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.21.0...v1.22.0) (2026-05-15)
+
+
+### Features
+
+* **components:** add 13 new shadcn-parity components with stories and tests ([8c975c4](https://github.com/adrianomaringolo/buildgrid-ui/commit/8c975c4d4674fb48e423167568faed95ba5cedbd))
+
+# [1.21.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.20.0...v1.21.0) (2026-05-15)
+
+
+### Bug Fixes
+
+* **alert:** add dark mode support and per-variant stories ([8995786](https://github.com/adrianomaringolo/buildgrid-ui/commit/8995786956a87ef8ae8bf241d9f0a625afd5d206))
+
+
+### Features
+
+* **components:** add 13 new shadcn-parity components with stories and tests ([8ffa450](https://github.com/adrianomaringolo/buildgrid-ui/commit/8ffa450291f51210055e6d62edbf2de7d376d996))
+
+# [1.20.0](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.7...v1.20.0) (2026-05-13)
+
+
+### Features
+
+* **blocks:** add MultiSelectList component with shift-click range support ([fb18710](https://github.com/adrianomaringolo/buildgrid-ui/commit/fb1871022167950dface2492f93abb56d3cec9b6))
+
+## [1.19.7](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.6...v1.19.7) (2026-05-12)
+
+
+### Bug Fixes
+
+* cast toast object to SoonerToast type ([c910396](https://github.com/adrianomaringolo/buildgrid-ui/commit/c910396fcd8f88af64ae3326a88fa3951ed20251))
+
+## [1.19.6](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.5...v1.19.6) (2026-05-12)
+
+
+### Bug Fixes
+
+* **update:** bump dependencies to latest versions ([4f6bf71](https://github.com/adrianomaringolo/buildgrid-ui/commit/4f6bf717ecc0430f08d66b46f707827b2ded34e8))
+
+## [1.19.5](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.4...v1.19.5) (2026-05-12)
+
+
+### Bug Fixes
+
+* **alert:** add tip variant and multi-message navigation ([91d3d80](https://github.com/adrianomaringolo/buildgrid-ui/commit/91d3d80ccd3b2bf72f4383db16daf89ccf554675))
+* **ci:** update package-lock.json ([1a9a0fd](https://github.com/adrianomaringolo/buildgrid-ui/commit/1a9a0fd6246ddb7d90e2b21aa0eb0edb6ea3465f))
+* **ci:** updating packages ([4c1e883](https://github.com/adrianomaringolo/buildgrid-ui/commit/4c1e883a568ea7e15fdf452662563077c2baebbe))
+* **ci:** upgrade Node.js version to 22 in release workflow ([d72be94](https://github.com/adrianomaringolo/buildgrid-ui/commit/d72be94951c26cd2f63c73cc318d280f20c3e922))
+* **ci:** upgrade semantic-release and commitlint dependencies ([3bf2175](https://github.com/adrianomaringolo/buildgrid-ui/commit/3bf217594847bfdd3727ac2d8b8d46417870261a))
+* improve gh actions release ([a09ff80](https://github.com/adrianomaringolo/buildgrid-ui/commit/a09ff805c4d9193ad322d27aad557fbe3374cbec))
+* remove registry-url from Node.js setup in release workflow ([644a60c](https://github.com/adrianomaringolo/buildgrid-ui/commit/644a60caf0f0b3bb9816f271935c9c2d61837821))
+
 ## [1.19.4](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.19.3...v1.19.4) (2026-03-02)
 
 

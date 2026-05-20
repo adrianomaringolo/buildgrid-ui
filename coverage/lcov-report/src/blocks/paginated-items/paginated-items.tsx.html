@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">5.26% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/114</span>
+                <span class='fraction'>6/114</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">5.26% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/114</span>
+                <span class='fraction'>6/114</span>
             </div>
         
             
@@ -257,10 +257,10 @@
 <a name='L192'></a><a href='#L192'>192</a>
 <a name='L193'></a><a href='#L193'>193</a>
 <a name='L194'></a><a href='#L194'>194</a>
-<a name='L195'></a><a href='#L195'>195</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L195'></a><a href='#L195'>195</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -321,6 +321,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -345,13 +346,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -451,10 +451,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { Skeleton } from '@/components'<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { Fragment, ReactNode, useEffect, useState } from 'react'</span>
-<span class="cstat-no" title="statement not covered" >import { EmptyItems } from '../empty-message'</span>
-<span class="cstat-no" title="statement not covered" >import { PaginationControls } from '../pagination-controls'</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Skeleton } from '@/components'
+import { Fragment, ReactNode, useEffect, useState } from 'react'
+import { EmptyItems } from '../empty-message'
+import { PaginationControls } from '../pagination-controls'
 &nbsp;
 export interface PaginatedItemsServerPagination {
 	/** Total number of items on the server. */
@@ -515,7 +515,7 @@ interface PaginatedItemsProps&lt;Entry&gt; {
 	labels?: PaginatedItemsLabels
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const PaginatedControls = ({</span>
+const PaginatedControls = <span class="fstat-no" title="function not covered" >({</span>
 <span class="cstat-no" title="statement not covered" >	initIndex,</span>
 <span class="cstat-no" title="statement not covered" >	onPageChange,</span>
 <span class="cstat-no" title="statement not covered" >	totalItems,</span>
@@ -545,7 +545,7 @@ interface PaginatedItemsProps&lt;Entry&gt; {
 	)
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const PaginatedItems = &lt;Entry extends { id?: string }&gt;(</span>
+export const PaginatedItems = <span class="fstat-no" title="function not covered" >&lt;Entry extends { id?: string }&gt;(</span>
 <span class="cstat-no" title="statement not covered" >	props: PaginatedItemsProps&lt;Entry&gt;,</span>
 <span class="cstat-no" title="statement not covered" >) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >	const {</span>
@@ -652,7 +652,7 @@ interface PaginatedItemsProps&lt;Entry&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-02T13:12:38.473Z
+                at 2026-05-20T11:18:08.180Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

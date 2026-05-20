@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">4.34% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">4.34% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,32 +107,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">type AnyObject = Record&lt;string, any&gt;
 &nbsp;
 /**
@@ -141,33 +141,33 @@
  * @param obj2 - The object to merge into the first object.
  * @returns The merged object.
  */
-export <span class="fstat-no" title="function not covered" >function mergeObjects&lt;T extends AnyObject, U extends AnyObject&gt;(</span>
-<span class="cstat-no" title="statement not covered" >	obj1: T,</span>
-<span class="cstat-no" title="statement not covered" >	obj2: U,</span>
-<span class="cstat-no" title="statement not covered" >): T &amp; U {</span>
-<span class="cstat-no" title="statement not covered" >	const result: AnyObject = { ...obj2 } // Start with obj2 to allow obj1 to override it.</span>
+export function mergeObjects&lt;T extends AnyObject, U extends AnyObject&gt;(
+	obj1: T,
+	obj2: U,
+): T &amp; U {
+	const result: AnyObject = { ...obj2 } // Start with obj2 to allow obj1 to override it.
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	for (const key in obj1) {</span>
-<span class="cstat-no" title="statement not covered" >		if (obj1.hasOwnProperty(key)) {</span>
-<span class="cstat-no" title="statement not covered" >			if (</span>
-<span class="cstat-no" title="statement not covered" >				typeof obj1[key] === 'object' &amp;&amp;</span>
-<span class="cstat-no" title="statement not covered" >				obj1[key] !== null &amp;&amp;</span>
-<span class="cstat-no" title="statement not covered" >				!Array.isArray(obj1[key]) &amp;&amp;</span>
-<span class="cstat-no" title="statement not covered" >				typeof obj2[key] === 'object' &amp;&amp;</span>
-<span class="cstat-no" title="statement not covered" >				obj2[key] !== null &amp;&amp;</span>
-<span class="cstat-no" title="statement not covered" >				!Array.isArray(obj2[key])</span>
-<span class="cstat-no" title="statement not covered" >			) {</span>
+	for (const key in obj1) {
+		if (obj1.hasOwnProperty(key)) {
+			if (
+				typeof obj1[key] === 'object' &amp;&amp;
+				obj1[key] !== null &amp;&amp;
+				!Array.isArray(obj1[key]) &amp;&amp;
+				typeof obj2[key] === 'object' &amp;&amp;
+				obj2[key] !== null &amp;&amp;
+				!Array.isArray(obj2[key])
+			) {
 				// Recursively merge nested objects.
-<span class="cstat-no" title="statement not covered" >				result[key] = mergeObjects(obj1[key], obj2[key])</span>
-<span class="cstat-no" title="statement not covered" >			} else {</span>
+				result[key] = mergeObjects(obj1[key], obj2[key])
+			} else {
 				// Override with obj1's value.
-<span class="cstat-no" title="statement not covered" >				result[key] = obj1[key]</span>
-<span class="cstat-no" title="statement not covered" >			}</span>
-<span class="cstat-no" title="statement not covered" >		}</span>
-<span class="cstat-no" title="statement not covered" >	}</span>
+				result[key] = obj1[key]
+			}
+		}
+	}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return result as T &amp; U</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+	return result as T &amp; U
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -175,7 +175,7 @@ export <span class="fstat-no" title="function not covered" >function mergeObject
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-02T13:12:38.473Z
+                at 2026-05-20T11:18:08.180Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

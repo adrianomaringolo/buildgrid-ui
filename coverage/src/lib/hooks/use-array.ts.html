@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -86,52 +86,52 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { useState } from 'react'<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react'
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const useArray = &lt;T&gt;() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >	const [array, setArray] = useState&lt;Array&lt;T&gt;&gt;([])</span>
+export const useArray = &lt;T&gt;() =&gt; {
+	const [array, setArray] = useState&lt;Array&lt;T&gt;&gt;([])
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const addItem = (item: T) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		setArray([...array, item])</span>
-<span class="cstat-no" title="statement not covered" >	}</span>
+	const addItem = (item: T) =&gt; {
+		setArray([...array, item])
+	}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const removeItem = (index: number) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		const newArray = [...array]</span>
-<span class="cstat-no" title="statement not covered" >		newArray.splice(index, 1)</span>
-<span class="cstat-no" title="statement not covered" >		setArray(newArray)</span>
-<span class="cstat-no" title="statement not covered" >	}</span>
+	const removeItem = (index: number) =&gt; {
+		const newArray = [...array]
+		newArray.splice(index, 1)
+		setArray(newArray)
+	}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	const removeItemsByField = (field: keyof T, value: T[keyof T]) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		const newArray = [...array]</span>
-<span class="cstat-no" title="statement not covered" >		newArray.filter((i) =&gt; i[field] !== value)</span>
-<span class="cstat-no" title="statement not covered" >		setArray(newArray)</span>
-<span class="cstat-no" title="statement not covered" >	}</span>
+	const removeItemsByField = (field: keyof T, value: T[keyof T]) =&gt; {
+		const newArray = [...array]
+		newArray.filter((i) =&gt; i[field] !== value)
+		setArray(newArray)
+	}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return [array, addItem, removeItem, removeItemsByField]</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+	return [array, addItem, removeItem, removeItemsByField]
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -139,7 +139,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-02T13:12:38.411Z
+                at 2026-05-20T11:18:08.117Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
