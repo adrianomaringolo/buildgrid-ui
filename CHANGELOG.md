@@ -1,3 +1,10 @@
+## [1.22.15](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.14...v1.22.15) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** remove registry-url from setup-node to unblock npm OIDC auth ([4799c90](https://github.com/adrianomaringolo/buildgrid-ui/commit/4799c9069191476351021c12aece247473258e10))
+
 ## [1.22.14](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.13...v1.22.14) (2026-05-20)
 
 
