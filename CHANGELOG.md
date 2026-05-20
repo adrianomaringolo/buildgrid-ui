@@ -1,3 +1,10 @@
+## [1.22.19](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.18...v1.22.19) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** regenerate website package-lock.json on Linux to fix npm ci sync error ([53ebd70](https://github.com/adrianomaringolo/buildgrid-ui/commit/53ebd702b7a717fe7bee993b9686f01bbbc0634d))
+
 ## [1.22.18](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.17...v1.22.18) (2026-05-20)
 
 
