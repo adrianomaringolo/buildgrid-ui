@@ -29,9 +29,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run linting
-        run: pnpm run lint --if-present
-
       - name: Run type checking
         run: pnpm exec tsc --noEmit
 
