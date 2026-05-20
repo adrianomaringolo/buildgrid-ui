@@ -1,3 +1,10 @@
+## [1.22.14](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.13...v1.22.14) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ts:** update tsconfig for TypeScript 5.x compatibility ([be48d2d](https://github.com/adrianomaringolo/buildgrid-ui/commit/be48d2d8b16e66c156d02ccb7f2e7f073c7a0be7))
+
 ## [1.22.13](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.12...v1.22.13) (2026-05-20)
 
 
