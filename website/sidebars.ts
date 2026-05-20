@@ -89,6 +89,7 @@ const sidebars: SidebarsConfig = {
 				'blocks/paginated-items',
 				'blocks/pagination-controls',
 				'blocks/sidebar',
+				{ type: 'doc', id: 'blocks/wizard', className: 'sidebar-new-item' },
 			],
 		},
 		{

@@ -1,0 +1,510 @@
+---
+id: wizard
+---
+
+import React from 'react';
+import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
+import { StorybookLink } from "@site/src/components/docs/StorybookLink";
+import { WizardProgress, WizardProgressStep, useWizard, Button, Card, CardContent, CardHeader, CardTitle, CardFooter, Input, Label } from "buildgrid-ui";
+import { User, Building2, CreditCard, CheckCircle, ShieldCheck, FileText, Settings, Bell } from 'lucide-react';
+
+# Wizard
+
+<StorybookLink path="blocks-wizardprogress--default" />
+
+The `WizardProgress` component provides a step-by-step navigation interface for multi-step workflows. It renders a visual progress bar with labeled steps, handles completed/active/disabled states, and optionally displays each step's content inline. Combine it with the `useWizard` hook for full navigation control.
+
+## Basic Usage
+
+<ComponentDocSection
+  code={`import { WizardProgress, WizardProgressStep, useWizard, Button } from "buildgrid-ui";
+import { User, Building2, CreditCard, CheckCircle } from "lucide-react";
+
+function BasicWizard() {
+  const { currentStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({ totalSteps: 4 });
+
+  return (
+    <div className="w-full max-w-2xl space-y-6">
+      <WizardProgress currentStep={currentStep}>
+        <WizardProgressStep label="Account" icon={User}>
+          <div className="p-6 space-y-2">
+            <p className="font-medium">Step 1 — Account Information</p>
+            <p className="text-sm text-muted-foreground">Enter your name and email address.</p>
+          </div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Company" icon={Building2}>
+          <div className="p-6 space-y-2">
+            <p className="font-medium">Step 2 — Company Details</p>
+            <p className="text-sm text-muted-foreground">Tell us about your organization.</p>
+          </div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Payment" icon={CreditCard}>
+          <div className="p-6 space-y-2">
+            <p className="font-medium">Step 3 — Payment Method</p>
+            <p className="text-sm text-muted-foreground">Add a billing method to continue.</p>
+          </div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Done" icon={CheckCircle}>
+          <div className="p-6 space-y-2">
+            <p className="font-medium">All set!</p>
+            <p className="text-sm text-muted-foreground">Your account has been created.</p>
+          </div>
+        </WizardProgressStep>
+      </WizardProgress>
+
+      <div className="flex justify-between">
+        <Button variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+        <Button onClick={goNext} disabled={!canGoNext}>
+          {canGoNext ? "Next" : "Finish"}
+        </Button>
+      </div>
+    </div>
+  );
+}`}
+  storybookPath="blocks-wizardprogress--default"
+>
+  {(() => {
+    const { currentStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({ totalSteps: 4 });
+
+    return (
+      <div className="w-full max-w-2xl space-y-6">
+        <WizardProgress currentStep={currentStep}>
+          <WizardProgressStep label="Account" icon={User}>
+            <div className="p-6 space-y-2">
+              <p className="font-medium">Step 1 — Account Information</p>
+              <p className="text-sm text-muted-foreground">Enter your name and email address.</p>
+            </div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Company" icon={Building2}>
+            <div className="p-6 space-y-2">
+              <p className="font-medium">Step 2 — Company Details</p>
+              <p className="text-sm text-muted-foreground">Tell us about your organization.</p>
+            </div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Payment" icon={CreditCard}>
+            <div className="p-6 space-y-2">
+              <p className="font-medium">Step 3 — Payment Method</p>
+              <p className="text-sm text-muted-foreground">Add a billing method to continue.</p>
+            </div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Done" icon={CheckCircle}>
+            <div className="p-6 space-y-2">
+              <p className="font-medium">All set!</p>
+              <p className="text-sm text-muted-foreground">Your account has been created.</p>
+            </div>
+          </WizardProgressStep>
+        </WizardProgress>
+
+        <div className="flex justify-between">
+          <Button variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+          <Button onClick={goNext} disabled={!canGoNext}>
+            {canGoNext ? "Next" : "Finish"}
+          </Button>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## With a Form
+
+Embed form fields inside each step's children so the content updates as the user progresses.
+
+<ComponentDocSection
+  code={`import { WizardProgress, WizardProgressStep, useWizard, Button, Card, CardContent, CardHeader, CardTitle, CardFooter, Input, Label } from "buildgrid-ui";
+import { User, ShieldCheck, CheckCircle } from "lucide-react";
+
+function FormWizard() {
+  const { currentStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({ totalSteps: 3 });
+
+  return (
+    <Card className="w-full max-w-xl">
+      <CardHeader>
+        <CardTitle>Create Account</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <WizardProgress currentStep={currentStep}>
+          <WizardProgressStep label="Profile" icon={User}>
+            <div className="mt-6 space-y-4">
+              <div className="space-y-1">
+                <Label htmlFor="name">Full Name</Label>
+                <Input id="name" placeholder="Jane Smith" />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" placeholder="jane@example.com" />
+              </div>
+            </div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Security" icon={ShieldCheck}>
+            <div className="mt-6 space-y-4">
+              <div className="space-y-1">
+                <Label htmlFor="password">Password</Label>
+                <Input id="password" type="password" placeholder="••••••••" />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="confirm">Confirm Password</Label>
+                <Input id="confirm" type="password" placeholder="••••••••" />
+              </div>
+            </div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Done" icon={CheckCircle}>
+            <div className="mt-6 p-4 rounded-lg bg-muted text-center space-y-2">
+              <p className="font-semibold text-lg">Account ready!</p>
+              <p className="text-sm text-muted-foreground">You can now sign in with your new credentials.</p>
+            </div>
+          </WizardProgressStep>
+        </WizardProgress>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+        <Button onClick={goNext}>{canGoNext ? "Continue" : "Finish"}</Button>
+      </CardFooter>
+    </Card>
+  );
+}`}
+>
+  {(() => {
+    const { currentStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({ totalSteps: 3 });
+
+    return (
+      <Card className="w-full max-w-xl">
+        <CardHeader>
+          <CardTitle>Create Account</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <WizardProgress currentStep={currentStep}>
+            <WizardProgressStep label="Profile" icon={User}>
+              <div className="mt-6 space-y-4">
+                <div className="space-y-1">
+                  <Label htmlFor="wiz-name">Full Name</Label>
+                  <Input id="wiz-name" placeholder="Jane Smith" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="wiz-email">Email</Label>
+                  <Input id="wiz-email" type="email" placeholder="jane@example.com" />
+                </div>
+              </div>
+            </WizardProgressStep>
+            <WizardProgressStep label="Security" icon={ShieldCheck}>
+              <div className="mt-6 space-y-4">
+                <div className="space-y-1">
+                  <Label htmlFor="wiz-pwd">Password</Label>
+                  <Input id="wiz-pwd" type="password" placeholder="••••••••" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="wiz-confirm">Confirm Password</Label>
+                  <Input id="wiz-confirm" type="password" placeholder="••••••••" />
+                </div>
+              </div>
+            </WizardProgressStep>
+            <WizardProgressStep label="Done" icon={CheckCircle}>
+              <div className="mt-6 p-4 rounded-lg bg-muted text-center space-y-2">
+                <p className="font-semibold text-lg">Account ready!</p>
+                <p className="text-sm text-muted-foreground">You can now sign in with your new credentials.</p>
+              </div>
+            </WizardProgressStep>
+          </WizardProgress>
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <Button variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+          <Button onClick={goNext}>{canGoNext ? "Continue" : "Finish"}</Button>
+        </CardFooter>
+      </Card>
+    );
+  })()}
+</ComponentDocSection>
+
+## Free Navigation
+
+Set `freeNavigation` to allow clicking any step directly, not only completed ones. Useful for settings wizards where users can jump between steps freely.
+
+<ComponentDocSection
+  code={`import { WizardProgress, WizardProgressStep, useWizard, Button } from "buildgrid-ui";
+import { Settings, Bell, FileText, ShieldCheck } from "lucide-react";
+
+function FreeNavigationWizard() {
+  const { currentStep, goToStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({ totalSteps: 4 });
+
+  const steps = [
+    { label: "General", icon: Settings, content: "Configure general application settings." },
+    { label: "Notifications", icon: Bell, content: "Choose how and when you receive notifications." },
+    { label: "Privacy", icon: ShieldCheck, content: "Manage your data sharing preferences." },
+    { label: "Documents", icon: FileText, content: "Set default formats and storage locations." },
+  ];
+
+  return (
+    <div className="w-full max-w-2xl space-y-4">
+      <WizardProgress currentStep={currentStep} onGoToStep={goToStep} freeNavigation>
+        {steps.map(({ label, icon, content }) => (
+          <WizardProgressStep key={label} label={label} icon={icon}>
+            <div className="p-6 space-y-2">
+              <p className="font-medium">{label} Settings</p>
+              <p className="text-sm text-muted-foreground">{content}</p>
+            </div>
+          </WizardProgressStep>
+        ))}
+      </WizardProgress>
+      <div className="flex justify-between">
+        <Button variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+        <Button onClick={goNext} disabled={!canGoNext}>Next</Button>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const { currentStep, goToStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({ totalSteps: 4 });
+
+    const steps = [
+      { label: "General", icon: Settings, content: "Configure general application settings." },
+      { label: "Notifications", icon: Bell, content: "Choose how and when you receive notifications." },
+      { label: "Privacy", icon: ShieldCheck, content: "Manage your data sharing preferences." },
+      { label: "Documents", icon: FileText, content: "Set default formats and storage locations." },
+    ];
+
+    return (
+      <div className="w-full max-w-2xl space-y-4">
+        <WizardProgress currentStep={currentStep} onGoToStep={goToStep} freeNavigation>
+          {steps.map(({ label, icon, content }) => (
+            <WizardProgressStep key={label} label={label} icon={icon}>
+              <div className="p-6 space-y-2">
+                <p className="font-medium">{label} Settings</p>
+                <p className="text-sm text-muted-foreground">{content}</p>
+              </div>
+            </WizardProgressStep>
+          ))}
+        </WizardProgress>
+        <div className="flex justify-between">
+          <Button variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+          <Button onClick={goNext} disabled={!canGoNext}>Next</Button>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Without Labels
+
+Set `showLabels={false}` for a compact progress bar that shows only icons — useful in narrow layouts or mobile views.
+
+<ComponentDocSection
+  code={`import { WizardProgress, WizardProgressStep, useWizard, Button } from "buildgrid-ui";
+import { User, Building2, CreditCard, CheckCircle } from "lucide-react";
+
+function NoLabelsWizard() {
+  const { currentStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({ totalSteps: 4 });
+
+  return (
+    <div className="w-full max-w-sm space-y-4">
+      <WizardProgress currentStep={currentStep} showLabels={false}>
+        <WizardProgressStep label="Account" icon={User}>
+          <div className="p-4 text-sm text-muted-foreground">Account Information</div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Company" icon={Building2}>
+          <div className="p-4 text-sm text-muted-foreground">Company Details</div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Payment" icon={CreditCard}>
+          <div className="p-4 text-sm text-muted-foreground">Payment Method</div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Done" icon={CheckCircle}>
+          <div className="p-4 text-sm text-muted-foreground">All done!</div>
+        </WizardProgressStep>
+      </WizardProgress>
+      <div className="flex justify-between">
+        <Button size="sm" variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+        <Button size="sm" onClick={goNext} disabled={!canGoNext}>Next</Button>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const { currentStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({ totalSteps: 4 });
+
+    return (
+      <div className="w-full max-w-sm space-y-4">
+        <WizardProgress currentStep={currentStep} showLabels={false}>
+          <WizardProgressStep label="Account" icon={User}>
+            <div className="p-4 text-sm text-muted-foreground">Account Information</div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Company" icon={Building2}>
+            <div className="p-4 text-sm text-muted-foreground">Company Details</div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Payment" icon={CreditCard}>
+            <div className="p-4 text-sm text-muted-foreground">Payment Method</div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Done" icon={CheckCircle}>
+            <div className="p-4 text-sm text-muted-foreground">All done!</div>
+          </WizardProgressStep>
+        </WizardProgress>
+        <div className="flex justify-between">
+          <Button size="sm" variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+          <Button size="sm" onClick={goNext} disabled={!canGoNext}>Next</Button>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## With Disabled Steps
+
+Mark individual steps as `disabled` to prevent navigation to them. The `useWizard` hook also accepts a `disabled` array of 1-based step numbers to skip during sequential navigation.
+
+<ComponentDocSection
+  code={`import { WizardProgress, WizardProgressStep, useWizard, Button } from "buildgrid-ui";
+import { User, CreditCard, ShieldCheck, CheckCircle } from "lucide-react";
+
+function DisabledStepsWizard() {
+  // Step 3 (payment) is locked until previous steps are done
+  const { currentStep, goToStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({
+    totalSteps: 4,
+    disabled: [3],
+  });
+
+  return (
+    <div className="w-full max-w-2xl space-y-4">
+      <WizardProgress currentStep={currentStep} onGoToStep={goToStep}>
+        <WizardProgressStep label="Account" icon={User}>
+          <div className="p-6 space-y-2">
+            <p className="font-medium">Account Information</p>
+            <p className="text-sm text-muted-foreground">Step 3 (Payment) is disabled in this example.</p>
+          </div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Review" icon={ShieldCheck}>
+          <div className="p-6 space-y-2">
+            <p className="font-medium">Review Details</p>
+            <p className="text-sm text-muted-foreground">Navigation skips directly from step 2 to step 4.</p>
+          </div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Payment" icon={CreditCard} disabled>
+          <div className="p-6">
+            <p className="text-sm text-muted-foreground">This step is not reachable.</p>
+          </div>
+        </WizardProgressStep>
+        <WizardProgressStep label="Done" icon={CheckCircle}>
+          <div className="p-6 space-y-2">
+            <p className="font-medium">Complete!</p>
+            <p className="text-sm text-muted-foreground">Process finished successfully.</p>
+          </div>
+        </WizardProgressStep>
+      </WizardProgress>
+      <div className="flex justify-between">
+        <Button variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+        <Button onClick={goNext} disabled={!canGoNext}>Next</Button>
+      </div>
+    </div>
+  );
+}`}
+>
+  {(() => {
+    const { currentStep, goToStep, goNext, goPrevious, canGoNext, canGoPrevious } = useWizard({
+      totalSteps: 4,
+      disabled: [3],
+    });
+
+    return (
+      <div className="w-full max-w-2xl space-y-4">
+        <WizardProgress currentStep={currentStep} onGoToStep={goToStep}>
+          <WizardProgressStep label="Account" icon={User}>
+            <div className="p-6 space-y-2">
+              <p className="font-medium">Account Information</p>
+              <p className="text-sm text-muted-foreground">Step 3 (Payment) is disabled in this example.</p>
+            </div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Review" icon={ShieldCheck}>
+            <div className="p-6 space-y-2">
+              <p className="font-medium">Review Details</p>
+              <p className="text-sm text-muted-foreground">Navigation skips directly from step 2 to step 4.</p>
+            </div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Payment" icon={CreditCard} disabled>
+            <div className="p-6">
+              <p className="text-sm text-muted-foreground">This step is not reachable.</p>
+            </div>
+          </WizardProgressStep>
+          <WizardProgressStep label="Done" icon={CheckCircle}>
+            <div className="p-6 space-y-2">
+              <p className="font-medium">Complete!</p>
+              <p className="text-sm text-muted-foreground">Process finished successfully.</p>
+            </div>
+          </WizardProgressStep>
+        </WizardProgress>
+        <div className="flex justify-between">
+          <Button variant="outline" onClick={goPrevious} disabled={!canGoPrevious}>Back</Button>
+          <Button onClick={goNext} disabled={!canGoNext}>Next</Button>
+        </div>
+      </div>
+    );
+  })()}
+</ComponentDocSection>
+
+## Properties
+
+### `WizardProgress`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | — | One or more `WizardProgressStep` elements. |
+| `currentStep` | `number` | — | 1-based index of the active step. |
+| `onGoToStep` | `(step: number) => void` | — | Callback fired when a navigable step is clicked. Required for click navigation. |
+| `freeNavigation` | `boolean` | `false` | When `true`, all non-disabled steps are clickable regardless of completion state. |
+| `showLabels` | `boolean` | `true` | Show or hide the text label below each step icon. |
+| `className` | `string` | — | Additional CSS classes for the root element. |
+
+### `WizardProgressStep`
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Text label shown below the step icon and used as `aria-label`. |
+| `icon` | `ComponentType<{ className?: string }>` | — | Icon component rendered inside the step circle. |
+| `disabled` | `boolean` | `false` | Marks the step as unreachable. Renders at reduced opacity. |
+| `children` | `ReactNode` | — | Content displayed when this step is active. |
+
+## `useWizard` Hook
+
+A convenience hook for managing wizard navigation state.
+
+```ts
+import { useWizard } from "buildgrid-ui";
+
+const { currentStep, goNext, goPrevious, goToStep, canGoNext, canGoPrevious } = useWizard({
+  totalSteps: 4,
+  disabled: [3],  // 1-based step numbers to skip
+  initial: 1,     // starting step (default: 1)
+});
+```
+
+### Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `totalSteps` | `number` | — | Total number of steps in the wizard. |
+| `disabled` | `number[]` | `[]` | 1-based step numbers that are skipped during `goNext` / `goPrevious`. |
+| `initial` | `number` | `1` | The step to start on. |
+
+### Return Values
+
+| Value | Type | Description |
+|---|---|---|
+| `currentStep` | `number` | The current active step (1-based). |
+| `goNext` | `() => void` | Advance to the next non-disabled step. |
+| `goPrevious` | `() => void` | Go back to the previous non-disabled step. |
+| `goToStep` | `(step: number) => void` | Jump to a specific step directly. |
+| `canGoNext` | `boolean` | Whether there is a next non-disabled step. |
+| `canGoPrevious` | `boolean` | Whether there is a previous non-disabled step. |
+
+## Accessibility
+
+- Each step button has an `aria-label` equal to its `label` prop and a `title` tooltip.
+- Disabled steps set `aria-disabled` and visually render at 40% opacity.
+- Completed steps that allow back-navigation are fully keyboard-accessible via the step buttons.
+- The active step button does not trigger navigation (already current).
+
+## Common Use Cases
+
+- **Onboarding flows** — guide new users through account setup step by step
+- **Multi-step forms** — break long forms into digestible pages
+- **Checkout processes** — cart → shipping → payment → confirmation
+- **Configuration wizards** — structured setup with optional sections
+- **Progress tracking** — visual indication of where the user is in a long process
