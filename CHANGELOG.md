@@ -1,3 +1,10 @@
+## [1.22.18](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.17...v1.22.18) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** exchange OIDC token manually for npm Trusted Publisher auth ([ef27eb1](https://github.com/adrianomaringolo/buildgrid-ui/commit/ef27eb18087fb4f01bafdaf06f466c4d83e6db3e))
+
 ## [1.22.17](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.16...v1.22.17) (2026-05-20)
 
 
