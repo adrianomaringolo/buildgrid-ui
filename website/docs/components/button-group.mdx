@@ -118,7 +118,7 @@ function AlignmentGroup() {
 }`}
 >
   {(() => {
-    const [active, setActive] = React.useState("left");
+    const [active, setActive] = useState("left");
 
     const options = [
       { value: "left", icon: AlignLeft, label: "Align left" },
@@ -240,7 +240,7 @@ function PaginationGroup() {
 }`}
 >
   {(() => {
-    const [page, setPage] = React.useState(1);
+    const [page, setPage] = useState(1);
     const totalPages = 5;
 
     return (
