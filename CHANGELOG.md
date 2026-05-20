@@ -1,3 +1,10 @@
+## [1.22.12](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.11...v1.22.12) (2026-05-20)
+
+
+### Bug Fixes
+
+* update radix-ui alert-dialog, aspect-ratio, and avatar deps ([bc2a81f](https://github.com/adrianomaringolo/buildgrid-ui/commit/bc2a81faa904aa4120b5a8f2df4bb4529e0d4d1d))
+
 ## [1.22.11](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.10...v1.22.11) (2026-05-20)
 
 
