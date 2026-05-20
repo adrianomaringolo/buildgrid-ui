@@ -1,3 +1,10 @@
+## [1.22.16](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.15...v1.22.16) (2026-05-20)
+
+
+### Bug Fixes
+
+* upgrade @types/node to v25 and update lockfile ([700f9b0](https://github.com/adrianomaringolo/buildgrid-ui/commit/700f9b0c60f27799423fab2bbdd065d8c23c60a8))
+
 ## [1.22.15](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.14...v1.22.15) (2026-05-20)
 
 
