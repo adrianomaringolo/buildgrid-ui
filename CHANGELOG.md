@@ -1,3 +1,10 @@
+## [1.22.21](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.20...v1.22.21) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** remove --omit=optional from npm ci in deploy workflow ([e7c3000](https://github.com/adrianomaringolo/buildgrid-ui/commit/e7c300003bbcee08c5f6f4fdeb80b85ca0353cad))
+
 ## [1.22.20](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.19...v1.22.20) (2026-05-20)
 
 
