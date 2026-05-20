@@ -1,3 +1,10 @@
+## [1.22.17](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.16...v1.22.17) (2026-05-20)
+
+
+### Bug Fixes
+
+* **ci:** restore registry-url and clear NODE_AUTH_TOKEN for OIDC publish ([4aecdc0](https://github.com/adrianomaringolo/buildgrid-ui/commit/4aecdc0e6b213aec188f022e2eddbda0e9fc380b))
+
 ## [1.22.16](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.15...v1.22.16) (2026-05-20)
 
 
