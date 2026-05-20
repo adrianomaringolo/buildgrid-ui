@@ -23,6 +23,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+          registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - name: Run semantic-release
@@ -38,3 +39,5 @@ jobs:
       - name: Publish to npm
         if: env.NEW_RELEASE == 'true'
         run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ''
