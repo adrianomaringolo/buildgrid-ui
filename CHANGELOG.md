@@ -1,3 +1,10 @@
+## [1.22.11](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.10...v1.22.11) (2026-05-20)
+
+
+### Bug Fixes
+
+* bump @radix-ui/react-accordion to ^1.2.12 ([c9a62a7](https://github.com/adrianomaringolo/buildgrid-ui/commit/c9a62a7b2d51ddf5119f0e2ed227abfde601531c))
+
 ## [1.22.10](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.9...v1.22.10) (2026-05-19)
 
 
