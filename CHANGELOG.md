@@ -1,3 +1,10 @@
+## [1.22.22](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.21...v1.22.22) (2026-06-10)
+
+
+### Bug Fixes
+
+* **tabs:** replace Radix UI with native accessible implementation ([aa77b6d](https://github.com/adrianomaringolo/buildgrid-ui/commit/aa77b6dc4e730979b2bb6cab3aac6d0d576ce61d))
+
 ## [1.22.21](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.20...v1.22.21) (2026-05-20)
 
 
