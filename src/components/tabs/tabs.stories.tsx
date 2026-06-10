@@ -532,6 +532,85 @@ export const CollapseLabel: Story = {
 	),
 }
 
+export const DarkMode: Story = {
+	parameters: { backgrounds: { disable: true } },
+	render: () => (
+		<div className="dark bg-background text-foreground p-8 space-y-10 rounded-lg">
+			<div className="space-y-2">
+				<p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+					Default variant
+				</p>
+				<Tabs defaultValue="analytics">
+					<TabsList>
+						<TabsTrigger value="overview" collapseLabel>
+							<Home />
+							Overview
+						</TabsTrigger>
+						<TabsTrigger value="analytics" collapseLabel>
+							<BarChart3 />
+							Analytics
+						</TabsTrigger>
+						<TabsTrigger value="settings" collapseLabel>
+							<Settings />
+							Settings
+						</TabsTrigger>
+						<TabsTrigger value="profile" collapseLabel disabled>
+							<User />
+							Profile
+						</TabsTrigger>
+					</TabsList>
+					<TabsContent value="overview">
+						<div className="rounded-lg border p-4 text-sm text-muted-foreground">Overview</div>
+					</TabsContent>
+					<TabsContent value="analytics">
+						<div className="rounded-lg border p-4 text-sm text-muted-foreground">Analytics</div>
+					</TabsContent>
+					<TabsContent value="settings">
+						<div className="rounded-lg border p-4 text-sm text-muted-foreground">Settings</div>
+					</TabsContent>
+				</Tabs>
+			</div>
+
+			<div className="space-y-2">
+				<p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+					Outline variant
+				</p>
+				<Tabs defaultValue="tabs" variant="outline">
+					<TabsList>
+						<TabsTrigger value="index">
+							<FileText />
+							index.ts
+						</TabsTrigger>
+						<TabsTrigger value="tabs">
+							<FileText />
+							tabs.tsx
+						</TabsTrigger>
+						<TabsTrigger value="stories">
+							<FileText />
+							tabs.stories.tsx
+						</TabsTrigger>
+					</TabsList>
+					<TabsContent value="index">
+						<div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground">
+							export {'{'} Tabs {'}'} from './tabs'
+						</div>
+					</TabsContent>
+					<TabsContent value="tabs">
+						<div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground">
+							'use client'
+						</div>
+					</TabsContent>
+					<TabsContent value="stories">
+						<div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground">
+							// organize-imports-ignore
+						</div>
+					</TabsContent>
+				</Tabs>
+			</div>
+		</div>
+	),
+}
+
 export const OutlineSizes: Story = {
 	render: () => (
 		<div className="space-y-8 p-8 max-w-2xl">
