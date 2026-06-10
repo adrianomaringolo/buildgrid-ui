@@ -5,14 +5,14 @@ id: tabs
 import React from 'react';
 import { ComponentDocSection } from "@site/src/components/docs/ComponentDocSection";
 import { StorybookLink } from "@site/src/components/docs/StorybookLink";
-import { Tabs, TabsContent, TabsList, TabsTrigger, Card, CardContent, CardDescription, CardHeader, CardTitle, Button, Input, Label } from "buildgrid-ui";
-import { Settings, User, Bell, Shield } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger, Card, CardContent, CardDescription, CardHeader, CardTitle, Button, Input, Label, Badge } from "buildgrid-ui";
+import { Settings, User, Bell, Lock, CreditCard, BarChart3, FileText, Home } from 'lucide-react';
 
 # Tabs
 
 <StorybookLink path="components-tabs--default" />
 
-The `Tabs` component provides an accessible way to organize content into multiple panels. Built on Radix UI, it supports keyboard navigation, focus management, and customizable sizing. Perfect for settings panels, dashboards, content organization, and any interface requiring multiple views.
+The `Tabs` component organizes content into multiple panels with accessible keyboard navigation, focus management, and customizable sizing. Supports two visual variants — the default pill style and an `outline` file-tab style — as well as controlled and uncontrolled modes.
 
 ## Basic Usage
 
@@ -21,28 +21,25 @@ The `Tabs` component provides an accessible way to organize content into multipl
 
 function BasicTabs() {
   return (
-    <Tabs defaultValue="tab1" className="w-full max-w-md">
+    <Tabs defaultValue="overview">
       <TabsList>
-        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-        <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="analytics">Analytics</TabsTrigger>
+        <TabsTrigger value="reports">Reports</TabsTrigger>
       </TabsList>
-      <TabsContent value="tab1">
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-medium mb-2">Content for Tab 1</h3>
-          <p className="text-sm text-gray-600">This is the content for the first tab.</p>
+      <TabsContent value="overview">
+        <div className="rounded-lg border p-4 text-sm text-muted-foreground">
+          Overview content
         </div>
       </TabsContent>
-      <TabsContent value="tab2">
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-medium mb-2">Content for Tab 2</h3>
-          <p className="text-sm text-gray-600">This is the content for the second tab.</p>
+      <TabsContent value="analytics">
+        <div className="rounded-lg border p-4 text-sm text-muted-foreground">
+          Analytics content
         </div>
       </TabsContent>
-      <TabsContent value="tab3">
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-medium mb-2">Content for Tab 3</h3>
-          <p className="text-sm text-gray-600">This is the content for the third tab.</p>
+      <TabsContent value="reports">
+        <div className="rounded-lg border p-4 text-sm text-muted-foreground">
+          Reports content
         </div>
       </TabsContent>
     </Tabs>
@@ -50,510 +47,397 @@ function BasicTabs() {
 }`}
   storybookPath="components-tabs--default"
 >
-  <Tabs defaultValue="tab1" className="w-full max-w-md">
+  <Tabs defaultValue="overview">
     <TabsList>
-      <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-      <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-      <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+      <TabsTrigger value="overview">Overview</TabsTrigger>
+      <TabsTrigger value="analytics">Analytics</TabsTrigger>
+      <TabsTrigger value="reports">Reports</TabsTrigger>
     </TabsList>
-    <TabsContent value="tab1">
-      <div className="p-4 bg-gray-50 rounded-lg">
-        <h3 className="font-medium mb-2">Content for Tab 1</h3>
-        <p className="text-sm text-gray-600">This is the content for the first tab.</p>
-      </div>
+    <TabsContent value="overview">
+      <div className="rounded-lg border p-4 text-sm text-muted-foreground">Overview content</div>
     </TabsContent>
-    <TabsContent value="tab2">
-      <div className="p-4 bg-gray-50 rounded-lg">
-        <h3 className="font-medium mb-2">Content for Tab 2</h3>
-        <p className="text-sm text-gray-600">This is the content for the second tab.</p>
-      </div>
+    <TabsContent value="analytics">
+      <div className="rounded-lg border p-4 text-sm text-muted-foreground">Analytics content</div>
     </TabsContent>
-    <TabsContent value="tab3">
-      <div className="p-4 bg-gray-50 rounded-lg">
-        <h3 className="font-medium mb-2">Content for Tab 3</h3>
-        <p className="text-sm text-gray-600">This is the content for the third tab.</p>
-      </div>
+    <TabsContent value="reports">
+      <div className="rounded-lg border p-4 text-sm text-muted-foreground">Reports content</div>
     </TabsContent>
   </Tabs>
 </ComponentDocSection>
 
-## Different Sizes
+## Sizes
+
+Pass the same `size` to both `TabsList` and each `TabsTrigger`. Available sizes: `sm`, `md` (default), `lg`, `xl`.
 
 <ComponentDocSection
-  code={`import { Tabs, TabsContent, TabsList, TabsTrigger } from "buildgrid-ui";
+  code={`import { Tabs, TabsList, TabsTrigger } from "buildgrid-ui";
 
 function TabsSizes() {
   return (
     <div className="space-y-6">
-      <div>
-        <h4 className="text-sm font-medium mb-2">Small</h4>
-        <Tabs defaultValue="small1" className="w-full max-w-md">
-          <TabsList size="sm">
-            <TabsTrigger value="small1" size="sm">Small 1</TabsTrigger>
-            <TabsTrigger value="small2" size="sm">Small 2</TabsTrigger>
-          </TabsList>
-          <TabsContent value="small1">
-            <div className="p-3 bg-gray-50 rounded text-sm">Small tab content</div>
-          </TabsContent>
-          <TabsContent value="small2">
-            <div className="p-3 bg-gray-50 rounded text-sm">Small tab content 2</div>
-          </TabsContent>
-        </Tabs>
-      </div>
-      
-      <div>
-        <h4 className="text-sm font-medium mb-2">Large</h4>
-        <Tabs defaultValue="large1" className="w-full max-w-md">
-          <TabsList size="lg">
-            <TabsTrigger value="large1" size="lg">Large 1</TabsTrigger>
-            <TabsTrigger value="large2" size="lg">Large 2</TabsTrigger>
-          </TabsList>
-          <TabsContent value="large1">
-            <div className="p-4 bg-gray-50 rounded">Large tab content</div>
-          </TabsContent>
-          <TabsContent value="large2">
-            <div className="p-4 bg-gray-50 rounded">Large tab content 2</div>
-          </TabsContent>
-        </Tabs>
-      </div>
+      {(["sm", "md", "lg", "xl"] as const).map((size) => (
+        <div key={size} className="space-y-2">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">{size}</p>
+          <Tabs defaultValue="tab1">
+            <TabsList size={size}>
+              <TabsTrigger value="tab1" size={size}>Profile</TabsTrigger>
+              <TabsTrigger value="tab2" size={size}>Security</TabsTrigger>
+              <TabsTrigger value="tab3" size={size}>Billing</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+      ))}
     </div>
   );
 }`}
 >
   <div className="space-y-6">
-    <div>
-      <h4 className="text-sm font-medium mb-2">Small</h4>
-      <Tabs defaultValue="small1" className="w-full max-w-md">
-        <TabsList size="sm">
-          <TabsTrigger value="small1" size="sm">Small 1</TabsTrigger>
-          <TabsTrigger value="small2" size="sm">Small 2</TabsTrigger>
-        </TabsList>
-        <TabsContent value="small1">
-          <div className="p-3 bg-gray-50 rounded text-sm">Small tab content</div>
-        </TabsContent>
-        <TabsContent value="small2">
-          <div className="p-3 bg-gray-50 rounded text-sm">Small tab content 2</div>
-        </TabsContent>
-      </Tabs>
-    </div>
-    
-    <div>
-      <h4 className="text-sm font-medium mb-2">Large</h4>
-      <Tabs defaultValue="large1" className="w-full max-w-md">
-        <TabsList size="lg">
-          <TabsTrigger value="large1" size="lg">Large 1</TabsTrigger>
-          <TabsTrigger value="large2" size="lg">Large 2</TabsTrigger>
-        </TabsList>
-        <TabsContent value="large1">
-          <div className="p-4 bg-gray-50 rounded">Large tab content</div>
-        </TabsContent>
-        <TabsContent value="large2">
-          <div className="p-4 bg-gray-50 rounded">Large tab content 2</div>
-        </TabsContent>
-      </Tabs>
-    </div>
+    {["sm", "md", "lg", "xl"].map((size) => (
+      <div key={size} className="space-y-2">
+        <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium">{size}</p>
+        <Tabs defaultValue="tab1">
+          <TabsList size={size}>
+            <TabsTrigger value="tab1" size={size}>Profile</TabsTrigger>
+            <TabsTrigger value="tab2" size={size}>Security</TabsTrigger>
+            <TabsTrigger value="tab3" size={size}>Billing</TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </div>
+    ))}
   </div>
 </ComponentDocSection>
 
-## Settings Panel
+## With Icons
+
+Place a Lucide icon before the label inside `TabsTrigger`. The trigger handles spacing automatically.
 
 <ComponentDocSection
-  code={`import { Tabs, TabsContent, TabsList, TabsTrigger, Card, CardContent, CardDescription, CardHeader, CardTitle, Button, Input, Label } from "buildgrid-ui";
-import { Settings, User, Bell, Shield } from "lucide-react";
+  code={`import { Tabs, TabsContent, TabsList, TabsTrigger } from "buildgrid-ui";
+import { User, Lock, Bell, CreditCard } from "lucide-react";
 
-function SettingsPanel() {
+function TabsWithIcons() {
   return (
-    <Tabs defaultValue="profile" className="w-full max-w-2xl">
-      <TabsList className="grid w-full grid-cols-4">
-        <TabsTrigger value="profile" className="flex items-center gap-2">
-          <User className="h-4 w-4" />
-          Profile
-        </TabsTrigger>
-        <TabsTrigger value="notifications" className="flex items-center gap-2">
-          <Bell className="h-4 w-4" />
-          Notifications
-        </TabsTrigger>
-        <TabsTrigger value="security" className="flex items-center gap-2">
-          <Shield className="h-4 w-4" />
-          Security
-        </TabsTrigger>
-        <TabsTrigger value="preferences" className="flex items-center gap-2">
-          <Settings className="h-4 w-4" />
-          Preferences
-        </TabsTrigger>
+    <Tabs defaultValue="profile">
+      <TabsList>
+        <TabsTrigger value="profile"><User />Profile</TabsTrigger>
+        <TabsTrigger value="security"><Lock />Security</TabsTrigger>
+        <TabsTrigger value="notifications"><Bell />Notifications</TabsTrigger>
+        <TabsTrigger value="billing"><CreditCard />Billing</TabsTrigger>
       </TabsList>
-      
       <TabsContent value="profile">
-        <Card>
-          <CardHeader>
-            <CardTitle>Profile Settings</CardTitle>
-            <CardDescription>Manage your profile information and preferences.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
-              <Input id="name" placeholder="Enter your full name" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="Enter your email" />
-            </div>
-            <Button>Save Changes</Button>
-          </CardContent>
-        </Card>
+        <div className="rounded-lg border p-6 space-y-2">
+          <h3 className="font-semibold">Public Profile</h3>
+          <p className="text-sm text-muted-foreground">
+            Update your photo and personal details.
+          </p>
+        </div>
       </TabsContent>
-      
-      <TabsContent value="notifications">
-        <Card>
-          <CardHeader>
-            <CardTitle>Notification Settings</CardTitle>
-            <CardDescription>Configure how you receive notifications.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-medium">Email Notifications</p>
-                  <p className="text-sm text-gray-600">Receive notifications via email</p>
-                </div>
-                <Button variant="outline" size="sm">Configure</Button>
-              </div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-medium">Push Notifications</p>
-                  <p className="text-sm text-gray-600">Receive push notifications</p>
-                </div>
-                <Button variant="outline" size="sm">Configure</Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </TabsContent>
-      
       <TabsContent value="security">
-        <Card>
-          <CardHeader>
-            <CardTitle>Security Settings</CardTitle>
-            <CardDescription>Manage your account security and privacy.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="current-password">Current Password</Label>
-              <Input id="current-password" type="password" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="new-password">New Password</Label>
-              <Input id="new-password" type="password" />
-            </div>
-            <Button>Update Password</Button>
-          </CardContent>
-        </Card>
+        <div className="rounded-lg border p-6 space-y-2">
+          <h3 className="font-semibold">Password & Authentication</h3>
+          <p className="text-sm text-muted-foreground">
+            Manage your password and 2FA settings.
+          </p>
+        </div>
       </TabsContent>
-      
-      <TabsContent value="preferences">
-        <Card>
-          <CardHeader>
-            <CardTitle>Preferences</CardTitle>
-            <CardDescription>Customize your application preferences.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-medium">Dark Mode</p>
-                  <p className="text-sm text-gray-600">Toggle dark mode theme</p>
-                </div>
-                <Button variant="outline" size="sm">Toggle</Button>
-              </div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-medium">Language</p>
-                  <p className="text-sm text-gray-600">Select your preferred language</p>
-                </div>
-                <Button variant="outline" size="sm">Change</Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      <TabsContent value="notifications">
+        <div className="rounded-lg border p-6 space-y-2">
+          <h3 className="font-semibold">Notification Preferences</h3>
+          <p className="text-sm text-muted-foreground">
+            Choose which emails and alerts you want to receive.
+          </p>
+        </div>
+      </TabsContent>
+      <TabsContent value="billing">
+        <div className="rounded-lg border p-6 space-y-2">
+          <h3 className="font-semibold">Billing & Plans</h3>
+          <p className="text-sm text-muted-foreground">
+            Manage your subscription, payment methods, and invoices.
+          </p>
+        </div>
       </TabsContent>
     </Tabs>
   );
 }`}
+  storybookPath="components-tabs--with-icons"
 >
-  <Tabs defaultValue="profile" className="w-full max-w-2xl">
-    <TabsList className="grid w-full grid-cols-4">
-      <TabsTrigger value="profile" className="flex items-center gap-2">
-        <User className="h-4 w-4" />
-        Profile
-      </TabsTrigger>
-      <TabsTrigger value="notifications" className="flex items-center gap-2">
-        <Bell className="h-4 w-4" />
-        Notifications
-      </TabsTrigger>
-      <TabsTrigger value="security" className="flex items-center gap-2">
-        <Shield className="h-4 w-4" />
-        Security
-      </TabsTrigger>
-      <TabsTrigger value="preferences" className="flex items-center gap-2">
-        <Settings className="h-4 w-4" />
-        Preferences
-      </TabsTrigger>
+  <Tabs defaultValue="profile">
+    <TabsList>
+      <TabsTrigger value="profile"><User />Profile</TabsTrigger>
+      <TabsTrigger value="security"><Lock />Security</TabsTrigger>
+      <TabsTrigger value="notifications"><Bell />Notifications</TabsTrigger>
+      <TabsTrigger value="billing"><CreditCard />Billing</TabsTrigger>
     </TabsList>
-    
     <TabsContent value="profile">
-      <Card>
-        <CardHeader>
-          <CardTitle>Profile Settings</CardTitle>
-          <CardDescription>Manage your profile information and preferences.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
-            <Input id="name" placeholder="Enter your full name" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="Enter your email" />
-          </div>
-          <Button>Save Changes</Button>
-        </CardContent>
-      </Card>
+      <div className="rounded-lg border p-6 space-y-2">
+        <h3 className="font-semibold">Public Profile</h3>
+        <p className="text-sm text-muted-foreground">Update your photo and personal details.</p>
+      </div>
     </TabsContent>
-    
-    <TabsContent value="notifications">
-      <Card>
-        <CardHeader>
-          <CardTitle>Notification Settings</CardTitle>
-          <CardDescription>Configure how you receive notifications.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">Email Notifications</p>
-                <p className="text-sm text-gray-600">Receive notifications via email</p>
-              </div>
-              <Button variant="outline" size="sm">Configure</Button>
-            </div>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">Push Notifications</p>
-                <p className="text-sm text-gray-600">Receive push notifications</p>
-              </div>
-              <Button variant="outline" size="sm">Configure</Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </TabsContent>
-    
     <TabsContent value="security">
-      <Card>
-        <CardHeader>
-          <CardTitle>Security Settings</CardTitle>
-          <CardDescription>Manage your account security and privacy.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="current-password">Current Password</Label>
-            <Input id="current-password" type="password" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="new-password">New Password</Label>
-            <Input id="new-password" type="password" />
-          </div>
-          <Button>Update Password</Button>
-        </CardContent>
-      </Card>
+      <div className="rounded-lg border p-6 space-y-2">
+        <h3 className="font-semibold">Password & Authentication</h3>
+        <p className="text-sm text-muted-foreground">Manage your password and 2FA settings.</p>
+      </div>
     </TabsContent>
-    
-    <TabsContent value="preferences">
-      <Card>
-        <CardHeader>
-          <CardTitle>Preferences</CardTitle>
-          <CardDescription>Customize your application preferences.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">Dark Mode</p>
-                <p className="text-sm text-gray-600">Toggle dark mode theme</p>
-              </div>
-              <Button variant="outline" size="sm">Toggle</Button>
-            </div>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">Language</p>
-                <p className="text-sm text-gray-600">Select your preferred language</p>
-              </div>
-              <Button variant="outline" size="sm">Change</Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+    <TabsContent value="notifications">
+      <div className="rounded-lg border p-6 space-y-2">
+        <h3 className="font-semibold">Notification Preferences</h3>
+        <p className="text-sm text-muted-foreground">Choose which emails and alerts you want to receive.</p>
+      </div>
+    </TabsContent>
+    <TabsContent value="billing">
+      <div className="rounded-lg border p-6 space-y-2">
+        <h3 className="font-semibold">Billing & Plans</h3>
+        <p className="text-sm text-muted-foreground">Manage your subscription, payment methods, and invoices.</p>
+      </div>
     </TabsContent>
   </Tabs>
 </ComponentDocSection>
 
-## Controlled Tabs
+## Outline Variant
+
+Set `variant="outline"` on the `Tabs` root for a file-tab appearance — an underline connects the list to the content area, and the active tab appears raised above it. Ideal for code editors, document viewers, or any multi-panel interface that should feel like open files.
 
 <ComponentDocSection
-  code={`import { Tabs, TabsContent, TabsList, TabsTrigger, Button } from "buildgrid-ui";
+  code={`import { Tabs, TabsContent, TabsList, TabsTrigger } from "buildgrid-ui";
+import { FileText } from "lucide-react";
+
+function OutlineTabs() {
+  return (
+    <Tabs defaultValue="component" variant="outline">
+      <TabsList>
+        <TabsTrigger value="component"><FileText />tabs.tsx</TabsTrigger>
+        <TabsTrigger value="stories"><FileText />tabs.stories.tsx</TabsTrigger>
+        <TabsTrigger value="test"><FileText />tabs.test.tsx</TabsTrigger>
+      </TabsList>
+      <TabsContent value="component">
+        <div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground leading-relaxed">
+          'use client'<br />
+          import &#123; cn &#125; from '@/lib/utils'
+        </div>
+      </TabsContent>
+      <TabsContent value="stories">
+        <div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground leading-relaxed">
+          // organize-imports-ignore<br />
+          import React from 'react'
+        </div>
+      </TabsContent>
+      <TabsContent value="test">
+        <div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground leading-relaxed">
+          import &#123; render, screen &#125; from '@testing-library/react'
+        </div>
+      </TabsContent>
+    </Tabs>
+  );
+}`}
+  storybookPath="components-tabs--outline"
+>
+  <Tabs defaultValue="component" variant="outline">
+    <TabsList>
+      <TabsTrigger value="component"><FileText />tabs.tsx</TabsTrigger>
+      <TabsTrigger value="stories"><FileText />tabs.stories.tsx</TabsTrigger>
+      <TabsTrigger value="test"><FileText />tabs.test.tsx</TabsTrigger>
+    </TabsList>
+    <TabsContent value="component">
+      <div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground leading-relaxed">
+        'use client'<br />
+        import &#123; cn &#125; from '@/lib/utils'
+      </div>
+    </TabsContent>
+    <TabsContent value="stories">
+      <div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground leading-relaxed">
+        // organize-imports-ignore<br />
+        import React from 'react'
+      </div>
+    </TabsContent>
+    <TabsContent value="test">
+      <div className="rounded-b-lg border border-t-0 bg-muted/30 p-4 font-mono text-xs text-muted-foreground leading-relaxed">
+        import &#123; render, screen &#125; from '@testing-library/react'
+      </div>
+    </TabsContent>
+  </Tabs>
+</ComponentDocSection>
+
+## Collapse Label
+
+Add `collapseLabel` to a `TabsTrigger` to show only the icon when that tab is inactive. The label reappears when the tab becomes active. This keeps the tab bar compact while still surfacing context on selection. The label remains accessible to screen readers at all times.
+
+<ComponentDocSection
+  code={`import { Tabs, TabsContent, TabsList, TabsTrigger } from "buildgrid-ui";
+import { Home, BarChart3, Settings, User } from "lucide-react";
+
+function CollapseLabelTabs() {
+  return (
+    <Tabs defaultValue="overview">
+      <TabsList>
+        <TabsTrigger value="overview" collapseLabel>
+          <Home />Overview
+        </TabsTrigger>
+        <TabsTrigger value="analytics" collapseLabel>
+          <BarChart3 />Analytics
+        </TabsTrigger>
+        <TabsTrigger value="settings" collapseLabel>
+          <Settings />Settings
+        </TabsTrigger>
+        <TabsTrigger value="profile" collapseLabel>
+          <User />Profile
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview">
+        <div className="rounded-lg border p-4 text-sm text-muted-foreground">Overview</div>
+      </TabsContent>
+      <TabsContent value="analytics">
+        <div className="rounded-lg border p-4 text-sm text-muted-foreground">Analytics</div>
+      </TabsContent>
+      <TabsContent value="settings">
+        <div className="rounded-lg border p-4 text-sm text-muted-foreground">Settings</div>
+      </TabsContent>
+      <TabsContent value="profile">
+        <div className="rounded-lg border p-4 text-sm text-muted-foreground">Profile</div>
+      </TabsContent>
+    </Tabs>
+  );
+}`}
+  storybookPath="components-tabs--collapse-label"
+>
+  <Tabs defaultValue="overview">
+    <TabsList>
+      <TabsTrigger value="overview" collapseLabel><Home />Overview</TabsTrigger>
+      <TabsTrigger value="analytics" collapseLabel><BarChart3 />Analytics</TabsTrigger>
+      <TabsTrigger value="settings" collapseLabel><Settings />Settings</TabsTrigger>
+      <TabsTrigger value="profile" collapseLabel><User />Profile</TabsTrigger>
+    </TabsList>
+    <TabsContent value="overview">
+      <div className="rounded-lg border p-4 text-sm text-muted-foreground">Overview</div>
+    </TabsContent>
+    <TabsContent value="analytics">
+      <div className="rounded-lg border p-4 text-sm text-muted-foreground">Analytics</div>
+    </TabsContent>
+    <TabsContent value="settings">
+      <div className="rounded-lg border p-4 text-sm text-muted-foreground">Settings</div>
+    </TabsContent>
+    <TabsContent value="profile">
+      <div className="rounded-lg border p-4 text-sm text-muted-foreground">Profile</div>
+    </TabsContent>
+  </Tabs>
+</ComponentDocSection>
+
+`collapseLabel` works with both variants and can be mixed — some tabs collapse while others always show their label:
+
+<ComponentDocSection
+  code={`<Tabs defaultValue="notifications" variant="outline">
+  <TabsList>
+    <TabsTrigger value="notifications">
+      <Bell />Notifications
+    </TabsTrigger>
+    <TabsTrigger value="security" collapseLabel>
+      <Lock />Security
+    </TabsTrigger>
+    <TabsTrigger value="billing" collapseLabel>
+      <CreditCard />Billing
+    </TabsTrigger>
+  </TabsList>
+  ...
+</Tabs>`}
+>
+  <Tabs defaultValue="notifications" variant="outline">
+    <TabsList>
+      <TabsTrigger value="notifications"><Bell />Notifications</TabsTrigger>
+      <TabsTrigger value="security" collapseLabel><Lock />Security</TabsTrigger>
+      <TabsTrigger value="billing" collapseLabel><CreditCard />Billing</TabsTrigger>
+    </TabsList>
+    <TabsContent value="notifications">
+      <div className="border border-t-0 rounded-b-lg p-4 text-sm text-muted-foreground">Notifications panel</div>
+    </TabsContent>
+    <TabsContent value="security">
+      <div className="border border-t-0 rounded-b-lg p-4 text-sm text-muted-foreground">Security panel</div>
+    </TabsContent>
+    <TabsContent value="billing">
+      <div className="border border-t-0 rounded-b-lg p-4 text-sm text-muted-foreground">Billing panel</div>
+    </TabsContent>
+  </Tabs>
+</ComponentDocSection>
+
+## Controlled
+
+Pass `value` and `onValueChange` to control the active tab from outside:
+
+<ComponentDocSection
+  code={`import { Tabs, TabsContent, TabsList, TabsTrigger, Button, Badge } from "buildgrid-ui";
 import { useState } from "react";
+import { User, Settings, BarChart3 } from "lucide-react";
 
 function ControlledTabs() {
-  const [activeTab, setActiveTab] = useState("overview");
-  
-  const tabs = [
-    { value: "overview", label: "Overview" },
-    { value: "analytics", label: "Analytics" },
-    { value: "reports", label: "Reports" },
-    { value: "settings", label: "Settings" }
-  ];
+  const [tab, setTab] = useState("profile");
+  const tabs = ["profile", "settings", "stats"];
 
   return (
-    <div className="w-full max-w-2xl space-y-4">
-      <div className="flex gap-2">
-        {tabs.map((tab) => (
-          <Button
-            key={tab.value}
-            variant={activeTab === tab.value ? "default" : "outline"}
-            size="sm"
-            onClick={() => setActiveTab(tab.value)}
-          >
-            {tab.label}
-          </Button>
-        ))}
+    <div className="space-y-4">
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-muted-foreground">Active:</span>
+        <Badge variant="outline">{tab}</Badge>
+        <Button
+          size="sm"
+          variant="ghost"
+          onClick={() => setTab(tabs[(tabs.indexOf(tab) + 1) % tabs.length])}
+        >
+          Next tab
+        </Button>
       </div>
-      
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="hidden">
-          {tabs.map((tab) => (
-            <TabsTrigger key={tab.value} value={tab.value}>
-              {tab.label}
-            </TabsTrigger>
-          ))}
+      <Tabs value={tab} onValueChange={setTab}>
+        <TabsList>
+          <TabsTrigger value="profile"><User />Profile</TabsTrigger>
+          <TabsTrigger value="settings"><Settings />Settings</TabsTrigger>
+          <TabsTrigger value="stats"><BarChart3 />Stats</TabsTrigger>
         </TabsList>
-        
-        <TabsContent value="overview">
-          <div className="p-6 bg-blue-50 rounded-lg">
-            <h3 className="font-semibold mb-2">Overview Dashboard</h3>
-            <p className="text-sm text-gray-600">
-              Get a high-level view of your application metrics and performance.
-            </p>
-          </div>
+        <TabsContent value="profile">
+          <div className="rounded-lg border p-4 text-sm text-muted-foreground">Profile panel</div>
         </TabsContent>
-        
-        <TabsContent value="analytics">
-          <div className="p-6 bg-green-50 rounded-lg">
-            <h3 className="font-semibold mb-2">Analytics</h3>
-            <p className="text-sm text-gray-600">
-              Detailed analytics and insights about user behavior and engagement.
-            </p>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="reports">
-          <div className="p-6 bg-purple-50 rounded-lg">
-            <h3 className="font-semibold mb-2">Reports</h3>
-            <p className="text-sm text-gray-600">
-              Generate and view comprehensive reports for your data.
-            </p>
-          </div>
-        </TabsContent>
-        
         <TabsContent value="settings">
-          <div className="p-6 bg-orange-50 rounded-lg">
-            <h3 className="font-semibold mb-2">Settings</h3>
-            <p className="text-sm text-gray-600">
-              Configure application settings and preferences.
-            </p>
-          </div>
+          <div className="rounded-lg border p-4 text-sm text-muted-foreground">Settings panel</div>
+        </TabsContent>
+        <TabsContent value="stats">
+          <div className="rounded-lg border p-4 text-sm text-muted-foreground">Stats panel</div>
         </TabsContent>
       </Tabs>
-      
-      <div className="text-sm text-gray-600">
-        Current active tab: <span className="font-medium">{activeTab}</span>
-      </div>
     </div>
   );
 }`}
+  storybookPath="components-tabs--controlled"
 >
   {(() => {
-    const [activeTab, setActiveTab] = React.useState("overview");
-    
-    const tabs = [
-      { value: "overview", label: "Overview" },
-      { value: "analytics", label: "Analytics" },
-      { value: "reports", label: "Reports" },
-      { value: "settings", label: "Settings" }
-    ];
-
+    const [tab, setTab] = React.useState("profile");
+    const tabs = ["profile", "settings", "stats"];
     return (
-      <div className="w-full max-w-2xl space-y-4">
-        <div className="flex gap-2">
-          {tabs.map((tab) => (
-            <Button
-              key={tab.value}
-              variant={activeTab === tab.value ? "default" : "outline"}
-              size="sm"
-              onClick={() => setActiveTab(tab.value)}
-            >
-              {tab.label}
-            </Button>
-          ))}
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-muted-foreground">Active:</span>
+          <Badge variant="outline">{tab}</Badge>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={() => setTab(tabs[(tabs.indexOf(tab) + 1) % tabs.length])}
+          >
+            Next tab
+          </Button>
         </div>
-        
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="hidden">
-            {tabs.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
-                {tab.label}
-              </TabsTrigger>
-            ))}
+        <Tabs value={tab} onValueChange={setTab}>
+          <TabsList>
+            <TabsTrigger value="profile"><User />Profile</TabsTrigger>
+            <TabsTrigger value="settings"><Settings />Settings</TabsTrigger>
+            <TabsTrigger value="stats"><BarChart3 />Stats</TabsTrigger>
           </TabsList>
-          
-          <TabsContent value="overview">
-            <div className="p-6 bg-blue-50 rounded-lg">
-              <h3 className="font-semibold mb-2">Overview Dashboard</h3>
-              <p className="text-sm text-gray-600">
-                Get a high-level view of your application metrics and performance.
-              </p>
-            </div>
+          <TabsContent value="profile">
+            <div className="rounded-lg border p-4 text-sm text-muted-foreground">Profile panel</div>
           </TabsContent>
-          
-          <TabsContent value="analytics">
-            <div className="p-6 bg-green-50 rounded-lg">
-              <h3 className="font-semibold mb-2">Analytics</h3>
-              <p className="text-sm text-gray-600">
-                Detailed analytics and insights about user behavior and engagement.
-              </p>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="reports">
-            <div className="p-6 bg-purple-50 rounded-lg">
-              <h3 className="font-semibold mb-2">Reports</h3>
-              <p className="text-sm text-gray-600">
-                Generate and view comprehensive reports for your data.
-              </p>
-            </div>
-          </TabsContent>
-          
           <TabsContent value="settings">
-            <div className="p-6 bg-orange-50 rounded-lg">
-              <h3 className="font-semibold mb-2">Settings</h3>
-              <p className="text-sm text-gray-600">
-                Configure application settings and preferences.
-              </p>
-            </div>
+            <div className="rounded-lg border p-4 text-sm text-muted-foreground">Settings panel</div>
+          </TabsContent>
+          <TabsContent value="stats">
+            <div className="rounded-lg border p-4 text-sm text-muted-foreground">Stats panel</div>
           </TabsContent>
         </Tabs>
-        
-        <div className="text-sm text-gray-600">
-          Current active tab: <span className="font-medium">{activeTab}</span>
-        </div>
       </div>
     );
   })()}
@@ -563,74 +447,46 @@ function ControlledTabs() {
 
 ### `Tabs`
 
-| Property | Type | Description |
-|---|---|---|
-| `defaultValue` | `string` | The default active tab value (uncontrolled). |
-| `value` | `string` | The active tab value (controlled). |
-| `onValueChange` | `(value: string) => void` | Callback fired when the active tab changes. |
-| `orientation` | `"horizontal" \| "vertical"` | The orientation of the tabs. Default is "horizontal". |
-| `dir` | `"ltr" \| "rtl"` | The reading direction of the tabs. |
-| `activationMode` | `"automatic" \| "manual"` | Whether tabs are activated automatically on focus or manually. |
-| `className` | `string` | Additional CSS classes for the tabs container. |
-| `children` | `ReactNode` | The tabs content (TabsList and TabsContent). |
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `defaultValue` | `string` | — | Initial active tab (uncontrolled). |
+| `value` | `string` | — | Active tab value (controlled). |
+| `onValueChange` | `(value: string) => void` | — | Callback fired when the active tab changes. |
+| `variant` | `"default" \| "outline"` | `"default"` | Visual style. `default` is a pill/segmented control; `outline` looks like file tabs. |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Layout direction of the tab list. |
+| `dir` | `"ltr" \| "rtl"` | — | Reading direction. |
+| `activationMode` | `"automatic" \| "manual"` | `"automatic"` | Whether focus automatically activates a tab. |
+| `className` | `string` | — | Additional CSS classes. |
 
 ### `TabsList`
 
-| Property | Type | Description |
-|---|---|---|
-| `size` | `"sm" \| "md" \| "lg" \| "xl"` | The size of the tabs list. Default is "md". |
-| `className` | `string` | Additional CSS classes for the tabs list. |
-| `children` | `ReactNode` | The tab triggers (TabsTrigger components). |
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | Height of the tab list. |
+| `loop` | `boolean` | `true` | Whether arrow-key navigation wraps around. |
+| `className` | `string` | — | Additional CSS classes. |
 
 ### `TabsTrigger`
 
-| Property | Type | Description |
-|---|---|---|
-| `value` | `string` | The unique value that associates the trigger with content. |
-| `size` | `"sm" \| "md" \| "lg" \| "xl"` | The size of the tab trigger. Default is "md". |
-| `disabled` | `boolean` | Whether the tab trigger is disabled. |
-| `className` | `string` | Additional CSS classes for the tab trigger. |
-| `children` | `ReactNode` | The trigger content (usually text or icons). |
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | **Required.** Unique identifier linking this trigger to its content panel. |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | Size of the trigger. Should match the `TabsList` size. |
+| `collapseLabel` | `boolean` | `false` | When `true`, hides the text label when the tab is inactive, showing only the icon. Requires an icon as the first child. The label remains visible to screen readers. |
+| `disabled` | `boolean` | `false` | Prevents selection and keyboard navigation. |
+| `className` | `string` | — | Additional CSS classes. |
 
 ### `TabsContent`
 
-| Property | Type | Description |
-|---|---|---|
-| `value` | `string` | The unique value that associates the content with a trigger. |
-| `forceMount` | `boolean` | Whether to force mount the content. |
-| `className` | `string` | Additional CSS classes for the tab content. |
-| `children` | `ReactNode` | The content to display when the tab is active. |
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | **Required.** Matches the corresponding `TabsTrigger` value. |
+| `forceMount` | `boolean` | `false` | Keep the panel in the DOM even when inactive (useful for animating exit). |
+| `className` | `string` | — | Additional CSS classes. |
 
 ## Accessibility
 
-The Tabs component includes comprehensive accessibility features:
-
-- **Keyboard Navigation** - Arrow keys navigate between tabs, Space/Enter activates tabs
-- **Focus Management** - Proper focus handling and visual indicators
-- **ARIA Support** - Full ARIA attributes for screen readers
-- **Role Semantics** - Proper tablist, tab, and tabpanel roles
-- **Screen Reader Support** - Tab states and content announced correctly
-- **Disabled State** - Proper handling of disabled tabs
-
-## Common Use Cases
-
-The Tabs component is perfect for:
-
-- **Settings Panels** - Organize different configuration sections
-- **Dashboard Views** - Switch between different data views
-- **Content Organization** - Separate related content into logical groups
-- **Form Sections** - Break long forms into manageable sections
-- **Navigation Menus** - Create tabbed navigation interfaces
-- **Product Details** - Show specifications, reviews, and related info
-- **User Profiles** - Organize profile information into categories
-
-## Best Practices
-
-1. **Clear Labels** - Use descriptive and concise tab labels
-2. **Logical Grouping** - Group related content together
-3. **Consistent Sizing** - Use consistent tab sizes throughout your interface
-4. **Default Selection** - Always have a default active tab
-5. **Loading States** - Show loading indicators for async content
-6. **Responsive Design** - Consider mobile layouts and scrollable tabs
-7. **Icon Usage** - Use icons to enhance tab identification
-8. **State Management** - Use controlled tabs for complex state requirements
+- **Keyboard navigation** — `←`/`→` (or `↑`/`↓` for vertical) move between tabs; `Home`/`End` jump to first/last. Focus loops by default.
+- **Roving tabindex** — only the active tab is in the natural tab sequence; inactive tabs are reachable via arrow keys.
+- **ARIA** — `role="tablist"`, `role="tab"`, `role="tabpanel"`, `aria-selected`, `aria-controls`, and `aria-labelledby` are set automatically.
+- **`collapseLabel`** — collapsed labels use `sr-only` so screen readers still announce the full tab name.
