@@ -1,3 +1,10 @@
+## [1.22.23](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.22...v1.22.23) (2026-06-10)
+
+
+### Bug Fixes
+
+* **storybook:** add dark mode theme switcher and dark mode tab styles ([de35653](https://github.com/adrianomaringolo/buildgrid-ui/commit/de35653bed1de9651be8743f808ccbb9bac108a2))
+
 ## [1.22.22](https://github.com/adrianomaringolo/buildgrid-ui/compare/v1.22.21...v1.22.22) (2026-06-10)
 
 
